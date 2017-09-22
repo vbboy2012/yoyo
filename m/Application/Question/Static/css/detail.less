@@ -1,0 +1,177 @@
+.dtOne{
+  background-color: @comColor;
+  margin-bottom: 5px;
+  .head{
+    .flexDiv;
+    color: @minorTextColor;
+    font-size: 12px;
+    padding: 10px 10px 0;
+    i{
+      margin-right: 5px;
+    }
+    a{
+      color: @themeColor;
+    }
+    p span:first-child{
+      margin-right: 10px;
+    }
+  }
+  .dtTitle{
+    padding: 5px 10px;
+    border-bottom: 1px dashed #ddd;
+    font-size: 15px;
+    color: #333;
+    p{
+      max-width: 350px;
+    }
+  }
+  .more{
+    padding: 5px 10px 0;
+  }
+  .bottom{
+    border-top: 1px solid #ddd;
+    height: 50px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    .two{
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      color: #333;
+      &:first-child{
+        border-right: 1px solid #ddd;
+      }
+      i{
+        margin: 3px 5px 0 0;
+      }
+    }
+  }
+}
+//最佳回答样式
+.best{
+  background-color: @comColor;
+  .btTitle{
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    color: @themeColor;
+    i{
+      margin-right: 5px;
+    }
+  }
+}
+.btCont{
+  padding: 10px;
+  .header{
+    .flexDiv;
+    .left{
+      display: flex;
+      align-items: center;
+      a{
+        color: @themeColor;
+      }
+      p{
+        font-size: 12px;
+        color: @minorTextColor;
+      }
+      .coverWrap{
+        .osCircle(40px);
+        margin-right: 10px;
+      }
+    }
+    .right{
+      color: @minorTextColor;
+    }
+  }
+
+}
+.last{
+  span{
+    margin-right: 10px;
+    i{
+      margin-right: 5px;
+    }
+  }
+}
+.ansNum{
+  padding: 5px 10px;
+  color: @minorTextColor;
+}
+.ansList{
+  background-color: @comColor;
+  .btCont{
+    border-bottom: 1px solid #f2f2f2;
+    &:last-child{
+      border: none;
+    }
+  }
+}
+//邀请用户列表样式
+.invite{
+  overflow-y: scroll;
+  padding-bottom: 44px;
+  .choseHead{
+    padding: 10px;
+    .flexDiv;
+    color: @minorTextColor;
+    font-size: 12px;
+    background-color: #f2f2f2;
+    .all{
+      display: flex;
+      align-items: center;
+      span{
+        margin-left: 5px;
+      }
+    }
+  }
+}
+.ppList{
+  li{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px dashed #f2f2f2;
+    &:last-child{
+      border: none;
+    }
+    .ppCover{
+      .osCircle(40px);
+      margin: 0 8px;
+    }
+    .ppInfo{
+      .flexCol;
+      align-items: flex-start;
+      a{
+        color: @themeColor;
+      }
+      p{
+        font-size: 12px;
+        color: @minorTextColor;
+        span{
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}
+.sure{
+  padding: 10px;
+  width: 100%;
+  background-color: #f2f2f2;
+  .flexDiv;
+  justify-content: space-around;
+  a{
+    display: inline-block;
+    padding: 3px 15px;
+    border-radius: 3px;
+    background-color: @themeColor;
+    color: @comColor;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    &:first-child{
+      background-color: @comColor;
+      color: @themeColor;
+    }
+  }
+}

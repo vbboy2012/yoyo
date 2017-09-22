@@ -1,0 +1,216 @@
+<extend name="Base/common"/>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <link rel="stylesheet" href="__CSS__/weibo.css"/>
+            <link rel="stylesheet" href="__PUBLIC__/ext/webuploader/webuploader.css"/>
+            <div class="sendHead">
+                <a class="pull-left" href="<if condition="$topic['id'] neq false">{:U('weibo/topic/index',array('topk'=>$topic['id']))}<else/>{:U('weibo/index/index')}</if>">取消</a>
+                <button class="button button-block" data-role="submit-weibo">发布</button>
+            </div>
+            <div id="hook_show" class="emot_content"></div>
+
+            <!-- Icons in standard bar fixed to the bottom of the screen -->
+            <div class="bar bar-footer" style="height: 35px;padding: 0">
+                <div class="bar bar-footer-secondary list-block send-weibo-list-block">
+                    <ul>
+                        <li>
+                            <div class="crowd-select">
+                                <a href="javascript:" class="button button-fill" data-role="choose-crowd">全站动态</a>
+                                <input type="hidden" id="crowd_id">
+                            </div>
+
+                            <a href="javascript:" class="item-link item-content">
+                                <div class="item-inner" data-role="show_address">
+                                    <div class="item-title"><i class="iconfont icon-dingwei"></i> <span
+                                            class="location-text ">分享所在位置</span>
+                                    </div>
+                                    <input type="hidden" id="location">
+                                </div>
+                            </a>
+
+                        </li>
+                    </ul>
+                </div>
+
+
+                <a data-role="show-bottom" data-type="emoji"
+                   class="iconfont icon-biaoqing pull-left send-weibo-bar col-15 text-center"></a>
+                <a data-role="show-bottom" data-type="image"
+                   class="iconfont icon-tupian pull-left send-weibo-bar col-15 text-center"></a>
+                <a class="iconfont icon-bofang pull-left send-weibo-bar col-15 text-center insert_video"  href="javascript:"   onclick="video.upload_video(this)">
+                </a>
+                <a data-role="show-friend" data-type="at"
+                   class="iconfont icon-aite pull-left send-weibo-bar col-15 text-center"></a>
+                <a data-role="show-huati" data-type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ="at"
+                   class="iconfont icon-huati pull-left send-weibo-bar col-15 text-center"></a>
+                <a data-role="show-music" data-type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ="at"
+                   class="iconfont icon-yinle pull-left send-weibo-bar col-15 text-center"></a>
+                <div class="send-bottom emoji">
+                    <div class="swiper-container" style="width: 100%;height: 100%;">
+                        <div class="swiper-wrapper emoji-list"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+                <div class="send-bottom image">
+                    <input type="hidden" name="image" id="image"/>
+                    <div class="img-list">
+                        <div class="add-img-btn img-btn-sit">
+                            <div class="iconfont icon-fabu1 text-center img-add"></div>
+                            <input name="files" class="img-input" style="" id="choose" data-url="/bu/index.php?s=/core/file/uploadpicturebase64.html" multiple="" type="file">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <input name="type" value="" id="weibotype" type="hidden" />
+            <div class="content send-weibo-container">
+                <div class="content-block editor needsclick" contenteditable="true" id="weibo_content"
+                     data-placeholder="{:modC('WEIBO_INFO','分享新鲜事~~')}"><if condition="$topic['name'] neq false">#{$topic['name']}#</if></div>
+            </div>
+        </div>
+    </div>
+</block>
+
+<block name="other">
+    <div class="popup popup-about weibo-popup">
+
+        <div class="content-block noEdge">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link close-popup"
+                   href="javascript:"></a>
+                <a href="javascript:" class="title open-about">所在位置</a>
+            </header>
+            <!--搜索栏-->
+            <div class="bar bar-header-secondary">
+                <div class="searchbar">
+                    <a class="searchbar-cancel">取消</a>
+                    <div class="search-input">
+                        <label class="icon icon-search" for="search"></label>
+                        <input type="search" id='search' placeholder='输入关键字...'/>
+                    </div>
+                </div>
+            </div>
+            <!--附近地址列表-->
+            <div class="content">
+                <div class="addressList">
+                    <ul>
+                        <li class="close-popup first" data-role="choose-place" data-location="0">
+                            不使用定位<i class="iconfont icon-iconfontduigou fr "></i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="popup popup-friend weibo-popup">
+        <div class="content-block noEdge">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link close-popup"
+                   href="javascript:closePopup('popup-friend')"></a>
+                <a href="javascript:" class="title open-about">@好友</a>
+            </header>
+            <div class="content">
+                <div id="slider">
+                    <div class="slider-list">
+                        <ul></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup popup-huati weibo-popup">
+        <div class="content-block noEdge">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link close-popup"
+                   href="javascript:closePopup('popup-huati')"></a>
+                <a href="javascript:" class="title open-about">{:L('_TOPIC_')}</a>
+                <a class="iconfont icon-iconfontduigou pull-right button button-link ok-popup"
+                   href="javascript:"></a>
+            </header>
+            <div class="content" style="background-color: #f7f7f7;">
+                <div class="inhuati">
+                    <span>#</span>
+                    <input id="intext" type="text" placeholder="输入话题">
+                </div>
+                <div id="slider2">
+                    <div class="slider-list">
+                        <ul></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup popup-music weibo-popup">
+        <div class="content-block noEdge">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link close-popup"
+                   href="javascript:closePopup('popup-music')"></a>
+                <a href="javascript:" class="title open-about">音乐</a>
+            </header>
+            <div class="content" style="background-color: #f7f7f7;">
+                <div class="inhuati" data-type="xiami-music">
+                    <input data-role="music-key" type="text" id="intext" placeholder="输入歌曲或歌手" />
+                    <div class="icon icon-search music-search" data-role="get_music"></div>
+                    <input data-role="music_url" type="hidden" value="{:addons_url('InsertXiami://Xiami/searchMusic')}" />
+                    <input data-role="music_page" type="hidden" value="1" />
+                    <input name="title" class="extra" value="" type="hidden">
+                    <input name="id" class="extra" value="" type="hidden">
+                    <input name="author" class="extra" value="" type="hidden">
+                    <input name="cover" class="extra" value="" type="hidden">
+                </div>
+                <div id="slider3">
+                    <div class="slider-list">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="popup popup-crowd weibo-popup">
+        <div class="content-block noEdge">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link close-popup"
+                   href="javascript:closePopup('popup-crowd')"></a>
+                <a href="javascript:" class="title open-about">选择圈子</a>
+            </header>
+            <div class="content">
+                <div class="crowd-list">
+                    <ul>
+                        <li class="close-popup first" data-role="set-crowd" data-id="0">
+                            全站动态
+                            <i class="iconfont icon-iconfontduigou fr "></i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+
+
+<block name="script">
+    <script src="__VIDEO_JS__/video.js"></script>
+    <script src="__VIDEO_PLAYER__/flowplayer-3.2.11.min.js"></script>
+    <script src="__PUBLIC__/com/com.toast.class.js"></script>
+    <script src="__PUBLIC_JS__/zui.js"></script>
+    <script src="__PUBLIC_EXT__/webuploader/webuploader.html5only.js"></script>
+    <script src="//cdn.bootcss.com/emojione/2.2.7/lib/js/emojione.min.js"></script>
+    <script src="  https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+    <script src="__JS__/sendweibo.js"></script>
+    <script src="__JS__/lrz.mobile.min.js"></script>
+    <script type="text/javascript">
+        emojione.imageType = 'png';
+        emojione.ascii = true;
+        emojione.imagePathPNG = _ROOT_ + '/Public/emoji/';
+        function closePopup (className) {
+            $("." + className).hide() ;
+            $(".popup-overlay").hide();
+        }
+    </script>
+</block>

@@ -1,0 +1,63 @@
+<!-- 模态框HTML -->
+<link href="__ZUI__/lib/datetimepicker/datetimepicker.min.css" rel="stylesheet" type="text/css">
+<form class="ajax-form" method="post" action="{:U('admin/weibo/weibo')}">
+
+    <input type="hidden" name="shaixuan" value="1">
+
+    <div class="col-xs-5">
+        <input type="text" id="sTime" name="sTime" class="time_d form-control form_check" readonly check-type="Date" value="" placeholder="发布时间" required/>
+    </div>
+
+    <div class="col-xs-5">
+        <input type="text" id="eTime" name="eTime" class="time_d form-control form_check" readonly check-type="Date"  value="" placeholder="{:L('_TIME_OVER_')}" required/>
+    </div>
+    <div style="line-height: 45px;margin-left: 15px">
+        <label>
+            <input id="unhandle" name="no_majia" value="1" type="checkbox" checked>是否排除马甲微博
+        </label>
+    </div>
+
+    <div style="height: 40px;margin-left: 18px;width: 120px ">
+    <span>
+        <p class="pull-left" style="margin-right: 5px">
+            <input type="submit" data-role="submitscreen" value="确定" class="btn btn-primary send_box">
+        </p>
+    </span>
+    <span>
+        <p class="pull-left" style="margin-left: 5px;">
+            <input type="button" value="取消" class="btn btn-primary send_box" data-dismiss="modal">
+        </p>
+    </span>
+    </div>
+</form>
+<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+
+<script type="text/javascript" src="__ZUI__/lib/datetimepicker/datetimepicker.min.js" charset="UTF-8"></script>
+
+<script>
+
+
+    $('.time').datetimepicker({
+        language:'zh-CN',
+        weekStart:1,
+        todayBtn:1,
+        autoclose:1,
+        todayHighlight:1,
+        startView:2,
+        minView:0,
+        forceParse:0,
+        format: 'yyyy-mm-dd hh:ii'
+    });
+
+    $('.time_d').datetimepicker({
+        language:'zh-CN',
+        weekStart:1,
+        todayBtn:1,
+        autoclose:1,
+        todayHighlight:1,
+        startView:2,
+        minView:0,
+        forceParse:0,
+        format: 'yyyy-mm-dd hh:ii'
+    });
+</script>

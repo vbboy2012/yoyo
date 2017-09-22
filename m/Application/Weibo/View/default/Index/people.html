@@ -1,0 +1,103 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/weibo.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">社区成员</a>
+            </header>
+            <div class="content infinite-scroll infinite-scroll-bottom" data-distance="100">
+                <div class="content-block noEdge noShadow">
+                    <div class="buttons-tab" style="border: none">
+                        <a href="#tab1" class="tab-link active button">社区牛人</a>
+                        <a href="#tab2" class="tab-link button">全部会员</a>
+                    </div>
+
+                    <div class="content-block noEdge">
+                        <div class="tabs">
+                            <div id="tab1" class="tab active">
+                                <div class="content-block noEdge">
+                                    <!--站长-->
+                                    <div class="master">
+                                        <p class="mtTitle">站长</p>
+                                        <volist name="admin" id="list">
+                                            <a href="{$list.space_mob_url}" external>
+                                                <div class="flexDiv mtFlex">
+                                                    <div class="flexLeft">
+                                                        <div class="leftDiv mCover">
+                                                            <img src="{$list.avatar128}" alt="商城封面">
+                                                        </div>
+                                                        <div class="rightDiv mInfo" style="align-items:flex-start ">
+                                                            <p class="mName textMore">{$list.nickname}</p>
+                                                            <p class="mIntro textMore">{$list.signature|default="这个人很懒,神马都没写~"}</p>
+                                                        </div>
+                                                    </div>
+                                                    <if condition="$list['uid'] neq is_login()">
+                                                        <div class="flexRight"><a class="mButton do-active" href="javascript:" data-uid="{$list.uid}" data-value="{$list.is_follow}">{$list.follow_status}</a></div>
+                                                    </if>
+                                                </div>
+                                            </a>
+                                        </volist>
+                                    </div>
+                                    <!--管理员-->
+                                    <div class="manages">
+                                        <p class="mtTitle">圈主</p>
+                                        <volist name="crowd_admin" id="list">
+                                            <a href="{$list.space_mob_url}" external>
+                                                <div class="flexDiv mtFlex">
+                                                    <div class="flexLeft">
+                                                        <div class="leftDiv mCover">
+                                                            <img src="{$list.avatar128}" alt="商城封面">
+                                                        </div>
+                                                        <div class="rightDiv mInfo" style="align-items:flex-start ">
+                                                            <p class="mName textMore">{$list.nickname}</p>
+                                                            <p class="mIntro textMore">{$list.signature|default="这个人很懒,神马都没写~"}</p>
+                                                        </div>
+                                                    </div>
+                                                    <if condition="$list['uid'] neq is_login()">
+                                                        <div class="flexRight"><a class="mButton do-active" href="javascript:" data-uid="{$list.uid}" data-value="{$list.is_follow}">{$list.follow_status}</a></div>
+                                                    </if>
+                                                </div>
+                                            </a>
+                                        </volist>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab2" class="tab">
+                                <div class="content-block noEdge">
+                                    <div class="bar bar-header-secondary searchPeople">
+                                        <div class="searchbar">
+                                            <a class="searchbar-cancel">取消</a>
+                                            <div class="search-input">
+                                                <label class="icon icon-search" for="search"></label>
+                                                <input type="search" id='search' placeholder='搜索用户 ...'/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--全部会员-->
+                                    <div class="allPeople">
+                                        <p class="mtTitle">全部会员</p>
+                                        <include file="_people"/>
+
+                                    </div>
+                                    <eq name="people|sizeof" value="10">
+                                        <div class="load-more-div proWrap" data-uid="{$uid}" data-type="moreWeibo" data-role="loadMore" data-value="{$page}">加载更多</div>
+                                    </eq>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+
+<block name="script">
+    <script src="__JS__/people.js"></script>
+    <script src="__PUBLIC_JS__/public.js"></script>
+</block>

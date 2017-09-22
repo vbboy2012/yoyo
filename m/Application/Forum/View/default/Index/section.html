@@ -1,0 +1,126 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <header class="bar bar-nav comHead">
+                    <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                       href="{:U('Forum/index/index')}"></a>
+                    <a href="javascript:" class="title">{$sectionInfo.title}</a>
+                </header>
+            </header>
+
+            <div class="content infinite-scroll">
+                <div class="content-block noEdge">
+                    <div class="head-box">
+                    <div class="section">
+                        <div class="sCover"><img src="{$sectionInfo.logo}" alt="板块封面"></div>
+                        <div class="sInfo">
+                            <p class="fName-b">{$sectionInfo.title}<span>{$userInfo.title}</span></p>
+                            <p class="number">
+                                <span>关注</span><b>{$followCount}</b><span>帖子</span><b>{$postCount}</b>
+                            </p>
+                        </div>
+                        <a href="javascript:" class="follow" data-follow="{$isFollowed}" data-forum_id="{$sectionId}" data-role="follow">
+                            <if condition="$isFollowed==1">
+                                {:L('_FOLLOWED_')}
+                            <else/>
+                                {:L('_FOLLOWERS_')}
+                            </if>
+                        </a>
+
+                    </div>
+                    <div class="active-user">
+                        <notempty name="forumUsers['showUser']">
+                            <div class="active-box">
+                                <ul>
+                                    <volist name="forumUsers['showUser']" id="vo">
+                                        <li class="img">
+                                            <a href="{:U('ucenter/index/mine',array('uid'=>$vo['uid']))}">
+                                                <img src="{$vo.avatar64}" alt="" />
+                                            </a>
+                                        </li>
+                                    </volist>
+                                </ul>
+                                <a href="{:U('Index/active',array('sid'=>$sectionInfo['id']))}" class="count-active">{$forumUsers['number']}个活跃用户<i class="iconfont icon-enter"></i></a>
+                            </div>
+                        </notempty>
+                    </div>
+                    <!--帖子-->
+                    <div class="topNav">
+                        <div class="buttons-tab sortNav">
+                            <a href="#tab1"   class="tab-link active button tiezi" data-role="commonPost" data-total="{$commonPosttotal?$commonPosttotal:0}"><span>帖子</span></a>
+                            <a href="#tab2" class="tab-link button jinghua" data-role="essencePosttotal" data-total="{$essencePosttotal?$essencePosttotal:0}"><span>精华帖</span></a>
+                        </div>
+                        <div class="sort" data-role="sort" data-value="off">
+                            <span>最新发布</span><i class="iconfont icon-xiangxiajiantou"></i>
+                        </div>
+                    </div>
+                        <div class="sort-box" data-role="sort-box">
+                            <ul>
+                                <li><a class="active" href="javascript:void(0);" data-role="sort-type" data-value="create_time">最新发布</a></li>
+                                <li><a href="javascript:void(0);" data-role="sort-type" data-value="last_reply_time">最后回复</a></li>
+                                <li><a href="javascript:void(0);" data-role="sort-type" data-value="reply_count">最热帖子</a></li>
+                            </ul>
+                            <div class="hidd-list" data-role="hidd-list"></div>
+                        </div>
+
+                    </div>
+                        <div class="mt" data-distance="100" data-ptr-distance="55">
+                            <notempty name="topPost">
+                                <ul class="top">
+                                    <volist name="topPost" id="vo">
+                                        <li>
+                                            <a href="{:U('Forum/index/detail',array('id'=>$vo['id']))}"><div class="top-info">置顶</div><div class="top-title">{$vo.title}</div></a>
+                                        </li>
+                                    </volist>
+                                </ul>
+                            </notempty>
+                            <ul id="tab" class="tab active list" data-title="common">
+
+                            </ul>
+                            <div class="infinite-scroll-preloader">
+                                <div class="preloader"></div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--提问按钮-->
+    <a class="sBtn iconfont icon-fabu" href="{:U('Forum/index/send',array('id'=>$sectionId))}"></a>
+</block>
+<block name="script">
+    <script src="__JS__/section.js"></script>
+    <script>
+        //实现关注板块的逻辑
+        $('[data-role="follow"]').click(function () {
+            var $this = $(this);
+            var follow=$(this).attr('data-follow')?$(this).attr('data-follow'):0;
+            if (follow==1){
+                $.post(U('Forum/index/follow'),{follow:follow,sectionID:sectionID},function (res) {
+                    if (res.status=1){
+                        $('[data-role="follow"]').text("{:L('_FOLLOWERS_')}");
+                        $this.attr("data-follow",0);
+                        $.toast(res.info)
+                    }else{
+                        $.toast(res.info)
+                    }
+                })
+            }else{
+                $.post(U('Forum/index/follow'),{follow:follow,sectionID:sectionID},function (res) {
+                    if (res.status=1){
+                        $('[data-role="follow"]').text("{:L('_FOLLOWED_')}");
+                        $this.attr("data-follow",1);
+                        $.toast(res.info)
+                    }else{
+                        $.toast(res.info)
+                    }
+                })
+            }
+        })
+    </script>
+</block>

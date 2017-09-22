@@ -1,0 +1,33 @@
+<!--会话列表start-->
+<ul>
+    <volist name="message_session" id="one_session">
+        <li class="session3">
+            <a href="{:U('Message/messageList',array('type'=>$one_session['type']))}">
+                <div class="message-t">
+                    <div class="message-wrap">
+                        <div class="col-xs-3 pdl0 img-wrap">
+                            <img src="{$one_session.detail.logo}" alt="" title="{$one_session.detail.title}">
+                            <gt name="one_session.count" value="0">
+                                <span class="badge unread-tip"></span>
+                            </gt>
+                        </div>
+                        <div class="col-xs-9 info pdr0">
+                            <div class="up-box">
+                                <span class="title">{$one_session.detail.title}</span>
+                                <span class="time pull-right">{$one_session.last_message.create_time|time_format}</span>
+                            </div>
+                            <div class="down-box text-more" style="width: 100%">
+                                <gt name="one_session.count" value="0">
+                                    <span class="unread-num">[{$one_session.count}条]</span>
+                                </gt>
+                                {$one_session.last_message.tip|default='还没有消息哦~~'|text}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </a>
+        </li>
+    </volist>
+</ul>
+<!--会话列表end-->

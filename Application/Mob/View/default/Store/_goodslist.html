@@ -1,0 +1,21 @@
+<li>
+    <div class="goods">
+        <div class="am-text-center cover">
+            <a href="{:U('store/goodsdetail',array('goodsId'=>$vl['id']))}">
+                <img src="{$vl.cover_id|getThumbImageById=222,222}"
+                        ></a>
+        </div>
+        <div style="background-color: #f4f4f4">
+            <div class=" content content-title" style="">
+                <a href="{:U('store/goodsdetail')}" class="title">{$vl.title}</a>
+            </div>
+            <div class="am-gallery-title am-g" style="padding: 0 10px;margin: 0">
+                <span class="am-u-sm-6" style="padding: 0">¥{$vl.price}</span>
+                <span class="am-u-sm-6" style="padding: 0">销量：{$vl.sell}</span>
+            </div>
+        </div>
+
+    </div>
+</li>
+
+

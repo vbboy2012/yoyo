@@ -1,0 +1,8 @@
+<li>
+    <a <if condition="$data['web_url'] neq ''">href="{$data['mob_url']}"</if> title="">
+        <h2>【公告】{$data.title}</h2>
+        <p>{$data.content.keyword1}</p>
+        <p style="width: 100%;text-align: right;padding-right: 20px;">发布于：{$data.content.keyword2|time_format}</p>
+        <div class="clearfix"></div>
+    </a>
+</li>

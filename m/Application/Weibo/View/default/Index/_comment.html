@@ -1,0 +1,24 @@
+<volist name="comment" id="vo">
+    <div class="proWrap noEdge">
+        <div class="info">
+            <a href="">
+                <div class="avatar">
+                    <img src="{$vo.user.avatar128}" alt="">
+                </div>
+            </a>
+            <div class="name">
+                <a href="">{$vo.user.nickname}</a>
+                <p class="location">{$vo.create_time|friendlyDate}</p>
+            </div>
+        </div>
+        <div class="proContent">
+            <p style="display: flex;align-items: center">{$vo.content}</p>
+            <div class="pic preview" >
+            <volist name="vo.img" id="img">
+                <div class="cover preview-image" data-id="{$vo.id}" data-img="{:get_cover($img, 'path')}" data-index="{$i-1}" <if condition="$img[0] eq 0">style="display: none;"</if> ><img src="{:getThumbImageById($img,50,50)}" alt=""></div>
+            </volist>
+            </div>
+        </div>
+    </div>
+</volist>
+

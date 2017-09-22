@@ -1,0 +1,90 @@
+<extend name="Base/mob_common"/>
+<block name="mob_body">
+    <script src="__JS__/question.js"></script>
+    <link rel="stylesheet" href="__CSS__/apps/question.css"/>
+    <div class="addpost-container" >
+        <form class="am-form" id="send_question" data-am-validator data-url="{:U('Mob/Question/addQuestion')}">
+            <input type="hidden" id="img_ids" name="attach_ids" value="">
+            <input type="hidden"  name="id" value="{$questionDetail.id}">
+            <div class="am-form-group group1" style="">
+                <label class="lable1">标题</label>
+                <input type="text" id="title" name="title" minlength="1" class="am-form-field title-f" value="{$questionDetail.title}"
+                       required/>
+            </div>
+
+            <div class="am-form-group group1" >
+                <label for="category" class="control-label lable1 am-fl">分类</label>
+
+                <div class="">
+                    <select id="category" name="category" class="form-control" style="width: 88%;float: right;padding: 0 10px;border: none;color: #999">
+                        <volist name="category" id="top">
+                            <option value="{$top.id}" <eq name="data['category']" value="$top['id']"> selected</eq>>
+                            {$top.title}
+                            </option>
+                        </volist>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="am-form-group weibo_post_box" style="position: relative">
+                <textarea class="cont" type="text" name="description" placeholder="补充您问题的信息"
+                          style="">{$questionDetail.description}</textarea>
+
+                <div class="pic-box">
+                    <ul class="img-list am-fl" style="margin-bottom: 0">
+                        <!--图片显示区域-->
+                    </ul>
+                    <!--上传图片按钮-->
+                    <div class="fileupload-buttonbar am-fl">
+
+                        <div class="fileinput-button">
+                            <i class="icon icon-plus"></i>
+                            <input type="file" name="files" class="btn add" id="choose"
+                                   data-url="{:U('Core/File/uploadPictureBase64')}" multiple/></div>
+                    </div>
+                </div>
+
+
+
+                <!--插入图片表情-->
+                <!--表情-->
+                <!--<a class="am-fl"  href="javascript:"data-url=" {:U('Core/Expression/getSmile')}" onclick="insertFace($(this))"style="margin-top: 7px;margin-left: 10px">
+                    <img src="__CORE_IMAGE__/bq.png">
+                </a>
+                <div id="emot_content" class="emot_content"></div>-->
+
+                <!--表情-->
+
+                <!--插入图片表情结束-->
+            </div>
+
+
+
+        </form>
+
+        <button type="button" id="confirm" class="am-btn am-btn-primary am-btn-block" style="margin: 20px 0px">发表
+        </button>
+
+    </div>
+
+    <script>
+        add_img();
+        $(function () {
+            $('#confirm').click(function () {
+                var data = $("#send_question").serialize();
+                var url = $("#send_question").attr('data-url');
+                $.post(url, data, function (msg) {
+                    if (msg.status == 1) {
+                        toast.success(msg.info);
+                        setTimeout(function () {
+                        window.location.href = "{:U('Mob/Question/index')}";
+                        }, 500);
+                    } else {
+                        toast.error(msg.info);
+                    }
+                }, 'json');
+            })
+        });
+    </script>
+</block>

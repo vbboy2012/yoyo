@@ -1,0 +1,278 @@
+@import "manage.css";
+.com-box {
+  background-color: #ffffff;
+  float: left;
+}
+.com-right-box {
+  background-color: #ffffff;
+  width: 100%;
+  height: auto;
+}
+.c-head-title {
+  padding: 20px 10px;
+  color: #666666;
+  font-size: 16px;
+  margin: 0;
+}
+.c-head-title span {
+  color: #333;
+}
+.c-left-box {
+  width: 780px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  float: left;
+}
+.c-left-box .one-type {
+  margin: 0;
+}
+.c-left-box .one-type .type-title {
+  background-color: rgba(242, 242, 242, 0.2);
+  border-bottom: 1px solid #f2f2f2;
+  border-top: 1px solid #f2f2f2;
+  padding: 10px;
+  color: #666666;
+}
+.one-circle {
+  width: 50%;
+  height: 110px;
+  padding: 10px;
+  float: left;
+}
+.one-circle .circle-cover-wrap {
+  height: 100%;
+  width: 80px;
+  float: left;
+  overflow: hidden;
+  height: 80px;
+  margin-top: 5px;
+}
+.one-circle .circle-cover-wrap img {
+  width: 80px;
+}
+.one-circle .circle-info-wrap {
+  height: 100%;
+  width: 220px;
+  float: left;
+  overflow: hidden;
+}
+.one-circle .circle-info-wrap .info-box {
+  height: 30px;
+  line-height: 30px;
+  width: 210px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  padding: 0 10px;
+}
+.one-circle .circle-info-wrap .box-num {
+  font-size: 12px;
+}
+.one-circle .circle-info-wrap .box-num span:nth-child(2) {
+  margin-left: 20px;
+}
+.one-circle .circle-follow {
+  height: 100%;
+  width: 70px;
+  float: left;
+  overflow: hidden;
+}
+.one-circle .circle-follow .btn-follow {
+  width: 100%;
+  text-align: center;
+  border-radius: 20px;
+  display: inline-block;
+  margin-top: 30px;
+  color: #666666;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #e4e4e4;
+}
+.c-right-box {
+  width: 200px;
+  margin-left: 20px;
+  float: left;
+}
+.c-right-box .create-circle {
+  background-color: #ffffff;
+  width: 100%;
+  height: auto;
+}
+.c-right-box .create-circle .create {
+  height: 105px;
+  background-color: rgba(228, 228, 228, 0.2);
+  padding: 15px 0;
+  text-align: center;
+  border-bottom: 1px solid #f2f2f2;
+}
+.c-right-box .create-circle .create .btn-create {
+  width: 120px;
+  border-radius: 30px;
+  text-align: right;
+  padding-right: 20px;
+  display: inline-block;
+  background-color: #ffffff;
+  height: 45px;
+  line-height: 45px;
+  box-shadow: 3px 3px 3px rgba(204, 204, 204, 0.3);
+  margin-bottom: 10px;
+  color: #666666;
+  position: relative;
+}
+.c-right-box .create-circle .create .btn-create i {
+  color: rgba(255, 51, 51, 0.8);
+  font-size: 25px;
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  left: 15px;
+}
+.c-right-box .create-circle .create p {
+  color: #999;
+}
+.c-right-box .create-circle .have-circle {
+  margin: 0;
+}
+.c-right-box .create-circle .no-circle {
+  padding: 20px;
+  color: #999;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.c-right-box .create-circle .no-circle p {
+  display: inline-block;
+}
+.c-right-box .joined-circle {
+  background-color: #ffffff;
+  width: 100%;
+  height: auto;
+  margin: 10px 0;
+}
+.c-right-box .joined-circle .joined-p {
+  padding: 10px;
+  color: #999;
+  border-bottom: 1px solid #f2f2f2;
+  margin: 0;
+}
+.my-circle {
+  width: 50%;
+  padding: 10px;
+  height: 130px;
+  float: left;
+  text-align: center;
+}
+.my-circle .m-cover {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.my-circle p {
+  color: #666666;
+}
+.my-follow-circle {
+  position: absolute;
+  left: 0;
+  top: 55px;
+  background-color: #ffffff;
+  z-index: 10;
+  border: 1px solid #cccccc;
+  max-width: 520px;
+  border-radius: 3px;
+  box-shadow: 0 0 3px rgba(204, 204, 204, 0.3);
+  display: none;
+}
+.my-follow-circle .follow-left {
+  max-width: 480px;
+  padding: 10px 0;
+  height: 100%;
+  float: left;
+}
+.my-follow-circle .follow-left .m-circle {
+  float: left;
+  padding: 0 10px;
+  max-width: 438px;
+  margin: 0;
+}
+.my-follow-circle .follow-left .m-circle .my-circle {
+  width: 80px;
+  padding: 0;
+  height: 80px;
+  float: none;
+  display: inline-block;
+  margin: 10px 0;
+}
+.my-follow-circle .follow-left .m-circle .my-circle p {
+  margin: 0;
+}
+.my-follow-circle .follow-left .m-circle .my-circle img {
+  width: 50px;
+  height: 50px;
+}
+.my-follow-circle .follow-right {
+  background-color: rgba(228, 228, 228, 0.2);
+  border-left: 1px solid #f2f2f2;
+  border-right: none;
+  padding: 10px 0;
+}
+.my-follow-circle .follow-right p {
+  color: #1ABC9C;
+}
+.l-circle {
+  width: 40px;
+  height: 100%;
+  border-right: 1px solid #f2f2f2;
+  float: left;
+  display: table;
+  text-align: center;
+}
+.l-circle p {
+  display: table-cell;
+  vertical-align: middle;
+  color: #666666;
+  margin: 0;
+}
+.show-circle {
+  cursor: pointer;
+}
+.card-wrap {
+  width: 346px;
+  height: 112px;
+  border: 1px solid #e4e4e4;
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 0;
+  border-radius: 2px;
+}
+.uploadcover {
+  color: #ffffff;
+  background-color: rgba(3, 3, 3, 0.5);
+  border-color: #4f8ad0;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid rgba(0, 0, 0, 0);
+  white-space: nowrap;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  position: absolute;
+}
+.info-box-title {
+  height: 30px;
+  line-height: 30px;
+  width: 210px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  padding: 0 10px;
+  color: #19bca1;
+}
+.crowd-hid {
+  display: none;
+}

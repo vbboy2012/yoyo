@@ -1,0 +1,153 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <header class="bar bar-nav comHead">
+                    <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                       href="javascript:history.go(-1);"></a>
+                    <a href="javascript:" class="title">问题详情</a>
+                </header>
+            </header>
+            <div class="content infinite-scroll" data-role="myRole" data-distance="100" data-ptr-distance="55">
+                <div class="content-block noEdge">
+                    <div class="dtOne">
+                        <div class="head">
+                            <span>来自 <a href="{:U('ucenter/index/mine',array('uid'=>$data['user']['uid']))}">{$data.user.nickname}</a> 的问题</span>
+                            <span><i class="iconfont icon-wodexuanshang"></i>{$data.score_num}{$data.leixing}</span>
+                        </div>
+                        <div class="dtTitle"> <p class=" textMore">{$data.title}</p></div>
+                        <div class="more">
+                            <p class="article">{$data.description}</p>
+                            <div class="pic preview" <if condition="$img[0] eq 0">style="display: none;"</if> >
+                                <volist name="img" id="vo">
+                                    <div class="cover preview-image" data-id="{$data.id}" data-img="{:get_cover($vo, 'path')}" data-index="{$i-1}"><img src="{:getThumbImageById($vo,50,50)}" alt=""></div>
+                                </volist>
+                            </div>
+                        </div>
+                        <div class="head">
+                            <p>
+                                <span><i class="iconfont icon-tag"></i>{$data.category}</span>
+                                <if condition="check_auth('Question/Index/delQuestion',$data['uid'])">
+                                    <span data-role="deleteQuestion" data-id="{$data.id}" data-uid="$data['uid']"><i class="iconfont icon-shanchu"></i>删除提问</span>
+                                </if>
+                            </p>
+                            <span>{$data.create_time}</span>
+                        </div>
+                        <div class="bottom">
+                            <div class="two open-popup open-about" data-popup=".invite"><i class="iconfont icon-yaoqing"></i>邀请回答</div>
+                            <div class="two open-popup open-about" data-popup=".answer"><i class="iconfont icon-icon-test"></i>我来回答</div>
+                        </div>
+                    </div>
+                    <!--最佳答案-->
+                    <div class="best">
+                        <div class="btTitle"><i class="iconfont icon-zuijia"></i>最佳答案</div>
+                        <if condition="$data.best_answer eq 0">
+                            <p class="noMore">暂无最佳答案</p>
+                            <else/>
+                            <div class="btCont">
+                            <div class="header">
+                                <div class="left">
+                                    <div class="coverWrap"><img src="{$best['user']['avatar512']}" alt="用户头像"></div>
+                                    <div>
+                                        <a href="{:U('ucenter/index/mine',array('uid'=>$best['user']['uid']))}">{$best.user.nickname}</a>
+                                        <p>{$best.create_time}</p>
+                                    </div>
+                                </div>
+                                <div class="right operate1 supportDetail" data-id="{$best.id}" data-uid="{$best['user']['uid']}">
+                                    <span class="oneOpt flexWrap do-support-question" >
+                                        <span class="support-count1" style="margin-right: 3px;font-size: 16px">{$best.support_all_count}</span>
+                                         <i class="iconfont icon-unie60b" <if condition="$best.is_support eq 1">style="color: #ec725d;"</if> ></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <p style="padding: 8px 0">{$best.content}</p>
+                        </div>
+                        </if>
+                    </div>
+                    <!--总回答数-->
+                    <p class="ansNum" data-role="answer" data-total="{$data.answer_num}" <if condition="$data['answer_num'] eq 1"><if condition="$data['best_answer'] gt 0">style="display: none"</if> </if> > {$data.answer_num} 个回答</p>
+                    <!--所有回答-->
+                    <ul class="ansList" data-id="{$data.id}" data-total="{$data.answer_num}" data-role="all-answer">
+                        <if condition="$data['answer_num'] eq 0">
+                            <p class="noMore" id="noMore">暂无回答</p>
+                        </if>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="other">
+    <!--我来回答-->
+    <div class="popup popup-about sendWrap answer">
+        <div class="content-block noEdge">
+            <div class="newSend">
+                <div class="sendArea needsclick" contenteditable="true" style="height: 80px;border: 1px solid #eee;margin-bottom: 10px"></div>
+                <div class="commentOp">
+                    <i class="iconfont icon-biaoqing" data-role="open-emoji"></i>
+                    <a href="javascript:" data-role="addAnswer" data-id="{$data.id}" class="proBtn close-popup">回答</a>
+                </div>
+            </div>
+
+            <div class="send-bottom emoji">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper emoji-list"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--邀请回答-->
+    <div class="popup popup-about invite">
+        <div class="content-block noEdge">
+            <div class="choseHead">
+                <div class="all"> <input id="allChoice" type="checkbox"/><span>全选</span></div>
+                <p><span id="already">0 </span><span>/</span> <span id="myCount">{$count}</span> 已选择</p>
+            </div>
+            <ul id="askList" class="ppList">
+                <volist name="user" id="vo">
+                <li>
+                    <input data-id="{$vo.user.uid}" name="check" type="checkbox"/>
+                    <div class="ppCover"><img src="{$vo.user.avatar64}" alt="用户头像"></div>
+                    <div class="ppInfo">
+                        <a href="">{$vo.user.nickname}</a>
+                        <p><span>{$vo.info.answer_count} 次回答</span> <span>{$vo.info.support_count} 次被赞</span> <span>{$vo.info.best_answer_count} 次最佳</span></p>
+                    </div>
+                </li>
+                </volist>
+                <if condition="count($user) eq 0">
+                    <li>
+                        <p class="noMore">暂无可邀请的用户！</p>
+                    </li>
+                </if>
+            </ul>
+            <div class="sure">
+                <a href="javascript:" class="close-popup">取消邀请</a>
+
+                <a href="javascript:" class="close-popup" data-role="send-invite">确认邀请</a>
+
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__PUBLIC_JS__/public.js"></script>
+    <script src="__JS__/detail.js"></script>
+    <script src="__JS__/question.js"></script>
+    <script src="__PUBLIC__/js/refreshData.js"></script>
+    <script src="//cdn.bootcss.com/emojione/2.2.7/lib/js/emojione.min.js"></script>
+    <script>
+        $(function () {
+            emojione.imageType = 'png';
+            emojione.ascii = true;
+            emojione.imagePathPNG = _ROOT_ + '/Public/emoji/';
+        })
+        var detailID = $('.ansList').attr('data-id');
+        var total = $('.ansList').attr('data-total');
+        refreshData('Question/Index/detail',total,'.ansList',{id:detailID});
+    </script>
+</block>

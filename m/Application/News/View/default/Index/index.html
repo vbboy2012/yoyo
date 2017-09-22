@@ -1,0 +1,71 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a href="javascript:" class="title">资讯</a>
+            </header>
+            <include file="./Application/Common/View/default/Public/footer.html"/>
+            <div class="content infinite-scroll">
+                <div class="content-block noEdge">
+                    <!--顶部分类 start-->
+                    <div class="head-type headtop">
+                        <ul data-role="category-list">
+                            <notempty name="category">
+                                <volist name="category" id="vo">
+                                    <li><a href="javascript:void(0);" data-role="change-cate" data-value="{$vo.category.id}" data-code="200">{$vo.category.title}</a></li>
+                                </volist>
+                                <else/>
+                                <li class="noMore">暂无数据</li>
+                            </notempty>
+                        </ul>
+                        <div class="head-right headtop">
+                            <a href="javascript:void(0);" data-role="all-category"><i class="iconfont icon-fabu1"></i></a><a href="{:U('News/index/search')}"><i class="iconfont icon-weibiaoti3"></i></a>
+                        </div>
+                    </div>
+                    <!--顶部分类 end-->
+                    <div class="all-category" data-role="category" style="display: none">
+                        <ul data-list="category">
+                        </ul>
+                        <div class="infinite-scroll-preloader" id="head-loading">
+                            <div class="preloader"></div>
+                        </div>
+                    </div>
+                    <!--轮播图，后台设置-->
+                    <div class="swiper-container nwSlide" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="2000">
+                        <div class="swiper-wrapper">
+                            <if condition="$advertisementCount eq 0">
+                                <div class="swiper-slide"><img style="margin: 0 auto" src="__PUBLIC__/images/nobanner.png" alt=""></div>
+                                <else />
+                                <volist name="advertisement" id="vo">
+                                    <div class="swiper-slide"><a href="{$vo.link}"><img style="margin: 0 auto" src="{$vo.img}" alt=""></a></div>
+                                </volist>
+                            </if>
+                        </div>
+                    </div>
+                    <!--热门文章-->
+                    <!--<div class="hotType" style="margin-top: 5px;padding-bottom: 5px">-->
+                        <!--<p class="hotTit flexDiv"><span>热门资讯</span></p>-->
+                    <!--</div>-->
+                    <div class=" dtMargin" data-distance="100" data-ptr-distance="55" >
+                        <ul class="listWrap" data-role="datalist" data-total="{$total}">
+
+                        </ul>
+                        <div class="infinite-scroll-preloader">
+                            <div class="preloader"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--提问按钮-->
+            <a class="sBtn iconfont icon-fabu" href="{:U('News/index/send')}"></a>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/news.js"></script>
+    <script src="__JS__/index.js"></script>
+</block>

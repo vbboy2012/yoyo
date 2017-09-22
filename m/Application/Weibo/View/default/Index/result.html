@@ -1,0 +1,52 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/weibo.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current" style="background-color: #f1f1f1">
+            <header class="bar bar-nav comHead" style="background-color: #d85940">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">红包</a>
+            </header>
+            <div class="content infinite-scroll infinite-scroll-bottom" data-distance="100">
+                <div class="content-block noEdge noShadow">
+                    <div class="redOne">
+                        <div class="oneAvatar"><img src="{$my.user.avatar128}" alt=""></div>
+                    </div>
+                    <div class="redTwo flexCol">
+                        <p class="name">{$my.detail.user.nickname}的红包<i class="iconfont icon-pin"></i></p>
+                        <p>{$my.detail.content}</p>
+                        <notempty name="my.get_bag">
+                            <p class="money"><span>{$my.get_bag|number_format=2}</span>元</p>
+                            <a href="{:U('Ucenter/Index/wallet')}">已存入零钱</a>
+                            <else/>
+                            已经抢完了,下次早点来哟~
+                        </notempty>
+                    </div>
+                    <div class="redFilter"></div>
+                    <div class="redNum">
+                        <p class="np"><if condition="$my['detail']['is_overtime'] eq 1">红包已过期,</if>已领取{$my.detail.sell_num}/{$my.detail.num}个，共{$my.detail.sell_money|number_format=2}/{$my.detail.all_money|number_format=2}元</p>
+                        <ul class="redUl">
+                            <volist name="list" id="list">
+                                <li>
+                                    <div class="flexDiv">
+                                        <div class="flexLeft">
+                                            <div class="redAvatar"><img src="{$list.user.avatar128}" alt=""></div>
+                                            <div class="rightDiv">
+                                                <p>{$list.user.nickname}</p>
+                                                <p>{$list.create_time|date='Y-m-d',###}</p>
+                                            </div>
+                                        </div>
+                                        <div class="flexRight">{$list.get_bag}元</div>
+                                    </div>
+                                </li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

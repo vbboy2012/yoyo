@@ -1,0 +1,45 @@
+<li class="shop-list-box" style="padding: 10px 0">
+    <div class="shop-list am-g" style="padding: 0">
+
+        <div class="shop " style="padding: 0">
+            <div class="shop-info am-u-sm-3">
+                <a class="shop-avatar" href="{:U('mob/store/shopdetail',array('id'=>$vo['id']))}">
+                    <img class="am-img-thumbnail am-radius" style="width:64px;height:64px"
+                         src="{$vo.logo|getThumbImageById=222,222}">
+                </a>
+            </div>
+            <div class="shop-content am-u-sm-9" style="font-size: 13px;padding: 10px">
+                <p><a class="shop-name" href="{:U('mob/store/shopdetail',array('id'=>$vo['id']))}">{$vo.title}</a></p>
+
+                <p class="" style="color: #878787">创店于：{$vo.create_time|friendlyDate}</p>
+
+            </div>
+        </div>
+        <div class="shop-goods am-u-sm-12" style="padding: 10px;border-bottom: 10px solid #ECECEC">
+            <div class="goods-list">
+                <ul class="am-avg-sm-2 am-avg-md-4">
+                    <notempty name="vo['goods']">
+                        <volist name="vo['goods']" id="vl">
+                            <li class="am-text-center">
+                                <div class="goods-box" style="padding: 5px">
+                                    <div style="border:  1px solid #F2F2F2;">
+                                        <div class="am-text-center cover">
+                                            <a href="{:U('mob/store/goodsdetail',array('goodsId'=>$vl['id']))}">
+                                                <img src="{$vl.cover_id|getThumbImageById=222,222}"
+                                                     style="width:100%;height:100%"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </volist>
+                        <else/>
+                        <div class="am-text-center">
+                            小店新开张，还没有上传任何商品。
+                        </div>
+                    </notempty>
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--    <div class="spliter "></div>-->
+</li>

@@ -1,0 +1,43 @@
+
+    <li >
+        <div class="main am-cf" style="height: 85px">
+            <php>
+                $can_post = CheckCanRead(is_login(),$vl['id']);
+                if (!$can_post) {   </php>
+            <div class="img-box am-fl am-u-sm-4">
+                <if condition="$vl['detail']['zhaopian1']['data'] neq null">
+                    <a href="javascript:void(0);" onclick="toast.error('您无阅读权限');"> <img src="{$vl.detail.zhaopian1.data}"></a>
+                </if>
+            </div>
+            <div class="detail am-fl am-u-sm-8">
+                <a href="javascript:void(0);" onclick="toast.error('您无阅读权限');">
+                    <span>{$vl.title}</span></a>
+
+                <div class="info" style="margin-bottom: 5px">
+                    <span class="release-time "style="color: #000000">{$vl.create_time|friendlyDate}</span>
+                </div>
+
+            </div>
+            <php>}else{</php>
+
+            <div class="img-box  am-u-sm-4" style="padding-right: 0">
+                <if condition="$vl['detail']['zhaopian1']['data'] neq null">
+                  <a href="{:U('cat/detail',array('info_id'=>$vl['id']))}"> <img  src="{$vl.detail.zhaopian1.data}"></a>
+                </if>
+            </div>
+            <div class="detail am-fl am-u-sm-8">
+                <a href="{:U('cat/detail',array('info_id'=>$vl['id']))}">
+                    <h6 class="title">{$vl.title}</h6></a>
+
+                <div class="info" style="margin-bottom: 5px">
+                  <span class="release-time">发布于{$vl.create_time|friendlyDate}</span>
+                </div>
+
+                <!--to do 如果没有写价格则为面议，如果有价格则输出价格-->
+                <p style="color: red">面议</p>
+
+            </div>
+            <php>}</php>
+        </div>
+    </li>
+

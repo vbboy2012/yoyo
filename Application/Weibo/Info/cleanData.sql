@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS `ocenter_weibo`;
+DROP TABLE IF EXISTS `ocenter_weibo_cache`;
+DROP TABLE IF EXISTS `ocenter_weibo_comment`;
+DROP TABLE IF EXISTS `ocenter_weibo_crowd`;
+DROP TABLE IF EXISTS `ocenter_weibo_crowd_member`;
+DROP TABLE IF EXISTS `ocenter_weibo_crowd_score`;
+DROP TABLE IF EXISTS `ocenter_weibo_crowd_type`;
+DROP TABLE IF EXISTS `ocenter_weibo_long`;
+DROP TABLE IF EXISTS `ocenter_weibo_top`;
+DROP TABLE IF EXISTS `ocenter_weibo_topic`;
+DROP TABLE IF EXISTS `ocenter_weibo_topic_follow`;
+DROP TABLE IF EXISTS `ocenter_weibo_topic_link`;

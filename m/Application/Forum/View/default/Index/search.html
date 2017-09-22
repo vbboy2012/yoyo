@@ -1,0 +1,64 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current pageSearch">
+            <header class="bar bar-nav comHead">
+                <div class="searchbar">
+                    <div class="search-input">
+                        <label class="icon icon-search" for="search"></label>
+                        <input type="search" id='search' placeholder='query...'/>
+                    </div>
+                </div>
+                <a href="javascript:history.go(-1);">取消</a>
+            </header>
+            <div class="content">
+                <div class="content-block noEdge">
+                    <div class="hot">
+                        <div class="hotTop">
+                            <span>热门搜索</span>
+                            <span><i class="iconfont icon-shuaxin"></i>换一批</span>
+                        </div>
+                        <div class="hotTag">
+                            <span>程序员</span>
+                            <span>诗</span>
+                            <span>散文</span>
+                            <span>Python</span>
+                            <span>redis</span>
+                            <span>公民自由</span>
+                            <span>Python</span>
+                            <span>redis</span>
+                            <span>公民自由</span>
+                        </div>
+                    </div>
+                    <ul class="history">
+                        <li>
+                            <div class="left">
+                                <i class="iconfont icon-time"></i>
+                                <span>asdasdasdasd</span>
+                            </div>
+                            <i class="iconfont icon-guanbi"></i>
+                        </li>
+                        <li>
+                            <div class="left">
+                                <i class="iconfont icon-time"></i>
+                                <span>asdasdasdasd</span>
+                            </div>
+                            <i class="iconfont icon-guanbi"></i>
+                        </li>
+                        <li>
+                            <div class="left">
+                                <i class="iconfont icon-time"></i>
+                                <span>asdasdasdasd</span>
+                            </div>
+                            <i class="iconfont icon-guanbi"></i>
+                        </li>
+                        <li>清空搜素记录</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

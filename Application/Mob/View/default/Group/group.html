@@ -1,0 +1,110 @@
+<extend name="Base/mob_common"/>
+<block name="mob_body">
+    <style>
+        #mob-main-container{
+            margin-top: 38px!important;
+        }
+    </style>
+    <include file="groupdetailhead"/>
+    <div class="am-tabs am-nav " data-am-tabs="{noSwipe: 1}">
+        <ul class="am-tabs-nav am-nav am-nav-tabs am-avg-sm-3 am-thumbnails group-tab">
+            <li class="am-active am-thumbnail"><a href="#tab1">最新动态</a></li>
+            <li class="am-thumbnail"><a href="#tab2">帖子</a></li>
+            <li class="am-thumbnail"><a href="#tab3">成员</a></li>
+        </ul>
+
+        <div class="am-tabs-bd" style="border: none">
+            <div class="am-tab-panel am-fade am-in am-active" id="tab1" style="padding: 0">
+                <volist name="dynamicList" id="dynamic">
+                    {:W('dynamic/lists',array('dynamic_id'=>$dynamic))}
+                </volist>
+
+            </div>
+
+            <div class="am-tab-panel am-fade" id="tab2">
+                <volist name="post" id="vl">
+                    <div class="post-subject am-list am-cf am-g">
+                        <div class="am-u-sm-2" style="padding: 0">
+                            <img class="avatar-img"  src="{$vl.user.avatar64}">
+                        </div>
+                        <div class="am-u-sm-10 info-box1" >
+                            <p> <a href="{:U('group/detail',array('id'=>$vl['id']))}">{$vl.title}</a></p>
+                            <a href="{:U('user/index',array('uid'=>$content['uid']))}"> {$vl.user.nickname}</a></p>
+                            <p> <span>{$vl.view_count}人浏览</span>
+                                <span>{$vl.reply_count}人回复</span>
+                                 <span style="float: right">发表时间：{$vl.create_time|friendlyDate}</span>
+                            </p>
+                        </div>
+                    </div>
+                </volist>
+            </div>
+
+            <div class="am-tab-panel am-fade" id="tab3">
+
+                <div class="member-box">
+                    <div style="padding: 10px 0;border-bottom: 1px solid #eee">
+                        <div class="master">
+                            <img class="avatar-img" style="width: 40px;margin:0 10px" src="{$people.admin.user.avatar64}">
+                            <a href="#" style="font-size: 14px;color: #333"> {$people.admin.user.nickname}<span class="tag1">创始人</span></a>
+                        </div>
+                    </div>
+                    <div class="member">
+                        <volist name="people['people']" id="v2">
+                            <ul class=" ">
+                                <li style="padding: 10px 0; border-bottom: 1px solid #eee">
+                                    <img class="avatar-img" style="width: 30px;margin:0 10px" src="{$v2.user.avatar64}">
+                                    <a href="{$v2.user.space_mob_url}" style="font-size: 14px;color: #333"> {$v2.user.nickname}<span class="tag1">成员</span></a>
+                                </li>
+                            </ul>
+                        </volist>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="am-modal-actions" id="my-actions">
+        <div class="am-modal-actions-group">
+            <ul class="am-list">
+                <li class="am-modal-actions-header">成员管理</li>
+
+                <li>
+                    <a href="#">默认排序</a>
+                </li>
+                <li>
+                    <a href="#">按最后活跃时间排序</a>
+                </li>
+                <li>
+                    <a href="#">邀请好友加入</a>
+                </li>
+                <li class="am-modal-actions-danger">
+                    <a href="#">删除群组成员</a>
+                </li>
+            </ul>
+        </div>
+        <div class="am-modal-actions-group">
+            <button class="am-btn am-btn-secondary am-btn-block" data-am-modal-close>取消</button>
+        </div>
+    </div>
+    <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default group-bottom" >
+        <ul class="am-navbar-nav am-cf am-avg-sm-4" style="font-size: 13px">
+            <li>
+                    <a class="am-btn-xs diy-btn  am-radius invitationFriend" style="background-color: #9cce32"  post-id="{$post.id}" flag="1" href="{:U('Mob/group/invitationFriend',array('group_id'=>$group_id))}">
+                        邀请好友
+                    </a>
+            </li>
+            <li>
+                <a style="background-color: #f66b6b;" class="post" href="{:U('Mob/group/addPost',array('group_id'=>$group_id,'isEdit'=>1))}">
+                    发帖
+                </a>
+            </li>
+        </ul>
+    </div>
+<script>
+    attend();
+    quit();
+</script>
+
+</block>

@@ -1,0 +1,38 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current" style="background-color: #fff">
+            <header class="bar bar-nav comHead">
+                <header class="bar bar-nav comHead">
+                    <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                       href="javascript:history.go(-1);"></a>
+                    <a href="javascript:" class="title">{$title}</a>
+                </header>
+            </header>
+            <div class="content infinite-scroll" data-distance="100" data-ptr-distance="55">
+                <div class="content-block noEdge">
+                    <ul id="tab" data-id="{$category}" data-total="{$total}" class="listWrap">
+
+                    </ul>
+                    <div class="infinite-scroll-preloader">
+                        <div class="preloader"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__PUBLIC__/js/refreshData.js"></script>
+    <script>
+        var category = $('#tab').attr('data-id');
+        var total = $('#tab').attr('data-total');
+        refreshData('News/index/getCategoryListById', total, '#tab', {category: category});
+        if ($('#tab li').length==0){
+            $("#tab").append('<p class="noMore">暂无数据</p>')
+        }
+    </script>
+</block>

@@ -1,0 +1,35 @@
+<volist name="member_list" id="member">
+    <ul class="crowd-box">
+        <li class="crowd-list">
+            <div class="am-cf am-g info-box">
+                <div class="avatar am-u-sm-3 am-text-center">
+                    <img src="{$member.user.avatar128}" style="width: 64px;height: 64px;border-radius: 100%">
+                </div>
+                <div class="info am-u-sm-5">
+                    <div><span class="info-title">{$member.user.nickname}</span></div>
+                    <div><span class="infos">动态 {$member.user_post_num}</span>&nbsp;&nbsp;&nbsp;<span class="infos">{$member.create_time|date='Y-m-d
+                                        H:i:s',###}加入</span></div>
+                </div>
+                <div class="r-btn am-u-sm-4">
+                    <eq name="crowd.is_admin" value="true">
+                        <eq name="tab" value="check">
+                            <a class="permission yes out" data-role="receive_member"
+                               data-crowd-id="{$member.crowd_id}" data-uid="{$member.user.uid}"><i
+                                    class="icon-minus-sign"></i>同意</a>
+                            <a class="permission no out" data-role="refuse_member"
+                               data-crowd-id="{$member.crowd_id}" data-uid="{$member.user.uid}"><i
+                                    class="icon-minus-sign"></i>拒绝</a>
+                            <else/>
+                            <if condition="is_login() neq $member['user']['uid']">
+                                <a class="permission no out" data-role="remove_crowd_member"
+                                   data-crowd-id="{$member.crowd_id}" data-uid="{$member.user.uid}"><i
+                                        class="icon-minus-sign"></i>移除</a>
+                            </if>
+                        </eq>
+                    </eq>
+                </div>
+            </div>
+        </li>
+        <!--<h4 class="notice">{$crowd.notice}</h4>-->
+    </ul>
+</volist>

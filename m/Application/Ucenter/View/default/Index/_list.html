@@ -1,0 +1,17 @@
+<volist name="data" id="vo" >
+    <li>
+        <a style="height: 95px" href="{:U('News/index/detail',array('id'=>$vo['id']))}" class="nwCover"><if condition="$vo['cover'] neq 0"><img src="{:getThumbImageById($vo['cover'],80,95)}" alt="资讯封面"></if></a>
+
+        <div class="nwInfo" style="margin-left: 10px">
+            <a style="padding-bottom: 5px;padding-top: 0px" href="{:U('News/index/detail',array('id'=>$vo['id']))}" class="cont">{$vo.title}</a>
+            <p style="color: darkgray;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;width: 250px">{$vo.description}</p>
+            <div class="author" style=" margin-top: 5px; margin-left: 30px;">
+                <a style="margin: 0px;margin-right: 10px;color: black" class="textMore" >{$vo.uid.nickname}</a>
+                <span style="margin-right: 10px;margin-left: 10px;color:#999999"> {$vo.view}人阅读</span>
+                <span style="margin-left: 10px" class="time">{$vo.create_time}</span>
+            </div>
+
+
+        </div>
+    </li>
+</volist>

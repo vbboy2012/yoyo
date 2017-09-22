@@ -1,0 +1,39 @@
+<extend name="Base/mob_common"/>
+<block name="mob_body">
+<div >
+        <input type="hidden" value="{$newsid}" name="newsid">
+        <input type="hidden" value="{$newstitle}" name="newstitle" >
+  <div style="border-bottom: 1px solid #ccc"><h3>转发</h3></div>
+        <div style="margin-top: 15%">
+            <textarea name="content" style="height: 150px;width: 100%" class="am-u-sm-12" type="text" placeholder="说点什么吧..."></textarea>
+        </div>
+        <div style="margin-top: 250px">
+            <input class=" am-u-sm-6 btn btn-default cancel" type="button" value="取消"><input class=" am-u-sm-6  btn btn-default" data-role='submit' type="submit" value="确定">
+        </div>
+
+</div>
+    <script>
+        $(function () {
+            $('.cancel').click(function () {
+                var url=U('Mob/News/index');
+                window.location.href=url;
+            });
+            $('[data-role="submit"]').click(function () {
+                var newsid=$('[name="newsid"]').val();
+                var newstitle=$('[name="newstitle"]').val();
+                var content=$('[name="content"]').val();
+                var url=U('Mob/News/forward');
+                $.post(url,{newsid:newsid,newstitle:newstitle,content:content},function (msg) {
+                 if(msg.status){
+                     toast.success('转发成功');
+                     setTimeout(window.history.back(),1000);
+                 }else{
+                     toast.error('转发失败');
+                 }
+
+                })
+            })
+        });
+
+    </script>
+    </block>

@@ -1,0 +1,61 @@
+<volist name="weibo" id="weibo">
+    <div class="proWrap newWrap" id="weibo_{$weibo.id}">
+
+        <if condition="$weibo.is_hot eq 1">
+            <div class="hotFeed"></div>
+            <elseif condition="$weibo.is_first eq 1"/>
+            <div class="firstFeed"></div>
+        </if>
+
+        <div class="info">
+            <a data-role="card" data-uid="{$weibo.user.uid}" external>
+                <div class="avatar wbAvatar">
+                    <img src="{$weibo.user.avatar128}" alt="">
+                </div>
+            </a>
+            <div class="name">
+                <a class="textMore wbName" data-role="card" data-uid="{$weibo.user.uid}" external>{$weibo.user.nickname}</a>
+                <p class="location">
+                    <span>{$weibo.create_time|friendlyDate}</span>
+                    <!--<notempty name="weibo.crowd_id">-->
+                        <!--<span>来自</span>-->
+                        <!--<a class="textMore" href="{:U('Weibo/Index/index',array('crowd_id'=>$weibo['crowd_id']))}" style="color:#19bca1;max-width: 150px;vertical-align: bottom" external>{$weibo.crowd_id|get_crowd_title}</a>-->
+                    <!--</notempty>-->
+                </p>
+            </div>
+        </div>
+        <a href="{:U('detail',array('id'=>$weibo['id']))}" external>
+            <div class="proContent">
+                <div class="weibo-list-content">
+                    {$weibo.fetchContent}
+                </div>
+                <div class="show-more">
+                   查看全文
+                </div>
+
+                <notempty name="weibo['weibo_data']['location']">
+                    <p class="textMore location"><i class="iconfont icon-dingwei"></i>{$weibo.weibo_data.location_text}</p>
+                </notempty>
+                <notempty name="weibo.crowd_id">
+                    <a href="{:U('Weibo/Index/index',array('crowd_id'=>$weibo['crowd_id']))}"
+                       external style="color:#19bca1">来自{$weibo.crowd_id|get_crowd_title}</a>
+                </notempty>
+            </div>
+        </a>
+        <div class="operate" data-id="{$weibo.id}" data-uid="{$weibo.uid}">
+            <div class="oneOpt flexWrap do-support" >
+                <i class="iconfont icon-dianzan" <if condition="$weibo.is_support eq 1">style="color: #ec725d;"</if> ></i>
+                <span class="support-count">{$weibo.support_count}</span>
+            </div>
+            <gt name="uid" value="0">
+                <a href="{:U('Index/detail',array('id'=>$weibo['id']))}" class="oneOpt flexWrap external"><i class="iconfont icon-pinglun"></i><span>{$weibo.comment_count}</span></a>
+                <div class="oneOpt flexWrap open-repost" data-role="weibo_detail" data-sourceId="{$weibo.weibo_data.sourceId}"><i class="iconfont icon-zhuanfa"></i><span>{$weibo.repost_count}</span></div>
+                <div class="oneOpt flexWrap create-actions" data-top="{$weibo.is_top}"  data-crowd-id="{$weibo.crowd_id}"><i class="iconfont icon-gengduo"></i></div>
+                <else/>
+                <a class="oneOpt flexWrap external" onclick="$.toast('请先登录')"><i class="iconfont icon-pinglun"></i><span>{$weibo.comment_count}</span></a>
+                <div class="oneOpt flexWrap" onclick="$.toast('请先登录')" data-sourceId="{$weibo.weibo_data.sourceId}"><i class="iconfont icon-zhuanfa"></i><span>{$weibo.repost_count}</span></div>
+                <div class="oneOpt flexWrap" onclick="$.toast('请先登录')" data-crowd-id="{$weibo.crowd_id}"><i class="iconfont icon-gengduo"></i></div>
+            </gt>
+        </div>
+    </div>
+</volist>

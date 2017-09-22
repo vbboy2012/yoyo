@@ -1,0 +1,152 @@
+<volist name="contents" id="event">
+    <li class="am-g event-box " style="padding: 10px 0 0;position: relative;margin-bottom: 10px">
+
+
+        <div style="height: 150px;text-align: left">
+            <div class="am-u-sm-5 cover" style="text-align: center">
+                <a href="{:U('Event/detail',array('id'=>$event['id']))}">
+                    <img class="" style="width:132px;height:132px;margin-top: 5px;padding: 8px" src="{$event.cover_id|getThumbImageById=200,200}">
+                </a>
+            </div>
+            <div class="am-u-sm-7 content" style="padding-left: 0">
+
+                <div class="top-box">
+
+
+                    <if condition="($event['uid'] eq is_login()) OR is_administrator(is_login())">
+
+                        <div class="am-dropdown" data-am-dropdown style="position: absolute;right: 10px;top: 5px;">
+                            <i class="am-icon-angle-down  am-dropdown-toggle" style="font-size: 20px"></i>
+
+                            <div class="am-dropdown-content" style="padding:5px;text-align: center">
+
+
+                                <a href="{:U('edit',array('id'=>$event['id']))}">
+                                    <button type="button" data-role="end_event" data-id="{$event.id}"
+                                            class="am-btn-default am-btn-xs am-btn " >
+                                        编辑活动
+                                    </button>
+                                </a>
+                                <if condition="time() lt $event['eTime']">
+                                    <button type="button" data-role="end_event" data-id="{$event.id}"
+                                            class="am-btn-secondary am-btn-xs am-btn " >
+                                        结束活动
+                                    </button>
+                                </if>
+                                <button type="button" data-role="del_event" data-id="{$event.id}"
+                                        class="am-btn-warning am-btn-xs am-btn  " style="margin-bottom: 0">
+                                    删除活动
+                                </button>
+
+                            </div>
+                        </div>
+                    </if>
+
+
+                    <div class="title text-more" style="width: 90%" title=" {$event.title}">
+                        <h4> <a href="{:U('Event/detail',array('id'=>$event['id']))}"> {$event.title}</a></h4>
+                    </div>
+                    <!--<div class="nickname fs12">by <a class="" href="{:U('user/index',array('uid'=>$event['uid']))}">{$event.user.nickname}</a>
+                    </div>-->
+                   <!-- <span class="interact-button">
+                      <span class="small-btn">
+                            <i class="am-icon-eye"></i>{$event.view_count}人
+                      </span>
+                    </span>-->
+                </div>
+                <div class="time fs12 tb6">
+                    <span><i class="am-icon-calendar"></i>{:date('Y.m.d',$event['sTime'])}-{:date('Y.m.d',$event['eTime'])} </span>
+                </div>
+                <div class="endtime fs12 tb6">
+                    <span>截止时间： {:date('Y.m.d',$event['deadline'])}</span>
+                </div>
+
+
+            </div>
+            <div class="am-btn-group" style="margin-top: 0px;font-size: 12px">
+
+
+                <if condition="($event['uid'] neq is_login())">
+                    <php>if(!$event['check_isSign']){</php>
+
+                    <php>if($event['deadline'] < time()){</php>
+                    <a type="button" disabled="disabled" class="am-btn am-btn-default am-btn-sm am-radius">报名已截止 </a>
+                    <php>}else{</php>
+                    <if condition="is_login() eq 0">
+
+                        <a class="am-btn-secondary am-btn am-btn-sm am-radius" href="javascript:"
+                           onclick="toast.error('请登陆后再报名')">报名参加 </a>
+                        <else/>
+                        <if condition="$event['attend'] egt $event['limitCount']">
+                            <a type="button" disabled="disabled" class="am-btn am-btn-default am-btn-sm am-radius">报名已满 </a>
+                            <else/>
+                            <a href="{:U('event/sign',array('id'=>$event['id']))}"
+                               class="am-btn-secondary am-btn am-btn-sm am-radius">我要报名</a>
+                        </if>
+
+
+                    </if>
+                    <php>}</php>
+                    <php>}else{</php>
+                    <a class="am-btn-secondary am-btn am-btn-sm am-radius"  data-role="unsign" data-eventID="{$event.id}" href="javascript:" >取消报名 </a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;  <span style="line-height: 34px;"> 已报名&nbsp;&nbsp;&nbsp;&nbsp;<if condition="$event['check_isSign'][0]['status'] eq 1">已审核 <else/> 未审核</if></span>
+                    <php>}</php>
+
+                </if>
+
+
+            </div>
+        </div>
+
+        <!--简介和报名人数-->
+        <style>
+            .short{
+                border-top: 1px solid #eee;
+                padding:10px 5px;
+                text-align: left;
+            }
+            .am-g{
+                margin-right: 0!important;
+                margin-left: 0!important;
+            }
+            .short p{
+                margin-bottom: 0;
+            }
+            .title a{
+                color: #333;
+                font-size: 20px;
+            }
+            .title h4{
+                margin: 10px auto;
+            }
+            .time,.endtime{
+                color: #999;
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+            .time i{
+               padding-right: 5px;
+                font-size: 16px;
+            }
+            .am-btn{
+                padding:5px 10px ;
+            }
+            .am-dropdown-content{
+                min-width: 76px;
+            }
+            .am-dropdown-content button{
+                margin-bottom: 5px;
+            }
+        </style>
+        <div class="short am-g-fixed am-g">
+            <div class="am-u-sm-9">
+                <span style="color: #999">{$event.explain|text|getShortSp=30}</span>
+            </div>
+            <div class="am-u-sm-3" style="text-align: center">
+                <p style="font-size: 16px"><a href="{:U('Event/member',array('id'=>$event['id']))}">{$event.signCount}人</a></p>
+                <p style="color:#666">已报名</p>
+            </div>
+        </div>
+    </li>
+
+</volist>

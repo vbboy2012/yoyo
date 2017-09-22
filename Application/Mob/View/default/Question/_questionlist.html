@@ -1,0 +1,33 @@
+
+<ul class="question-list" style="position: relative">
+
+    <li>
+        <div class="item">
+            <div class="top-box am-g am-g-fixed">
+                <div class="am-u-sm-2 avat-box ht100" style="padding: 0">
+                    <img src="{$vo.user.avatar64}" />
+                </div>
+                <div class="am-u-sm-10 title-box ht100 ">
+                    <a href="{:U('Question/questionDetail',array('id'=>$vo['id']))}">
+                     <span style="display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{$vo.title}</span>
+                    </a>
+                    <p>
+                        <a href="{$vo.user.space_mob_url}">{$vo.user.nickname}</a>
+                    </p>
+                </div>
+            </div>
+            <div class="bottom-box">
+                <p>所属分类 | {$vo.category.title}</p>
+                <a href="{:U('Question/questionDetail',array('id'=>$vo['id']))}">
+                <p>
+                    补充说明：{$vo.description}
+                </p>
+                <p class="creat-time">
+                    创建时间：{$vo.create_time|friendlyDate}
+                </p>
+                    </a>
+            </div>
+        </div>
+    </li>
+
+</ul>

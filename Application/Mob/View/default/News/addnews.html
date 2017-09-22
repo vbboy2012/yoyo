@@ -1,0 +1,152 @@
+<extend name="Base/mob_common"/>
+<block name="mob_body">
+<div class="addpost-container">
+    <script src="__JS__/news.js"></script>
+    <link rel="stylesheet" href="__CSS__/apps/news.css"/>
+    <script src="__JS__/amazeui.datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="__CSS__/amazeui.datetimepicker.css"/>
+
+    <style>
+        .container{
+            padding: 0;
+        }
+    </style>
+    <form class="am-form news-form" data-am-validator id="send_news" data-url="{:U('Mob/news/doSendNews')}">
+        <input type="hidden" id="img_ids" name="attach_ids" value="">
+        <input type="hidden" id="one_img_id" name="one_attach_id" value="{$news.cover}">
+        <input type="hidden" id="id" name="id" value="{$news.id}">
+        <!--插入图片-->
+        <div class="am-cf ">
+            <div class="bg" style="overflow: hidden">
+            <div class="add-box">
+                <div class="img_btn add">
+                    <i class="am-icon-plus"></i>
+                </div>
+
+                <input type="file" name="files" id="chooseOne" class="m-btn">
+                <p>上传封面</p>
+            </div>
+            <div class="show_cover am-fl" style="display:none;">
+                <div id="cover_url">
+                    <img class="cover_img" src="{$news.cover_url}">
+                </div>
+            </div>
+            </div>
+            </div>
+        <!--插入图片结束-->
+        <!--标题-->
+            <div class="am-form-group">
+                <label class="am-fl" for="title">标题  | </label>
+                <input type="text" id="title" class="ip-txt" name="title" minlength="3" placeholder="1-30个字" value="{$news.title}"
+                       required/>
+            </div>
+        <!--选择模块-->
+        <div class="am-form-group am-form-inline">
+            <label class="am-fl">分类  |</label>
+            <select id="category" name="category" class="form-control ip-txt" style="padding: 0 1rem">
+                <volist name="category" id="top">
+                    <option value="{$top.id}"
+                    <eq name="data['category']" value="$top['id']"> selected</eq>
+                    >
+                    {$top.title}
+                    </option>
+                </volist>
+            </select>
+            <span class="am-form-caret"></span>
+        </div>
+
+        <div class="am-form-group">
+            <label class="am-fl">来源  |</label>
+            <input type="text" minlength="1" placeholder="选文地址（选填）" name="source" class="am-form-field ip-txt" value="{$news.source}" required/>
+        </div>
+
+        <!--有效期-->
+
+        <div class="am-form-group has-feedback">
+            <label class=" control-label am-fl">有效期  |</label>
+            <php>
+                if(!isset($data['dead_line'])){
+                $data['dead_line']=time()+604800;
+                }
+            </php>
+
+            <input style="color: #999" type="text" value="{:date('Y-m-d H:i',$data['dead_line'])}" id="datetimepicker" name="dead_line"
+                   class="am-form-field ip-txt">
+
+        </div>
+
+        <div class="am-form-group">
+            <textarea minlength="10" name="description" placeholder="简单描述一下资讯的内容（选填）">{$news.description}</textarea>
+        </div>
+
+
+        <div class="am-form-group weibo_post_box">
+            <textarea minlength="10" name="content" placeholder="资讯详情" style="min-height: 250px">{$news.detail.content}</textarea>
+        <!--插入图片表情-->
+        <!--表情-->
+        <a class="am-fl"  href="javascript:"data-url=" {:U('Core/Expression/getSmile')}" onclick="insertFace($(this))"style="margin-top: 7px">
+            <img src="__CORE_IMAGE__/bq.png">
+        </a>
+        <div id="emot_content" class="emot_content" style="display: none"></div>
+
+        <!--表情-->
+            <div class="fileupload-buttonbar">
+                <a type="button" class="am-btn am-btn-sm am-fl " style="line-height: 0.2;"><img
+                        src="__IMG__/image.png"></a>
+
+                <div class="fileinput-button" style="width: 100%">
+                    <input type="file" name="files" class="btn" id="choose"
+                           style="left: 35px;position:absolute;z-index: 1;width: 35px;height:40px;opacity: 0;cursor: pointer;"
+                           data-url="{:U('Core/File/uploadPictureBase64')}" multiple/></div>
+            </div>
+        <!--插入图片表情结束-->
+        </div>
+        <button type="button" id="confirm" class="am-btn am-btn-primary am-btn-block" style="margin: 20px 0px">发表
+        </button>
+        <ul class="img-list am-fl" style="padding-left:0px;">
+            <!--图片显示区域-->
+        </ul>
+    </form>
+
+
+</div>
+    <script type="text/javascript">
+    add_one_img();
+    add_img();
+    $('#datetimepicker').datetimepicker({
+        language:'zh-CN',
+        weekStart:1,
+        todayBtn:1,
+        autoclose:1,
+        todayHighlight:1,
+        startView:2,
+        minView:0,
+        forceParse:0,
+        format: 'yyyy-mm-dd hh:ii'
+    });
+
+    $('#confirm').click(function () {
+        var data = $("#send_news").serialize();
+        var url = $("#send_news").attr('data-url');
+        $.post(url, data, function (msg) {
+            if (msg.status == 1) {
+                toast.success(msg.info);
+                setTimeout(function () {
+                    window.location.href = document.referrer
+                },1000)
+            } else {
+                toast.error(msg.info);
+            }
+        }, 'json');
+    });
+
+
+
+    var ids = $('#one_img_id').val();
+    if (ids==0) {
+        $('.show_cover').hide();
+    } else {
+        $('.show_cover').show();
+    }
+</script>
+</block>

@@ -1,0 +1,193 @@
+.formWrap{
+  margin: 10px 0 0;
+  padding: 10px 10px 0;
+  .inputWrap{
+    background-color: @comColor;
+    height: 40px;
+    width: 100%;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 5px;
+    input{
+      width: 70%;
+      border: none;
+      text-align: right;
+      color: #333;
+      height: 100%;
+    }
+    span{
+      font-weight: 700;
+      color: #333;
+      i{
+        color: #febc26;
+      }
+    }
+  }
+  span{
+    color: @minorTextColor;
+  }
+  .change{
+    color: @themeColor;
+  }
+}
+.allMoney{
+  font-weight: 700;
+  font-size: 30px;
+  color: #000;
+  text-align: center;
+  margin: 20px 0!important;
+}
+.sendBtn{
+  display: inline-block;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  color: @comColor;
+  text-align: center;
+  background-color: @themeColor;
+  border-radius: 3px;
+}
+.changeWrap{
+  height: 40px;
+  width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+}
+//拆红包样式
+.openBag{
+  background-color: #cd533d;
+  position: relative;
+  padding: 0 0 130px;
+  .oneIcon{
+    position: absolute;
+    bottom: 5px;
+    font-size: 25px;
+    color: #df9c74;
+    left: 50%;
+    margin-left: -17px;
+  }
+  .redTop{
+    background-color: #d85940;
+    padding: 30px 10px 40px;
+    border-radius: 5px 5px 35% 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow:  0 2px 5px rgba(0,0,0,.2);
+    position: relative;
+    .owner{
+      .radiusWrap(50px,5px);
+    }
+    p{
+      color: #ffe2b1;
+    }
+    .redName{
+      margin: 5px 0!important;
+    }
+    .redText{
+      opacity: .8;
+    }
+    .redInfo{
+      font-size: 16px;
+      margin: 15px 0!important;
+    }
+    .redOpen{
+      .osCircle(80px);
+      background-color: #ddbc84;
+      position: absolute;
+      bottom: -40px;
+      box-shadow: 0 0 10px rgba(0,0,0,.1);
+      padding: 5px;
+      left: 50%;
+      margin-left: -40px;
+      .redSmall{
+        .osCircle(100%);
+        border: 1px solid #d0b17b;
+        i{
+          font-size: 35px;
+        }
+      }
+    }
+    .redClose{
+      position: absolute;
+      left: 10px;
+      top: 10px;
+    }
+  }
+}
+//红包结果
+.redOne{
+  background-color: #d85940;
+  height: 80px;
+  border-radius: 0 0 100% 100%;
+  position: relative;
+  .oneAvatar{
+    .radiusWrap(80px,5px);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    margin-left: -40px;
+    border: 1px solid #ffe2b1;
+  }
+}
+.redTwo{
+  margin-top: 40px;
+  .name{
+    font-weight: 600;
+    i{
+      color: #ffbb29;
+      margin-left: 5px;
+    }
+  }
+  .money{
+    margin-top: 15px!important;
+    span{
+      font-size: 40px;
+      font-weight: bold;
+      color: #000;
+      margin-right: 5px;
+    }
+  }
+  a{
+    color: #00a0e9;
+  }
+}
+.redFilter{
+  background: url("../images/filter.png");
+  height: 49px;
+}
+.redNum{
+  background-color: @comColor;
+  .np{
+    color: @minorTextColor;
+    padding: 0 10px;
+    border-bottom: 1px solid #dfdfdf ;
+  }
+  .redUl{
+    li{
+      border-bottom: 1px solid #dfdfdf ;
+      padding:10px;
+      &:last-child{
+        border: none;
+      }
+      .redAvatar{
+        .radiusWrap(50px,5px);
+      }
+      .rightDiv{
+        align-items: flex-start;
+        p:first-child{
+          color: #000;
+          font-weight: 600;
+        }
+      }
+      .flexRight{
+        color: #000;
+        font-weight: 600;
+      }
+    }
+  }
+}

@@ -1,0 +1,135 @@
+.sendHead {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  background-color: #fff;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+.article {
+  border-radius: 0!important;
+  border: 0!important;
+  border-bottom: 1px #ccc dashed!important;
+  font-size: 15px!important;
+  height: auto!important;
+  padding: 0 0 5px!important;
+  margin: 0!important;
+}
+.article::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #999;
+  font-size: 14px;
+}
+.article:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #999;
+  font-size: 14px;
+}
+.article::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #999;
+  font-size: 14px;
+}
+.article:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #999;
+  font-size: 14px;
+}
+.send-post-container {
+  bottom: 69px!important;
+  top: 48px;
+  padding: .5rem;
+  background: #fff;
+}
+.send-post-container .proList {
+  margin: 0;
+  padding: 0;
+}
+.wangEditor-mobile-txt {
+  min-height: 200px;
+}
+.send-post-bar {
+  font-size: 20px;
+  padding: 2px 5px;
+}
+.send-bottom {
+  width: 100%;
+  margin-top: 35px;
+  display: none;
+  background: #fff;
+}
+.editor {
+  height: 96%;
+  width: 100%;
+  border: 0;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+.editor:empty:before {
+  content: attr(data-placeholder);
+  color: #ddd;
+}
+.editor:focus {
+  outline: 0;
+}
+.editor:focus:before {
+  content: none;
+}
+.hidden {
+  display: none;
+}
+.fmSend {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: none;
+}
+.fmSend .editTit {
+  color: #333;
+  font-weight: 700;
+}
+.fmSend .sendColor {
+  color: #999;
+}
+.othInfo {
+  background-color: #fff;
+  margin-top: 10px;
+}
+.othInfo .item-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+.othInfo .item-inner:last-of-type {
+  border: none;
+}
+.othInfo .item-inner .label {
+  color: #666;
+}
+.upFile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.formWrap {
+  width: 100%;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+.formWrap input,
+.formWrap select {
+  width: 100%;
+  height: 30px;
+  border: none;
+  padding: 5px 10px;
+}
+.formWrap select {
+  border-bottom: 1px solid #eee;
+}
+.formWrap input {
+  padding-left: 14px;
+}

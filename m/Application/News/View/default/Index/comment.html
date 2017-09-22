@@ -1,0 +1,96 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__PUBLIC_CSS__/core.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <header class="bar bar-nav comHead">
+                    <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                       href="javascript:history.go(-1);"></a>
+                    <a href="javascript:" class="title">评论详情</a>
+                </header>
+            </header>
+            <div class="content  infinite-scroll" style="padding-bottom: 55px">
+                <div class="content-block noEdge">
+                    <div class="origin ">
+                        <div class="flexDiv">
+                            <div class="flexLeft">
+                                <div class="avatar"><img src={$user.avatar64} alt="头像"></div>
+                                <div class="rightDiv">
+                                    <a href="{:U('ucenter/index/mine',array('uid'=>$user['uid']))}">{$user.nickname}</a>
+                                    <span>{$mes.create_time}</span>
+                                </div>
+                            </div>
+                            <div class="operate" data-id="{$mes.id}" data-uid="{$mes[user][uid]}" data-support="News-comment" style="background: #fff">
+                                <div class="oneOpt flexWrap do-support-news">
+                                    <i class="iconfont icon-dianzan" <if condition="$mes.is_support eq 1">style="color: #ec725d;"</if> ></i>
+                                    <span class="support-count">{$mes.support_all_count}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="cont">{$mes.content}</p>
+                    </div>
+                    <p class="dtCmt" data-role="comment" data-total="{$count}">全部评论（{$count}）</p>
+                    <div data-role="myRole" data-distance="100" data-ptr-distance="55" style="margin-bottom: 60px;">
+                        <ul class="cmtWrap" data-role="all-comment" data-id="{$mes.id}" data-total="{$count}">
+                            <if condition="$mes['all_count'] eq 0">
+                                <div class="noWrap">
+                                    <p class="emojiText">╭(╯^╰)╮</p>
+                                    <p class="noState open-about">暂无评论，<span class="open-popup open-about">点击添加</span></p>
+                                </div>
+                            </if>
+                        </ul>
+                        <div class="infinite-scroll-preloader">
+                            <div class="preloader"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--评论-->
+            <div class="floatNav">
+                <div class="cmtBox open-popup open-about" data-popup=".cmt"><i class="iconfont icon-wenzi"></i> <span>期待你的神评论</span></div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="other">
+    <!--我来回答-->
+    <div data-role="open" class="popup popup-about sendWrap cmt">
+        <div class="content-block noEdge">
+            <div class="newSend">
+                <div class="sendArea needsclick" contenteditable="true" style="height: 80px;border: 1px solid #eee;margin-bottom: 10px"></div>
+                <div class="commentOp">
+                    <i class="iconfont icon-biaoqing" data-role="open-emoji"></i>
+                    <a href="javascript:" data-role="sendComment" data-id="{$mes.id}" class="proBtn close-popup">评论</a>
+                </div>
+            </div>
+
+            <div class="send-bottom emoji">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper emoji-list"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__PUBLIC_JS__/public.js"></script>
+    <script src="__JS__/sendlzl.js"></script>
+    <script src="//cdn.bootcss.com/emojione/2.2.7/lib/js/emojione.min.js"></script>
+    <script src="__PUBLIC__/js/refreshData.js"></script>
+    <script>
+        $(function () {
+            emojione.imageType = 'png';
+            emojione.ascii = true;
+            emojione.imagePathPNG = _ROOT_ + '/Public/emoji/';
+        })
+        var detailID = $('.cmtWrap').attr('data-id');
+        var total = $('.cmtWrap').attr('data-total');
+        refreshData('News/index/commentbyid',total,'.cmtWrap',{id:detailID},function(){
+            initDellzl();
+        });
+    </script>
+</block>

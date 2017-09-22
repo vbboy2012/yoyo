@@ -1,0 +1,8 @@
+<p class="word-wrap">{$weibo.content}</p>
+<div class="row preview" data-wid="{$weibo.id}">
+    <volist name="weibo['weibo_data']['image']" id="vo">
+        <div class="{$width} preview-image img-hide <if condition='$img_num gt 3'>weibo-img</if>"  data-id="{$weibo.id}" data-img="{$vo.big}" data-index="{$i-1}">
+            <img src="{$vo.small}" />
+        </div>
+    </volist>
+</div>

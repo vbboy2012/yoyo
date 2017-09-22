@@ -1,0 +1,72 @@
+
+<!--头部-->
+<div class="group-detail">
+    <script src="__JS__/group.js"></script>
+    <link rel="stylesheet" href="__CSS__/apps/group.css"/>
+    <php>if($group['notice']){</php>
+    <div class="" style="border: solid 1px #F2F2F2;padding: 5px;margin-bottom: 10px;font-size: 12px">
+        公告：{$group.notice.content}
+    </div>
+    <php>}</php>
+    <style>
+        .btn-text{
+            color: white;
+        }
+
+    </style>
+    <div class="" style="border: solid 1px #F2F2F2;padding: 5px;margin-bottom: 10px;font-size: 12px">
+        <div class="group-title am-g">
+            <div class="am-u-sm-3 title" style="padding:4px;font-size: 18px">
+                <img class="avatar-img" style="width: 64px" src="{$group.logo}">
+
+            </div>
+            <div class="am-u-sm-4 title" style="padding:4px;font-size: 18px">
+                <div>{$group.title}</div>
+                <div class="group-type" style="color: #ccc;margin-top: -25px;padding-top: 20px" ><span style="font-size: 10px">分类：{$group.GroupType.title}</span></div>
+
+            </div>
+            <div class="am-u-sm-1" style="margin-top: 10px;color: #ccc;">
+                <div class="am-dropdown" data-am-dropdown style="position: absolute;right: 25px;top: 2px;">
+                    <i class="am-icon-angle-down  am-dropdown-toggle" style="font-size: 20px"></i>
+
+                    <div class="am-dropdown-content" style="padding:5px;text-align: center;line-height: 0;margin: 5px -7px 0">
+
+                        <div>
+                            <div >
+                                <ul>
+                                    <li style="margin-top: 20px"><php>if(is_administrator(is_login())|| in_array(is_login(),$group['canAdmin'],true) ){</php>
+                                        <a href="{:U('mob/group/admin',array('id'=>$group['id']))}" class=""
+                                           data-group-id   style="padding: 5px;"
+                                        >管理</a><hr>
+                                    </li>
+                                    <li>
+                                        <a url="{:U('mob/group/disMiss')}" group-id="{$group.id}" class="dismiss"
+                                           data-group-id   style="padding: 5px;"
+                                        >解散群组</a></li><hr>
+                                    <php>}</php>
+                                    <php>if(is_joined($group['id']) == 1){</php>
+                                    <li><a class=" " data-group-id="{$group.id}" id="quit"
+                                           url="{:U('Mob/group/quit')}"  style="padding: 5px;"
+                                    >退出群组</a></li>
+                                    <php>}else{</php>
+                                    <li><a class=" " data-group-id="{$group.id}" id="attend"  style="padding: 5px;"
+                                           url="{:U('Mob/group/attend')}"
+                                    >加入群组</a></li>
+                                    <php>}</php>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="am-g">
+            <span class="am-u-sm-6" style="padding: 0px">帖子：{$group.post_count}</span>
+            <span class="am-u-sm-6" style="padding: 0px">成员：{$group.member_count}</span>
+        </div>-->
+    </div>
+</div>
+<!--头部-->

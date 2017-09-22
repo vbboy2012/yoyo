@@ -1,0 +1,328 @@
+/**
+ * Created by 駿濤 on 2016/12/12 0012.
+ */
+.sendHead {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  background-color: #fff;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+.article {
+  border-radius: 0!important;
+  border: 0!important;
+  border-bottom: 1px #ccc dashed!important;
+  font-size: 20px!important;
+  height: auto!important;
+  padding-bottom: 10px!important;
+}
+.article::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #999;
+  font-size: 20px;
+}
+.article:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #999;
+  font-size: 20px;
+}
+.article::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #999;
+  font-size: 20px;
+}
+.article:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #999;
+  font-size: 20px;
+}
+.send-weibo-container {
+  bottom: 69px!important;
+  top: 48px;
+  padding: .5rem;
+  background: #fff;
+}
+.send-weibo-container .proList {
+  margin: 0;
+  padding: 0;
+}
+.send-weibo-bar {
+  font-size: 20px;
+  padding: 2px 5px;
+}
+.send-weibo-list-block {
+  background: #fff;
+  font-size: 14px;
+  bottom: 34px;
+  margin: 0;
+  padding: 0;
+  height: 35px;
+}
+.send-weibo-list-block:before {
+  content: normal;
+}
+.send-weibo-list-block .item-content {
+  min-height: 35px;
+  height: 35px;
+  display: inline-block;
+  width: 50%;
+  padding-left: 0;
+}
+.send-weibo-list-block .item-inner {
+  padding-left: 6px;
+  padding-bottom: 0;
+  padding-top: 0;
+  min-height: 35px;
+}
+.send-weibo-list-block .crowd-select {
+  display: inline-block;
+  width: 47%;
+  padding-left: .75rem;
+}
+.send-weibo-list-block .crowd-select a {
+  display: inline-block;
+  top: 1px;
+}
+.send-bottom {
+  width: 100%;
+  margin-top: 35px;
+  display: none;
+  background: #fff;
+}
+.editor {
+  height: 96%;
+  width: 100%;
+  border: 0;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+.editor:empty:before {
+  content: attr(data-placeholder);
+  color: #ddd;
+}
+.editor:focus {
+  outline: 0;
+}
+.editor:focus:before {
+  content: none;
+}
+.hidden {
+  display: none;
+}
+.weibo-popup {
+  top: 0 !important;
+}
+.weibo-popup .addressList,
+.weibo-popup .crowd-list {
+  padding: .5rem;
+}
+.weibo-popup .addressList li,
+.weibo-popup .crowd-list li {
+  border-bottom: 1px solid #eee;
+  padding: .3rem 0;
+  position: relative;
+}
+.weibo-popup .addressList li:last-child,
+.weibo-popup .crowd-list li:last-child {
+  border: none;
+}
+.weibo-popup .addressList li p:first-child,
+.weibo-popup .crowd-list li p:first-child {
+  font-weight: 600;
+  color: #333;
+}
+.weibo-popup .addressList li p:last-child,
+.weibo-popup .crowd-list li p:last-child {
+  color: #999;
+  font-size: .6rem;
+}
+.weibo-popup .addressList li i:not(:first-child),
+.weibo-popup .crowd-list li i:not(:first-child) {
+  position: absolute;
+  right: 0;
+  margin-top: -30px;
+}
+.slider {
+  width: 100%;
+  display: block;
+  position: relative;
+  background: #fff;
+  overflow: hidden;
+}
+.slider ul {
+  list-style: none;
+}
+.slider .slider-right {
+  position: absolute;
+  right: 5px;
+  top: 0;
+  min-height: 250px;
+}
+.slider .slider-right ul {
+  padding: 0;
+}
+.slider .slider-right li a {
+  padding: 0 5px;
+  font-size: 12px;
+  text-align: center;
+  color: #000;
+  display: block;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.slider-list {
+  float: left;
+  width: 100%;
+  display: block;
+  overflow: auto;
+  min-height: 250px;
+}
+.slider-list ul {
+  float: left;
+  width: 100%;
+  display: block;
+  position: relative;
+}
+.slider-list ul li {
+  float: left;
+  width: 100%;
+}
+.slider-list ul ul li {
+  padding: 5px 10px;
+  display: block;
+  border-bottom: 1px solid #f3f3f3;
+}
+.slider-list ul ul li a {
+  width: 90%;
+  display: block;
+}
+.slider-list ul ul li a:active {
+  color: #ccc !important;
+}
+.slider-list .slider-title {
+  padding: 5px 0;
+  text-indent: 10px;
+  background: #eeeeee;
+  color: #fff;
+  width: 100%;
+  float: left;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.slider-list .selected .slider-title {
+  background: #bbb;
+}
+.edit-at {
+  color: #0894ec;
+}
+.oneProduct li {
+  display: flex;
+  padding: 5px 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+.oneProduct .typeName {
+  background-color: #f2f2f2;
+}
+.oneProduct .product {
+  border-bottom: 1px solid #eee;
+}
+.oneProduct .product:last-of-type {
+  border: none;
+}
+.oneProduct .left {
+  display: flex;
+  align-items: center;
+}
+.oneProduct .left .imgWrap {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+.oneProduct .left p {
+  max-width: 175px;
+}
+.oneDetail .infoWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.oneDetail .moreInfo {
+  border-top: 1px solid #eee;
+  margin-top: 10px;
+  padding-top: 10px;
+  max-height: 180px;
+  overflow: scroll;
+}
+.modal-inner {
+  padding: 10px 0;
+}
+.onePt {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: 0 15px;
+  justify-content: space-between;
+}
+.onePt .oneWrap {
+  display: flex;
+}
+.onePt .oneCover {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+.onePt .oneName {
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.onePt .oneName p {
+  max-width: 190px;
+}
+.img-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0;
+  z-index: 3;
+}
+.img-add {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+.img-btn-sit {
+  flex-shrink: 0;
+  position: relative;
+}
+.waitbox {
+  position: relative;
+  margin-right: 10px;
+}
+.waitbox img {
+  width: 90px;
+  height: 90px;
+  border-radius: 2px;
+}
+.waitbox .del-img-btn {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 100%;
+  display: block;
+  text-align: center;
+  margin-right: -5px;
+  margin-top: -5px;
+  color: #999;
+  top: 0;
+  right: 0;
+  line-height: 18px;
+}

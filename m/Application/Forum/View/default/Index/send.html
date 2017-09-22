@@ -1,0 +1,105 @@
+<extend name="Base/common"/>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <link rel="stylesheet" type="text/css" href="__PUBLIC__/ext/wangeditor/css/wangEditor-mobile.css">
+            <link rel="stylesheet" href="__CSS__/sendpost.css"/>
+            <div class="sendHead fmSend">
+                <p style="display: none" id="myid">{$sectionId}</p>
+                <a class="pull-left" href="{:U('Forum/index/section',array('id'=>$sectionId))}"><i class="iconfont icon-iconfontcha"></i></a>
+                <span class="editTit">编辑内容</span>
+                <span class="sendColor" data-role="Release">发表</span>
+            </div>
+            <div class="content send-post-container needsclick" style="position: relative;top: 0;">
+                <input data-role="postTitle" name="title" class="modal-text-input article" placeholder="请输入标题">
+                <textarea  id="textarea1" class="editor" style="width:100%;height:100%;"></textarea>
+
+                <!--文件上传-->
+                <div class="upFile">
+                    <input id="file" name="file" type="file">
+                    <input data-role="fileByID" type="text" name="file_id" value="0" hidden>
+                    <span id="upload">上传</span>
+                </div>
+
+                <!--文件上传-->
+            </div>
+
+            <div class="othInfo">
+
+                <div class="item-inner">
+                    <div class="item-title label">是否回复可见</div>
+                    <div class="item-input">
+                        <label class="label-switch">
+                            <input type="checkbox" name="checkHide" data-role="checkHide">
+                            <div class="checkbox"></div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="item-inner">
+                    <div class="item-title label">附件是否付费</div>
+                    <div class="item-input">
+                        <label class="label-switch">
+                            <input type="checkbox" name="checkPay" data-role="checkPay">
+                            <div class="checkbox"></div>
+                        </label>
+                    </div>
+                </div>
+                <ul data-role="pay-block" style="display: none">
+                <li>
+                    <p><span data-role="pay-download">点击此处选择付费类型和数量</span></p>
+                </li>
+                <li>
+                    <input type="text" readonly="readonly" name="pay-type" data-role="pay-type"/>
+                </li>
+                <li>
+                    <input type="text" readonly="readonly" name="pay-num" data-role="pay-num"/>
+                </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</block>
+
+<block name="script">
+    <script>
+        $('#upload').click(function () {
+
+            var $input = $('#file');
+            // 相当于： $input[0].files, $input.get(0).files
+            var files = $input.prop('files');
+            var data = new FormData();
+            data.append('file', files[0]);
+            $.ajax({
+                url: U('core/file/uploadFile'),
+                type: 'POST',
+                data: data,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success:function (res) {
+                    if (res.status==0){
+                        $.toast(res.info)
+                    }else{
+                        $('[data-role="fileByID"]').val(res.data.file.id)
+                        $.toast('上传成功！')
+                    }
+                }
+            });
+        })
+    </script>
+    <script>
+        window.Zepto = $;
+    </script>
+    <script type="text/javascript" src="__PUBLIC__/ext/wangeditor/js/lib/zepto.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/ext/wangeditor/js/wangEditor-mobile.js"></script>
+    <script src="//cdn.bootcss.com/emojione/2.2.7/lib/js/emojione.min.js"></script>
+    <script src="  https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+    <script type="text/javascript">
+        emojione.imageType = 'png';
+        emojione.ascii = true;
+        emojione.imagePathPNG = _ROOT_ + '/Public/emoji/';
+    </script>
+    <script src="__JS__/sendpost.js"></script>
+</block>

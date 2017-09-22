@@ -1,0 +1,102 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <header class="bar bar-nav comHead">
+                    <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                       href="javascript:history.go(-1);"></a>
+                    <a href="javascript:" class="title">{:L('_ACTIVE_USER_')}</a>
+                </header>
+            </header>
+            <input name="sectionId" value="{$sectionId}" type="hidden" />
+            <div class="content infinite-scroll">
+                <div class="content-block noEdge">
+                    <notempty name="user">
+                    <div data-role="myFollow" class="fmBox active-head">
+                        <p class="u-acitve">推荐好友</p>
+                            <div class='myLink h-master'>
+                                <div style="display: flex">
+                                <a href="{:U('Ucenter/index/mine',array('uid'=>$user['info']['uid']))}">
+                                    <div class='fCover'>
+                                        <img class='myImg' alt='{$user.info.nickname}' src="{$user.info.avatar128}" />
+                                    </div>
+                                </a>
+                                <div class='fInfo'>
+                                    <a href="{:U('Ucenter/index/mine',array('uid'=>$user['info']['uid']))}">
+                                    <p class='fName'>{$user.info.nickname} <span class="master">{:L('_BOARD_MASTER_')}</span></p>
+
+                                    <p class='fIntro'>
+                                        <span>{:L('_PUBLISH_POST_')} {$user.post}</span>
+                                        <span>粉丝 {$user.fans|default='0'}</span>
+                                    </p>
+                                    </a>
+                                </div>
+                                </div>
+                            <if condition="$user['info']['uid'] neq is_login()">
+                                <a href="javascript:" class="a-follow" data-follow="{$isFollow}" data-uid="{$user.info.uid}" data-role="follow">
+                                    <if condition="$isFollow eq 'unfollow'">
+                                        {:L('_FOLLOWED_')}
+                                        <else/>
+                                        + {:L('_FOLLOWERS_')}
+                                    </if>
+                                </a>
+                            <else/>
+                                <a href="javascript:" class="my-follow" data-follow="{$isFollow}" data-uid="{$user.info.uid}" data-role="follow">
+                                    自己
+                                </a>
+                            </if>
+                        </div>
+                    </div>
+                    </notempty>
+                    <input type="hidden" name="maxItems" value="{$count}" />
+                    <div data-role="myFollow" class="fmBox active-list">
+                        <p class="u-acitve">活跃用户</p>
+                        <ul id="tab">
+                        </ul>
+                        <div class="infinite-scroll-preloader">
+                            <div class="preloader"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/active.js"></script>
+    <script>
+        //实现关注板块版主的逻辑
+        $(document).on('click','[data-role="follow"]', function () {
+            var $this = $(this);
+            var follow = $(this).attr('data-follow');
+            var uid = $(this).attr('data-uid') ;
+            if (follow=='follow'){
+                $.post(U('Ucenter/index/follow'),{type:follow,uid:uid},function (res) {
+                    console.log(res) ;
+                    if (res){
+                        $this.text("{:L('_FOLLOWED_')}");
+                        $this.attr("data-follow",'unfollow');
+                        $.toast('关注成功！')
+                    }else{
+                        $.toast('关注失败！')
+                    }
+                })
+            }else{
+                $.post(U('Ucenter/index/follow'),{type:follow,uid:uid},function (res) {
+                    console.log(res) ;
+                    if (res){
+                        $this.text("+ {:L('_FOLLOWERS_')}");
+                        $this.attr("data-follow",'follow');
+                        $.toast('取消关注成功！')
+                    }else{
+                        $.toast('取消关注失败！')
+                    }
+                })
+            }
+        })
+    </script>
+</block>

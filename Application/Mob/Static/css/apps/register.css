@@ -1,0 +1,54 @@
+i {
+  color: grey;
+}
+ul {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+#role-list {
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+}
+#role-list li {
+  float: left;
+  margin-right: 10px;
+  padding: 3px 10px;
+}
+#role-list li a {
+  color: #c8c8c8;
+}
+.am-in {
+  padding-bottom: 0px;
+}
+#type {
+  color: #000000;
+  font-size: 14px;
+}
+.adaptive-user {
+  font-size: 20px;
+  position: absolute;
+  left: 20px;
+}
+.adaptive-lock {
+  font-size: 20px;
+  position: absolute;
+  left: 20px;
+}
+@media only screen and (max-width: 375px) {
+  .adaptive-user {
+    top: 315px;
+  }
+  .adaptive-lock {
+    top: 358px;
+  }
+}
+@media only screen and (min-width: 375px) {
+  .adaptive-user {
+    top: 256px;
+  }
+  .adaptive-lock {
+    top: 299px;
+  }
+}

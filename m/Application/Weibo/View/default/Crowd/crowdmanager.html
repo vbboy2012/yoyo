@@ -1,0 +1,62 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/weibo.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <include file="./Application/Common/View/default/Public/footer.html"/>
+            <div class="content manager infinite-scroll infinite-scroll-bottom">
+                <div class="content-block noEdge">
+                    <div class="circleInfo circle">
+                        <li class="one info">
+                            <a external href="{:U('Weibo/Index/index', array('crowd_id'=>$crowd['id']))}">
+                                <div class="avatar">
+                                    <img src="{$crowd.logo|getThumbImageById=320,320}" alt="">
+                                </div>
+                            </a>
+                            <div class="name">
+                                <a external href="{:U('Weibo/Index/index', array('crowd_id'=>$crowd['id']))}">{$crowd.title}</a>
+                                <p class="location textMore">{$crowd.intro}</p>
+                                <p class="num">
+                                    <span><i class="iconfont icon-fensi"></i>{$crowd.member_count}</span>
+                                    <span><i class="iconfont icon-groupcopy5"></i>{$crowd.post_count}</span>
+                                </p>
+                            </div>
+                            <if condition="$crowd.is_admin eq 'true'">
+                                <a class="follow" data-role="del_crowd" data-crowd-id="{$crowd.id}">
+                                    解散圈子
+                                </a>
+                            </if>
+                        </li>
+                        <div class="buttons-tab">
+                            <a external href="{:U('Weibo/Crowd/crowdManager',array('type'=>'check', 'id'=>$crowd['id']))}"
+                            <if condition="($_GET['type'] eq 'check') or($_GET['type'] eq '')">class="active button"<else/>class="button"</if> >加入审批</a>
+                            <a external href="{:U('Weibo/Crowd/crowdManager',array('type'=>'member', 'id'=>$crowd['id']))}"
+                            <if condition="$_GET['type'] eq 'member'">class="active button"<else/>class="button"</if> >成员管理</a>
+                            <a external href="{:U('create',array('crowd_id'=>$crowd['id']))}" class="button">修改圈子</a>
+                        </div>
+                    </div>
+
+                    <div class="proList" data-type="{$_GET['type']}" data-crowd-id="{$crowd_id}">
+                        <notempty name="member_list">
+                            <include file="_member_list"/>
+                        </notempty>
+                    </div>
+
+                    <gt name="totalCount" value="9">
+                        <!-- 加载提示符 -->
+                        <div class="infinite-scroll-preloader">
+                            <div class="preloader"></div>
+                        </div>
+                    </gt>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+
+<block name="script">
+    <script src="__JS__/crowd.js"></script>
+</block>

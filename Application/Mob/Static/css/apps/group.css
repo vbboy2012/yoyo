@@ -1,0 +1,437 @@
+ul,
+li {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+.avatar-img {
+  border-radius: 100%;
+  overflow: hidden;
+}
+.body {
+  background: #000;
+}
+.spliter {
+  border-top: 1px solid #F2F2F2;
+  width: 100%;
+  margin-bottom: 5px;
+}
+/*群组列表*/
+.group-container {
+  padding: 1em;
+}
+.group-container .post_list {
+  font-size: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+.group-container .post_list .item {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #fcfcfc;
+}
+.group-container .post_list .item .text {
+  height: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.group-container .post_list .item .am-u-sm-2 {
+  background-color: #c5c5c5;
+  padding: 10px;
+}
+.group-container .post_list .item .am-u-sm-10 {
+  padding: 0 0 0 10px;
+}
+.group-container .post_list .item .am-u-sm-10 .item-heading .text-more {
+  width: 100%;
+  margin: 0;
+}
+.group-container .post_list .item .am-u-sm-10 .item-heading .text-more .title {
+  color: #333;
+  font-size: 16px;
+}
+.group-container .post_list .item .am-u-sm-10 .item-heading .text-more .label-success {
+  background-color: #008000;
+  color: #ffffff;
+  padding: 5px 10px;
+  line-height: 20px;
+  border-radius: 40px;
+  margin-left: 10px;
+}
+.group-container .group-list {
+  background: none !important;
+}
+.group-container .group-list .group-Box {
+  padding: 5px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+.group-container .group-list .group-Box .group {
+  border: 1px solid #F2F2F2;
+}
+.group-container .group-list .group-Box .group .group-info-box {
+  background: #F2F2F2;
+  height: 110px;
+  border-radius: 5px;
+}
+.group-container .group-list .group-Box .group .group-info-box .avt-box {
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.group-container .group-list .group-Box .group .group-info-box .info-box {
+  height: 100%;
+  padding-left: 20px;
+}
+.group-container .group-list .group-Box .group .group-info-box .info-box .jianjie {
+  color: #808080;
+  height: 21px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.group-container .group-list .group-Box .group .group-info-box .info-box p {
+  margin-top: 5px;
+}
+.group-container .group-list .group-Box .group .group-info-box .info-box .title {
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+}
+.group-container .group-list .group-Box .group .group-info-box .cz-box {
+  height: 100%;
+  background-color: #F9F7FF;
+  padding: 10px 0 10px 10px ;
+}
+.group-container .group-list .group-Box .group .group-info-box .cz-box .half-box {
+  height: 33.3%;
+  text-align: center;
+  color: #808080;
+  font-size: 13px;
+  line-height: 33px;
+}
+.group-container .group-list .group-Box .group .group-info-box .cz-box .half-box i {
+  padding-right: 5px;
+}
+/*群组板块*/
+.group-type-list .type-list .group-type .type {
+  padding: 10px 65px 10px 10px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #e5e5e5;
+}
+.post-container {
+  padding: 5px;
+}
+.post-container .post-box .info .avatar {
+  padding: 0;
+  float: left;
+  text-align: center;
+}
+.post-container .post-box .info .avatar .avatar-img {
+  width: 54px;
+  height: 54px;
+}
+.post-container .post-box .info .post-info {
+  float: left;
+  padding: 0 5px;
+}
+.post-container .post-box .info .part {
+  float: right;
+  font-size: 10px;
+  padding: 0 2px;
+  text-align: right;
+}
+.post-container .content p {
+  margin: 5px 0;
+}
+.post-container .small-btn {
+  font-size: 10px;
+}
+.comment-item {
+  padding: 10px;
+}
+/*群组板块*/
+#Q-list {
+  position: fixed;
+  background-color: white;
+  right: 5%;
+  top: 80px;
+  width: 20%!important;
+  border: 1px solid #eee;
+  box-shadow: 0 1px 3px #eee;
+}
+#Q-list ul {
+  margin: 0;
+}
+#Q-list ul li {
+  text-align: center;
+  border-bottom: solid 1px #eee;
+  padding: 10px 5px;
+  position: relative;
+}
+#Q-list ul li a {
+  color: #666;
+}
+.Q-list-sec {
+  position: absolute;
+  bottom: 0;
+  background-color: #cccccc;
+  display: none;
+}
+.sec ul {
+  margin: 0;
+}
+.sec ul li {
+  text-align: center;
+  border-bottom: solid 1px #FFFFFF;
+  padding: 5px 5px;
+}
+#Q-type {
+  position: relative;
+}
+.triangle-left {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 10px solid #cccccc;
+  position: absolute;
+  top: 13px;
+  left: -8px;
+  display: none;
+}
+.group-admin .am-nav-tabs {
+  padding-bottom: 5px;
+  margin-top: 5px;
+}
+.group-admin .am-nav-tabs a {
+  font-size: 13px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  display: block;
+  width: 25%;
+  float: left;
+  text-align: center;
+}
+.group-admin .am-nav-tabs a:active {
+  border-bottom: 1px solid #0a67fb;
+}
+label {
+  display: inline-block;
+  font-weight: bold;
+  color: #737373;
+  font-size: 14px;
+  margin: 0;
+}
+.am-form-group {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin: 0;
+  padding: 5px;
+}
+.am-form-group label {
+  float: left;
+}
+.am-form-group input,
+.am-form-group select {
+  border: none!important;
+}
+.am-form-group select {
+  padding: 0 10px;
+}
+.input_title {
+  display: inline;
+  float: left;
+}
+.am-field-valid {
+  display: inline;
+  width: 50%;
+}
+#mob-main-container {
+  padding: 0;
+  margin-top: 40px;
+}
+.add-group {
+  padding: 0 ;
+}
+.add-group input,
+.add-group select {
+  border: none!important;
+}
+.add-group select {
+  padding: 0 10px;
+}
+.add-group .bg {
+  background: url("../../images/sentissue.png") center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.add-group .bg .add-box {
+  margin: 50px auto;
+  text-align: center;
+  position: relative;
+  z-index: 99;
+}
+.add-group .bg .add-box .add {
+  border-radius: 50%;
+  background-color: #0e90d2;
+  border: none;
+}
+.add-group .bg .add-box .add i {
+  color: #fff;
+  font-size: 25px;
+  padding: 12px 20px;
+}
+.add-group .bg .m-btn {
+  left: 160px;
+  top: 0;
+  position: absolute;
+  z-index: 1;
+  width: 72px;
+  height: 72px;
+  opacity: 0;
+  cursor: pointer;
+}
+.add-group .bg p {
+  color: #fff;
+  margin-top: 10px;
+  font-weight: 700;
+}
+.add-group .bg .show_cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.add-group .bg .show_cover img {
+  width: 100% !important;
+  height: 100%!important;
+}
+.am-navbar-nav a {
+  height: auto;
+}
+.group-nav {
+  background-color: #fff;
+  padding: 0;
+  font-size: 13px;
+  border-bottom: 1px solid #eee;
+}
+.group-nav a {
+  color: #666;
+}
+.group-tab {
+  margin: 0;
+  border: none;
+}
+.group-tab .am-thumbnail {
+  padding: 0;
+  text-align: center;
+  border: none;
+}
+.group-tab .am-thumbnail a {
+  border: none!important;
+}
+.group-tab .am-active {
+  border-bottom: 2px solid #0a67fb;
+}
+.am-nav-tabs > li.am-active > a,
+.am-nav-tabs > li.am-active > a:hover,
+.am-nav-tabs > li.am-active > a:focus {
+  border: none!important;
+}
+.post-subject {
+  padding: 10px;
+  border: solid 1px #F2F2F2;
+  margin-bottom: 0;
+}
+.post-subject .info-box1 {
+  padding-right: 0;
+}
+.post-subject .info-box1 a {
+  color: #808080;
+}
+.post-subject .info-box1 p {
+  margin-bottom: 0;
+  color: #808080;
+}
+.tag1 {
+  display: inline-block;
+  background-color: #fedc1d;
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  margin-left: 10px;
+}
+.add-group .am-form-group {
+  width: 96%;
+  margin: 10px auto;
+}
+.dongtai {
+  font-size: 12px;
+  border-bottom: #c4c4c4 1px solid;
+  padding: 5px;
+}
+.dongtai h3 {
+  font-size: 14px!important;
+}
+.like-box {
+  height: 40px;
+}
+.like-box .am-u-sm-7,
+.like-box .am-u-sm-3 {
+  height: 100%;
+  padding: 10px 0;
+}
+.like-box .am-u-sm-7 .am-u-sm-4,
+.like-box .am-u-sm-3 .am-u-sm-4,
+.like-box .am-u-sm-7 .am-u-sm-6,
+.like-box .am-u-sm-3 .am-u-sm-6 {
+  height: 100%;
+  text-align: center;
+  color: #888;
+}
+.like-box .am-u-sm-7 .am-u-sm-4 a,
+.like-box .am-u-sm-3 .am-u-sm-4 a,
+.like-box .am-u-sm-7 .am-u-sm-6 a,
+.like-box .am-u-sm-3 .am-u-sm-6 a {
+  color: #888;
+}
+.like-box .fl-rt {
+  float: right;
+}
+.like-box .border {
+  border-right: 1px solid #d9d9d9;
+  border-left: 1px solid #d9d9d9;
+}
+.group-bottom {
+  height: 63px;
+}
+.group-bottom ul {
+  height: 100%;
+  padding: 5px 0;
+}
+.group-bottom ul a {
+  width: 53px;
+  height: 53px;
+  border-radius: 100%;
+  line-height: 53px;
+  text-align: center;
+}
+.replay {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+  color: #e08c7e ;
+  background-color: #fcfcfc;
+}
+.cur {
+  border-bottom: 2px solid #00a2d4;
+}

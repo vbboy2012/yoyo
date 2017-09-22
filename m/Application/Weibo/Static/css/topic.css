@@ -1,0 +1,140 @@
+.circle {
+  margin-bottom: .4rem;
+}
+.circle .name a.textMore {
+  color: #ec725d;
+}
+.circle .name p.textMore {
+  font-weight: 400;
+  color: #000;
+}
+.content.gray {
+  background-color: #eee;
+}
+.content {
+  background-color: #fff;
+}
+.content .content-block {
+  margin: 0;
+}
+.content ul .huati-item {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+.content ul .huati-item .img {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.content ul .huati-item .img img {
+  width: 100%;
+}
+.content ul .huati-item .huati-information {
+  margin-left: 20px;
+  flex: 1;
+  flex-shrink: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.content ul .huati-item .huati-information .number {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  border-radius: 4px;
+  line-height: 20px;
+  text-align: center;
+  color: #fff;
+  background-color: #ec725d;
+}
+.content ul .huati-item .huati-information .unnumber {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  line-height: 20px;
+  text-align: center;
+  color: #000;
+}
+.content ul .huati-item .huati-information p {
+  font-size: 14px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.content ul .huati-item .huati-information .huati-name {
+  font-weight: 400;
+  color: #000;
+}
+.content ul .huati-item .huati-information .huati-sketch {
+  margin: 5px 0 !important;
+  color: #888888;
+}
+.content ul .huati-item .huati-information .huati-shuju {
+  font-size: 10px;
+  color: #ccc;
+}
+.content ul .huati-item .huati-information .huati-shuju span {
+  margin-right: 5px;
+}
+.content ul .huati-item .huati-information .huati-shuju span i {
+  margin-right: 2px;
+}
+.content ul .huati-item .follow {
+  position: absolute;
+  display: inline-block;
+  margin: 1rem auto;
+  padding: .2rem 1rem;
+  border: 1px solid #ec725d;
+  color: #ec725d;
+  font-size: .6rem;
+  box-shadow: 0 0 5px rgba(236, 114, 93, 0.4);
+  border-radius: 5px;
+  right: .5rem;
+  top: 20px;
+}
+.topic-holder .h-title {
+  margin: .2rem 0 !important;
+  padding: 0 20px 10px;
+  border-bottom: 1px solid #f2f2f2;
+  font-size: 14px;
+  font-weight: 700;
+}
+.topic-holder .have-holder {
+  margin-top: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.topic-holder .have-holder .h-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.topic-holder .have-holder .h-avatar img {
+  width: 100%;
+  border-radius: 100%;
+}
+.topic-holder .have-holder .intro-self {
+  color: #888;
+  font-size: 12px;
+  max-width: 195px;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+}
+.topic-holder .have-holder .holder-follow {
+  display: block;
+  width: 60px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 4px;
+  background-color: #ec725d;
+  color: #fff;
+}

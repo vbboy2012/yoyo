@@ -1,0 +1,37 @@
+<volist name="page_data" id="people">
+<a href="{$people.space_mob_url}">
+    <li class="am-cf " style="font-size: 12px;padding: 5px;position: relative;border-bottom: 1px solid black;border-bottom-color: #DCDCDC">
+        <div class="people am-g">
+            <div class="avatar  am-u-sm-2 am-text-center" style="padding: 0px;margin-top: 15px">
+                <img class="am-circle am-img-thumbnail" style="width: 48px;height: 48px"
+                     src="{$people.avatar32}">
+            </div>
+            <div class="info  am-u-sm-8" style="padding-top: 12px">
+                <div>
+                    <span>{$people.title}</span>
+                    <span style="color: #00a0e9;font-size: 13px">{$people.nickname}</span>
+                    <span>{:W('Mob/UserRank/render',array($people['uid']))}</span>
+                </div>
+                <div class="signature" style="color: #A9A9A9">
+                    <if condition="$people['signature'] eq ''">
+                        还没想好O(∩_∩)O
+                        <else/>
+                        {$people.signature}
+                    </if>
+                </div>
+                <div>
+                    <span>粉丝：{$people.fans}</span>
+                    <span>关注：{$people.following}</span>
+                </div>
+            </div>
+            <div id="follow_btn" class="mui-pull-left am-u-sm-2" style="padding:0px;margin-top: 30px">
+                {:W('Mob/Follow/follow',array('follow_who'=>$people['uid'],'btn-before','btn-after'))}
+            </div>
+            <!--审核标识-->
+
+
+        </div>
+
+    </li>
+</a>
+</volist>

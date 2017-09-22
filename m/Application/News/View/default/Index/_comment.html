@@ -1,0 +1,21 @@
+<volist name="lzl_result" id="val" >
+    <li class="dark" id="lzl_{$val.id}">
+        <a>
+            <div class="avatar"><img src="{$val.user.avatar512}" alt="头像"></div>
+            <div class="cmtInfo">
+                <p class="first operate" style="background: #f2f2f2" data-id="{$val.id}" data-uid="{$val[uid]}" data-support="News-lzl">
+                    <object><a class="textMore" href="{:U('ucenter/index/mine',array('uid'=>$val['user']['uid']))}">{$val.user.nickname}</a></object>
+                    <span class="do-support-news">
+                                                <i class="iconfont icon-dianzan" <if condition="$val.is_support eq 1">style="color: #ec725d;"</if>></i>
+                        <span class="support-count">{$val.support_all_count}</span>
+                                            </span>
+                </p>
+                <p class="time">{$val.ctime}</p>
+                <p class="detail">{$val.content}</p>
+                <if condition="check_auth('Forum/Index/delLZLReply',$val['uid'])">
+                    <span data-role="del-lzl" data-id="{$val.id}" data-uid="$val['uid']">删除</span>
+                </if>
+            </div>
+        </a>
+    </li>
+</volist>

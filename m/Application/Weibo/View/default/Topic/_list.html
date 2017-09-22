@@ -1,0 +1,23 @@
+<ul>
+    <empty name="topics">
+        <div class="noWeibo">还没有话题~</div>
+        <else/>
+        <volist name="topics" id="vo">
+            <a href="{:U('weibo/topic/index',array('topk'=>$vo['id']))}">
+                <li class="huati-item">
+                    <div class="img">
+                        <img src="<if condition='$vo.logo neq 0'>{$vo.logo|getThumbImageById=180,180}<else/>__IMG__/topicavatar.png</if>">
+                    </div>
+                    <div class="huati-information">
+                        <p class="huati-name"><span <if condition="$i lt 4">class="number"<else/>class="unnumber"</if>>{$i}</span>#{$vo.name|longTopicName}#</p>
+                        <p class="huati-sketch">{:L('_LEAD_')}：{$vo.intro|default=L('_TOPIC_RECOMMEND_')}</p>
+                        <p class="huati-shuju"><span><i class="iconfont icon-pinglun"></i>{$vo.read_count|default='0'}</span>
+                            <span><i class="iconfont icon-yanjing"></i>{$vo.weibo_num|default='0'}</span>
+                            <span>{:L('_PRESENTER_')}: {$vo.user.nickname|default='暂无'}</span>
+                        </p>
+                    </div>
+                </li>
+            </a>
+        </volist>
+    </empty>
+</ul>

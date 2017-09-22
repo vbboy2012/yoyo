@@ -1,0 +1,48 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/weibo.css">
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current" style="background-color: #fff">
+            <header class="bar bar-nav comHead">
+                <a href="javascript:" class="title open-about">圈子</a>
+            </header>
+            <include file="./Application/Common/View/default/Public/footer.html"/>
+            <div class="content">
+                <div class="content-block noEdge circle">
+                    <div class="buttons-tab">
+                        <a href="#tab01" class="tab-link active button">全部圈子</a>
+                        <a href="#tab02" class="tab-link button">我加入的</a>
+                        <a href="#tab03" class="tab-link button">我创建的</a>
+                    </div>
+                    <div class="content-block noEdge">
+                        <div class="tabs">
+                            <div id="tab01" class="tab active">
+                                <div class="content-block noEdge" style="padding: 0">
+                                    <include file="_crowdlist"/>
+                                </div>
+                            </div>
+                            <div id="tab02" class="tab">
+                                <div class="content-block noEdge">
+                                    <include file="_followlist"/>
+                                </div>
+                            </div>
+                            <div id="tab03" class="tab">
+                                <div class="content-block noEdge">
+                                    <include file="_createlist"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="sBtn iconfont icon-fabu"  href="{:is_login()?U('create'):"javascript:$.toast('请登录~')"}"></a>
+        </div>
+    </div>
+</block>
+<block name="other"></block>
+<block name="script">
+    <script src="__JS__/crowd.js"></script>
+    <script src="__JS__/weibo.js"></script>
+</block>

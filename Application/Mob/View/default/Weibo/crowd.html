@@ -1,0 +1,55 @@
+<extend name="Base/mob_common"/>
+<block name="mob_header">
+    <script src="__JS__/weibo.js"></script>
+    <link rel="stylesheet" href="__CSS__/apps/circle.css"/>
+    <link rel="stylesheet" href="__CSS__/apps/nav.css"/>
+    <div data-am-widget="header" class="am-header am-header-default am-header-fixed am-cf">
+
+        <div class="am-header-left am-header-nav">
+            <a href="javascript:void(0)" onclick="history.go(-1)" class="am-fl">
+                <i class="am-icon-chevron-left  am-icon-home"></i>
+            </a>
+        </div>
+        <h1 class="am-header-title">
+            圈子
+        </h1>
+        <div class="am-header-right am-header-nav">
+            <a href="{:U('Mob/Weibo/create')}">创建</a>
+        </div>
+    </div>
+    <php>$uid=is_login();</php>
+    <div class="navBt">
+        <a href="{:U('Mob/Weibo/index')}" class="btBar">
+            <i class="iconfont icon-dongtai2-copy"></i>
+            <span>动态</span>
+        </a>
+        <a href="{:U('Mob/Weibo/crowd')}" class="btBar active">
+            <i class="iconfont icon-quanzi"></i>
+            <span>圈子</span>
+        </a>
+        <a href="{:U('Mob/Message/index')}" class="btBar">
+            <i class="iconfont icon-xiaoxi"></i>
+            <span>消息</span>
+        </a>
+        <a class="btBar" <if condition="$uid eq 0">href="javascript:toast.error('请先登录！');"
+        <else/> href="{:U('Mob/User/index')}" </if> >
+        <i class="iconfont icon-wode"></i>
+        <span>我</span>
+        </a>
+
+    </div>
+</block>
+
+<block name="mob_body">
+    <ul class="am-g am-text-center am-cf" id="crowd">
+        <a href="{:U('Mob/Weibo/crowd',array('tab'=>'all'))}" <if condition="($_GET['tab'] eq 'all') or($_GET['tab'] eq '')"> class="current"</if> >全部圈子</a>
+        <a href="{:U('Mob/Weibo/crowd',array('tab'=>'create'))}"  <if condition="$_GET['tab'] eq 'create'"> class="current"</if>>我创建的</a>
+        <a href="{:U('Mob/Weibo/crowd',array('tab'=>'join'))}" <if condition="$_GET['tab'] eq 'join'"> class="current"</if>>我已加入</a>
+    </ul>
+    <div class="crowd-container">
+        <div class="crowd-box-list">
+            <include file="_crowdlist"/>
+
+        </div>
+    </div>
+</block>

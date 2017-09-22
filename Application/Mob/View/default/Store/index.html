@@ -1,0 +1,71 @@
+<extend name="Base/mob_common"/>
+<block name="mob_body">
+
+
+    <div class="store-container ">
+        <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
+        <link rel="stylesheet" href="__CSS__/amazeui.min.css"/>
+        <link rel="stylesheet" href="__CSS__/store.css"/>
+        <link rel="stylesheet" href="__CSS__/app.css"/>
+
+
+        <!--微店导航栏-->
+        <ul class="am-nav am-nav-tabs am-nav-justify store-nav">
+            <li>
+                <a href="{:U('store/index')}">
+                    首页
+                </a>
+            </li>
+            <li>
+                <a href="{:U('store/goods')}">
+                    商品
+                </a>
+            </li>
+            <li>
+                <a href="{:U('store/shop')}">
+                    店铺街
+                </a>
+            </li>
+
+            <php>
+                if (!is_login()) {
+            </php><li>
+            <a href="javascript:void(0);" onclick="toast.error('请登陆后再进行操作');" >
+                个人中心
+            </a></li>
+            <php>}else{</php>
+            <li>
+                <a href="{:U('mycenter')}">
+                    个人中心
+                </a>
+            </li>
+            <php>}</php>
+        </ul>
+
+        <!--微店搜索框-->
+        <div class="store-search">
+            <a href="{:U('store/search')}" style="margin-top: 0">
+             <input type="text" class="am-form-field am-input-sm "
+                   placeholder="搜索宝贝、店铺">
+            </a>
+        </div>
+
+
+        <!--此组件根据图片尺寸生成 后端固定尺寸-->
+        <div data-am-widget="slider" class="am-slider am-slider-default"
+             data-am-slider='{animation:slide,slideshow:false}'>
+            <ul class="am-slides">
+                <volist name="adv" id="vo">
+                    <li>
+                        <a href="{$vo.link}"><img src="{$vo.image|getThumbImageById=222,222}"></a>
+                    </li>
+                </volist>
+
+            </ul>
+        </div>
+
+
+        <include file="_goods"/>
+    </div>
+
+</block>

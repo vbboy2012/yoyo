@@ -1,0 +1,16 @@
+<div class="weibo_right">
+    <!--当前圈子stat-->
+    <notempty name="crowd_detail">
+        <include file="_right_crowd"/>
+        <else/>
+        <include file="_right_common"/>
+    </notempty>
+    {:W('Common/Adv/render',array(array('name'=>'below_self_info','type'=>1,'width'=>'280px','height'=>'100px','margin'=>'0
+    0 10px 0','title'=>'个人资料下方')))}
+    <div style="position: relative">
+        {:hook('weiboSide')}
+        <!--广告位-->
+        {:W('Common/Adv/render',array(array('name'=>'below_checkrank','type'=>1,'width'=>'280px','height'=>'100px','title'=>'签到下方广告')))}
+        <!--广告位end-->
+    </div>
+</div>

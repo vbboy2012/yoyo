@@ -1,0 +1,1 @@
+ALTER TABLE  `ocenter_weibo` ADD  `pos` VARCHAR( 20 ) NOT NULL AFTER  `from`;

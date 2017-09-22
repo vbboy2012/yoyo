@@ -1,0 +1,138 @@
+<if condition="$show_post">
+    <div style="display: none" class="weibo_content weibo-content-post weibo_post_box" id="send_box">
+        <div class="weibo_content_p">
+            <div class="send-top  row" id="input_tip">
+                <div class="pull-left chose-circle">
+                    <div class="selectt">
+                        <div class="dropdown">
+                            <img data-role="title_image" class="crowd-img" src="__IMG__/all.png">
+                            <div class="like-input dropdown-toggle" data-toggle="dropdown">
+                                {$crowd_detail.title|default='全站动态'}
+                            </div>
+                            <span class="caret"></span>
+                            <ul class="dropdown-menu cc-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                <li>
+                                    <a href="javascript:" data-role="crowd_title" data-id="0" data-title="全站动态"  data-img="__IMG__/all.png"><img src="__IMG__/all.png" class="crowd-img-title"/>全站动态</a>
+                                </li>
+                                <volist name="follow_crowd_list" id="data">
+                                    <li>
+                                        <a href="javascript:" data-role="crowd_title" data-id="{$data.crowd.id}" data-title="{$data['crowd']['title']}" data-img="{$data['crowd']['logo']|getThumbImageById=20,20}"><img class="crowd-img-title" src="{$data['crowd']['logo']|getThumbImageById=20,20}"/>{$data['crowd']['title']}</a>
+                                    </li>
+                                </volist>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <p class="pull-right" data-role="sync_sina_weibo" title="同步到新浪微博" data-url="{:addons_url('SyncLogin://Base/login',array('type'=>'sina'))}">
+                    <i class="iconfont icon-sina weibo-icon"></i>
+                </p>
+                <input type="hidden" value="0" id="sync_sina_weibo">
+            </div>
+            <div class="tare">
+                 <textarea class="form-control weibo-word" id="weibo_content" placeholder="{:modC('WEIBO_INFO',L('_TIP_SOMETHING_TO_SAY_'))}" onfocus="startCheckNum_quick($(this))"
+                           onblur="endCheckNum_quick()"></textarea>
+                <div class="limit-num weibo-num-position text-right">
+                    <span>{:modC('WEIBO_NUM',140,'WEIBO')}</span> / <span>{:modC('WEIBO_NUM',140,'WEIBO')}</span>
+                </div>
+            </div>
+
+            <div class="op-wrap ">
+                <!--插件-->
+                <div class="pull-left row addons-wrap">
+                    <a title="插入表情" href="javascript:" onclick="insertFace($(this))" data-role="insert_face">
+                        <i class="iconfont icon-biaoqing i-bq" ></i>
+                    </a>
+                    <if condition="modC('CAN_IMAGE',1)">
+                        <a title="插入图片" href="javascript:" id="insert_image" onclick="insert_image.insertImage(this)" data-role="hook_show">
+                            <i class="iconfont icon-tupian i-tp" ></i>
+                        </a>
+                    </if>
+                    <if condition="modC('CAN_TOPIC',1)">
+                        <a title="插入话题" href="javascript:" onclick="insert_topic.InsertTopic(this)">
+                            <i class="iconfont icon-tianjiahuati i-ht"></i>
+                        </a>
+                    </if>
+                    <a title="当前位置" href="javascript:" onclick="show_pos()">
+                        <i class="iconfont icon-dingwei11 i-dw" style=""></i>
+                    </a>
+                    <div class="get-pos" id="show-pos" style="display: none"><span class="text-muted" style="margin-left: 10px">正在获取位置……</span></div>
+                    {:hook('weiboType')}
+                    <div id="emot_content" class="emot_content"></div>
+                    <div id="hook_show" class="emot_content"></div>
+                </div>
+                <script>
+                    function  show_pos() {
+                        $('#show-pos').show();
+                        $("#show-pos").load("{:U('Weibo/Index/getPos')}");
+
+
+                    }
+                    function confirm_pos(e) {
+                        if($('[name=pos]').val()!=''){
+                            $('.get-pos i').css('color','#333');
+                            $('#show-pos').hide()
+                        }else{
+                            initPos();
+                        }
+                    }
+                </script>
+                <div class="pull-right right-wrong">
+                    <a href="javascript:" class="send-right" data-role="send_weibo" data-crowd="{$crowd_type}" data-url="{:U('Weibo/Index/doSend')}" ><i class="iconfont icon-dui"></i></a>
+                    <a href="javascript:" class="send-wrong" data-role="change_back"><i class="iconfont icon-cuo"></i></a>
+                </div>
+                <!--话题-->
+                <div class="pull-right">{:use_topic()}</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var ID_setInterval;
+        function checkNum_quick(obj) {
+            var value = obj.val();
+            var value_length = value.length;
+            var can_in_num = initNum - value_length;
+            if (can_in_num < 0) {
+                value = value.substr(0, initNum);
+                obj.val(value);
+                can_in_num = 0;
+            }
+            var html =  can_in_num + " / "+initNum;
+            $('.limit-num').html(html);
+        }
+        function startCheckNum_quick(obj) {
+            ID_setInterval = setInterval(function () {
+                checkNum_quick(obj);
+            }, 250);
+        }
+        function endCheckNum_quick() {
+            clearInterval(ID_setInterval);
+        }
+
+        $('[data-role="insert_face"]').click(function() {
+            $("#hook_show").css("display", "none");
+            $("#emot_content").css("display", "block");
+        });
+        $('[data-role="hook_show"]').click(function() {
+            $("#emot_content").css("display", "none");
+            $("#hook_show").css("display", "block");
+        });
+        $('[data-role="change_back"]').click(function() {
+            $("#send_box").hide();
+            $(".black-filter").show();
+            $.cookie("wb_type","");
+        });
+        $('[data-role="crowd_title"]').click(function() {
+            var $this = $(this);
+            var title = $this.attr('data-title');
+            var crowd_id = $this.attr('data-id');
+            var img = $this.attr('data-img');
+            $('.like-input').html(title);
+            $('[data-role="title_image"]').attr('src',img);
+            $('[data-role="send_weibo"]').attr('data-crowd',crowd_id);
+        })
+    </script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/ext/webuploader/js/webuploader.js"></script>
+    <link href="__PUBLIC__/js/ext/webuploader/css/webuploader.css" type="text/css" rel="stylesheet">
+</if>
+
+

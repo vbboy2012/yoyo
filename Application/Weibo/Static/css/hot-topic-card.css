@@ -1,0 +1,92 @@
+.hot-topic {
+  background: #fff;
+  margin-bottom: 10px;
+}
+.hot-topic .new-hot-topic {
+  height: 100px;
+  width: 100%;
+  padding: 10px;
+  margin: 0;
+  box-shadow: 2px 2px 2px rgba(204, 204, 204, 0.35);
+  position: relative;
+}
+.hot-topic .new-hot-topic .topic-wrap {
+  position: absolute;
+  overflow: hidden;
+  right: 0;
+  top: 0;
+  width: 120px;
+  height: 100px;
+  padding: 10px 0 10px 20px;
+  background-color: rgba(242, 242, 242, 0.5);
+  transition: width .4s ease;
+  margin: 0;
+}
+.hot-topic .new-hot-topic .topic-wrap:before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-right: none;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #fff;
+  position: absolute;
+  left: 0;
+  top: 40px;
+}
+.hot-topic .new-hot-topic .topic-wrap:hover {
+  width: 235px;
+}
+.hot-topic .new-hot-topic .topic-wrap .cover-wrap {
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin: 10px 0;
+}
+.hot-topic .new-hot-topic .topic-wrap .info-wrap {
+  float: left;
+  height: 60px;
+  width: 145px;
+  margin: 10px 0 10px 10px;
+}
+.hot-topic .new-hot-topic .topic-wrap .info-wrap p {
+  margin: 0;
+  height: 17px;
+  font-size: 12px;
+  width: 140px;
+}
+.hot-topic .new-hot-topic .topic-wrap .info-wrap .read-num {
+  color: #999;
+}
+.hot-topic .now-hot {
+  width: 40px;
+  height: 20px;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+  background-color: #ff6600;
+  position: absolute;
+  right: -10px;
+  top: 10px;
+  z-index: 10;
+}
+.hot-topic .now-hot:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 10px solid #f3985c;
+  border-right: 10px solid transparent;
+  border-bottom: none;
+  border-left: none;
+  position: absolute;
+  right: 0;
+  top: 20px;
+}
+.hot-topic .new-wb {
+  height: 65px;
+  margin-top: 7px;
+}
+.hot-topic .new-wb p {
+  margin-bottom: 3px;
+}

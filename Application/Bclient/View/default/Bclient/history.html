@@ -1,0 +1,71 @@
+<!-- 管理员用户组新增和编辑页面 -->
+<extend name="Public/base"/>
+<block name="body">
+    <div class="main-title">
+        <h2>兑换历史</h2>
+    </div>
+    <div class="tab-wrap with-padding">
+        <style>
+            .block {
+                border: 1px solid #ccc;
+                margin: 20px 0;
+                padding:  20px;
+            }
+
+            .cover-wrapper {
+                width: 100px;
+                height: 120px;
+            }
+        </style>
+        <div class="block">
+
+
+            <ul class="module-list" style="margin: 5px">
+                <empty name="list">当前无兑换记录</empty>
+
+                <volist name="list" id="vo">
+
+                    <li class="clearfix">
+                        <div class="cover-wrapper">
+                            <div class="cover-icon">
+                                <img src="{$vo.goods.cover_path}">
+                            </div>
+                        </div>
+                        <div class="content-wrapper" style="margin-left: 0!important;background-color: transparent!important;">
+                            <div class="title">
+                                <a href="">{$vo.goods.title} <span class="text-muted">{$vo.goods.etitle}</span></a>
+                            </div>
+                            <div>
+                                <p class="text-muted text-ellipsis"></p>
+                            </div>
+
+                            <div class="clearfix bottom-btns">
+                                <div class="pull-left">
+                                    <p>Pro版 {$vo.version.title} </p>
+                                    <p>{$vo.pay_time|time_format} 兑换</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </volist>
+            </ul>
+
+        </div>
+
+
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript" charset="utf-8">
+        $(function () {
+            $('[data-role="modal_popup"]').click(function () {
+                var target_url = $(this).attr('modal-url');
+                var data_title = $(this).attr('data-title');
+                modalOS({
+                    url: target_url,
+                    title: data_title
+                });
+            });
+        });
+    </script>
+</block>

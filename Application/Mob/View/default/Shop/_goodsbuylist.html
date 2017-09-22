@@ -1,0 +1,23 @@
+<div style="height: 85px;border-bottom: 1px solid #C0C0C0;margin-top: 5px">
+    <div class="am-u-sm-4">
+        <a href="{:U('shop/goodsdetail',array('id'=>$vo['goods']['id']))}">
+            <img class="" style="width: 80px ;height:80px" src="{$vo.goods.goods_ico|getThumbImageById=188,188}"></a>
+    </div>
+    <div class="am-u-sm-8">
+        <div class=" goods-info am-g">
+            <div class="goods-name " style="padding: 0px;margin-top: 6px">
+                <a href="{:U('shop/goodsdetail',array('id'=>$vo['goods']['id']))}" class="goods-name" style="color: #000;font-size: 16px">{$vo.goods.goods_name}</a>
+            </div>
+        </div>
+        <div class=" stock-box am-g" style="padding:0px">
+            <div class="money" style="font-size: 16px">
+                <span style="color: #dc322f"><i class="am-icon-cny"></i>{$vo.goods.money_need}</span>
+                <span style="color: #A9A9A9">库存:{$vo.goods.goods_num}</span>
+            </div>
+            <div class="stock" style="color: #A9A9A9;font-size: 13px">
+                <span>购买时间：{$vo.createtime|friendlyDate}</span>
+            </div>
+        </div>
+    </div>
+</div>
+

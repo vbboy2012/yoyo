@@ -1,0 +1,153 @@
+<div class="now-circle-wrap">
+    <div class="circle-manage row">
+        <div class="c-c-wrap">
+            <a href="{:U('Weibo/Crowd/Member',array('id'=>$crowd_detail['id']))}"><img
+                    src="{$crowd_detail.logo|getThumbImageById=80,80}" alt=""></a>
+        </div>
+        <div class="c-i-wrap">
+            <a href="{:U('Weibo/Crowd/Member',array('id'=>$crowd_detail['id']))}"><p class="c-name">
+                {$crowd_detail.title}</p></a>
+            <p class="c-intro">{$crowd_detail.intro}</p>
+            <p class="c-num">
+                <span class="pull-left">成员<a href="{:U('Weibo/Crowd/Member',array('id'=>$crowd_detail['id']))}"><strong>{$crowd_detail.member_count}</strong></a></span>
+                <span class="pull-right">讨论<strong>{$crowd_detail.post_count}</strong></span>
+            </p>
+            <!--判断，管理员才能看到-->
+            <eq name="crowd_detail.is_admin" value="true">
+                <neq name="crowd_detail.check_num" value="0">
+                    <p class="c-wait"><a
+                            href="{:U('Weibo/Crowd/crowd',array('id'=>$crowd_detail['id'],'type'=>check))}"
+                            style="color: #ff0000;">有<span>{$crowd_detail.check_num}</span>位成员等待审核加入</a></p>
+                </neq>
+            </eq>
+        </div>
+        <div class="c-e-wrap">
+            <!--如果是普通用户则看到的是加入按钮-->
+            <a href="javascript:" title="申请加入" class="want-join"><i class="icon-plus"></i></a>
+            <!--如果管理员则看到的是管理按钮-->
+            <eq name="crowd_detail.is_admin" value="true">
+                <div class="down-wrap">
+                    <a href="javascript:" title="管理圈子" class="manage-circle">管理</a>
+                    <ul class="edit-icon">
+                        <a href="{:U('Weibo/Crowd/crowd',array('id'=>$crowd_detail['id']))}">
+                            <li>成员管理</li>
+                        </a>
+                        <a href="{:U('Weibo/Crowd/crowd',array('id'=>$crowd_detail['id']))}#change">
+                            <li>修改圈子</li>
+                        </a>
+                        <a href="javascript:" data-toggle="modal" data-target="#mySmModal" data-moveable="true">
+                            <li class="dismiss">解散圈子</li>
+                        </a>
+                    </ul>
+                </div>
+            </eq>
+        </div>
+    </div>
+    <!--输入立即解散来解散圈子-->
+    <div class="modal fade" id="mySmModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">您确定要解散<span>"圈子名称"</span>？</h4>
+                </div>
+                <div class="modal-body">
+                    <p>请在框中输入“立即解散”来确认解散</p>
+                    <input type="text" data-role="confirm_del_crowd">
+                    <div class="c-btn-wrap row">
+                        <a href="javascript:" class="sure" data-crowd-id="{$crowd_detail.id}"
+                           data-role="del_crowd">确定</a>
+                        <a href="javascript:" data-dismiss="modal">取消</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="circle-notice row">
+        <p>{$crowd_detail.notice|default='未设置公告'}</p>
+        <p>
+            <!--todo-->
+            <!--<a href="" class="pull-left">查看详情</a>-->
+            <!--判断，管理员才能看到-->
+        </p>
+    </div>
+</div>
+<!--当前圈子end-->
+<!--圈主展示start-->
+<div class="wb-topic">
+    <p class="crowd-head">圈主</p>
+    <div class="now-circle-wrap">
+        <div class="circle-manage row">
+            <div class="c-c-wrap">
+                <a href="{$crowd_detail.crowd_admin.space_url}"><img src="{$crowd_detail.crowd_admin.avatar128}"
+                                                                     alt=""></a>
+            </div>
+            <div class="c-i-wrap c-i-wrap-width">
+                <a href="{$crowd_detail.crowd_admin.space_url}"><p class="c-name">
+                    {$crowd_detail.crowd_admin.nickname}</p></a>
+                <p class="c-intro c-crowd-admin-fans">
+                            <span class="pull-left">粉丝:<a href="{$crowd_detail.crowd_admin.space_url}"><span
+                                    style="color: #999;"> {$crowd_detail.crowd_admin.fans}</span></a></span>
+                </p>
+            </div>
+            <div class="c-follow">
+                <if condition="$crowd_detail.uid neq is_login()">
+                    {:W('Common/Follow/follow',array('follow_who'=>$vo['uid']))}
+                </if>
+            </div>
+        </div>
+    </div>
+</div>
+<!--圈主展示end-->
+<!--圈子排行start-->
+<div class="wb-topic">
+    <p class="crowd-head">圈子排行</p>
+    <div class="topic-content" style="height: 210px !important;">
+        <ul>
+            <volist name="crowd_rank" id="crowd" key="one_crowd_key">
+                <li data-role="crowd_rank" style="clear: both;">
+                    <a href="{:U('Index/index',array('crowd'=>$crowd['id']))}" title="{$one_topic['name']}">
+                        <div class="num">{$one_crowd_key}</div>
+                        <div>{$crowd['title']}</div>
+                        <div>{$crowd['member_count']}</div>
+                    </a>
+                    <div style="position: relative;display: none">
+                        <div class="crowd-rank-num">{$one_crowd_key}</div>
+                        <div style="" class="crowd-rank-detail">
+                            <a href="{:U('Index/index',array('crowd'=>$crowd['id']))}"><img
+                                    src="{$crowd.logo|getThumbImageById = 80,80}"></a>
+                            <a href="{:U('Index/index',array('crowd'=>$crowd['id']))}"><p>{$crowd['title']}</p>
+                            </a>
+                            <span class="pull-left detail-bottom">成员 {$crowd.member_count}</span>
+                            <span class="pull-right detail-bottom">讨论 {$crowd.post_count}</span>
+                        </div>
+                        <switch name="crowd.is_follow">
+                            <case value="0">
+                                <a href="javascript:" class="crowd-a crowd-attend" data-role="follow_crowd"
+                                   data-id="{$crowd.id}">
+                                    +加入
+                                </a>
+                            </case>
+                            <case value="1">
+                                <a href="javascript:" class="crowd-a crowd-attend" data-role="unfollow_crowd"
+                                   data-id="{$crowd.id}">
+                                    已加入
+                                </a>
+                            </case>
+                            <case value="2">
+                                <a href="javascript:" class="crowd-a crowd-attend" data-id="{$crowd.id}">
+                                    待审核
+                                </a>
+                            </case>
+                            <default/>
+                            <a href="javascript:" class="crowd-a crowd-attend" data-role="follow_crowd"
+                               data-id="{$crowd.id}">
+                                +加入
+                            </a>
+                        </switch>
+                    </div>
+                </li>
+            </volist>
+        </ul>
+    </div>
+</div>
+<!--圈子排行end-->

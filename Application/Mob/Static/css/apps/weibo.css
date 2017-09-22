@@ -1,0 +1,354 @@
+.pic-emg {
+  height: 50px;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+.pic-emg .icon-box {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  float: left;
+  margin-left: 10px;
+  position: relative;
+}
+.pic-emg .icon-box:first-child {
+  margin-left: 0;
+}
+.pic-emg .icon-box a {
+  font-size: 20px;
+}
+.pic-emg .icon-box input {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+p {
+  margin: 0;
+}
+.avatar-img {
+  border-radius: 100%;
+}
+.label-badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 8px;
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 12px;
+}
+.label {
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: #00c3b6;
+}
+.user-at.hl {
+  background: #eee;
+  border-radius: 16px;
+  padding-right: 10px;
+}
+.user-at img {
+  border-radius: 100%;
+  width: 24px;
+}
+.user-at {
+  color: #666;
+  display: inline-block;
+  line-height: 22px;
+  height: 26px;
+  padding: 0 5px 0 0;
+  vertical-align: middle;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+.look-more {
+  padding: 10px;
+  color: #000;
+  background-color: #FFFFFF;
+}
+body {
+  background: #f1f1f1;
+}
+.weibo-container {
+  padding-top: 5px;
+}
+.weibo-container .tip-img {
+  background-color: #FFFFFF;
+  margin-top: -15px;
+}
+.weibo-container .weibo-list {
+  background: none !important;
+  padding: 0px;
+}
+.weibo-container .weibo-list .item {
+  background: white;
+  padding: 2px
+    ;
+}
+.weibo-container .weibo-list .item .nickname {
+  padding: 3px;
+  color: #333333;
+}
+.weibo-container .weibo-list .item .from {
+  color: #666;
+  font-size: 0.6em;
+}
+.weibo-container .weibo-list .item .avatar {
+  padding: 3px;
+}
+.weibo-container .weibo-list .item .avatar .avatar-img {
+  width: 48px;
+}
+.weibo-container .weibo-list .item .images {
+  margin-bottom: .5em;
+}
+.weibo-container .weibo-list .item .images img {
+  display: inline-block;
+  float: left;
+  width: 50px;
+  height: 50px;
+  padding: 1px;
+  background: white;
+}
+.weibo-container .weibo-list .item .time {
+  padding: 3px;
+  font-size: 12px;
+  text-align: right;
+}
+.weibo-container .weibo-list .item .content {
+  padding: 5px;
+}
+/*微博详情页*/
+.weibodetail-container .weibo {
+  background: none !important;
+}
+.weibodetail-container .weibo .item {
+  margin-bottom: 1em;
+  background: white;
+  padding: 2px;
+}
+.weibodetail-container .weibo .item .nickname {
+  padding: 3px;
+  color: #333333;
+}
+.weibodetail-container .weibo .item .from {
+  color: #666;
+  font-size: 0.6em;
+}
+.weibodetail-container .weibo .item .avatar {
+  padding: .5em;
+}
+.weibodetail-container .weibo .item .avatar .avatar-img {
+  width: 48px;
+}
+.weibodetail-container .weibo .item .support {
+  color: #999;
+}
+.weibodetail-container .weibo .item .images {
+  margin-bottom: .5em;
+}
+.weibodetail-container .weibo .item .images img {
+  display: inline-block;
+  float: left;
+  width: 50px;
+  height: 50px;
+  padding: 1px;
+  background: white;
+}
+.weibodetail-container .weibo .item .time {
+  padding: .5em;
+  font-size: .8em;
+  text-align: right;
+}
+.weibodetail-container .weibo .item .content {
+  padding: 0.5em;
+}
+.weibodetail-container .ulclass {
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+.weibodetail-container .ulclass .nickname {
+  text-align: center;
+}
+.weibodetail-container .ulclass .time {
+  font-size: 13px;
+  text-align: right;
+}
+.weibodetail-container .ulclass .content {
+  padding: 10px;
+}
+.weibodetail-container .ulclass .content p .user-at {
+  color: #666;
+  display: inline-block;
+  line-height: 26px;
+  height: 26px;
+  padding: 0 5px 0 0;
+  vertical-align: middle;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+.comment_content {
+  width: 100%;
+  height: 150px;
+  padding: 5px;
+}
+.crowd-box {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.crowd-box .crowd-list {
+  font-size: 12px;
+  padding: 5px;
+  position: relative;
+  border-bottom: 1px solid #DCDCDC;
+}
+.crowd-box .crowd-list .info-box {
+  padding: 10px;
+  height: 100%;
+}
+.crowd-box .crowd-list .info-box .avatar {
+  padding: 0;
+}
+.crowd-box .crowd-list .info-box .info {
+  line-height: 22px;
+}
+.crowd-box .crowd-list .info-box .info .info-title {
+  color: #666;
+}
+.crowd-box .crowd-list .info-box .info .infos {
+  color: #afafaf;
+}
+.crowd-box .crowd-list .info-box .btn-follow {
+  width: 95%;
+  text-align: center;
+  display: inline-block;
+  margin-top: 30px;
+  color: #afafaf;
+  height: 27px;
+  line-height: 27px;
+  border: 1px solid #e4e4e4;
+}
+.crowd-box .crowd-list .info-box .r-btn {
+  width: 80px;
+  height: 100%;
+  float: right;
+}
+.crowd-box .crowd-list .info-box .r-btn .permission {
+  width: 75px;
+  height: 30px;
+  border: 1px solid;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 30px;
+  display: block;
+}
+.crowd-box .crowd-list .info-box .r-btn .permission i {
+  margin-right: 7px;
+}
+.crowd-box .crowd-list .info-box .r-btn .yes {
+  margin-bottom: 5px;
+  color: #1ABC9C;
+  border-color: #1ABC9C;
+}
+.crowd-box .crowd-list .info-box .r-btn .no {
+  color: red;
+  border-color: red;
+}
+.crowd-box .crowd-list .info-box .r-btn .out {
+  margin-top: 4px;
+}
+.notice {
+  text-align: center;
+  color: #afafaf;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #DCDCDC;
+}
+#crowd_manager {
+  font-size: 14px;
+  padding: 0;
+}
+#crowd_manager a:active,
+#crowd_manager a:link,
+#crowd_manager a:visited {
+  text-decoration: none;
+}
+#crowd_manager a {
+  float: left;
+  padding: 13px 0;
+  width: 33%;
+  color: #000;
+}
+#crowd_manager body {
+  background-color: #FFF;
+}
+#crowd_manager .current {
+  background-color: transparent!important;
+  border-bottom: 2px solid #1abc9c;
+}
+#news-type .crowd-img {
+  width: 20px;
+  height: 20px;
+  margin-top: 5px;
+  vertical-align: bottom;
+}
+#news-type span {
+  color: #19bca1;
+}
+.types {
+  display: none;
+  background-color: white;
+  position: absolute ;
+  text-align: center;
+  width: 33%;
+  right: 10%;
+  top: 77%;
+  border: 1px solid #f4f4f4;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+}
+.types li {
+  padding: 10px 0;
+}
+.types li a {
+  color: #19bca1;
+}
+.types li .crowd-img-title {
+  margin-right: 7px;
+  width: 20px;
+  height: 20px;
+  vertical-align: bottom;
+}
+.where {
+  width: 50%;
+  height: 100%;
+  line-height: 30px;
+  font-size: 12px;
+}
+.crowd-img {
+  width: 20px;
+  height: 20px;
+  margin-top: 5px;
+  vertical-align: bottom;
+}
+.crowd-img-title {
+  margin-right: 7px;
+  width: 20px;
+  height: 20px;
+  vertical-align: bottom;
+}
+.private-crowd-toast {
+  padding: 10px;
+  font-size: 18px;
+}

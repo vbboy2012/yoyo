@@ -1,0 +1,63 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current" style="background-color: #fff">
+            <header class="bar bar-nav comHead">
+                <header class="bar bar-nav comHead">
+                    <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                       href="javascript:history.go(-1);"></a>
+                    <a href="javascript:" class="title">{:L('_BELONGED_SECTION_')}</a>
+                </header>
+            </header>
+            <input type="hidden" name="followType" data-value="{$count}" value="{$isFollow}" />
+            <div class="content infinite-scroll">
+                <div class="content-block noEdge">
+                    <if condition="$isFollow eq 'follow'">
+                        <div data-role="myFollow" class="fmBox">
+                            <p class="fmTit">{:L('_MY_FOLLOW_')}</p>
+                            <ul class="myFocus row no-gutter" id="tab">
+                            </ul>
+                            <div class="infinite-scroll-preloader">
+                                <div class="preloader"></div>
+                            </div>
+                        </div>
+                    <else/>
+                        <div data-role="myFollow" class="fmBox">
+                            <p class="fmTit">官方版块</p>
+                            <ul class="myFocus row no-gutter">
+                                <if condition="$officialList eq false" >
+                                    <li class='noMore'>
+                                        暂无板块
+                                    </li>
+                                    <else/>
+                                    <volist  name="officialList"  id="val">
+                                        <li class="col-50">
+                                            <a href="{:U('Forum/index/section',array('id'=>$val['id']))}">
+                                                <div class="fCover"><img src={$val.logo} alt="{:L('_BOARD_ICON_')}"></div>
+                                                <div class="fInfo">
+                                                    <p class="fName">{$val.title}<if condition="$val['post_week_num'] neq false"><span class="num">+{$val.post_week_num}</span></if></p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </volist>
+                                </if>
+                            </ul>
+                            <p data-role="search" class="fmTit">{:L('_HOT_SECTION_')}</p>
+                            <ul class="myFocus row no-gutter" id="tab">
+                            </ul>
+                            <div class="infinite-scroll-preloader">
+                                <div class="preloader"></div>
+                            </div>
+                        </div>
+                    </if>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/forumlist.js"></script>
+</block>

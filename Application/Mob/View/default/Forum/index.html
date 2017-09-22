@@ -1,0 +1,64 @@
+<extend name="Base/mob_common"/>
+
+<block name="mob_body">
+    <script src="__JS__/forum.js"></script>
+    <link rel="stylesheet" href="__CSS__/apps/forum.css"/>
+    <style>
+        .container{
+            padding: 0;
+        }
+    </style>
+    <!--论坛首页广告位-->
+    <div data-am-widget="slider" class="am-slider am-slider-default"
+         data-am-slider='{animation:slide,slideshow:false}'>
+        <ul class="am-slides">
+            {:W('Mob/Adv/render',array(array('name'=>'index_top','type'=>2,'width'=>'100%','height'=>'250px','title'=>'论坛首页顶部广告','data'=>array('style'=>2))))}
+        </ul>
+    </div>
+    <!--广告位END-->
+<input type="hidden" value="{$navtitle}" id="navtitle">
+    <ul class="am-nav am-nav-tabs am-nav-justify forum-nav">
+        <li id="all"><a href="{:U('Mob/Forum/index',array('type'=>'all'))}">全部帖子</a></li>
+        <li id="hot"><a href="{:U('Mob/Forum/index',array('type'=>'hot'))}">推荐帖子</a></li>
+        <li id="top"><a href="{:U('Mob/Forum/index',array('type'=>'top'))}">置顶帖子</a></li>
+        <li id="other" class="am-dropdown" data-am-dropdown>
+            <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                版块 <span class="am-icon-caret-down"></span>
+            </a>
+            <ul class="am-dropdown-content">
+                <volist name="forum_top" id="va">
+                    <li><a href="{:U('Mob/forum/index',array('type'=>'other','type_id'=>$va['id']))}">{$va.title}</a></li>
+                </volist>
+            </ul>
+        </li>
+    </ul>
+
+    <!--导航菜单-->
+
+<div style="clear: both"></div>
+
+    <div class="forum-post-container ulclass">
+        <notempty name="forum">
+            <volist name="forum" id="vo">
+                <include file="_forumlist"/>
+            </volist>
+            <else/>
+            <div class="am-text-center" style="background-color:#FFFFFF;margin-top: -15px">
+                <img src="__IMG__/tip.png" style="width: 100%;height: 100%">
+            </div>
+        </notempty>
+
+    </div>
+
+
+    <notempty name="forum">
+     <if condition="$pid['count'] eq 1">
+
+                <div class="am-list-news-ft" style="margin-top: 10px">
+                    <a class=" am-btn am-btn-secondary am-btn-block look-more" id="getmorepost" data-order="{$order}" data-type="{$type}" data-type-id="{$tyepe_id}">查看更多 &raquo;</a>
+
+                </div>
+          </if>
+
+    </notempty>
+</block>

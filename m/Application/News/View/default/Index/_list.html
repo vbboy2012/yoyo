@@ -1,0 +1,22 @@
+<volist name="data" id="vo" >
+
+    <li>
+        <div class="nwInfo">
+            <div class="author">
+                <div class="cov"><img src="{$vo['uid']['avatar512']}" alt="头像"></div>
+                <a class="textMore auth-name" href="{:U('ucenter/index/mine',array('uid'=>$vo['uid']['uid']))}">{$vo.uid.nickname}</a>
+                <span class="time">{$vo.create_time}</span>
+            </div>
+            <a href="{:U('News/index/detail',array('id'=>$vo['id']))}" class="cont">{$vo.title}</a>
+            <div class="otherInfo textMore">
+                <a class="type" href="javascript:void(0);" data-role="change-cate" data-value="{$vo.category.id}" data-code="200">{$vo.category.title}</a>
+                <span>阅读 {$vo.view}</span>
+                <span>|</span>
+                <span>评论 {$vo.comment}</span>
+                <span>|</span>
+                <span>点赞 {$vo.support}</span>
+            </div>
+        </div>
+        <a href="{:U('News/index/detail',array('id'=>$vo['id']))}" class="nwCover"><if condition="$vo['cover'] neq 0"><img src="{:getThumbImageById($vo['cover'],320,240)}" width="96" height="72" alt="资讯封面"></if></a>
+    </li>
+</volist>

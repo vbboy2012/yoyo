@@ -1,0 +1,95 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/ext/wangeditor/css/wangEditor-mobile.css">
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a class="fl button button-link back" href="javascript:history.go(-1);">取消</a>
+                <a href="javascript:" class="title">发资讯</a>
+            </header>
+            <div class="content" style="padding-bottom: 60px;">
+                <div class="content-block noEdge">
+                    <form novalidate="novalidate" id="add_crowd"  method="post" class="sui-form form-horizontal external" data-url="{:U('News/Index/send')}">
+                        <input type="hidden" name="crowd_id" value="{$crowd['id']}"/>
+                        <div class="mainInfo">
+                            <div class="cTitle">
+                                <input type="text" name="title" minlength="1" value="{$crowd.title}" placeholder="标题" required/>
+                            </div>
+                            <div class="send-news-container needsclick">
+                                <textarea  id="textarea1" class="editor" style="width:100%;height:100%;border: none;outline: none;resize: none"></textarea>
+                            </div>
+                            <div class="cDesc">
+                                <div class="addCover">
+                                    <!--上传封面之后-->
+                                    <if condition="$logo">
+                                        <div class="cover">
+                                            <img src="{$crowd.logo|getThumbImageById=160,160}" alt="">
+                                            <p class="fTitle">封面</p>
+                                            <!--<a href="javascript:" class="close" data-role="delete_cover">x</a>-->
+                                        </div>
+                                    </if>
+
+                                    <!--上传按钮  封面上传完成之后隐藏-->
+                                    <div class="addBtn flexWrap" data-role="add_cover">
+                                        <div>
+                                            <p><i class="iconfont icon-shangchuan"></i></p>
+                                            <p>添加封面</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="askOther">
+                            <div class="list-block noEdge">
+                                <ul>
+                                    <li class="item-content item-link">
+                                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">问题分类</div>
+                                            <div class="item-after">
+                                                <input type="text" data-role="chose_type" value="{$list.type_id.title}" placeholder="选择分类" id="picker" readonly="">
+                                                <input type="hidden" name="type_id" data-role="crowd_type" value="{$crowd.type_id}"/>
+                                                <div style="display: none">
+                                                    <volist name="type" id="data">
+                                                        <span class="crowd_by_id">{$data.id}</span>
+                                                        <span class="crowd_by_title">{$data.title}</span>
+                                                    </volist>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--创建按钮-->
+                        <div class="complete" data-role="complete">
+                            <a data-role="sure" href="javascript:" class="cBtn">确定发布</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="other">
+
+</block>
+<block name="script">
+    <script>
+        window.Zepto = $;
+    </script>
+    <script type="text/javascript" src="__PUBLIC__/ext/wangeditor/js/lib/zepto.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/ext/wangeditor/js/wangEditor-mobile.js"></script>
+    <script src="//cdn.bootcss.com/emojione/2.2.7/lib/js/emojione.min.js"></script>
+    <script src="  https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+    <script type="text/javascript">
+        emojione.imageType = 'png';
+        emojione.ascii = true;
+        emojione.imagePathPNG = _ROOT_ + '/Public/emoji/';
+    </script>
+    <script src="__JS__/news.js"></script>
+</block>

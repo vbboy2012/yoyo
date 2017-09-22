@@ -1,0 +1,15 @@
+<p class="word-wrap">{$weibo.content}</p>
+<a href="{:U('Mall/Index/detail',array('id'=>$goods['id']))}">
+   <div class="productWrap">
+       <div class="productLeft">
+           <div class="productImg">
+               <img src="{$goods.pictures|getThumbImageById=80,80}" alt="">
+           </div>
+           <div class="productInfo">
+               <p class="textMore">{$goods.name}</p>
+               <p>￥{:number_format($goods['price'],2)}</p>
+           </div>
+       </div>
+       <span class="productBtn">详情<i class="iconfont icon-iconzhuanqu46"></i></span>
+   </div>
+</a>

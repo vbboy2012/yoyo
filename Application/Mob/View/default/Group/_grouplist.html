@@ -1,0 +1,54 @@
+<!--
+<li class="group-Box ">
+    <div class="group">
+        <div class="group-info-box">
+
+
+            <div class="spliter "></div>
+            <div class="foot-box am-g">
+                <div class="admin-info am-u-sm-6">
+
+                    <span class="name"></span>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</li>
+-->
+
+
+<li class="group-Box ">
+    <div class="group">
+        <div class="group-info-box am-g">
+            <div class="am-u-sm-9" style="padding: 10px">
+                <div class="am-u-sm-4 avt-box">
+                    <a href="{:U('group/group',array('id'=>$vl['id']))}"><img src="{$vl.logo}" style="width: 100%"></a>
+                </div>
+                <div class="am-u-sm-8 info-box" style="padding: 0 0 0 10px">
+                    <p class="title am-text-truncate"> <a href="{:U('group/group',array('id'=>$vl['id']))}" class="title">{$vl.title}</a></p>
+                    <p class="jianjie am-text-truncate">{$vl.detail}</p>
+                    <p class="am-text-truncate"><a style="color: #808080" href="{$vl.user.space_mob_url}">创建者：{$vl.user.nickname}</a></p>
+                </div>
+            </div>
+
+            <div class="am-u-sm-2 cz-box">
+                <div class="half-box">
+                    <i class=" am-icon-file-text-o"></i>{$vl.post_count}
+                </div>
+                <div class="half-box">
+                    <i class=" am-icon-group"></i>{$vl.member_count}
+                </div>
+                <div class="half-box">
+                    <if condition="$vl['is_login'] eq 1">
+                        <div class="attend-btn">
+                            <a class="" data-group-id href="{:U('Mob/group/Admin',array('id'=>$vl['id']))}">管理</a>
+                        </div>
+                    </if>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>

@@ -1,0 +1,209 @@
+<!-- Modal -->
+<div id="frm-post-popup" class="white-popup mfp-hide" style="max-width: 745px">
+    <h2>创建圈子</h2>
+
+    <div class="aline" style="margin-bottom: 10px"></div>
+    <div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="controls">
+                    <input type="file" id="upload_picture_cover">
+
+                    <div class="upload-img-box" style="margin-top: 20px;width: 250px">
+                        <div style="font-size:3em;padding:2em 0;color: #ccc;text-align: center">暂无封面</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-8">
+                <form class="form-horizontal  ajax-form" role="form" action="{:U('Weibo/Crowd/create')}" method="post">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">标题</label>
+
+                        <div class="col-sm-10">
+                            <input id="title" name="title" type="" class="form-control" value="" placeholder="标题"/>
+                        </div>
+
+                        <input type="hidden" name="logo" id="cover_id_cover" value="{$data['cover']}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="issue_top" class="col-sm-2 control-label">分类</label>
+
+                        <div class="col-sm-10">
+                            <select id="issue_top" name="type_id" class="form-control">
+                                <volist name="type" id="data">
+                                    <option value="{$data.id}">
+                                        {$data.title}
+                                    </option>
+                                </volist>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="intro" class="col-sm-2 control-label">{:L('_INTRO_')}</label>
+
+                        <div class="col-sm-10">
+                            <label for="intro">
+                                <textarea id="intro" name="intro" style="width: 382px;height: 150px;"
+                                          class="form-control"></textarea>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="type" class="col-sm-2 control-label">圈子类型</label>
+
+                        <div class="col-sm-10 ">
+                            <label for="id_type_0">
+                                <input id="id_type_0" name="type" value="0" type="radio" data-role="crowd_type" checked="">公有圈子
+                            </label>
+
+                            <label for="id_type_1">
+                                <input id="id_type_1" name="type" value="1" type="radio" data-role="crowd_type">私有圈子
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group private-crowd crowd-hid">
+                        <label for="" class="col-sm-2 control-label">付费入圈</label>
+
+                        <div class="col-sm-8">
+                            <select data-role="select" name="pay_type" class="chosen-select form-control" tabindex="-1" style="border-radius: 5px">
+                                <option value="0">不用付费,只要让我审核</option>
+                                <volist name="field" id="vl">
+                                    <option value="{$vl.id}">{$vl.title}</option>
+                                </volist>
+                            </select>
+                            <input id="pay_num" name="pay_num" type="text" class="form-control"
+                                   value="{$crowd['need_pay']}" placeholder="输入入圈费用" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')"/>
+                            <div style="color: #999">
+                                （付费才能加入圈子,同时需要管理员审核）
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group private-crowd crowd-hid">
+                        <label for="" class="col-sm-2 control-label">浏览模式</label>
+
+                        <div class="col-sm-10 ">
+                            <label for="">
+                                <input name="invisible" value="0" type="radio" data-role="crowd_type" checked="">公开
+                            </label>
+
+                            <label for="id_type_1">
+                                <input name="invisible" value="1" type="radio" data-role="crowd_type">私密
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">可发动态</label>
+
+                        <div class="col-sm-8">
+                            <label>
+                                <input name="allow_user_post" value="0" type="radio" checked>是
+                            </label>
+
+                            <label>
+                                <input name="allow_user_post" value="-1" type="radio">否
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notice" class="col-sm-2 control-label">圈子公告</label>
+
+                        <div class="col-sm-10">
+
+                            <input id="notice" name="notice" type="text" class="form-control" value=""
+                                   placeholder="输入圈子展示的公告"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary " href="{:U('Weibo/Crowd/create')}">提交</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- /.modal -->
+<block name="script">
+    <script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+    <script>
+        $(function () {
+            $('#top_nav >li >a ').mouseenter(function () {
+                $('.children_nav').hide();
+                $('#children_' + $(this).attr('data')).show();
+            });
+            $('.open-popup-link').magnificPopup({
+                type: 'inline',
+                midClick: true, // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+                closeOnBgClick: false
+            });
+
+            $('.open-popup-ajax').magnificPopup({
+                type: 'iframe',
+                midClick: true, // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+                closeOnBgClick: false
+            });
+
+            $('[data-role="crowd_type"]').click(function () {
+                var $this = $(this);
+                if ($this.val() == '1') {
+                    $this.closest('.form-horizontal').children('.private-crowd').removeClass('crowd-hid');
+                } else {
+                    $this.closest('.form-horizontal').children('.private-crowd').addClass('crowd-hid');
+                }
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+        var SUPPORT_URL = "{:addons_url('Support://Support/doSupport')}";
+        //上传图片
+        /* 初始化上传插件 */
+        $("#upload_picture_cover").uploadify({
+            "height": 30,
+            "swf": "__STATIC__/uploadify/uploadify.swf",
+            "fileObjName": "download",
+            "buttonText": "上传封面",
+            "buttonClass": "uploadcover",
+            "uploader": "{:U('Core/File/uploadPicture',array('session_id'=>session_id()))}",
+            "width": 250,
+            'removeTimeout': 1,
+            'fileTypeExts': '*.jpg; *.png; *.gif;',
+            "onUploadSuccess": uploadPicturecover,
+            'overrideEvents': ['onUploadProgress', 'onUploadComplete', 'onUploadStart', 'onSelect'],
+            'onFallback': function () {
+                alert("{:L('_FLASH_NOT_DETECTED_')}");
+            }, 'onUploadProgress': function (file, bytesUploaded, bytesTotal, totalBytesUploaded, totalBytesTotal) {
+                $("#cover_id_cover").parent().find('.upload-img-box').html(totalBytesUploaded + ' bytes uploaded of ' + totalBytesTotal + ' bytes.');
+            }, 'onUploadComplete': function (file) {
+                //alert('The file ' + file.name + ' finished processing.');
+            }, 'onUploadStart': function (file) {
+                //alert('Starting to upload ' + file.name);
+            }, 'onQueueComplete': function (queueData) {
+                // alert(queueData.uploadsSuccessful + ' files were successfully uploaded.');
+            }
+        });
+        function uploadPicturecover(file, data) {
+            var data = $.parseJSON(data);
+            var src = '';
+            if (data.status) {
+                $("#cover_id_cover").val(data.id);
+                src = data.url || data.path
+                $('.upload-img-box').html(
+                        '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                );
+            } else {
+                toast.error("{:L('_ERROR_FAIL_UPLOAD_COVER_')}", "{:L('_PROMPT_')}");
+            }
+        }
+    </script>
+</block>

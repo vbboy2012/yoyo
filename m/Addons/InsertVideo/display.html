@@ -1,0 +1,12 @@
+<p class="word-wrap">{$weibo.content}</p>
+<div>
+
+    <div style="cursor: pointer;width: 150px;" data-role="show_video"     data-src="{$weibo_data['swf_src']|urldecode}">
+        <i class="video_icon" ></i>
+        <php>if($weibo_data['img_url']){</php>
+        <img src="{$weibo_data['img_url']|urldecode|}" style="width:150px;height: 100px;">
+        <php>}else{</php>
+        <div style="width:150px;height: 100px;background-color: #4f8ad0"></div>
+        <php>}</php>
+    </div>
+</div>

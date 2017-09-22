@@ -1,0 +1,143 @@
+<volist name="weibo" id="vl">
+    <li class="vertical item " style="overflow: hidden">
+        <div class="am-g avatar_img" style="padding: .5rem;position: relative">
+            <div class="avatar am-fl">
+                <img class="avatar-img" src="{$vl.user.avatar64}">
+            </div>
+            <div class=" nickname am-fl">
+                <p style="margin-bottom: 10px"><a href="{:U('Mob/User/index',array('uid'=>$vl['user']['uid']))}">{$vl.user.nickname}</a>
+                    {:W('Common/UserRank/render',array($vl['user']['uid']))}</p>
+                <p><span class="from">  {$vl.create_time|friendlyDate}</span></p>
+
+            </div>
+            <div class=" time am-fr" style="position: absolute;bottom: 6px;right: 0.5rem;color: #999">
+                <empty name="vl.crowd_id">
+                    来自：{$vl.from}
+                    <else/>
+                    <span class="where"><img src="{$vl['crowd_logo']|getThumbImageById=16,16}" style="width: 16px;height: 16px"/><a href="{:U('Mob/Weibo/index',array('crowd_id'=>$vl['crowd_id']))}" style="color: #19bca1"><b>{$vl.crowd_title}</b></a></span>
+                </empty>
+
+            </div>
+        </div>
+
+        <if condition="$vl['is_img'] eq 0">
+            <div class="am-g content" style="padding: .5rem">
+                <p>{$vl.content}</p>
+            </div>
+        </if>
+        <if condition="$vl['is_img'] eq 1">
+            <div class="am-g content">
+                <p>{$vl.content}</p>
+
+                <div class="img-content am-cf am-avg-sm-3 ">
+                    <!--源微博图片显示-->
+                    <php>foreach($vl['img_path'] as $key_img => $val_img){</php>
+                    <div href=" {$vl['sourceId_img_big'][$key_img]}" style="padding: 1px;float: left;">
+                        <img class="img-big" style="width: 100px;height: 100px" src="{$vl['sourceId_img_path'][$key_img]}">
+                    </div>
+                    <php>}</php>
+                    <!--源微博图片显示END-->
+                </div>
+
+            </div>
+        </if>
+
+        <!--    <div>
+                <if condition="$vl['is_sourceId'] eq 1">
+
+                    <a >
+
+                        <div class="am-cf"
+                             style="border: 1px solid #e8e8e8;padding: 10px;margin-bottom: 20px; border-radius: 6px;background: #f1f1f1">
+                            <php>if(is_null($vl['sourceId_content'])){</php>
+                            <span>原微博已删除</span>
+                            <php>}else{</php>
+                            <div>
+                                <a href="{:U('Mob/User/index',array('uid'=>$vl['sourceId_user']['uid']))}"
+                                   data-hasqtip="75">@{$vl.sourceId_user.nickname}</a></div>
+                            <p class="word-wrap">{$vl.sourceId_content}</p>
+
+
+                            <if condition="$vl['sourceId_is_img'] eq 1">
+                                <div class=" img-content am-cf am-avg-sm-3">
+                                    &lt;!&ndash;转发后图片显示&ndash;&gt;
+                                    <php>foreach($vl['sourceId_img_path'] as $key_img => $val_img){</php>
+                                    <div style="padding: 1px;float: left;
+          " href=" {$vl['sourceId_img_big'][$key_img]}">
+
+                                        <img class="img-big" style="width: 100px;height: 100px"
+                                             src=" {$vl['sourceId_img_path'][$key_img]}">
+
+                                    </div>
+                                    <php>}</php>
+                                    &lt;!&ndash;转发后图片显示END&ndash;&gt;
+                                </div>
+                            </if>
+
+                                        <span class="text-primary pull-right" style="font-size: 12px;"><a
+                                                href="{:U('Mob/Weibo/weiboDetail',array('id'=>$vl['sourceId']))}">
+                                            原微博转发（{$vl.sourceId_repost_count.repost_count}）</a>  </span>&nbsp;
+                            <span class="text-primary pull-left" style="font-size: 12px;">
+                                <a href="">来自：{$vl.sourceId_from}</a>  </span>
+
+                            <php>}</php>
+                        </div>
+                    </a>
+                </if>
+            </div>-->
+
+        <!--转发后的内容-结束-->
+        <div class="am-g" style="border-top: 1px solid #eee;border-bottom: 1px solid #eee">
+            <div class="am-u-sm-4 am-text-center refresh" style="padding: .5rem 0;">
+                <div style="border-right: 1px solid #eee">
+                    <a class="support" weibo_id="{$vl['id']}" user_id="{$vl['uid']}" url="{:U('Mob/Weibo/support')}">
+                        <if condition="$vl['is_support'] eq 1">
+                            <i class="am-icon-thumbs-up" style="color: #ccc"></i>
+                            <else/>
+                            <i class="am-icon-thumbs-o-up" style="color: #ccc"></i>
+                        </if>
+                    </a>
+                    <span style="color: #ccc">{$vl.support}</span>
+                </div>
+            </div>
+            <div class="am-u-sm-4 am-text-center " style="padding: .5rem 0;">
+                <div style="border-right: 1px solid #eee">
+                    <php>
+                        if (!is_login()) {
+                    </php>
+                    <a href="javascript:void(0);" onclick="toast.error('请登陆后再进行操作');" style="color: #999999">
+                        <i class="am-icon-share" style="color: #ccc"></i> </a>
+                    <span style="color: #ccc">{$vl.repost_count}</span>
+
+                    <php>
+                        }else{
+                        if (!check_auth('Weibo/Index/doSendRepost')) {
+                    </php>
+                    <a href="javascript:void(0);" onclick="toast.error('您无微博转发权限');">
+                        <i class="am-icon-share" style="color: #ccc"></i> </a> <span style="color: #ccc">{$vl.repost_count}</span>
+
+                    <php>
+                        }else{
+                    </php>
+
+                    </php>
+                    <a class="forward " href="{:U('Mob/Weibo/forward',array('id'=>$vl['id'],'uid'=>$vl['uid']))}">
+                        <i class="am-icon-share" style="color: #ccc"></i> </a> <span style="color: #ccc">{$vl.repost_count}</span>
+                    <php>
+                        }}
+                    </php>
+                </div>
+            </div>
+
+            <div class="am-u-sm-4 am-text-center" style="padding: .5rem 0;">
+                <div style="">
+                    <a data-target="section" href="{:U('Mob/weibo/weibodetail',array('id'=>$vl['id']))}" style="color: #ccc">
+                        <i class="am-icon-comment-o" style="color: #ccc"></i>
+                        {$vl.comment_count}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </li>
+</volist>
+

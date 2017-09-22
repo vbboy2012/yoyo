@@ -1,0 +1,112 @@
+<extend name="Base/mob_common"/>
+<block name="mob_body">
+    <include file="groupdetailhead"/>
+    <style>
+        #mob-main-container{
+            margin-top: 38px;
+        }
+    </style>
+    <div class="post-container ">
+        <div class="post am-cf" id="article_list_ul">
+            <div class="post-box " >
+                <div class="am-g info">
+                    <div class="avatar am-u-sm-2">
+                        <img class="avatar-img" src="{$post.user.avatar64}"style="width: 48px;height: 48px;">
+                    </div>
+                    <div class="post-info am-u-sm-8">
+                        <span style="font-size: 13px">{$post.title}</span>
+                        <br>
+                        <div class="publish">
+                            <a href="{$post.user.space_mob_url}"> {$post.user.nickname}</a>
+                            <span class="time" style="color: #666">发表于{$post.create_time|friendlyDate}</span>
+
+                     </div>
+                    </div>
+
+                    <div class="part am-u-sm-2">
+                       楼主
+                    </div>
+                </div>
+
+            </div>
+            <div class="am-g content" style="padding: 0 10px">
+                <p> {$post.content}</p>
+            </div>
+            <!--按钮-->
+            <div class="like-box am-g">
+                <div class="am-u-sm-4"></div>
+                <div class="am-u-sm-7">
+                    <div class="am-u-sm-4 fl-rt">
+                        <a class="support" post_id="{$post['id']}" user_id="{$post['uid']}" url="{:U('Mob/Group/support')}">
+                            <if condition="$post['isSupport'] eq 1">
+                                <i class="am-icon-heart"></i>
+                                <else/>
+                                <i class="am-icon-heart-o"></i>
+                            </if>
+                            <span>{$post.countSupport}</span>
+                        </a>
+                    </div>
+                    <php>if($post['uid']==is_login()||is_administrator(is_login())){</php>
+                    <div class="am-u-sm-4 fl-rt border">
+                        <i class="icon am-icon-cog"></i>
+                        <a href="{:U('Mob/group/addpost',array('post_id'=>$post['id'],'group_id'=>$group['id'],'isEdit'=>1))}"></a>
+                    </div>
+                    <php>}</php>
+                    <php>if($post['uid']==is_login()||is_administrator(is_login())){</php>
+                    <div class="am-u-sm-4 fl-rt">
+                        <i class="icon icon-trash"></i>
+                        <a class="delpost" url="{:U('Mob/group/deletePost')}" post-id="{$post.id}"></a>
+                    </div>
+                    <php>}</php>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="replay">回复</div>
+    <div class="comment-item ulreply">
+        <volist name="postComment" id="vl" key="k">
+            <include file="_postcomment"/>
+        </volist>
+
+    </div>
+    <if condition="$pid['count'] eq 1">
+        <div class="am-list-news-ft look-more">
+            <a class="" id="getmorereply" data-group-id="{$group_id}">查看更多...</a>
+        </div>
+    </if>
+
+
+    <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default group-bottom" >
+        <ul class="am-navbar-nav am-cf am-avg-sm-4" style="font-size: 13px">
+            <li>
+                <if condition="$post['collect'] eq 0">
+                    <a style="background-color: #9cce32" class="collect" post-id="{$post.id}" flag="1" url="{:U('Mob/group/doBookmark')}">
+                        收藏
+                    </a>
+                </if>
+                <if condition="$post['collect'] eq 1">
+                    <a  style="background-color: #9cce32" class="unCollect" post-id="{$post.id}" url="{:U('Mob/group/doBookmark')}">
+                        取消收藏
+                    </a>
+                </if>
+            </li>
+            <li>
+                <a style="background-color: #f66b6b;" class="reply_post" href="{:U('Mob/group/addcomment',array('id'=>$post['id']))}">
+                    回复
+                </a>
+            </li>
+        </ul>
+    </div>
+    <script>
+        attend();
+        quit();
+        delpost();
+        collect();
+        unCollect();
+        support();
+        dismiss();
+        bind_page();
+    </script>
+
+</block>

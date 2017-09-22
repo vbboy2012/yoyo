@@ -1,0 +1,39 @@
+<volist name="data" id="vo">
+    <li>
+            <div class="top flexDiv">
+                <div class="flexLeft">
+                    <div class="avatar"><img src="{$vo['uid']['avatar512']}" alt="用户头像"></div>
+                    <a href="#" class="rightDiv name">{$vo.uid.nickname}</a>
+                </div>
+                <div class="flexRight time">{$vo.create_time}</div>
+            </div>
+            <a href="{:U('Question/index/detail',array('id'=>$vo['id']))}">
+                <div class="detail">
+                    <p class="qtTitle textMore">{$vo.title}</p>
+                    <div class="more">
+                        <p class="txt article">{$vo.description|text}</p>
+                        <div class="pic">
+                            <volist name="vo['img_id']" id="val">
+                                <if condition="$val neq './Public/images/nopic.png'">
+                                    <div class="cover" data-role="open-cover"><img src="{$val}" ></div>
+                                </if>
+                            </volist>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        <div class="other">
+            <p><i class="iconfont icon-tag"></i>{$vo.category.title}</p>
+            <if condition="$vo.score_num eq 0">
+                <else/>
+                <span class="line"></span>
+                <p><i class="iconfont icon-wodexuanshang"></i>{$vo.score_num}{$vo.leixing}</p>
+
+            </if>
+            <span class="line"></span>
+            <p><i class="iconfont icon-pinglun"></i>{$vo.answer_num}</p>
+        </div>
+        </li>
+
+
+</volist>

@@ -1,0 +1,133 @@
+<div>
+    <form id="form-111" method="post" target="_blank">
+        <div class="clearfix">
+            <div class="pull-left chose-circle" style="padding-left: 10px;padding-top: 5px">
+                <div class="selectt">
+                    <div class="dropdown">
+                        <img data-role="title_long_image" class="crowd-img" src="__IMG__/all.png">
+                        <div class="like-input dropdown-toggle" data-toggle="dropdown">
+                            {$crowd_detail.title|default='全站动态'}
+                        </div>
+                        <span class="caret"></span>
+                        <ul class="dropdown-menu cc-menu" role="menu" aria-labelledby="dropdownMenu1">
+                            <li>
+                                <a href="javascript:" data-role="crowd_long_title" data-id="0" data-title="全站动态"
+                                   data-img="__IMG__/all.png"><img src="__IMG__/all.png"
+                                                                   class="crowd-img-title"/>全站动态</a>
+                            </li>
+                            <volist name="follow_crowd_list" id="data">
+                                <li>
+                                    <a href="javascript:" data-role="crowd_long_title" data-id="{$data.crowd.id}"
+                                       data-title="{$data['crowd']['title']}"
+                                       data-img="{$data['crowd']['logo']|getThumbImageById=20,20}"><img
+                                            class="crowd-img-title"
+                                            src="{$data['crowd']['logo']|getThumbImageById=20,20}"/>{$data['crowd']['title']}</a>
+                                </li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+<div class="pull-right">
+    <div class="long-weibo-title"><input class="title-input" id="long-weibo-title-input" name="long_title" placeholder="请输入长文标题" ></div></div>
+        </div>
+
+
+        <div class="tare">
+            <textarea type="text/plain" id="send_long_weibo" name="send_long_weibo" style="width:100%;height:300px;"></textarea>
+        </div>
+
+        <div class="op-wrap row">
+            <div class="pull-right right-wrong">
+                <a href="javascript:" class="send-right" data-role="send_long_weibo" data-min-length="{$long_weibo_min_length|default=50}" data-crowd="{$crowd_type}"><i class="iconfont icon-dui"></i></a>
+                <a href="javascript:" class="send-wrong" data-role="change_long_back"><i class="iconfont icon-cuo"></i></a>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    $('[data-role="change_long_back"]').click(function () {
+        $("#send_long_box").hide();
+        $(".black-filter").show();
+        $.cookie("wb_type", "");
+    });
+    $('[data-role="crowd_long_title"]').click(function () {
+        var $this = $(this);
+        var title = $this.attr('data-title');
+        var crowd_id = $this.attr('data-id');
+        var img = $this.attr('data-img');
+        $('.like-input').html(title);
+        $('[data-role="title_long_image"]').attr('src', img);
+        $('[data-role="send_long_weibo"]').attr('data-crowd', crowd_id);
+    })
+</script>
+
+<!--umeditor start-->
+<link href="__STATIC__/umeditor/themes/default/css/umeditor.min.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="__STATIC__/umeditor/umeditor.min.js"></script>
+<div id="um-plugin-js-block"></div>
+<script type="text/javascript" charset="utf-8" src="__STATIC__/umeditor/umeditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/umeditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    //渲染编辑器
+    var weibo_content_um;
+    $(function () {
+        weibo_content_um = UM.getEditor('send_long_weibo',{
+            toolbar: ['emotion bold italic underline strikethrough forecolor drafts | insertorderedlist insertunorderedlist blockquote | link  image']
+            });
+
+        /*'source | undo redo | bold italic underline strikethrough | superscript subscript | forecolor backcolor | removeformat |',
+                'insertorderedlist insertunorderedlist | selectall cleardoc paragraph | fontfamily fontsize' ,
+                '| justifyleft justifycenter justifyright justifyjustify |',
+                'link unlink | emotion image video  | map',
+                '| horizontal print preview  fullscreen', 'drafts', 'formula'*/
+
+        $('[data-role="send_long_weibo"]').click(function () {
+            var $this=$(this);
+            if($this.attr('posting')!=='1'){
+                $this.attr('posting','1');
+                var crowd=$this.attr('data-crowd');
+                var title=$('#long-weibo-title-input').val();
+                if(title.length==0){
+                    toast.error('请输入长文标题！');
+                    $this.attr('posting','0');
+                    return;
+                }
+                if(title.length>100){
+                    toast.error('标题过长！');
+                    $this.attr('posting','0');
+                    return;
+                }
+                var weibo_content=weibo_content_um.getContent();
+                var plain_txt=weibo_content_um.getPlainTxt();
+                var min_length=$this.attr('data-min-length');
+                if(plain_txt.length<min_length){
+                    toast.error('内容长度不能低于'+min_length+'！');
+                    $this.attr('posting','0');
+                    return;
+                }
+                $.post(U('Weibo/Index/doSendLongWeibo'),{crowd:crowd,weibo_content:weibo_content,plain_txt:plain_txt,title:title},function (res) {
+                    handleAjax(res);
+                    if (res.status) {
+                        $('#weibo_list').prepend(res.html);
+                        weibo_bind();
+                        weibo_content_um.setContent('');
+                        $('#long-weibo-title-input').val('')
+                        $('#go-top').click();
+                    }
+                    $this.attr('posting','0');
+                });
+            }else{
+                toast.error('提交中，请务重复提交！');
+            }
+        });
+    })
+</script>
+<style>
+    .edui-container{
+        border: none;
+        box-shadow:none;
+    }
+</style>
+<!--umeditor end-->
+

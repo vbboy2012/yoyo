@@ -1,0 +1,157 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/topic.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <header class="bar bar-nav comHead">
+                    <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                       href="javascript:history.go(-1);"></a>
+                    <a href="javascript:" class="title">{:L('_TOPIC_LEAD_')}</a>
+                </header>
+            </header>
+                <div class="content">
+                    <div class="content-block  proList" data-type="{$type}" data-crowd-id="{$crowd_id}">
+                        <ul>
+                            <li class="huati-item">
+                                <div class="img">
+                                    <img src="<if condition='$vo.logo neq 0'>{$vo.logo|getThumbImageById=180,180}<else/>__IMG__/topicavatar.png</if>">
+                                </div>
+                                <div class="huati-information">
+                                    <p class="huati-name">#{$topic.name|longTopicName}#</p>
+                                    <p class="huati-sketch">{:L('_LEAD_')}：{$topic.intro|default=L('_TOPIC_RECOMMEND_')}</p>
+                                    <p class="huati-shuju"><span><i class="iconfont icon-weixin1"></i>{$vo.read_count|default='0'}</span>
+                                        <span><i class="iconfont icon-yanjing"></i>{$vo.weibo_num|default='0'}</span>
+                                    </p>
+                                </div>
+                                <a href="javascript:" class="follow" data-value="{$status}" data-role="topic-follow">
+                                    <if condition="$status eq 0">
+                                        {:L('_FOLLOW_')}
+                                        <else/>
+                                        {:L('_UN_FOLLOW_')}
+                                    </if>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div>
+                            <div class="topic-holder">
+                                <p class="h-title">{:L('_PRESENTER_TOPIC_')}</p>
+                                <eq name="topic.status" value="1">
+                                    <div class="have-holder">
+                                        <div class="h-avatar pull-left">
+                                            <img src="{$host.avatar128}">
+                                        </div>
+                                        <div>
+                                            <p><a class="holder-name" href="">name</a></p>
+                                            <p class="intro-self">
+                                                <if condition="$host['signature'] eq ''">{:L('_NO_IDEA_')}
+                                                    <else/>
+                                                    <attr title="{$host.signature}">{$host.signature}</attr>
+                                                </if>
+                                            </p>
+                                            <p class="follow" data-uid="{$host.uid}" data-value="{$host.is_follow}">
+                                                <i class="iconfont icon-fabu1"></i>
+                                                <if condition="$status eq 0">
+                                                    {:L('_FOLLOW_')}
+                                                    <else/>
+                                                    {:L('_UN_FOLLOW_')}
+                                                </if>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </eq>
+                                <eq name="topic.status" value="0">
+                                    <div class="clearfix no-holder">
+                                        <p><i class="iconfont icon-leiben"></i></p>
+                                        <p style="margin: 0">暂无主持</p>
+                                        <h5 style="margin-top: 0">{:L('_WAIT_FOR_YOU_')}</h5>
+                                    </div>
+                                    <else/>
+                                </eq>
+                            </div>
+                        </div>
+
+                        <div class="clearfix col-md-12 margin_bottom_10">
+                            <form role="form" action="{:U('editTopic')}" method="post" class="ajax-form" data-role="form-info">
+                                <div class="form-group">
+                                    <div class="margin_bottom_10">{:L('_TIP_PRESENTER_SETTINGS_')}</div>
+                                    <input name="id" type="hidden" value="{$topic.id}">
+                                    <label for="avatar">{:L('_TOPIC_PIC_')}(180px*180px)</label>
+
+                                    <div>
+                                        {:W('Common/UploadImage/render',array(array('id'=>'avatar','name'=>'logo','value'=>$topic['logo'],'width'=>200,'height'=>200)))}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="qrcode">{:L('_TOPIC_TWO_DIMENSION_CODE_')}(220px*220px)</label>
+
+                                    <div>
+                                        {:W('Common/UploadImage/render',array(array('id'=>'qrcode','name'=>'qrcode','width'=>'100','height'=>'100','value'=>$topic['qrcode'])))}
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="intro">{:L('_TOPIC_LEAD_')}</label>
+                                    <textarea class="form-control" id="intro" name="intro" placeholder="{:L('_PLACEHOLDER_TOPIC_LEAD_')}">{$topic['intro']}</textarea>
+                                </div>
+                                <if condition="check_auth('Weibo/Topic/editTopic')">
+                                    <div class="margin_bottom_10">{:L('_TIP_ADMIN_SETTINGS_')}</div>
+                                    <div class="form-group">
+                                        <label for="intro">{:L('_PRESENTER_UID_')}</label>
+                                        <input type="text" class="form-control" id="uadmin" name="uadmin" placeholder="{:L('_PLACEHOLDER_INPUT_PRESENTER_UID_')}"
+                                               value="{$topic['uadmin']}">
+                                    </div>
+                                    <div class="form-group">
+                                        <eq name="topic.is_top" value="1">
+                                            <input type="checkbox" value="1" id="top" name="is_top" checked><label for="top">{:L('_TOPIC_RECOMMEND_YES_OR_NOT_')}</label>
+                                            <else/>
+                                            <input type="checkbox" value="1" id="top" name="is_top"><label
+                                                for="top">{:L('_TOPIC_RECOMMEND_YES_OR_NOT_')}</label>
+                                        </eq>
+                                    </div>
+                                </if>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script>
+        $("[data-role='form-sub']").click(function () {
+            $("[data-role='form-info']").submit() ;
+        });
+        $('[data-role="topic-follow"]').click(function () {
+            var topic_id={$topic['id']};
+            var url=U('Weibo/Topic/followTopic');
+            var status=$(this).attr('data-value');
+            $.post(url,{topic_id:topic_id,status:status},function (msg) {
+                if(msg.status)
+                {
+                    if(status==1){
+                        $('[data-role="topic-follow"]').html('关注') ;
+                        $('[data-role="topic-follow"]').attr('data-value',0);
+                        $.toast.success({:L('_CANCEL_')}+{:L('_FOLLOW_')}+msg.info);
+                    }else{
+                        $('[data-role="topic-follow"]').html('已关注') ;
+                        $('[data-role="topic-follow"]').attr('data-value',1);
+                        $.toast.success({:L('_FOLLOW_')}+msg.info);
+                    }
+                }else{
+                    $.toast.error(msg.info);
+                }
+            })
+        });
+        function to_be_number_one(tid) {
+            $.post(U('weibo/topic/beAdmin'),{tid:tid},function(msg){
+                handleAjax(msg);
+            })
+        }
+    </script>
+</block>

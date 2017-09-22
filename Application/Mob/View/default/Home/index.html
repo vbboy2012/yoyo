@@ -1,0 +1,96 @@
+<extend name="Base/mob_common"/>
+<block name="mob_body">
+    <link rel="stylesheet" href="__CSS__/apps/home.css"/>
+    <style>
+        @keyframes myMove {
+          0%{
+              opacity: 0;
+          }
+            25%{
+                opacity: 0.25;
+            }
+            50%{
+                opacity: 0.5;
+            }
+            75%{
+                opacity: 0.78;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+        @keyframes lTor1 {
+            from{left: -100px}
+            to{left: 135px}
+        }
+        @keyframes lTor2 {
+            from{left: -400px}
+            to{left: 185px}
+
+        }
+        @keyframes lTor3 {
+            from{left: -700px}
+            to{left: 235px}
+
+        }
+        .myMove{
+            animation: myMove 2s ease-in-out;
+            animation-iteration-count:1;
+        }
+        .lTor1{
+            position: absolute;
+            animation: lTor1 2s ease-in-out;
+            animation-iteration-count:1;
+            left: 135px;
+        }
+        .lTor2{
+            position: absolute;
+            animation: lTor2 3s   ease-in-out;
+            animation-iteration-count:1;
+            left: 185px;
+        }
+        .lTor3{
+            position: absolute;
+            animation: lTor3 4s   ease-in-out;
+            animation-iteration-count:1;
+            left: 235px;
+        }
+    </style>
+    <div class="bg-pic">
+        <div class="shadow">
+            <h1 class="myMove">OpenSNS</h1>
+            <p class="p1" style="margin-bottom: 0">
+                <span class="lTor1">发现,</span>
+                <span class="lTor2">创造,</span>
+                <span class="lTor3">分享</span>
+            </p>
+            <div class="bottom-box am-g">
+                <a href="">
+                <div class="am-u-sm-4">
+                    <div class="border"><i class="icon icon-"></i></div>
+                    <p>登录</p>
+                </div>
+                </a>
+                <a href="">
+                <div class="am-u-sm-4">
+                    <div class="border"></div>
+                    <p>注册</p>
+                </div>
+                </a>
+                <a href="">
+                <div class="am-u-sm-4">
+                    <div class="border"></div>
+                    <p>随便看看</p>
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+        <script>
+            $(document).ready(function () {
+                var dvheight = window.screen.availHeight-35;
+                $(".bg-pic").height(dvheight);
+            });
+        </script>
+</block>

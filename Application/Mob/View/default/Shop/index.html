@@ -1,0 +1,107 @@
+<extend name="Base/mob_common"/>
+<block name="mob_body">
+    <style>
+        .container{
+            padding: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="__CSS__/apps/shop.css"/>
+    <script src="__JS__/shop.js"></script>
+    <div class="shop-container">
+        <input type="hidden" value="{$navtitle}" id="navtitle">
+        <ul class="am-nav am-nav-tabs am-nav-justify" style="margin-top: 0px;font-size: 15px">
+
+            <li id="newgoods"><a href="{:U('Mob/shop/index',array('mark'=>newGoods))}" style="color: #808080;padding: 6px 0 5px 0">最新商品</a></li>
+            <li id="hotgoods"><a href="{:U('Mob/shop/index',array('mark'=>hotGoods))}" style="color: #808080;padding: 6px 0 5px 0">最热商品</a></li>
+            <li id="myorder"><a href="{:U('Mob/shop/myorder')}" style="color: #808080;padding: 6px 0 5px 0">我的订单</a></li>
+            <li id="type"><a id="Q-type" class="" style="color: #808080;padding: 6px 0 5px 0;">分类</a>
+                <div id="Q-list" style="position: absolute;top: 100px;left: 60px;z-index: 100">
+                    <ul style="font-size: 15px;position: relative;">
+                        <li  style="border-bottom: 1px solid #ccc">
+                            <a href="{:U('Mob/shop/index',array('mark'=>allGoods))}" style="border-bottom: none;color: #808080">全部</a>
+                        </li>
+
+                        <volist name="parent" id="type">
+                            <php>if(!empty($type['child'])){</php>
+                            <li style="border-bottom: 1px solid #ccc" ><span class="triangle-right"></span>{$type.title}
+                                <div class="Q-list-sec">
+                                    <div class="sec">
+                                        <ul>
+                                            <li >
+                                                <a href="{:U('Mob/shop/index',array('mark'=>parentType,'typeId'=>$type['id']))}"> 全部</a>
+                                            </li>
+                                            <volist name="type.child" id="child_cate">
+                                                <li >
+                                                    <a href="{:U('Mob/shop/index',array('mark'=>childType,'typeId'=>$child_cate['id']))}">  {$child_cate.title}</a>
+                                                </li>
+                                            </volist>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <php>}else{</php>
+                            <li ><a href="{:U('Mob/shop/index',array('mark'=>parentType,'typeId'=>$type['id']))}" style="border-bottom: none;color: #808080">{$type.title}</a></li>
+                            <php>}</php>
+                        </volist>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <!-- 商品列表-->
+        <ul class="am-g  shop-list am-avg-sm-2 am-avg-md-4 am-avg-lg-5 ulclass" style="margin:0 auto">
+            <notempty name="goods">
+                <volist name="goods" id="vo">
+                    <include file="_goodslist"/>
+                </volist>
+                <else/>
+                <div class="am-text-center" style="background-color:#FFFFFF;margin-top: -15px"><img
+                        src="__IMG__/tip.png" style="width: 100%;height: 100%">
+                </div>
+            </notempty>
+        </ul>
+
+    <if condition="$pid['count'] eq 1">
+        <div class="am-list-news-ft look-more">
+            <a id="getmoregoodslist" data-url="{:U('Mob/shop/addMoreGoods')} "
+               data-mark={$mark} data-type-id="{$typeId}">查看更多 &raquo;</a>
+        </div>
+    </if>
+</div>
+
+
+    <script>
+        get_more_goods_list();
+    </script>
+    <script>
+        $(function () {
+            $('#Q-list').hide();
+            var $type = document.getElementById('Q-list');
+            var width=parseInt($('#Q-type').width());
+            $type.style.width = width+ 'px';
+            $('.Q-list-sec').css("width", width+ 'px');
+           $('.Q-list-sec').css("left", (-width-10)+ 'px');
+            $('.Q-list-sec').css("z-index", 801);
+            $('.triangle-right').css('right',101+'px');
+            $('#Q-type').click(function () {
+                $('#Q-list').toggle();
+                if(  $('.Q-list-sec').is(":visible")){
+                    $('.Q-list-sec').hide();
+                }
+                if(  $('.triangle-right').is(":visible")){
+                    $('.triangle-right').hide();
+                }
+            });
+            $('#Q-list>ul>li').click(function () {
+                if($(this).children('.triangle-right').is(":visible")){
+                    $(this).children('.triangle-right').hide();
+                    $(this).children('.Q-list-sec').hide();
+                }else{
+                    $('.triangle-right').hide();
+                    $('.Q-list-sec').hide();
+                    $(this).children('.triangle-right').show();
+                    $(this).children('.Q-list-sec').show();
+                }
+            });
+        });
+    </script>
+</block>

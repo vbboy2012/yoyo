@@ -1,0 +1,135 @@
+<extend name="Base/mob_common"/>
+<block name="mob_header">
+    <link rel="stylesheet" href="__CSS__/apps/circle.css"/>
+    <div data-am-widget="header" class="am-header am-header-default am-header-fixed am-cf">
+
+        <div class="am-header-left am-header-nav">
+            <a href="javascript:void(0)" onclick="history.go(-1)" class="am-fl">
+                <i class="am-icon-chevron-left  am-icon-home"></i>
+            </a>
+        </div>
+        <h1 class="am-header-title">
+            <if condition="$crowd_list">
+                修改圈子
+                <else/>
+                创建圈子
+            </if>
+        </h1>
+    </div>
+</block>
+
+<block name="mob_body">
+    <div class="add-crowd">
+        <style>
+            #mob-main-container{
+                margin-top: 0;
+            }
+        </style>
+        <div class="am-form-crowd" style="border: none;padding: 0;margin: 0;width: 100%">
+            <form action="" class="am-form" id="add_crowd" data-url="{:U('Mob/Weibo/create')}">
+                <input type="hidden" id="one_img_id" name="logo" value="{$crowd_list[logo]}">
+                <input type="hidden" name="crowd_id" value="{$crowd_list['id']}"/>
+                <div class="am-cf bg">
+                    <div class="add-box">
+                        <div class="img_btn add">
+                            <i class="am-icon-plus" style="font-size: 25px;padding: 12px 20px;"></i>
+                        </div>
+
+                        <input type="file" name="files" id="chooseOne" class="m-btn"
+                               style="left:160px;top: 0;position:absolute;z-index: 1;width: 72px!important;height:72px;opacity: 0;cursor: pointer;">
+                        <p style="color: #fff;margin-top: 10px;font-weight: 700">上传封面</p>
+                    </div>
+                    <if condition="$crowd_list">
+                        <div class="has_cover am-fl">
+                            <div id="cover_url">
+                                <img class="cover_img" src="{$crowd_list.logo|getThumbImageById=400,400}">
+                            </div>
+                        </div>
+                        <else/>
+                        <div class="show_cover am-fl">
+                            <div id="cover_url">
+                                <img class="cover_img" src="{$crowd_list.logo|getThumbImageById=80,80}">
+                            </div>
+                        </div>
+                    </if>
+
+                </div>
+
+
+
+                <div class="am-form-crowd" >
+                    <input type="text" name="title" minlength="1" value="{$crowd_list.title}" placeholder="圈子名称  |" required/>
+                </div>
+                <div class="am-form-crowd" >
+                    <label style="line-height: 32px;">分类：</label>
+                    <select name="type_id" class="form-control" id="inputType" style="width: 84%">
+                        <option value="-1">请选择</option>
+                        <volist name="type" id="data">
+                            <option
+                            <if condition="$crowd_list['type_id'] eq $data['id']">selected</if>
+                            value="{$data.id}">
+                            {$data.title}
+                            </option>
+                        </volist>
+
+                    </select>
+                    <span class="am-form-caret"></span>
+                </div>
+                <div class="am-form-crowd">
+                    <input type="text" name="intro" value="{$crowd_list.intro}" placeholder="圈子介绍  |" required/>
+                </div>
+                <div class="am-form-crowd">
+                    <div >
+                        <label style="float: none">圈子类型： </label>
+                        <label style="float: none" class="am-radio-inline">
+                            <input style="width:auto!important;" type="radio" name="type" value="0"
+                            <if condition="$crowd_list['type'] eq 0"> checked</if>
+                            >公共圈子
+                        </label>
+                        <label style="float: none" class="am-radio-inline">
+                            <input style="width:auto!important;" type="radio" name="type" value="1"
+                            <if condition="$crowd_list['type'] eq 1"> checked</if>
+                            >私有圈子
+                        </label>
+                    </div>
+                </div>
+                <div class="am-form-crowd">
+                    <label style="float: none">可发动态：</label>
+                    <label class="am-radio-inline" style="float: none">
+                        <input name="allow_user_post" value="0" type="radio"
+                        <if condition="$crowd_list['allow_user_post'] neq -1"> checked</if>
+                        >是
+                    </label>
+                    <label class="am-radio-inline" style="float: none">
+                        <input name="allow_user_post" value="-1" type="radio"
+                        <if condition="$crowd_list['allow_user_post'] eq -1"> checked</if>
+                        >否
+                    </label>
+                </div>
+                <div class="am-form-crowd">
+                    <input id="notice" name="notice" type="text" class="form-control" value="{$crowd_list.notice}" placeholder="圈子公告  |" required/>
+                </div>
+                <button type="button" class="am-btn am-btn-primary am-btn-block" id="confirm"><i
+                        class="am-menu-toggle-icon am-icon-save"></i>提交
+                </button>
+            </form>
+        </div>
+    </div>
+    <script>
+        add_one_img();
+        $('#confirm').click(function () {
+            var data = $("#add_crowd").serialize();
+            var url = $("#add_crowd").attr('data-url');
+            $.post(url, data, function (msg) {
+                if (msg.status == 1) {
+                    toast.success(msg.info);
+                    setTimeout(function () {
+                        window.location.href = document.referrer
+                    },1000)
+                } else {
+                    toast.error(msg.info);
+                }
+            }, 'json');
+        });
+    </script>
+</block>

@@ -1,0 +1,167 @@
+<extend name="Base/mob_common"/>
+<block name="mob_bottom">
+    <div data-am-widget="navbar" class="am-cf am-navbar-default am-topbar-fixed-top  am-no-layout question-nav " id="" style="margin-top: 38px" >
+        <ul class="am-navbar-nav am-cf am-avg-sm-4" style="padding: 0px;font-size: 13px;background: #32b1f1">
+            <li
+            <if condition="($_GET['mark'] eq '0') or($_GET['mark'] eq '')">style="border-bottom:2px solid #0f9ae0"</if>
+            >
+            <a  href="{:U('Mob/Question/index',array('mark'=>0))}">
+                待回答
+            </a>
+            </li>
+            <li
+            <if condition="($_GET['mark'] eq '1')">style="border-bottom:2px solid #0f9ae0"</if>
+            >
+            <a  href="{:U('Mob/Question/index',array('mark'=>1))}">
+                热门问题
+            </a>
+            </li>
+            <li
+            <if condition="($_GET['mark'] eq '2')">style="border-bottom:2px solid #0f9ae0"</if>
+            >
+            <a  href="{:U('Mob/Question/index',array('mark'=>2))}">
+                我的提问
+            </a>
+            </li>
+            <li
+            <if condition="($_GET['mark'] eq '3')">style="border-bottom:2px solid #0f9ae0"</if>
+            >
+            <a  href="{:U('Mob/Question/index',array('mark'=>3))}">
+                全部问题
+            </a>
+            </li>
+        </ul>
+    </div>
+</block>
+<block name="mob_body">
+    <script src="__JS__/question.js"></script>
+    <link rel="stylesheet" href="__CSS__/apps/question.css"/>
+    <div class="questiondetail-container" style="margin-top: 45px">
+
+        <div class="questiondetail">
+            <div class="tit-box" style="height: auto">
+                {$question.title}
+            </div>
+            <div class="question am-cf" style="background-color: #fff">
+                <div class="avt am-g am-g-fixed">
+                    <div class="am-u-sm-2 ht100" style="padding: 0">
+                        <img src="{$question.user.avatar64}">
+                    </div>
+                    <div class="am-u-sm-7 ht100" style="padding-left: 0;">
+                        <p class="auther"><a href="{$question.user.space_mob_url}">{$question.user.nickname}</a></p>
+                        <p class="sort">问题所属分类：<a class="question_type">{$question.category.title}</a></p>
+                    </div>
+                    <php>if(is_administrator(is_login())||$question['uid']==is_login()){</php>
+                    <div class="am-u-sm-3 ht100" style="text-align: right;padding: 0">
+                        <a href="{:U('Mob/Question/addQuestion',array('id'=>$question['id']))}" class="edit"><i class="icon icon-edit"></i>  编辑</a>
+                    </div>
+                    <php>}</php>
+                </div>
+
+                <div class="question-content" style="padding: 10px;color: #a9a9a9">
+                    补充说明：{$question.description}
+                </div>
+                <div class="catime">
+                    <i class="icon icon-time"></i>创建时间：{$question.create_time|friendlyDate}
+                </div>
+            </div>
+        </div>
+        <!--按钮部分-->
+        <div class="am-g btn-box">
+            <div class="am-u-sm-6  am-text-left">
+                <span>回答：{$question.answer_num}</span>
+
+            </div>
+            <div class="am-u-sm-6  am-text-right">
+                <a href="{:U('Mob/Question/reply',array('id'=>$question['id']))}">我来回答</a>
+
+            </div>
+        </div>
+
+
+        <div class="answer-list ulclass">
+            <!--最佳答案部分-->
+            <php>if($question['best_answer']!=0){</php>
+            <div class="answer answer-list" style="margin-bottom: 15px;border-bottom:none;">
+                <div class="answer-info am-fl">
+                    <php>if(is_null($bestAnswer['has_support'])){</php>
+
+                    <div style="margin-bottom: 10px" class="support-count  support_up" data-url="{:U('Mob/Question/support')}"
+                         data-role="{$bestAnswer.id}">
+                        <p><i class="am-icon-thumbs-o-up"></i></p>
+                        <p><span class="up">{$bestAnswer.support}</span></p>
+                    </div>
+
+                    <div class="support-count  support_down"
+                         data-url="{:U('Mob/Question/support')}" data-role="{$bestAnswer.id}">
+                        <p><i class="am-icon-thumbs-o-down"></i></p>
+                        <p><span class="down"> {$bestAnswer.oppose}</span></p>
+                    </div>
+                    <php>}else{</php>
+
+                    <if condition="$bestAnswer['has_support']['type'] eq 1">
+                        <div class="support-count" style="margin-bottom: 10px">
+                            <p><i class="am-icon-thumbs-up"></i></p>
+                            <p><span class="down"> {$bestAnswer.support}</span></p>
+                        </div>
+
+                        <div class="support-count">
+                            <p><i class="am-icon-thumbs-o-down"></i></p>
+                            <p><span class="down"> {$bestAnswer.oppose}</span></p>
+                        </div>
+                        <else/>
+                        <div class="support-count " style="margin-bottom: 10px">
+                            <p><i class="am-icon-thumbs-o-up"></i></p>
+                            <p><span class="down"> {$bestAnswer.support}</span></p>
+                        </div>
+                        <div class="support-count">
+                            <p><i class="am-icon-thumbs-down"></i></p>
+                            <p><span class="down"> {$bestAnswer.oppose}</span></p>
+                        </div>
+                    </if>
+                    <php>}</php>
+                </div>
+
+
+                <div class="answer-author am-cf">
+
+                    <a href="{$bestAnswer.user.space_mob_url}">{$bestAnswer.user.nickname}</a>
+
+                    <div class="am-fr">
+                        <img src="__IMG__/best_answer.png"
+                             style="width:35px;">
+                    </div>
+                    <div class="QA-content" style="padding: 5px 0;font-size: 13px">
+                        {$bestAnswer.content}
+                    </div>
+                    <div style="color: #a9a9a9">回复时间：{$bestAnswer.update_time}</div>
+
+                </div>
+                <div class="" style="border-radius: 5px">
+
+                    <volist name="bestAnswer['lzllist']" id="v2">
+                        <include file="_lzlreply"/>
+                    </volist>
+                </div>
+            </div>
+            <php>}</php>
+            <!--回答部分-->
+            <volist name="questionComment" id="vl">
+                <include file="_commentlist"/>
+            </volist>
+        </div>
+
+    </div>
+    <if condition="$pid['count'] eq 1">
+        <div class="am-list-news-ft look-more">
+            <a id="getmorequestioncommentlist" data-url="{:U('Mob/Question/addMoreQuestionCommentList')} "
+               data-mark={$question.id}>查看更多 &raquo;</a>
+        </div>
+    </if>
+    <script>
+        set_best_answer();
+        support_up();
+        support_down();
+    </script>
+
+</block>

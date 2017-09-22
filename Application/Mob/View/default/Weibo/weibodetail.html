@@ -1,0 +1,273 @@
+<extend name="Base/mob_common"/>
+<block name="mob_body">
+    <script src="__JS__/weibo.js"></script>
+    <link rel="stylesheet" href="__CSS__/apps/weibo.css"/>
+    <style>
+        body{
+            overflow: hidden;
+        }
+        .container{
+            padding: 0;
+        }
+        .emot_content{
+            width: 100%;
+            margin: 0 auto;
+            height: 300px;
+            position: absolute;
+            bottom: 45px;
+        }
+    </style>
+<!--微博详情-->
+<div class="weibo-container ">
+    <div class="weibo-list list" id="article_list_ul" style="margin-bottom: 10px">
+
+        <div class="vertical item ">
+
+            <div class="am-g  avatar_img" style="position: relative;padding: .5rem">
+                <div class="am-fl avatar">
+                    <img class="avatar-img" src="{$weibodetail.user.avatar64}">
+                </div>
+
+                <div class="am-fl nickname">
+                    <a style="margin-bottom: 10px;display: inline-block" href="{:U('Mob/User/index',array('uid'=>$weibodetail['user']['uid']))}">
+                    {$weibodetail.user.nickname}
+                    </a>
+                    {:W('Common/UserRank/render',array($weibodetail['user']['uid']))}
+                    <br/>
+                    <span class="from">{$weibodetail.create_time|friendlyDate}</span>
+                </div>
+                <div class="am-fr time" style="position: absolute;bottom: 6px;right: 0.5rem;color: #999">
+                    <empty name="weibodetail.crowd_id">
+                        来自：{$weibodetail.from}
+                        <else/>
+                        <span class="where"><img src="{$weibodetail['crowd_logo']|getThumbImageById=16,16}" style="width: 16px;height: 16px"/><a href="{:U('Mob/Weibo/index',array('crowd_id'=>$weibodetail['crowd_id']))}" style="color: #19bca1"><b>{$weibodetail.crowd_title}</b></a></span>
+                    </empty>
+                </div>
+            </div>
+
+            <!--判断是否包含图片微博-->
+            <if condition="$weibodetail['is_img'] eq 0">
+                <div class="am-g content">
+               <!--红包-->
+                    <php>if($weibodetail['type']=='redbag'){</php>
+                    <p class="word-wrap">{$weibo.content}</p>
+                    <div style="height: 185px">
+                        <!--   <img width="100px;" style="margin-right:20px;" src="{$weibo_data['cover']}">-->
+                        <!--<span class="xiami">-->
+                        <!--    <embed src="http://www.xiami.com/widget/0_{$weibo_data['id']}/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent" />
+                            -->
+                        <php>
+                            if(C('URL_MODEL')==2){
+                        </php>
+                        <a class="redbag" href="{:U('Mob/Weibo/openRedBag',array('param'=>urlencode(http_build_query($weibo_data))))}" data-title="{$user.nickname}的红包">
+                            <img src="__IMG__/redbag.png" style="max-height: 100%">
+                        </a>
+                        <php>}else{</php>
+                        <a class="redbag" href="{:U('Mob/Weibo/openRedBag',array('param'=>(http_build_query($weibo_data))))}" data-title="{$user.nickname}的红包">
+                            <img src="__IMG__/redbag.png" style="max-height: 100%">
+                        </a>
+                        <php>}</php>
+                    </div>
+                    <!--红包END-->
+                    <php>}else{</php>
+                    <p>{$weibodetail.content}</p>
+                    <php>}</php>
+                </div>
+            </if>
+            <if condition="$weibodetail['is_img'] eq 1">
+                <div class="am-g content">
+                    <p>{$weibodetail.sourceId_content}</p>
+
+                    <div class="am-cf img-content">
+                        <!--转发后图片显示-->
+                        <php>foreach($weibodetail['sourceId_img_path'] as $key_img => $val_img){</php>
+                        <div style="padding: 1px;float: left" href=" {$weibodetail['sourceId_img_big'][$key_img]}">
+                            <img class="img-big" src="{$weibodetail['sourceId_img_path'][$key_img]}">
+                        </div>
+                        <php>}</php>
+                        <!--转发后图片显示END-->
+                    </div>
+                </div>
+            </if>
+
+            <!--转发后的内容-->
+            <if condition="$weibodetail['is_sourceId'] eq 1">
+                <div style="border: 1px solid #e8e8e8;padding: 10px;margin-bottom: 10px; border-radius: 6px;background: #f1f1f1">
+                    <php>if(is_null($weibodetail['sourceId_content'])){</php>
+                    <span>原微博已删除</span>
+                    <php>}else{</php>
+                    <div>
+                        <a ucard="1" href="{:U('Mob/User/index',array('uid'=>$weibodetail['sourceId_user']['uid']))}"
+                           data-hasqtip="75">@{$weibodetail.sourceId_user.nickname}</a></div>
+                    <p class="word-wrap" style="padding: 10px 0">
+
+                        <php>if($weibo['type']=='redbag'){</php>
+                    <p class="word-wrap">{$weibo.content}</p>
+                    <div style="height: 185px">
+                        <!--   <img width="100px;" style="margin-right:20px;" src="{$weibo_data['cover']}">-->
+                        <!--<span class="xiami">-->
+                        <!--    <embed src="http://www.xiami.com/widget/0_{$weibo_data['id']}/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent" />
+                            -->
+                        <php>
+                            if(C('URL_MODEL')==2){
+                        </php>
+                        <a class="redbag" href="{:U('Mob/Weibo/openRedBag',array('param'=>urlencode(http_build_query($weibo_data))))}" data-title="{$user.nickname}的红包">
+                            <img src="__IMG__/redbag.png" style="max-height: 100%">
+                        </a>
+                        <php>}else{</php>
+                        <a class="redbag" href="{:U('Mob/Weibo/openRedBag',array('param'=>(http_build_query($weibo_data))))}" data-title="{$user.nickname}的红包">
+                            <img src="__IMG__/redbag.png" style="max-height: 100%">
+                        </a>
+                        <php>}</php>
+                    </div>
+                    <!--红包END-->
+                        <php>}else{</php>
+                        {$weibodetail.sourceId_content}
+                        <php>}</php>
+                    </p>
+
+                    <if condition="$weibodetail['sourceId_is_img'] eq 1">
+                        <div class="am-cf img-content">
+                            <!--转发后图片显示-->
+                            <php>foreach($weibodetail['sourceId_img_path'] as $key_img => $val_img){</php>
+                            <div style="padding: 1px;float: left" href=" {$weibodetail['sourceId_img_big'][$key_img]}">
+                                <img class="img-big" src="{$weibodetail['sourceId_img_path'][$key_img]}">
+                            </div>
+                            <php>}</php>
+                            <!--转发后图片显示END-->
+                        </div>
+                    </if>
+
+                        <span class="text-primary pull-right" style="font-size: 12px;"><a
+                                href="{:U('Mob/Weibo/weiboDetail',array('id'=>$weibodetail['sourceId']))}">
+                            原微博转发（{$weibodetail.sourceId_repost_count.repost_count}）</a>  </span>&nbsp;
+                    <span class="text-primary pull-left" style="font-size: 12px;"><a href="">来自：{$weibodetail.sourceId_from}</a>   </span>
+
+                    <php>}</php>
+                </div>
+            </if>
+
+
+            <div class="am-g" style="border-top: 1px solid #eee" >
+                <div class="am-u-sm-4 am-text-center" style="padding: .5rem 0;">
+                    <div style="border-right: 1px solid #eee">
+                        <a class="support" weibo_id="{$weibodetail['id']}" user_id="{$weibodetail['uid']}"
+                           url="{:U('Mob/Weibo/support')}">
+                            <if condition="$weibodetail['is_support'] eq 1">
+                                <i style="color: #ccc" class="am-icon-thumbs-up"></i>
+                                <else/>
+                                <i style="color: #ccc" class="am-icon-thumbs-o-up"></i>
+                            </if>
+                        </a><span style="margin-left: 5px;color: #ccc">{$weibodetail.support}</span>
+                    </div>
+
+                </div>
+                <div class="am-u-sm-4 am-text-center " style="padding: .5rem 0;">
+                    <div style="border-right: 1px solid #eee">
+                        <a class="forward"
+                           href="{:U('Mob/Weibo/forward',array('id'=>$weibodetail['id'],'uid'=>$weibodetail['uid']))}">
+                            <i style="color: #ccc" class="am-icon-share"></i> </a> <span style="margin-left: 5px;color: #ccc">{$weibodetail.repost_count}</span>
+                    </div>
+
+                </div>
+
+                <div class="am-u-sm-4 am-text-center" style="padding: .5rem 0;">
+                    <a><i style="color: #ccc" class="am-icon-comment-o"></i></a><span style="margin-left: 5px;color: #ccc">{$weibodetail.comment_count}</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="am-form-group weibo_post_box am-topbar-fixed-bottom" id="comment" style="padding:.5rem 1rem;background-color: #f5f5f5;border-top: 2px solid #eee">
+            <php>
+                if (!is_login()) {
+            </php>
+            <textarea class="content am-fl" rows="5" id="" disabled="disabled" style="height: 35px; width: 62%;border-radius: 5px;border-color: #eee">请登录后再评论</textarea>
+            <!--表情-->
+            <div class="am-cf am-fl" style="margin: 7px 18px">
+                <a href="javascript:" data-url=" {:U('Core/Expression/getSmile')}" onclick="insertFace($(this))">
+                    <img src="__IMG__/bq.png"></a>
+            </div>
+
+            <div id="" class="emot_content" style="display: none"></div>
+            <!--表情end-->
+
+            <p class="submit" style="margin-bottom:20px " news_id="{$weibodetail.id}" url="{:U('Mob/Weibo/doAddComment')}" uid="{$weibodetail.uid}">
+                <button  type="submit" style="float: right;width: 18%;border-radius: 5px;padding: 8px 0"
+                         class="am-btn-warning am-btn am-btn-block am-round ">评论
+                </button>
+            </p>
+
+            <php>
+                }else{
+            </php>
+
+            <textarea class="content am-fl" rows="5" id="comment_content_text"   style="height: 35px; width: 63%;border-radius: 5px;border-color: #eee"></textarea>
+
+            <!--表情-->
+            <div class="am-cf am-fl" style="margin: 5px 18px">
+                <a href="javascript:" data-url=" {:U('Core/Expression/getSmile')}" onclick="insertFace($(this))">
+                    <img src="__IMG__/bq.png"></a>
+            </div>
+
+            <div id="emot_content" class="emot_content" style="display: none"></div>
+            <!--表情end-->
+
+
+            <p class="submit" style="margin-bottom:20px " weiboId="{$weibodetail.id}" url="{:U('Mob/Weibo/doAddComment')}">
+                <button style="float: right;width: 18%;border-radius: 5px;padding: 0.56rem 1rem" type="button"  class="am-btn-warning am-btn am-btn-block">提交</button>
+            </p>
+            <php>}</php>
+        </div>
+
+    </div>
+
+
+    <!--微博评论-->
+    <div style="background-color: #fff;padding: 10px;border-top: 1px solid #eee;border-bottom: 1px solid #eee">评论：{$weibodetail.comment_count}</div>
+    <ul class="addmore">
+
+        <volist name="weibocomment" id="vl">
+            <include file="_weibocomment"/>
+        </volist>
+    </ul>
+    <!--微博评论结束-->
+    <if condition="$pid['count'] eq 1">
+        <div class="am-list-news-ft look-more">
+            <a class="" id="getmorecomment"
+                    >查看更多...</a>
+        </div>
+    </if>
+</div>
+    <script>
+        comment();
+        nextpage();
+        //查看更多评论
+        var page = 1;
+        var weibo_id = "{$weibodetail['id']}";
+        function nextpage() {
+            $('#getmorecomment').unbind('click');
+            $('#getmorecomment').click(function () {
+                $("#getmorecomment").html("查看更多" + '&raquo;');
+                $.post("{:U('Mob/Weibo/addMoreComment')}", {page: page + 1, id: weibo_id}, function (msg) {
+                    if (msg.status) {
+                        $(".addmore").append(msg.html);
+                        page++;
+                        del();
+                        forward();
+                        comment();
+                        support();
+                        submit();
+                        nextpage();
+                    } else {
+                        $("#getmorecomment").html("全部加载完成！");
+                        $(".look-more").delay(2000).hide(0);
+                    }
+                })
+            });
+        }
+
+    </script>
+</block>
+
+

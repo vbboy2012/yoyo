@@ -1,0 +1,39 @@
+<notempty name="vo.content.content">
+
+    <div class=" am-g am-cf message" style="border-bottom: 1px solid #dedede;padding:10px">
+
+        <div class="" style="padding: 0px;text-align: center">
+            <div style="width: 23px;float: left;position: relative">
+                <input type="checkbox" class="chose_checkbox checkboxstyle" value="{$vo.id}" style="">
+            </div>
+
+
+            <neq name="vo.from_user" value="">
+                <a href="{$vo.from_user.space_mob_url}" style="float: left;position: relative;left: 50px;">
+                <img style="border-radius: 5px" class=""
+                     src="{$vo.from_user.avatar64}"><br>
+                {$vo.from_user.nickname}</a>
+            </neq>
+        </div>
+
+
+
+        <div class="am-fr am-u-sm-3 am-u-md-2 message-ctime" style="padding:0px;text-align: right;color: #ccc">
+            {$vo.create_time|friendlyDate}
+        </div>
+        <div class="am-fl am-u-sm-5 " style="padding:0px 5px">
+
+            <div class="">
+                <a href="{$vo.content.url} " data-url="{:U('Ucenter/Public/readMessage')}" style="color: #ccc"
+                   onclick="Notify.readMessage(this,{$vo.id})">{$vo.content.title}</a>
+                <eq name="vo.is_read" value="0">
+                    <span class="label label-badge label-info">未读</span>
+                </eq>
+            </div>
+
+            <div class="truncate-2" style="line-height: 20px;color: #ccc">{$vo.content.content}</div>
+        </div>
+
+    </div>
+
+</notempty>

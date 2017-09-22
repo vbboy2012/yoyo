@@ -1,0 +1,30 @@
+<li class="shop-box ">
+    <div class="shop">
+        <div class="shop-info-box">
+            <div class="am-text-center cover" style="position: relative">
+                <php>if($vo['is_hot']){</php>
+                <i class="ico_hot"></i>
+                <php>}else if($vo['is_new']){</php>
+                <i class="ico_new"></i>
+                <php>}</php>
+                <a href="{:U('shop/goodsdetail',array('id'=>$vo['id']))}">
+                    <img class="" style="width: 100% ;height:auto" src="{$vo.goods_ico|getThumbImageById=111,111}"></a>
+            </div>
+            <div class="am-text-left goods-info am-g" style="margin-left: 20px">
+                <div class="goods-name " style="padding: 0px">
+                    <a href="{:U('shop/goodsdetail',array('id'=>$vo['id']))}" class="goods-name" style="color: #000;font-size: 16px">{$vo.goods_name}</a>
+                </div>
+            </div>
+
+            <div class="am-text-left stock-box am-g" style="padding:0px 10px;margin-left: 10px">
+                <div class="money ">
+                    <span><i class="ico_to_money"></i> {$vo.money_need} 分</span>
+                </div>
+                <div class="stock ">
+                    <span style="padding:0px;font-size: 13px">已兑 : {$vo.sell_num} | 库存 : {$vo.goods_num}</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</li>

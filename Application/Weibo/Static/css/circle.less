@@ -1,0 +1,280 @@
+@import "manage.css";
+@import "../../../../Public/css/var";
+@f:#fff;
+@c-6:#666;
+.com-border(@dif-col){
+  border: 1px solid @dif-col;
+}
+.h-lh(@dif-h){
+  height: @dif-h;
+  line-height: @dif-h;
+}
+.com-box{
+  background-color: @f;
+  float: left;
+}
+.com-right-box{
+  background-color: @f;
+  width: 100%;
+  height: auto;
+}
+.com-width(@dif-w){
+  height: 100%;
+  width: @dif-w;
+  float: left;
+  overflow: hidden;
+}
+.c-head-title{
+  padding: 20px 10px;
+  color: @c-6;
+  font-size: 16px;
+  margin: 0;
+   span{
+     color: #333;
+   }
+}
+.c-left-box{
+  width: 780px;
+  margin-bottom: 20px;
+  .com-box;
+  .one-type{
+    margin: 0;
+     .type-title{
+       background-color: rgba(242,242,242,.2);
+       border-bottom: 1px solid #f2f2f2;
+       border-top: 1px solid #f2f2f2;
+       padding: 10px;
+       color: @c-6;
+     }
+  }
+}
+.one-circle{
+  width: 50%;
+  height: 110px;
+  padding: 10px;
+  float: left;
+  .circle-cover-wrap{
+    .com-width(80px);
+    height: 80px;
+    margin-top: 5px;
+    img{
+      width: 80px;
+    }
+
+  }
+  .circle-info-wrap{
+    .com-width(220px);
+    .info-box{
+      .h-lh(30px);
+      width: 210px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+      padding: 0 10px;
+    }
+    .box-num{
+      font-size: 12px;
+      span:nth-child(2){
+        margin-left: 20px;
+      }
+    }
+  }
+  .circle-follow{
+    .com-width(70px);
+    .btn-follow{
+      width: 100%;
+      text-align: center;
+      border-radius: 20px;
+      display: inline-block;
+      margin-top: 30px;
+      color: @c-6;
+      .h-lh(30px);
+      .com-border(#e4e4e4);
+    }
+  }
+}
+.c-right-box{
+  width: 200px;
+  margin-left: 20px;
+  float: left;
+  .create-circle{
+    .com-right-box;
+     .create{
+       height: 105px;
+       background-color: rgba(228,228,228,.2);
+       padding: 15px 0;
+       text-align: center;
+       border-bottom: 1px solid #f2f2f2;
+       .btn-create{
+         width: 120px;
+         border-radius: 30px;
+         text-align: right;
+         padding-right: 20px;
+         display: inline-block;
+         background-color: @f;
+         .h-lh(45px);
+         box-shadow: 3px 3px 3px rgba(204,204,204,.3);
+         margin-bottom: 10px;
+         color: @c-6;
+         position: relative;
+         i{
+           color: rgba(255,51,51,.8);
+           font-size: 25px;
+           display: inline-block;
+           position: absolute;
+           top: 10px;
+           left: 15px;
+         }
+       }
+       p{
+         color: #999;
+       }
+     }
+    .have-circle{
+      margin: 0;
+    }
+    .no-circle{
+      padding: 20px;
+      color: #999;
+      text-align: center;
+      margin-bottom: 10px;
+      p{
+        display: inline-block;
+      }
+    }
+  }
+  .joined-circle{
+    .com-right-box;
+    margin: 10px 0;
+     .joined-p{
+       padding: 10px;
+       color: #999;
+       border-bottom: 1px solid #f2f2f2;
+       margin: 0;
+     }
+  }
+}
+.my-circle{
+  width: 50%;
+  padding: 10px;
+  height: 130px;
+  float: left;
+  text-align: center;
+  .m-cover{
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  p{
+    color: @c-6;
+  }
+}
+
+//首页我关注的圈子列表样式stat
+.my-follow-circle{
+  position: absolute;
+  left: 0;
+  top:55px;
+  background-color: @f;
+  z-index: 10;
+  .com-border(#ccc);
+  max-width: 520px;
+  border-radius: 3px;
+  box-shadow: 0 0 3px rgba(204,204,204,.3);
+  display: none;
+  .follow-left{
+    max-width: 480px;
+    padding: 10px 0;
+    height: 100%;
+    float: left;
+    .m-circle{
+      float: left;
+      padding: 0 10px;
+      max-width: 438px;
+      margin: 0;
+      .my-circle{
+        width: 80px;
+        padding: 0;
+        height: 80px;
+        float: none;
+        display: inline-block;
+        margin: 10px 0;
+        p{
+          margin: 0;
+        }
+        img{
+          width: 50px;
+          height: 50px;
+        }
+      }
+    }
+  }
+  .follow-right{
+    background-color: rgba(228,228,228,.2);
+    border-left: 1px solid #f2f2f2;
+    border-right: none;
+    padding: 10px 0;
+    p{
+      color: #1ABC9C;
+    }
+  }
+}
+.l-circle{
+  width: 40px;
+  height: 100%;
+  border-right: 1px solid #f2f2f2;
+  float: left;
+  display: table;
+  text-align: center;
+  p{
+    display: table-cell;
+    vertical-align: middle;
+    color: @c-6;
+    margin: 0;
+  }
+}
+//首页我关注的圈子列表样式end
+.show-circle{
+  cursor: pointer;
+}
+.card-wrap{
+  width: 346px;
+  height: 112px;
+  border: 1px solid #e4e4e4;
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 0;
+  border-radius: 2px;
+}
+.uploadcover {
+  color: #ffffff;
+  background-color: rgba(3, 3, 3, 0.5);
+  border-color: #4f8ad0;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid rgba(0, 0, 0, 0);
+  white-space: nowrap;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  position: absolute;
+}
+.info-box-title{
+  .h-lh(30px);
+  width: 210px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  padding: 0 10px;
+  color: @primary-color;
+}
+.crowd-hid{
+  display: none;
+}

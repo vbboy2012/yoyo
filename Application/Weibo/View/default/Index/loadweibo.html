@@ -1,0 +1,137 @@
+<volist name="list" id="weibo">
+    {:W('Weibo/WeiboDetail/detail',array('weibo_id'=>$weibo))}
+    <php>if($weibo == $weibo_num-$rand){</php>
+    <notempty name="suggested_follows">
+        <div class="all-wrap main_visual" style="max-width: 680px;margin-bottom: 10px;height: 160px">
+            <h2>推荐用户</h2>
+            <if condition="$suggested_count gt 3">
+                <div class="pager" style="float: left;margin-top: 20px">
+                    <li><a href="javascript:;" id="btn_prev" style="border-radius: 100%!important;padding: 0 5px;"><</a></li>
+                </div>
+            </if>
+
+            <div class="col-xs-10 main_image" style="margin-left: 40px">
+                <volist name="suggested_follows" id="user_list">
+                    <volist name="user_list" id="vo">
+                        <if condition="count($vo)">
+                            <div class="col-xs-4" id="suggested_{$vo.uid}">
+                                <div class="col-xs-6">
+                                    <a ucard="{$vo.uid}" href="{$vo.space_url}">
+                                        <img src="{$vo.avatar128}" style="width: 64px;border-radius: 100%">
+                                    </a>
+                                </div>
+                                <div>
+                                    <span>{$vo.nickname}</span><br>
+                                    <span>粉丝 {$vo.fans}</span>
+                                    <div class="suggested-follows-btn" data-id="{$vo.uid}" data-role="suggested_follows">
+                                        {:W('Common/Follow/follow',array('follow_who'=>$vo['uid']))}
+                                    </div>
+                                </div>
+                            </div>
+                            <else/>
+                            <div class="col-xs-4" style="display: none">
+                                <div class="col-xs-6">
+                                    <a ucard="{$vo.uid}" href="{$vo.space_url}">
+                                        <img src="{$vo.avatar128}" style="width: 64px;border-radius: 100%">
+                                    </a>
+                                </div>
+                                <div>
+                                    <span>{$vo.nickname}</span><br>
+                                    <span>粉丝 {$vo.fans}</span>
+                                    <div class="suggested-follows-btn">
+                                        {:W('Common/Follow/follow',array('follow_who'=>$vo['uid']))}
+                                    </div>
+                                </div>
+                            </div>
+                        </if>
+
+                    </volist>
+
+                </volist>
+            </div>
+            <if condition="$suggested_count gt 3">
+                <div class="pager" style="margin-top: 20px">
+                    <li><a href="javascript:;" id="btn_next" style="border-radius: 100%!important;padding: 0 5px;">></a></li>
+                </div>
+            </if>
+
+
+        </div>
+
+        <script type="text/javascript">
+            $('[data-role="suggested_follows"]').click(function() {
+                var uid = $(this).attr('data-id');
+                $.post(U('Weibo/Index/clearSuggestedFollows'), {uid:uid}, function(msg) {
+//                if(msg.status) {
+//                    setTimeout(function() {
+//                        if(uid == msg.suggested_id) {
+//                            $('#suggested_'+uid).hide();
+//                        }
+//                    }, 1000);
+//                }
+                },'json')
+            });
+            $(document).ready(function () {
+                $(".main_visual").hover(function () {
+                    $("#btn_prev,#btn_next").fadeIn()
+                }, function () {
+                    $("#btn_prev,#btn_next").fadeOut()
+                });
+
+                $dragBln = false;
+
+                $(".main_image").touchSlider({
+                    flexible: true,
+                    speed: 1000,
+                    view : 6,
+                    btn_prev: $("#btn_prev"),
+                    btn_next: $("#btn_next")
+                });
+                $('.main_visual').fadeIn();
+
+                $(".main_image").bind("mousedown", function () {
+                    $dragBln = false;
+                });
+
+                $(".main_image").bind("dragstart", function () {
+                    $dragBln = true;
+                });
+
+                $(".main_image a").click(function () {
+                    if ($dragBln) {
+                        return false;
+                    }
+                });
+
+                timer = setInterval(function () {
+                    $("#btn_next").click();
+                }, 5000);
+
+                $(".main_visual").hover(function () {
+                    clearInterval(timer);
+                }, function () {
+                    timer = setInterval(function () {
+                        $("#btn_next").click();
+                    }, 5000);
+                });
+
+                $(".main_image").bind("touchstart", function () {
+                    clearInterval(timer);
+                }).bind("touchend", function () {
+                    timer = setInterval(function () {
+                        $("#btn_next").click();
+                    }, 5000);
+                });
+
+            });
+        </script>
+    </notempty>
+
+    <php>}</php>
+</volist>
+<if condition="empty($lastId) eq false">
+    <script>
+        weibo.lastId = '{$lastId}';
+    </script>
+</if>
+

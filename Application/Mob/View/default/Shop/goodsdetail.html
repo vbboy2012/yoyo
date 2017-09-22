@@ -1,0 +1,87 @@
+<extend name="Base/mob_common"/>
+
+
+<block name="mob_body">
+    <style>
+        .emot_content{
+            width: 100%;
+            margin: 0 auto;
+            height: 300px;
+            position: absolute;
+            bottom: 45px;
+        }
+    </style>
+<div class="goodsdetail-container ">
+    <link rel="stylesheet" href="__CSS__/amazeui.min.css"/>
+    <link rel="stylesheet" href="__CSS__/apps/weibo.css"/>
+    <link rel="stylesheet" href="__CSS__/app.css"/>
+    <link rel="stylesheet" href="__CSS__/apps/shop.css"/>
+    <style>
+        .container{
+            padding: 0;
+        }
+        body{
+            padding-bottom: 0!important;
+        }
+    </style>
+    <div class="am-tabs" id="doc-my-tabs">
+        <!--<ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
+            <li class="am-active"><a href="">基本信息</a></li>
+            <li><a href="">热门推荐</a></li>
+        </ul>-->
+        <div class="am-tabs-bd" style="margin-top: 2px">
+            <div class="am-tab-panel am-active">
+                <div class="goods">
+                    <div class="">
+                        <div class="am-text-center cover">
+                            <img class="" src="{$detail.goods_ico|getThumbImageById=400,400}" style="width: 100%">
+                        </div>
+                        <div style="clear: both"></div>
+                        <div class="am-g" style="height: 60px;line-height: 55px;background-color: #fff">
+                            <div class="am-u-sm-8" style="">
+                                <span style="color: #A9A9A9">所需积分：</span>
+                                <span style="color: #00bfff;font-size: 18px">{$detail.money_need}分</span>
+                                <span style="color: #A9A9A9;margin-left: 10%">库存：{$detail.goods_num}</span>
+                            </div>
+                            <div class="am-u-sm-4 am-text-center" style="padding: 0px">
+                                <button type="button" class="am-btn am-btn-secondary" style="background-color: orange;border-color: orange;border-radius: 6%"><a href="{:U('shop/buy',array('id'=>$detail['id']))}" style="padding:0 20px;color: #fff">兑换</a>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="spliter "></div>
+                        <div style="height: 50px;background-color: #fff;padding: 3%;border-bottom: 1px solid #d3d3d3;color: #808080">
+                            <span>商品详情</span>
+                        </div>
+                        <div style="line-height: 25px;background-color: #fff;padding: 4%;color: #808080">
+                            <div>
+                                <span>{$detail.goods_detail}</span>
+                                <div style="margin-top: 2%">
+                                    <span style="font-size: 14px">{$detail.createtime|friendlyDate}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spliter"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+    <!--评论列表-->
+    <div class="comment-list" style="">
+
+        {:local_comment_textarea(array('path'=>'Shop/goodsDetail/'.$detail[id],
+        'uid'=>$info['uid'],'count_model'=>'goodsDetail','count_field'=>'reply_count','this_url'=>'Shop/goodsDetail/detail'))}
+        {:get_local_comment_list('Shop/goodsDetail/'.$detail[id])}
+    </div>
+<script>
+    $(function () {
+        $('#doc-my-tabs').tabs();
+    })
+
+
+</script>
+</block>

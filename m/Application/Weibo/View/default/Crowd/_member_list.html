@@ -1,0 +1,37 @@
+<volist name="member_list" id="member">
+    <div class="tabs">
+        <div id="tab1" class="tab active">
+            <div class="content-block noEdge">
+                <ul>
+                    <li class="member info">
+                        <a href="{$member.user.space_mob_url}">
+                            <div class="avatar">
+                                <img src="{$member.user.avatar128}" alt="">
+                            </div>
+                        </a>
+                        <div class="name">
+                            <a class="textMore" href="{$member.user.space_mob_url}">{$member.user.nickname}</a>
+                            <p class="location textMore">
+                                <span>动态  {$member.user_post_num}</span>
+                                <span style="margin-left: .5rem">{$member.create_time|date='Y-m-d',###} 加入</span>
+                            </p>
+                        </div>
+                        <eq name="crowd.is_admin" value="true">
+                            <eq name="tab" value="check">
+                                <a class="follow yes" data-role="receive_member"
+                                   data-crowd-id="{$member.crowd_id}" data-uid="{$member.user.uid}">同意</a>
+                                <a class="follow no" data-role="refuse_member"
+                                   data-crowd-id="{$member.crowd_id}" data-uid="{$member.user.uid}">拒绝</a>
+                                <else/>
+                                <if condition="is_login() neq $member['user']['uid']">
+                                    <a class="follow" data-role="remove_crowd_member"
+                                       data-crowd-id="{$member.crowd_id}" data-uid="{$member.user.uid}">移除</a>
+                                </if>
+                            </eq>
+                        </eq>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</volist>

@@ -1,0 +1,83 @@
+<extend name="Base/mob_common"/>
+<block name="mob_body">
+    <link rel="stylesheet" href="__CSS__/apps/cat.css"/>
+    <script src="__JS__/raty/raty.js"></script>
+    <div class="usercontent-container ">
+
+        <div class="avt-bg">
+            <if condition="$user['cover_id']">
+                <img class="uc_top_img_bg" src="{$user['cover_path']}" style="width: 100%;height: 100%">
+                <else/>
+                <img class="uc_top_img_bg" src="__IMG__/user_top_default_bg.jpg" style="width: 100%;height: 100%">
+            </if>
+            <div class="shade"></div>
+            <div class="avat-box">
+                <div class="cont1">
+                    <img class="avatar-img" src="{$user.avatar64}">
+                    <p style="margin-top: 5px"><a href="{$user.space_mob_url}">{$user.nickname}</a></p>
+                </div>
+
+            </div>
+            <div class="link-box">
+                <ul class="am-avg-sm-3 am-thumbnails">
+                    <li class="am-thumbnail"><a href="{:U('cat/release')}"><p><i class="icon icon-edit"></i></p><p>我的发布{$sendMsg}条</p></a></li>
+                    <li class="am-thumbnail"><a href="{:U('cat/Collection')}"><p><i class="icon icon-star-empty"></i></p><p>我的收藏{$favMsg}条</p></a></li>
+                    <li class="am-thumbnail"><a href="{:U('cat/mymailbox')}"><p><i class="icon icon-chat-dot"></i></p><p>我的信息</p></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!--推荐版块-->
+        <div class="groom">
+            <div class="hd-tit">
+                <p>推荐</p>
+            </div>
+            <div class="cont am-g am-g-fixed">
+                <div class="am-u-sm-5">
+                    <a  href="{:U('Mob/cat/index/mark/House')}">
+                    <div class="left-box">
+                        <p class="p1">租房</p>
+                        <p class="p2">找的放心，住的安心</p>
+                        <p style="margin-top: 20px"><img src="__IMG__/house.png"></p>
+                    </div>
+                    </a>
+                </div>
+                <div class="am-u-sm-7">
+                    <div class="left-box right-box">
+                        <a  href="{:U('Mob/cat/index/mark/PTJob')}">
+                        <div class="up-box">
+                            <div class="am-u-sm-3">
+                                <img src="__IMG__/job.png">
+                            </div>
+                            <div class="am-u-sm-9">
+                                <p class="p3">找工作</p>
+                                <p style="font-size: 12px;margin-top: 10px">优质工作随你挑</p>
+                            </div>
+                        </div>
+                        </a>
+                        <a  href="{:U('Mob/cat/index/mark/jianli')}">
+                        <div class="up-box down-box">
+                            <div class="am-u-sm-3">
+                                <img src="__IMG__/jianli.png">
+                            </div>
+                            <div class="am-u-sm-9">
+                                <p class="p3">找简历</p>
+                                <p style="font-size: 12px;margin-top: 10px">海量简历任你选</p>
+                            </div>
+
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="__JS__/amazeui.min.js"></script>
+
+    <script type="text/javascript">
+
+    </script>
+</block>

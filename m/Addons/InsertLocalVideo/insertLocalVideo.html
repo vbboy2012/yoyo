@@ -1,0 +1,22 @@
+<script type="text/javascript" src="{:getRootUrl()}Addons/InsertLocalVideo/_static/js/video.js"></script>
+<script type="text/javascript" charset="utf-8" src="{:getRootUrl()}Addons/InsertLocalVideo/_static/52player/flowplayer-3.2.11.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/ext/webuploader/js/webuploader.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/com/com.toast.class.js"></script>
+<link href="__PUBLIC__/js/ext/webuploader/css/webuploader.css" type="text/css" rel="stylesheet">
+<a class="insert_video"  href="javascript:"   onclick="video.upload_video(this)">
+    <i class="icon icon-play-circle" style="font-size: 18px;"></i>
+</a>
+        <style>
+            .insert_video{
+                color: #888;
+                margin-right: 20px;
+            }
+            .insert_video:hover{
+                color: #b6e8bb;
+            }
+
+
+        </style>
+
+<input type="hidden" id="get_root" data-url="{:addons_url('InsertLocalVideo://Video/getVideoRoot')}">
+<input type="hidden" id="get_driver" data-url="{:addons_url('InsertLocalVideo://Video/getVideoDriver')}">

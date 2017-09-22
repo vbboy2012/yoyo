@@ -1,0 +1,283 @@
+.musicWrap {
+  width: 310px;
+  height: 66px;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(204, 204, 204, 0.5);
+  background-color: #fff;
+  margin: 10px 0;
+  display: flex;
+}
+.musicWrap .mCover {
+  width: 66px;
+  height: 66px;
+  border-radius: 2px 0 0 2px;
+  overflow: hidden;
+  position: relative;
+}
+.musicWrap .mCover .mMasking {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: center;
+  line-height: 70px;
+}
+.musicWrap .mCover .mMasking .icon-play,
+.musicWrap .mCover .mMasking .icon-pause {
+  color: #fff;
+  font-size: 20px;
+  opacity: .8;
+}
+.musicWrap .mInfo {
+  display: flex;
+  justify-content: space-between;
+  width: 244px;
+  padding: 0 10px;
+  align-items: center;
+}
+.musicWrap .mInfo p {
+  margin: 0;
+  color: #666;
+}
+.musicWrap .mInfo p:first-child {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 125px;
+}
+.musicWrap .mInfo p:last-child {
+  max-width: 70px;
+}
+.xiami {
+  position: absolute;
+  z-index: 1001;
+  background-color: #fff;
+  border: 1px solid #f2f2f2;
+  width: 360px;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(51, 51, 51, 0.3);
+}
+.xiami .close-btn {
+  position: absolute;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  border: 3px solid #fff;
+  background-color: #000;
+  color: #fff;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
+  right: -10px;
+  top: -10px;
+  text-align: center;
+  line-height: 12px;
+}
+.xiami .close-btn i {
+  font-size: 12px;
+}
+.xiami .v-wrap {
+  position: relative;
+}
+.xiami .v-wrap .v-input {
+  width: 300px;
+  height: 40px;
+  border: 1px solid #E4E4E4;
+  border-radius: 4px;
+  padding: 0 10px;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15) inset;
+}
+.xiami .v-wrap .v-input:focus {
+  box-shadow: 0 0 5px rgba(26, 188, 156, 0.5) inset;
+}
+.xiami .v-wrap .s-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 0 4px 4px 0;
+  height: 40px;
+  width: 40px;
+  background-color: #1ABC9C;
+  text-align: center;
+  line-height: 40px;
+  color: #fff;
+  cursor: pointer;
+}
+.xiami_s_r {
+  padding: 10px 0 0;
+  display: none;
+}
+.xiami_s_r li {
+  list-style: none;
+}
+.xiami_s_r .pager {
+  float: right;
+}
+.xiami-player {
+  position: absolute;
+  overflow: hidden;
+  width: 340px;
+  height: 180px;
+  margin: 0 auto;
+  background: #333;
+  border-radius: 15px;
+}
+.xiami-player #pic {
+  position: absolute;
+  width: 137px;
+  height: 137px;
+  top: 21px;
+  left: 21px;
+  background-size: cover;
+  border-radius: 50%;
+  z-index: 3;
+  -webkit-animation: pic 15s linear infinite;
+  -moz-animation: pic 15s linear infinite;
+  -ms-animation: pic 15s linear infinite;
+  -o-animation: pic 15s linear infinite;
+  animation: pic 15s linear infinite;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+.xiami-player .info {
+  position: absolute;
+  top: 15px;
+  left: 145px;
+}
+.xiami-player .info .title {
+  font-weight: bold;
+  width: 210px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 25px;
+}
+.xiami-player .info .singer {
+  font-size: 15px;
+  width: 210px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #ccc;
+  margin: 20px 0 0 50px;
+}
+.xiami-player #lyric {
+  position: absolute;
+  bottom: 45px;
+  left: 185px;
+  width: 215px;
+  height: 48px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  vertical-align: middle;
+}
+.xiami-player .control {
+  position: absolute;
+  bottom: 15px;
+  left: 200px;
+}
+.mob-player {
+  position: absolute;
+  overflow: hidden;
+  width: 340px;
+  height: 180px;
+  margin: 0 auto;
+  background: #333;
+  border-radius: 15px;
+}
+.mob-player #pic {
+  position: absolute;
+  width: 137px;
+  height: 137px;
+  top: 21px;
+  left: 21px;
+  background-size: cover;
+  border-radius: 50%;
+  z-index: 3;
+  -webkit-animation: pic 15s linear infinite;
+  -moz-animation: pic 15s linear infinite;
+  -ms-animation: pic 15s linear infinite;
+  -o-animation: pic 15s linear infinite;
+  animation: pic 15s linear infinite;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+.mob-player .info {
+  position: absolute;
+  top: 15px;
+  left: 145px;
+}
+.mob-player .title {
+  font-weight: bold;
+  width: 210px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 25px;
+}
+.mob-player .singer {
+  font-size: 15px;
+  width: 210px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #ccc;
+  margin: 20px 0 0 50px;
+}
+.mob-player #lyric {
+  position: absolute;
+  bottom: 45px;
+  left: 185px;
+  width: 215px;
+  height: 48px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  vertical-align: middle;
+}
+.mob-player .control {
+  position: absolute;
+  bottom: 15px;
+  left: 200px;
+}
+@media screen and (max-width: 370px) {
+  .mob-player {
+    position: absolute;
+    overflow: hidden;
+    width: 290px;
+    height: 180px;
+    margin: 0px auto;
+    background: #333;
+    border-radius: 15px;
+  }
+  .mob-player #pic {
+    position: absolute;
+    width: 115px;
+    height: 115px;
+    top: 21px;
+    left: 21px;
+    background-size: cover;
+    border-radius: 50%;
+    z-index: 3;
+    -webkit-animation: pic 15s linear infinite;
+    -moz-animation: pic 15s linear infinite;
+    -ms-animation: pic 15s linear infinite;
+    -o-animation: pic 15s linear infinite;
+    animation: pic 15s linear infinite;
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+  }
+  .mob-player .control {
+    position: absolute;
+    bottom: 36px;
+    left: 160px;
+  }
+}
+.music {
+  color: white;
+  font-size: 25px;
+}

@@ -1,0 +1,112 @@
+@import "../../../../Public/css/core";
+.fmSlide{
+  padding: 0;
+  overflow: hidden;
+}
+.moreNav{
+  background-color: @comColor;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  .oneNav{
+    width: 70px;
+    height: 100px;
+    margin: 10px 5px;
+    text-align: center;
+    p{
+      margin-top: 5px!important;
+    }
+    .round{
+      .osCircle(75px);
+      position: relative;
+      i{
+        font-size: 30px;
+        color: @comColor;
+      }
+    }
+  }
+}
+.hotTit{
+  border-left: 2px solid @themeColor;
+  padding-left: 10px;
+  color: @minorTextColor;
+  line-height: 1;
+  a{
+    color: @minorTextColor;
+    font-size: 12px;
+  }
+}
+.hotType{
+  background-color: @comColor;
+  padding:10px 10px 0;
+}
+.listWrap{
+  background-color: @comColor;
+  li{
+    background-color: @comColor;
+    padding: 10px;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    &:after{
+      content: '';
+      width: 90%;
+      height: 1px;
+      background-color: #f2f2f2;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+    &:last-of-type:after{
+      display: none;
+    }
+    .nwInfo{
+      flex: 1;
+      .author{
+        display: flex;
+        align-items: center;
+        font-size: 13px;
+        .cov{
+          .osCircle(30px);
+          border: 1px solid #eee;
+        }
+        a{
+          margin: 0 8px;
+          color: @themeColor;
+          max-width: 100px;
+        }
+        .time{
+          color: @minorTextColor;
+        }
+      }
+      .cont{
+        color: #333;
+        padding: 5px 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+      .otherInfo{
+        font-size: 12px;
+        color: @minorTextColor;
+        max-width: 265px;
+        .type{
+          border: 1px solid @themeColor;
+          color: @themeColor;
+          padding: 3px 8px;
+          display: inline-block;
+          border-radius: 3px;
+        }
+      }
+    }
+    .nwCover{
+      width: 90px;
+      height: 85px;
+      padding-left: 10px;
+      overflow: hidden;
+    }
+  }
+}

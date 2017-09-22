@@ -1,0 +1,150 @@
+@f:#fff;
+.manage-wrap{
+  background-color: @f;
+  width: 100%;
+  margin-top: 50px;
+  position: relative;
+  .m-head{
+    height: 105px;
+    padding: 10px;
+    .head-left{
+      width: 200px;
+      height: 100%;
+      float: left;
+      position: relative;
+      .m-cover{
+        width: 130px;
+        height: 130px;
+        border: 5px solid rgba(148, 148, 148, 0.2);
+        position: absolute;
+        right: 0;
+        top: -60px;
+        img{
+          width: 130px;
+        }
+      }
+    }
+    .head-right{
+      float: left;
+      height: 100%;
+      padding-left: 20px;
+      .m-name{
+        font-size: 16px;
+      }
+      .m-intro{
+        color: #666;
+      }
+      .m-num{
+        color: #999;
+      }
+    }
+  }
+  .tab-wrap{
+    background-color: rgba(242,242,242,.2);
+    border-bottom: 1px solid #f2f2f2;
+    border-top: 1px solid #f2f2f2;
+    height: 45px;
+    padding: 0 20px;
+  }
+  .tab-content{
+    margin-bottom: 20px;
+    padding: 0 20px;
+    .nav{
+      li{
+        a{
+          color: #999;
+        }
+      }
+    }
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
+      background-color: transparent;
+      border-bottom: none;
+      color: #333;
+    }
+  }
+}
+.nav{
+  li{
+    margin-left: 20px!important;
+    &:first-child{
+      margin: 0!important;
+    }
+    a{
+      border-radius: 0;
+      padding: 11px 15px;
+      &:hover,&:focus{
+        background-color: transparent;
+      }
+    }
+  }
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
+  background-color: transparent;
+  border-bottom: 1px solid #1ABC9C;
+  color: #1ABC9C;
+}
+.review{
+  padding: 10px;
+  height: 85px;
+  border-bottom: 1px solid #f2f2f2;
+  .r-cover{
+    width: 65px;
+    height: 65px;
+    float: left;
+    img{
+      width: 65px
+    }
+  }
+  .r-info{
+    float: left;
+    height: 100%;
+    padding: 5px 30px;
+    .r-time{
+      color: #999;
+      margin-bottom: 0;
+      font-size: 12px;
+      span{
+        margin-right: 20px;
+      }
+    }
+  }
+  .r-btn{
+    width: 80px;
+    height: 100%;
+    float: right;
+    .permission{
+      width: 75px;
+      height: 30px;
+      border: 1px solid;
+      border-radius: 20px;
+      text-align: center;
+      line-height:30px;
+      display: block;
+      i{
+        margin-right: 7px;
+      }
+    }
+    .yes{
+      margin-bottom: 5px;
+      color: #1ABC9C;
+      border-color: #1ABC9C;
+    }
+    .no{
+      color: red;
+      border-color: red;
+    }
+    .out{
+      margin-top: 4px;
+    }
+  }
+  .r-contribute{
+    width: 160px;
+    height: 100%;
+    float: right;
+    padding-top: 17px;
+    input{
+      width: 60px;
+      display:inline-block;
+    }
+  }
+}

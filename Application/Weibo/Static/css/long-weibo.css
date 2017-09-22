@@ -1,0 +1,73 @@
+/**long-weibo**/
+.long-weibo-title .title-input {
+  width: 535px;
+  padding: 10px;
+  border: none;
+  border-left: none;
+  border-right: none;
+  text-align: left;
+}
+.long-weibo-title .title-input:hover,
+.long-weibo-title .title-input:focus {
+  outline: none;
+}
+.long-weibo-list-content a.article-link:hover .long-block .position-block {
+  bottom: 0px;
+  transition: bottom 0.5s;
+  -moz-transition: bottom 0.5s;
+  /* Firefox 4 */
+  -webkit-transition: bottom 0.5s;
+  /* Safari 和 Chrome */
+  -o-transition: bottom 0.5s;
+  /* Opera */
+}
+.long-weibo-list-content .long-block {
+  position: relative;
+  height: 135px;
+  overflow: hidden;
+  background: #FBFBFB;
+}
+.long-weibo-list-content .long-block h1 {
+  margin: 10px 0 0;
+  color: #4b634b;
+  padding: 0 10px;
+  font-size: 24px;
+}
+.long-weibo-list-content .long-block .word-wrap {
+  color: #848484;
+  padding: 0px 10px;
+}
+.long-weibo-list-content .long-block .position-block {
+  position: absolute;
+  bottom: -40px;
+  width: 100%;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  line-height: 40px;
+  transition: bottom 0.5s;
+  -moz-transition: bottom 0.5s;
+  /* Firefox 4 */
+  -webkit-transition: bottom 0.5s;
+  /* Safari 和 Chrome */
+  -o-transition: bottom 0.5s;
+  /* Opera */
+}
+.long-weibo-list-content .long-block .position-block .read-long-weibo-logo {
+  width: 24px;
+  height: 10px;
+  display: inline-block;
+  margin-right: 10px;
+  position: relative;
+}
+.long-weibo-list-content .long-block .position-block .read-long-weibo-logo .logo {
+  width: 24px;
+  height: 24px;
+  background: url('../images/long-weibo-read.png') no-repeat;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -12px;
+}

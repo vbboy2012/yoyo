@@ -1,0 +1,193 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/weibo.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <div class="content infinite-scroll infinite-scroll-bottom" style="bottom: 40px" data-distance="100">
+                <div class="content-block noEdge noShadow">
+                    <div class="proHead">
+                        <div>
+                            <a style="vertical-align: bottom;padding: 0" class="button button-link back textMore" href="{$back}">
+                                <i class="iconfont icon-xiangzuojiantou"></i>{$site_name}
+                            </a>
+                        </div>
+                        <a class="focusBtn" data-role="open-code">关注</a>
+                    </div>
+                    <div class="proWrap">
+                        <div class="info" style="padding-bottom: 0">
+                            <a href="{$weibo.user.space_mob_url}">
+                                <div class="avatar wbAvatar">
+                                    <img src="{$weibo.user.avatar128}" alt="">
+                                </div>
+                            </a>
+
+
+                            <div class="name">
+                                <a class="user-name" href="{$weibo.user.space_mob_url}">{$weibo.user.nickname} </a>
+                                <p class="location textMore">
+                                    <span>{$weibo.create_time|friendlyDate}</span>
+                                    <span class="wbSpace">|</span>
+                                    <span>{$read_count}人看过</span>
+                                </p>
+                            </div>
+                            <if condition="$weibo['is_follow'] eq 1">
+                                <a href="javascript:" data-role="follow" data-value="unfollow" data-uid="{$weibo.uid}"
+                                   class="follow do-active">已关注</a>
+                                <else/>
+                                <if condition="$weibo['uid'] eq is_login()">
+
+                                    <else/>
+                                    <a href="javascript:" data-role="follow" data-value="follow" data-uid="{$weibo.uid}"
+                                       class="follow do-active">关注</a>
+                                </if>
+                            </if>
+                        </div>
+                        <div class="proContent">
+                            <div>
+                                <if condition="$weibo['type'] eq 'long_weibo'">
+                                    <div class="long">
+                                        {$weibo.long_weibo.long_content|parse_emoji|parse_br_nb}
+                                    </div>
+                                    <else/>
+                                    {$weibo.fetchContent}
+                                </if>
+                            </div>
+                            <notempty name="weibo['weibo_data']['location']">
+                                <div class="textMore location" style="max-width: 350px"><i
+                                        class="iconfont icon-dingwei"></i>{$weibo.weibo_data.location_text}
+                                </div>
+                            </notempty>
+                            <notempty name="weibo.crowd_id">
+                                <a href="{:U('Weibo/Index/index',array('crowd_id'=>$weibo['crowd_id']))}"
+                                   external style="color:#19bca1">来自{$weibo.crowd_id|get_crowd_title}</a>
+                            </notempty>
+                        </div>
+                    </div>
+                    <!--点赞-->
+                    <div class="commentWrap likeWrap">
+                        <span class="cTitle">点赞<span>{$supportCount}</span></span>
+                        <div class="contentBox likeList">
+                            <volist name="support" id="vo">
+                                <a href="{:U('ucenter/index/mine/',array('uid'=>$vo['uid']['uid']))}" class="likeOne"><img src="{$vo['uid']['avatar512']}" alt=""><p></p></a>
+                            </volist>
+                        </div>
+                    </div>
+                    <!--评论-->
+                    <div class="commentWrap">
+                        <span class="cTitle">评论<span>{$weibo.comment_count}</span></span>
+                        <div class="contentBox commentList">
+                            <notempty name="comment">
+                                <include file="_comment"/>
+                                <else/>
+                                <div class="noWrap">
+                                    <p class="emojiText">╭(╯^╰)╮</p>
+                                    <p class="noState open-about">暂无评论，<span>点击添加</span></p>
+                                </div>
+
+                            </notempty>
+
+                        </div>
+                    </div>
+                </div>
+                <if condition="$comment_count gt 10">
+                    <!-- 加载提示符 -->
+                    <div class="infinite-scroll-preloader">
+                        <div class="preloader"></div>
+                    </div>
+                </if>
+            </div>
+            <div class="operate floatNav" data-id="{$weibo.id}">
+                <div class="oneOpt flexWrap do-support"><i class="iconfont icon-dianzan"
+                    <if condition="$weibo.is_support eq 1">style="color: #ec725d;"</if>
+                    ></i><span class="support-count">点赞</span></div>
+                <div class="oneOpt flexWrap open-about"><i class="iconfont icon-pinglun"></i><span>评论</span></div>
+                <div class="oneOpt flexWrap open-repost"><i class="iconfont icon-zhuanfa"></i><span>转发</span></div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="other">
+    <input type="hidden" data-role="site_info" data-name="{$site_name}" data-intro="{$site_intro}"
+           data-qcode="{$qcode}"/>
+    <div class="popup popup-about sendWrap">
+        <div class="content-block noEdge">
+            <div class="newSend">
+                <!--<textarea placeholder="写评论......" class="sendArea" rows="3"></textarea>-->
+                <div class="sendArea needsclick" contenteditable="true" style="height: 80px;border: 1px solid #eee;margin-bottom: 10px"></div>
+                <div class="commentOp">
+                    <a data-role="show-bottom" data-type="emoji" style="margin-left: -20px"
+                       class="iconfont icon-biaoqing pull-left send-weibo-bar col-20 text-center"></a>
+                    <a data-role="show-bottom" data-type="image" style="margin-left: -175px"
+                       class="iconfont icon-tupian pull-left send-weibo-bar col-20 text-center"></a>
+                    <a href="javascript:" data-role="sendComment" data-id="{$weibo.id}" class="proBtn close-popup">发布</a>
+                </div>
+                <div class="send-bottom emoji">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper emoji-list"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+                <div class="send-bottom image"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup popup-repost sendWrap">
+        <div class="content-block">
+            <form id="repost">
+                <input type="hidden" name="weiboId" value="{$weibo.id}">
+                <if condition="$weibo.weibo_data.sourceId neq 0">
+                    <input type="hidden" name="sourceId" value="{$weibo.weibo_data.sourceId}">
+                    <else/>
+                    <input type="hidden" name="sourceId" value="{$weibo.id}">
+                </if>
+                <input type="hidden" name="type" value="repost">
+                <textarea placeholder="转发动态..." class="sendArea" rows="3" name="content"></textarea>
+                <div class="commentOp">
+                    <label class="pull-left" style="margin-top: 4px">
+                        <input type="checkbox" name="becomment">
+                        <span>同时评论动态</span>
+                    </label>
+                    <a href="javascript:" data-role="repost" data-id="{$weibo.id}"
+                       class="proBtn close-popup-repost">转发</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__PUBLIC_JS__/public.js"></script>
+    <script src="//cdn.bootcss.com/emojione/2.2.7/lib/js/emojione.min.js"></script>
+    <script>
+        $(function () {
+            emojione.imageType = 'png';
+            emojione.ascii = true;
+            emojione.imagePathPNG = _ROOT_ + '/Public/emoji/';
+        })
+
+        $('[data-role="show-bottom"]').click(function () {
+            var $this = $(this);
+            var type = $this.attr('data-type');
+            $('.send-bottom').hide();
+            $('.send-bottom.' + type).show();
+            switch (type) {
+                case 'image':
+                    $('.send-bottom.image').uploadImage();
+                    break;
+                case 'emoji':
+                    get_emoji();
+                    break;
+            }
+            var h = screen.width / 10 * 4 + 5;
+            $('.send-bottom.' + type).css('height', h);
+            $('.send-bottom.' + type).css('background-color', '#fcfcfc');
+            $this.closest('.bar-footer').animate({bottom: h + 'px'}, 100);
+
+        });
+    </script>
+    <script src="__JS__/detail.js"></script>
+</block>
+
+

@@ -1,0 +1,96 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a id="choice" data-id="1" href="javascript:" class="title open-about">
+                    全部问题
+                    <i class="iconfont icon-xiangxiajiantou floatIcon"></i>
+                </a>
+                <a href="{:U('Question/index/search')}" class="iconfont icon-weibiaoti3 search"></a>
+            </header>
+            <div class="content content infinite-scroll"  data-ptr-distance="55" data-role="myRole" data-distance="100">
+                <div class="buttons-tab" style="overflow-x: scroll;">
+                    <volist name="categoryResult" id="vo">
+                        <if condition="$vo.num eq tab1 ">
+                    <a href="#{$vo.num}" data-id="{$vo.categoryId}" data-code="no" class="tab-link active button">{$vo.title}</a>
+                            <else/>
+                            <a href="#{$vo.num}" data-id="{$vo.categoryId}" data-code="no" class="tab-link button">{$vo.title}</a>
+                        </if>
+                    </volist>
+                </div>
+                <div class="content-block">
+                    <div class="tabs">
+                        <volist name="categoryResult" id="vo">
+                            <if condition="$vo.num eq tab1 ">
+                            <div id="{$vo.num}" class="tab active">
+                                <div class="content">
+                                    <div class="content-block noEdge"  >
+                                        <ul  class="wrapList" data-total="{$vo.total}" >
+                                            <include file="_list"/>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                                <else/>
+                                <div id="{$vo.number}" class="tab">
+                                    <div class="content">
+                                        <div class="content-block noEdge">
+                                            <ul class="wrapList" data-total="{$vo.total}" >
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </if>
+                        </volist>
+                        <div style="display: none" class="infinite-scroll-preloader">
+                            <div class="preloader"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <include file="./Application/Common/View/default/Public/footer.html"/>
+
+            <!--提问按钮-->
+            <a class="sBtn iconfont icon-fabu" href="{:U('Question/index/ask')}"></a>
+        </div>
+    </div>
+</block>
+<block name="other">
+    <!--选择问题类型-->
+    <div class="popup popup-about popup-type">
+        <div class="triangle"></div>
+        <div id="type" data-id="" class="content-block typeList">
+            <p id="1">
+                <a  class="close-popup myType">
+                    <i class="iconfont icon-wenzhang"></i>全部问题
+                </a>
+            </p>
+            <p id="2">
+                <a  class="close-popup myType">
+                    <i class="iconfont icon-wenzhang"></i>待回答
+                </a>
+            </p>
+            <p id="3">
+                <a  class="close-popup myType">
+                    <i class="iconfont icon-wenzhang"></i>热门问题
+                </a>
+            </p>
+            <p id="4">
+                <a  class="close-popup myType">
+                    <i class="iconfont icon-wenzhang"></i>我的提问
+                </a>
+            </p>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/question.js"></script>
+
+</block>

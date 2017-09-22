@@ -1,0 +1,68 @@
+<div id="frm-post-popup" class="white-popup" style="max-width: 745px">
+    <div class="weibo_post_box">
+        <h2>转移圈子管理员权限</h2>
+
+        <div class="aline" style="margin-bottom: 10px"></div>
+        <div class="row">
+            <div class="col-xs-12" style="text-align: center">
+                <span class="col-xs-12" style="color: red;padding: 10px;">双击左边选择好友到右边已选择，双击右边已选择的好友取消选择(只显示您未加入该圈子的好友)</span>
+
+                <div class="col-xs-12" style="text-align: center">
+
+                    <select class="before_select" size="10">
+                        <volist name="friends" id="friend">
+                            <option value="{$friend.uid}" title="{$friend.nickname}">{$friend.nickname}</option>
+                        </volist>
+                    </select>
+                    <select class="after_select" size="10">
+                    </select>
+                    <a class="btn btn-primary sure_transfer" style="margin-top: -180px">确认转移</a>
+                </div>
+
+            </div>
+        </div>
+
+        <button title="Close (Esc)" type="button" class="mfp-close" style="color: #333;">×</button>
+    </div>
+</div>
+<!-- /.modal -->
+<style>
+    .before_select, .after_select {
+        width: 200px;
+    }
+</style>
+
+<script>
+    $(function () {
+
+        $('.before_select option').dblclick(function () {
+            $('.after_select').children().remove();
+            $('.after_select').append($(this).clone());
+            transfer++;
+            bind_after_select();
+        });
+
+        function bind_after_select() {
+            $('.after_select option').unbind('dblclick');
+            $('.after_select option').dblclick(function () {
+                $this = $(this);
+                $this.remove();
+            })
+        }
+
+        $('.sure_transfer').click(function () {
+            var uid = $('.after_select option').val();
+            var crowd_id = "{$crowd_id}";
+            $.post(U('weibo/index/transferCrowdAdmin'), {uid: uid, crowd_id: crowd_id}, function (res) {
+                if (res.status) {
+                    handleAjax(res);
+                    $('.mfp-close').click();
+                }
+                else {
+                    toast.error(res.info);
+                }
+            })
+        })
+
+    })
+</script>

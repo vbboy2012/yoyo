@@ -1,0 +1,28 @@
+.pic-emg {
+  height: 50px;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+.pic-emg .icon-box {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  float: left;
+  margin-left: 10px;
+  position: relative;
+}
+.pic-emg .icon-box:first-child {
+  margin-left: 0;
+}
+.pic-emg .icon-box a {
+  font-size: 20px;
+}
+.pic-emg .icon-box input {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  opacity: 0;
+}

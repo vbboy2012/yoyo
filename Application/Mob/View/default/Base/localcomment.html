@@ -1,0 +1,32 @@
+<div class="comment-item" style="background-color: #ffffff;padding: 10px;margin-bottom: 0;border:none;border-bottom: 1px solid #eee;">
+    <div class="am-cf avatar-img" style="height: 35px">
+        <div class="am-fl avatar" style="margin-right: 10px">
+            <img class="avatar-img" style="width: 32px" src="{$localcomment.user.avatar64}">
+
+        </div>
+
+        <!--昵称和时间-->
+        <div class="am-fl" style="height: 100%">
+            <p style="margin-bottom: 0"><a style="color: #333;font-size: 14px" href="{:U('Mob/User/index',array('uid'=>$vl['user']['uid']))}"><span>{$localcomment.user.nickname}</span></a></p>
+            <p style="font-size: 12px;color: #c9c9c9"> {$localcomment.create_time|friendlyDate}</p>
+        </div>
+
+        <div class="am-fr" style="">
+            <php> if(check_auth('deleteLocalComment',$localcomment['uid'])){</php>
+            <div class="am-fl am-text-center" style="float: right;margin-left: 15px">
+                <a  data-role="del_local_comment"  data-id="{$localcomment.id}" data-count-model=" "  data-count-field="">
+                    <i style="color: #aeaeae" class="am-icon-trash" id="doc-confirm-toggle"></i></a>
+            </div>
+            <php>}</php>
+            <div class="am-fl t_center">
+                <a  data-role="reply_local_comment" data-nickname="{$localcomment['user']['nickname']}" href="javascript:">
+                    <i style="color: #aeaeae" class="am-icon-comment-o"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="am-g content" style="padding: 10px 10px 10px 0">
+        {$localcomment.content|parse_weibo_mobile_content}
+    </div>
+
+</div>

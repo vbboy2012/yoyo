@@ -1,0 +1,150 @@
+<extend name="Base/mob_common"/>
+<block name="mob_body" >
+    <script src="__JS__/weibo.js"></script>
+    <link rel="stylesheet" href="{:getRootUrl()}Addons/InsertXiami/_static/css/xiami.css">
+    <link rel="stylesheet" href="__CSS__/apps/weibo.css"/>
+    <link rel="stylesheet" href="__CSS__/apps/nav.css"/>
+    <div class="weibo-container" style="padding-bottom: 60px">
+        <if condition="!empty($crowd_detail)">
+            <ul class="crowd-box">
+                <li class="crowd-list">
+                    <div class="am-cf am-g info-box">
+                        <div class="avatar am-u-sm-3 am-text-center">
+                            <a href="{:U('Mob/Weibo/index', array('crowd_id'=>$crowd_detail['id']))}">
+                                <img src="{$crowd_detail.logo|getThumbImageById=160,160}" style="width: 80px;height: 80px">
+                            </a>
+                        </div>
+                        <div class="info am-u-sm-6">
+                            <a href="{:U('Mob/Weibo/index', array('crowd_id'=>$crowd_detail['id']))}">
+                                <div><h4 class="info-title">{$crowd_detail.title}</h4></div>
+                                <div><span class="infos">{$crowd_detail.intro}</span></div>
+                                <div><span class="infos">成员 {$crowd_detail.member_count}</span>&nbsp;&nbsp;&nbsp;<span class="infos">讨论 {$crowd_detail.post_count}</span></div>
+                            </a>
+                        </div>
+                        <div class="am-u-sm-3">
+                            <if condition="$crowd_detail.is_admin eq 'true'">
+                                <a href="{:U('Mob/Weibo/crowdManager', array('id' => $crowd_detail['id']))}" class="btn-follow">
+                                    管理
+                                </a>
+                                <else/>
+                                <switch name="crowd_detail.is_follow">
+                                    <case value="0">
+                                        <a href="javascript:" class="btn-follow" <gt name="data.need_pay" value="0">data-toggle="modal" data-target="#myModal{$crowd_detail.id}"<else/>data-role="follow_crowd" data-id="{$crowd_detail.id}"</gt> >
+                                        加入
+                                        </a>
+                                    </case>
+                                    <case value="1">
+                                        <a href="javascript:" class="btn-follow" data-role="unfollow_crowd" data-id="{$crowd_detail.id}">
+                                            已加入
+                                        </a>
+                                    </case>
+                                    <case value="2">
+                                        <a href="javascript:" class="btn-follow" data-id="{$crowd_detail.id}">
+                                            待审核
+                                        </a>
+                                    </case>
+                                    <case value="-2">
+                                        <a href="javascript:" class="btn-follow" <gt name="data.need_pay" value="0">data-toggle="modal" data-target="#inviteModal{$crowd_detail.id}"<else/>data-role="follow_crowd" data-id="{$crowd_detail.id}"</gt> >
+                                        被邀请
+                                        </a>
+                                    </case>
+                                    <default/>
+                                    <a href="javascript:" class="btn-follow" data-role="follow_crowd" data-id="{$crowd_detail.id}">
+                                        加入
+                                    </a>
+                                </switch>
+                            </if>
+
+                        </div>
+                    </div>
+                </li>
+                <h4 class="notice">{$crowd_detail.notice}</h4>
+            </ul>
+            <!--<div id="crowd_top_list">
+                <volist name="crowd_top_list" id="top">
+                    {:W('WeiboDetail/detail',array('weibo_id'=>$top,'can_hide'=>1))}
+                </volist>
+            </div>-->
+        </if>
+        <if condition="$invisible eq 1">
+            <p class="private-crowd-toast">该圈子已设为私密,您需加入后才能浏览</p>
+            <else/>
+            <ul class="weibo-list list ulclass" id="article_list_ul">
+
+                <notempty name="weibo">
+                    <include file="_weibolist"/>
+                    <else/>
+                    <div class="am-text-center" style="background-color:#FFFFFF;margin-top: -15px"><img
+                            src="__IMG__/tip.png" style="width: 100%;height: 100%">
+                    </div>
+                </notempty>
+
+            </ul>
+            <notempty name="weibo">
+                <if condition="$pid['count'] eq 1">
+                    <if condition="$pid['is_allweibo'] eq 1">
+                        <div class="am-list-news-ft look-more">
+                            <a id="getmore" data-url="{:U('Mob/Weibo/addMoreWeibo')}"
+                            >查看更多 &raquo;</a>
+                        </div>
+
+                    </if>
+                    <if condition="$pid['is_myfocus'] eq 1">
+                        <div class="am-list-news-ft look-more">
+                            <a id="getmorefocus" data-url="{:U('Mob/Weibo/addMoreMyFocus')}"
+                            >查看更多 &raquo;</a>
+                        </div>
+                    </if>
+                    <if condition="$pid['is_hotweibo'] eq 1">
+                        <div class="am-list-news-ft look-more">
+                            <a id="getmorehotweibo" data-url="{:U('Mob/Weibo/addMoreHotWeibo')}"
+                            >查看更多 &raquo;</a>
+                        </div>
+                    </if>
+                    <if condition="$pid['is_myweibo'] eq 1">
+                        <div class="am-list-news-ft look-more">
+                            <a id="getmoremyweibo" data-url="{:U('Mob/Weibo/addMoreMyWeibo')}"
+                            >查看更多 &raquo;</a>
+                        </div>
+                    </if>
+                </if>
+            </notempty>
+        </if>
+
+    </div>
+
+    <php>$uid=is_login();</php>
+    <div class="navBt">
+        <a href="{:U('Mob/Weibo/index')}" class="btBar active">
+            <i class="iconfont icon-dongtai2-copy"></i>
+            <span>动态</span>
+        </a>
+        <a href="{:U('Mob/Weibo/crowd')}" class="btBar">
+            <i class="iconfont icon-quanzi"></i>
+            <span>圈子</span>
+        </a>
+        <a href="{:U('Mob/Message/index')}" class="btBar">
+            <i class="iconfont icon-xiaoxi"></i>
+            <span>消息</span>
+        </a>
+        <a class="btBar" <if condition="$uid eq 0">href="javascript:toast.error('请先登录！');"
+        <else/> href="{:U('Mob/User/index')}" </if> >
+        <i class="iconfont icon-wode"></i>
+            <span>我</span>
+        </a>
+
+    </div>
+       <input id="navtitle" value="{$navtitle}" type="hidden">
+<script>
+    show_video();
+   window.onload=function () {
+       var src=$('[data-role="{$navtitle}"]').attr('src');
+       var startsrc=src.substring(src.lastIndexOf('/')+1);
+       var newpic='g'+startsrc;
+       var newsrc=src.substr(0,src.lastIndexOf('/')+1)+newpic;
+       $('[data-role="{$navtitle}"]').attr('src',newsrc);
+
+   }
+   
+</script>
+</block>

@@ -1,0 +1,30 @@
+<div class="item"  style="background-color: #ffffff;padding: 10px;border-bottom: 1px solid #F2F2F2;">
+    <div class="am-cf avatar-img" style="height: 35px">
+        <div class="am-fl avatar" style="margin-right: 10px">
+            <img class="avatar-img" style="width: 32px" src="{$vl.user.avatar32}">
+
+        </div>
+
+        <!--昵称和时间-->
+        <div class="am-fl" style="height: 100%">
+            <p><a style="color: #333;font-size: 14px" href="{:U('Mob/User/index',array('uid'=>$vo['user']['uid']))}"><span>{$vl.user.nickname}</span></a></p>
+            <p style="font-size: 12px;color: #c9c9c9">{$vl.create_time|friendlyDate}</p>
+        </div>
+
+        <div class="am-fr" style="">
+            <div class="am-fl am-text-center" style="float: right;margin-left: 15px">
+                <a class="delete" comment_id="{$vl['id']}" weibo_id="{$vl['weibo_id']}" url="{:U('Mob/Weibo/delComment')}">
+                    <i style="color: #aeaeae" class="am-icon-trash" id="doc-confirm-toggle"></i></a>
+            </div>
+            <div class="am-fl t_center">
+                <a class="atcomment"  href="{:U('Mob/Weibo/addComment',array('id'=>$vl['weibo_id'],'user'=>$vl['user']['nickname']))}">
+                    <i style="color: #aeaeae" class="am-icon-comment-o"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="am-g content" style="padding: 10px 10px 10px 0">
+        {$vl.content}
+    </div>
+
+</div>

@@ -1,0 +1,26 @@
+<volist name="comment" id="vo">
+    <li id="comment_{$vo.id}">
+        <a>
+            <div class="avatar"><img src="{$vo.user.avatar512}" alt="头像"></div>
+
+            <div class="cmtInfo">
+                <p class="first"><object><a class="textMore" href="{:U('ucenter/index/mine',array('uid'=>$vo['user']['uid']))}">{$vo.user.nickname}</a></object>
+                <span class="operate" data-id="{$vo.id}" data-uid="{$vo['user']['uid']}" style="background: #fff">
+                    <span class="oneOpt flexWrap do-support-forum" >
+                        <i class="iconfont icon-dianzan" <if condition="$vo.is_support eq 1">style="color: #ec725d;"</if> ></i>
+                        <span class="support-count">{$vo.support_all_count}</span>
+                    </span>
+                </span>
+                </p>
+                <p class="detail">{$vo.content}</p>
+                <p class="time"><span>{$vo.create_time}</span>
+                    <object><a href="{:U('Forum/index/commentById',array('id'=>$vo['id']))}">回复</a>
+                        <if condition="check_auth('Forum/Index/delPostReply',$vo['uid'])">
+                            <span style="margin-left: 10px" data-role="delete-comment" data-id="{$vo.id}" data-uid="$vo['uid']">删除</span>
+                        </if>
+                    </object>
+                </p>
+            </div>
+        </a>
+    </li>
+</volist>

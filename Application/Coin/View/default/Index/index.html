@@ -1,0 +1,75 @@
+<extend name="Base/common"/>
+
+<block name="style">
+    <link href="__CSS__/event.css" rel="stylesheet" type="text/css"/>
+</block>
+<block name="header">
+    <include file="_nav"/>
+</block>
+<block name="body">
+    <!--导航-->
+    <div class="col-xs-9">
+        <div class="forum_module" style="min-height: 800px">
+            <table class="table">
+                <tbody>
+                <volist name="adList" id="vo">
+                    <tr>
+                        <php>$img = substr($vo['path'],0,strlen($vo['path'])-4);$img.='_64_64';</php>
+                        <td><img src="__ROOT__/Uploads/Avatar/{$img}.jpg" class="img-circle"></td>
+                        <td>{$vo.nickname}</td>
+                        <td>{$vo.trade_num}笔交易</td>
+                        <td>{$vo.pay_type}</td>
+                        <td>{$vo.price}{$vo.currency}</td>
+                        <td>{$vo.min_price}-{$vo.max_price}</td>
+                        <php>
+                            if($vo['type'] == 1 || $vo['type'] == 3){
+                                $title = "购买";
+                            }else if($vo['type'] == 2 || $vo['type'] == 4){
+                            $title = "出售";
+                            }
+                        </php>
+                        <td><button>{$title}</button></td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div>
+            <div class="pull-right">
+
+                {:getPagination($totalPageCount,10)}
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-3" style="z-index: 99">
+        <include file="_right"/>
+    </div>
+</block>
+
+<block name="script">
+    <script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+    <script type="text/javascript" src="__JS__/event.js"></script>
+    <script>
+        $(function () {
+            $('#top_nav >li >a ').mouseenter(function () {
+                $('.children_nav').hide();
+                $('#children_' + $(this).attr('data')).show();
+            });
+        })
+    </script>
+    <script type="text/javascript">
+        var SUPPORT_URL = "{:addons_url('Support://Support/doSupport')}";
+    </script>
+</block>
+
+
+
+
+
+
+
+
+
+

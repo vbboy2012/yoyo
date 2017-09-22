@@ -1,0 +1,16 @@
+
+    <p class="word-wrap">{$weibo.content}</p>
+    <div  style="border: 1px solid #e8e8e8;padding: 10px;margin-bottom: 20px; background: #f1f1f1">
+    <empty name="weibo.source_weibo.uid">
+        {:L('_ORIGINAL_HAS_DELETED_')}
+        <else/>
+        <div style="padding-bottom: 5px">  <a ucard="{$weibo.source_weibo.user.uid}"     href="{$weibo.source_weibo.user.space_url}">@{$weibo.source_weibo.user.nickname|htmlspecialchars}</a></div>
+        {$weibo.source_weibo.fetchContent}
+        <br/>
+        <div style="padding-top: 8px">
+            <span class="text-primary pull-left" style="font-size: 12px;"><a href="{:U('Weibo/Index/detail',array('id'=>$weibo['source_weibo']['id']))}">{$weibo.source_weibo.create_time|friendlyDate}</a>   </span>
+            <span class="text-primary pull-right" style="font-size: 12px;"><a href="{:U('Weibo/Index/detail',array('id'=>$weibo['source_weibo']['id']))}"> 原{$MODULE_ALIAS}转发（{$weibo.source_weibo.repost_count}）</a>  </span>
+        </div>
+        &nbsp;
+    </empty>
+    </div>

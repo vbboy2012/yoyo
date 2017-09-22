@@ -1,0 +1,32 @@
+<!-- 管理员用户组新增和编辑页面 -->
+<extend name="Public/base"/>
+<block name="body">
+    <div class="main-title">
+        <h2>激活成功</h2>
+    </div>
+    <div class="tab-wrap with-padding">
+
+        <div class="block">
+            <p>恭喜，激活成功。</p>
+            <p>商业客户编号：</p>
+
+            <div class="text-center" style="height: 30px;width: 400px;background: #eee;line-height: 30px;margin-bottom: 10px">{$user.number}</div>
+
+            <div>
+                <a href="{:U('admin/bclient/updateList')}"
+                   class="btn btn-primary">立即升级到商业版</a>
+
+
+                <a href="{:U('admin/bclient/doupdate')}"
+                   class="btn btn-primary">进入客户中心</a>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</block>
+<block name="script">
+
+</block>

@@ -1,0 +1,24 @@
+<volist name="comment" id="vo">
+    <li>
+        <div class="flexDiv">
+            <div class="flexLeft">
+                <div class="avatar"><img src="{$vo.user.avatar512}" alt="用户头像"></div>
+                <div class="rightDiv"><a href="{:U('ucenter/index/mine',array('uid'=>$vo['user']['uid']))}">{$vo.user.nickname}</a></div>
+            </div>
+            <div class="flexRight">{$vo.create_time}</div>
+        </div>
+        <p class="detail">{$vo.content}</p>
+        <p class="opt">
+            <a href="{:U('News/index/commentById',array('id'=>$vo['id']))}">
+                <span class="iconfont icon-pinglun1" style="font-size: 17px"></span>
+                <span class="commentDetail">{$vo.all_count}</span>
+            </a>
+            <span class="operate supportDetail" data-id="{$vo.id}" data-uid="{$vo['user']['uid']}" data-support="News-comment">
+                <span class="oneOpt flexWrap do-support-news" >
+                    <i class="iconfont icon-dianzan" <if condition="$vo.is_support eq 1">style="color: #ec725d;"</if> ></i>
+                    <span class="support-count" style="margin-top: 3px">{$vo.support_all_count}</span>
+                </span>
+            </span>
+        </p>
+    </li>
+</volist>

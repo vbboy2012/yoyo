@@ -1,0 +1,110 @@
+<extend name="Base/mob_common"/>
+<block name="mob_body">
+    <script src="__JS__/issue.js"></script>
+    <link rel="stylesheet" href="__CSS__/apps/issue.css"/>
+    <style>
+        .am-navbar{
+            top: 38px;
+        }
+        .am-navbar-nav a{
+            height: auto;
+            color: #a1a1a1;
+        }
+        .am-navbar-default .am-navbar-nav{
+            background-color: #fff;
+        }
+        body{
+            background-color: #f7f7f7;
+        }
+        a:hover, a:focus{
+            text-decoration: none!important;
+        }
+    </style>
+    <div data-am-widget="" class="am-navbar am-cf am-navbar-default"
+         id="">
+        <ul class="am-navbar-nav am-cf am-avg-sm-3" style="overflow: visible">
+
+            <li>
+                <a href="{:U('Mob/Issue/index')}" style="">
+                    全站专辑
+                </a>
+            </li>
+            <li style="position: relative">
+                <a style="">
+                    专辑分类</a>
+                    <div class="am-dropdown" data-am-dropdown style="position: absolute;right: 25px;top: 0">
+                        <i class="am-icon-angle-down  am-dropdown-toggle" style="font-size: 20px;color: #a1a1a1"></i>
+
+                        <div class="am-dropdown-content" style="padding:5px;text-align: center;line-height: 0;margin: 5px -7px 0;min-width: 115px">
+
+                            <div class="issue-type-list" style="">
+                                <div class="am-panel-group" id="accordion" style="margin: 0;border: none!important;">
+
+                                    <volist name="issue_top" id="vo">
+                                        <div class="am-panel am-panel-default type-list" style="border: none;box-shadow: none;text-align: center">
+                                            <div id="do-not-say-{$vo.id}" class="am-panel-collapse am-collapse am-in">
+
+
+
+                                                <volist name="vo['lever_two']" id="vl">
+                                                    <ul class="issue-type">
+                                                        <a href="{:U('Mob/Issue/issueLeverDetail',array('id'=>$vl['id']))}" class="">
+                                                            <li class="type">{$vl.title}</br>
+                                                            </li>
+                                                        </a>
+                                                    </ul>
+                                                </volist>
+
+
+                                            </div>
+                                        </div>
+                                    </volist>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </li>
+
+        </ul>
+    </div>
+<div class=" issue-container" style="margin-top: 46px">
+    <!--分类-->
+    <div>
+
+    </div>
+    <!-- 专辑列表-->
+    <ul class="  issue-list  ulclass" style="margin:15px auto">
+        <notempty name="issue">
+            <volist name="issue" id="vo">
+                <include file="_issuelist"/>
+            </volist>
+            <else/>
+            <div class="am-text-center" style="background-color:#FFFFFF;margin-top: -15px"><img src="__IMG__/tip.png"
+            style="width: 100%;height: 100%">
+            </div>
+        </notempty>
+
+    </ul>
+</div>
+
+
+
+
+<notempty name="issue">
+    <if condition="$pid['count'] eq 1">
+        <if condition="$title['pid'] eq 0">
+            <div class="am-list-news-ft look-more">
+                <a class="" id="getmore" data-url="{:U('Mob/Issue/addMoreIssue')}"
+                        >查看更多 &raquo;</a>
+            </div>
+        </if>
+        <if condition="$title['pid'] neq 0">
+            <div class="am-list-news-ft look-more">
+                <a class="" id="getmoreclass" data-url="{:U('Mob/Issue/addMoreIssueClass')}" data-role="{$title.id}"
+                        >查看更多 &raquo;</a>
+            </div>
+        </if>
+    </if>
+</notempty>
+</block>

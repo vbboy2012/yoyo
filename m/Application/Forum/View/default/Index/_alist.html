@@ -1,0 +1,33 @@
+<volist name="user" id="vo">
+    <li>
+        <div class='myLink'>
+            <a href="{:U('Ucenter/index/mine',array('uid'=>$vo['uid']))}">
+                <div class='fCover'>
+                    <img class='myImg' alt='{$vo.nickname}' src="{$vo.avatar128}" />
+                </div>
+            </a>
+            <div class='fInfo'>
+                <a href="{:U('Ucenter/index/mine',array('uid'=>$vo['uid']))}">
+                    <p class='fName'>{$vo.nickname}</p>
+                    <p class='fIntro'>
+                        <span>{:L('_PUBLISH_POST_')} {$vo.post}</span>
+                        <span>粉丝 {$vo.fans|default='0'}</span>
+                    </p>
+                </a>
+            </div>
+        </div>
+        <if condition="$vo['uid'] neq is_login()">
+            <a href="javascript:" class="a-follow" data-follow="{$vo.ufollow}" data-uid="{$vo.uid}" data-role="follow">
+                <if condition="$vo['ufollow'] eq 'unfollow'">
+                    {:L('_FOLLOWED_')}
+                    <else/>
+                    + {:L('_FOLLOWERS_')}
+                </if>
+            </a>
+        <else/>
+            <a href="javascript:" class="my-follow" data-follow="{$isFollow}" data-uid="{$user.info.uid}" data-role="follow">
+                自己
+            </a>
+        </if>
+    </li>
+</volist>

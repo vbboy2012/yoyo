@@ -1,0 +1,32 @@
+<div class="comment-item" style="background-color: #ffffff;padding: 10px;margin-bottom: 0;border:none;border-bottom: 1px solid #eee;">
+    <div class="am-cf avatar-img" style="height: 35px">
+        <div class="am-fl avatar" style="margin-right: 10px">
+            <img class="avatar-img" style="width: 32px" src="{$vl.user.avatar32}">
+
+        </div>
+
+        <!--昵称和时间-->
+        <div class="am-fl" style="height: 100%">
+            <p><a style="color: #333;font-size: 14px" href="{:U('Mob/User/index',array('uid'=>$vl['user']['uid']))}"><span>{$vl.user.nickname}</span></a></p>
+            <p style="font-size: 12px;color: #c9c9c9"> {$vl.create_time|friendlyDate}</p>
+        </div>
+
+        <php>if(is_login()){</php>
+        <div class="am-fr" style="">
+            <div class="am-fl am-text-center" style="float: right;margin-left: 15px">
+                <a class="delete" comment_id="{$vl.id}" news_id="{$vl.row_id}" url="{:U('Mob/News/delNewsComment')}">
+                    <i style="color: #aeaeae" class="am-icon-trash" id="doc-confirm-toggle"></i></a>
+            </div>
+            <div class="am-fl t_center">
+                <a class="atcomment"  href="{:U('Mob/News/atComment',array('id'=>$vl['row_id'],'user'=>$vl['user']['nickname'],'uid'=>$vl['uid']))}">
+                    <i style="color: #aeaeae" class="am-icon-comment-o"></i>
+                </a>
+            </div>
+        </div>
+        <php>}</php>
+    </div>
+    <div class="am-g content" style="padding: 10px 10px 10px 0">
+        {$vl.content}
+    </div>
+
+</div>

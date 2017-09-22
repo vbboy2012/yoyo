@@ -1,0 +1,196 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <header class="bar bar-nav comHead">
+                    <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                       href="javascript:history.go(-1);"></a>
+                    <a href="javascript:" class="title">资讯详情</a>
+                </header>
+            </header>
+            <!--底部操作栏-->
+            <div class="bar bar-tab bottomBar">
+                <div class="down-box">
+                <div class="left">
+                    <span class="open-popup" data-popup=".answer">说点什么</span>
+                </div>
+                <div class="right">
+                    <span class="iconfont icon-pinglun comment height" data-role="to-commend">
+                        <notempty name="data['comments']">
+                            <b class="number" data-role="comment" data-total="{$data.comment}">{$data.comments}</b>
+                        </notempty>
+                    </span>
+                    <div class="operate height do-support-news-a" data-id="{$data.id}" data-uid="{$data['user']['uid']}" data-support="News" style="background: #fff">
+                        <span class="iconfont icon-xin oneOpt flexWrap" <if condition="$data.is_support eq 1">style="color: #ec725d;"<else/>style="color:#3d4145;"</if> ></span>
+                    </div>
+                    <span class="iconfont icon-favorite height"  <if condition='$collect neq false'>style='color:#ec725d;'</if> data-role="collect" data-id="{$data.id}"></span>
+                    <span class="iconfont icon-lingcunwei height open-popup" data-popup=".share"></span>
+                </div>
+                </div>
+            </div>
+            <div class="content infinite-scroll" style="padding-bottom: 44px" data-role="myRole" data-distance="100"
+                 data-ptr-distance="55">
+                <div class="content-block noEdge">
+                    <div class="dtWrap">
+                        <p class="newsTit">{$data.title}</p>
+                        <div class="dtAuth">
+                            <div class="flexDiv">
+                                <div class="flexLeft">
+                                    <div class="avatar"><img src={$data['user']['avatar512']} alt="用户头像"></div>
+                                    <div class="rightDiv">
+                                        <a class="auth-name" href="{:U('ucenter/index/mine',array('uid'=>$data['user']['uid']))}">{$data.user.nickname}</a>
+                                        <p class="textMore sign">{$data.create_time}</p>
+                                    </div>
+                                </div>
+                                <div class="flexRight" <if condition="is_login() eq $data['uid']">style="display: none"</if> >
+                                    <if condition="$data['follow'] eq 0">
+                                        <a href="javascript:" class="focus" data-role="follow"
+                                           data-follow-who="{$data['uid']}">+ 关注</a>
+                                        <else/>
+                                        <a href="javascript:" class="focus" data-role="unfollow"
+                                           data-follow-who="{$data['uid']}">已关注</a>
+                                    </if>
+                                </div>
+                            </div>
+                        </div>
+                        <if condition="$data['illegal_status'] neq false">
+                            <div class="illegal-status">
+                                <span>此资讯的状态是{$data.illegal_status}状态，您是管理员所以依然可以阅读</span>
+                            </div>
+                        </if>
+                        <notempty name="data['description']">
+                            <p class="descTxt">
+                                {$data.description|shortDesc}
+                            </p>
+                        </notempty>
+                        <div class="mainTxt">
+                            {$data.content}
+                        </div>
+                    </div>
+                    <!--打赏-->
+                    <div class="reward">
+                        <p>您的支持是对我最大的鼓励！</p>
+                        <p><span data-role="reward">赞赏支持</span></p>
+                        <div class="who open-popup open-about" data-popup=".allPeople">
+                            <div data-role="head">
+                            <volist name="rewardResult" id="val" offset="0" length='5'>
+                            <a  href="javascript:"><img src="{$val['avatar32']}" alt=""></a>
+                            </volist>
+                            </div>
+                            <if condition="$count gt 0">
+                            <small data-role="count">等{$count}人</small>
+                                <else/> <small data-role="no" >暂无任何人打赏！</small>
+                            </if>
+                        </div>
+                    </div>
+                <notempty name="recommend">
+                    <div class="reComm">
+                        <p class="about">相关资讯</p>
+                        <ul>
+                            <volist name="recommend" id="vo">
+                                <li>
+                                    <a href="{:U('News/index/detail',array('id'=>$vo['id']))}" ><img class="nwCover" src="{:getThumbImageById($vo['cover'],320,240)}" alt="资讯封面"/></a>
+                                    <div class="nwInfo">
+                                        <a href="{:U('News/index/detail',array('id'=>$vo['id']))}" class="cont">{$vo.title}</a>
+                                        <div class="author">
+                                            <a class="textMore auth-name" href="{:U('ucenter/index/mine',array('uid'=>$vo['user']['uid']))}">{$vo.user.nickname}</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </volist>
+                        </ul>
+                    </div>
+                </notempty>
+                    <div class="dtComment" data-role="comm-view">
+                        <!--<p>评论</p>-->
+                        <!--<p class="shortLine"></p>-->
+                        <ul class="cmtList"  data-follow-who="{$data['uid']}" data-role="all-comment" data-id="{$data.id}" data-total="{$total}">
+                            <if condition="$total eq 0">
+                                <div class="" data-role="shafa">
+                                    <p class="noComm">暂时没有评论，赶紧来抢沙发吧！</p>
+                                    <p data-popup=".answer" class="shafa open-popup"><span>抢沙发</span></p>
+                                </div>
+                            </if>
+                        </ul>
+                        <div class="infinite-scroll-preloader">
+                            <div class="preloader"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="other">
+    <!--我来回答-->
+    <div class="popup popup-about sendWrap answer">
+        <div class="content-block noEdge">
+            <div class="newSend">
+                <div class="sendArea needsclick" contenteditable="true" style="height: 80px;border: 1px solid #eee;margin-bottom: 10px"></div>
+                <div class="commentOp">
+                    <i class="iconfont icon-biaoqing" data-role="open-emoji"></i>
+                    <a href="javascript:" data-role="sendComment" data-id="{$data.id}" class="proBtn close-popup">评论</a>
+                </div>
+            </div>
+
+            <div class="send-bottom emoji" style="display: none;">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper emoji-list"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--分享资讯-->
+    <div class="popup popup-about sendWrap share">
+        <div class="content-block noEdge">
+            <div class="newSend">
+                <div class="shareArea needsclick" contenteditable="true" style="height: 80px;border: 1px solid #eee;margin-bottom: 10px"></div>
+                <div class="commentOp">
+                    <i class="iconfont icon-biaoqing" data-role="open-emoji"></i>
+                    <a href="javascript:" data-role="shareComment" data-id="{$data.id}" data-query="{$query}" class="proBtn close-popup">分享</a>
+                </div>
+            </div>
+            <div class="send-bottom emoji" style="display: none;">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper emoji-list"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--所有打赏人列表-->
+    <div class="popup popup-about sendWrap allPeople">
+        <div class="content-block noEdge">
+            <p class="allTit">读者赞赏 <span class="close-popup">关闭</span></p>
+            <ul style="height: 300px" data-role="ulList">
+                <include file="_rewardlist"/>
+            </ul>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/news.js"></script>
+    <script src="__PUBLIC_JS__/public.js"></script>
+    <script src="__PUBLIC_JS__/core.js"></script>
+    <script src="//cdn.bootcss.com/emojione/2.2.7/lib/js/emojione.min.js"></script>
+    <script src="__JS__/detail.js"></script>
+    <script src="__PUBLIC__/js/refreshData.js"></script>
+    <script>
+        $('[data-role="to-commend"]').click(function(){
+            $('[data-role="comm-view"]')[0].scrollIntoView(true);
+        }) ;
+        $(function () {
+            emojione.imageType = 'png';
+            emojione.ascii = true;
+            emojione.imagePathPNG = _ROOT_ + '/Public/emoji/';
+        })
+        var detailID = $('.cmtList').attr('data-id');
+        var total = $('.cmtWlist').attr('data-total');
+        refreshData('News/index/detail',total,'.cmtList',{id:detailID});
+    </script>
+</block>

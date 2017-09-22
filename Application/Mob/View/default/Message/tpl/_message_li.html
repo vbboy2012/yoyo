@@ -1,0 +1,12 @@
+<li>
+    <a <if condition="$data['web_url'] neq ''">href="{$data['mob_url']}"</if> title="">
+        <div class="avatar-box">
+            <img src="{$data['user']['avatar64']}" alt="">
+        </div>
+        <div class="info-box">
+            <div class="name">{$data['user']['nickname']}<span>{$data.create_time|friendlyDate}</span></div>
+            <div class="info">{$data.title}-{$data.content}</div>
+        </div>
+        <div class="clearfix"></div>
+    </a>
+</li>

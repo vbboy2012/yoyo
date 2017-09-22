@@ -1,0 +1,235 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current" style="background-color: #fff">
+            <header class="bar bar-nav comHead">
+                <header class="bar bar-nav comHead">
+                    <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                       href="javascript:history.go(-1);"></a>
+                    <a href="javascript:" class="title">帖子详情</a>
+                </header>
+            </header>
+            <div class="content infinite-scroll" style="padding-bottom: 55px" data-distance="100" data-ptr-distance="55">
+                <div class="content-block noEdge">
+                    <!--如果是精华帖则显示下方icon-->
+                    <!--如果是置顶帖则显示下方icon-->
+                    <p class="dtTit"><if condition="$data['is_essence']"><i class="iconfont icon-jing"></i><elseif condition="$data['is_top']&&$data['is_essence']==0" /><i class="iconfont icon-iconfuben zhiding"></i></if>{$data.title}</p>
+                    <div class="flexDiv dtAuthor">
+                        <div class="flexLeft">
+                            <div class="avatar"><img src="{$data.user.avatar512}" alt="头像"></div>
+                            <div class="rightDiv"><a href="{:U('ucenter/index/mine',array('uid'=>$data['user']['uid']))}">{$data.user.nickname}</a></div>
+                        </div>
+                        <div class="flexRight">{$data.create_time}</div>
+                    </div>
+                        <if condition="$data.hide eq on&&$totalUid eq 0&&$data['file_id'] gt 0&&$data['pay_on'] neq on">
+                            <div class="dtDetail" id="count_show">
+                                <p class="noState open-about">如果您想查看本帖隐藏内容，<span data-popup=".cmt" class="open-popup open-about">请回复</span></p>
+                            </div>
+                            <div class="dtDetail" id="count_hide" style="display: none">
+                                {$data.content}
+                                <div class="hdFile">
+                                    <p>本帖附件</p>
+                                    <a href="{:get_file_url_forum($data['file_id'])}" data-role="upDownloadNum" data-id="{$data['file_id']}">{$download.name}</a>
+                                    <p class="number">(下载次数：{$download.download_num})</p>
+                                </div>
+                            </div>
+                            <elseif condition="$data.hide eq on&&$totalUid eq 0&&$data['pay_on'] eq on&&$payUid eq 0" />
+                                <div class="dtDetail" id="count_show">
+                                    <p class="noState open-about">如果您想查看本帖隐藏内容，<span data-popup=".cmt" class="open-popup open-about">请回复</span></p>
+                                </div>
+                                <div class="dtDetail" id="count_hide" style="display: none">
+                                    {$data.content}
+                                    <div class="hdFile">
+                                        <p>本帖附件</p>
+                                        <a href="{:get_file_url_forum($data['file_id'])}" data-role="upDownloadNum" data-id="{$data['file_id']}" style="display: none" id="payNone">{$download.name}</a>
+                                        <a data-role="payForDownload" href="javascript:" id="payBlock" data-id="{$data.id}" data-uid="{$data.uid}" data-type="{$data.pay_type}" data-num="{$data.pay_num}">点击付费</a>
+                                        <p class="number">(下载次数：{$download.download_num}，售价：{$data.pay_num}{$data.pay_type})</p>
+                                    </div>
+                                </div>
+                            <elseif condition="$data.hide eq on&&$totalUid eq 0&&$data['pay_on'] eq on&&$payUid gt 0" />
+                                <div class="dtDetail" id="count_show">
+                                    <p class="noState open-about">如果您想查看本帖隐藏内容，<span data-popup=".cmt" class="open-popup open-about">请回复</span></p>
+                                </div>
+                                <div class="dtDetail" id="count_hide" style="display: none">
+                                    {$data.content}
+                                    <div class="hdFile">
+                                        <p>本帖附件</p>
+                                        <a href="{:get_file_url_forum($data['file_id'])}" data-role="upDownloadNum" data-id="{$data['file_id']}">{$download.name}</a>
+                                        <p class="number">(下载次数：{$download.download_num}，售价：{$data.pay_type}{$data.pay_num})</p>
+                                    </div>
+                                </div>
+                            <elseif condition="$data.hide eq on&&$totalUid eq 0&&$data['file_id'] eq 0" />
+                                <div class="dtDetail" id="count_show">
+                                    <p class="noState open-about">如果您想查看本帖隐藏内容，<span data-popup=".cmt" class="open-popup open-about">请回复</span></p>
+                                </div>
+                                <div class="dtDetail" id="count_hide" style="display: none">
+                                    {$data.content}
+                                </div>
+                            <elseif condition="$data.hide eq on&&$totalUid gt 0&&$data['file_id'] eq 0" />
+                                <div class="dtDetail">
+                                    {$data.content}
+                                </div>
+                            <elseif condition="$data.hide eq on&&$totalUid gt 0&&$data['file_id'] gt 0&&$data['pay_on'] neq on" />
+                                <div class="dtDetail">
+                                    {$data.content}
+                                    <div class="hdFile">
+                                        <p>本帖附件</p>
+                                        <a href="{:get_file_url_forum($data['file_id'])}" data-role="upDownloadNum" data-id="{$data['file_id']}">{$download.name}</a>
+                                        <p class="number">(下载次数：{$download.download_num})</p>
+                                    </div>
+                                </div>
+                            <elseif condition="$data.hide eq on&&$totalUid gt 0&&$data['pay_on'] eq on&&$payUid eq 0" />
+                                <div class="dtDetail">
+                                    {$data.content}
+                                    <div class="hdFile">
+                                        <p>本帖附件</p>
+                                        <a href="{:get_file_url_forum($data['file_id'])}" data-role="upDownloadNum" data-id="{$data['file_id']}" style="display: none" id="payNone">{$download.name}</a>
+                                        <a data-role="payForDownload" href="javascript:" id="payBlock" data-id="{$data.id}" data-uid="{$data.uid}" data-type="{$data.pay_type}" data-num="{$data.pay_num}">点击付费</a>
+                                        <p class="number">(下载次数：{$download.download_num}，售价：{$data.pay_num}{$data.pay_type})</p>
+                                    </div>
+                                </div>
+                            <elseif condition="$data.hide eq on&&$totalUid gt 0&&$data['pay_on'] eq on&&$payUid gt 0" />
+                                <div class="dtDetail">
+                                    {$data.content}
+                                    <div class="hdFile">
+                                        <p>本帖附件</p>
+                                        <a href="{:get_file_url_forum($data['file_id'])}" data-role="upDownloadNum" data-id="{$data['file_id']}">{$download.name}</a>
+                                        <p class="number">(下载次数：{$download.download_num}，售价：{$data.pay_type}{$data.pay_num})</p>
+                                    </div>
+                                </div>
+                            <elseif  condition="$data.hide neq on&&$data['pay_on'] eq on&&$payUid eq 0" />
+                                <div class="dtDetail">
+                                    {$data.content}
+                                    <div class="hdFile">
+                                        <p>本帖附件</p>
+                                        <a href="{:get_file_url_forum($data['file_id'])}" data-role="upDownloadNum" data-id="{$data['file_id']}" style="display: none" id="payNone">{$download.name}</a>
+                                        <a data-role="payForDownload" href="javascript:" id="payBlock" data-id="{$data.id}" data-uid="{$data.uid}" data-type="{$data.pay_type}" data-num="{$data.pay_num}">点击付费</a>
+                                        <p class="number">(下载次数：{$download.download_num}，售价：{$data.pay_num}{$data.pay_type})</p>
+                                    </div>
+                                </div>
+                            <elseif  condition="$data.hide neq on&&$data['pay_on'] eq on&&$payUid gt 0" />
+                                <div class="dtDetail">
+                                    {$data.content}
+                                    <div class="hdFile">
+                                        <p>本帖附件</p>
+                                        <a href="{:get_file_url_forum($data['file_id'])}" data-role="upDownloadNum" data-id="{$data['file_id']}">{$download.name}</a>
+                                        <p class="number">(下载次数：{$download.download_num}，售价：{$data.pay_type}{$data.pay_num})</p>
+                                    </div>
+                                </div>
+                            <elseif condition="$data.hide neq on&&$data['file_id'] gt 0&&$data['pay_on'] neq on" />
+                            <div class="dtDetail">
+                                {$data.content}
+                                <div class="hdFile">
+                                    <p>本帖附件</p>
+                                    <a href="{:get_file_url_forum($data['file_id'])}" data-role="upDownloadNum" data-id="{$data['file_id']}">{$download.name}</a>
+                                    <p class="number">(下载次数：{$download.download_num})</p>
+                                </div>
+                            </div>
+                            <else/>
+                            <div class="dtDetail">
+                                {$data.content}
+                            </div>
+                        </if>
+                    <!--如果是管理员 则显示下方操作按钮-->
+
+                    <div class="optBox">
+                        <if condition="check_auth()">
+                            <span data-role="top" data-id="{$data.id}">{$data['is_top']?'取消置顶':'置顶'}</span>
+                            <span data-role="essence" data-id="{$data.id}">{$data['is_essence']?'取消加精':'加精'}</span>
+                        </if>
+                        <if condition="check_auth('Forum/Index/delPost',$data['uid'])">
+                            <span data-role="delete" data-id="{$data.id}" data-uid="$data['uid']">删除</span>
+                        </if>
+                    </div>
+                    <!--<div class="optBox">-->
+                        <!---->
+                    <!--</div>-->
+                    <div class="reward">
+                        <p>如果觉得我的帖子对你有帮助，请随意打赏。您的支持将鼓励我继续创作！</p>
+                        <p><span data-role="reward" data-id="{$data.id}" data-uid="{$data.uid}">赞赏支持</span></p>
+                        <div class="who open-popup open-about" data-popup=".allPeople">
+                            <div data-role="head">
+                                <volist name="rewardResult" id="val" offset="0" length='5'>
+                                    <a  href="javascript:"><img src="{$val['avatar32']}" alt=""></a>
+                                </volist>
+                            </div>
+                            <if condition="$count gt 0">
+                                <small data-role="count">等{$count}人</small>
+                                <else/> <small data-role="no" >暂无任何人打赏！</small>
+                            </if>
+                        </div>
+                    </div>
+                    <!--评论列表-->
+                    <p  class="dtCmt" data-role="comment" data-total="{$total}">评论数 {$total}</p>
+                    <div class="dtMargin">
+                        <ul class="cmtWrap" data-role="all-comment" data-id="{$data.id}" data-total="{$total}">
+                            <if condition="$total eq 0">
+                                <div class="noWrap">
+                                    <p class="emojiText">╭(╯^╰)╮</p>
+                                    <p class="noState open-about">暂无评论，<span data-popup=".cmt" class="open-popup open-about">点击添加</span></p>
+                                </div>
+                            </if>
+                        </ul>
+                        <div class="infinite-scroll-preloader">
+                            <div class="preloader"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--评论-->
+            <div class="floatNav">
+                <div class="cmtBox open-popup open-about" data-popup=".cmt"><i class="iconfont icon-wenzi"></i> <span>期待你的神评论</span></div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="other">
+    <!--我来回答-->
+    <div class="popup popup-about sendWrap cmt">
+        <div class="content-block noEdge">
+            <div class="newSend">
+                <div class="sendArea needsclick" contenteditable="true" style="height: 80px;border: 1px solid #eee;margin-bottom: 10px"></div>
+                <div class="commentOp">
+                    <i class="iconfont icon-biaoqing" data-role="open-emoji"></i>
+                    <a href="javascript:" data-role="sendComment" data-id="{$data.id}" class="proBtn close-popup">评论</a>
+                </div>
+            </div>
+
+            <div class="send-bottom emoji">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper emoji-list"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--所有打赏人列表-->
+    <div class="popup popup-about sendWrap allPeople">
+        <div class="content-block noEdge">
+            <p class="allTit">读者赞赏 <span class="close-popup">关闭</span></p>
+            <ul style="height: 300px" data-role="ulList">
+                <include file="_rewardlist"/>
+            </ul>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/news.js"></script>
+    <script src="__JS__/detail.js"></script>
+    <script src="__PUBLIC__/js/refreshData.js"></script>
+    <script src="__PUBLIC_JS__/public.js"></script>
+    <script src="//cdn.bootcss.com/emojione/2.2.7/lib/js/emojione.min.js"></script>
+    <script>
+        $(function () {
+            emojione.imageType = 'png';
+            emojione.ascii = true;
+            emojione.imagePathPNG = _ROOT_ + '/Public/emoji/';
+        })
+         var detailID = $('.cmtWrap').attr('data-id');
+         var total = $('.cmtWrap').attr('data-total');
+         refreshData('Forum/index/detail',total,'.cmtWrap',{id:detailID});
+    </script>
+</block>

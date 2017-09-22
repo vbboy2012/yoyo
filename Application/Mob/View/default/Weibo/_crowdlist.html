@@ -1,0 +1,52 @@
+<notempty name="crowd_list">
+    <volist name="crowd_list" id="vo">
+        <ul class="crowd-box">
+            <li class="crowd-list">
+                <div class="am-cf am-g info-box">
+                    <div class="avatar am-u-sm-3 am-text-center">
+                        <a href="{:U('Mob/Weibo/index', array('crowd_id'=>$vo['crowd']['id']))}">
+                            <img src="{$vo.crowd.logo|getThumbImageById=160,160}" style="width: 80px;height: 80px">
+                        </a>
+                    </div>
+                    <div class="info am-u-sm-6">
+                        <a href="{:U('Mob/Weibo/index', array('crowd_id'=>$vo['crowd']['id']))}">
+                            <div><h4 class="info-title">{$vo.crowd.title}</h4></div>
+                            <div><span class="infos">{$vo.crowd.intro}</span></div>
+                            <div><span class="infos">成员 {$vo.crowd.member_count}</span>&nbsp;&nbsp;&nbsp;<span class="infos">讨论 {$vo.crowd.post_count}</span></div>
+                        </a>
+                    </div>
+                    <div class="am-u-sm-3">
+                        <switch name="vo.crowd.is_follow">
+                            <case value="0">
+                                <a href="javascript:" class="btn-follow" <gt name="data.need_pay" value="0">data-toggle="modal" data-target="#myModal{$vo.crowd.id}"<else/>data-role="follow_crowd" data-id="{$vo.crowd.id}"</gt> >
+                                加入
+                                </a>
+                            </case>
+                            <case value="1">
+                                <a href="javascript:" class="btn-follow" data-role="unfollow_crowd" data-id="{$vo.crowd.id}">
+                                    已加入
+                                </a>
+                            </case>
+                            <case value="2">
+                                <a href="javascript:" class="btn-follow" data-id="{$vo.crowd.id}">
+                                    待审核
+                                </a>
+                            </case>
+                            <case value="-2">
+                                <a href="javascript:" class="btn-follow" <gt name="data.need_pay" value="0">data-toggle="modal" data-target="#inviteModal{$vo.crowd.id}"<else/>data-role="follow_crowd" data-id="{$vo.crowd.id}"</gt> >
+                                被邀请
+                                </a>
+                            </case>
+                            <default/>
+                            <a href="javascript:" class="btn-follow" data-role="follow_crowd" data-id="{$vo.crowd.id}">
+                                加入
+                            </a>
+                        </switch>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </volist>
+    <else/>
+    <div class="am-text-center" style="background-color:#FFFFFF;margin-top: -15px"><img src="__IMG__/tip.png" style="width: 100%;height: 100%"></div>
+</notempty>

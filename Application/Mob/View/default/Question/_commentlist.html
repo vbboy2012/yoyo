@@ -1,0 +1,133 @@
+<div class="answer am-cf">
+    <div class="answer-info am-fl ">
+        <!--<div class="author-avatar">
+            <img src="{$vl['user']['avatar32']}">
+        </div>
+-->
+        <php>if(is_null($vl['has_support'])){</php>
+
+        <div style="margin-bottom: 10px" class="support-count  support_up" data-url="{:U('Mob/Question/support')}" data-role="{$vl.id}">
+            <p><i class="am-icon-thumbs-o-up"></i></p>
+            <p><span class="up">{$vl.support}</span></p>
+
+        </div>
+        <div class="support-count  support_down" data-url="{:U('Mob/Question/support')}" data-role="{$vl.id}">
+            <p><p><i class="am-icon-thumbs-o-down"></i></p></p>
+            <p><span class="down"> {$vl.oppose}</span></p>
+        </div>
+
+        <php>}else{</php>
+
+        <if condition="$vl['has_support']['type'] eq 1">
+            <div class="support-count ">
+                <p><p><i class="am-icon-thumbs-up"></i></p></p>
+                <p><span class="down"> {$vl.support}</span></p>
+            </div>
+            <br>
+
+            <div class="support-count ">
+                <p><p><i class="am-icon-thumbs-o-down"></i></p></p>
+                <p><span class="down"> {$vl.oppose}</span></p>
+            </div>
+            <else/>
+            <div class="support-count ">
+                <p><p><i class="am-icon-thumbs-o-up"></i></p></p>
+                <p><span class="down"> {$vl.support}</span></p>
+            </div>
+            <br>
+
+            <div class="support-count ">
+                <p><p><i class="am-icon-thumbs-down"></i></p></p>
+                <p><span class="down"> {$vl.oppose}</span></p>
+
+            </div>
+        </if>
+        <php>}</php>
+    </div>
+    <div class="answer-author am-cf">
+
+        <a style="font-size: 16px;color: #0a67fb" href="{$vl.user.space_mob_url}">{$vl.user.nickname}</a>
+
+
+
+
+        <div style="text-overflow:ellipsis;padding: 5px 0;font-size: 13px">
+            {$vl.content}
+        </div>
+
+        <div class="" style="height: 30px;padding: 0 5px;line-height: 30px;width: 87%;margin-left: 13%">
+            <div class="am-fl" style="color: #a9a9a9">
+                回复时间：{$vl.create_time|friendlyDate}
+            </div>
+
+            <div class="am-fr">
+                <a class="lzl_at_user" href="{:U('Mob/Question/atcomment',array('uid'=>$vl['uid'],'id'=>$vl['id'],'post_id'=>$vl['question_id'],'to_f_reply_id'=>$vl['id']))}">添加评论</a>
+                <php>if(is_administrator(is_login())||$vl['uid']==is_login()){</php>
+                <a href="{:U('Mob/Question/reply',array('id'=>$question['id'],'answerId'=>$vl['id'],'isEdit'=>1))}">编辑</a>
+                <php>}</php>
+                <php>if(is_administrator(is_login())||$question['uid']==is_login()){</php>
+                <a style="color: #21984a;margin-left: 5px" class="set-best" data-url="{:U('Mob/Question/setBestAnswer')}" data-question-id="{$question['id']}"
+                   data-answer-id="{$vl.id}">设为最佳答案</a>
+                <php>}</php>
+            </div>
+
+        </div>
+    </div>
+</div>
+<notempty name="vl['lzllist']">
+
+
+    <div class="triangle"
+         style="margin-left: 20px;border-bottom: 10px solid #f7f7f7;"></div>
+    <div class="am-cf addmorelzlreply"
+         style="border: 1px solid #e8e8e8;padding: 10px;margin-bottom: 20px; border-radius: 6px;background: #f7f7f7">
+        <div class="lzl-reply-list">
+            <volist name="vl['lzllist']" id="v2">
+                <include file="_lzlreply"/>
+            </volist>
+        </div>
+        <div class="am-fr">
+
+            <a class="lzl_at_user" href="{:U('Mob/Question/atcomment',array('uid'=>$vl['uid'],'id'=>$vl['id'],'post_id'=>$vl['question_id'],'to_f_reply_id'=>$vl['id']))}">我来说几句</a>
+        </div>
+        <if condition="$vl['lzlcount'] eq 1">
+            <div class="am-list-news-ft">
+                <a class="look-more-lzlreply getmorelzlreply" lzl-page="1" forum-id="{$vl['id']}"
+                >查看更多 &raquo;</a>
+            </div>
+        </if>
+    </div>
+</notempty>
+<!--楼中楼内容结束-->
+
+
+<script>
+    lzl_at_user();
+    nextpagelzl();
+    dellzlcomment();
+    //查看更多楼中楼回复
+    var pid = 1;
+    function nextpagelzl() {
+        $('.getmorelzlreply').unbind('click');
+        $('.getmorelzlreply').click(function () {
+            var lzlpage = parseInt($(this).attr('lzl-page'));
+            var forum_id = $(this).attr('forum-id');
+            $(".getmorelzlreply").html("查看更多" + '&raquo;');
+            var that = $(this);
+            $.post("{:U('Mob/Forum/addMoreLzlreply')}", {lzlpage: lzlpage + 1, id: forum_id, pid: pid}, function (msg) {
+                if (msg.status) {
+                    that.attr('lzl-page', lzlpage + 1);
+                    that.parents('.addmorelzlreply').find('.lzl-reply-list').append(msg.html);
+                    lzl_at_user();
+                    nextpagelzl();
+                    dellzlcomment();
+                } else {
+                    that.html("全部加载完成！");
+                    that.delay(1000).hide(0);
+                }
+            })
+        });
+    }
+
+
+</script>

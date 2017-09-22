@@ -1,0 +1,25 @@
+<volist name="people" id="list">
+    <a href="{$list.user.space_mob_url}" external>
+        <div class="flexDiv mtFlex">
+            <div class="flexLeft">
+                <div class="leftDiv mCover">
+                    <img src="{$list.user.avatar128}" alt="{$list.nickname}">
+                </div>
+                <div class="rightDiv mInfo" style="align-items:flex-start ">
+                    <p class="mName textMore">{$list.nickname}
+                        <switch name="list.flag">
+                            <case value="common"></case>
+                            <case value="crowd_admin"><span class="identity">圈主</span></case>
+                            <case value="admin"><span class="identity">站长</span></case>
+                            <default />
+                        </switch>
+                    </p>
+                    <p class="mIntro textMore">{$list.signature|default="这个人很懒,神马都没写~"}</p>
+                </div>
+            </div>
+            <if condition="$list['uid'] neq is_login()">
+                <div class="flexRight"><a class="mButton do-active" href="javascript:" data-uid="{$list.uid}" data-value="{$list.is_follow}">{$list.follow_status}</a></div>
+            </if>
+        </div>
+    </a>
+</volist>

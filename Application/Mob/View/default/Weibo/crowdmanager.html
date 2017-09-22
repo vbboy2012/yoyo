@@ -1,0 +1,103 @@
+<extend name="Base/mob_common"/>
+<block name="mob_header">
+    <script src="__JS__/weibo.js"></script>
+    <link rel="stylesheet" href="__CSS__/apps/weibo.css"/>
+    <link rel="stylesheet" href="__CSS__/apps/nav.css"/>
+    <php>$uid=is_login();</php>
+    <div class="navBt">
+        <a href="{:U('Mob/Weibo/index')}" class="btBar">
+            <i class="iconfont icon-dongtai2-copy"></i>
+            <span>动态</span>
+        </a>
+        <a href="{:U('Mob/Weibo/crowd')}" class="btBar active">
+            <i class="iconfont icon-quanzi"></i>
+            <span>圈子</span>
+        </a>
+        <a href="{:U('Mob/Message/index')}" class="btBar">
+            <i class="iconfont icon-xiaoxi"></i>
+            <span>消息</span>
+        </a>
+        <a class="btBar" <if condition="$uid eq 0">href="javascript:toast.error('请先登录！');"
+        <else/> href="{:U('Mob/User/index')}" </if> >
+        <i class="iconfont icon-wode"></i>
+        <span>我</span>
+        </a>
+
+    </div>
+</block>
+<block name="mob_body" >
+    <div class="crowd-manager" style="padding-bottom: 60px">
+        <ul class="crowd-box">
+            <li class="crowd-list">
+                <div class="am-cf am-g info-box">
+                    <div class="avatar am-u-sm-3 am-text-center">
+                        <a href="{:U('Mob/Weibo/index', array('crowd_id'=>$crowd['id']))}">
+                            <img src="{$crowd.logo|getThumbImageById=160,160}" style="width: 80px;height: 80px">
+                        </a>
+                    </div>
+                    <div class="info am-u-sm-6">
+                        <a href="{:U('Mob/Weibo/index', array('crowd_id'=>$crowd['id']))}">
+                            <div><h4 class="info-title">{$crowd.title}</h4></div>
+                            <div><span class="infos">{$crowd.intro}</span></div>
+                            <div><span class="infos">成员 {$crowd.member_count}</span>&nbsp;&nbsp;&nbsp;<span class="infos">讨论 {$crowd.post_count}</span></div>
+                        </a>
+                    </div>
+                    <div class="am-u-sm-3">
+                        <if condition="$crowd.is_admin eq 'true'">
+                            <a class="btn-follow" data-role="del_crowd" data-crowd-id="{$crowd.id}" style="width: 105%">
+                                解散圈子
+                            </a>
+                        </if>
+                    </div>
+                </div>
+            </li>
+            <!--<h4 class="notice">{$crowd.notice}</h4>-->
+        </ul>
+
+        <ul class="am-g am-text-center am-cf" id="crowd_manager">
+            <a href="{:U('Mob/Weibo/crowdManager',array('type'=>'member', 'id'=>$crowd['id']))}" <if condition="($_GET['type'] eq 'member') or($_GET['type'] eq '')"> class="current"</if> >成员管理</a>
+            <a href="{:U('Mob/Weibo/crowdManager',array('type'=>'check', 'id'=>$crowd['id']))}" <if condition="$_GET['type'] eq 'check'"> class="current"</if> >加入审批</a>
+            <a href="{:U('Mob/Weibo/create',array('crowd_id'=>$crowd['id']))}">修改圈子</a>
+            <!--<a href="{:U('Mob/Weibo/crowd',array('tab'=>'join'))}" <if condition="$_GET['tab'] eq 'join'"> class="current"</if>>我已加入</a>-->
+        </ul>
+        <div class="tab-content" style="padding: 10px">
+
+            <!--所有成员管理列表-->
+            <div class="tab-pane active">
+                <include file="_member_list"/>
+            </div>
+            <if condition="$page eq 1">
+                <div class="am-list-news-ft look-more">
+                    <a data-role="getMore" data-url="{:U('Mob/Weibo/crowdManager')}" data-type="{$_GET['type']}" data-crowd-id="{$crowd['id']}"
+                    >查看更多 &raquo;</a>
+                </div>
+            </if>
+            <!--分页-->
+            <!--<div id="index_weibo_page">
+                <div class="text-right">
+                    {:getPagination($totalCount,10)}
+                </div>
+            </div>-->
+        </div>
+    </div>
+    <script>
+        var page = 1;
+        var getMore = $('[data-role="getMore"]');
+        getMore.click(function () {
+            var url = $(this).attr('data-url');
+            var type = $(this).attr('data-type');
+            var id = $(this).attr('data-crowd-id');
+
+            getMore.html("查看更多" + '&raquo;');
+            $.get(url, {page: page + 1, type: type, id: id}, function (msg) {
+                if (msg.status) {
+                    $(".tab-pane").append(msg.html);
+                    page++;
+                } else {
+                    getMore.html("全部加载完成！");
+                    $(".look-more").delay(3000).hide(0);
+                }
+            }, 'json');
+        });
+    </script>
+</block>

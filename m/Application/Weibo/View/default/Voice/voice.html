@@ -1,0 +1,116 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/weibo.css"/>
+    <link rel="stylesheet" href="__CSS__/voice.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current" style="background-color: #fdfaf3">
+            <div class="content infinite-scroll infinite-scroll-bottom" style="bottom: 40px" data-distance="100">
+                <div class="content-block noEdge noShadow">
+                    <div class="sendHead">
+                        <a class="pull-left" href="{:U('weibo/index/index')}">取消</a>
+                        <button class="button button-block" id="sendVoice">发布</button>
+                    </div>
+                    <div style="padding-top: 40%">
+
+                    </div>
+                    <div  class="formWrap">
+                        <a href="javascript:" class="voiceBtn" id="playVoice">播放录音</a>
+
+                    </div>
+                    <div class="formWrap">
+                        <a href="javascript:" class="voiceBtn" id="pauseVoice">暂停</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="voice-box">
+        <p class="tip text">如遇到不能录音，切换点击模式试试</p>
+        <span class="close" data-role="close-box">取消</span>
+        <span class="cModel text" data-role="model-change">切换点击模式</span>
+        <div class="listening">
+            <div class="loading">
+                <ul data-role="ul-list">
+                    <li class="out" data-title="record-doing5"></li>
+                    <li class="out" data-title="record-doing4"></li>
+                    <li class="out" data-title="record-doing3"></li>
+                    <li class="out" data-title="record-doing2"></li>
+                    <li class="out" data-title="record-doing1"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="touch">
+            <div class="side-line" data-role="touch-on">
+                <div class="big site">
+                    <div class="small site"></div>
+                </div>
+                <p class="record tip text">按住录音</p>
+            </div>
+        </div>
+    </div>
+    <nav class="bar bar-tab">
+        <a href="javascript:" class="voiceBtn" id="startRecord">按住说话</a>
+    </nav>
+    <!-- TODO -->
+    <!-- 于微信后台交互，获取AppId等信息 -->
+</block>
+<block name="script">
+    <script>
+        var bind_wx_config = function (appId, timestamp, nonceStr, signature) {
+            wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: appId, // 必填，公众号的唯一标识
+                timestamp: timestamp, // 必填，生成签名的时间戳
+                nonceStr: nonceStr, // 必填，生成签名的随机串
+                signature: signature,// 必填，签名，见附录1
+                jsApiList: [ // 必填，需要使用的JS接口列表
+                    'checkJsApi',
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage',
+                    'onMenuShareQQ',
+                    'onMenuShareWeibo',
+                    'onMenuShareQZone',
+                    'hideMenuItems',
+                    'showMenuItems',
+                    'hideAllNonBaseMenuItem',
+                    'showAllNonBaseMenuItem',
+                    'translateVoice',
+                    'startRecord',
+                    'stopRecord',
+                    'onVoiceRecordEnd',
+                    'playVoice',
+                    'onVoicePlayEnd',
+                    'pauseVoice',
+                    'stopVoice',
+                    'uploadVoice',
+                    'downloadVoice',
+                    'chooseImage',
+                    'previewImage',
+                    'uploadImage',
+                    'downloadImage',
+                    'getNetworkType',
+                    'openLocation',
+                    'getLocation',
+                    'hideOptionMenu',
+                    'showOptionMenu',
+                    'closeWindow',
+                    'scanQRCode',
+                    'chooseWXPay',
+                    'openProductSpecificView',
+                    'addCard',
+                    'chooseCard',
+                    'openCard'
+                ]
+            });
+
+        };
+        bind_wx_config('{$res.appId}', "{$res.timestamp}", "{$res.nonceStr}", "{$res.signature}");
+        wx.error(function (res) {
+            // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+        });
+    </script>
+<script type="text/javascript" src="__CODE_JS_WEIBO__/weixinapi.js"></script>
+
+</block>

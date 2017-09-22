@@ -1,0 +1,99 @@
+<extend name="Base/mob_common"/>
+<block name="mob_header">
+    <link rel="stylesheet" href="__CSS__/apps/nav.css"/>
+    <php>$uid=is_login();</php>
+    <div class="navBt">
+        <a href="{:U('Mob/Weibo/index')}" class="btBar ">
+            <i class="iconfont icon-dongtai2-copy"></i>
+            <span>动态</span>
+        </a>
+        <a href="{:U('Mob/Weibo/crowd')}" class="btBar">
+            <i class="iconfont icon-quanzi"></i>
+            <span>圈子</span>
+        </a>
+        <a href="{:U('Mob/Message/index')}" class="btBar active">
+            <i class="iconfont icon-xiaoxi"></i>
+            <span>消息</span>
+        </a>
+        <a class="btBar" <if condition="$uid eq 0">href="javascript:toast.error('请先登录！');"
+        <else/> href="{:U('Mob/User/index')}" </if> >
+        <i class="iconfont icon-wode"></i>
+        <span>我</span>
+        </a>
+
+    </div>
+<div data-am-widget="header" class="am-header am-header-default am-header-fixed am-cf">
+
+    <div class="am-header-left am-header-nav">
+        <a href="javascript:void(0)" onclick="history.go(-1)" class="am-fl">
+            <i class="am-icon-chevron-left  am-icon-home"></i>
+        </a>
+    </div>
+    <h1 class="am-header-title" style="margin: 11px 30%">
+        消息类型列表
+    </h1>
+
+    <style>
+
+    </style>
+
+    <!--    <div class="am-header-right am-header-nav">
+            <a   href="javascript:void(0);" data-url="{:U('Ucenter/Public/setAllMessageReaded')}"  onclick="Notify.setAllReaded(this)" class="read-btn"><i
+                    class="icon-check"></i> 全部已读
+            </a>
+
+        </div>-->
+
+
+</div>
+    </block>
+<block name="mob_body">
+    <style>
+        .container{
+            padding: 0;
+        }
+        #messages .current{
+            background-color: transparent!important;
+            color: #007aff;
+            border-bottom: 2px solid #007aff;
+        }
+        #messages a:active,a:link,a:visited{
+            text-decoration: none;
+        }
+    </style>
+    <link rel="stylesheet" href="__CSS__/apps/message.css"/>
+<div class="message-container">
+        <notempty name="message_session">
+            <div>
+                <div class="message-show" style="border: none;font-size: 12px;margin-bottom:60px;">
+                    <div class="am-tab-panel am-active ">
+                        <include file="_session"/>
+                    </div>
+                </div>
+                <else/>
+                <div class="message-show" style="border: none;font-size: 15px">
+                    <p class="text-muted" style="text-align: center; ">
+                        <br><br>
+                        暂无消息类型～
+                        <br><br><br>
+                    </p>
+                </div>
+
+            </div>
+
+        </notempty>
+
+</div>
+    <style>
+    #messages a{
+        float: left;
+    }
+    body {
+        background-color: #FFFFFF;
+    }
+</style>
+</block>
+
+
+
+

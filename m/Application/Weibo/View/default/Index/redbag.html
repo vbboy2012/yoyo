@@ -1,0 +1,146 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/weibo.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current" style="background-color: #fdfaf3">
+            <div class="content infinite-scroll infinite-scroll-bottom" style="bottom: 40px" data-distance="100">
+                <div class="content-block noEdge noShadow">
+                    <div class="proHead">
+                        <a class="iconfont icon-xiangzuojiantou pull-left button button-link back" href="javascript:history.go(-1);">发红包</a>
+                        <a class="iconfont icon-wenti" data-role="open-code"></a>
+                    </div>
+
+                    <form id="redbag">
+                        <div class="formWrap">
+                            <div class="inputWrap">
+                                <span>红包个数</span>
+                                <input type="text" name="num" placeholder="填写个数">
+                                <span>个</span>
+                            </div>
+                            <span>本社区共{$count}个人</span>
+                        </div>
+
+                        <div class="formWrap">
+                            <div class="changeWrap">
+                                <div class="inputWrap random" >
+                                    <span>总金额<i class="iconfont icon-pin"></i></span>
+                                    <input type="text" name="allmoney" placeholder="填写金额">
+                                    <span>元</span>
+                                </div>
+                                <div class="inputWrap fasten" style="display: none">
+                                    <span>单个金额</span>
+                                    <input type="text" name="onemoney" placeholder="填写金额">
+                                    <span>元</span>
+                                </div>
+                            </div>
+
+                            <span>每个人抽到的金额随机，</span><span class="change random" data-role="change-fasten">改为普通红包</span><span class="change fasten" style="display: none" data-role="change-random">改为拼手气红包</span>
+                            <input id="redBagType" type="hidden" name="red_bag_type" value="2"/>
+                        </div>
+
+                        <div class="formWrap">
+                            <div class="inputWrap">
+                                <span>留言</span>
+                                <input type="text" name="content" placeholder="恭喜发财，大吉大利！" style="width: 90%">
+                            </div>
+                        </div>
+
+                        <div class="formWrap">
+                            <div class="inputWrap">
+                                <span>圈子</span>
+                                <input type="text" data-role="choose_crowd" placeholder="全站动态" readonly="readonly" style="width: 90%">
+                                <input type="hidden" name="crowd_id" value="0">
+                            </div>
+                        </div>
+
+                        <div class="formWrap"><p class="allMoney" data-role="need_pay">￥0.00</p></div>
+                    </form>
+
+                    <div class="formWrap"><a href="javascript:" class="sendBtn" data-role="sendRedBag">塞钱进红包</a></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script>
+        $(function () {
+
+            $(document).on('click','[data-role="choose_crowd"]', function () {
+                var $this = $(this);
+                var buttons1 = [
+                    {
+                        text: '请选择',
+                        label: true
+                    }
+                ];
+                var res = {$crowd_type};
+                for (var i in res) {
+                    var t = res[i];
+                    console.log(t);
+                    buttons1.push({
+                        text: t.title,
+                        bold: true,
+                        onClick: function() {
+                            select_crowd(t);
+                        }
+                    })
+                }
+                var buttons2 = [
+                    {
+                        text: '取消',
+                        bg: 'danger'
+                    }
+                ];
+                var buttons = [buttons1, buttons2];
+
+                $.actions(buttons);
+            });
+
+
+            $("[data-role='change-fasten']").click(function () {
+                $('.random').hide();
+                $('.fasten').show();
+                $('#redBagType').val(1);
+            });
+            $("[data-role='change-random']").click(function () {
+                $('.fasten').hide();
+                $('.random').show();
+                $('#redBagType').val(2);
+            });
+
+            $("[data-role='sendRedBag']").click(function () {
+                var url = U('Weibo/Index/sendRedBag');
+                var data = $("#redbag").serialize();
+                $.post(url,data,function(res){
+                    $.toast(res.info);
+                    if (res.status) {
+                        location.href = U('weibo/index/index')
+                    }
+                })
+            });
+
+            $(':input').on("keyup change", function(){
+                var $needPay = $('[data-role="need_pay"]');
+                var allMoney = $("input[name='allmoney']").val();
+                var oneMoney = $("input[name='onemoney']").val();
+                var num = $("input[name='num']").val();
+                if ($('#redBagType').val() == 1) {
+                    $needPay.html("￥"+Number(oneMoney*num).toFixed(2));
+                } else {
+                    $needPay.html("￥"+Number(allMoney).toFixed(2));
+                }
+
+            });
+        });
+
+        function select_crowd(crowd){
+            $('[data-role="choose_crowd"]').val(crowd.title);
+            $('[name="crowd_id"]').val(crowd.id);
+        }
+    </script>
+
+</block>

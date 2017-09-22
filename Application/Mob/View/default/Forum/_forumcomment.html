@@ -1,0 +1,106 @@
+<div class="comment am-cf">
+    <div class=" comment-box">
+        <div class="am-g info">
+            <div class="am-fl avatar">
+                <img class="avatar-img" style="width:50px" src="{$vl.user.avatar64}">
+            </div>
+            <div class="am-fl nickname col-xs-8" >
+                <span style="color: #51abec;font-size: 16px"> {$vl.user.nickname}</span>
+                <span class="host">{$vl.floormaster}</span>
+                <br/>
+
+            </div>
+            <div class="am-fr part col-xs-2" style="color: #cccccc;text-align: right">
+                {:getLou($k+1)}
+            </div>
+
+            <div class="time col-xs-9">
+                <span style="font-size: 12px;color: #ccc">发表于：{$vl.create_time|friendlyDate}</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="am-g content">
+        <p>{$vl.content}</p>
+    </div>
+    <div class="am-cf">
+        <div class="am-fr interact-button">
+        <span class=" small-btn">
+             <notempty name="vl['lzllist']">
+                 <i class="am-icon-comment-o"></i>{$vl.lzltotalCount}
+                 <else/>
+                 <a style="color: #696e78" class="lzl_at_user"
+                    href="{:U('Mob/Forum/atcomment',array('uid'=>$vl['uid'],'id'=>$vl['id'],'post_id'=>$vl['post_id'],'to_f_reply_id'=>$vl['id']))}"><i
+                         class="am-icon-comment-o"></i></a>
+             </notempty>
+        </span>
+            <!--     {$vl.lzltotalCount}-->
+            <php>if($vl['uid']==is_login()||is_administrator(is_login())){</php>
+                <span>
+                    <a style="color: #696e78"
+                       href="{:U('Mob/Forum/addComment',array('reply_id'=>$vl['id'],'is_edit'=>1))}"><i
+                            class="am-icon-cog"></i></a>
+                </span>
+            <span class="small-btn">
+                <a style="color: #696e78" class="delreply" comment-id="{$vl['id']}"
+                   url="{:U('Mob/Forum/delPostReply')}"><i class="am-icon-trash" id="doc-confirm-toggle"></i></a>
+            </span>
+            <php>}</php>
+
+        </div>
+    </div>
+    <!--楼中楼内容-->
+    <notempty name="vl['lzllist']">
+
+        <div class="am-cf addmorelzlreply" style="background: #f2f2f5;position: relative">
+            <div class="sj"></div>
+            <div class="lzl-reply-list">
+                <include file="_lzlreply"/>
+            </div>
+            <div class="am-fr" style="margin-right: 10px;padding: 10px">
+
+                <a class="lzl_at_user" href="{:U('Mob/Forum/atcomment',array('uid'=>$vl['uid'],'id'=>$vl['id'],'post_id'=>$vl['post_id'],'to_f_reply_id'=>$vl['id']))}">我来说几句</a>
+            </div>
+            <if condition="$vl['lzlcount'] eq 1">
+                <div class="am-list-news-ft">
+                    <a class="look-more-lzlreply getmorelzlreply" lzl-page="1" forum-id="{$vl['id']}"
+                            >查看更多 &raquo;</a>
+                </div>
+            </if>
+        </div>
+    </notempty>
+    <!--楼中楼内容结束-->
+</div>
+
+<script>
+    lzl_at_user();
+    nextpagelzl();
+    dellzlcomment();
+    //查看更多楼中楼回复
+    var pid = 1;
+    function nextpagelzl() {
+        $('.getmorelzlreply').unbind('click');
+        $('.getmorelzlreply').click(function () {
+            var lzlpage = parseInt($(this).attr('lzl-page'));
+            var forum_id = $(this).attr('forum-id');
+            $(".getmorelzlreply").html("查看更多" + '&raquo;');
+            var that = $(this);
+            $.post("{:U('Mob/Forum/addMoreLzlreply')}", {lzlpage: lzlpage + 1, id: forum_id, pid: pid}, function (msg) {
+                if (msg.status) {
+                    that.attr('lzl-page', lzlpage + 1);
+                    that.parents('.addmorelzlreply').find('.lzl-reply-list').append(msg.html);
+                    lzl_at_user();
+                    nextpagelzl();
+                    dellzlcomment();
+                } else {
+                    that.html("全部加载完成！");
+                    that.delay(1000).hide(0);
+                }
+            })
+        });
+    }
+
+
+</script>

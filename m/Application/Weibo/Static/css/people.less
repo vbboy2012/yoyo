@@ -1,0 +1,72 @@
+@import "../../../../Public/css/core";
+.master{
+  background-color: @comColor;
+  margin: 20px 0;
+}
+.mtTitle{
+  padding: 5px 10px;
+  border-bottom: 1px solid #eee;
+}
+.mtFlex{
+  padding: 10px;
+  .mCover{
+    .osCircle(50px);
+  }
+  .mInfo{
+    p{
+      max-width: 245px;
+    }
+    .mName{
+      color: #000;
+      font-weight: 600;
+    }
+    .mIntro{
+      color: @minorTextColor;
+    }
+    .identity{
+      display: inline-block;
+      border: 1px solid @themeColor;
+      color: @themeColor;
+      border-radius: 10px;
+      font-size: 12px;
+      width: auto;
+      padding: 2px 8px;
+      margin-left: 10px;
+    }
+  }
+  .mButton{
+    display: inline-block;
+    background-color: @themeColor;
+    color: @comColor;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+}
+.manages,.allPeople{
+  background-color: @comColor;
+  .mtFlex{
+    border-bottom: 1px solid #eee;
+  }
+}
+.searchPeople{
+  top: auto;
+  overflow: hidden;
+  .searchbar{
+    background-color: transparent;
+  }
+}
+.allPeople{
+  padding: 10px 0 0;
+}
+@media only screen and (min-width: 320px) and (max-width: 374px){
+  .mInfo {
+    p {
+      max-width: 180px!important;
+    }
+  }
+}
+.load-more-div {
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+}

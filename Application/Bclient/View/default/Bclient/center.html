@@ -1,0 +1,60 @@
+<!-- 管理员用户组新增和编辑页面 -->
+<extend name="Public/base"/>
+<block name="body">
+    <div class="main-title">
+        <h2>客户中心</h2>
+    </div>
+    <div class="tab-wrap with-padding">
+        <style>
+            .block {
+                border: 1px solid #ccc;
+                margin: 20px 0;
+                padding: 0 20px;
+            }
+
+            .cover-wrapper {
+                width: 100px;
+                height: 120px;
+            }
+        </style>
+        <div class="block">
+            <div style="width: 600px;">
+                <p>客户编号： {$user.number}</p>
+                <p>授权状态： {$user['status']?'已授权':'禁用'}</p>
+                <p>授权版本： {$user.version}</p>
+                <p>技术支持到期时间： {$user.end_time|time_format}</p>
+                <p>专属销售顾问： {$user.sales}</p>
+            </div>
+            <div style="margin-bottom:20px ">
+<!--                <a class="btn btn-primary" data-title="sdsdfdsf" modal-url="{:U('admin/invite/createcode')}" data-role="modal_popup"  >兑换云码</a>-->
+                <a class="btn btn-primary" data-title="兑换云码" modal-url="{:U('admin/bclient/usecode')}" data-role="modal_popup"  >兑换云码</a>
+                <a class="btn btn-primary">提工单</a>
+
+
+            </div>
+
+
+        </div>
+        <div class="block">
+
+            <p>升级通告</p>
+
+        </div>
+
+
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript" charset="utf-8">
+        $(function () {
+            $('[data-role="modal_popup"]').click(function(){
+                var target_url=$(this).attr('modal-url');
+                var data_title=$(this).attr('data-title');
+                modalOS({
+                    url:target_url,
+                    title:data_title
+                });
+            });
+        });
+    </script>
+</block>

@@ -1,0 +1,144 @@
+<extend name="Base/mob_common"/>
+<block name="mob_header">
+    <div data-am-widget="header" class="am-header am-header-default am-header-fixed am-cf">
+
+        <link rel="stylesheet" href="__CSS__/apps/message.css"/>
+        <link rel="stylesheet" href="__CSS__/apps/weibo.css"/>
+        <div class="am-header-left am-header-nav">
+            <a href="" onclick="history.go(-1)" class="am-fl">
+                <i class="am-icon-chevron-left  am-icon-home"></i>
+            </a>
+        </div>
+        <h1 class="am-header-title " style="margin: 12px 30%!important;">
+            <i class=""></i>
+            发布微博    </h1>
+    </div>
+</block>
+<block name="mob_body">
+    <script src="__JS__/weibo.js"></script>
+    <link rel="stylesheet" href="__CSS__/weibo.css"/>
+    <style>
+        .container{
+            padding: 0;
+        }
+        body{
+            background-color: #fff;
+        }
+        .img-list li {
+            float: left;
+            position: relative;
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin: 5px 5px 20px 5px;
+            border: 1px solid rgb(100, 149, 198);
+            background: #fff no-repeat center;
+            background-size: cover;
+            border-radius: 10px;
+        }
+
+    </style>
+    <div class="addweibo-container ">
+
+        <div class="am-form-group am-cf weibo_post_box" id="comment" style="margin: auto">
+            <input type="hidden" id="img_ids" name="attach_ids" value="">
+            <input name="type" value="" id="weibotype" type="hidden">
+            <textarea maxlength="200" class="content" id="content" type="text" name="content" placeholder="分享新鲜事....."
+                      style="height:150px;padding: 10px;border: none;width: 100%"></textarea>
+            <!--插入图片表情-->
+            <div class="pic-emg am-g">
+                <div class="icon-box">
+                    <a class="icon icon-smile " style="color: #FFCF0D" href="javascript:" data-url=" {:U('Core/Expression/getSmile')}" onclick="insertFace($(this))"></a>
+                </div>
+                <php>if(get_addons_status('InsertLocalVideo')) {</php>
+                <div class="icon-box">
+                    <a class="icon icon-play-circle" onclick="video.upload_video(this)"></a>
+                </div>
+                <php>}
+                    if(get_addons_status('RedBag')) {
+                </php>
+                <div class="icon-box">
+                    <a href="{:U('Mob/Weibo/addredbag')}" id="confirm" class="icon icon-envelope-alt" style="color: #CE3030"></a>
+                </div>
+                <php>}</php>
+                <div class="icon-box">
+                    <a type="button" class="icon icon-picture" style="color: #96E443"></a>
+                    <input type="file" name="files" class="" id="choose" data-url="{:U('Core/File/uploadPictureBase64')}" multiple/>
+                </div>
+                <a id="news-type" style="float: right">
+                    <img data-role="title_image" class="crowd-img" src="__IMG__/all.png">
+                    <span class="like-input dropdown-toggle" data-toggle="dropdown">
+                        {$crowd_detail.title|default='全站动态'}
+                    </span>
+                    <div  class="types">
+                        <ul>
+                            <li>
+                                <a href="javascript:" data-role="crowd_title" data-id="0" data-title="全站动态"  data-img="__IMG__/all.png"><img src="__IMG__/all.png" class="crowd-img-title"/>全站动态</a>
+                            </li>
+                            <volist name="follow_crowd_list" id="data">
+                                <li>
+                                    <a href="javascript:" data-role="crowd_title" data-id="{$data.crowd.id}" data-title="{$data['crowd']['title']}" data-img="{$data['crowd']['logo']|getThumbImageById=20,20}"><img class="crowd-img-title" src="{$data['crowd']['logo']|getThumbImageById=20,20}"/>{$data['crowd']['title']}</a>
+                                </li>
+                            </volist>
+                        </ul>
+                    </div>
+                </a>
+            </div>
+            <!--表情-->
+
+            <div id="emot_content" class="emot_content" style="display: none"></div>
+
+            <!--表情END-->
+            <!--插入图片表情结束-->
+            <!--发布按钮-->
+            <p class="submitweibo" data-role="send_weibo" data-crowd="{$crowd_type}" url="{:U('Mob/Weibo/doSend')}">
+                <button style="float: right" type="submit" class="am-btn am-btn-primary am-btn-block">发布</button>
+            </p>
+            <div id="show" style="margin-top: 50px"></div>
+            <!--发布按钮END-->
+        </div>
+        <ul class="img-list am-fl" style="padding-left:0px;">
+            <!--图片显示区域-->
+        </ul>
+    </div>
+    <script>
+        add_img();
+
+        $('.submitweibo').click(function () {
+            var weibo_content = $(this).parents('#comment').find('.content').val();
+            var img_Id = $(this).parents('#comment').find('#img_ids').val();
+            var crowd = $(this).attr('data-crowd');
+            var url = $(this).attr('url');
+            var type=$('#weibotype').val();
+            $.post(url, {content: weibo_content, attach_ids: img_Id,crowd:crowd,type:type}, function (msg) {
+                if (msg.status == 1) {
+                    toast.success('微博发布成功!');
+                    setTimeout(function () {
+                        window.location.href = "{:U('Mob/weibo/index')}";
+                    }, 1000);
+                } else {
+                    toast.error(msg.info);
+                }
+            }, 'json')
+        });
+
+        $(function () {
+            $('#news-type').next().find('#news-type').remove();
+            $('.types').hide();
+            $('#news-type').click(function () {
+                $('.types').toggle();
+
+            });
+        });
+
+    </script>
+    <script type="text/javascript" src="__JS__/video.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__JS__/52player/flowplayer-3.2.11.min.js"></script>
+    <link href="__PUBLIC__/js/ext/webuploader/css/webuploader.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/ext/webuploader/js/webuploader.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="__JS__/jwplayer.js"></script>
+    <script>jwplayer.key="EmasNw9guiv2y5Qs7HxgcLsRkEl7TSBF+ePQug==";</script>
+</block>
+
+

@@ -1,0 +1,50 @@
+<notempty name="crowd_list">
+    <volist name="follow_list" id="vo">
+        <ul class="list circleList">
+            <li class="one info" style="padding: 10px">
+                <a external href="{:U('Weibo/Index/index', array('crowd_id'=>$vo['crowd']['id']))}">
+                    <div class="avatar">
+                        <img src="{$vo.crowd.logo|getThumbImageById=130,130}" alt="">
+                    </div>
+                </a>
+                <div class="name">
+                    <a external href="{:U('Weibo/Index/index', array('crowd_id'=>$vo['crowd']['id']))}">{$vo.crowd.title}</a>
+                    <p class="location textMore">{$vo.crowd.intro}</p>
+                    <p class="num">
+                        <span><i class="iconfont icon-fensi"></i>{$vo.crowd.member_count}</span>
+                        <span><i class="iconfont icon-groupcopy5"></i>{$vo.crowd.post_count}</span>
+                    </p>
+                </div>
+                <switch name="vo.crowd.is_follow">
+                    <case value="0">
+                        <a href="javascript:" class="follow" <gt name="data.need_pay" value="0">data-toggle="modal" data-target="#myModal{$vo.crowd.id}"<else/>data-role="follow_crowd" data-id="{$vo.crowd.id}"</gt> >
+                        加入
+                        </a>
+                    </case>
+                    <case value="1">
+                        <a href="javascript:" class="follow" data-role="unfollow_crowd" data-id="{$vo.crowd.id}">
+                            已加入
+                        </a>
+                    </case>
+                    <case value="2">
+                        <a href="javascript:" class="follow" data-id="{$vo.crowd.id}">
+                            待审核
+                        </a>
+                    </case>
+                    <case value="-2">
+                        <a href="javascript:" class="follow" <gt name="data.need_pay" value="0">data-toggle="modal" data-target="#inviteModal{$vo.crowd.id}"<else/>data-role="follow_crowd" data-id="{$vo.crowd.id}"</gt> >
+                        被邀请
+                        </a>
+                    </case>
+                    <default/>
+                    <a href="javascript:" class="follow" data-role="follow_crowd" data-id="{$vo.crowd.id}">
+                        加入
+                    </a>
+                </switch>
+            </li>
+        </ul>
+        </ul>
+    </volist>
+    <else/>
+    <div class="noWeibo">还没有圈子~</div>
+</notempty>

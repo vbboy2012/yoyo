@@ -1,0 +1,47 @@
+<if condition="$count eq 0">
+    <li>
+        <p class="noMore">暂无数据</p>
+    </li>
+<else />
+    <volist name="data" id="vo">
+        <li>
+            <div class="whoWhen">
+                <a href="{:U('ucenter/index/mine',array('uid'=>$vo['uid']['uid']))}">
+                    <div class="avatar wbAvatar">
+                        <img src="{$vo.uid.avatar128}" alt="" />
+                    </div>
+                </a>
+                <div>
+                    <a href="{:U('ucenter/index/mine',array('uid'=>$vo['uid']['uid']))}"><span class="nickname">{$vo.uid.nickname}</span></a>
+                </div>
+            </div>
+
+            <a href="{:U('Forum/index/detail',array('id'=>$vo['id']))}">
+                <p class="cont ">{$vo.title}</p>
+            </a>
+            <p class="opt">
+                <span><a class="f-title" href="{:U('Forum/index/section',array('id'=>$vo['forum_id']))}">{$vo.forum.title}</a></span>
+                <b>
+                <a href="{:U('Forum/index/detail',array('id'=>$vo['id']))}">
+                <span>评论 {$vo.reply_count}</span>
+                <span class="fenge">|</span>
+                <span>阅读 {$vo.view_count}</span>
+                </a>
+                <span class="f-time">{$vo.create_time}</span>
+                </b>
+            </p>
+            <p class="location">
+                <span>{$weibo.create_time|friendlyDate}</span>
+                <!--<notempty name="weibo.crowd_id">-->
+                <!--<span>来自</span>-->
+                <!--<a class="textMore" href="{:U('Weibo/Index/index',array('crowd_id'=>$weibo['crowd_id']))}" style="color:#19bca1;max-width: 150px;vertical-align: bottom" external>{$weibo.crowd_id|get_crowd_title}</a>-->
+                <!--</notempty>-->
+            </p>
+            <if condition="$vo['is_essence']">
+                <i class="iconfont icon-jinghua best"></i>
+            </if>
+        </li>
+    </volist>
+</if>
+
+

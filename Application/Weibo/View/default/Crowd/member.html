@@ -1,0 +1,91 @@
+<extend name="Base/common"/>
+<block name="header">
+    <link href="__CSS__/circle.css" type="text/css" rel="stylesheet"/>
+    <style>
+        #main-container {
+            margin-top: 50px;
+            max-width: 900px;
+            padding: 0 10px;
+            font-size: 14px
+        }
+    </style>
+</block>
+<block name="body">
+    <p class="c-head-title"><a href="{:U('Weibo/Index/index')}">动态</a> > <span>圈子详情</span></p>
+    <div class="manage-wrap">
+        <div class="m-head">
+            <div class="head-left">
+                <div class="m-cover">
+                    <img src="{$crowd.logo|getThumbImageById=120,120}" alt="">
+                </div>
+            </div>
+            <div class="head-right">
+                <p class="m-name"><a href="{:U('Weibo/Index/index',array('crowd'=>$crowd['id']))}">{$crowd.title}</a>
+                </p>
+
+                <p class="m-intro">{$crowd.intro}</p>
+
+                <p class="m-num"><span>成员 {$crowd.member_count}</span><span style="margin-left: 20px">动态 <a href="{:U('Weibo/Index/Index',array('crowd'=>$crowd['id']))}"> {$crowd.post_count} </a></span>
+                </p>
+            </div>
+        </div>
+        <div class="tab-wrap">
+            <ul class="nav nav-pills" data-role="tab_top">
+                <li class="active" data-hash="manage">
+                    <a href="#tab1" data-toggle="tab">圈子信息</a>
+                </li>
+                <li class="" data-hash="change">
+                    <a id="invite" href="{:U('Weibo/Crowd/crowdInvite',array('crowd_id'=>$crowd['id']))}">成员邀请</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane active" data-role="tab_item" id="tab1">
+                <ul data-role="manager" class="nav nav-pills">
+                    <li id="tab_member" class="">
+                        <a href="javascript:void(0)">成员</a>
+                    </li>
+                </ul>
+                <div class="tab-content" style="padding: 10px">
+
+                    <div class="tab-pane active">
+                        <volist name="list" id="member">
+                            <div class="review row">
+                                <div class="r-cover">
+                                    <img src="{$member.user.avatar128}" class="avatar-img"/>
+                                </div>
+                                <div class="r-info">
+                                    <p>{$member.user.nickname}</p>
+
+                                    <p class="r-time"><span>动态 {$member.user_post_num}</span>{$member.create_time|date='Y-m-d
+                                        H:i:s',###}加入</p>
+                                </div>
+                            </div>
+                        </volist>
+                    </div>
+                    <!--分页-->
+                    <div id="index_weibo_page">
+                        <div class="text-right">
+                            {:getPagination($totalCount,10)}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function(){
+            $('#invite').magnificPopup({
+                type: 'ajax',
+                overflowY: 'scroll',
+                modal: true
+            });
+        })
+    </script>
+</block>
+
+<block name="script">
+    <script src="__JS__/weibo.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/ext/webuploader/js/webuploader.js"></script>
+    <link href="__PUBLIC__/js/ext/webuploader/css/webuploader.css" type="text/css" rel="stylesheet">
+</block>

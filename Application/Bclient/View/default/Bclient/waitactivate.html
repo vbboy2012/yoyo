@@ -1,0 +1,28 @@
+<!-- 管理员用户组新增和编辑页面 -->
+<extend name="Public/base"/>
+<block name="body">
+    <div class="main-title">
+        <h2>激活请求已经发送</h2>
+    </div>
+    <div class="tab-wrap with-padding">
+
+        <div class="block">
+            请联系您的销售顾问为您激活商业版。
+
+            <div>
+                <a href="{:U('admin/bclient/activate',array('re'=>1))}"
+                   class="btn btn-primary">我已联系，确认激活</a>
+
+                <a href="{:U('admin/bclient/index')}"
+                   class="btn btn-primary">取消，重新登陆</a>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</block>
+<block name="script">
+
+</block>

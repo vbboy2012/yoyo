@@ -1,0 +1,138 @@
+<extend name="Base/common"/>
+<block name="css">
+    <!--<link rel="stylesheet" href="__CSS__/weibo.css"/>-->
+    <link rel="stylesheet" href="__CSS__/topic.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <header class="bar bar-nav comHead">
+                    <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                       href="javascript:history.go(-1);"></a>
+                    <a href="javascript:" class="title">{:L('_HOT_TOPIC_')}</a>
+                </header>
+            </header>
+            <include file="./Application/Common/View/default/Public/footer.html"/>
+            <div class="content pull-to-refresh-content infinite-scroll infinite-scroll-bottom" data-ptr-distance="55"
+                 data-distance="100">
+                <!-- 默认的下拉刷新层 -->
+                <div class="pull-to-refresh-layer">
+                    <div class="preloader"></div>
+                    <div class="pull-to-refresh-arrow"></div>
+                </div>
+
+
+                <div class="content-block proList" data-type="{$type}" data-crowd-id="{$crowd_id}">
+                    <include file="_list" />
+                </div>
+                <gt name="first_weibo_num" value="9">
+                    <!-- 加载提示符 -->
+                    <div class="infinite-scroll-preloader">
+                        <div class="preloader"></div>
+                    </div>
+                </gt>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="other">
+    <div class="panel-overlay"></div>
+    <div class="popup popup-about">
+        <div class="triangle"></div>
+        <div class="content-block typeList">
+            <volist name="tab_type" id="types">
+                <p id="{$types}">
+                    <if condition="$types eq 'huati'">
+                        <a href="{:U('Weibo/Topic/topic', array('type' => $types))}" class="close-popup">
+                            <else/>
+                            <a href="{:U('Weibo/Index/index', array('type' => $types))}" class="close-popup">
+                    </if>
+
+                    <i class="iconfont icon-{$types}"></i>
+                    {$types|parse_weibo_type_title}
+                    </a>
+                </p>
+            </volist>
+            <div>------------- 圈子 -------------</div>
+
+            <volist name="crowds" id="crowd">
+                <p id="{$crowd.id}"><a href="{:U('Weibo/Index/index', array('crowd_id' => $crowd['id']))}" class="close-popup"><i
+                        class="iconfont "></i>{$crowd.title}</a></p>
+            </volist>
+
+
+
+        </div>
+    </div>
+
+    <div class="popup popup-repost sendWrap">
+        <div class="content-block">
+            <form id="repost">
+                <input type="hidden" name="weiboId" value="">
+                <input type="hidden" name="sourceId" value="">
+                <input type="hidden" name="type" value="repost">
+                <textarea placeholder="转发动态..." class="sendArea" rows="3" name="content"></textarea>
+                <div class="commentOp">
+                    <label class="pull-left" style="margin-top: 4px">
+                        <input type="checkbox" name="becomment">
+                        <span>同时评论动态</span>
+                    </label>
+                    <a href="javascript:" data-role="repost" data-id="{$weibo.id}"
+                       class="proBtn close-popup-repost">转发</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--选择发布类型-->
+    <div class="popup  proType">
+        <div class="content-block noEdge">
+            <div class="close-popup closeBottom">X</div>
+            <div class="typeWrap">
+                <a href="{:is_login()?U('Index/sendweibo'):"javascript:$.toast('请登录~')"}">
+                <div class="oneType">
+                    <div class="iconWrap"><i class="iconfont icon-wenzi"></i></div>
+                    <p>文字</p>
+                </div>
+                </a>
+                <a href="{:is_login()?U('Index/sendArticle'):"javascript:$.toast('请登录~')"}">
+                <div class="oneType">
+                    <div class="iconWrap" style="background-color: #F06C5D"><i class="iconfont icon-wenzhang"></i></div>
+                    <p>文章</p>
+                </div>
+                </a>
+                <a href="{:is_login()?U('Index/redbag'):"javascript:$.toast('请登录~')"}">
+                <div class="oneType">
+                    <div class="iconWrap" style="background-color: #fb9f3c"><i class="iconfont icon-hongbao"></i></div>
+                    <p>红包</p>
+                </div>
+                </a>
+                <a href="{:is_login()?U('Voice/index'):"javascript:$.toast('请登录~')"}">
+                <div class="oneType">
+                    <div class="iconWrap" style="background-color: #fb9f3c"><i class="iconfont icon-icon15"></i></div>
+                    <p>语音动态</p>
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/weibo.js"></script>
+    <script src="__PUBLIC_JS__/public.js"></script>
+    <script src="//cdn.bootcss.com/emojione/2.2.7/lib/js/emojione.min.js"></script>
+    <script>
+        emojione.imageType = 'png';
+        emojione.ascii = true;
+        emojione.imagePathPNG = _ROOT_ + '/Public/emoji/';
+        $(function () {
+            $('.parse_content').each(function () {
+                $(this).html(emojione.toImage($(this).html()))
+            });
+        });
+        $("[data-role='chose-type']").click(function () {
+            $.popup('.proType')
+        });
+    </script>
+</block>

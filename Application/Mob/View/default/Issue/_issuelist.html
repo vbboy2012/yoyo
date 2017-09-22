@@ -1,0 +1,30 @@
+<li class="issue-Box am-g am-g-fixed">
+    <div class="left-box am-u-sm-10">
+        <div class="am-u-sm-6  cover-box am-vertical-align">
+            <a href="{:U('Mob/Issue/issueDetail',array('id'=>$vo['id']))}">
+                <img class="am-img-responsive am-vertical-align-middle" src="{$vo.cover_url}">
+            </a>
+        </div>
+        <div class="am-u-sm-6 info-box">
+            <p style="margin-bottom: 10px;line-height: 30px;white-space:nowrap;text-overflow: ellipsis;overflow: hidden "><a style="color: #4c4855;font-size: 16px;font-weight: 600" href="{:U('Mob/Issue/issueDetail',array('id'=>$vo['id']))}" >{$vo.title}</a></p>
+            <p><a href="{:U('Mob/User/index',array('uid'=>$vo['user']['uid']))}">{$vo.user.nickname}</a></p>
+            <p class="time">{$vo.create_time|friendlyDate}</p>
+        </div>
+    </div>
+    <div class="right-box am-u-sm-2">
+        <div class="third-box">
+            <i class="am-icon-eye"></i>{$vo.view_count}
+        </div>
+        <div class="third-box">
+            <i class="am-icon-comment-o"></i>{$vo.reply_count}
+        </div>
+        <div class="third-box">
+
+            <if condition="$vo.is_support eq 1">
+                <i class="am-icon-heart support" data-weibo-id="{$vo['id']}" data-uid="{$vo['user']['uid']}"></i><span>{$vo.support_count}</span>
+                <else/>
+          <i class="am-icon-heart-o support" data-weibo-id="{$vo['id']}" data-uid="{$vo['user']['uid']}"></i><span>{$vo.support_count}</span>
+             </if>
+        </div>
+    </div>
+</li>

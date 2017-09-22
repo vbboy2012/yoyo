@@ -1,0 +1,581 @@
+@import "../../../../Public/css/core";
+@import "sendweibo";
+@import "circle";
+@import "people";
+@import "redbag";
+.qtSync {
+  border: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  width: 350px;
+  margin-bottom: 10px;
+}
+.qtSync .qtAnswer {
+  height: 60px;
+  width: 70px;
+  border-left: 1px solid #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.qtSync .qtContent {
+  flex:1;
+  padding: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.qtSync .qtContent p {
+  margin-bottom: 0;
+  max-width: 450px;
+}
+.qtSync .qtContent p:last-child {
+  color: #999;
+  font-size: 12px;
+}
+.qtSync .qtContent p:last-child span:last-child {
+  margin-left: 10px;
+}
+.top{
+  width: 60px;
+  height: 60px;
+  background-size: 60px;
+  position: absolute;
+  right: 10px;
+  top:5px;
+}
+//动态首页样式
+.proList{
+  margin: .4rem 0;
+  padding: 0;
+  .newWrap{
+    box-shadow: none!important;
+    border: none!important;
+    border-radius: 0!important;
+    margin-bottom: .4rem!important;
+  }
+}
+.popup{
+  top:2.2rem;
+  .typeList{
+    padding: 0 1.5rem;
+    .active{
+      color: #000;
+      font-weight: 500;
+      a{
+        color: #000;
+      }
+    }
+    p{
+      line-height: 40px;
+      font-size: .8rem;
+      a{
+        color: #666;
+        display: inline-block;
+        width: 93%;
+        .iconfont{
+          margin-right: .5rem;
+        }
+      }
+    }
+  }
+}
+//动态评论样式
+.commentWrap{
+  background-color: @comColor;
+  border-top: 1px solid #eee;
+  .cTitle{
+    display: inline-block;
+    padding: 4px 2px;
+    border-bottom: 2px solid @themeColor;
+    margin-left: .5rem;
+    span{
+      margin-left: 5px;
+    }
+  }
+  .contentBox{
+    border-top: 1px solid #eee;
+    .proContent{
+      padding: 0 .5rem 0 70px!important;
+    }
+    .proWrap:last-of-type p{
+      border: none;
+    }
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 374px){
+  .location{
+    max-width: 150px!important;
+  }
+  .follow{
+    padding: .2rem .8rem!important;
+  }
+
+  .cSign{
+    max-width: 280px!important;
+  }
+}
+.noShadow{
+  .proWrap{
+    border: none;
+    box-shadow: none;
+    .info{
+      border: none;
+    }
+    .proContent{
+      padding: 0 .5rem .5rem;
+      p{
+        padding-bottom: .5rem;
+      }
+      .long p{
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+    }
+  }
+}
+.floatNav{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: @comColor!important;
+  box-shadow: 0 -1px 5px rgba(0,0,0,.1);
+}
+
+.back{
+  color:white !important;
+}
+.toTOP{
+  background: url("../images/all-top.png");
+  .top;
+}
+.firstFeed{
+  background: url("../images/new-user-weibo.png");
+  .top;
+}
+.hotFeed{
+  background: url("../images/now-hot.png");
+  .top;
+}
+.circleInfo{
+  background-color: @comColor;
+  padding: .5rem;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 5px rgba(0,0,0,.05);
+  .cSign{
+    color: @minorTextColor;
+    font-size: .65rem;
+    max-width: 350px;
+  }
+}
+.noWeibo{
+  font-size: 20px;
+  line-height: 100px;
+  text-align: center;
+  height: 100px;
+}
+.word-wrap{
+  display: flex;
+  align-items: center;
+}
+.weibo-list-content{
+  .word-wrap{
+    max-height: 93px;
+    overflow-y: hidden;
+  }
+}
+.rules{
+  display: flex;
+  justify-content: space-between;
+  .rLeft{
+    font-weight: 700;
+    i{
+      font-weight: normal;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+  }
+  .rRight{
+    color: @minorTextColor;
+  }
+}
+//夹带商品的动态样式
+.productWrap{
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(204, 204, 204, 0.5);
+  background-color: #fff;
+  margin-bottom: 10px;
+  display: flex;
+  width: 100%;
+  height: 60px;
+  justify-content: space-between;
+  padding: 0 10px 0 0;
+  .productLeft{
+    display: flex;
+    .productImg{
+      width: 60px;
+      height: 60px;
+      margin-right: 10px;
+    }
+    .productInfo{
+      max-width: 135px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+  }
+  .productBtn{
+    display: flex;
+    align-items: center;
+    color: @themeColor;
+    i{
+      margin-top: 2px;
+    }
+  }
+}
+.emojiText{
+  font-size: 30px;
+  text-align: center;
+  margin: 20px 0!important;
+  color: @minorTextColor;
+}
+.noState{
+  text-align: center;
+  color: @minorTextColor;
+  padding-bottom: 20px;
+  span{
+    color: @themeColor;
+  }
+}
+.show-more{
+  width: 80px;
+  border-radius: 100px 100px 0 0;
+  background-color: rgba(0,0,0,0.5);
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  height: 25px;
+  line-height: 30px;
+  overflow: hidden;
+  box-shadow: 0 -1px 2px rgba(0,0,0,0.1);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -40px;
+  display: none;
+}
+//置顶样式
+.topWrap,.topDays{
+  text-align: left;
+  padding: 0 10px;
+  margin-bottom: 10px;
+  p{
+    color: #666;
+  }
+  input{
+    margin-top: 0;
+    border-radius: 3px!important;
+    border-color: #ECECEC!important;
+    box-shadow: inset 0 1px 4px #ECECEC!important;
+  }
+}
+.topWhere{
+  display: flex;
+  padding: 0 10px;
+  margin-bottom: 10px;
+  input{
+    margin-top: 5px;
+    margin-right: 5px;
+  }
+}
+.topBtn{
+  display: inline-block;
+  border: none;
+  box-shadow: 0 0 10px rgba(0,0,0,.1);
+  width: 100px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 14px;
+  border-radius: 5px!important;
+  &:first-child{
+    margin-right: 15px;
+  }
+}
+//发布选择类型
+.proType{
+  background-color: rgba(255,255,255,.9);
+  .closeBottom{
+    position: absolute;
+    bottom: 45px;
+    left: 0;
+    right: 0;
+    background-color: @comColor;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: @themeColor;
+  }
+  .typeWrap{
+    width: 80%;
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .oneType{
+      width: 80px;
+      height: 95px;
+      .flexCol;
+      .iconWrap{
+        .flexCol;
+        width: 60px;
+        height: 60px;
+        border-radius: 100%;
+        background-color: #E5507A;
+        color: @comColor;
+        i{
+          font-size: 25px;
+        }
+      }
+    }
+  }
+}
+.codeWrap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .name{
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .intro{
+    color: #666;
+  }
+}
+//红包动态
+.redWrap{
+  margin-bottom: 10px;
+  .redBox{
+    height: 40px;
+    background-color: #fb9f3c;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    color: @comColor;
+    padding: 0 10px;
+    i{
+      color: red;
+      margin-right: 8px;
+    }
+  }
+  .redNum{
+    color: @minorTextColor;
+    text-align: right;
+    font-size: 12px;
+  }
+}
+//20170511 修改动态列表样式 by kingJ
+.wbAvatar{
+  width: 40px!important;
+  height: 40px!important;
+}
+.wbName{
+  color: @themeColor;
+}
+.wbSpace{
+  padding: 0 5px;
+}
+.likeWrap{
+  margin-bottom: .5rem;
+  .likeList{
+    display: flex;
+    padding: 10px 0;
+    justify-content: space-around;
+    .likeOne{
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border-radius: 3px;
+      position: relative;
+      &:first-child p{
+        background-color: #ff3939;
+        &:after{
+          content: '1';
+        }
+      }
+      &:nth-child(2) p{
+        background-color: #41b1ff;
+        &:after{
+          content: '2';
+        }
+      }
+      &:nth-child(3) p{
+        background-color: #e883f7;
+        &:after{
+          content: '3';
+        }
+      }
+      &:nth-child(4) p:after{
+        content: '4';
+      }
+      &:nth-child(5) p:after{
+        content: '5';
+      }
+      img{
+        border-radius: 3px;
+      }
+      p{
+        display: inline-block;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 15px 20px 0 15px;
+        background-color: #b7b7b7;
+        bottom: 0;
+        left: -5px;
+        z-index: 9999;
+        .flexWrap;
+        font-size: 12px;
+        color: @comColor;
+      }
+    }
+  }
+}
+//修复“来自网页/微信”文字在部分手机上显示不全的bug，by dongdongjie
+.proContent{
+  a{
+    font-size: .6rem;
+  }
+}
+
+/*表情同一行*/
+.expression_pic {
+  display: inline !important;
+}
+.weibo-list-content{
+  .word-wrap{
+    word-break: break-all;
+  }
+}
+.inhuati{
+  width:100%;
+  box-sizing: border-box;
+  padding:10px 10px;
+  span{
+    position: absolute;
+    top:15px;
+    left:15px;
+    color: #ec725d;
+    font-size:14px;
+    z-index:999;
+  }
+  .music-search{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border-radius: 0 4px 4px 0;
+    height: 32px;
+    width: 32px;
+    background-color: #1ABC9C;
+    text-align: center;
+    line-height: 32px;
+    font-size:14px;
+    color: #fff;
+    cursor: pointer;
+  }
+  #intext{
+    position: relative;
+    width:100%;
+    padding:5px 10px 5px 20px;
+    font-size:14px;
+    border:1px solid #ccc;
+    border-radius:3px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15) inset;
+  }
+}
+.slider-list{
+  .music-list{
+    min-height: 330px;
+  }
+  li{
+    padding:0 10px;
+    background-color: #fff;
+    .huati-item{
+      color: #ec725d;
+      background-color: #fff;
+      border-bottom:1px solid #ebebeb ;
+    }
+  }
+  .pager{
+    li{
+      background-color: #f7f7f7;
+      padding: 4px 20px;
+      float: left;
+      display: inline;
+    }
+
+  }
+}
+.word-wrap{
+  display: block;
+}
+a.label-info{
+  font-size:.7rem;
+  white-space: nowrap;
+  vertical-align: baseline;
+  color: #ec725d;
+}
+
+//圈子页面tab标签页 by zdj
+.content-block{
+  margin:0;
+  padding:0;
+  .buttons-row{
+    margin:2rem 0 0;
+    padding:2px 0 0 0;
+    border-bottom:1px solid #eee;
+    .button{
+      background-color: #fff;
+      color: #ccc;
+      border:none;
+    }
+    .button.active{
+      background-color: #fff;
+      background-image:url("../images/slider.png");
+      background-position: bottom center;
+      background-repeat:no-repeat;
+      color: #000 !important;
+    }
+  }
+}
+
+.classification-p{
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:8px 0;
+  background-color: #eee;
+  span{
+    display: block;
+    padding:0 10px;
+  }
+  .classification{
+    border-left:2px solid #ec725d;
+  }
+}
+
+.weibo-img {
+  margin-top: 5px;
+  padding-bottom: 30%;
+  vertical-align: middle;
+  height: 0;
+}
+.img-hide{
+  overflow: hidden;
+}

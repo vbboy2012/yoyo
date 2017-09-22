@@ -1,0 +1,304 @@
+ul, li {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+p{
+  margin: 0px;
+}
+
+.avatar-img {
+  border-radius: 100%;
+}
+
+.news-container {
+
+}
+
+.spliter {
+  border-top: 1px solid #a2a2a2;
+  width: 100%;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.post-thumb {
+
+  height: 60px;
+  width: 80px;
+}
+
+.pull-action {
+  text-align: center;
+  height: 45px;
+  line-height: 45px;
+  color: #999;
+}
+
+.pull-action .am-icon-spin {
+  display: none;
+}
+
+.pull-action.loading .am-icon-spin {
+  display: block;
+}
+
+.pull-action.loading .pull-label {
+  display: none;
+}
+
+.news-container {
+  width: 100%;
+
+  .news-box-list {
+
+    top: 49px;
+    bottom: 0;
+    overflow: hidden;
+    margin: 0;
+    width: 100%;
+    /*position:relative;*/
+
+    .news-box {
+
+      margin: 0;
+      overflow: hidden;
+
+      text-decoration: none;
+      li {
+        margin-bottom: 15px;
+        background-color: #FFFFFF;
+        border: 1px solid #999;
+        position: relative;
+        border-radius: 5px;
+        box-shadow: 0 1px 5px rgba(0,0,0,.25);
+        border: 1px solid #f4f4f4;
+        .info {
+     padding:0 0 10px 0 ;
+          h3 {
+            width: 100%;
+            font-size: 15px;
+            margin: 0;
+            color: #000;
+          }
+        }
+        .name {
+          font-size: 13px;
+          padding: 2px;
+          color: #666;
+          .author {
+            margin-right: 5px;
+          }
+          .omit-content{
+            margin: 0px;line-height: 25px;
+          }
+        }
+        .hot {
+          color: #999;
+          font-size: 13px;
+          position: absolute;
+          right: 10px;
+          bottom: -8px;
+        }
+      }
+    }
+  }
+}
+
+/*资讯详情*/
+.news-detail-container {
+  .news-detail {
+    .news-box {
+      background: #F2F2F2;
+      display: block;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+      text-decoration: none;
+      .news {
+        margin-bottom: 5px;
+        background-color: #FFFFFF;
+        .news-content {
+          line-height: 150%;
+
+          word-break: normal;
+          word-wrap: break-word;
+          .title {
+            padding: 5px;
+            h3 {
+              margin: 0px;
+            }
+            .info {
+              padding: 0px 0px;
+              .name {
+                font-size: 13px;
+                padding: 2px;
+              }
+              .hot {
+                font-size: 13px;
+                padding: 2px;
+              }
+            }
+          }
+          .content-box {
+            padding: 5px;
+          }
+          .weibo_post_box {
+            background-color: #F2f2f2;
+          }
+        }
+      }
+    }
+  }
+  .comment-list {
+    margin-top: 20px;
+    .comment-item {
+      background-color: #ffffff;
+      padding: 10px;
+      margin-bottom: 5px;
+      border: 1px solid #F2F2F2;
+      .user-info {
+        .time {
+          font-size: 13px;
+          text-align: right;
+        }
+      }
+      .content {
+        padding: 10px;
+      }
+    }
+  }
+}
+
+.news-type-list {
+  a {
+    color: #000;
+  }
+  .type {
+
+    .type-list {
+      border: 1px #c3c3c3 solid;
+      background-color: #FFFFFF;
+      .level-one {
+        padding: 10px;
+        background-color: #f5f5f5;
+        text-align: center;
+      }
+      .level-two-list {
+        padding: 10px;
+        .level-two {
+          padding: 5px 2px;
+          div {
+            border: 1px #c3c3c3 solid;
+            text-align: center;
+            padding: 5px 2px;
+          }
+        }
+      }
+    }
+
+  }
+}
+.types{
+  display: none;
+  background-color: white;
+  position: absolute ;
+  text-align: center;
+  width: 100%;
+  right: 10%;
+  border: 1px solid #f4f4f4;
+  box-shadow: 0 0 5px rgba(0,0,0,.25);
+   a{
+     padding: 10px 0;
+     border-bottom: 1px solid #eee;
+      &:last-child{
+        border: none;
+      }
+   }
+}
+
+
+//发布资讯样式
+.news-form{
+  .am-form-group{
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+    width: 96%;
+    margin: 10px auto;
+    label{
+      color: #737373;
+      margin:0 4px 0 0;
+      line-height: 37px;
+      font-size: 14px;
+    }
+    textarea{
+      border: none;
+      padding: 0 10px;
+    }
+  }
+  .ip-txt{
+    width: 85%!important;
+    border: none!important;
+  }
+}
+.bg{
+  background: url("../../images/sentissue.png")center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+   .add-box{
+     margin: 50px auto;
+     text-align: center;
+     position: relative;
+     z-index: 99;
+      .add{
+        border-radius: 50%;
+        background-color: #0e90d2;
+        border: none;
+          i{
+            color: #fff;
+            font-size: 25px;
+            padding: 12px 20px;
+          }
+      }
+   }
+    .m-btn{
+      left:160px;
+      top: 0;
+      position:absolute;
+      z-index: 1;
+      width: 72px;
+      height:72px;
+      opacity: 0;
+      cursor: pointer;
+    }
+    p{
+      color: #fff;
+      margin-top: 10px;
+      font-weight: 700
+    }
+  .show_cover{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+     img{
+       width: 100% !important;
+       height: 100%!important;
+     }
+  }
+}
+.img-list li {
+  float: left;
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin: 5px 5px 20px 5px;
+  border: 1px solid rgb(100, 149, 198);
+  background: #fff no-repeat center;
+  background-size: cover;
+  border-radius: 10px;
+}

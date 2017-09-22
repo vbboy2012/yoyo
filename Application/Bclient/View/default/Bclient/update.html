@@ -1,0 +1,118 @@
+<!-- 管理员用户组新增和编辑页面 -->
+<extend name="Public/base"/>
+<block name="body">
+    <div class="main-title">
+        <h2>升级扩展</h2>
+    </div>
+    <div class="tab-wrap with-padding">
+        <style>
+            .block {
+                border: 1px solid #ccc
+            }
+        </style>
+        <div class="block">
+
+
+            <ul class="module-list" style="margin: 5px">
+                <if condition="$info['other']">
+                    <li class="clearfix" style="width:100%;">
+
+
+                        <div class="cover-wrapper">
+                            <div class="cover-icon">
+                                <img src="{$info.other.cover_path}">
+
+                            </div>
+                        </div>
+                        <div class="content-wrapper"
+                             style="margin-left: 0!important;background-color: transparent!important;width: 50%">
+                            <div class="title">
+                                <a href="" style="font-size: 22px">{$info.other.title} <span class="text-muted">{$info.other.etitle}</span></a>
+                            </div>
+                            <div>
+                                <p class="text-muted text-ellipsis">{$vo.summary}</p>
+                            </div>
+
+                            <div class="clearfix bottom-btns">
+                                <div class="pull-left">
+                                    <br>
+                                    <br>
+
+                                    <div>Pro版 {$info.new.title}</div>
+                                </div>
+                                <div class="pull-right" style="font-size: 25px;">
+                                    正在安装 {$info.new.title} Pro
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <else/>
+                    <li class="clearfix" style="width:100%;">
+                        <div class="cover-wrapper">
+                            <div class="cover-icon">
+                                <i class="fa-{$info.now.icon}"></i>
+                            </div>
+                        </div>
+                        <div class="content-wrapper"
+                             style="margin-left: 0!important;background-color: transparent!important;width: 50%">
+                            <div class="title">
+                                <a href="" style="font-size: 22px">{$info.now.alias} <span class="text-muted">{$info.now.name}</span></a>
+                            </div>
+                            <div>
+                                <p class="text-muted text-ellipsis">{$vo.summary}</p>
+                            </div>
+
+                            <div class="clearfix bottom-btns">
+                                <div class="pull-left">
+                                    <br>
+                                    <br>
+
+                                    <div><eq name="info['now']['is_pro']" value="1">Pro版<else/>开源版</eq> {$info.now.version}</div>
+                                </div>
+                                <div class="pull-right" style="font-size: 25px;">
+
+
+                                    正在升级至 {$info.new.title} Pro
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </if>
+
+
+
+            </ul>
+
+            <div id="update_tip" class="" style="border: 1px solid #eee;height: 200px;padding: 10px;margin: 5px;overflow: auto">
+                <if condition="!$is_do">
+                    本次更新list：
+                    <br>
+                    {$info.new.log}
+                </if>
+
+            </div>
+
+
+            <div class="" style="margin: 5px;">
+                <if condition="$is_do">
+                    <a c href="{:U('admin/bclient/updateList')}" style="display: none"
+                       class="btn btn-primary sure-btn">确定，升级其他扩展 </a>
+                    <else/>
+                    <a href="{:U('admin/bclient/doupdate',array('name'=>$info['now']['name']?$info['now']['name']:$info['other']['etitle']))}"
+                       class="btn btn-primary">开始转换</a>
+                </if>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+</block>
+<block name="script">
+
+</block>

@@ -1,0 +1,189 @@
+<extend name="Base/common"/>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <link rel="stylesheet" type="text/css" href="__PUBLIC__/ext/wangeditor/css/wangEditor-mobile.css">
+            <link rel="stylesheet" href="__CSS__/weibo.css"/>
+            <div class="sendHead">
+                <a class="pull-left" href="{:U('weibo/index/index')}">取消</a>
+
+                <button class="button button-block" data-role="submit-weibo">发布</button>
+
+            </div>
+
+            <!-- Icons in standard bar fixed to the bottom of the screen -->
+            <div class="bar bar-footer" style="height: 35px;padding: 0">
+                <div class="bar bar-footer-secondary list-block send-weibo-list-block">
+                    <ul>
+                        <li>
+                            <div class="crowd-select">
+                                <a href="javascript:" class="button button-fill" data-role="choose-crowd">全站动态</a>
+                                <input type="hidden" id="crowd_id">
+                            </div>
+
+                            <a href="javascript:" class="item-link item-content">
+                                <div class="item-inner" data-role="show_address">
+                                    <div class="item-title"><i class="iconfont icon-dingwei"></i> <span
+                                            class="location-text ">分享所在位置</span>
+                                    </div>
+                                    <input type="hidden" id="location">
+                                </div>
+                            </a>
+
+                        </li>
+                    </ul>
+                </div>
+
+
+                <a data-role="show-bottom" data-type="emoji"
+                   class="iconfont icon-biaoqing pull-left send-weibo-bar col-20 text-center"></a>
+                <!--
+                                <a data-role="show-friend" data-type="at"
+                                   class="iconfont icon-aite pull-left send-weibo-bar col-20 text-center"></a>
+                                <a data-role="show-product" data-type="at"
+                                   class="iconfont icon-shangpin pull-left send-weibo-bar col-20 text-center"></a>-->
+                <input id="goods_id" type="hidden" value=""/>
+                <div class="send-bottom emoji">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper emoji-list"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+
+
+                <div class="send-bottom product"></div>
+
+            </div>
+
+
+            <div class="content send-weibo-container needsclick">
+                <input name="title" class="modal-text-input article" style="margin-top: 0;" placeholder="请输入标题">
+                <textarea id="textarea1" class="editor" style="width:100%;height:100%;">
+			</textarea>
+
+
+            </div>
+        </div>
+    </div>
+</block>
+
+<block name="other">
+    <div class="popup popup-about weibo-popup">
+
+        <div class="content-block noEdge">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link close-popup"
+                   href="javascript:"></a>
+                <a href="javascript:" class="title open-about">所在位置</a>
+            </header>
+            <!--搜索栏-->
+            <div class="bar bar-header-secondary">
+                <div class="searchbar">
+                    <a class="searchbar-cancel">取消</a>
+                    <div class="search-input">
+                        <label class="icon icon-search" for="search"></label>
+                        <input type="search" id='search' placeholder='输入关键字...'/>
+                    </div>
+                </div>
+            </div>
+            <!--附近地址列表-->
+            <div class="content">
+                <div class="addressList">
+                    <ul>
+                        <li class="close-popup first" data-role="choose-place" data-location="0">
+                            不使用定位<i class="iconfont icon-iconfontduigou fr "></i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="popup popup-friend weibo-popup">
+        <div class="content-block noEdge">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link close-popup"
+                   href="javascript:"></a>
+                <a href="javascript:" class="title open-about">@好友</a>
+            </header>
+            <div class="content">
+                <div id="slider">
+                    <div class="slider-list">
+                        <ul></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="popup popup-product weibo-popup">
+        <div class="content-block noEdge">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link close-popup"
+                   href="javascript:"></a>
+                <a href="javascript:" class="title open-about">选择商品</a>
+            </header>
+            <!--搜索栏-->
+            <div class="bar bar-header-secondary">
+                <div class="searchbar">
+                    <a class="searchbar-cancel">取消</a>
+                    <div class="search-input">
+                        <label class="icon icon-search" for="search"></label>
+                        <input type="search" id='searchProduct' placeholder='输入关键字...'/>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="slider-list">
+                    <!--一类商品-->
+                    <ul class="oneProduct">
+                        <li class="typeName">热销商品</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="popup popup-crowd weibo-popup">
+        <div class="content-block noEdge">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link close-popup"
+                   href="javascript:"></a>
+                <a href="javascript:" class="title open-about">选择圈子</a>
+            </header>
+            <div class="content">
+                <div class="crowd-list">
+                    <ul>
+                        <li class="close-popup first" data-role="set-crowd" data-id="0">
+                            全站动态
+                            <i class="iconfont icon-iconfontduigou fr "></i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</block>
+
+
+<block name="script">
+
+    <script>
+        window.Zepto = $;
+    </script>
+    <script type="text/javascript" src="__PUBLIC__/ext/wangeditor/js/lib/zepto.js"></script>
+<!--    <script type="text/javascript" src="__PUBLIC__/ext/wangeditor/js/lib/zepto.touch.js"></script>-->
+    <script type="text/javascript" src="__PUBLIC__/ext/wangeditor/js/wangEditor-mobile.js"></script>
+
+
+    <script src="//cdn.bootcss.com/emojione/2.2.7/lib/js/emojione.min.js"></script>
+    <script src="  https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+    <script type="text/javascript">
+        emojione.imageType = 'png';
+        emojione.ascii = true;
+        emojione.imagePathPNG = _ROOT_ + '/Public/emoji/';
+    </script>
+    <script src="__JS__/sendarticle.js"></script>
+</block>

@@ -1,0 +1,154 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_pyclci2rl8ruow29.css"/>
+    <link rel="stylesheet" href="__CSS__/order.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current" style="background-color: #fff">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">商品订单</a>
+            </header>
+            <form name="form" method="post">
+        <div class="content">
+            <div class="content-block noEdge">
+                <div style="padding: 0;margin-top:44px;" class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="2000">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                        <img src="{$goods.banner|getThumbImageById=1080,720}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="list-block">
+                    <ul>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon iconfont icon-dingdan"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title label">商品名称</div>
+                                    <if condition="$idAmount eq 1">
+                                        <div class="item-after">{$goods.name}</div>
+                                        <else />
+                                        <div class="item-after txt" title="{$goods.name}等{$idAmount}件商品">{$goods.name}等{$idAmount}件商品</div>
+                                    </if>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon iconfont icon-dingdan"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title label">订单编号</div>
+                                    <div class="item-after">{$order.id}</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon iconfont icon-dingdan"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title label">商品价格</div>
+                                    <div class="item-after">￥{$order.amount}</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon iconfont icon-dingdan"></i></div>
+                                <div class="item-inner" style="border-bottom: 1px solid #e7e7e7">
+                                    <div class="item-title label">订单状态</div>
+                                    <div class="item-after">{$order.state}</div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-header">商品简介</div>
+                    <div class="card-content">
+                        <div class="card-content-inner">{$goods.introduce|text|msubstr=0,50,'utf-8',true}</div>
+                    </div>
+                    <div class="card-footer">商品种类：{$goods.cate}</div>
+                </div>
+                <div class="pay-block">
+                    <div class="pay-title">
+                        <span class="pay-method">支付方式</span>
+                        <div id="own" style="display: none">
+                                <span>现有余额：</span>
+                                <span id="my_own"></span>
+                        </div>
+                    </div>
+                    <div class="pay-card">
+                        <span>站内账户：</span>
+                        <volist name="score" id="vo">
+                            <div class="pay-item">
+                                <input style="margin-right: 10px;" data-role="change" type="radio" class="method" name="method" value="{$vo.FIELD}" />{$vo.score.title}：{$vo.UNIT}{$vo.score.unit}
+                            </div>
+                        </volist>
+                    </div>
+                    <div class="pay-card">
+                        <span>在线支付：</span>
+                        <div class="pay-item">
+                            <input style="margin-right: 10px;" data-role="change" type="radio" class="method" name="method" value="wechat" checked="checked" />微信支付
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="dBottom">
+                <input hidden type="text" id="order_id" name="order_id" value="{$order.id}">
+                <a href="javascript:" data-role="goBuy" class="goBuy">付款</a>
+            </div>
+            </form>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script>
+        $(function () {
+            $('.goBuy').attr('href',"{:U('index',array('id'=>$order[id]))}");
+            $('[data-role="change"]').change(function () {
+                var method = $(this).val();
+                var order_id = $('#order_id').val();
+                if(method !== 'wechat'){
+                    $('#own').css('display','block');
+                }else if(method == 'wechat') {
+                    $('#own').css('display','none');
+                }
+                $.post("{:U('Order/index/getOwn')}",{method:method,order_id:order_id},function (data) {
+                    $('#my_own').html('');
+                    if(data == 'wechat'){
+                        $('.goBuy').unbind();
+                        $('.goBuy').attr('href',"{:U('index',array('id'=>$order[id]))}");
+                    }else{
+                        $('.goBuy').attr('data-role','goBuy');
+                        $('.goBuy').attr('href','javascript:');
+                        $('#my_own').append('<span id="my_own">' + data + '</span>')
+                    }
+                }, 'json');
+            });
+
+            $('[data-role="goBuy"]').click(function () {
+                var order_id = $('#order_id').val();
+                var method =  $('.method:checked').val();
+                if(method!='wechat'){
+                    $.post("{:U('Order/index/payOrder')}",{order_id:order_id,method:method},function (res) {
+                        if(res.status==1){
+                            $.toast(res.info);
+                            location.href=res.url;
+                        }else {
+                            $.toast(res.info);
+                        }
+                    })
+                }
+            })
+            var textLeng = 10;
+            var str = $('.txt').html();
+            if(str.length > textLeng){
+                $('.txt').html(str.substring(0,10)+"...");
+            }
+        })
+    </script>
+</block>

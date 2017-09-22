@@ -1,0 +1,161 @@
+<extend name="Base/mob_common"/>
+<block name="mob_header">
+    <style>
+        #mob-main-container {
+            padding: 0px;
+        }
+
+    </style>
+    <div data-am-widget="header" class="am-header am-header-default am-header-fixed">
+        <script src="__JS__/forum.js"></script>
+        <link rel="stylesheet" href="__CSS__/apps/forum.css"/>
+        <div class="am-header-left am-header-nav">
+            <a href="javascript:history.go(-1);"><span class="am-icon-chevron-left"></span></a>
+
+        </div>
+        <h1 class="am-header-title" id="pid" style="margin: 11px 30%">
+            帖子详情
+        </h1>
+
+        <div class="am-header-right am-header-nav">
+
+
+        </div>
+    </div>
+</block>
+<block name="mob_body">
+    <div class="post-container ">
+        <div class="post-title" style="padding: 10px">
+            <h3>{$forum.title}</h3>
+        </div>
+        <hr style="margin: 0">
+        <div class="post">
+
+            <div class="post-box">
+
+                <div class="am-cf avat-info am-g">
+                    <div class="am-u-sm-2 avatar-img">
+                        <img  style="width: 64px;" src="{$forum.user.avatar128}">
+                    </div>
+                    <div class="am-u-sm-7 name-info">
+                        <p><a href="{:U('Mob/User/index',array('uid'=>$vo['user']['uid']))}"> {$forum.user.nickname}</a><span class="louzhu">楼主</span></p>
+                        <p></p>
+                        <p>{$forum.create_time|friendlyDate}</p>
+                    </div>
+
+                    <div class="am-u-sm-3 edit">
+                        <php>if($forum['uid']==is_login()||is_administrator(is_login())){</php>
+                       <div class="do">
+                           <div class="am-dropdown" data-am-dropdown>
+                               <i class="am-icon-angle-down  am-dropdown-toggle"></i>
+                               <div class="am-dropdown-content" style="padding:3px;text-align: center">
+
+                                   <div class="delpost" url="{:U('Mob/Forum/delPost')}" post-id="{$forum.id}" index-url="{:U('mob/Forum/index')}">
+                                       <a>删除</a>
+                                   </div>
+                                       <a href="{:U('Mob/Forum/addpost',array('isedit'=>1,'postid'=>$forum['id']))}">编辑</a>
+
+                               </div>
+                           </div>
+                       </div>
+                        <php>}</php>
+                    </div>
+
+                </div>
+
+                <div class="content" style="color: #666">
+                    <p> {$forum.content}</p>
+
+                        <a class="support" post_id="{$forum['id']}" user_id="{$forum['uid']}"
+                           url="{:U('Mob/Forum/support')}">
+                            <if condition="$forum['has_support'] eq 1">
+                                <i class="am-icon-thumbs-up"></i>
+                                <else/>
+                                <i class="am-icon-thumbs-o-up"></i>
+                            </if>
+                            <span>{$forum.support}</span>
+                        </a>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="comment-item ">
+            <volist name="postcomment" id="vl" key="k">
+                <include file="_forumcomment"/>
+            </volist>
+        </div>
+        <if condition="$pid['count'] eq 1">
+            <div class="am-list-news-ft look-more">
+                <a class="" id="getmoreforumcomment">查看更多...</a>
+            </div>
+        </if>
+
+        <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default nav-bottom" style="height: 63px;"
+             id="">
+            <ul class="am-navbar-nav am-cf am-avg-sm-4" style="padding:5px 10px;font-size: 13px;background-color: #f0f0f0">
+                <li class="col-xs-4">
+                    <if condition="$isadd eq 0">
+
+                        <div class="collection" post_id="{$forum.id}" add=1 url="{:U('Mob/forum/collection')}" style="text-align: center">
+                            <a  >
+                                收藏
+                            </a>
+
+                        </div>
+
+
+                    </if>
+                    <if condition="$isadd eq 1">
+                        <div class="collection" post_id="{$forum.id}" add=0 url="{:U('Mob/forum/collection')}">
+                            <a  >
+                                已收藏
+                            </a>
+                        </div>
+                    </if>
+                </li>
+                <li class="col-xs-4">
+                    <div class="reply_post" href="{:U('Mob/Forum/addcomment',array('id'=>$forum['id']))}">
+                        <a style="background-color: #9cce32;">
+                            回复
+                        </a>
+                    </div>
+                </li>
+              <!--  <li class="col-xs-4">
+                    <div class="" href="{:U('Mob/Forum/addcomment',array('id'=>$forum['id']))}">
+                        <a style="background-color: #f66b6b;">
+                            分享
+                        </a>
+                    </div>
+                </li>-->
+            </ul>
+        </div>
+    </div>
+
+
+    <script>
+        nextpageforumcomment();
+        delcomment();
+        support();
+        delpost();
+        reply_post();
+        //查看更多帖子评论
+        var forum_id = "{$forum['id']}";
+        function nextpageforumcomment() {
+            $('#getmoreforumcomment').unbind('click');
+            $('#getmoreforumcomment').click(function () {
+                $("#getmoreforumcomment").html("查看更多" + '&raquo;');
+                $.post("{:U('Mob/Forum/addMoreForumComment')}", {page: page + 1, id: forum_id}, function (msg) {
+                    if (msg.status) {
+                        $(".comment-item").append(msg.html);
+                        page++;
+                        delcomment();
+                    } else {
+                        $("#getmoreforumcomment").html("全部加载完成！");
+                        $(".look-more").delay(1000).hide(0);
+                    }
+                })
+            });
+        }
+    </script>
+</block>

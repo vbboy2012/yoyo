@@ -1,0 +1,10 @@
+<volist  name="list"  id="val">
+    <li class="col-50">
+        <a href="{:U('Forum/index/section',array('id'=>$val['id']))}">
+            <div class="fCover"><img src={$val.logo} alt="{:L('_BOARD_ICON_')}"></div>
+            <div class="fInfo">
+                <p class="fName">{$val.title}<if condition="$val['post_count'] eq 0"><span class="new">new</span><else/><span class="num">+{$val.post_week_num}</span></if></p>
+            </div>
+        </a>
+    </li>
+</volist>

@@ -1,0 +1,145 @@
+<!-- 管理员用户组新增和编辑页面 -->
+<extend name="Public/base"/>
+<block name="body">
+    <div class="main-title">
+        <h2>升级扩展</h2>
+    </div>
+    <div class="tab-wrap with-padding">
+        <style>
+            .block {
+                border: 1px solid #ccc;
+                margin: 20px 0;
+                padding: 0 20px;
+            }
+
+            .cover-wrapper{
+                width:100px;  height: 120px;
+            }
+        </style>
+        <div class="block">
+            <p>以下扩展可转换至Pro版</p>
+
+            <ul class="module-list" style="margin-left: 5px">
+                <empty name="to_pro">当前无可升级版本</empty>
+                <volist name="to_pro" id="v1">
+                    <li class="clearfix">
+                        <div class="cover-wrapper">
+                                <div class="cover-icon">
+                                    <i class="fa-{$v1.now.icon}"></i>
+                                </div>
+                        </div>
+                        <div class="content-wrapper" style="margin-left: 0!important;background-color: transparent!important;">
+                            <div class="title">
+                                <a href="">{$v1.now.alias} <span class="text-muted">{$v1.now.name}</span></a>
+                            </div>
+                            <div>
+                                <p class="text-muted text-ellipsis"></p>
+                            </div>
+
+                            <div class="clearfix bottom-btns">
+                            <div class="pull-left">
+                                <div>开源版 {$v1.now.version} </div>
+                            </div>
+                            <div class="pull-right">
+                                    <a  href="{:U('update',array('name'=>$v1['now']['name']))}" class="btn btn-info btn-large">升级至Pro版<br>{$v1.new.title}</a>
+                            </div>
+                        </div>
+                        </div>
+                    </li>
+                </volist>
+            </ul>
+
+
+
+
+
+        </div>
+
+
+        <div class="block">
+            <p>以下Pro版扩展可升级至最新版</p>
+
+
+
+            <ul class="module-list" style="margin-left: 5px">
+                <empty name="to_new">当前无可升级版本</empty>
+
+                <volist name="to_new" id="v2">
+                    <li class="clearfix">
+                        <div class="cover-wrapper">
+                            <div class="cover-icon">
+                                <i class="fa-{$v2.now.icon}"></i>
+                            </div>
+                        </div>
+                        <div class="content-wrapper" style="margin-left: 0!important;background-color: transparent!important;">
+                            <div class="title">
+                                <a href="">{$v2.now.alias} <span class="text-muted">{$v2.now.name}</span></a>
+                            </div>
+                            <div>
+                                <p class="text-muted text-ellipsis"></p>
+                            </div>
+
+                            <div class="clearfix bottom-btns">
+                                <div class="pull-left">
+                                    <div>Pro版 {$v2.now.version} </div>
+                                </div>
+                                <div class="pull-right">
+                                    <a  href="{:U('update',array('name'=>$v2['now']['name']))}" class="btn btn-info btn-large">升级至Pro版<br>{$v2.new.title}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </volist>
+            </ul>
+
+
+
+        </div>
+
+        <div class="block">
+            <p>以下Pro版扩展可直接安装</p>
+
+            <ul class="module-list" style="margin-left: 5px">
+                <empty name="other">当前无可升级版本</empty>
+
+                <volist name="other" id="v3">
+                    <li class="clearfix">
+                        <div class="cover-wrapper">
+                            <div class="cover-icon">
+                                <img src="{$v3.cover_path}">
+                            </div>
+                        </div>
+                        <div class="content-wrapper" style="margin-left: 0!important;background-color: transparent!important;">
+                            <div class="title">
+                                <a href="">{$v3.title} <span class="text-muted">{$v3.etitle}</span></a>
+                            </div>
+                            <div>
+                                <p class="text-muted text-ellipsis"></p>
+                            </div>
+
+                            <div class="clearfix bottom-btns">
+                                <div class="pull-left">
+                                    <div>Pro版 {$v3.latest_version} </div>
+                                </div>
+                                <div class="pull-right">
+                                    <a  href="{:U('update',array('name'=>$v3['etitle']))}" class="btn btn-info btn-large">     安装     <br>{$v3.latest_version} Pro</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </volist>
+            </ul>
+
+
+        </div>
+
+
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript" charset="utf-8">
+        $(function () {
+
+        });
+    </script>
+</block>

@@ -1,0 +1,181 @@
+
+<button title="Close (Esc)" type="button" class="mfp-close" style="">×</button>
+<!-- 模态框HTML -->
+<form class="ajax-form" method="post" data-role="eject" id="openbag" style="padding: 10px">
+    <input type="hidden" name="redBagId" value="{$redbagConetnt.id}">
+    <input type="hidden" name="weiboId" value="{$weiboId}">
+
+    <style>
+        .modal-dialog {
+            width: 300px;
+            height: 445px;
+        }
+
+        #openbag {
+            background-color: #C82727;
+            height: 60px;
+            border-top-left-radius: 1em;
+            border-top-right-radius: 1em;
+        }
+
+        .modal-title-name {
+            color: #ffffff;
+        }
+
+        #openbag {
+            background-color: #C82727;
+            min-height: 384px;
+            border-bottom-right-radius: 1em;
+            border-bottom-left-radius: 1em;
+        }
+
+        .modal-dialog {
+            border-top-left-radius: 2em;
+            border-top-right-radius: 2em;
+            border-bottom-right-radius: 2em;
+            border-bottom-left-radius: 2em;
+        }
+
+    </style>
+
+    <div id="openRedBag2">
+
+        <php>if(empty($getRedBag)){</php>
+        <if condition="$noRedbag neq 0">
+            <php>if($redbag['redbag_type']==3){</php>
+            <div style="text-align: center" id="textkoulng">
+                <input type="text" value="" name="kouling" placeholder="#请输入口令">
+                <div style="text-align: center" id="openRedBag1">
+                    <a id="openRedBag" url="{:addons_url('RedBag://RedBag/doOpenRedBag')}"><img
+                            src="{:getRootUrl()}Addons/RedBag/_static/image/open.png" style="max-height: 100%;"></a>
+                </div>
+            </div>
+
+            <php>}else{</php>
+            <div style="text-align: center" id="openRedBag1">
+                <a id="openRedBag" url="{:addons_url('RedBag://RedBag/doOpenRedBag')}"><img
+                        src="{:getRootUrl()}Addons/RedBag/_static/image/open.png" style="max-height: 100%;"></a>
+            </div>
+            <php>}</php>
+            <else/>
+            <div style="text-align: center">
+                <a url="{:addons_url('RedBag://RedBag/doOpenRedBag')}"><img
+                        src="{:getRootUrl()}Addons/RedBag/_static/image/isopen.png" style="border-radius: 5%"></a>
+            </div>
+
+            <div style="text-align: center">
+                <h3 style="color: #ffffff">
+                    手速慢了，红包已抢完~
+                </h3>
+            </div>
+        </if>
+
+
+        <php>}else{</php>
+        <div style="text-align: center">
+            <a url="{:addons_url('RedBag://RedBag/doOpenRedBag')}"><img
+                    src="{:getRootUrl()}Addons/RedBag/_static/image/isopen.gif"
+                    style="height: 160px;width: 160px;border-radius: 100%"></a>
+        </div>
+
+        <div style="text-align: center">
+            <h3 style="color: #ffffff">
+                恭喜获得：{$getRedBag}{$unit}{$type_title}
+            </h3>
+        </div>
+        <php>}</php>
+    </div>
+    <div style="text-align: center"  oncontextmenu="return false" ondragstart="return false"
+         onselectstart="return false" onselect="document.selection.empty()" oncopy="document.selection.empty()"
+         onbeforecopy="return false" onmouseup="document.selection.empty()">
+        <h3 style="color: #ffffff">
+            {$redbag.content}
+        </h3>
+    </div>
+    <div style="text-align: center">
+        <span>
+         <a style="color: #E4DE45" id="lockOther">看看别人的手气</a>
+        </span>
+    </div>
+    <div class=""
+         style="text-align: center;display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;width: 50%;float: left">
+    <span>
+        总额：{$redbag.all_money}{$unit}{$type_title}
+    </span>
+    </div>
+    <div class="" style="text-align: center;width: 50%;float: right">
+    <span>
+        领取：<span id="redbag_count">{$redbagcount}</span>/{$redbag.num}
+    </span>
+    </div>
+    <div style="clear: both"></div>
+    <div class="getList col-md-12" style="display: none" >
+        <volist name="getList" id="vo">
+            <div class="clearfix">
+        <span class="col-md-3" title="{$vo.user.nickname}"
+              style="color: #D9BDBD;padding: 2px;display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;width: 25%;float: left">
+           {$vo.user.nickname}
+        </span>
+              <span class="col-md-3" title="{$vo.get_bag}{$vo.type_title}"
+                    style="color: #D9BDBD;padding: 2px;display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;width: 25%;float: left">
+         {$vo.get_bag}{$unit}
+        </span>
+             <span class="col-md-3" title="{$vo.create_time|friendlyDate}"
+                   style="color: #D9BDBD;padding: 2px;display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;width: 25%;float: left">
+                {$vo.create_time|friendlyDate}
+        </span>
+
+                <if condition="$vo['best_luck'] eq 1">
+                    <span class="col-md-3" style="color: #D9BDBD;padding: 0px;width: 25%;float: left">     气贯长虹 </span>
+                </if>
+                <if condition="$vo['best_luck'] eq 2">
+                    <span class="col-md-3" style="color: #D9BDBD;padding: 0px;width: 25%;float: left">     最佳手速 </span>
+                </if>
+                <br>
+            </div>
+        </volist>
+    </div>
+
+
+    <div style="height: 40px;margin-left: 18px;width: 140px ">
+
+    </div>
+</form>
+<script>
+    $(document).ready(function () {
+        $('[data-role="submitreport"]').click(function () {
+            $('[data-dismiss="modal"]').click();
+        });
+        $('#lockOther').click(function () {
+            $('.getList').show();
+        });
+        $('#openRedBag').click(function () {
+            var data = $("#openbag").serialize();
+            var url = $(this).attr('url');
+            $.post(url, data, function (msg) {
+                if (msg.status == 1) {
+                    $('#openRedBag1').fadeOut(1000);
+                    $('#textkoulng').fadeOut(1000);
+                    var html = ' <div style="text-align: center" id="openRedBag1">' +
+                            '<a ><img src="{:getRootUrl()}Addons/RedBag/_static/image/isopen.gif" style="height: 160px;width: 160px;border-radius: 100%"></a>' +
+                            '</div>' +
+
+                            '<div style="text-align: center">' +
+                            '<h3 style="color: #ffffff">' + '恭喜获得' + msg.getRedBag + msg.type_title + '</h3>' +
+                            '</div>';
+                    setTimeout(function () {
+                        $('#openRedBag2').append(html);
+                    }, 1000);
+                    $("#redbag_count").html(parseInt($("#redbag_count").html()) + 1);
+                    toast.success(msg.info);
+                } else {
+                    toast.error(msg.info);
+                }
+            }, 'json')
+        });
+    });
+
+</script>
+
+
+

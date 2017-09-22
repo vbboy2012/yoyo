@@ -1,0 +1,56 @@
+<script type="text/javascript" charset="utf-8" src="__JS__/52player/flowplayer-3.2.11.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__JS__/jwplayer.js"></script>
+<script>jwplayer.key="EmasNw9guiv2y5Qs7HxgcLsRkEl7TSBF+ePQug==";</script>
+<link href="__PUBLIC__/js/ext/webuploader/css/webuploader.css" type="text/css" rel="stylesheet">
+<p class="word-wrap">{$weibo.content}</p>
+<div>
+    <a src="">
+    <video src="{$url}" controls="controls" style="max-width: 500px;width: 100%;height: 210px"></video>
+    <input type="hidden" value="{$url}" id="video_url_{$weibo.id}">
+    <div id="player2_{$weibo.id}"  ></div>
+    </a>
+</div>
+<!--s-->
+<div>
+ <!--<script type="text/javascript">
+
+        var player = jwplayer('player2_{$weibo.id}');
+
+        player.setup({
+            file: "{$url}",
+            width:"100%",
+
+        });
+
+        player.addButton(
+                //This portion is what designates the graphic used for the button
+                "//icons.jwplayer.com/icons/white/download.svg",
+                //This portion determines the text that appears as a tooltip
+               // "Download Video",
+                //This portion designates the functionality of the button itself
+                function() {
+                    //With the below code, we're grabbing the file that's currently playing
+                    window.location.href = player.getPlaylistItem()['file'];
+                },
+                //And finally, here we set the unique ID of the button itself.
+                "download"
+        );
+
+    </script>-->
+</div>
+<!--e-->
+
+<!--<script>
+
+  flowplayer(
+     "player2_{$weibo.id}",
+     "./Addons/InsertLocalVideo/_static/52player/flowplayer-3.2.12.swf",{
+     clip: {
+     url:$('#video_url_{$weibo.id}').val(),
+     autoPlay: false,
+     autoBuffering: false,
+     scaling: 'fit'
+     }
+     }
+     );
+</script>-->

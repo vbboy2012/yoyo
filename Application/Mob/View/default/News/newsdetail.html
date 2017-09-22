@@ -1,0 +1,169 @@
+<extend name="Base/mob_common"/>
+
+<block name="mob_body">
+    <script src="__JS__/news.js"></script>
+    <link rel="stylesheet" href="__CSS__/apps/news.css"/>
+    <style>
+        .com-p{
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            line-height: 4rem;
+            font-size: 14px;
+            color: #f37b1d;
+        }
+        .am-dropdown-content{
+            min-width: 90px!important;
+            right: 3px!important;
+        }
+        .am-dropdown-content a{
+            padding: 5px auto;
+            font-size: 14px;
+        }
+        .emot_content{
+            width: 100%;
+            margin: 0 auto;
+            height: 300px;
+            position: absolute;
+            bottom: 45px;
+        }
+    </style>
+<div class="news-detail-container">
+    <div class="news-detail">
+
+        <div class="news-box" style="background-color: #fff">
+
+            <div class="news">
+                <div class="news-content">
+                    <div class="top-box">
+                       <div class="tit">
+                           <h3 style="font-weight: 700">{$newsdetail.title}</h3>
+                       </div>
+                        <div class="operationg" style="position: relative">
+                            <div class="name" style="font-size: 14px;color: #737373;display: inline-block">
+                                <img class="avatar-img" style="width: 32px;padding-right: 5px"
+                                     src="{$newsdetail.user.avatar32}">
+                                <a href="{:U('Mob/User/index',array('uid'=>$newsdetail['user']['uid']))}"><span style="color: #737373">{$newsdetail.user.nickname}</span></a>
+                                <span style="margin-left: 10px;">{$newsdetail.create_time|friendlyDate}</span>
+                            </div>
+                            <!--评论、点赞-->
+                            <div class="" style="display: inline-block;position: absolute;right: 10px;bottom: -7px">
+                                <i class="am-icon-eye"></i>{$newsdetail.view}
+                                <if condition="$newsdetail['is_admin_or_mine'] eq 1">
+                                <div class="am-dropdown " data-am-dropdown="{justify: '#doc-dropdown-justify'}" style="margin-left: 10px">
+                                    <button class="am-btn am-btn-primary am-dropdown-toggle" style="background-color: transparent!important;border: none;padding: 6px 1px" data-am-dropdown-toggle><span class="am-icon-ellipsis-v" style="color: #000"></span></button>
+                                    <ul class="am-dropdown-content am-text-center" >
+                                        <li ><a class="am-icon-mail-forward " data-toggle="modal" data-role="modal_popup" href="{:U('Mob/News/forward',array('newsid'=>$newsdetail['id'],'newstitle'=>$newsdetail['title']))}" ><span style="margin-left: 5px" >转发</span></a>
+
+                                        </li>
+                                        <li><a class="am-icon-wrench" href="{:U('Mob/news/addnews',array('id'=>$newsdetail['id']))}"><span style="margin-left: 5px">编辑</span></a></li>
+                                    </ul>
+                                </div>
+                                    </if>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <if condition="$newsdetail['cover_url'] neq no_img">
+                    <img id="cover_src" style="width: 100%;margin: 10px auto" src="{$newsdetail.cover_url}">
+                        <else/>
+                        <img id="cover_src" style="width: 100%;margin: 10px auto" src="./Application/Mob/Static/images/nopicture.jpg">
+                      </if>
+
+                    <div class="content-box">
+                        <div class="content" style="border: none">
+                            {$newscontent.content}
+                        </div>
+
+                    </div>
+
+                    <div class="am-form-group am-cf weibo_post_box am-topbar-fixed-bottom" id="comment" style="padding:.5rem 1rem;background-color: #f5f5f5">
+                        <php>
+                            if (!is_login()) {
+                        </php>
+                        <textarea class="content am-fl" rows="5" id="" disabled="disabled" style="height: 35px; width: 62%;border-radius: 5px;border-color: #eee">请登录后再评论</textarea>
+                        <!--表情-->
+                        <div class="am-cf am-fl" style="margin: 7px 18px">
+                            <a href="javascript:" data-url=" {:U('Core/Expression/getSmile')}" onclick="insertFace($(this))">
+                                <img src="__IMG__/bq.png"></a>
+                        </div>
+
+                        <div id="" class="emot_content" style="display: none"></div>
+                        <!--表情end-->
+
+                        <p class="submit" style="margin-bottom:20px " news_id="{$newsdetail.id}" url="{:U('Mob/News/doAddComment')}" uid="{$newsdetail.uid}">
+                            <button  type="submit" style="float: right;width: 18%;border-radius: 5px;padding: 8px 0"
+                                     class="am-btn-warning am-btn am-btn-block am-round ">评论
+                            </button>
+                        </p>
+
+                        <php>
+                            }else{
+                        </php>
+
+                        <textarea class="content am-fl" rows="5" id="comment_content_text"  style="height: 35px; width: 62%;border-radius: 5px;border-color: #eee"></textarea>
+                        <!--表情-->
+                        <div class="am-cf am-fl" style="margin: 7px 18px">
+                            <a href="javascript:" data-url=" {:U('Core/Expression/getSmile')}" onclick="insertFace($(this))">
+                                <img src="__IMG__/bq.png"></a>
+                        </div>
+
+                        <div id="emot_content" class="emot_content" style="display: none"></div>
+                        <!--表情end-->
+
+                        <p class="submit" style="margin-bottom:20px " news_id="{$newsdetail.id}" url="{:U('Mob/News/doAddComment')}" uid="{$newsdetail.uid}">
+                            <button  type="submit" style="float: right;width: 18%;border-radius: 5px;padding: 8px 0"
+                                    class="am-btn-warning am-btn am-btn-block am-round ">评论
+                            </button>
+                        </p>
+                        <php>}</php>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--资讯评论-->
+    <div class="com-p" >
+        <p>评论{$newsdetail.count}</p>
+    </div>
+    <div class="comment-list addmore">
+        <volist name="newscomment" id="vl">
+            <include file="_newscomment"/>
+        </volist>
+    </div>
+
+    <!--资讯评论END-->
+    <if condition="$pid['count'] eq 1">
+    <div class="am-list-news-ft look-more">
+        <a class="" id="getmorenewscomment"
+                >查看更多 ...;</a>
+    </div>
+        </if>
+</div>
+    <script>
+    comment();
+    nextpage();
+    //查看更多评论
+    var page = 1;
+    var news_id = "{$newsdetail['id']}";
+    function nextpage() {
+        $("#getmorenewscomment").html("查看更多&raquo");
+        $('#getmorenewscomment').click(function () {
+            $.post("{:U('Mob/news/addMoreNewsComment')}", {page: page + 1, id: news_id}, function (msg) {
+                if (msg.status) {
+                    $(".addmore").append(msg.html);
+                    page++;
+                    del();
+                    comment();
+                } else {
+                    $("#getmorenewscomment").html("全部加载完成！");
+                    $(".look-more").delay(2000).hide(0);
+                }
+            })
+        });
+    }
+
+</script>
+</block>

@@ -1,0 +1,187 @@
+<extend name="Base/mob_common"/>
+<block name="mob_header">
+<div data-am-widget="header" class="am-header am-header-default am-header-fixed am-cf">
+<style>
+    .container{
+        padding: 0;
+    }
+</style>
+    <link rel="stylesheet" href="__CSS__/apps/message.css"/>
+    <div class="am-header-left am-header-nav">
+        <a onclick="clearAll('productId')" style="color: #FFF">全选</a>
+    </div>
+    <h1 class="am-header-title" style="margin: 11px 30%">
+        我的消息
+    </h1>
+    <style>
+        #demo-view{
+            display: none;
+        }
+    </style>
+
+    <div class=" am-header-right am-header-nav" style="">
+        <a  style="color: #FFF" href="{:U('Mob/message/index')}"  ><i class="icon-check"></i> 完成
+        </a>
+
+    </div>
+
+<!--    <div class="am-header-right am-header-nav">
+        <a   href="javascript:void(0);" data-url="{:U('Ucenter/Public/setAllMessageReaded')}"  onclick="Notify.setAllReaded(this)" class="read-btn"><i
+                class="icon-check"></i> 全部已读
+        </a>
+
+    </div>-->
+
+<style type="text/css">
+.check{
+    left: 8px;
+    top: 25px;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 12px;
+    border: 1px solid #f6513d;
+}
+
+</style>
+</div>
+    </block>
+<block name="mob_body">
+    <link rel="stylesheet" href="__CSS__/apps/message.css"/>
+<div class="message-container">
+        <ul class="am-g am-text-center am-cf" id="messages" style="padding:0;background-color: #F7F7F7;">
+            <a href="{:U('Mob/Message/menu',array('tab'=>'unread'))}" <if condition="($_GET['tab'] eq 'unread') or($_GET['tab'] eq '')"> class="current"</if> >未读消息</a>
+            <a href="{:U('Mob/Message/menu',array('tab'=>'all'))}"  <if condition="$_GET['tab'] eq 'all'"> class="current"</if>>全部消息</a>
+            <a href="{:U('Mob/Message/menu',array('tab'=>'system'))}" <if condition="$_GET['tab'] eq 'system'"> class="current"</if>>系统消息</a>
+            <a href="{:U('Mob/Message/menu',array('tab'=>'user'))}" <if condition="$_GET['tab'] eq 'user'"> class="current"</if>>用户消息</a>
+            <a href="{:U('Mob/Message/menu',array('tab'=>'app'))}" <if condition="$_GET['tab'] eq 'app'"> class="current"</if>>应用消息</a>
+        </ul>
+        <notempty name="messages">
+            <div>
+                <div class="message-show" style="border: none;font-size: 12px;margin-bottom: 50px;">
+                    <div class="am-tab-panel am-active ">
+
+                        <volist name="messages" id="vo">
+                            <include file="_menumessagelist"/>
+                        </volist>
+                    </div>
+                </div>
+                <else/>
+                <div class="message-show" style="border: none;font-size: 15px">
+                    <p class="text-muted" style="text-align: center; ">
+                        <br><br>
+                        该分类暂无消息～
+                        <br><br><br>
+                    </p>
+                </div>
+
+            </div>
+
+        </notempty>
+    <footer class="nextfoot">
+        <button class="setbtn" id="del_message" style="line-height: 35px">删除</button>
+        <button class="setbtn" id="set_message" style="line-height: 35px">全部设为已读</button>
+    </footer>
+
+</div>
+    <style>
+    #messages a{
+        float: left;
+    }
+    body {
+        background-color: #FFFFFF;
+        font-size: 14px!important;
+    }
+
+        footer{
+        width: 100%;
+    height: 50px;
+    line-height: 50px;
+    margin: 0 auto;
+    border: 1px solid #eee;
+    background-color: #ffffff;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    z-index: 9;
+        }
+        .setbtn{
+              border: 1px solid red;
+    background-color: #fff;
+    color: red;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 0 10px;
+    height: 35px;
+    font-size: 12px;
+    margin-top: -7px;
+        }
+        .checkboxstyle{
+			position: absolute;
+			left: 8px;
+			top: 25px;
+			width: 15px;
+			height: 15px;
+			background-color: #fff;
+			border-radius: 12px;
+			border: 1px solid #D8D8D8;
+        }
+</style>
+    <script>
+        function clearAll(name) {
+
+            var el = document.getElementsByTagName('input');
+            var len = el.length;
+            for(var i=0; i<len; i++){
+                if(el[i].checked == false){
+                   el[i].checked = true; 
+               }else{
+                el[i].checked = false;
+               }
+                
+            }
+        }
+
+        $('#set_message').click(function(){
+            var ids = [];
+            $('.chose_checkbox:checked').each(function(){
+                ids.push($(this).val())
+            })
+            ids = ids.join(',');
+            $.post(U('Mob/Message/setmessage'),{message_ids:ids},function(res){
+                if (res.status==1) {
+                    toast.success(res.info);
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1000);
+                } else {
+                    toast.error(res.info );
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1000);
+                }
+            })
+        })
+
+        $('#del_message').click(function(){
+            var ids = [];
+            $('.chose_checkbox:checked').each(function(){
+                ids.push($(this).val())
+            })
+            ids = ids.join(',');
+            $.post(U('Mob/Message/delmessage'),{message_ids:ids},function(res){
+                if (res.status==1) {
+                    toast.success(res.info);
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1000);
+                } else {
+                    toast.error(res.info );
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1000);
+                }
+            })
+        })
+    </script>
+</block>

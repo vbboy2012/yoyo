@@ -1,0 +1,152 @@
+.circle{
+  margin-bottom:.4rem;
+  .name{
+    a.textMore{
+      color: #ec725d;
+    }
+    p.textMore{
+      font-weight:400;
+      color: #000;
+    }
+  }
+}
+.content.gray{
+  background-color: #eee;
+}
+//话题列表页 by zdj
+.content{
+  background-color: #fff;
+  .content-block{
+    margin:0;
+  }
+  ul{
+    .huati-item{
+      display: flex;
+      align-items:center;
+      margin:20px 0;
+      .img{
+        flex-shrink:0;
+        width:80px;
+        height:80px;
+        border-radius:5px;
+        overflow: hidden;
+        img{
+          width:100%;
+        }
+      }
+      .huati-information{
+        margin-left:20px;
+        flex:1;
+        flex-shrink:1;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        .number{
+          display: inline-block;
+          width:20px;
+          height:20px;
+          margin-right:5px;
+          border-radius:4px;
+          line-height:20px;
+          text-align: center;
+          color: #fff;
+          background-color: #ec725d;
+        }
+        .unnumber{
+          display: inline-block;
+          width:20px;
+          height:20px;
+          margin-right:5px;
+          line-height:20px;
+          text-align: center;
+          color: #000;
+        }
+        p{
+          font-size:14px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        .huati-name{
+          font-weight:400;
+          color: #000;
+        }
+        .huati-sketch{
+          margin:5px 0 !important;
+          color:#888
+        }
+        .huati-shuju{
+          font-size:10px;
+          color: #ccc;
+          span{
+            margin-right:5px;
+            i{
+              margin-right:2px;
+            }
+          }
+        }
+      }
+      .follow{
+        position: absolute;
+        display: inline-block;
+        margin: 1rem auto;
+        padding: .2rem 1rem;
+        border: 1px solid #ec725d;
+        color: #ec725d;
+        font-size: .6rem;
+        box-shadow: 0 0 5px rgba(236, 114, 93, 0.4);
+        border-radius: 5px;
+        right: .5rem;
+        top: 20px;
+      }
+    }
+  }
+}
+
+
+
+//话题主持人设置页面 未完成状态 by zdj
+.topic-holder{
+  .h-title{
+    margin:.2rem 0 !important;
+    padding: 0 20px 10px;
+    border-bottom: 1px solid #f2f2f2;
+    font-size: 14px;
+    font-weight: 700;
+
+  }
+  .have-holder{
+    margin-top: .5rem;
+    display:flex;
+    align-items: center;
+    justify-content:space-between;
+    .h-avatar{
+      width:80px;
+      height:80px;
+      border-radius:5px;
+      overflow: hidden;
+      img{
+        width:100%;
+        border-radius: 100%;
+      }
+    }
+    .intro-self{
+      color: #888;
+      font-size: 12px;
+      max-width: 195px;
+      overflow: hidden;
+      white-space: normal;
+      text-overflow: ellipsis;
+    }
+    .holder-follow{
+      display: block;
+      width:60px;
+      height:30px;
+      line-height:30px;
+      text-align: center;
+      border-radius:4px;
+      background-color: #ec725d;
+      color: #fff;
+    }
+  }
+}

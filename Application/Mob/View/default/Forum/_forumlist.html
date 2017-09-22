@@ -1,0 +1,24 @@
+<div class="forum-post-box">
+    <div class="post-subject am-cf">
+        <div class="half-box am-g" style="line-height: normal">
+            <div class="head am-u-sm-2">
+                <img src="{$vo.user.avatar32}" width="32px" height="32px">
+            </div>
+            <div class="info am-u-sm-10">
+                <a href="#" style="color: #539ecb">{$vo.user.nickname}</a>
+                <php>
+                    $vo['create_time'] = date('m-d,h:i',$vo['create_time']);
+                </php>
+                <a class="time">{$vo['create_time']}</a>
+            </div>
+        </div>
+        <div class="half-box title">
+            <a class="title" href="{:U('forum/postdetail',array('id'=>$vo['id']))}">{$vo.title}</a>
+        </div>
+        <div class="half-box">
+            <span>阅读：{$vo.view_count}</span>
+            <span style="margin-left: 10px">评论：{$vo.reply_count}</span>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,192 @@
+ul,
+li {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+p {
+  margin: 0px;
+}
+.avatar-img {
+  border-radius: 100%;
+}
+.label-badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 8px;
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 12px;
+}
+.label {
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: #808080;
+}
+.issue-body {
+  background-color: #F1F1F1;
+}
+.spliter {
+  border-top: 1px solid #F2F2F2;
+  width: 100%;
+  margin-bottom: 5px;
+}
+/*专辑分类*/
+.issue-type-list .type-list .issue-type .type {
+  background-color: #fff;
+  padding: 5px;
+}
+/*专辑列表*/
+.issue-container .issue-list {
+  background: none !important;
+}
+.issue-container .issue-list .issue-Box {
+  height: 150px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+  border: 2px solid #f4f4f4;
+}
+.issue-container .issue-list .issue-Box .left-box {
+  height: 100%;
+  padding: 10px;
+}
+.issue-container .issue-list .issue-Box .left-box .cover-box {
+  height: 100%;
+  padding-left: 0;
+}
+.issue-container .issue-list .issue-Box .left-box .cover-box img {
+  border-radius: 5px;
+}
+.issue-container .issue-list .issue-Box .left-box .info-box {
+  height: 100%;
+  padding: 10px 0;
+  position: relative;
+}
+.issue-container .issue-list .issue-Box .left-box .info-box .time {
+  position: absolute;
+  bottom: 5px;
+  color: #a3a0ad;
+}
+.issue-container .issue-list .issue-Box .right-box {
+  background-color: #F9F7FF;
+  height: 100%;
+  padding: 0;
+}
+.issue-container .issue-list .issue-Box .right-box .third-box {
+  height: 33.3%;
+  width: 100%;
+  text-align: center;
+  line-height: 59px;
+  color: #c2bcd0;
+}
+.issue-container .issue-list .issue-Box .issue {
+  border: 1px solid #cccccc;
+  background-color: #FFFFFF;
+}
+.issue-container .issue-list .issue-Box .issue .issue-info-Box {
+  padding: 50px;
+  background: #F2F2F2;
+}
+.issue-container .issue-list .issue-Box .issue .issue-info-Box .cover img {
+  display: inline-block;
+  padding: 1px;
+  background: white;
+}
+.issue-container .issue-list .issue-Box .issue .issue-info-Box .title {
+  overflow: hidden;
+}
+.issue-container .issue-list .issue-Box .issue .issue-info-Box .info .avatar {
+  padding: 0px;
+  text-align: center;
+}
+.issue-container .issue-list .issue-Box .issue .issue-info-Box .info .avatar .avatar-img {
+  width: 36px;
+}
+.issue-container .issue-list .issue-Box .issue .issue-info-Box .info .name {
+  padding: 0px;
+}
+.issue-container .issue-list .issue-Box .issue .issue-info-Box .time {
+  padding: .5em;
+  font-size: .8em;
+  text-align: center;
+}
+/*专辑详情页面*/
+.issuedetail-container .issuedetail {
+  background: white;
+  padding: 0 10px;
+}
+.issuedetail-container .issuedetail .info h3 {
+  text-align: center;
+  font-weight: 700;
+}
+.issuedetail-container .issuedetail .info p {
+  text-indent: 2em;
+}
+.issuedetail-container .issuedetail .info .good {
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  margin: 10px auto;
+  line-height: 35px;
+}
+.issuedetail-container .issuedetail .info .good a {
+  color: #999;
+  font-size: 20px;
+}
+.issuedetail-container .comment-list {
+  background: #f5f5f5;
+}
+.issuedetail-container .comment-list .comment-item {
+  background-color: #ffffff;
+  padding: 10px;
+  margin-bottom: 5px;
+  border: 1px solid #F2F2F2;
+}
+.issuedetail-container .comment-list .comment-item .content .user-at.hl {
+  background: #eee;
+  border-radius: 16px;
+  padding-right: 10px;
+}
+.issuedetail-container .comment-list .comment-item .content .user-at img {
+  border-radius: 100%;
+  width: 24px;
+}
+.issuedetail-container .comment-list .comment-item .content .user-at {
+  color: #666;
+  display: inline-block;
+  line-height: 22px;
+  height: 26px;
+  padding: 0 5px 0 0;
+  vertical-align: middle;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+.title-box {
+  padding: 10px;
+}
+.title-box h3 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+.title-box .span-box {
+  height: 30px;
+  line-height: 30px;
+}
+.title-box .span-box span {
+  color: #ccc;
+}
+.title-box .span-box .name {
+  font-size: 16px;
+  color: #333;
+  margin-right: 10px;
+}
+/*发送专辑页面*/
+.addissue-container .addissue .controls {
+  padding: 10px;
+}

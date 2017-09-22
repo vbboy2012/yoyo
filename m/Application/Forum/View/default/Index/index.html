@@ -1,0 +1,115 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a href="javascript:" class="title open-about">{:L('_MODULE_')}</a>
+            </header>
+            <include file="./Application/Common/View/default/Public/footer.html"/>
+            <div class="bar bar-header-secondary">
+                <div class="searchbar">
+                    <a class="searchbar-cancel">取消</a>
+                    <div class="search-input">
+                        <label class="icon icon-search" for="search"></label>
+                        <input  data-role="enter" type="search" id='search' placeholder='大家都在搜...'/>
+                    </div>
+                </div>
+            </div>
+            <div class="content infinite-scroll">
+                <div class="content-block noEdge">
+                    <!--我的关注 显示前三个-->
+                    <div data-role="myFollow" class="fmBox">
+                        <if condition="is_login() gt 0">
+                        <p class="fmTit">{:L('_MY_FOLLOW_')}</p>
+                        <ul class="myFocus row no-gutter">
+                            <if condition="$noOne eq 1" >
+                               <li class='noMore'>
+                                 {:L('_EMPTY_FOLLOW')}
+                               </li>
+                            <else/>
+                                <volist  name="followData"  id="val">
+                                    <li class="col-50">
+                                        <a href="{:U('Forum/index/section',array('id'=>$val['id']))}">
+                                            <div class="fCover"><img src={$val.logo} alt="{:L('_BOARD_ICON_')}"></div>
+                                            <div class="fInfo">
+                                                <p class="fName">{$val.title}<if condition="$val['post_week_num'] neq false"><span class="num">+{$val.post_week_num}</span></if></p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </volist>
+                                <li class="col-50">
+                                    <a href="{:U('Forum/index/type',array('type'=>'follow'))}">
+                                        <div class="all-forum"><i class="iconfont icon-chakantieziguanzhu"></i></div>
+                                        <div class="fInfo">
+                                            <p class="fName">全部关注</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </if>
+                        </ul>
+                        </if>
+                        <p data-role="search" class="fmTit">{:L('_BLOCK_HOT_')}</p>
+                        <ul class="myFocus row no-gutter">
+                            <volist  name="result"  id="val">
+                                <li class="col-50 <if condition="$i eq 3">no-bottom</if>">
+                                    <a href="{:U('Forum/index/section',array('id'=>$val['id']))}">
+                                        <div class="fCover"><img src={$val.logo} alt="{:L('_BOARD_ICON_')}"></div>
+                                        <div class="fInfo">
+                                            <p class="fName">{$val.title}<if condition="$val['post_week_num'] neq false"><span class="num">+{$val.post_week_num}</span></if></p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </volist>
+                            <li class="col-50 no-bottom">
+                                <a href="{:U('Forum/index/type')}">
+                                    <div class="all-forum"><i class="iconfont icon-quanbu"></i></div>
+                                    <div class="fInfo">
+                                        <p class="fName">{:L('_BELONGED_SECTION_')}</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <empty name="result">
+                                <li class="col-50 no-bottom">
+                                    &nbsp;
+                                </li>
+                            </empty>
+                        </ul>
+                    </div>
+
+                    <!--推荐板块显示最活跃的五个板块-->
+                    <div class="fmListBox fmBox">
+                        <p class="fmTit" data-role="forum-sort-title">
+                            最新帖子
+                            <span class="sort-type">
+                            <a href="javascript:void(0);" class="active" data-role="forum-sort-time">
+                                <span>最新</span></a>
+                                <span class="fenge">|</span>
+                            <a href="javascript:void(0);" data-role="forum-sort-hot">
+                                <span>最热</span></a>
+                            </span>
+                        </p>
+                        <p class="fmTit hid-none search-title" data-role="forum-search">
+                            搜索结果
+                        </p>
+                        <ul id="tab" class="list" data-role="min-height">
+                        </ul>
+                        <ul data-role="search-ul" class="s-list">
+                        </ul>
+                        <div class="infinite-scroll-preloader" style="min-height: 800px">
+                            <div class="preloader"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/index.js"></script>
+    <script src="__JS__/section.js"></script>
+
+</block>

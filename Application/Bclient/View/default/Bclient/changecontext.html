@@ -1,0 +1,27 @@
+<!-- 管理员用户组新增和编辑页面 -->
+<extend name="Public/base"/>
+<block name="body">
+    <div class="main-title">
+        <h2>环境变更</h2>
+    </div>
+    <div class="tab-wrap with-padding">
+
+        <div class="block">
+           <p>系统检测到您的使用环境已经变更。</p>
+            <p>OpenSNS商业版要求在特定环境下使用。</p>
+            <p>  环境的变更需要重新激活商业版。</p>
+            <p>  点击激活重新激活商业版</p>
+
+            <div>
+                <a href="{:U('admin/bclient/activate')}"
+                   class="btn btn-primary">激活</a>
+
+            </div>
+
+        </div>
+
+    </div>
+</block>
+<block name="script">
+
+</block>

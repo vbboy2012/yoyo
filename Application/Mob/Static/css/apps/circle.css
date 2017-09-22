@@ -1,0 +1,157 @@
+.am-header .am-header-title {
+  margin: 11px 30%;
+}
+.am-header .am-header-right {
+  color: #FFF;
+  margin-right: 40px;
+}
+#crowd {
+  font-size: 14px;
+  padding: 0;
+  border-bottom: 1px solid #efefef;
+}
+#crowd a:active,
+#crowd a:link,
+#crowd a:visited {
+  text-decoration: none;
+}
+#crowd a {
+  float: left;
+  padding: 13px 0;
+  width: 33%;
+  color: #000;
+}
+#crowd body {
+  background-color: #FFF;
+}
+#crowd .current {
+  background-color: transparent!important;
+  border-bottom: 2px solid #1abc9c;
+}
+.crowd-container {
+  padding-bottom: 60px;
+}
+.crowd-container .crowd-box-list .crowd-box {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.crowd-container .crowd-box-list .crowd-box .crowd-list {
+  font-size: 12px;
+  padding: 5px;
+  position: relative;
+  border-bottom: 1px solid #DCDCDC;
+}
+.crowd-container .crowd-box-list .crowd-box .crowd-list .info-box {
+  padding: 10px;
+  height: 100%;
+}
+.crowd-container .crowd-box-list .crowd-box .crowd-list .info-box .avatar {
+  padding: 0;
+}
+.crowd-container .crowd-box-list .crowd-box .crowd-list .info-box .info {
+  line-height: 22px;
+}
+.crowd-container .crowd-box-list .crowd-box .crowd-list .info-box .info .info-title {
+  color: #666;
+}
+.crowd-container .crowd-box-list .crowd-box .crowd-list .info-box .info .infos {
+  color: #afafaf;
+}
+.crowd-container .crowd-box-list .crowd-box .crowd-list .info-box .btn-follow {
+  width: 95%;
+  text-align: center;
+  display: inline-block;
+  margin-top: 30px;
+  color: #afafaf;
+  height: 27px;
+  line-height: 27px;
+  border: 1px solid #e4e4e4;
+}
+.add-crowd {
+  padding: 0 ;
+}
+.add-crowd input,
+.add-crowd select {
+  border: none!important;
+}
+.add-crowd select {
+  padding: 0 10px;
+}
+.add-crowd .bg {
+  background: url("../../images/sentissue.png") center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.add-crowd .bg .add-box {
+  margin: 50px auto;
+  text-align: center;
+  position: relative;
+  z-index: 99;
+}
+.add-crowd .bg .add-box .add {
+  border-radius: 50%;
+  background-color: #0e90d2;
+  border: none;
+}
+.add-crowd .bg .add-box .add i {
+  color: #fff;
+  font-size: 25px;
+  padding: 12px 20px;
+}
+.add-crowd .bg .m-btn {
+  left: 160px;
+  top: 0;
+  position: absolute;
+  z-index: 1;
+  width: 72px;
+  height: 72px;
+  opacity: 0;
+  cursor: pointer;
+}
+.add-crowd .bg p {
+  color: #fff;
+  margin-top: 10px;
+  font-weight: 700;
+}
+.add-crowd .bg .show_cover {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.add-crowd .bg .show_cover img {
+  width: 100% !important;
+  height: 100%!important;
+}
+.add-crowd .bg .has_cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.add-crowd .bg .has_cover img {
+  width: 100% !important;
+  height: 100%!important;
+}
+.add-crowd .am-form-crowd {
+  width: 96%;
+  margin: 10px auto;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 5px;
+}
+.add-crowd .am-form-crowd label {
+  float: left;
+}
+.add-crowd .am-form-crowd input,
+.add-crowd .am-form-crowd select {
+  border: none!important;
+}
+.add-crowd .am-form-crowd select {
+  padding: 0 10px;
+}

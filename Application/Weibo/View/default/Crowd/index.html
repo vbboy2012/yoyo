@@ -1,0 +1,151 @@
+<extend name="Base/common"/>
+<block name="header">
+    <link href="__CSS__/circle.css" type="text/css" rel="stylesheet"/>
+    <style>
+        #main-container{
+            margin-top: 50px;
+            max-width: 1000px;
+            padding: 0;
+            font-size: 14px
+        }
+    </style>
+</block>
+<block name="body">
+    <p class="c-head-title"><a href="{:U('Weibo/Index/index')}">动态</a> > <span>圈子</span></p>
+    <div class="c-left-box">
+        <volist name="list" id="lists">
+            <div class="one-type row">
+            <p class="type-title">{$lists.title}</p>
+            <if condition="$lists.list neq NULL">
+                <volist name="lists.list" id="data" empty="暂无数据">
+                    <a href="{:U('Weibo/Index/index',array('crowd'=>$data['id']))}">
+                        <div class="one-circle">
+                            <div class="circle-cover-wrap">
+                                <img src="{$data.logo|getThumbImageById=80,80}" alt="" title="社群封面">
+                            </div>
+                            <div class="circle-info-wrap">
+                                <div class="info-box">{$data.title}</div>
+                                <div class="info-box" style="color: #999">{$data.intro}</div>
+                                <div class="info-box box-num"><span>成员 {$data.member_count}</span><span>讨论 {$data.post_count}</span></div>
+                            </div>
+                            <div class="circle-follow">
+                                <switch name="data.is_follow" >
+                                    <case value="0">
+                                        <a href="javascript:" class="btn-follow" <gt name="data.need_pay" value="0">data-toggle="modal" data-target="#myModal{$data.id}"<else/>data-role="follow_crowd" data-id="{$data.id}"</gt> >
+                                            +加入
+                                        </a>
+                                        <gt name="data.need_pay" value="0">
+                                            <div class="modal fade" id="myModal{$data.id}">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                                                            <h4 class="modal-title">付费加入圈子确认</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>加入该圈子需要支付{$data.need_pay}{$data.pay_type_title}</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                            <button type="button" class="btn btn-primary pull-left" data-role="follow_crowd" data-id="{$data.id}" data-dismiss="modal">确定</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </gt>
+                                    </case>
+                                    <case value="1">
+                                        <a href="javascript:" class="btn-follow" data-role="unfollow_crowd" data-id="{$data.id}">
+                                        已加入
+                                        </a>
+                                    </case>
+                                    <case value="2">
+                                        <a href="javascript:" class="btn-follow" data-id="{$data.id}">
+                                            待审核
+                                        </a>
+                                    </case>
+                                    <case value="-2">
+                                        <a href="javascript:" class="btn-follow" <gt name="data.need_pay" value="0">data-toggle="modal" data-target="#inviteModal{$data.id}"<else/>data-role="follow_crowd" data-id="{$data.id}"</gt> >
+                                        +被邀请
+                                        </a>
+                                        <gt name="data.need_pay" value="0">
+                                            <div class="modal fade" id="inviteModal{$data.id}">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                                                            <h4 class="modal-title">付费加入圈子确认</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>加入该圈子需要支付{$data.need_pay}{$data.pay_type_title}</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                            <button type="button" class="btn btn-primary pull-left" data-role="follow_crowd" data-id="{$data.id}" data-dismiss="modal">确定</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </gt>
+                                    </case>
+                                    <default />
+                                    <a href="javascript:" class="btn-follow" data-role="follow_crowd" data-id="{$data.id}">
+                                        +加入
+                                    </a>
+                                </switch>
+                            </div>
+                        </div>
+                    </a>
+                </volist>
+            </if>
+            </div>
+        </volist>
+
+
+
+    </div>
+    <div class="c-right-box">
+        <div class="create-circle">
+            <div class="create">
+                <a href="#frm-post-popup" class="btn-create open-popup-link">
+                    <i class="icon-plus-sign"></i>
+                    创建圈子
+                </a>
+                <p>我的圈子我做主</p>
+            </div>
+            <div class="have-circle row">
+                <volist name="my_create_crowd_list" id="list">
+                    <a href="{:U('Weibo/Index/index',array('crowd'=>$list['crowd']['id']))}">
+                        <div class="my-circle">
+                            <img class="m-cover" src="{$list.crowd.logo|getThumbimageById=80,80}" alt="" title="社群封面">
+                            <p class="text-more" title="{$list.crowd.title}" style="display: block">{$list.crowd.title}</p>
+                        </div>
+                    </a>
+                </volist>
+            </div>
+            <if condition="empty($my_create_crowd_list)">
+                <div class="no-circle">
+                    <p><img src="__IMG__/none.png" alt=""></p>
+                    <p>你还未创建圈子</p>
+                </div>
+            </if>
+        </div>
+        <div class="joined-circle row">
+            <p class="joined-p">我已加入的圈子</p>
+            <volist name="follow_crowd_list" id="data">
+                <a href="{:U('Weibo/Index/index',array('crowd'=>$data['crowd']['id']))}">
+                    <div class="my-circle">
+                        <img class="m-cover" src="{$data.crowd.logo|getThumbImageById=80,80}" alt="" title="社群封面">
+                        <p class="text-more" style="display: block" title="{$data.crowd.title}">{$data.crowd.title}</p>
+                    </div>
+                </a>
+            </volist>
+        </div>
+    </div>
+
+    <include file="_box"/>
+</block>
+
+<block name="script">
+    <script src="__JS__/weibo.js"></script>
+</block>

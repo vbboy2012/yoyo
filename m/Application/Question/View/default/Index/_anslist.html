@@ -1,0 +1,28 @@
+<volist name="answer" id="vo">
+    <li class="btCont" id="answer_{$vo.id}" <if condition="$vo['id'] eq $vo['best_answer_id']">style="display: none"</if> >
+        <div class="header">
+            <div class="left">
+                <div class="coverWrap"><img src="{$vo.user.avatar128}" alt="用户头像"></div>
+                <div>
+                    <a href="{:U('ucenter/index/mine',array('uid'=>$vo['user']['uid']))}">{$vo.user.nickname}</a>
+                    <p>{$vo.create_time}</p>
+                </div>
+            </div>
+            <div class="right operate1 supportDetail" data-id="{$vo.id}" data-uid="{$vo['user']['uid']}">
+                <span class="oneOpt flexWrap do-support-question" >
+                <span class="support-count1" style="margin-right: 3px;font-size: 16px">{$vo.support_all_count}</span>
+                <i class="iconfont icon-unie60b" <if condition="$vo.is_support eq 1">style="color: #ec725d;"</if> ></i>
+                </span>
+            </div>
+        </div>
+        <p style="padding: 8px 0">{$vo.content}</p>
+        <p class="last">
+            <if condition="check_auth('Question/Index/setBestAnswer',$vo['who_ask'])">
+                <span data-role="set-best" data-id="{$vo.id}" <if condition="$vo['best_answer_id'] gt 0">style="display: none"</if> ><i class="iconfont icon-qbzuocesvg01"></i>设为最佳答案</span>
+            </if>
+            <if condition="check_auth('Question/Index/delAnswer',$vo['uid'])">
+                <span data-role="deleteAnswer" data-id="{$vo.id}" data-uid="$vo['uid']"><i class="iconfont icon-shanchu"></i>删除</span>
+            </if>
+        </p>
+    </li>
+</volist>

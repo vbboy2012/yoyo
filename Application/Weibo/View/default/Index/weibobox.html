@@ -1,0 +1,21 @@
+<extend name="Base/common"/>
+
+<block name="body">
+    <h1>UMEDITOR 文本域渲染编辑器</h1>
+
+    <!--style给定宽度可以影响编辑器的最终宽度-->
+    <textarea id="myEditor" style="width:800px;height:240px;">这里是原始的textarea中的内容，可以从数据中读取</textarea>
+    <br/>
+    <input type="button" onclick="render()" value="渲染编辑器">
+    <link href="__STATIC__/umeditor/themes/default/_css/umeditor.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" src="__STATIC__/umeditor/umeditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__STATIC__/umeditor/editor_api.js"></script>
+    <script type="text/javascript" src="__STATIC__/umeditor/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript">
+        //渲染编辑器
+        function render(){
+            UM.getEditor('myEditor');
+            $('.edui-icon-fullscreen').click();
+        }
+    </script>
+</block>

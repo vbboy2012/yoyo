@@ -1,0 +1,204 @@
+<extend name="Base/mob_common"/>
+
+<block name="mob_body">
+<link rel="stylesheet" href="__CSS__/apps/store.css"/>
+<script src="__JS__/store.js"></script>
+<div class="car-container ">
+    <div class="goods-list ">
+        <ul>
+            <notempty name="items">
+                <form class="addorder" action="{:U('mob/store/placeorder')}" method="post">
+                    <volist name="items" id="vo">
+                        <input type="hidden" name="good_id[]" value="{$vo.good_id}">
+                        <li class="goods-check">
+                            <div class="am-panel am-panel-default">
+
+                                <ul class="order item-main">
+                                    <li class="item item-list">
+                                        <div class="item-box">
+                                            <div class="myicb">
+                                                <input type="hidden" class="check goods_check"></div>
+
+                                            <div class="item-info">
+
+                                                <div class="itemInfo ">
+                                                    <a href="" class="pic ">
+                                                        <img class="lazy"
+                                                             src="{$vo.good.cover_id|getThumbImageById=222,222}">
+                                                    </a>
+                                                    <a href="" class="fragment">
+                                                        <h4>{$vo.good.title}</h4>
+                                                    </a>
+                                                    <span class="am-u-sm-12" style="color: #A6A6A6">简介：{$vo.good.des}</span>
+                                                </div>
+                                                <!--               <div class="editor">
+                                                                   <div class="sku">
+                                                                       <p class="props"> 颜色分类:黑色+鼠标垫 </p>
+                                                                   </div>
+                                                               </div>-->
+                                                <div class="sub-price">
+                                            <span class="itemPay am-u-sm-6">
+                                                <span class="h">单价：¥</span><span><label
+                                                    class="one-price">{$vo.good.price}</label></span>
+                                            </span>
+                                                    <div class="itemPay am-u-sm-6">
+                                        <span class="c"
+                                              style="font-size: 12px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                                            总价：
+                                        </span>
+                                        <span>
+
+                                            <label style="color: #CC0000">¥</label><label class="price" style="color: #CC0000">{:$vo['good']['price']*$vo['count']}</label>
+                                    </span>
+                                                    </div>
+
+                                                </div>
+                                                <span class="quantity txt am-u-sm-8">
+                                                	 <input class="min" data-price="{$vo.good.price}"
+                                                            style=" width:20px; height:18px;border:1px solid #ccc;"
+                                                            type="button" value="-"/>
+				                                     <input class="text_box" name="count[]" type="text"
+                                                            value="{$vo.count}"
+                                                            style=" width:30px; height: 20px;text-align:center; border:1px solid #ccc;"/>
+				                                     <input class="add" data-price="{$vo.good.price}"
+                                                            style=" width:20px; height:18px;border:1px solid #ccc;"
+                                                            type="button" value="+"/>
+                                                </span>
+
+                                                <a class=" am-text-center am-u-sm-4 del-goods" data-id="{$vo.good_id}" data-url="{:U('mob/store/cartRemoveItem')}">
+                                                    <i class="am-icon-trash"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+                    </volist>
+                    <else/>
+                    <div>
+                                <span>
+                                    你还没有购买任何商品，去<a href="{:U('mob/store/shop')}">商城</a>看看吧
+                                </span>
+                    </div>
+                </form>
+            </notempty>
+        </ul>
+
+
+    </div>
+
+
+</div>
+
+
+<div data-am-widget="navbar" class="am-navbar am-cf " id="" style="background-color: orange;">
+    <div class="am-navbar-nav am-cf am-g" style="padding:0px">
+
+        <div class="am-u-sm-8" style="padding: 0px;font-size: 13px;background-color: #F8F8F8">
+            <div class="am-g">
+
+                <div class="am-u-sm-8 " style="padding:0px">
+                    合计(不含运费):
+                    <span>¥</span>
+                <span style=" color:#ff5500;">
+                    <label id="totalAll" style="color:#ff5500;font-size:14px; font-weight:bold;">
+                       0
+                    </label>
+                </span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="am-u-sm-4" style="padding: 0px">
+
+            <a class="placeorder"
+               style="background-color: #f37b1d;color: #FFFFFF;line-height:inherit">
+                下单
+            </a>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="__JS__/Calculation.js"></script>
+<script>
+
+    place_order();
+    GetCount();
+    Total();
+    del_goods();
+    /*单个商品加减算总数*/
+    $(".add").click(function () {
+        var price = $(this).attr('data-price');
+        var t = $(this).parent('.quantity').find('input[class*=text_box]');
+        var value = parseInt(t.val()) + 1;
+        if(value>1){
+            $(this).prev().prev().removeAttr('disabled');
+        }
+        t.val(value);
+        var s = value * price;
+        $(this).parents('.item-info').find(".price").html(s.toFixed(2));
+        GetCount();
+        Total();
+    });
+    $(".min").click(function () {
+        var price = $(this).attr('data-price');
+        var t = $(this).parent('.quantity').find('input[class*=text_box]');
+        var value = parseInt(t.val()) - 1;
+        if(value<=1){
+            $(this).attr('disabled',true);
+        }
+        t.val(value);
+        var s = value * price;
+        $(this).parents('.item-info').find(".price").html(s.toFixed(2));
+        GetCount();
+        Total();
+    });
+
+
+    function GetCount() {
+        var conts = 0;
+
+        $('.goods_check').each(function () {
+
+
+                conts += parseInt($(this).parents('.goods-check').find(".price").text());
+
+
+
+        });
+
+        $("#totall").html((conts).toFixed(2));
+        $("#totalAll").html((conts).toFixed(2));
+    }
+
+    /*点击店铺店铺下的商品全选*/
+    function selectshop() {
+
+    }
+
+
+
+    /*总价*/
+    function Total() {
+
+       var len = $(".price");
+        var num = 0;
+
+
+        for (var i = 0; i < len.length; i++) {
+            num = parseInt(num) + parseInt($(len[i]).text());
+        }
+
+        $("#totalAll").text(parseInt(num).toFixed(2));
+    }
+
+</script>
+
+</block>

@@ -1,0 +1,115 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/identify.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current condition">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">
+                    <if condition="$myId eq 1">
+                    个人认证
+                    </if>
+                    <if condition="$myId eq 2">
+                       组织机构认证
+                    </if>
+                    <if condition="$myId eq 3">
+                        企业认证
+                    </if>
+                </a>
+            </header>
+            <div class="content">
+                <div class="content-block noEdge noShadow">
+                    <div class="exp">
+                        <p class="idTit">
+                            <if condition="$myId eq 1">
+                                个人认证
+                            </if>
+                            <if condition="$myId eq 2">
+                                组织机构认证
+                            </if>
+                            <if condition="$myId eq 3">
+                                企业认证
+                            </if>
+                        </p>
+                        <p>真实身份，易于被辨识<br>更加权威，提高可信度</p>
+                    </div>
+                    <ul class="cdn">
+                        <li><p class="idTit">申请条件</p></li>
+                        <if condition="$attest_type['conditions']['avatar'] eq 1">
+                            <li class="flexDiv oneTp">
+                                <div class="flexLeft">
+                                    <i class="iconfont icon-iconfontwohover"></i>
+                                    <div class="rightDiv">高清头像</div>
+                                </div>
+                                <if condition="$avatar_ok">
+                                <div class="flexRight"><a><i class="iconfont icon-iconfontduigou"></i>已符合</a></div>
+                                    <else/>
+                                    <div class="flexRight"><a href="{:U('ucenter/index/avatar')}" class="no" ><i class="iconfont icon-close "></i>去上传</a></div>
+                                </if>
+                            </li>
+                        </if>
+                        <if condition="$attest_type['conditions']['phone'] eq 1">
+                            <li class="flexDiv oneTp">
+                                <div class="flexLeft">
+                                    <i class="iconfont icon-dianhua"></i>
+                                    <div class="rightDiv">绑定手机号</div>
+                                </div>
+                            <if condition="$phone_ok">
+                                <a href="javascript:" class="id-btn yes">已符合</a>
+                                    <else/>
+                                <div class="flexRight"><a href="{:U('ucenter/index/edit',array('uid'=>is_login()))}" class="no"><i class="iconfont icon-close "></i>去绑定</a></div>
+                            </if>
+                            </li>
+                        </if>
+                        <if condition="$attest_type['conditions']['follow'] gt 0">
+                            <li class="flexDiv oneTp">
+                                <div class="flexLeft">
+                                    <i class="iconfont icon-xin"></i>
+                                    <div class="rightDiv">关注>{$attest_type['conditions']['follow']}人</div>
+                                </div>
+                                <if condition="$follow_ok">
+                                    <a href="javascript:" class="id-btn yes">已符合</a>
+                                    <else/>
+                                    <div class="flexRight"><a href="{:U('weibo/index/people')}" class="no"><i class="iconfont icon-close "></i>去关注</a></div>
+                                </if>
+                            </li>
+                        </if>
+                        <if condition="$attest_type['conditions']['fans'] gt 0">
+                            <li class="flexDiv oneTp">
+                                <div class="flexLeft">
+                                    <i class="iconfont icon-fensi"></i>
+                                    <div class="rightDiv"><span>粉丝>{$attest_type['conditions']['fans']}人</span></div>
+                                </div>
+                                <if condition="$fans_ok">
+                                    <a href="javascript:" class="id-btn yes">已符合</a>
+                                    <else/>
+                                    <div class="flexRight"><a href="{:U('weibo/index/index')}" class="no"><i class="iconfont icon-close "></i>去露面</a></div>
+                                </if>
+                            </li>
+                        </if>
+                        <if condition="$attest_type['conditions']['friends'] gt 0">
+                            <li class="flexDiv oneTp">
+                                <div class="flexLeft">
+                                    <i class="iconfont icon-haoyou"></i>
+                                    <div class="rightDiv"><span>互粉认证用户>{$attest_type['conditions']['friends']}人</span></div>
+                                </div>
+                                <if condition="$friends_ok">
+                                    <a href="javascript:" class="id-btn yes">已符合</a>
+                                    <else/>
+                                    <div class="flexRight"><a href="{:U('weibo/index/people')}" class="no"><i class="iconfont icon-close "></i>去加好友</a></div>
+                                </if>
+                            </li>
+                        </if>
+                    </ul>
+                </div>
+            </div>
+            <!--如果上述条件全部满足，则显示申请按钮-->
+            <div class="complete" data-role="complete">
+                <a href="{:U('ucenter/index/apply',array('id'=>$attest_type['id']))}" class="cBtn">立即申请</a>
+            </div>
+        </div>
+    </div>
+</block>

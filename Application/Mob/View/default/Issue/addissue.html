@@ -1,0 +1,189 @@
+<extend name="Base/mob_common"/>
+<block name="mob_body">
+    <script src="__JS__/issue.js"></script>
+    <link rel="stylesheet" href="__CSS__/apps/issue.css"/>
+    <style>
+        .add{
+            border-radius: 50%;
+            background-color: #0e90d2;
+            border: none;
+        }
+        .add i{
+            color: #fff;
+        }
+        .bg{
+            background: url("__IMG__/sentissue.png")center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .add-box{
+            margin: 50px auto;
+            text-align: center;
+            position: relative;
+            z-index: 99;
+        }
+        .show_cover{
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .show_cover img{
+            width: 100% !important;
+            height: 100%!important;
+        }
+        #title,#url{
+            width: 87%;
+            border: none;
+        }
+        .am-form-group{
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .box-half{
+            width: 48%;
+            float: left;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 0 5px;
+        }
+        .box-half label{
+            line-height: 32px;
+        }
+        .box-half select{
+            width: 72%;
+            border: none;
+            padding: 0 10px;
+        }
+        label{
+            color: #737373;
+            margin-right: 4px;
+            line-height: 37px;
+            font-size: 14px;
+            margin: 0;
+        }
+        .container{
+            padding: 0!important;
+        }
+    </style>
+    <div class="addissue-container">
+        <div class="addissue " id="article-post">
+            <form class="am-form " id="send_issue" data-am-validator data-url="{:U('Mob/Issue/doSendIssue')}">
+                <input type="hidden" id="one_img_id" name="one_attach_id" value="{$issue.cover_id}">
+                <input type="hidden" name="issueId" value="{$issue.id}">
+
+                <!--插入图片-->
+                <div class="am-cf bg">
+                    <div class="add-box">
+                        <div class="img_btn add">
+                            <i class="am-icon-plus" style="font-size: 25px;padding: 12px 20px;"></i>
+                        </div>
+
+                        <input type="file" name="files" id="chooseOne" class="m-btn"
+                               style="left:160px;top: 0;position:absolute;z-index: 1;width: 72px;height:72px;opacity: 0;cursor: pointer;">
+                        <p style="color: #fff;margin-top: 10px;font-weight: 700">上传封面</p>
+                    </div>
+                    <div class="show_cover am-fl" style="display:none;">
+                        <div id="cover_url">
+                            <img class="cover_img" src="{$issue.cover_url}">
+                        </div>
+                    </div>
+                </div>
+                <!--插入图片结束-->
+                <fieldset style="padding: 0 10px">
+                    <div class="am-form-group">
+                        <label class="am-fl" for="title">标题 | </label>
+                        <input type="text" id="title" name="title" minlength="3" placeholder="1-30个字" value="{$issue.title}"
+                               required/>
+                    </div>
+
+                    <!--专辑分类-还有个JS联动-->
+                    <div class="am-cf">
+                        <div class="box-half">
+                            <label for="issue_top">分类 | </label>
+                            <select id="issue_top" name="issue" class="form-control am-fr" >
+                                <volist name="tree" id="top">
+                                    <option value="{$top.id}">
+                                        {$top.title}
+                                    </option>
+                                </volist>
+                            </select>
+                        </div>
+                        <div class="box-half" style="margin-left: 2%">
+                            <label for="issue_top">分类 | </label>
+                            <select id="issue_second" name="issue_id" class="form-control am-fr">
+                                <volist name="tree" id="top">
+                                    <option value="{$top.id}">
+                                        {$top.title}
+                                    </option>
+                                </volist>
+                            </select>
+                        </div>
+                    </div>
+                    <!--专辑分类-还有个JS联动end-->
+                    <div class="am-form-group" style="margin-top: 20px">
+                        <label class="am-fl" for="url">网址 | </label>
+                        <if condition="$issue['is_edit'] eq 1">
+                            <input type="text" id="url" name="title" minlength="3" placeholder="输入以http://开头的网址" value="{$issue.url}"
+                                   required/>
+                        </if>
+                        <if condition="$issue['is_edit']  eq 0">
+                            <input type="url" id="url" name="url" placeholder="输入以http://开头的网址" value="http://" required/>
+                        </if>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="present">介绍</label>
+                        <textarea style="border: none" id="present" minlength="10" name="content" maxlength="100">{$issue.content}</textarea>
+                    </div>
+
+                    <button type="button" id="confirm" class="am-btn am-btn-primary am-btn-block">发表</button>
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        add_one_img();
+        $('#confirm').click(function () {
+            var data = $("#send_issue").serialize();
+            var url = $("#send_issue").attr('data-url');
+            $.post(url, data, function (msg) {
+                if (msg.status == 1) {
+                    toast.success('专辑发布成功!');
+                    setTimeout(function () {
+                        window.location.href= "{:U('Mob/Issue/index')}";
+                    }, 1000);
+                } else {
+                    alert(msg.info);
+                }
+            }, 'json');
+        });
+    </script>
+    <script>
+        $(function () {
+            $('#issue_top').change(function () {
+                var pid = $(this).val();
+                $.post("{:U('Mob/Issue/selectDropdown')}", {pid: pid}, function (data) {
+                    $('#issue_second').html('');
+                    $.each(data, function (index, element) {
+                                $('#issue_second').append('<option value="' + element.id + '">' + element.title + '</option>')
+                            }
+                    )
+                }, 'json');
+            });
+            $('#issue_top').change();
+        })
+
+        var ids = $('#one_img_id').val();
+        if (ids==0) {
+            $('.show_cover').hide();
+        } else {
+            $('.show_cover').show();
+        }
+
+    </script>
+</block>

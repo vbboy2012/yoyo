@@ -1,0 +1,120 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/weibo.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a class="fl button button-link back" href="{:U('crowd')}">取消</a>
+                <a href="javascript:" class="title">{$crowd?'编辑':'创建'}圈子</a>
+            </header>
+            <div class="content">
+                <div class="content-block noEdge">
+                    <form novalidate="novalidate" id="add_crowd"  method="post" class="sui-form form-horizontal external" data-url="{:U('Weibo/Crowd/create')}">
+                        <input type="hidden" name="crowd_id" value="{$crowd['id']}"/>
+                        <div class="mainInfo">
+                            <div class="cTitle">
+                                <input type="text" name="title" minlength="1" value="{$crowd.title}" placeholder="圈子名称" required/>
+                            </div>
+                            <div class="cDesc">
+                                <textarea name="intro" placeholder="圈子介绍" required rows="3" style="border-bottom: 1px solid #eee">{$crowd.intro}</textarea>
+                                <textarea name="notice" placeholder="设置公告" class="sendArea" rows="3">{$crowd.notice}</textarea>
+                                <div class="addCover">
+                                    <!--上传封面之后-->
+                                    <if condition="$logo">
+                                        <div class="cover">
+                                            <img src="{$crowd.logo|getThumbImageById=160,160}" alt="">
+                                            <p class="fTitle">封面</p>
+                                            <!--<a href="javascript:" class="close" data-role="delete_cover">x</a>-->
+                                        </div>
+                                    </if>
+
+                                    <!--上传按钮  封面上传完成之后隐藏-->
+                                    <div class="addBtn flexWrap" data-role="add_cover">
+                                        <div>
+                                            <p><i class="iconfont icon-shangchuan"></i></p>
+                                            <p>添加封面</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="other">
+                            <div class="list-block noEdge">
+                                <ul>
+                                    <li class="item-content item-link">
+                                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                                            <div class="item-inner">
+                                                <div class="item-title">圈子分类</div>
+                                                <div class="item-after">
+                                                    <input type="text" data-role="chose_type" value="{$list.type_id.title}" placeholder="选择分类" id="picker" readonly="">
+                                                    <input type="hidden" name="type_id" data-role="crowd_type" value="{$crowd.type_id}"/>
+                                                    <div style="display: none">
+                                                        <volist name="type" id="data">
+                                                            <span class="crowd_by_id">{$data.id}</span>
+                                                            <span class="crowd_by_title">{$data.title}</span>
+                                                        </volist>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </li>
+
+                                    <li class="item-content item-link">
+                                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                                            <div class="item-inner">
+                                                <div class="item-title">圈子类型</div>
+                                                <div class="item-after">
+                                                    <input type="text" data-role="if_open" value="{$crowd['type']==0?'公共圈子':'私有圈子'}" placeholder="选择类型" readonly="">
+                                                    <input type="hidden" name="type" data-role="if_open" value="{$crowd.type}"/>
+                                                </div>
+                                            </div>
+                                    </li>
+
+                                    <li class="item-content item-link">
+                                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                                            <div class="item-inner">
+                                                <div class="item-title">自由发言</div>
+                                                <div class="item-after">
+                                                    <input type="text" data-role="if_free" value="{$crowd['allow_user_post']==0?'是':'否'}" placeholder="是" id="allow_user_post" readonly="">
+                                                    <input type="hidden" name="allow_user_post" data-role="if_free" value="{$crowd.allow_user_post}"/>
+                                                </div>
+                                            </div>
+                                    </li>
+
+                                    <!--<li class="item-content item-link" data-role="set_sign">
+                                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                                            <div class="item-inner">
+                                                <div class="item-title">圈子公告</div>
+                                                <div class="item-after">暂未设置</div>
+                                            </div>
+                                    </li>-->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!--创建按钮-->
+                        <div class="complete" data-role="complete">
+                            <a href="javascript:" class="cBtn">{$crowd?'保存':'确定创建'}</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="other">
+    <div class="popup popup-about sendWrap">
+        <div class="content-block">
+            <textarea name="notice" placeholder="设置公告" class="sendArea" rows="3"></textarea>
+            <div class="commentOp">
+                <a href="javascript:" data-role="set_yes"  class="proBtn close-popup">确定</a>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+
+    <script src="__JS__/crowd.js"></script>
+</block>

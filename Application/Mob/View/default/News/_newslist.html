@@ -1,0 +1,50 @@
+<ul class="news-box">
+    <a href="{:U('News/newsdetail',array('id'=>$vl['id']))}">
+        <li style="border: none;height: 115px">
+            <div class="am-cf am-g" style="padding: 10px;height: 100%">
+                <if condition="$vl['cover_url'] neq no_img">
+                    <div class="am-fl am-u-sm-4 am-u-lg-2 am-u-md-3" style="padding: 0;height: 100%;overflow: hidden;">
+                        <img class="" src="{$vl.cover_url}">
+                    </div>
+                    <else/>
+                    <div class="am-fl am-u-sm-4 am-u-lg-2 am-u-md-3" style="padding: 0;height: 100%;overflow: hidden;border: 1px solid #eee">
+                        <img style="width: 119px;height: 89px" class=" " src="./Application/Mob/Static/images/nopicture.jpg">
+                    </div>
+                </if>
+                <div class="info am-fl am-u-sm-8 am-u-lg-10 am-u-md-9" style="padding: 0 0 0 1rem;height: 100%">
+                    <div class="half-box" style="padding-top: 0">
+                        <h3 class="title am-text-truncate" style="color: #333;font-weight: 400">
+                            {$vl.title}
+                        </h3>
+
+                    </div>
+                    <div class="half-box">
+                        <span>阅读 {$vl.view}</span><span style="padding:0 5px">▪</span><span>评论 {$vl.count}</span>
+                    </div>
+                    <div class="half-box">
+                        <!--<img class="avatar-img" style="width: 32px;padding-right: 5px"-->
+                             <!--src="{$vl.user.avatar32}">-->
+                        <a href="{:U('User/index',array('uid'=>$vl['user']['uid']))}">
+                            <span style="color: #00a0e9">{$vl.user.nickname}</span>
+                        </a>
+                        <span class="time">{$vl.create_time|friendlyDateNews}</span>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </a>
+</ul>
+
+<style>
+    .half-box{
+        height: 33.3%;
+        width: 100%;
+    }
+    .half-box span{
+        color: #737373;
+    }
+    .time{
+        color: #ccc!important;
+        margin-left: 10px;
+    }
+</style>

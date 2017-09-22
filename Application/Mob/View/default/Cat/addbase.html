@@ -1,0 +1,29 @@
+<extend name="Base/mob_common"/>
+
+<block name="mob_body">
+    <link rel="stylesheet" href="__CSS__/apps/cat.css"/>
+    <script src="__JS__/cat.js"></script>
+    <div class="addparttime-container ">
+        <form action="" class="am-form" id="doc-vld-msg">
+            <input type="hidden" id="entity_id" name="entity_id" value="{$entityId}">
+            <input type="hidden" id="img_ids" name="zhaopian" value="">
+            <input type="hidden" id="info_id" name="info_id" value="{$info.id}">
+            <fieldset>
+                <div class="am-form-group">
+                    <label>标题：</label>
+                    <input type="text" minlength="3" placeholder="（至少 3 个字符）" name="title" value="{$info.title}" required/>
+                </div>
+                <volist name="nav" id="vo">
+                    {:W('SearchInputRender/render',array($vo))}
+                </volist>
+                <button class="am-btn am-btn-secondary am-btn-block addinfo" type="button" data-url="{:U('Mob/cat/doAddInfo')}" index-url="{:U('Mob/cat/index')}">发布</button>
+
+            </fieldset>
+        </form>
+    </div>
+
+    <script>
+        add_one_img();
+        add_info();
+    </script>
+</block>

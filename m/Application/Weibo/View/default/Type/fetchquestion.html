@@ -1,0 +1,10 @@
+<p class="word-wrap">{$weibo.content}</p>
+<div class="qtSync">
+    <div class="qtContent">
+        <a href="{:U('Question/Index/detail',array('id'=>$weibo['question']['id']))}">
+            {$weibo.question.title}
+        </a>
+        <p><span>{$weibo.question.create_time|friendlyDate}</span></p>
+    </div>
+    <a href="{:U('Question/Index/detail',array('id'=>$weibo['question']['id']))}" class="qtAnswer">回答</a>
+</div>

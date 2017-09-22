@@ -1,0 +1,153 @@
+<extend name="Base/mob_common"/>
+<block name="mob_body">
+    <script src="__JS__/issue.js"></script>
+    <link rel="stylesheet" href="__CSS__/apps/issue.css"/>
+    <style>
+        .container{
+            padding: 0;
+        }
+        .am-dropdown-content{
+            min-width: 90px!important;
+            right: 3px!important;
+        }
+        .am-dropdown-content a{
+            padding: 5px auto;
+            font-size: 14px;
+        }
+        .emot_content{
+            width: 100%;
+            margin: 0 auto;
+            height: 300px;
+            position: absolute;
+            bottom: 45px;
+        }
+        .com-p p{
+            border-top: 1px solid #eee;
+            background-color: #fff;
+            line-height: 4rem;
+            color: #f37b1d;
+            font-size: 16px;
+        }
+    </style>
+    <div class="issuedetail-container">
+
+        <div class="title-box" >
+            <h3>{$issuedetail.title}</h3>
+            <div class="span-box">
+               <span class="name">{$issuedetail.user.nickname}</span>
+                <span style="margin-right: 10px">发布于{$issuedetail.create_time|friendlyDate}</span>
+                <span>阅读  {$issuedetail.view_count}</span>
+                <if condition="$issuedetail['is_admin_or_mine'] eq 1">
+                <span style="float: right">
+                    <div class="am-dropdown " data-am-dropdown="{justify: '#doc-dropdown-justify'}">
+                        <button class="am-btn am-btn-primary am-dropdown-toggle" style="background-color: transparent!important;border: none" data-am-dropdown-toggle><span class="am-icon-ellipsis-v" style="color: #0e90d2"></span></button>
+                        <ul class="am-dropdown-content am-text-center" >
+
+                                <li><a class="am-icon-skyatlas" href="{$issuedetail.url}">访问</a></li>
+                                <li><a class="am-icon-wrench" href="{:U('Mob/issue/addissue',array('id'=>$issuedetail['id']))}">编辑</a></li>
+
+                        </ul>
+                    </div>
+                </span>
+            </if>
+            </div>
+        </div>
+        <div class="issuedetail">
+            <div class="">
+                <div class="am-text-center cover">
+                    <img class="" style="width: 100%" src="{$issuedetail.cover_url}">
+                </div>
+                <div class="info">
+                    <h3>介绍</h3>
+            <span>
+                {$issuedetail.content}
+                <div class="good">
+                    <a  class="support" data-weibo-id="{$issuedetail['id']}" data-uid="{$issuedetail['uid']}" url="{:U('Mob/Issue/support')}">
+                        <if condition="$issuedetail['is_support'] eq 1">
+                            <i class=" am-icon-thumbs-up"></i>
+                            <else/>
+                            <i class="am-icon-thumbs-o-up"></i>
+                        </if>
+                    </a>
+
+                </div>
+            </span>
+                </div>
+
+            </div>
+            <div class="am-form-group weibo_post_box am-topbar-fixed-bottom" id="comment" style="padding:.5rem 1rem;background-color: #f5f5f5">
+                <php>
+                    if (!is_login()) {
+                </php>
+                <div  style=" position: relative; ">
+                    <div class="am-g am-text-center" style="position: absolute;padding: 50px;">
+                        <span> 请先<a href="{:U('Mob/member/index')}">登录</a>后再评论</span>
+                    </div>
+                <textarea  rows="5"   disabled style="height: 35px; width: 70%;border-radius: 5px;border-color: #eee">
+
+                </textarea>
+                </div>
+
+                <php>
+                    }else{
+                </php>
+                <textarea class="content am-fl" rows="5" id="comment_content_text"   style="height: 35px; width: 62%;border-radius: 5px;border-color: #eee"></textarea>
+                <php>
+                    }
+                </php>
+
+                <!--表情-->
+                <div class="am-cf am-fl" style="margin: 5px 18px">
+                    <a href="javascript:" data-url=" {:U('Core/Expression/getSmile')}" onclick="insertFace($(this))">
+                        <img src="__IMG__/bq.png"></a>
+                </div>
+
+                <div id="emot_content" class="emot_content" style="display: none"></div>
+                <!--表情end-->
+
+
+                <p class="submit"style="margin-bottom:20px " issue_id="{$issuedetail.id}" url="{:U('Mob/Issue/doAddComment')} " uid="{$issuedetail.uid}">
+                    <button style="float: right;width: 18%;border-radius: 5px;padding: 8px 0" type="button"  class="am-btn-warning am-btn am-btn-block">提交</button>
+                </p>
+            </div>
+
+
+        </div>
+
+        <div class="comment-list addmore" style="border-top: 1px solid #eee">
+            <volist name="issuecomment" id="vo">
+                <include file="_issuecomment"/>
+            </volist>
+        </div>
+        <if condition="$pid['count'] eq 1">
+            <div class="am-list-news-ft look-more">
+                <a class="" id="getmoreissuecomment"
+                >查看更多...</a>
+            </div>
+        </if>
+
+    </div>
+    <script>
+        nextpage();
+        //查看更多
+        var page = 1;
+        var issue_id = "{$issuedetail['id']}";
+        function nextpage() {
+            $('#getmoreissuecomment').unbind('click');
+            $('#getmoreissuecomment').click(function () {
+                $("#getmoreissuecomment").html("查看更多"+'&raquo;');
+                $.post("{:U('Mob/Issue/addMoreIssueComment')}", {page: page + 1, id: issue_id}, function (msg) {
+                    if (msg.status) {
+                        $(".addmore").append(msg.html);
+                        page++;
+                        del();
+                        comment();
+                    } else {
+                        $("#getmoreissuecomment").html("全部加载完成！");
+                        $(".look-more").delay(2000).hide(0);
+                    }
+                })
+            });
+        }
+    </script>
+</block>

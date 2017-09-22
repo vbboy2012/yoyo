@@ -1,0 +1,157 @@
+<extend name="Base/mob_common"/>
+<block name="mob_body">
+    <script src="__JS__/news.js"></script>
+    <link rel="stylesheet" href="__CSS__/apps/news.css"/>
+    <style>
+        .am-navbar{
+            top: 38px;
+        }
+        .am-navbar-nav a{
+            height: auto;
+            color: #a1a1a1;
+        }
+        .am-navbar-default .am-navbar-nav{
+            background-color: #fff;
+        }
+        body{
+            background-color: #f7f7f7;
+        }
+        a:hover, a:focus{
+            text-decoration: none!important;
+        }
+        .container{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default"
+         id="">
+        <ul class="am-navbar-nav am-cf am-avg-sm-3" style="overflow: visible;font-size: 13px;padding-left: 5%">
+            <if condition="$newsmark['mark'] eq 0">
+                <li class="am-u-sm-4">
+                    <a href="{:U('news/index',array('mark'=>1))}" class=" " style="padding-top: 15px">
+                        热点资讯
+                    </a>
+                </li>
+                <php>
+                    if (is_login()) {
+                </php>
+                <li class="am-u-sm-4">
+                    <a href="{:U('news/index',array('mark'=>2))}" class=" " style="padding-top: 15px">
+                        我的投稿
+                    </a>
+                </li>
+
+                <php>
+                    }
+                </php>
+            </if>
+            <if condition="$newsmark['mark'] eq 1">
+                <li class="am-u-sm-4">
+                    <a href="{:U('news/index')}" class=" " style="padding-top: 15px">
+                        全站资讯
+                    </a>
+                </li>
+                <php>
+                    if (is_login()) {
+                </php>
+                <li class="am-u-sm-4">
+                    <a href="{:U('news/index',array('mark'=>2))}" class=" " style="padding-top: 15px">
+                        我的投稿
+                    </a>
+                </li>
+
+                <php>
+                    }
+                </php>
+
+            </if>
+            <if condition="$newsmark['mark'] eq 2">
+                <li class="am-u-sm-4">
+                    <a href="{:U('news/index',array('mark'=>1))}" class=" " style="padding-top: 15px">
+                        热点资讯
+                    </a>
+                </li>
+                <li class="am-u-sm-4">
+                    <a href="{:U('news/index',array('mark'=>2))}" class=" " style="padding-top: 15px">
+                        我的投稿
+                    </a>
+                </li>
+            </if>
+            <if condition="$newsmark['mark'] eq 3">
+                <li class="am-u-sm-4">
+                    <a href="{:U('news/index',array('mark'=>1))}" class=" " style="padding-top: 15px">
+                        全站资讯
+                    </a>
+                </li>
+                <php>
+                    if (is_login()) {
+                </php>
+                <li class="am-u-sm-4">
+                    <a href="{:U('news/index',array('mark'=>2))}" class="" style="padding-top: 15px">
+                        我的投稿
+                    </a>
+                </li>
+
+                <php>
+                    }
+                </php>
+            </if>
+            <li class="am-u-sm-4" >
+                <a id="news-type" class=" " style="padding-top: 15px;">
+                    资讯分类
+                    <div  class="types">
+                        <volist name="type" id="t">
+                            <a href="{:U('Mob/News/index',array('mark'=>'3','title_id'=>$t['id'],'title'=>$t['title']))}"  >{$t.title}</a>
+                        </volist>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--资讯首页广告位-->
+    <div data-am-widget="slider" class="am-slider am-slider-b2" data-am-slider='{"controlNav":false}'  style="margin-top: 48px">
+        <ul class="am-slides">
+            {:W('Mob/Adv/render',array(array('name'=>'index_top','type'=>2,'width'=>'100%','height'=>'250px','title'=>'资讯首页顶部广告','data'=>array('style'=>2))))}
+        </ul>
+    </div>
+    <!--广告位END-->
+    <div class="news-container" style="padding: 0 1rem">
+        <h3 class="am-text-center" style="color: #737373">资讯</h3>
+        <div class="news-box-list ulclass">
+            <notempty name="hotnews">
+                <volist name="hotnews" id="vl">
+                    <include file="_newslist"/>
+                </volist>
+                <else/>
+                <div class="am-text-center" style="background-color:#FFFFFF;margin-top: -15px"><img src="__IMG__/tip.png" style="width: 100%;height: 100%">
+                </div>
+            </notempty>
+        </div>
+        <notempty name="hotnews">
+            <if condition="$pid['count'] eq 1">
+                <if condition="$newsmark['mark'] eq 0">
+                    <div class="am-list-news-ft look-more">
+                        <a id="getmorehotnews" data-url="{:U('Mob/News/addMoreNews')}">查看更多 &raquo;</a>
+                    </div>
+                </if>
+                <if condition="$newsmark['mark'] eq 1">
+                    <div class="am-list-news-ft look-more">
+                        <a id="getmorecallnews" data-url="{:U('Mob/News/addMoreNews')}">查看更多 &raquo;</a>
+                    </div>
+                </if>
+                <if condition="$newsmark['mark'] eq 2">
+                    <div class="am-list-news-ft look-more">
+                        <a  id="getmorecmynews" data-url="{:U('Mob/News/addMoreNews')}">查看更多 &raquo;</a>
+                    </div>
+                </if>
+                <if condition="$newsmark['mark'] eq 3">
+                    <div class="am-list-news-ft look-more">
+                        <a  id="getmorecclassnews" data-url="{:U('Mob/News/addMoreNews')}" data-role="{$newstitle.title_id}">查看更多 &raquo;</a>
+                    </div>
+                </if>
+            </if>
+        </notempty>
+    </div>
+
+</block>

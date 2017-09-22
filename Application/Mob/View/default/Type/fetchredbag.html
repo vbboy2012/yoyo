@@ -1,0 +1,18 @@
+    <p class="word-wrap">{$weibo.content}</p>
+    <div style="height: 185px">
+        <!--   <img width="100px;" style="margin-right:20px;" src="{$weibo_data['cover']}">-->
+        <!--<span class="xiami">-->
+        <!--    <embed src="http://www.xiami.com/widget/0_{$weibo_data['id']}/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent" />
+            -->
+        <php>
+            if(C('URL_MODEL')==2){
+        </php>
+        <a class="redbag" href="{:U('Mob/Weibo/openRedBag',array('param'=>urlencode(http_build_query($weibo_data))))}" data-title="{$user.nickname}的11111红包">
+            <img src="__IMG__/redbag.png" style="max-height: 100%">
+        </a>
+        <php>}else{</php>
+        <a class="redbag" href="{:U('Mob/Weibo/openRedBag',array('param'=>(http_build_query($weibo_data))))}" data-title="{$user.nickname}的122211红包">
+            <img src="__IMG__/redbag.png" style="max-height: 100%">
+        </a>
+        <php>}</php>
+    </div>
