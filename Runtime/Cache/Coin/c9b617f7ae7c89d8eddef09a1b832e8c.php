@@ -479,7 +479,7 @@
                             </div>
                             <div class="col-xs-6">
                                 <select name="currency" class="select2" style="width: 100%">
-                                    <?php if(is_array($currency)): $i = 0; $__LIST__ = $currency;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" >
+                                    <?php if(is_array($currency)): $i = 0; $__LIST__ = $currency;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["code"]); ?>" >
                                             <?php echo ($top["code"]); ?>
                                         </option><?php endforeach; endif; else: echo "" ;endif; ?>
                                 </select>
@@ -581,7 +581,7 @@
                                 <label class="required"><?php echo L('_AD_PAY_TYPE_LABEL_');?></label>
                             </div>
                             <div class="col-xs-6">
-                                <select name="pay_type" class="chosen-select select2" multiple="multiple" style="width: 100%">
+                                <select name="pay_type[]" class="chosen-select select2" multiple="multiple" style="width: 100%">
                                     <?php if(is_array($payType)): $i = 0; $__LIST__ = $payType;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["code"]); ?>" >
                                             <?php echo ($top["code"]); ?>
                                         </option><?php endforeach; endif; else: echo "" ;endif; ?>

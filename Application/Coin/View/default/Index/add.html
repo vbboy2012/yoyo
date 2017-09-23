@@ -73,7 +73,7 @@
                             <div class="col-xs-6">
                                 <select name="currency" class="select2" style="width: 100%">
                                     <volist name="currency" id="top">
-                                        <option value="{$top.id}" >
+                                        <option value="{$top.code}" >
                                             {$top.code}
                                         </option>
                                     </volist>
@@ -176,7 +176,7 @@
                                 <label class="required">{:L('_AD_PAY_TYPE_LABEL_')}</label>
                             </div>
                             <div class="col-xs-6">
-                                <select name="pay_type" class="chosen-select select2" multiple="multiple" style="width: 100%">
+                                <select name="pay_type[]" class="chosen-select select2" multiple="multiple" style="width: 100%">
                                     <volist name="payType" id="top">
                                         <option value="{$top.code}" >
                                             {$top.code}

@@ -420,76 +420,39 @@
     <div id="main-container" class="container">
         <div class="row">
             
-    <!--导航-->
-    <div class="col-xs-9">
-        <div class="forum_module" style="min-height: 800px">
-            <table class="table">
-                <tbody>
-                <?php if(is_array($adList)): $i = 0; $__LIST__ = $adList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-                        <?php $img = substr($vo['path'],0,strlen($vo['path'])-4);$img.='_64_64'; ?>
-                        <td><img src="/yoyo/Uploads/Avatar/<?php echo ($img); ?>.jpg" class="img-circle"></td>
-                        <td><?php echo ($vo["nickname"]); ?></td>
-                        <td><?php echo ($vo["trade_num"]); ?>笔交易</td>
-                        <td><?php echo ($vo["pay_type"]); ?></td>
-                        <td><?php echo ($vo["price"]); echo ($vo["currency"]); ?></td>
-                        <td><?php echo ($vo["min_price"]); ?>-<?php echo ($vo["max_price"]); ?></td>
-                        <?php if($vo['type'] == 1 || $vo['type'] == 3){ $title = "购买"; }else if($vo['type'] == 2 || $vo['type'] == 4){ $title = "出售"; } ?>
-                        <td><button><?php echo ($title); ?></button></td>
-                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-                </tbody>
-            </table>
+    <div class="forum_module" style="min-height: 800px;background: none">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>卖家</th>
+                <th>信誉</th>
+                <th>支付方式</th>
+                <th>限额</th>
+                <th>价格</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php if(is_array($adList)): $i = 0; $__LIST__ = $adList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+                    <?php $img = substr($vo['path'],0,strlen($vo['path'])-4);$img.='_64_64'; ?>
+                    <td style="vertical-align: middle;"><img src="/yoyo/Uploads/Avatar/<?php echo ($img); ?>.jpg" class="img-circle" style="padding-right: 10px"><?php echo ($vo["nickname"]); ?></td>
+                    <td style="vertical-align: middle;">交易<?php echo ($vo["trade_num"]); ?></td>
+                    <td style="vertical-align: middle"><?php echo ($vo["pay_type"]); ?></td>
+                    <td style="vertical-align: middle"><?php echo ($vo["min_price"]); ?>-<?php echo ($vo["max_price"]); ?></td>
+                    <td style="vertical-align: middle;color: #0C7F12"><b><?php echo ($vo["price"]); ?> <?php echo ($vo["currency"]); ?></b></td>
+                    <?php if($vo['type'] == 1 || $vo['type'] == 3){ $title = "购买"; }else if($vo['type'] == 2 || $vo['type'] == 4){ $title = "出售"; } ?>
+                    <td style="vertical-align: middle"><button CLASS="btn btn-primary "><?php echo ($title); ?></button></td>
+                </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+            </tbody>
+        </table>
 
+    </div>
+
+    <div>
+        <div class="pull-right">
+
+            <?php echo getPagination($totalPageCount,10);?>
         </div>
-
-        <div>
-            <div class="pull-right">
-
-                <?php echo getPagination($totalPageCount,10);?>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-3" style="z-index: 99">
-        
-    <?php if(is_login() == 0): ?><button class="btn btn-primary btn-large event_btn" style="outline: none" onclick="toast.error(<?php echo L('_ERROR_START_AFTER_LOGIN_');?>,<?php echo L('_TIP_TENDER_');?>)"><?php echo L('_AD_POST_');?>
-        </button>
-        <?php else: ?>
-        <a class="btn btn-primary btn-large event_btn " href="<?php echo U('Coin/Index/add');?>" style="outline: none"><?php echo L('_AD_POST_');?>
-        </a><?php endif; ?>
-
-<div class="common_block_border event_right">
-    <div class="common_block_title_right"><?php echo L('_EVENT_CATEGORY_');?></div>
-
-    <div class="event_type clearfix">
-        <a href="<?php echo U('index',array('norh'=>$norh));?>"
-        <?php if(($type_id) == ""): ?>class="cur"<?php endif; ?>
-        ><?php echo L('_CATEGORY_ALL_');?></a>
-        <?php if(is_array($tree)): $i = 0; $__LIST__ = $tree;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><a
-            <?php if(($type_id) == $top['id']): ?>class="cur"<?php endif; ?>
-            href="<?php echo U('index',array('type_id'=>$top['id'],'norh'=>$norh));?>" data="<?php echo ($top["id"]); ?>"><?php echo ($top["title"]); ?></a><?php endforeach; endif; else: echo "" ;endif; ?>
-    </div>
-</div>
-
-
-
-
-<?php if(ACTION_NAME == 'detail' ){ ?>
-<div class="forum_module" style="float: left">
-    <h2 class="event_type_name"><?php echo L('_EVENT_IN_PEOPLE_');?> (<?php echo ($content["attentionCount"]); echo L('_PEER_');?>)
-        <a class="pull-right" href="<?php echo U('member',array('id'=>$content['id']));?>"><?php echo L('_ALL_');?></a>
-    </h2>
-
-    <div style="width: 100%">
-        <?php if(is_array($content['member'])): $i = 0; $__LIST__ = array_slice($content['member'],0,20,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="event_type_img">
-                <a href="<?php echo ($vo["space_url"]); ?>">
-                    <img ucard="<?php echo ($vo["id"]); ?>" src="<?php echo ($vo["avatar64"]); ?>" class="avatar-img"/>
-                </a>
-            </div><?php endforeach; endif; else: echo "" ;endif; ?>
-    </div>
-
-</div>
-<?php } ?>
-
-<?php echo W('RecommendEvent/recommendEvent');?>
     </div>
 
         </div>
@@ -562,19 +525,7 @@
 <script src="/yoyo/Public/js/socket.io.js"></script>
 
 
-    <script type="text/javascript" src="/yoyo/Public/static/uploadify/jquery.uploadify.min.js"></script>
-    <script type="text/javascript" src="/yoyo/Application/Coin/Static/js/event.js"></script>
-    <script>
-        $(function () {
-            $('#top_nav >li >a ').mouseenter(function () {
-                $('.children_nav').hide();
-                $('#children_' + $(this).attr('data')).show();
-            });
-        })
-    </script>
-    <script type="text/javascript">
-        var SUPPORT_URL = "<?php echo addons_url('Support://Support/doSupport');?>";
-    </script>
+
 
 <!-- 页面footer钩子，一般用于加载插件JS文件和JS代码 -->
 <?php echo hook('pageFooter', 'widget');?>

@@ -135,6 +135,10 @@ class IndexController extends Controller{
         if ($pay_text == ''){
             $this->error(L('_ERROR_TEXT_'));
         }
+        $listType = '';
+        foreach ($pay_type as $type){
+            $listType .= $type;
+        }
         $content = D('Tradead')->create();
         $content['uid'] = is_login();
         $content['type'] = $type;
@@ -146,7 +150,7 @@ class IndexController extends Controller{
         $content['low_price'] = $low_price;
         $content['max_price'] = $max_price;
         $content['min_price'] = $min_price;
-        $content['pay_type'] = $pay_type;
+        $content['pay_type'] = $listType;
         $content['pay_time'] = $pay_time;
         $content['pay_addr'] = $pay_addr;
         $content['pay_text1'] = $pay_text;
