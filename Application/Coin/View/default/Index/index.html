@@ -7,53 +7,85 @@
     <include file="_nav"/>
 </block>
 <block name="body">
-    <div class="forum_module" style="min-height: 800px;background: none">
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th>卖家</th>
-                <th>信誉</th>
-                <th>支付方式</th>
-                <th>限额</th>
-                <th>价格</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <volist name="adList" id="vo">
+    <div class="forum_module" style="min-height: 800px;background: none;">
+        <div class="col-xs-12">
+            <div class="input-group input-group-lg" style="margin-left: 145px">
+                <span class="input-group-addon">搜广告</span>
+                <div style="float: left;">
+                    <select name="country" class="select2" style="width: 200px">
+                        <volist name="country" id="top">
+                            <option value="{$top.id}" >
+                                {$top.code} {$top.name}
+                            </option>
+                        </volist>
+                    </select>
+                    <select name="currency" class="select2" style="width: 200px">
+                        <volist name="currency" id="top">
+                            <option value="{$top.id}" >
+                                {$top.code} {$top.name}
+                            </option>
+                        </volist>
+                    </select>
+                    <select name="pay_type" class="select2" style="width: 200px">
+                        <volist name="payType" id="top">
+                            <option value="{$top.id}" >
+                                {$top.code} {$top.name}
+                            </option>
+                        </volist>
+                    </select>
+                </div>
+                <a href="javascript:;" class="btn-search" style="float: left;text-align: center"><span><i class="icon icon-search icon-1x"></i>搜索</span></a>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead style="text-align: center;">
                 <tr>
-                    <php>$img = substr($vo['path'],0,strlen($vo['path'])-4);$img.='_64_64';</php>
-                    <td style="vertical-align: middle;"><img src="__ROOT__/Uploads/Avatar/{$img}.jpg" class="img-circle" style="padding-right: 10px">{$vo.nickname}</td>
-                    <td style="vertical-align: middle;">交易{$vo.trade_num}</td>
-                    <td style="vertical-align: middle">{$vo.pay_type}</td>
-                    <td style="vertical-align: middle">{$vo.min_price}-{$vo.max_price}</td>
-                    <td style="vertical-align: middle;color: #0C7F12"><b>{$vo.price} {$vo.currency}</b></td>
-                    <php>
-                        if($vo['type'] == 1 || $vo['type'] == 3){
-                        $title = "购买";
-                        }else if($vo['type'] == 2 || $vo['type'] == 4){
-                        $title = "出售";
-                        }
-                    </php>
-                    <td style="vertical-align: middle"><button CLASS="btn btn-primary ">{$title}</button></td>
+                    <th style="vertical-align: middle;">卖家</th>
+                    <th style="vertical-align: middle;">信誉</th>
+                    <th style="vertical-align: middle;">支付方式</th>
+                    <th style="vertical-align: middle;">限额</th>
+                    <th style="vertical-align: middle;">价格</th>
+                    <th style="vertical-align: middle;"></th>
                 </tr>
-            </volist>
-            </tbody>
-        </table>
-
+                </thead>
+                <tbody>
+                <volist name="adList" id="vo">
+                    <tr>
+                        <php>$img = substr($vo['path'],0,strlen($vo['path'])-4);$img.='_64_64';</php>
+                        <td style="vertical-align: middle;"><img src="__ROOT__/Uploads/Avatar/{$img}.jpg" class="img-circle" style="padding-right: 10px">{$vo.nickname}</td>
+                        <td style="vertical-align: middle;">交易{$vo.trade_num}</td>
+                        <td style="vertical-align: middle">{$vo.pay_type}</td>
+                        <td style="vertical-align: middle">{$vo.min_price}-{$vo.max_price}</td>
+                        <td style="vertical-align: middle;color: #0C7F12"><b>{$vo.price} {$vo.currency}</b></td>
+                        <php>
+                            if($vo['type'] == 1 || $vo['type'] == 3){
+                            $title = "购买";
+                            }else if($vo['type'] == 2 || $vo['type'] == 4){
+                            $title = "出售";
+                            }
+                        </php>
+                        <td style="vertical-align: middle"><button CLASS="btn btn-primary ">{$title}</button></td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+        </div>
     </div>
-
     <div>
         <div class="pull-right">
 
-            {:getPagination($totalPageCount,10)}
         </div>
     </div>
+    <link rel="stylesheet" href="__CSS__/select2.css">
+    <script src="__JS__/select2.js"></script>
+    <link rel="stylesheet" href="__CSS__/components.css">
+    <link rel="stylesheet" href="__CSS__/style.css">
+    <script>
+        $(function(){
+            $(".select2").select2();
+        })
+    </script>
 </block>
 
-<block name="script">
-
-</block>
 
 
 

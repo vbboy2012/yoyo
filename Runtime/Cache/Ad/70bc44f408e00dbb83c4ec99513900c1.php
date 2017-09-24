@@ -32,9 +32,7 @@
 
 
 
-
-    <link href="/yoyo/Application/Coin/Static/css/event.css" rel="stylesheet" type="text/css"/>
-
+<!--Style-->
 <!--合并前的js-->
 <?php $config = api('Config/lists'); C($config); $count_code=C('COUNT_CODE'); ?>
 <script type="text/javascript">
@@ -141,7 +139,8 @@
         <div id="nav_bar" class="nav_bar">
             <div class=" sat-nav">
                 <ul class="first-ul">
-                    <?php $__NAV__ = D('Channel')->lists(true);$__NAV__ = list_to_tree($__NAV__, "id", "pid", "_"); if(is_array($__NAV__)): $i = 0; $__LIST__ = $__NAV__;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$nav): $mod = ($i % 2 );++$i; if(($nav['_']) != ""): ?><li class="dropdown show-hide-ul">
+                    <think:nav name="nav" tree="true">
+                        <?php if(($nav['_']) != ""): ?><li class="dropdown show-hide-ul">
                                 <a title="<?php echo ($nav["title"]); ?>" class=" nav_item first-a"
                                    href="<?php echo U($nav['url']);?>">
                                     <i class="os-icon-<?php echo ($nav["icon"]); ?> app-icon"></i>
@@ -177,7 +176,8 @@
                                     <span ><?php echo ($nav["title"]); ?></span>
                                     <span class="label label-badge rank-label" title="<?php echo ($nav["band_text"]); ?>" style="background: <?php echo ($nav["band_color"]); ?> !important;color:white !important;"><?php echo ($nav["band_text"]); ?></span>
                                 </a>
-                            </li><?php endif; endforeach; endif; else: echo "" ;endif; ?>
+                            </li><?php endif; ?>
+                    </think:nav>
                 </ul>
             </div>
         </div>
@@ -207,10 +207,10 @@
                     <div class="bg-wrap">
                         <?php if($self['cover_id']): ?><img class="cover uc_top_img_bg_weibo" src="<?php echo ($self['cover_path']); ?>">
                             <?php else: ?>
-                            <img class="cover uc_top_img_bg_weibo" src="/yoyo/Application/Core/Static/images/bg.jpg"><?php endif; ?>
+                            <img class="cover uc_top_img_bg_weibo" src="__CORE_IMAGE__/bg.jpg"><?php endif; ?>
                         <?php if(is_login() && $self['uid'] == is_login()): ?><div class="change_cover"><a data-type="ajax" data-url="<?php echo U('Ucenter/Public/changeCover');?>"
                                                          data-toggle="modal" data-title="<?php echo L('_UPLOAD_COVER_');?>" style="color: white;"><img
-                                    class="img-responsive" src="/yoyo/Application/Core/Static/images/fractional.png" style="width: 25px;"></a>
+                                    class="img-responsive" src="__CORE_IMAGE__/fractional.png" style="width: 25px;"></a>
                             </div><?php endif; ?>
                     </div>
 
@@ -411,78 +411,76 @@
 	<!-- 主体 -->
 	<div class="main-wrapper">
     
-    <?php echo W('Common/SubMenu/render',array($sub_menu,$current,array('icon'=>'map-marker'),''));?>
-
-
     <!--顶部导航之后的钩子，调用公告等-->
 <!--<?php echo hook('afterTop');?>-->
 <!--顶部导航之后的钩子，调用公告等 end-->
     <div id="main-container" class="container">
         <div class="row">
             
-    <div class="forum_module" style="min-height: 800px;background: none;">
-        <div class="col-xs-12">
-            <div class="input-group input-group-lg" style="margin-left: 145px">
-                <span class="input-group-addon">搜广告</span>
-                <div style="float: left;">
-                    <select name="country" class="select2" style="width: 200px">
-                        <?php if(is_array($country)): $i = 0; $__LIST__ = $country;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" >
-                                <?php echo ($top["code"]); ?> <?php echo ($top["name"]); ?>
-                            </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                    </select>
-                    <select name="currency" class="select2" style="width: 200px">
-                        <?php if(is_array($currency)): $i = 0; $__LIST__ = $currency;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" >
-                                <?php echo ($top["code"]); ?> <?php echo ($top["name"]); ?>
-                            </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                    </select>
-                    <select name="pay_type" class="select2" style="width: 200px">
-                        <?php if(is_array($payType)): $i = 0; $__LIST__ = $payType;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" >
-                                <?php echo ($top["code"]); ?> <?php echo ($top["name"]); ?>
-                            </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                    </select>
-                </div>
-                <a href="javascript:;" class="btn-search" style="float: left;text-align: center"><span><i class="icon icon-search icon-1x"></i>搜索</span></a>
-            </div>
-            <table class="table table-striped table-hover">
-                <thead>
-                <tr>
-                    <th>卖家</th>
-                    <th>信誉</th>
-                    <th>支付方式</th>
-                    <th>限额</th>
-                    <th>价格</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php if(is_array($adList)): $i = 0; $__LIST__ = $adList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-                        <?php $img = substr($vo['path'],0,strlen($vo['path'])-4);$img.='_64_64'; ?>
-                        <td style="vertical-align: middle;"><img src="/yoyo/Uploads/Avatar/<?php echo ($img); ?>.jpg" class="img-circle" style="padding-right: 10px"><?php echo ($vo["nickname"]); ?></td>
-                        <td style="vertical-align: middle;">交易<?php echo ($vo["trade_num"]); ?></td>
-                        <td style="vertical-align: middle"><?php echo ($vo["pay_type"]); ?></td>
-                        <td style="vertical-align: middle"><?php echo ($vo["min_price"]); ?>-<?php echo ($vo["max_price"]); ?></td>
-                        <td style="vertical-align: middle;color: #0C7F12"><b><?php echo ($vo["price"]); ?> <?php echo ($vo["currency"]); ?></b></td>
-                        <?php if($vo['type'] == 1 || $vo['type'] == 3){ $title = "购买"; }else if($vo['type'] == 2 || $vo['type'] == 4){ $title = "出售"; } ?>
-                        <td style="vertical-align: middle"><button CLASS="btn btn-primary "><?php echo ($title); ?></button></td>
-                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div>
-        <div class="pull-right">
+    <style>
+        .font{
+            font-size: 25px;;
+        }
+    </style>
 
-        </div>
+    <?php
+ $img_id = modC('JUMP_BACKGROUND','','config'); if($img_id){ $background =get_cover($img_id,'path'); }else{ $background = '/yoyo/Public/images/jump_background.jpg'; } ?>
+
+    <div class="" style="padding:300px 100px 0 100px;height: 650px; background: url(<?php echo($background); ?>)">
+
+<div class="text-center " style="margin: 0 auto; ">
+
+<?php if(isset($success_message)) {?>
+
+<div class="alert alert-success with-icon">
+        <i class="icon-ok-sign"></i>
+        <div class="content">
+
+<p class="font"><?php echo($success_message); ?></p>
+
+
+</div>
+
+</div>
+
+<?php }else{?>
+
+<div class="alert alert-danger with-icon">
+    <i class="icon-remove-sign"></i>
+    <div class="content">
+
+        <p class="font"> <?php echo($error_message); ?></p>
+
+
+</div>
+</div>
+
+<?php }?>
+
+
+    <p class="jump">
+        页面自动 <a id="href" style="color: green" href="<?php echo($jumpUrl); ?>">跳转</a> 等待时间： <b id="wait"><?php echo($waitSecond); ?></b>。
+
+        或 <a href="http://<?php echo ($_SERVER['HTTP_HOST']); ?>/yoyo" style="color: green">返回首页</a>
+    </p>
+
+
     </div>
-    <link rel="stylesheet" href="/yoyo/Application/Coin/Static/css/select2.css">
-    <script src="/yoyo/Application/Coin/Static/js/select2.js"></script>
-    <link rel="stylesheet" href="/yoyo/Application/Coin/Static/css/components.css">
-    <link rel="stylesheet" href="/yoyo/Application/Coin/Static/css/style.css">
-    <script>
-        $(function(){
-            $(".select2").select2();
-        })
-    </script>
+
+    </div>
+<script type="text/javascript">
+    (function(){
+        var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+        var interval = setInterval(function(){
+            var time = --wait.innerHTML;
+            if(time <= 0) {
+                location.href = href;
+                clearInterval(interval);
+            };
+        }, 1000);
+    })();
+</script>
+
 
         </div>
     </div>
