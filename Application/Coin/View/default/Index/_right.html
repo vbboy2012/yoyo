@@ -1,12 +1,3 @@
-
-    <if condition="is_login() eq 0">
-        <button class="btn btn-primary btn-large event_btn" style="outline: none" onclick="toast.error({:L('_ERROR_START_AFTER_LOGIN_')},{:L('_TIP_TENDER_')})">{:L('_AD_POST_')}
-        </button>
-        <else/>
-        <a class="btn btn-primary btn-large event_btn " href="{:U('Coin/Index/add')}" style="outline: none">{:L('_AD_POST_')}
-        </a>
-    </if>
-
 <div class="common_block_border event_right">
     <div class="common_block_title_right">{:L('_EVENT_CATEGORY_')}</div>
 

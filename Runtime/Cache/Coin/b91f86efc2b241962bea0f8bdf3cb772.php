@@ -456,14 +456,14 @@
                 </thead>
                 <tbody>
                 <?php if(is_array($adList)): $i = 0; $__LIST__ = $adList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-                        <?php $img = substr($vo['path'],0,strlen($vo['path'])-4);$img.='_64_64'; ?>
+                        <?php $img = substr($vo['path'],0,strlen($vo['path'])-4);$img.='_64_64'; $minPrice = number_format($vo['min_price']); $maxPrice = number_format($vo['max_price']); $price = number_format($vo['price'],2); ?>
                         <td style="vertical-align: middle;"><img src="/yoyo/Uploads/Avatar/<?php echo ($img); ?>.jpg" class="img-circle" style="padding-right: 10px"><?php echo ($vo["nickname"]); ?></td>
                         <td style="vertical-align: middle;">交易<?php echo ($vo["trade_num"]); ?></td>
-                        <td style="vertical-align: middle"><?php echo ($vo["pay_type"]); ?></td>
-                        <td style="vertical-align: middle"><?php echo ($vo["min_price"]); ?>-<?php echo ($vo["max_price"]); ?></td>
-                        <td style="vertical-align: middle;color: #0C7F12"><b><?php echo ($vo["price"]); ?> <?php echo ($vo["currency"]); ?></b></td>
-                        <?php if($vo['type'] == 1 || $vo['type'] == 3){ $title = "购买"; }else if($vo['type'] == 2 || $vo['type'] == 4){ $title = "出售"; } ?>
-                        <td style="vertical-align: middle"><button CLASS="btn btn-primary "><?php echo ($title); ?></button></td>
+                        <td style="vertical-align: middle"><?php echo ($vo["payName"]); ?></td>
+                        <td style="vertical-align: middle"><?php echo ($minPrice); ?>-<?php echo ($maxPrice); ?> <?php echo ($vo["currency"]); ?></td>
+                        <td style="vertical-align: middle;color: #0C7F12"><b><?php echo ($price); ?> <?php echo ($vo["currency"]); ?></b></td>
+                        <?php $params = ''; if($vo['type'] == 1){ $title = "购买"; $params = 'sellonline-'; }else if($vo['type'] == 2){ $title = "出售"; $params = 'buyonline-'; }else if($vo['type'] == 3){ $title = "购买"; $params = 'selllocal-'; }else if($vo['type'] == 4){ $title = "出售"; $params = 'buylocal-'; } $params.=$vo['payEn']."-".$vo['countryEn']; ?>
+                        <td style="vertical-align: middle"><a class="btn btn-primary" href="coin/ad/<?php echo ($current); ?>/<?php echo ($vo["id"]); ?>/<?php echo ($params); ?>" target="_blank"><?php echo ($title); ?></a></td>
                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                 </tbody>
             </table>

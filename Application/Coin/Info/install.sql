@@ -42,14 +42,14 @@ CREATE TABLE IF NOT EXISTS `ocenter_tradead` (
   `uid` int(11) NOT NULL,
   `type` tinyint(2) NOT NULL COMMENT '广告类型：1在线sell，2在线buy，3本地sell，4本地buy',
   `coin_type` tinyint(2) NOT NULL COMMENT '币种',
-  `country` varchar(20) NOT NULL COMMENT '国家地区',
+  `country` smallint(4) NOT NULL COMMENT '国家地区',
   `currency` varchar(5) NOT NULL COMMENT '货币类型',
-  `price` decimal(10,4) NOT NULL COMMENT '价格',
-  `pre_price` decimal(10,4) NOT NULL COMMENT '溢价',
-  `low_price` decimal(10,4) NOT NULL COMMENT '最低价',
-  `max_price` decimal(10,4) NULL COMMENT 'max',
-  `min_price` decimal(10,4) NULL COMMENT 'min',
-  `pay_type` varchar(50) NOT NULL COMMENT '付款方式',
+  `price` decimal(10,2) NOT NULL COMMENT '价格',
+  `pre_price` decimal(10,2) NOT NULL COMMENT '溢价',
+  `low_price` decimal(10,2) NOT NULL COMMENT '最低价',
+  `max_price` int(11) NULL COMMENT 'max',
+  `min_price` int(11) NULL COMMENT 'min',
+  `pay_type` smallint(4) NOT NULL COMMENT '付款方式',
   `pay_time` int(11) NULL,
   `pay_addr` varchar(50) NULL COMMENT '见面地点',
   `pay_text1` varchar(50) NULL COMMENT '交易条款',
@@ -122,6 +122,17 @@ CREATE TABLE IF NOT EXISTS `ocenter_country` (
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=244 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for `ocenter_pay`
+-- ----------------------------
+CREATE TABLE IF NOT EXISTS `ocenter_pay` (
+  `id` smallint(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `en_name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for `ocenter_country`

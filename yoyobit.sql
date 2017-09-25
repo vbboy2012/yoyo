@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017-09-23 00:06:16
+-- Generation Time: 2017-09-25 09:03:38
 -- 服务器版本： 5.7.14
 -- PHP Version: 5.6.25
 
@@ -115,7 +115,9 @@ CREATE TABLE `ocenter_action_log` (
 
 INSERT INTO `ocenter_action_log` (`id`, `action_id`, `user_id`, `action_ip`, `model`, `record_id`, `remark`, `status`, `create_time`) VALUES
 (1, 3, 1, 2130706433, 'member', 1, 'yoyoadmin在2017-09-22 11:04登录了账号【积分：+10分】', 1, 1506049461),
-(2, 3, 1, 2130706433, 'member', 1, 'yoyoadmin在2017-09-22 14:53登录了账号', 1, 1506063235);
+(2, 3, 1, 2130706433, 'member', 1, 'yoyoadmin在2017-09-22 14:53登录了账号', 1, 1506063235),
+(3, 3, 1, 2130706433, 'member', 1, 'yoyoadmin在2017-09-24 09:42登录了账号【积分：+10分】', 1, 1506217377),
+(4, 3, 1, 2130706433, 'member', 1, 'yoyoadmin在2017-09-25 08:13登录了账号', 1, 1506298402);
 
 -- --------------------------------------------------------
 
@@ -857,9 +859,10 @@ CREATE TABLE `ocenter_channel` (
 --
 
 INSERT INTO `ocenter_channel` (`id`, `pid`, `title`, `url`, `sort`, `create_time`, `update_time`, `status`, `target`, `color`, `band_color`, `band_text`, `icon`, `image`, `remark`) VALUES
-(1, 0, '首页', 'Home/Index/index', 0, 0, 0, 1, 0, '#000000', '#000000', '', 'home', 0, ''),
-(2, 0, '买卖中心', 'Coin/index/index', 1, 0, 0, 1, 0, '#000000', '#000000', '', '', 0, ''),
-(3, 0, 'YOYO密圈', 'Weibo/index/index', 4, 0, 0, 1, 0, '#000000', '#000000', '', '', 0, '');
+(1, 0, '首页', 'Home/Index/index', 0, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, ''),
+(2, 0, '买卖中心', 'Coin/index/index', 1, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, ''),
+(3, 0, 'YOYO密圈', 'Weibo/index/index', 2, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, ''),
+(4, 0, '发布广告', '/ad/index/add', 3, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, '');
 
 -- --------------------------------------------------------
 
@@ -977,7 +980,7 @@ INSERT INTO `ocenter_config` (`id`, `name`, `type`, `title`, `group`, `extra`, `
 (10029, '_CONFIG_COMPANY', 0, '', 0, '', '', 1506052812, 1506052812, 1, '<p><a href="http://www.ourstu.com/joinus.html" target="_blank"><p><em class="icon icon-user"></em>加入我们</p></a></p><p><em class="icon icon-phone-sign"></em>400-0573-080</p><p><em class="icon icon-envelope-alt"></em>co@ourstu.com</p>', 0),
 (10015, '_CONFIG_QRCODE_BOTTOM', 0, '', 0, '', '', 1506052812, 1506052812, 1, '', 0),
 (1022, '_USERCONFIG_UCENTER_KANBAN', 0, '', 0, '', '', 1501048026, 1501048026, 1, '[{"data-id":"disable","title":"\\u7981\\u7528","items":[{"data-id":"Weibo","title":"\\u5fae\\u535a"}]},{"data-id":"enable","title":"\\u542f\\u7528","items":[{"data-id":"follow","title":"TA\\u7684\\u5173\\u6ce8\\/\\u7c89\\u4e1d"},{"data-id":"info","title":"\\u8d44\\u6599"},{"data-id":"rank_title","title":"\\u5934\\u8854"},{"data-id":"topic_list","title":"\\u5173\\u6ce8\\u7684\\u8bdd\\u9898"}]}]', 0),
-(10000, '_CONFIG_FIRST_USER_RUN', 0, '', 0, '', '', 1506049156, 1506049156, 1, '2017-09-22', 0),
+(10032, '_CONFIG_FIRST_USER_RUN', 0, '', 0, '', '', 1506298403, 1506298403, 1, '2017-09-25', 0),
 (10001, '_HOME_HOME_INDEX_TYPE', 0, '', 0, '', '', 1506049592, 1506049592, 1, 'index', 0),
 (10003, '_HOME_SEARCH', 0, '', 0, '', '', 1506049592, 1506049592, 1, '[{"data-id":"disable","title":"\\u7981\\u7528","items":[]},{"data-id":"enable","title":"\\u542f\\u7528","items":[{"data-id":"Coin","title":"\\u4e70\\u5356\\u4e2d\\u5fc3"},{"data-id":"People","title":"\\u627e\\u4eba"},{"data-id":"Weibo","title":"\\u52a8\\u6001"}]}]', 0),
 (10004, '_BCLIENT_OS_OFFICIAL_ACCOUNT', 0, '', 0, '', '', 1506049756, 1506049756, 1, 'soni@vip.qq.com', 0),
@@ -1283,7 +1286,10 @@ CREATE TABLE `ocenter_count_active` (
 --
 
 INSERT INTO `ocenter_count_active` (`id`, `type`, `date`, `num`, `total`) VALUES
-(1, 'day', 1505923200, 0, 0);
+(1, 'day', 1505923200, 0, 0),
+(2, 'day', 1506096000, 0, 0),
+(3, 'week', 1505577607, 1, 0),
+(4, 'day', 1506182400, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1306,7 +1312,9 @@ CREATE TABLE `ocenter_count_lost` (
 --
 
 INSERT INTO `ocenter_count_lost` (`id`, `user_num`, `new_lost`, `date`, `lost_num`, `rate`, `create_time`) VALUES
-(1, 1, 0, 1505923200, 0, '0.0000', 1506049156);
+(1, 1, 0, 1505923200, 0, '0.0000', 1506049156),
+(2, 1, 0, 1506096000, 0, '0.0000', 1506217377),
+(3, 1, 0, 1506182400, 0, '0.0000', 1506298403);
 
 -- --------------------------------------------------------
 
@@ -1340,7 +1348,10 @@ INSERT INTO `ocenter_count_remain` (`id`, `date`, `day1_num`, `day2_num`, `day3_
 (5, 1505491200, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (6, 1505404800, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (7, 1505318400, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(8, 1505232000, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(8, 1505232000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(9, 1506009600, 0, 1, 0, 0, 0, 0, 0, 0, 1),
+(10, 1505923200, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(11, 1506096000, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -5486,7 +5497,7 @@ CREATE TABLE `ocenter_member` (
 --
 
 INSERT INTO `ocenter_member` (`uid`, `nickname`, `sex`, `birthday`, `qq`, `login`, `reg_ip`, `reg_time`, `last_login_ip`, `last_login_time`, `status`, `last_login_role`, `show_role`, `signature`, `pos_province`, `pos_city`, `pos_district`, `pos_community`, `score1`, `score2`, `score3`, `score4`, `trade_num`, `btc`, `eth`, `con_check`, `total_check`, `fans`, `session_id`) VALUES
-(1, 'yoyoadmin', 0, '2017-09-07', '', 3, 0, 1506049131, 2130706433, 1506063235, 1, 1, 1, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, '0', '0', 0, 0, 0, 'njkeh1ai6rjvhhsqnau268bvi0');
+(1, 'yoyoadmin', 0, '2017-09-07', '', 5, 0, 1506049131, 2130706433, 1506298402, 1, 1, 1, '', 0, 0, 0, 0, 10, 0, 0, 0, 0, '0', '0', 0, 0, 0, 'kolb88i76njttnfitelefgd0v3');
 
 -- --------------------------------------------------------
 
@@ -5976,6 +5987,34 @@ INSERT INTO `ocenter_module` (`id`, `name`, `alias`, `version`, `is_com`, `show_
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `ocenter_pay`
+--
+
+CREATE TABLE `ocenter_pay` (
+  `id` smallint(4) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `en_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `ocenter_pay`
+--
+
+INSERT INTO `ocenter_pay` (`id`, `name`, `en_name`) VALUES
+(1, '现金支付', 'cash'),
+(2, '支付宝', 'alipay'),
+(3, '微信支付', 'wechat'),
+(4, '国内银行转账', 'national_bank'),
+(5, '其他在线付款方式', 'other_online'),
+(6, '国际电汇(SWIFT)', 'international_wire_swift'),
+(7, 'Paypal', 'paypal'),
+(8, 'Payza', 'payza'),
+(9, 'OKPay', 'okpay'),
+(10, 'Paytm', 'paytm');
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `ocenter_picture`
 --
 
@@ -6161,6 +6200,13 @@ CREATE TABLE `ocenter_score_log` (
   `record_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- 转存表中的数据 `ocenter_score_log`
+--
+
+INSERT INTO `ocenter_score_log` (`id`, `uid`, `ip`, `type`, `action`, `value`, `finally_value`, `create_time`, `remark`, `model`, `record_id`) VALUES
+(1, 1, 2130706433, 1, 'inc', 10, 10, 1506217379, 'yoyoadmin在2017-09-24 09:42登录了账号【积分：+10分】', 'member', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -6266,7 +6312,7 @@ CREATE TABLE `ocenter_session` (
 --
 
 INSERT INTO `ocenter_session` (`session_id`, `session_expire`, `session_data`) VALUES
-('njkeh1ai6rjvhhsqnau268bvi0', 1506071331, 'opensns|a:4:{s:14:"official_token";s:83:"MDAwMDAwMDAwMMuxfGPFjYGcg5-usLJ9ddyypa2jf6K1pcS6utyVrX-kyXt7aLGKhaqCoKZoso2XlrGVlG0";s:18:"login_http_referer";s:22:"http://127.0.0.1/yoyo/";s:9:"user_auth";a:5:{s:3:"uid";s:1:"1";s:8:"username";s:9:"yoyoadmin";s:15:"last_login_time";s:10:"1506049461";s:7:"role_id";s:1:"1";s:5:"audit";s:1:"1";}s:14:"user_auth_sign";s:40:"452a337916878a57c6c94ef3eb50962b06ba422f";}');
+('kolb88i76njttnfitelefgd0v3', 1506330516, 'opensns|a:2:{s:9:"user_auth";a:5:{s:3:"uid";s:1:"1";s:8:"username";s:9:"yoyoadmin";s:15:"last_login_time";s:10:"1506217377";s:7:"role_id";s:1:"1";s:5:"audit";s:1:"1";}s:14:"user_auth_sign";s:40:"c7ae02cdf63904dc201d3927720578cba00b2e12";}');
 
 -- --------------------------------------------------------
 
@@ -6465,14 +6511,14 @@ CREATE TABLE `ocenter_tradead` (
   `uid` int(11) NOT NULL,
   `type` tinyint(2) NOT NULL COMMENT '广告类型：1在线sell，2在线buy，3本地sell，4本地buy',
   `coin_type` tinyint(2) NOT NULL COMMENT '币种',
-  `country` varchar(20) NOT NULL COMMENT '国家地区',
+  `country` smallint(4) NOT NULL COMMENT '国家地区',
   `currency` varchar(5) NOT NULL COMMENT '货币类型',
-  `price` decimal(10,4) NOT NULL COMMENT '价格',
-  `pre_price` decimal(10,4) NOT NULL COMMENT '溢价',
-  `low_price` decimal(10,4) NOT NULL COMMENT '最低价',
-  `max_price` decimal(10,4) DEFAULT NULL COMMENT 'max',
-  `min_price` decimal(10,4) DEFAULT NULL COMMENT 'min',
-  `pay_type` varchar(50) NOT NULL COMMENT '付款方式',
+  `price` decimal(10,2) NOT NULL COMMENT '价格',
+  `pre_price` decimal(10,2) NOT NULL COMMENT '溢价',
+  `low_price` decimal(10,2) NOT NULL COMMENT '最低价',
+  `max_price` int(11) DEFAULT NULL COMMENT 'max',
+  `min_price` int(11) DEFAULT NULL COMMENT 'min',
+  `pay_type` smallint(4) NOT NULL COMMENT '付款方式',
   `pay_time` int(11) DEFAULT NULL,
   `pay_addr` varchar(50) DEFAULT NULL COMMENT '见面地点',
   `pay_text1` varchar(50) DEFAULT NULL COMMENT '交易条款',
@@ -6490,8 +6536,7 @@ CREATE TABLE `ocenter_tradead` (
 --
 
 INSERT INTO `ocenter_tradead` (`id`, `uid`, `type`, `coin_type`, `country`, `currency`, `price`, `pre_price`, `low_price`, `max_price`, `min_price`, `pay_type`, `pay_time`, `pay_addr`, `pay_text1`, `pay_text2`, `auto_message`, `is_safe`, `is_trust`, `open_time`, `status`, `create_time`) VALUES
-(1, 1, 2, 1, '1', '1', '26640.0000', '11.0000', '0.0000', '1.0000', '22.0000', '微信支付', 20, '1', '123dsfgdsgdfg', NULL, '', 0, 0, 'time', 1, 1506054454),
-(2, 1, 1, 1, '1', '1', '24240.0000', '1.0000', '0.0000', '11111.0000', '2222.0000', '支付宝', 11, 'sdfsdf', 'dsfsdf', NULL, '', 0, 0, 'time', 1, 1506054492);
+(1, 1, 1, 1, 45, 'CNY', '24240.00', '1.00', '11.00', 11111, 1111, 2, 1, 'cs', 'sdf', NULL, '', 0, 0, 'time', 1, 1506307341);
 
 -- --------------------------------------------------------
 
@@ -7333,6 +7378,13 @@ ALTER TABLE `ocenter_module`
   ADD KEY `name_2` (`name`);
 
 --
+-- Indexes for table `ocenter_pay`
+--
+ALTER TABLE `ocenter_pay`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`);
+
+--
 -- Indexes for table `ocenter_picture`
 --
 ALTER TABLE `ocenter_picture`
@@ -7674,7 +7726,7 @@ ALTER TABLE `ocenter_action_limit`
 -- 使用表AUTO_INCREMENT `ocenter_action_log`
 --
 ALTER TABLE `ocenter_action_log`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=5;
 --
 -- 使用表AUTO_INCREMENT `ocenter_addons`
 --
@@ -7734,7 +7786,7 @@ ALTER TABLE `ocenter_avatar`
 -- 使用表AUTO_INCREMENT `ocenter_channel`
 --
 ALTER TABLE `ocenter_channel`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '频道ID', AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '频道ID', AUTO_INCREMENT=5;
 --
 -- 使用表AUTO_INCREMENT `ocenter_checkin`
 --
@@ -7749,7 +7801,7 @@ ALTER TABLE `ocenter_coin_addr`
 -- 使用表AUTO_INCREMENT `ocenter_config`
 --
 ALTER TABLE `ocenter_config`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '配置ID', AUTO_INCREMENT=10031;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '配置ID', AUTO_INCREMENT=10033;
 --
 -- 使用表AUTO_INCREMENT `ocenter_country`
 --
@@ -7759,17 +7811,17 @@ ALTER TABLE `ocenter_country`
 -- 使用表AUTO_INCREMENT `ocenter_count_active`
 --
 ALTER TABLE `ocenter_count_active`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- 使用表AUTO_INCREMENT `ocenter_count_lost`
 --
 ALTER TABLE `ocenter_count_lost`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- 使用表AUTO_INCREMENT `ocenter_count_remain`
 --
 ALTER TABLE `ocenter_count_remain`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- 使用表AUTO_INCREMENT `ocenter_currency`
 --
@@ -7896,6 +7948,11 @@ ALTER TABLE `ocenter_mob_channel`
 ALTER TABLE `ocenter_module`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
+-- 使用表AUTO_INCREMENT `ocenter_pay`
+--
+ALTER TABLE `ocenter_pay`
+  MODIFY `id` smallint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
 -- 使用表AUTO_INCREMENT `ocenter_picture`
 --
 ALTER TABLE `ocenter_picture`
@@ -7939,7 +7996,7 @@ ALTER TABLE `ocenter_schedule`
 -- 使用表AUTO_INCREMENT `ocenter_score_log`
 --
 ALTER TABLE `ocenter_score_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- 使用表AUTO_INCREMENT `ocenter_sensitive`
 --
@@ -8009,7 +8066,7 @@ ALTER TABLE `ocenter_trade`
 -- 使用表AUTO_INCREMENT `ocenter_tradead`
 --
 ALTER TABLE `ocenter_tradead`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- 使用表AUTO_INCREMENT `ocenter_trade_message`
 --

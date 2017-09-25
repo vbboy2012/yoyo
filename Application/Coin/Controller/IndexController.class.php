@@ -24,7 +24,7 @@ class IndexController extends Controller{
             array(
                 'left' =>
                     array(
-                        array('tab' => 'allad', 'title' => L('_NEW_AD_'), 'href' => U('coin/index/index')),
+                        array('tab' => 'new', 'title' => L('_NEW_AD_'), 'href' => U('coin/index/index')),
                         array('tab' => 'buybtc', 'title' => L('_BUY_BTC_'), 'href' => U('coin/index/buybtc')),
                         array('tab' => 'sellbtc', 'title' => L('_SELL_BTC_'), 'href' => U('coin/index/sellbtc')),
                         array('tab' => 'buyeth', 'title' => L('_BUY_ETH_'), 'href' => U('coin/index/buyeth')),
@@ -40,7 +40,9 @@ class IndexController extends Controller{
         $tradead = M('tradead');
         $adList = $tradead->join('ocenter_member on ocenter_tradead.uid = ocenter_member.uid')
             ->join('ocenter_avatar on ocenter_avatar.uid = ocenter_member.uid')
-            ->field('ocenter_tradead.type,ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.pay_type,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_member.nickname,ocenter_member.trade_num,ocenter_avatar.path')
+            ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
+            ->join('ocenter_pay on ocenter_tradead.pay_type = ocenter_pay.id')
+            ->field('ocenter_tradead.type,ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_member.nickname,ocenter_member.trade_num,ocenter_avatar.path,ocenter_country.en_name as countryEn,ocenter_pay.name as payName,ocenter_pay.en_name as payEn')
             ->where('ocenter_tradead.status=1')->select();
         $country = D('Country')->field('id,name,code')->select();
         $currency = D('Currency')->select();
@@ -55,7 +57,7 @@ class IndexController extends Controller{
         $this->assign('currency', $currency);
         $this->assign('payType', $payType);
         $this->assign('adList', $adList);
-        $this->assign('current', 'allad');
+        $this->assign('current', 'new');
         $this->display();
     }
 
@@ -112,7 +114,8 @@ class IndexController extends Controller{
         $tradead = M('tradead');
         $adList = $tradead->join('ocenter_member on ocenter_tradead.uid = ocenter_member.uid')
             ->join('ocenter_avatar on ocenter_avatar.uid = ocenter_member.uid')
-            ->field('ocenter_tradead.type,ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.pay_type,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_member.nickname,ocenter_member.trade_num,ocenter_avatar.path')
+            ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
+            ->field('ocenter_tradead.type,ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.pay_type,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_member.nickname,ocenter_member.trade_num,ocenter_avatar.path,ocenter_country.en_name')
             ->where('ocenter_tradead.status=1 and ocenter_tradead.coin_type=2 and (ocenter_tradead.type=1 || ocenter_tradead.type=2)')->select();
         $country = D('Country')->field('id,name,code')->select();
         $currency = D('Currency')->select();
@@ -152,6 +155,17 @@ class IndexController extends Controller{
         $this->assign('payType', $payType);
         $this->assign('adList', $adList);
         $this->assign('current', 'selleth');
+        $this->display();
+    }
+
+    public function ad($current,$id)
+    {
+        $tradead = M('tradead')->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
+            ->join('ocenter_pay on ocenter_tradead.pay_type = ocenter_pay.id')
+            ->field('ocenter_tradead.pay_time,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_country.name as country,ocenter_pay.name as payName,ocenter_pay.en_name as payEn')
+            ->where('ocenter_tradead.id='.$id)->find();
+        $this->assign('tradead', $tradead);
+        $this->assign('current', $current);
         $this->display();
     }
 

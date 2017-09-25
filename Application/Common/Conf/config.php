@@ -25,6 +25,7 @@ if (is_file('./Conf/common.php'))
         ),
             merge_route_rule('Weibo'),
             merge_route_rule('Home'),
+            merge_route_rule('Coin'),
             merge_route_rule('People'),
             merge_route_rule('Event'),
             merge_route_rule('Group'),

@@ -431,7 +431,7 @@
         <div>
             <div class="row">
                 <div style="padding: 0 10px;width: 100%;float: left;">
-                    <form class="form-horizontal ajax-form" action="<?php echo U('Coin/Index/doPost');?>" method="post">
+                    <form class="form-horizontal ajax-form" action="<?php echo U('Ad/Index/doPost');?>" method="post">
                         <div class="form-group">
                             <div class="col-xs-2">
                                 <label class="required"><?php echo L('_AD_COIN_TYPE_LABEL_');?></label>
@@ -579,8 +579,8 @@
                             </div>
                             <div class="col-xs-6">
                                 <select name="pay_type" class="chosen-select select2" style="width: 100%">
-                                    <?php if(is_array($payType)): $i = 0; $__LIST__ = $payType;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["code"]); ?>" >
-                                            <?php echo ($top["code"]); ?>
+                                    <?php if(is_array($payType)): $i = 0; $__LIST__ = $payType;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" >
+                                            <?php echo ($top["name"]); ?>
                                         </option><?php endforeach; endif; else: echo "" ;endif; ?>
                                 </select>
                             </div>
@@ -901,7 +901,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-xs-2 col-md-offset-2">
-                                <button type="submit" class="btn btn-primary btn-lg" href="<?php echo U('Coin/Index/doPost');?>" style="outline: none"><?php echo L('_AD_SUBMIT_LABEL_');?>
+                                <button type="submit" class="btn btn-primary btn-lg" href="<?php echo U('Ad/Index/doPost');?>" style="outline: none"><?php echo L('_AD_SUBMIT_LABEL_');?>
                                 </button>
                             </div>
                         </div>

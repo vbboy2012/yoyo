@@ -50,20 +50,35 @@
                 <tbody>
                 <volist name="adList" id="vo">
                     <tr>
-                        <php>$img = substr($vo['path'],0,strlen($vo['path'])-4);$img.='_64_64';</php>
+                        <php>
+                            $img = substr($vo['path'],0,strlen($vo['path'])-4);$img.='_64_64';
+                            $minPrice = number_format($vo['min_price']);
+                            $maxPrice = number_format($vo['max_price']);
+                            $price = number_format($vo['price'],2);
+                        </php>
                         <td style="vertical-align: middle;"><img src="__ROOT__/Uploads/Avatar/{$img}.jpg" class="img-circle" style="padding-right: 10px">{$vo.nickname}</td>
                         <td style="vertical-align: middle;">交易{$vo.trade_num}</td>
-                        <td style="vertical-align: middle">{$vo.pay_type}</td>
-                        <td style="vertical-align: middle">{$vo.min_price}-{$vo.max_price}</td>
-                        <td style="vertical-align: middle;color: #0C7F12"><b>{$vo.price} {$vo.currency}</b></td>
+                        <td style="vertical-align: middle">{$vo.payName}</td>
+                        <td style="vertical-align: middle">{$minPrice}-{$maxPrice} {$vo.currency}</td>
+                        <td style="vertical-align: middle;color: #0C7F12"><b>{$price} {$vo.currency}</b></td>
                         <php>
-                            if($vo['type'] == 1 || $vo['type'] == 3){
-                            $title = "购买";
-                            }else if($vo['type'] == 2 || $vo['type'] == 4){
-                            $title = "出售";
+                            $params = '';
+                            if($vo['type'] == 1){
+                                $title = "购买";
+                                $params = 'sellonline-';
+                            }else if($vo['type'] == 2){
+                                $title = "出售";
+                                $params = 'buyonline-';
+                            }else if($vo['type'] == 3){
+                                $title = "购买";
+                                $params = 'selllocal-';
+                            }else if($vo['type'] == 4){
+                                $title = "出售";
+                                $params = 'buylocal-';
                             }
+                            $params.=$vo['payEn']."-".$vo['countryEn'];
                         </php>
-                        <td style="vertical-align: middle"><button CLASS="btn btn-primary ">{$title}</button></td>
+                        <td style="vertical-align: middle"><a class="btn btn-primary" href="coin/ad/{$current}/{$vo.id}/{$params}" target="_blank">{$title}</a></td>
                     </tr>
                 </volist>
                 </tbody>

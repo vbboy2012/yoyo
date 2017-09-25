@@ -1,7 +1,7 @@
 <?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE HTML>
 <html>
 <head>
-    <meta charset="utf-8">
+	<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <?php echo hook('syncMeta');?>
@@ -32,7 +32,9 @@
 
 
 
-<!--Style-->
+
+    <link href="/yoyo/Application/Coin/Static/css/event.css" rel="stylesheet" type="text/css"/>
+
 <!--合并前的js-->
 <?php $config = api('Config/lists'); C($config); $count_code=C('COUNT_CODE'); ?>
 <script type="text/javascript">
@@ -99,11 +101,10 @@
 <audio id="music" src="" autoplay="autoplay"></audio>
 <!-- 页面header钩子，一般用于加载插件CSS文件和代码 -->
 <?php echo hook('pageHeader');?>
-    <link href="/yoyo/Application/Home/Static/css/home.css" type="text/css" rel="stylesheet">
-    <?php D('Member')->need_login(); ?>
 </head>
 <body>
-<script src="/yoyo/Public/js/com/com.talker.class.js"></script>
+	<!-- 头部 -->
+	<script src="/yoyo/Public/js/com/com.talker.class.js"></script>
 <?php if((is_login()) ): ?><div id="talker">
 
     </div><?php endif; ?>
@@ -405,51 +406,169 @@
         subMenu.style.display = "none";
     }
 </script>
-<div class="main-wrapper">
-    <!-- 头部 -->
-    <style>
-        .container{
-            width:1140px;max-width: 1140px
-        }
-    </style>
-    <link rel="stylesheet" href="<?php echo getRootUrl();?>Addons/InsertXiami/_static/css/xiami.css">
-<?php echo W('Common/SubMenu/render',array($sub_menu,$current,array('icon'=>'compass','title'=>L('_DISCOVERY_')),''));?>
+	<!-- /头部 -->
+	
+	<!-- 主体 -->
+	<div class="main-wrapper">
+    
+    <?php echo W('Common/SubMenu/render',array($sub_menu,$current,array('icon'=>'map-marker'),''));?>
+
+
     <!--顶部导航之后的钩子，调用公告等-->
 <!--<?php echo hook('afterTop');?>-->
 <!--顶部导航之后的钩子，调用公告等 end-->
-
-    <div id="main-container" class="top-bar ">
-        <?php if(is_array($showBlocks)): $i = 0; $__LIST__ = $showBlocks;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i; if($v=='slider'){ ?>
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-xs-12">
-                        <?php echo W('Common/Adv/render',array(array('name'=>'slider','type'=>2,'width'=>'1120px','height'=>'300px','margin'=>'0 0 15px 0','title'=>'首页轮播图','data'=>array('style'=>1))));?>
+    <div id="main-container" class="container">
+        <div class="row">
+            
+    <!--导航-->
+    <div class="col-xs-9">
+        <div class="forum_module" style="min-height: 800px">
+            <div class="ad-title">
+                <div class="no-event">使用 支付宝 以 Chinese Yuan (CNY) 购买比特币</div>
+                <P>LocalBitcoins.com 用户 bobochops 希望出售比特币给您 </P>
+            </div>
+            <div class="aline" style="margin-bottom: 35px"></div>
+            <div class="ad-form">
+                <form class="form-horizontal ajax-form" action="<?php echo U('Ad/Index/doPost');?>" method="post">
+                    <div class="">
+                        <div class="col-xs-2">
+                            <label>价格：</label>
+                        </div>
+                        <div class="col-xs-10">
+                            <?php $price = number_format($tradead['price'],2); ?>
+                            <label> <?php echo ($price); ?></label>
+                        </div>
                     </div>
-
-                </div>
-
+                    <div class="">
+                        <div class="col-xs-2">
+                            <label>付款方式：</label>
+                        </div>
+                        <div class="col-xs-10">
+                            <label> <?php echo ($tradead['payName']); ?></label>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="col-xs-2">
+                            <label>交易限额：</label>
+                        </div>
+                        <div class="col-xs-10">
+                            <?php $minPrice = number_format($tradead['min_price']); $maxPrice = number_format($tradead['max_price']); ?>
+                            <label> <?php echo ($minPrice); ?>-<?php echo ($maxPrice); ?> <?php echo ($tradead['currency']); ?></label>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="col-xs-2">
+                            <label>所在地：</label>
+                        </div>
+                        <div class="col-xs-10">
+                            <label> <?php echo ($tradead['country']); ?></label>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="col-xs-2">
+                            <label>付款期限：</label>
+                        </div>
+                        <div class="col-xs-10">
+                            <label> <?php echo ($tradead['pay_time']); ?> 分钟</label>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="col-xs-12">
+                            <label>您想买多少？</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-5">
+                            <div class="input-group input-group-lg">
+                                <input type="text" class="form-control form_check" name="min_price" check-type="IntNum">
+                                <span class="input-group-addon">CNY</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-2" style="text-align: center;padding-top: 5px"><img src="/yoyo/Application/Coin/Static/images/xchange.png" style="width: 20%"></div>
+                        <div class="col-xs-5">
+                            <div class="input-group input-group-lg">
+                                <input type="text" class="form-control form_check" name="min_price" check-type="IntNum">
+                                <span class="input-group-addon">CNY</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <textarea name="pay_text" class="text form-control" placeholder="<?php echo L('_AD_PAY_TEXT_TIPS_LABEL_');?>" style="height: 8em;height: 100px"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-6 col-md-offset-3" style="text-align: center">
+                            <button type="submit" class="btn btn-success btn-block btn-lg" href="<?php echo U('Ad/Index/doPost');?>" style="outline: none"><?php echo L('_AD_SUBMIT_LABEL_');?>
+                            </button>
+                        </div>
+                    </div>
+                </form>
 
             </div>
+            <div class="aline" style="margin-bottom: 35px"></div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    交易须知
+                </div>
+                <div class="panel-body">
+                    在您发起交易请求后，比特币被锁定在托管中，受到BitcoinWorld保护。 如果您是买家，发起交易请求后，您应在90分钟内付款并把交易标记为付款已完成。卖家在收到付款后将会放行处于托管中的比特币。
 
+                    交易前请阅读《BitcoinWorld网络服务条款》以及常见问题、交易指南等帮助文档。
 
-            <?php }else{ ?>
-            <?php echo W($v.'/HomeBlock/render');?>
-            <?php } endforeach; endif; else: echo "" ;endif; ?>
+                    当心骗子！交易前请检查该用户收到的评价，并对新近创建的账户多加留意。
+
+                    请注意，四舍五入和价格的波动可能会影响最终成交的比特币数额。您输入的固定数额决定最后数额，比特币金额将在请求发布的同一时间由即时的汇率算出。
+
+                    托管服务保护网上交易的买卖双方。在发生争议的情况下，我们将评估所提供的所有信息，并将托管的比特币放行给其合法所有者。
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-3" style="z-index: 99">
+        <div class="common_block_border event_right">
+    <div class="common_block_title_right"><?php echo L('_EVENT_CATEGORY_');?></div>
+
+    <div class="event_type clearfix">
+        <a href="<?php echo U('index',array('norh'=>$norh));?>"
+        <?php if(($type_id) == ""): ?>class="cur"<?php endif; ?>
+        ><?php echo L('_CATEGORY_ALL_');?></a>
+        <?php if(is_array($tree)): $i = 0; $__LIST__ = $tree;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><a
+            <?php if(($type_id) == $top['id']): ?>class="cur"<?php endif; ?>
+            href="<?php echo U('index',array('type_id'=>$top['id'],'norh'=>$norh));?>" data="<?php echo ($top["id"]); ?>"><?php echo ($top["title"]); ?></a><?php endforeach; endif; else: echo "" ;endif; ?>
     </div>
 </div>
 
 
 
 
-<!-- /头部 -->
+<?php if(ACTION_NAME == 'detail' ){ ?>
+<div class="forum_module" style="float: left">
+    <h2 class="event_type_name"><?php echo L('_EVENT_IN_PEOPLE_');?> (<?php echo ($content["attentionCount"]); echo L('_PEER_');?>)
+        <a class="pull-right" href="<?php echo U('member',array('id'=>$content['id']));?>"><?php echo L('_ALL_');?></a>
+    </h2>
 
-<!-- 主体 -->
+    <div style="width: 100%">
+        <?php if(is_array($content['member'])): $i = 0; $__LIST__ = array_slice($content['member'],0,20,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="event_type_img">
+                <a href="<?php echo ($vo["space_url"]); ?>">
+                    <img ucard="<?php echo ($vo["id"]); ?>" src="<?php echo ($vo["avatar64"]); ?>" class="avatar-img"/>
+                </a>
+            </div><?php endforeach; endif; else: echo "" ;endif; ?>
+    </div>
 
-<!-- /主体 -->
+</div>
+<?php } ?>
 
-<!-- 底部 -->
-<footer class="footer">
+<?php echo W('RecommendEvent/recommendEvent');?>
+    </div>
+
+        </div>
+    </div>
+</div>
+	<!-- /主体 -->
+
+	<!-- 底部 -->
+	<footer class="footer">
     <div class="container ftTop">
         <div class="ftBox">
             <p class="ftTit">关于我们</p>
@@ -512,7 +631,9 @@
 
 <script src="/yoyo/Public/js/socket.io.js"></script>
 
-<!-- 用于加载js代码 -->
+
+
+
 <!-- 页面footer钩子，一般用于加载插件JS文件和JS代码 -->
 <?php echo hook('pageFooter', 'widget');?>
 <!-- 调用全站公告部件-->
@@ -530,6 +651,6 @@
   //  new Bugtags('d6023daa6c7467634636c87b3f16213e','8.12','VERSION_CODE');
 </script>
 
-<!-- /底部 -->
+	<!-- /底部 -->
 </body>
 </html>
