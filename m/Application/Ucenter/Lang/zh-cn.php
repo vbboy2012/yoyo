@@ -42,7 +42,7 @@ return array(
     '_CHAT_ALL_' => '所有聊天',
     '_RETURN_TO_SOURCE_' => '返回来源',
     '_I_' => '我',
-    '_HISTORY_CHAT_LOG_' => '以上为历史聊天记录',
+    '_HISTORY_CHAT_LOG_' => '以下为历史聊天记录',
     '_MESSAGE_UNREAD_' => '未读消息',
     '_MESSAGE_ALL_' => '全部消息',
     '_MESSAGE_SYSTEM_' => '系统消息',

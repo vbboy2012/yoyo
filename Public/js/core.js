@@ -328,22 +328,22 @@ function op_fetchMessageTpl(message, mid) {
     var tpl_right = '<div class="row talk_right">' +
         '<div class="time"><span class="timespan">{ctime}</span></div>' +
         '<div class="row">' +
-        '<div class="col-md-9 bubble_outter">' +
+        '<div class="col-md-10 bubble_outter">' +
         '<h3>我</h3>' +
         '<i class="bubble_sharp"></i>' +
         '<div class="talk_bubble">{content}' +
         '</div>' +
         '</div>' +
-        ' <div class="col-md-3 "><img ucard="{uid}" class="avatar-img talk-avatar"' +
+        ' <div class="col-md-2" style="text-align: center;"><img ucard="{uid}" class="avatar-img talk-avatar"' +
         'src="{avatar128}"/>' +
         '</div> </div> </div>';
 
     var tpl_left = '<div class="row">' +
         '<div class="time"><span class="timespan">{ctime}</span></div>' +
         '<div class="row">' +
-        '<div class="col-md-3 "><img ucard="{uid}" class="avatar-img talk-avatar"' +
+        '<div class="col-md-2" style="text-align: center;"><img ucard="{uid}" class="avatar-img talk-avatar"' +
         'src="{avatar128}"/>' +
-        '</div><div class="col-md-9 bubble_outter">' +
+        '</div><div class="col-md-10 bubble_outter">' +
         '<h3>{nickname}</h3>' +
         '<i class="bubble_sharp"></i>' +
         '<div class="talk_bubble">{content}' +

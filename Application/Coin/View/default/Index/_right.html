@@ -1,38 +1,78 @@
 <div class="common_block_border event_right">
-    <div class="common_block_title_right">{:L('_EVENT_CATEGORY_')}</div>
-
-    <div class="event_type clearfix">
-        <a href="{:U('index',array('norh'=>$norh))}"
-        <eq name="type_id" value="">class="cur"</eq>
-        >{:L('_CATEGORY_ALL_')}</a>
-        <volist name="tree" id="top">
-            <a
-            <eq name="type_id" value="$top['id']">class="cur"</eq>
-            href="{:U('index',array('type_id'=>$top['id'],'norh'=>$norh))}" data="{$top.id}">{$top.title}</a>
-        </volist>
+    <div class="common_block_title_right" style="text-align: center;">
+        <php>
+            $img = substr($tradead['path'],0,strlen($tradead['path'])-4);$img.='_64_64';
+        </php>
+        <div><a href=""><img src="__ROOT__/Uploads/Avatar/{$img}.jpg" class="img-circle" style="padding-right: 10px"></a></div>
+        <div><label><a href="" style="color: cornflowerblue">{$tradead.nickname}</a></label></div>
+        <div style="margin-top: 20px;color: cornflowerblue">
+            <span><i class="icon icon-envelope icon-2x pad10"></i></span><span><i class="icon icon-phone icon-2x pad10"></i></span><span><i class="icon icon-user icon-2x pad10"></i></span>
+        </div>
+        <div style="margin-top: 20px">
+            <p>信任人数：3</p>
+            <p>好评：99%</p>
+            <p>交易次数：10</p>
+            <p>平均放行：10分钟</p>
+        </div>
     </div>
 </div>
 
-
-
-
-<php>if(ACTION_NAME == 'detail' ){</php>
-<div class="forum_module" style="float: left">
-    <h2 class="event_type_name">{:L('_EVENT_IN_PEOPLE_')} ({$content.attentionCount}{:L('_PEER_')})
-        <a class="pull-right" href="{:U('member',array('id'=>$content['id']))}">{:L('_ALL_')}</a>
-    </h2>
-
-    <div style="width: 100%">
-        <volist name="content['member']" id="vo" offset="0" length="20">
-            <div class="event_type_img">
-                <a href="{$vo.space_url}">
-                    <img ucard="{$vo.id}" src="{$vo.avatar64}" class="avatar-img"/>
-                </a>
-            </div>
-        </volist>
+<div class="common_block_border event_right">
+    <div class="common_block_title_right" style="text-align: center;">
+        <div><label>开放时间</label></div>
+        <php>
+            $openTime = json_decode($tradead['open_time']);
+        </php>
+        <div style="margin-top: 20px;text-align: left">
+            <p>星期日：
+                <php>if($openTime->st7 == '-1'){
+                        echo '关闭';
+                    }else{
+                        echo $openTime->st7." - ".$openTime->et7;
+                    }
+                </php></p>
+            <p>星期一：<php>
+                if($openTime->st5 == '-1'){
+                echo '关闭';
+                }else{
+                echo $openTime->st5." - ".$openTime->et5;
+                }
+            </php></p>
+            <p>星期二：<php>
+                if($openTime->st4 == '-1'){
+                echo '关闭';
+                }else{
+                echo $openTime->st4." - ".$openTime->et4;
+                }
+            </php></p>
+            <p>星期三：<php>
+                if($openTime->st3 == '-1'){
+                echo '关闭';
+                }else{
+                echo $openTime->st3." - ".$openTime->et3;
+                }
+            </php></p>
+            <p>星期四：<php>
+                if($openTime->st2 == '-1'){
+                echo '关闭';
+                }else{
+                echo $openTime->st2." - ".$openTime->et2;
+                }
+            </php></p>
+            <p>星期五：<php>
+                if($openTime->st1 == '-1'){
+                echo '关闭';
+                }else{
+                echo $openTime->st1." - ".$openTime->et1;
+                }
+            </php></p>
+            <p>星期六：<php>
+                if($openTime->st6 == '-1'){
+                echo '关闭';
+                }else{
+                echo $openTime->st6." - ".$openTime->et6;
+                }
+            </php></p>
+        </div>
     </div>
-
 </div>
-<php>}</php>
-
-{:W('RecommendEvent/recommendEvent')}

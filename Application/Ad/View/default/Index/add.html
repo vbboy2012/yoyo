@@ -156,7 +156,7 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="input-group input-group-lg">
-                                    <input type="text" class="form-control form_check" name="pay_time" check-type="IntNum">
+                                    <input type="text" class="form-control form_check" value="90" name="pay_time" check-type="IntNum">
                                     <span class="input-group-addon">分钟</span>
                                 </div>
                                 <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;您承诺在多少分钟内进行付款。</div>
@@ -232,6 +232,46 @@
                             </div>
 
                             <div class="form-group">
+                                <!--星期日-->
+                                <div class="col-xs-2">
+                                    <label>{:L('_AD_SUNDAY_LABEL_')}</label>
+                                </div>
+                                <div class="col-xs-3">
+                                    <div class="input-group input-group-lg">
+                                        <select name="start_time7" class="form-control ">
+                                            <option value="00.00" >
+                                                {:L('_START_TIME_')}
+                                            </option>
+                                            <option value="-1" >
+                                                {:L('_CLOSE_TIME_')}
+                                            </option>
+                                            <volist name="time" id="top">
+                                                <option value="{$top.time}" >
+                                                    {$top.time}
+                                                </option>
+                                            </volist>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-3">
+                                    <div class="input-group input-group-lg">
+                                        <select name="end_time7" class="form-control ">
+                                            <option value="24.00" >
+                                                {:L('_END_TIME_')}
+                                            </option>
+                                            <option value="-1" >
+                                                {:L('_CLOSE_TIME_')}
+                                            </option>
+                                            <volist name="time" id="top">
+                                                <option value="{$top.time}" >
+                                                    {$top.time}
+                                                </option>
+                                            </volist>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <!--星期一-->
                                 <div class="col-xs-2">
                                     <label>{:L('_AD_MONDAY_LABEL_')}</label>
@@ -239,7 +279,7 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="start_time1" class="form-control">
-                                            <option value="0" >
+                                            <option value="00.00" >
                                                 {:L('_START_TIME_')}
                                             </option>
                                             <option value="-1" >
@@ -256,7 +296,7 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="end_time1" class="form-control ">
-                                            <option value="0" >
+                                            <option value="24:00" >
                                                 {:L('_END_TIME_')}
                                             </option>
                                             <option value="-1" >
@@ -280,7 +320,7 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="start_time2" class="form-control">
-                                            <option value="0" >
+                                            <option value="00.00" >
                                                 {:L('_START_TIME_')}
                                             </option>
                                             <option value="-1" >
@@ -297,7 +337,7 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="end_time2" class="form-control ">
-                                            <option value="0" >
+                                            <option value="24.00" >
                                                 {:L('_END_TIME_')}
                                             </option>
                                             <option value="-1" >
@@ -321,7 +361,7 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="start_time3" class="form-control ">
-                                            <option value="0" >
+                                            <option value="00.00" >
                                                 {:L('_START_TIME_')}
                                             </option>
                                             <option value="-1" >
@@ -338,7 +378,7 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="end_time3" class="form-control ">
-                                            <option value="0" >
+                                            <option value="24.00" >
                                                 {:L('_END_TIME_')}
                                             </option>
                                             <option value="-1" >
@@ -362,7 +402,7 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="start_time4" class="form-control ">
-                                            <option value="0" >
+                                            <option value="00.00" >
                                                 {:L('_START_TIME_')}
                                             </option>
                                             <option value="-1" >
@@ -379,7 +419,7 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="end_time4" class="form-control ">
-                                            <option value="0" >
+                                            <option value="24.00" >
                                                 {:L('_END_TIME_')}
                                             </option>
                                             <option value="-1" >
@@ -403,7 +443,7 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="start_time5" class="form-control ">
-                                            <option value="0" >
+                                            <option value="00.00" >
                                                 {:L('_START_TIME_')}
                                             </option>
                                             <option value="-1" >
@@ -420,7 +460,7 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="end_time5" class="form-control ">
-                                            <option value="0" >
+                                            <option value="24.00" >
                                                 {:L('_END_TIME_')}
                                             </option>
                                             <option value="-1" >
@@ -444,7 +484,7 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="start_time6" class="form-control ">
-                                            <option value="0" >
+                                            <option value="00.00" >
                                                 {:L('_START_TIME_')}
                                             </option>
                                             <option value="-1" >
@@ -461,7 +501,7 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="end_time6" class="form-control ">
-                                            <option value="0" >
+                                            <option value="24.00" >
                                                 {:L('_END_TIME_')}
                                             </option>
                                             <option value="-1" >
@@ -477,46 +517,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <!--星期日-->
-                                <div class="col-xs-2">
-                                    <label>{:L('_AD_SUNDAY_LABEL_')}</label>
-                                </div>
-                                <div class="col-xs-3">
-                                    <div class="input-group input-group-lg">
-                                        <select name="start_time7" class="form-control ">
-                                            <option value="0" >
-                                                {:L('_START_TIME_')}
-                                            </option>
-                                            <option value="-1" >
-                                                {:L('_CLOSE_TIME_')}
-                                            </option>
-                                            <volist name="time" id="top">
-                                                <option value="{$top.time}" >
-                                                    {$top.time}
-                                                </option>
-                                            </volist>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-xs-3">
-                                    <div class="input-group input-group-lg">
-                                        <select name="end_time7" class="form-control ">
-                                            <option value="0" >
-                                                {:L('_END_TIME_')}
-                                            </option>
-                                            <option value="-1" >
-                                                {:L('_CLOSE_TIME_')}
-                                            </option>
-                                            <volist name="time" id="top">
-                                                <option value="{$top.time}" >
-                                                    {$top.time}
-                                                </option>
-                                            </volist>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="aline" style="margin-bottom: 35px"></div>
                         </div>
                         <div class="form-group">
@@ -542,8 +542,8 @@
             if(prePrice == null || prePrice.length == 0){
                 return;
             }
-            var marketPrice = {$marketPrice};
-            var price = prePrice/100*marketPrice+marketPrice;
+            var ratePrice = {$ratePrice};
+            var price = prePrice/100*ratePrice+ratePrice;
             $("input[name='price']").val(price);
         });
         $(function(){

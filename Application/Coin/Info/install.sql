@@ -57,16 +57,16 @@ CREATE TABLE IF NOT EXISTS `ocenter_tradead` (
   `auto_message` varchar(100) NULL COMMENT '自动回复消息',
   `is_safe` tinyint(2) NOT NULL DEFAULT '0' COMMENT '安全验证',
   `is_trust` tinyint(2) NOT NULL DEFAULT '0'  COMMENT '信任验证',
-  `open_time` varchar(100) NULL,
+  `open_time` varchar(200) NULL,
   `status` tinyint(2) NOT NULL COMMENT '状态：1开放，0关闭',
   `create_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='交易广告表';
 
 -- -----------------------------
--- 表结构 `ocenter_trade`
+-- 表结构 `ocenter_trade_order`
 -- -----------------------------
-CREATE TABLE IF NOT EXISTS `ocenter_trade` (
+CREATE TABLE IF NOT EXISTS `ocenter_trade_order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ad_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,

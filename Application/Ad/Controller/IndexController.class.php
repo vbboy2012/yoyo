@@ -21,22 +21,22 @@ class IndexController extends Controller{
         $currency = D('Currency')->select();
         $payType = D('Pay')->select();
         $time = array(
-            array('time' => '0:00'), array('time' => '1:00'), array('time' => '2:00'),
-            array('time' => '3:00'), array('time' => '4:00'), array('time' => '5:00'),
-            array('time' => '6:00'), array('time' => '7:00'), array('time' => '8:00'),
-            array('time' => '9:00'), array('time' => '10:00'), array('time' => '11:00'),
+            array('time' => '00:00'), array('time' => '01:00'), array('time' => '02:00'),
+            array('time' => '03:00'), array('time' => '04:00'), array('time' => '05:00'),
+            array('time' => '06:00'), array('time' => '07:00'), array('time' => '08:00'),
+            array('time' => '09:00'), array('time' => '10:00'), array('time' => '11:00'),
             array('time' => '12:00'), array('time' => '13:00'), array('time' => '14:00'),
             array('time' => '15:00'), array('time' => '16:00'), array('time' => '17:00'),
             array('time' => '18:00'), array('time' => '19:00'), array('time' => '20:00'),
             array('time' => '21:00'), array('time' => '22:00'), array('time' => '23:00'),
             array('time' => '24:00'),
         );
-        $marketPrice = 24000;
+        $ratePrice = 24000;
         $this->assign('country', $country);
         $this->assign('currency', $currency);
         $this->assign('payType', $payType);
         $this->assign('time', $time);
-        $this->assign('marketPrice', $marketPrice);
+        $this->assign('ratePrice', $ratePrice);
         $this->display();
     }
 
@@ -90,7 +90,15 @@ class IndexController extends Controller{
         $content['auto_message'] = $auto_message;
         $content['is_safe'] = $is_safe;
         $content['is_trust'] = $is_trust;
-        $content['open_time'] = 'time';
+        $openTime = array('st7'=>$start_time7,'st6'=>$start_time6,
+            'st1'=>$start_time1,'st2'=>$start_time2,
+            'st3'=>$start_time3,'st4'=>$start_time4,
+            'st5'=>$start_time5,'et7'=>$end_time7,
+            'et6'=>$end_time6,'et1'=>$end_time1,
+            'et2'=>$end_time2,'et3'=>$end_time3,
+            'et4'=>$end_time4,'et5'=>$end_time5,
+            );
+        $content['open_time'] = json_encode($openTime);
         $content['status'] = 1;
         $content['create_time'] = time();
         D('Tradead')->add($content);

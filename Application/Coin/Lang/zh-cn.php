@@ -33,6 +33,8 @@ return array(
     '_AD_PAY_TYPE_LABEL_' => '付款方式',
     '_AD_PAY_TEXT_LABEL_' => '广告留言',
     '_AD_PAY_TEXT_TIPS_LABEL_' => '有关您交易的相关条款和支付方式。示例：1，此广告支持微信或支付宝交易。2，请先确认您能够在12小时内完成支付在发出交易请求。',
+    '_AD_PAY_TEXT2_TIPS_LABEL_' => '给对方留言，提出您的要求',
+    '_AD_TRADE_TIPS_' => '请输入正确的数字',
     '_AD_MESSAGE_LABEL_' => '自动消息回复',
     '_AD_SAFE_LABEL_' => '是否启用安全选项',
     '_AD_OPEN_' => '启用',
@@ -47,6 +49,10 @@ return array(
     '_AD_SATURDAY_LABEL_' => '星期六',
     '_AD_SUNDAY_LABEL_' => '星期日',
     '_AD_SUBMIT_LABEL_' => '发布广告',
+    '_AD_BUY_BTC_COINS_' => '买入BTC',
+    '_AD_SELL_BTC_COINS_' => '卖出BTC',
+    '_AD_BUY_ETH_COINS_' => '买入ETH',
+    '_AD_SELL_ETH_COINS_' => '卖出ETH',
     '_ERROR_LOGIN_' => '请登陆后发布',
     '_ERROR_COIN_TYPE_' => '请选择币种',
     '_ERROR_TYPE_' => '请选择交易类型',
@@ -73,6 +79,8 @@ return array(
     '_START_TIME_' => '开始时间',
     '_END_TIME_' => '结束时间',
     '_CLOSE_TIME_' => '关闭',
+
+
 
 
 

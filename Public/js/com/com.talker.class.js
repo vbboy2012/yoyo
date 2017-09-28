@@ -65,7 +65,7 @@ var talker = {
      * @param html 消息内容
      */
     append_message: function (html) {
-        $('#scrollContainer_chat').append(html);
+        $('#scrollContainer_chat').prepend(html);
         $('#scrollArea_chat').slimScroll({scrollTo: $('#scrollContainer_chat').height()});
         ucard();
     },
@@ -79,21 +79,21 @@ var talker = {
         var tpl_right = '<div class="row talk_right">' +
             '<div class="time"><span class="timespan">{ctime}</span></div>' +
             '<div class="row">' +
-            '<div class="col-md-9 bubble_outter">' +
+            '<div class="col-md-10 bubble_outter">' +
             '<h3>&nbsp;</h3><i class="bubble_sharp"></i>' +
             '<div class="talk_bubble">{content}' +
             '</div>' +
             '</div>' +
-            ' <div class="col-md-3 "><img ucard="{uid}" class="avatar-img talk-avatar"' +
+            ' <div class="col-md-2" style="text-align: center;"><img ucard="{uid}" class="avatar-img talk-avatar"' +
             'src="{avatar64}"/>' +
             '</div> </div> </div>';
 
         var tpl_left = '<div class="row">' +
             '<div class="time"><span class="timespan">{ctime}</span></div>' +
             '<div class="row">' +
-            '<div class="col-md-3 "><img ucard="{uid}" class="avatar-img talk-avatar"' +
+            '<div class="col-md-2" style="text-align: center;"><img ucard="{uid}" class="avatar-img talk-avatar"' +
             'src="{avatar64}"/>' +
-            '</div><div class="col-md-9 bubble_outter chat_bubble">' +
+            '</div><div class="col-md-10 bubble_outter chat_bubble">' +
             '<h3>&nbsp;</h3><i class="bubble_sharp"></i>' +
             '<div class="talk_bubble">{content}' +
             '</div></div></div></div>';
@@ -246,7 +246,7 @@ var talker = {
             talker.append_message(talker.fetch_message_tpl(item, MID));
         });
         talker.append_message('<hr/>' +
-        '<div style="text-align: center;color: #666">以上为历史聊天记录</div>', MID);
+        '<div style="text-align: center;color: #666">以下为历史聊天记录</div>', MID);
     }
 
 

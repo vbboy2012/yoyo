@@ -42,7 +42,7 @@ class IndexController extends Controller{
             ->join('ocenter_avatar on ocenter_avatar.uid = ocenter_member.uid')
             ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
             ->join('ocenter_pay on ocenter_tradead.pay_type = ocenter_pay.id')
-            ->field('ocenter_tradead.type,ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_member.nickname,ocenter_member.trade_num,ocenter_avatar.path,ocenter_country.en_name as countryEn,ocenter_pay.name as payName,ocenter_pay.en_name as payEn')
+            ->field('ocenter_tradead.pay_type,ocenter_tradead.type,ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_member.nickname,ocenter_member.trade_num,ocenter_avatar.path,ocenter_country.en_name as countryEn,ocenter_pay.name as payName,ocenter_pay.en_name as payEn')
             ->where('ocenter_tradead.status=1')->select();
         $country = D('Country')->field('id,name,code')->select();
         $currency = D('Currency')->select();
@@ -113,6 +113,7 @@ class IndexController extends Controller{
     {
         $tradead = M('tradead');
         $adList = $tradead->join('ocenter_member on ocenter_tradead.uid = ocenter_member.uid')
+            ->join('ocenter_member on ocenter_tradead.uid = ocenter_member.uid')
             ->join('ocenter_avatar on ocenter_avatar.uid = ocenter_member.uid')
             ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
             ->field('ocenter_tradead.type,ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.pay_type,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_member.nickname,ocenter_member.trade_num,ocenter_avatar.path,ocenter_country.en_name')
@@ -158,15 +159,55 @@ class IndexController extends Controller{
         $this->display();
     }
 
-    public function ad($current,$id)
+    public function ad()
     {
-        $tradead = M('tradead')->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
-            ->join('ocenter_pay on ocenter_tradead.pay_type = ocenter_pay.id')
-            ->field('ocenter_tradead.pay_time,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_country.name as country,ocenter_pay.name as payName,ocenter_pay.en_name as payEn')
-            ->where('ocenter_tradead.id='.$id)->find();
-        $this->assign('tradead', $tradead);
-        $this->assign('current', $current);
-        $this->display();
+        if (IS_POST) {
+            $status = I('post.status');
+            if($status == '0'){
+                $this->error(L('_AD_TRADE_TIPS_'));
+            }
+            $adId = I('post.adId');
+            $adUid = I('post.adUid');
+            $type = I('post.type');
+            $coin_type = I('post.coin_type');
+            $coinNum = I('post.coin_num');
+            $price = I('post.price');
+            $payText = I('post.pay_text');
+            $content = D('trade_order')->create();
+            $content['ad_id'] = $adId;
+            $content['order_id'] = 2017+$adId;      //需改
+            if ($coin_type == 1 || $coin_type == 3){    //广告是卖家
+                $content['buy_uid'] = is_login();
+                $content['sell_uid'] = $adUid;
+            }else{              //广告是买家
+                $content['buy_uid'] = $adUid;
+                $content['sell_uid'] = is_login();
+            }
+            $content['type'] = $type;
+            $content['coin_type'] = $coin_type;
+            $content['coin_num'] = $coinNum;
+            $content['price'] = $price;
+            $content['fee'] = 1;
+            $content['status'] = 1;
+            $content['create_time'] = time();
+            D('trade_order')->add($content);
+            $this->success(L('_SUCCESS_POST_'), U('coin/index/order'));
+        }else{
+            $ratePrice = 25000;
+            $id = I('get.id');
+            $current = I('get.current');
+            $tradead = M('tradead')->join('ocenter_member on ocenter_tradead.uid = ocenter_member.uid')
+                ->join('ocenter_avatar on ocenter_avatar.uid = ocenter_tradead.uid')
+                ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
+                ->join('ocenter_pay on ocenter_tradead.pay_type = ocenter_pay.id')
+                ->field('ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.pay_text1,ocenter_tradead.type,ocenter_tradead.coin_type,ocenter_tradead.pay_time,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_country.name as country,ocenter_pay.name as payName,ocenter_pay.en_name as payEn,ocenter_member.nickname,ocenter_avatar.path,ocenter_tradead.open_time')
+                ->where('ocenter_tradead.id='.$id)->find();
+            $this->assign('tradead', $tradead);
+            $this->assign('current', $current);
+            $this->assign('ratePrice', $ratePrice);
+            $this->display();
+        }
     }
+
 
 } 

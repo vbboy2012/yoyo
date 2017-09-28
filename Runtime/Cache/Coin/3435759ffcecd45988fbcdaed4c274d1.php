@@ -421,130 +421,50 @@
         <div class="row">
             
     <!--导航-->
-    <div class="col-xs-9">
-        <div class="forum_module" style="min-height: 800px">
+    <div class="col-xs-12">
+        <div class="forum_module" style="background: none">
             <div class="ad-title">
-                <div class="no-event">使用 支付宝 以 Chinese Yuan (CNY) 购买比特币</div>
-                <P>YoYoCoins.com 用户 <?php echo ($tradead["nickname"]); ?> 希望出售比特币给您 </P>
+                <div class="no-event">订单#25491568013：以 3000 CNY 购买 0.115393 BTC</div>
+                <P>duzili 的交易广告# bu1npcl7，价格 25998 CNY/BTC </P>
             </div>
-            <div class="aline" style="margin-bottom: 35px"></div>
-            <div class="ad-form">
-                <form class="form-horizontal ajax-form" action="<?php echo U('Coin/Index/ad');?>" method="post">
-                    <input type="hidden" name="adId" value="<?php echo ($tradead["id"]); ?>">
-                    <input type="hidden" name="adUid" value="<?php echo ($tradead["uid"]); ?>">
-                    <input type="hidden" name="type" value="<?php echo ($tradead["type"]); ?>">
-                    <input type="hidden" name="coin_type" value="<?php echo ($tradead["coin_type"]); ?>">
-                    <div class="">
-                        <div class="col-xs-2">
-                            <label>价格：</label>
-                        </div>
-                        <div class="col-xs-10">
-                            <?php $price = number_format($tradead['price'],2); $coinType = $tradead['coin_type'] == 1 ? 'BTC':'ETH'; ?>
-                            <p> <?php echo ($price); ?> / <?php echo ($coinType); ?></p>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class="col-xs-2">
-                            <label>付款方式：</label>
-                        </div>
-                        <div class="col-xs-10">
-                            <p> <?php echo ($tradead['payName']); ?></p>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class="col-xs-2">
-                            <label>交易限额：</label>
-                        </div>
-                        <div class="col-xs-10">
-                            <?php $minPrice = number_format($tradead['min_price']); $maxPrice = number_format($tradead['max_price']); ?>
-                            <p> <?php echo ($minPrice); ?>-<?php echo ($maxPrice); ?> <?php echo ($tradead['currency']); ?></p>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class="col-xs-2">
-                            <label>所在地：</label>
-                        </div>
-                        <div class="col-xs-10">
-                            <p> <?php echo ($tradead['country']); ?></p>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class="col-xs-2">
-                            <label>付款期限：</label>
-                        </div>
-                        <div class="col-xs-10">
-                            <p> <?php echo ($tradead['pay_time']); ?> 分钟</p>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class="col-xs-12">
-                            <label>您想买多少？</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-5">
-                            <div class="input-group input-group-lg">
-                                <input type="text" class="form-control" id="price" name="price" placeholder="输入想买入的金额">
-                                <span class="input-group-addon">CNY</span>
-                            </div>
-                        </div>
-                        <div class="col-xs-2" style="text-align: center;padding-top: 5px"><img src="/yoyo/Application/Coin/Static/images/xchange.png" style="width: 20%"></div>
-                        <div class="col-xs-5">
-                            <div class="input-group input-group-lg">
-                                <input type="text" class="form-control" id="coinNum" name="coin_num" placeholder="输入想买入BTC数量">
-                                <span class="input-group-addon">BTC</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class="col-xs-12">
-                            <input id="status" type="hidden" name="status" value="0">
-                            <label id="show-min" style="display: none;color: red">您可以从此广告中购买的最小金额为 <?php echo ($minPrice); ?> <?php echo ($tradead['currency']); ?>。</label>
-                            <label id="show-max" style="display: none;color: red">您可以从此广告中购买的最大金额为 <?php echo ($maxPrice); ?> <?php echo ($tradead['currency']); ?>。</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <textarea name="pay_text" class="text form-control" placeholder="<?php echo L('_AD_PAY_TEXT2_TIPS_LABEL_');?>" style="height: 8em;height: 100px"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-6 col-md-offset-3" style="text-align: center">
-                            <button type="submit" class="btn btn-success btn-block btn-lg" href="<?php echo U('Coin/Index/ad');?>" style="outline: none">
-                                <?php if($tradead['coin_type'] == 1 && ($tradead['type'] == 1 || $tradead['type'] == 3)){ echo L('_AD_BUY_BTC_COINS_'); }else if($tradead['coin_type'] == 1 && ($tradead['type'] == 2 || $tradead['type'] == 4)){ echo L('_AD_SELL_BTC_COINS_'); }else if($tradead['coin_type'] == 2 && ($tradead['type'] == 1 || $tradead['type'] == 3)){ echo L('_AD_SELL_ETH_COINS_'); }else if($tradead['coin_type'] == 2 && ($tradead['type'] == 2 || $tradead['type'] == 4)){ echo L('_AD_SELL_ETH_COINS_'); } ?>
-                            </button>
-                        </div>
-                    </div>
-                </form>
 
-            </div>
-            <div class="aline" style="margin-bottom: 35px"></div>
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <?php echo ($tradead["nickname"]); ?> 的广告留言
-                </div>
-                <div class="panel-body">
-                    <?php echo ($tradead["pay_text1"]); ?>
+        </div>
+    </div>
+    <div class="col-xs-9">
+        <div class="panel panel-success" style="min-height: 800px">
+            <div class="panel-heading">
+                <div id="search">
+                    <div id="searchForm">
+                        <input id="chat_id" type="hidden" value="0">
+                        <?php $talk_self=query_user(array('avatar128')); ?>
+                        <script>
+                            var myhead = "<?php echo ($talk_self["avatar128"]); ?>";
+                        </script>
+                        <input type="text" class="form-control input-lg" id="chat_content"/>
+                        <i class="icon icon-search"></i>
+                        <button id="searchHelpBtn" type="button" class="btn btn-link" onclick="talker.post_message()"><img src="/yoyo/Application/Coin/Static/images/send.png"></i></button>
+                    </div>
                 </div>
             </div>
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    交易须知
-                </div>
-                <div class="panel-body">
-                    在您发起交易请求后，比特币被锁定在托管中，受到BitcoinWorld保护。 如果您是买家，发起交易请求后，您应在90分钟内付款并把交易标记为付款已完成。卖家在收到付款后将会放行处于托管中的比特币。
+            <?php $currentSession=D('Common/Talk')->getCurrentSessions(); D('Common/TalkPush')->clearAll(); ?>
+            <?php if(count($currentSession) != 0): ?><script>
+                    $(function () {
+                        talker.open("<?php echo ($currentSession["0"]["id"]); ?>");
+                    })
+                </script><?php endif; ?>
+            <div class="panel-body" id="chat_box">
+                <div class="row talk-body">
+                    <div id="" class="row">
+                        <div id="scrollContainer_chat">
+                            <div class="text-muted" style="line-height: 258px;text-align: center;font-size: 32px"><?php echo L('_TALK_NONE_');?></div>
+                        </div>
+                    </div>
 
-                    交易前请阅读《BitcoinWorld网络服务条款》以及常见问题、交易指南等帮助文档。
-
-                    当心骗子！交易前请检查该用户收到的评价，并对新近创建的账户多加留意。
-
-                    请注意，四舍五入和价格的波动可能会影响最终成交的比特币数额。您输入的固定数额决定最后数额，比特币金额将在请求发布的同一时间由即时的汇率算出。
-
-                    托管服务保护网上交易的买卖双方。在发生争议的情况下，我们将评估所提供的所有信息，并将托管的比特币放行给其合法所有者。
                 </div>
             </div>
         </div>
     </div>
+
     <div class="col-xs-3" style="z-index: 99">
         <div class="common_block_border event_right">
     <div class="common_block_title_right" style="text-align: center;">
@@ -580,57 +500,9 @@
     </div>
 </div>
     </div>
+    <link rel="stylesheet" href="/yoyo/Application/Coin/Static/css/style.css">
     <script>
-        var minPrice = <?php echo ($tradead['min_price']); ?>;
-        var maxPrice = <?php echo ($tradead['max_price']); ?>;
-        var ratePrice = <?php echo ($ratePrice); ?>;
-        $("#price").bind('input propertychange',function(){
-            $(this).val($(this).val().replace(/[^\d.]/g,""));
-            $(this).val($(this).val().replace(/^\./g,""));
-            $(this).val($(this).val().replace(/\.{2,}/g,"."));
-            $(this).val($(this).val().replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'));
-            var price = $(this).val();
-            if(price < minPrice){
-                $("#show-max").css('display','none')
-                $("#show-min").css('display','block');
-                $("#status").val('0');
-            }
-            else if(price > maxPrice){
-                $("#show-max").css('display','block')
-                $("#show-min").css('display','none');
-                $("#status").val('0');
-            }else{
-                $("#show-max").css('display','none')
-                $("#show-min").css('display','none');
-                $("#status").val('1');
-            }
-            price = price/ratePrice;
-            $("#coinNum").val(price);
 
-        })
-        $("#coinNum").bind('input propertychange',function(){
-            $(this).val($(this).val().replace(/[^\d.]/g,""));
-            $(this).val($(this).val().replace(/^\./g,""));
-            $(this).val($(this).val().replace(/\.{2,}/g,"."));
-            $(this).val($(this).val().replace(/^(\-)*(\d+)\.(\d\d\d\d).*$/,'$1$2.$3'));
-            var num = $(this).val();
-            var price = num*ratePrice;
-            $("#price").val(price);
-            if(price < minPrice){
-                $("#show-max").css('display','none')
-                $("#show-min").css('display','block');
-                $("#status").val('0');
-            }
-            else if(price > maxPrice){
-                $("#show-max").css('display','block')
-                $("#show-min").css('display','none');
-                $("#status").val('0');
-            }else{
-                $("#show-max").css('display','none')
-                $("#show-min").css('display','none');
-                $("#status").val('1');
-            }
-        })
     </script>
 
         </div>
