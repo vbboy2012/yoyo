@@ -34,7 +34,7 @@
                 </div>
             </div>
             <php>
-                $currentSession=D('Common/Talk')->getCurrentSessions();
+                $currentSession=D('Common/Talk')->getCurrentOrderSessions($orderId);
                 D('Common/TalkPush')->clearAll();
             </php>
             <if condition="count($currentSession) neq 0">

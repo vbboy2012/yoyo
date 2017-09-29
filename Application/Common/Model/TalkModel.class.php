@@ -67,6 +67,42 @@ class TalkModel extends Model
         return $list;
     }
 
+    /**获取当前订单消息
+     * @return mixed
+     */
+    public function getCurrentOrderSessions($orderId)
+    {
+        //每次获取到所有的id，就对这些做delete处理。防止反复提示。
+        $new_talks = D('TalkPush')->where(array('uid' => get_uid(), 'status' => array('NEQ', -1)))->select();
+        $new_ids = array();
+        foreach ($new_talks as $push) {
+            D('TalkPush')->where(array('id' => $push['id']))->setField('status', 1);//全部置为已提示
+            $new_ids[] = $push['source_id'];
+        }
+
+
+        //每次获取到所有的id，就对这些做delete处理。防止反复提示。
+        $new_talk_messages = D('TalkMessagePush')->where(array('uid' => get_uid(), 'status' => array('NEQ', -1)))->select();
+        foreach ($new_talk_messages as $v) {
+            D('TalkMessagePush')->where(array('id' => $v['id']))->setField('status', 1);//全部置为已提示
+            $message = D('TalkMessage')->find($v['source_id']);
+            if (!in_array($message['talk_id'], $new_ids)) {
+                $new_ids[] = $message['talk_id'];
+            };
+        }
+
+        $list = $this->where('uids like' . '"%[' . is_login() . ']%"' . ' and status=1 and order_id='.$orderId)->order('update_time desc')->select();
+        foreach ($list as $key => &$li) {
+
+            $li = $this->getFirstUserAndLastMessage($li);
+            if (in_array($li['id'], $new_ids)) {
+                $list[$key]['new'] = 1;
+            }
+        }
+        unset($li);
+        return $list;
+    }
+
     /**获取最后一条消息
      * @param $talk_id
      * @return mixed
@@ -127,6 +163,49 @@ class TalkModel extends Model
         }
 
 
+        //创建聊天
+        $talk = $this->create($talk);
+        $talk['id'] = D('Talk')->add($talk);
+
+
+        foreach ($orin_member as $mem) {
+            if ($mem != is_login()) {
+                //不是自己则建立一个push
+                $push['uid'] = $mem;
+                $push['source_id'] = $talk['id'];
+                $push['create_time'] = time();
+                D('TalkPush')->add($push);
+            }
+        }
+
+
+        //获取图标用于输出
+        $talk['icon'] = $ico_user['avatar64'];
+        return $talk;
+        /*创建talk end*/
+
+    }
+
+    /**
+     * 创建交易订单聊天
+     * @param $members
+     * @return mixed
+     */
+    public function createTradeTalk($members,$orderId)
+    {
+        $orin_member = $members;
+        if (is_array($members)) {
+            $members[] = is_login();
+            $ico_user = $this->getFirstOtherUser($members);
+            $members = $this->encodeArrayByRec($members);
+            $talk['uids'] = implode(',', $members);
+            $talk['order_id'] = $orderId;
+        }
+        if (count($orin_member) == 1) {
+            $user_one = query_user(array('nickname'), $orin_member[0]);
+            $user_two = query_user(array('nickname'));
+            $talk['title'] = $user_two['nickname'] . ' 和 ' . $user_one['nickname'] . L('_CHAT_');
+        }
         //创建聊天
         $talk = $this->create($talk);
         $talk['id'] = D('Talk')->add($talk);

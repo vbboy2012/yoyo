@@ -35,6 +35,7 @@ return array(
     '_AD_PAY_TEXT_TIPS_LABEL_' => '有关您交易的相关条款和支付方式。示例：1，此广告支持微信或支付宝交易。2，请先确认您能够在12小时内完成支付在发出交易请求。',
     '_AD_PAY_TEXT2_TIPS_LABEL_' => '给对方留言，提出您的要求',
     '_AD_TRADE_TIPS_' => '请输入正确的数字',
+    '_AD_TRADE_ERROR_' => '不能和自己交易',
     '_AD_MESSAGE_LABEL_' => '自动消息回复',
     '_AD_SAFE_LABEL_' => '是否启用安全选项',
     '_AD_OPEN_' => '启用',

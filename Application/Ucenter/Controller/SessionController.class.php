@@ -252,7 +252,6 @@ class SessionController extends BaseController
         $memebers = explode(',', $aUids);
         $talk = $this->mTalkModel->createTalk($memebers);
         $this->success($talk);
-
     }
 
 }

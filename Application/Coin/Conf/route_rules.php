@@ -11,6 +11,7 @@
 return array(
     'route_rules' => array(
         'ad/:current/:id/:info'    => 'index/ad',
+        'order/:orderId'    => 'index/order',
     ),
 
 

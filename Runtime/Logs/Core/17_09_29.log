@@ -1,0 +1,166 @@
+[ 2017-09-29T15:46:34+08:00 ] 127.0.0.1 /yoyo/index.php?s=/core/public/atwhojson.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.000000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.010000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.000000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: token F:\wamp64\www\yoyo\Application\Common\Model\ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res F:\wamp64\www\yoyo\Application\Common\Common\role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `ocenter_follow` [ RunTime:0.010000s ]
+SQL: SELECT * FROM `ocenter_follow` WHERE `who_follow` = 1 OR `follow_who` = 1  [ RunTime:0.000000s ]
+SQL: select id from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=100 limit 1 [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `ocenter_follow` [ RunTime:0.000000s ]
+SQL: SELECT * FROM `ocenter_follow` WHERE `who_follow` = 1 AND `follow_who` = 100 LIMIT 1   [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `ocenter_pin_yin` [ RunTime:0.000000s ]
+ERR: 1146:Table 'yoyobit.ocenter_pin_yin' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `ocenter_pin_yin`
+SQL: select id from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=1 limit 1 [ RunTime:0.000000s ]
+
+[ 2017-09-29T15:46:35+08:00 ] 127.0.0.1 /yoyo/index.php?s=/core/public/atwhojson.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.010000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.010000s ]
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.000000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.020000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.020000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.000000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: token F:\wamp64\www\yoyo\Application\Common\Model\ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res F:\wamp64\www\yoyo\Application\Common\Common\role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-29T15:52:28+08:00 ] 127.0.0.1 /yoyo/index.php?s=/core/public/atwhojson.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.000000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.010000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.000000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: token F:\wamp64\www\yoyo\Application\Common\Model\ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res F:\wamp64\www\yoyo\Application\Common\Common\role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-29T16:04:00+08:00 ] 127.0.0.1 /yoyo/index.php?s=/core/public/atwhojson.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.010000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.010000s ]
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.000000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.010000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.000000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: token F:\wamp64\www\yoyo\Application\Common\Model\ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res F:\wamp64\www\yoyo\Application\Common\Common\role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `ocenter_follow` [ RunTime:0.000000s ]
+SQL: SELECT * FROM `ocenter_follow` WHERE `who_follow` = 1 OR `follow_who` = 1  [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `ocenter_follow` [ RunTime:0.000000s ]
+SQL: SELECT * FROM `ocenter_follow` WHERE `who_follow` = 1 AND `follow_who` = 100 LIMIT 1   [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `ocenter_pin_yin` [ RunTime:0.000000s ]
+ERR: 1146:Table 'yoyobit.ocenter_pin_yin' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `ocenter_pin_yin`
+
+[ 2017-09-29T16:04:20+08:00 ] 127.0.0.1 /yoyo/index.php?s=/core/public/atwhojson.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.010000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.010000s ]
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.000000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.010000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.000000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: token F:\wamp64\www\yoyo\Application\Common\Model\ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res F:\wamp64\www\yoyo\Application\Common\Common\role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-09-29T16:04:52+08:00 ] 127.0.0.1 /yoyo/index.php?s=/core/public/atwhojson.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.000000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.010000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.000000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: token F:\wamp64\www\yoyo\Application\Common\Model\ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res F:\wamp64\www\yoyo\Application\Common\Common\role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.010000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.010000s ]
+

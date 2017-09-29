@@ -168,6 +168,10 @@ class IndexController extends Controller{
             }
             $adId = I('post.adId');
             $adUid = I('post.adUid');
+            $uid = get_uid();
+            if ($uid == $adUid){
+                $this->error(L('_AD_TRADE_ERROR_'));
+            }
             $type = I('post.type');
             $coin_type = I('post.coin_type');
             $coinNum = I('post.coin_num');
@@ -175,9 +179,10 @@ class IndexController extends Controller{
             $payText = I('post.pay_text');
             $content = D('trade_order')->create();
             $content['ad_id'] = $adId;
-            $content['order_id'] = 2017+$adId;      //需改
+            $orderId = date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
+            $content['order_id'] = $orderId;      //需改
             if ($coin_type == 1 || $coin_type == 3){    //广告是卖家
-                $content['buy_uid'] = is_login();
+                $content['buy_uid'] = $uid;
                 $content['sell_uid'] = $adUid;
             }else{              //广告是买家
                 $content['buy_uid'] = $adUid;
@@ -190,8 +195,10 @@ class IndexController extends Controller{
             $content['fee'] = 1;
             $content['status'] = 1;
             $content['create_time'] = time();
-            D('trade_order')->add($content);
-            $this->success(L('_SUCCESS_POST_'), U('coin/index/order'));
+            //创建交易聊天
+            $memebers = array($adUid);
+            D('Common/Talk')->createTradeTalk($memebers,$orderId);
+            $this->success(L('_SUCCESS_POST_'), U('coin/order/'.$orderId));
         }else{
             $ratePrice = 25000;
             $id = I('get.id');
@@ -209,5 +216,11 @@ class IndexController extends Controller{
         }
     }
 
+    public function order($orderId)
+    {
+      //  $order = M('trade_order')->where('order_id='.$orderId)->find();
+        $this->assign('orderId', $orderId);
+        $this->display();
+    }
 
 } 
