@@ -129,7 +129,7 @@ class MessageController extends BaseController
         D('TalkMessage')->addMessage($content, is_login(), $talk_id);
         $talk = D('Talk')->find($talk_id);
         $message = D('Message')->find($talk['message_id']);
-
+        send_message($message['to_uid'],'您收到了一条新消息！');
         if ($talk['appname'] != '') {
             $messageModel = $this->getMessageModel($message);
 

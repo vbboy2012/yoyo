@@ -96,12 +96,10 @@ body {
   border: none!important;
 }
 .all-box {
-  width: 740px;
-  height: 260px;
   border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.2);
   position: relative;
-  margin: 300px auto;
+  margin: 100px auto;
 }
 .all-box .head {
   font-size: 18px;

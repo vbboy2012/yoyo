@@ -1,26 +1,14 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>注册</title>
-    <include file="Public/head"/>
+<extend name="Base/common"/>
+
+<block name="style">
     <link href="__CSS__/center.css" type="text/css" rel="stylesheet">
     <script src="__JS__/jquery.js"></script>
-    <!--<script src="__JS__/canvas.js"></script>-->
-    <include file="Public/js"/>
-</head>
-<body>
 
-<div class="banner">
-    <!--<canvas id="canvas" width="1835" height="950"></canvas>-->
-
-    <div class="logo-box">
-        <php>$logo = get_cover(modC('LOGO',0,'Config'),'path');
-            $logo = $logo?$logo:'__ROOT__/Public/images/logo.png';
-        </php>
-        <a class="navbar-brand logo" href="{:U('Home/Index/index')}"><img src="{$logo}"/></a>
-    </div>
-</div>
+</block>
+<block name="header">
+    <br/>
+</block>
+<block name="body">
     <div class="login-box">
         <if condition="$step eq 'start'">
             <div class="col-xs-9 info-box">
@@ -115,7 +103,7 @@
                                                     <button class="btn c-btn" data-role="closeVerify">取消</button>
                                                 </div>
                                             </div>
-                                    </div>
+                                        </div>
                                         <php>} else {</php>
                                         <if condition="check_verify_open('reg')">
                                             <div class="form-group new-form">
@@ -245,10 +233,6 @@
             <div class="col-xs-3 right-box">
                 <p class="p1">已有账号？</p>
                 <a href="{:U('Ucenter/Member/login')}"><p class="p2">直接登录</p></a>
-                <p class="p3">使用以下账号直接登录</p>
-                <p class="i-group">
-                    {:hook('syncLogin')}
-                </p>
             </div>
         </if>
         <if condition="$step neq 'start' and $step neq 'finish'">
@@ -263,11 +247,7 @@
         </if>
 
     </div>
-<div class="foot">
-    <h4>— 专注社交，从未止步 —</h4>
-</div>
-
-
+</block>
 
 
 <block name="script">
@@ -285,12 +265,12 @@
         var step="{$step}";
         if (MID == 0&&step=='start') {
             $(document)
-                    .ajaxStart(function () {
-                        $("button:submit").addClass("log-in").attr("disabled", true);
-                    })
-                    .ajaxStop(function () {
-                        $("button:submit").removeClass("log-in").attr("disabled", false);
-                    });
+                .ajaxStart(function () {
+                    $("button:submit").addClass("log-in").attr("disabled", true);
+                })
+                .ajaxStop(function () {
+                    $("button:submit").removeClass("log-in").attr("disabled", false);
+                });
             $("form").submit(function () {
                 toast.showLoading();
                 var self = $(this);
@@ -454,5 +434,6 @@
         })
     </script>
 </block>
-</body>
-</html>
+
+
+

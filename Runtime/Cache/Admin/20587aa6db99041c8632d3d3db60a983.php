@@ -1,1 +1,0 @@
-<?php if (!defined('THINK_PATH')) exit();?>User/editFieldSetting?profile_group_id=1&id=1

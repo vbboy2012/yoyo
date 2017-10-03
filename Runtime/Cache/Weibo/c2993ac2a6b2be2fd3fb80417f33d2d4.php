@@ -118,14 +118,6 @@
 <script src="/yoyo/Public/js/canvas.js"></script>
 <link rel="stylesheet" href="http://at.alicdn.com/t/font_iwj71cmtw1dobt9.css">
 <script>
-    $(document).ready(function () {
-        $('[data-role="show_hide"]').click(function () {
-            $("#search_box").slideToggle("slow");
-        });
-        $('[data-role="close"]').click(function () {
-            $("#search_box").slideToggle("slow");
-        });
-    });
 
 </script>
 <div class="container-fluid topp-box clearfloat">
@@ -182,13 +174,6 @@
     </div>
     <div class="col-xs-3 box c-b-right" style="text-align: right">
         <?php if(is_login()): ?><li class="li-hover">
-                <!--<input type="text" class="search" placeholder="搜索">-->
-                <a href="javascript:" id="show_box" data-role="show_hide">
-                    <!--<i class="iconfont icon-ss"></i>-->
-                    <img src="/yoyo/Public/images/search.png">
-                </a>
-            </li>
-            <li class="li-hover">
                 <a data-role="open-message-box" data-toggle="modal" data-target="#message-box">
                     <div class="message-num" data-role="now-message-num"  style="display: none;"></div>
                     <!--<i class="iconfont icon-lingdang"></i>-->
@@ -330,36 +315,11 @@
                 var ONLY_OPEN_REGISTER = "<?php echo ($only_open_register); ?>";
             </script>
             <div class="from">
-                <div class=" form-group">
-                    <input type="text" class="search " placeholder="搜索">
-                    <button type="submit" class="search-btn " data-role="search">
-                        <img src="/yoyo/Public/images/search.png">
-                    </button>
-                </div>
                 <div class=" a-div">
                     <a class="top-btn" data-login="do_login"><?php echo L('_LOGIN_');?></a>
                     <a class="top-btn" data-role="do_register" data-url="<?php echo U('Ucenter/Member/register');?>"><?php echo L('_REGISTER_');?></a>
                 </div>
             </div><?php endif; ?>
-    </div>
-    <div class="container-fluid search-box" id="search_box" style="display: none">
-        <canvas width="1835" height="374"></canvas>
-        <div class="text-wrap">
-            <div class="container text-box" style="margin: 0 auto!important;">
-                <h1>无处不在,搜你所想</h1>
-                <form class="navbar-form " action="<?php echo U('Home/Index/search');?>" method="post"
-                      role="search" id="search">
-                    <div class="search">
-                        <span class="pull-left"><input type="text" name="keywords" class="input" placeholder="全站搜索"></span>
-                        <a data-role="search"><i class="icon icon-search pull-right"></i></a>
-                    </div>
-
-                    </span>
-                </form>
-
-            </div>
-            <div class="close-box" data-role="close">X</div>
-        </div>
     </div>
 </div>
 
@@ -389,11 +349,6 @@
 
 
 <script>
-    $(function() {
-        $('[data-role="search"]').click(function() {
-            $("#search").submit();
-        })
-    })
 
     function displaySubMenu(li) {
         var subMenu = li.getElementsByTagName("ul")[0];

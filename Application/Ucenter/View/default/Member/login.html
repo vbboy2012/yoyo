@@ -1,45 +1,15 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-    <include file="Public/head"/>
-    <link href="__CSS__/new-login.css" type="text/css" rel="stylesheet">
-    <style>
-        body{
-            background-color: #1abc9c;
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    <div class="all-box">
-        <div class="register-wrap">
-            <p class="head">还没有账号?</p>
-            <p>注册 {:modC('WEB_SITE_NAME','OpenSNS开源社交系统','Config')}，或者偷懒使用第三方账号登录</p>
-            <php>
-                $register_type=modC('REGISTER_TYPE','normal','Invite');
-                $register_type=explode(',',$register_type);
-                $only_open_register=0;
-                if(in_array('invite',$register_type)&&!in_array('normal',$register_type)){
-                $only_open_register=1;
-                }
-                $third=get_addons_status('SyncLogin');
-            </php>
-            <script>
-                var ONLY_OPEN_REGISTER = "{$only_open_register}";
-            </script>
-            <a data-url="{:U('Ucenter/Member/register')}" data-role="do_register">
-                <div class="to-reg">
-                    立即注册<i class="icon icon-circle-arrow-right"></i>
-                </div>
-            </a>
+<extend name="Base/common"/>
 
-            <if condition="$third eq 1" value="1" >
-                <div class="third-line"></div>
-                <div class="third-login">
-                    {:hook('syncLogin')}
-                </div>
-            </if>
-        </div>
+<block name="style">
+    <link href="__CSS__/new-login.css" type="text/css" rel="stylesheet">
+
+</block>
+<block name="header">
+    <br/>
+</block>
+<block name="body">
+    <div class="all-box">
+        <div id="particles-js"></div>
         <form action="__SELF__" method="post" class="lg_lf_form ">
             <div class="login-wrap">
                 <p class="head">登 录</p>
@@ -84,18 +54,20 @@
                     session('login_http_referer',$_SERVER['HTTP_REFERER']);
                 </php>
                 <div class="yes-wrap form-group text-right">
-                    <a class="l-around" href="{:U('Weibo/index/index')}">随便看看</a>
+                    <a class="l-around" href="{:U('Weibo/index/index')}">还没注册？点击注册</a>
                     <button type="submit" class="login-btn">{:L('_LOGIN_SPACE_')}</button>
                 </div>
             </div>
         </form>
     </div>
-</div>
+</block>
 
-<include file="Public/js"/>
-<script type="text/javascript">
-    var quickLogin = "{$login_type}";
-    $(document)
+
+
+<block name="script">
+    <script type="text/javascript">
+        var quickLogin = "{$login_type}";
+        $(document)
             .ajaxStart(function () {
                 $("button:submit").addClass("log-in").attr("disabled", true);
             })
@@ -103,64 +75,56 @@
                 $("button:submit").removeClass("log-in").attr("disabled", false);
             });
 
-    function change_show(obj) {
-        if ($(obj).hasClass('icon-eye-open')) {
-            var value = $('#inputPassword').val().trim();
-            var html = '<input type="text" value="' + value + '" id="inputPassword"  placeholder="'+"{:L('_NEW_PW_INPUT_')}"+'" errormsg="'+"{:L('_PW_ERROR_')}"+'" nullmsg="'+"{:L('_PW_INPUT_ERROR_')}"+'" datatype="*6-30" name="password">' +
+        function change_show(obj) {
+            if ($(obj).hasClass('icon-eye-open')) {
+                var value = $('#inputPassword').val().trim();
+                var html = '<input type="text" value="' + value + '" id="inputPassword"  placeholder="'+"{:L('_NEW_PW_INPUT_')}"+'" errormsg="'+"{:L('_PW_ERROR_')}"+'" nullmsg="'+"{:L('_PW_INPUT_ERROR_')}"+'" datatype="*6-30" name="password">' +
                     '<i onclick="change_show(this)" class="icon-eye-close open-close">';
-            $('#password_block').html(html);
-        } else {
-            var value = $('#inputPassword').val().trim();
-            var html = '<input type="password" value="' + value + '" id="inputPassword"  placeholder="'+"{:L('_NEW_PW_INPUT_')}"+'" errormsg="'+"{:L('_PW_ERROR_')}"+'" nullmsg="'+"{:L('_PW_INPUT_ERROR_')}"+'" datatype="*6-30" name="password">' +
-                    '<i onclick="change_show(this)" class="icon-eye-open open-close">';
-            $('#password_block').html(html);
-        }
-    }
-
-    $(function () {
-        $("form").submit(function () {
-            toast.showLoading();
-            var self = $(this);
-            $.post(self.attr("action"), self.serialize(), success, "json");
-            return false;
-            function success(data) {
-                if (data.status) {
-                    if (data.url==undefined&&quickLogin == "quickLogin") {
-                        toast.success("{:L('_WELCOME_RETURN_')}{:L('_PERIOD_')}"+data.info, "{:L('_TIP_GENTLE_')}");
-                        setTimeout(function () {
-                            window.location.reload();
-                        }, 1500);
-                    } else {
-                        toast.success("{:L('_WELCOME_RETURN_REDIRECTING_')}"+data.info, "{:L('_TIP_GENTLE_')}");
-                        setTimeout(function () {
-                            window.location.href = data.url;
-                        }, 1500);
-                    }
-                } else {
-                    toast.error(data.info, "{:L('_TIP_GENTLE_')}");
-                    //self.find(".Validform_checktip").text(data.info);
-                    //刷新验证码
-                    $(".reloadverify").click();
-                }
-                toast.hideLoading();
-            }
-        });
-        var verifyimg = $(".verifyimg").attr("src");
-        $(".reloadverify").click(function () {
-            if (verifyimg.indexOf('?') > 0) {
-                $(".verifyimg").attr("src", verifyimg + '&random=' + Math.random());
+                $('#password_block').html(html);
             } else {
-                $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/, '') + '?' + Math.random());
+                var value = $('#inputPassword').val().trim();
+                var html = '<input type="password" value="' + value + '" id="inputPassword"  placeholder="'+"{:L('_NEW_PW_INPUT_')}"+'" errormsg="'+"{:L('_PW_ERROR_')}"+'" nullmsg="'+"{:L('_PW_INPUT_ERROR_')}"+'" datatype="*6-30" name="password">' +
+                    '<i onclick="change_show(this)" class="icon-eye-open open-close">';
+                $('#password_block').html(html);
             }
+        }
+
+        $(function () {
+            $("form").submit(function () {
+                toast.showLoading();
+                var self = $(this);
+                $.post(self.attr("action"), self.serialize(), success, "json");
+                return false;
+                function success(data) {
+                    if (data.status) {
+                        if (data.url==undefined&&quickLogin == "quickLogin") {
+                            toast.success("{:L('_WELCOME_RETURN_')}{:L('_PERIOD_')}"+data.info, "{:L('_TIP_GENTLE_')}");
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 1500);
+                        } else {
+                            toast.success("{:L('_WELCOME_RETURN_REDIRECTING_')}"+data.info, "{:L('_TIP_GENTLE_')}");
+                            setTimeout(function () {
+                                window.location.href = data.url;
+                            }, 1500);
+                        }
+                    } else {
+                        toast.error(data.info, "{:L('_TIP_GENTLE_')}");
+                        //self.find(".Validform_checktip").text(data.info);
+                        //刷新验证码
+                        $(".reloadverify").click();
+                    }
+                    toast.hideLoading();
+                }
+            });
+            var verifyimg = $(".verifyimg").attr("src");
+            $(".reloadverify").click(function () {
+                if (verifyimg.indexOf('?') > 0) {
+                    $(".verifyimg").attr("src", verifyimg + '&random=' + Math.random());
+                } else {
+                    $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/, '') + '?' + Math.random());
+                }
+            });
         });
-    });
-</script>
-</body>
-</html>
-
-
-
-
-
-
-
+    </script>
+</block>
