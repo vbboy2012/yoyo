@@ -17,9 +17,6 @@
                         <php>if(check_reg_type('email')){</php>
                         <li <if condition="$regSwitch[0] eq 'email'">class="active"</if>><a href="#email_reg" data-toggle="tab">{:L('_REGISTER_EMAIL_')}</a></li>
                         <php>}</php>
-                        <php>if(check_reg_type('mobile')){</php>
-                        <li <if condition="$regSwitch[0] eq 'mobile'">class="active"</if>><a href="#mobile_reg" data-toggle="tab">{:L('_REGISTER_PHONE_')}</a></li>
-                        <php>}</php>
                     </ul>
 
                     <div class="tab-content">

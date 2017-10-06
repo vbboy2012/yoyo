@@ -1,7 +1,7 @@
 <?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE HTML>
 <html>
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <?php echo hook('syncMeta');?>
@@ -32,11 +32,7 @@
 
 
 
-
-    <link href="/yoyo/Application/Ucenter/Static/css/center.css" type="text/css" rel="stylesheet">
-    <script src="/yoyo/Application/Ucenter/Static/js/jquery.js"></script>
-
-
+<!--Style-->
 <!--合并前的js-->
 <?php $config = api('Config/lists'); C($config); $count_code=C('COUNT_CODE'); ?>
 <script type="text/javascript">
@@ -103,10 +99,18 @@
 <audio id="music" src="" autoplay="autoplay"></audio>
 <!-- 页面header钩子，一般用于加载插件CSS文件和代码 -->
 <?php echo hook('pageHeader');?>
+    <link href="/yoyo/Application/Ucenter/Static/css/center.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-	<!-- 头部 -->
-	<script src="/yoyo/Public/js/com/com.talker.class.js"></script>
+
+<!-- 头部 -->
+
+<!-- /头部 -->
+
+<!-- 主体 -->
+
+    <div class="main-wrapper">
+        <script src="/yoyo/Public/js/com/com.talker.class.js"></script>
 <?php if((is_login()) ): ?><div id="talker">
 
     </div><?php endif; ?>
@@ -363,236 +367,277 @@
         subMenu.style.display = "none";
     }
 </script>
-	<!-- /头部 -->
-	
-	<!-- 主体 -->
-	<div class="main-wrapper">
-    
-    <br/>
-
-    <!--顶部导航之后的钩子，调用公告等-->
+        <br/>
+        <!--顶部导航之后的钩子，调用公告等-->
 <!--<?php echo hook('afterTop');?>-->
 <!--顶部导航之后的钩子，调用公告等 end-->
-    <div id="main-container" class="container">
-        <div class="row">
-            
-    <div class="login-box">
-        <?php if($step == 'start'): ?><div class="col-xs-9 info-box">
-                <form action="<?php echo U('register');?>" method="post">
-                    <ul id="reg_nav" class="nav nav-tabs" style="margin-bottom: 20px;">
-                        <?php if(check_reg_type('email')){ ?>
-                        <li <?php if($regSwitch[0] == 'email'): ?>class="active"<?php endif; ?>><a href="#email_reg" data-toggle="tab"><?php echo L('_REGISTER_EMAIL_');?></a></li>
-                        <?php } ?>
-                    </ul>
-
-                    <div class="tab-content">
-                        <?php if(isset($invite_user)){ ?>
-                        <div class="alert alert-info"><?php echo L('_USER_');?> <?php echo ($invite_user['nickname']); ?> <?php echo L('_REGISTER_INVITE_'); echo C('WEB_SITE');?>，<?php echo L('_REGISTER_INFORMATION_FILL_OUT_');?>~</div>
-                        <input type="hidden" name="code" value="<?php echo ($code); ?>">
-                        <?php }else{ ?>
-                        <?php if($open_invite_register): ?><div class="alert alert-info" style="margin-top: 0"><?php echo L('_USER_INVITE_FIRST_');?><strong><a data-type="ajax" data-url="<?php echo U('Ucenter/Member/inCode');?>" data-title="<?php echo L('_INVITE_CODE_INPUT_');?>" data-toggle="modal"><?php echo L('_INVITE_CODE_INPUT_');?></a></strong>，<?php echo L('_REGISTER_INFORMATION_FILL_OUT_');?>~</div><?php endif; ?>
-                        <?php } ?>
-                        <?php if(count($role_list)==1): ?><input id="name" type="hidden" name="role" value="<?php echo ($role_list[0]['id']); ?>">
-                            <?php else: ?>
-                            <div class="form-group" style="margin: 30px 0">
-                                <input id="name" type="hidden" name="role" value="<?php echo ($role_list[0]['id']); ?>">
-                                <label for="role" class=".sr-only col-xs-12" style="display: none"></label>
-                                <div class="clearfix"></div>
-                                <ul id="role-list" class="nav nav-justified nav-pills">
-                                    <li class="text-center"><?php echo L('_REGISTER_IDENTITY_SELECT_');?></li>
-                                    <?php if(is_array($role_list)): $i = 0; $__LIST__ = $role_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$role): $mod = ($i % 2 );++$i;?><li><a onclick="$('#name').val(<?php echo ($role["id"]); ?>);$('#role-list li').removeClass('active');$(this).parent().addClass('active');"><i class="icon-user"></i> <?php echo ($role["title"]); ?> </a></li><?php endforeach; endif; else: echo "" ;endif; ?>
-                                </ul>
-                                <script>
-                                    $(function(){
-                                        $('#role-list li').eq(1).addClass('active');
-                                    })
-                                </script>
-                                <span class="help-block"></span>
-                            </div><?php endif; ?>
-                        <?php if(is_array($regSwitch)): $i = 0; $__LIST__ = $regSwitch;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$regSwitch): $mod = ($i % 2 );++$i; switch($regSwitch): case "email": ?><!--邮箱注册-->
-                                    <div class="tab-pane <?php if($key == 0): ?>active in<?php endif; ?>" id="email_reg">
-
-                                        <div class="form-group new-form">
-                                            <label for="email" class=".sr-only col-xs-12" style="display: none"></label>
-                                            <span class="new-icon email-icon"></span>
-                                            <input type="text" id="email" class="form-control form_check new-input" check-type="UserEmail" check-url="<?php echo U('ucenter/member/checkAccount');?>" <?php if($key != 0): ?>disabled="disabled"<?php endif; ?>
-                                            placeholder="<?php echo L('_PLACEHOLDER_EMAIL_INPUT_');?>" value="" name="username">
-                                            <input type="hidden" name="reg_type" value="email" <?php if($key != 0): ?>disabled="disabled"<?php endif; ?>>
-                                        </div>
-                                        <span class="tips"><?php echo L('_EMAIL_INPUT_');?></span>
-
-
-                                        <?php if(modC('EMAIL_VERIFY_TYPE', 0, 'USERCONFIG') == 2){ ?>
-
-                                        <div class="form-group new-form">
-                                            <span class="new-icon code-icon"></span>
-                                            <input type="text" class="form-control input-new" placeholder="输入邮箱验证码" <?php if($key != 0): ?>disabled="disabled"<?php endif; ?> name="reg_verify">
-                                            <a class="get-code green-btn" data-role="getVerify"><?php echo L('_EMAIL_VERIFY_');?></a>
-                                            <!--<span class="help-block"><?php echo L('_VERIFY_CODE_INPUT_');?></span>-->
-                                        </div>
-
-                                        <div class="form-group new-form verify-check" style=" display:none;">
-                                            <h3>确认发送验证码</h3>
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <div class="lg_lf_fm_verify">
-                                                        <img class="verifyimg reloadverify img-responsive" alt="点击切换" src="<?php echo U('verify',array('id'=>3));?>">
-                                                    </div>
-                                                    <div class="col-xs-12 Validform_checktip text-warning lg_lf_fm_tip"></div>
-                                                </div>
-                                                <div class="col-xs-6 input-box">
-                                                    <label for="verifyCode3" class=".sr-only col-xs-12" style="display: none"></label>
-                                                    <span class="new-icon code-icon"></span>
-                                                    <input type="text" id="verifyCode3" class="form-control" placeholder="图片验证码"
-                                                           errormsg="请填写正确的验证码" nullmsg="请填写验证码" datatype="*5-5" name="verify">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <button class="btn y-btn" data-role="checkVerify">确定</button>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <button class="btn c-btn" data-role="closeVerify">取消</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <?php } else { ?>
-                                        <?php if(check_verify_open('reg')): ?><div class="form-group new-form">
-                                                <label for="verifyCode4" class=".sr-only col-xs-12"
-                                                       style="display: none"></label>
-                                                <span class="new-icon code-icon"></span>
-                                                <input type="text" id="verifyCode4" class="form-control new-input" placeholder="验证码"
-                                                       errormsg="请填写正确的验证码" nullmsg="请填写验证码" datatype="*5-5" name="verify">
-
-                                                <div class="new-code lg_lf_fm_verify">
-                                                    <img class="verifyimg reloadverify img-responsive" alt="点击切换"
-                                                         src="<?php echo U('verify');?>">
-                                                </div>
-                                                <div class="col-xs-12 Validform_checktip text-warning lg_lf_fm_tip"></div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <span class="tips">输入验证码</span><?php endif; ?>
-                                        <?php } ?>
-
-                                    </div>
-                                    <!--邮箱注册end--><?php break;?>
-                                <?php case "mobile": ?><!--手机注册-->
-                                    <div class="tab-pane <?php if($key == 0): ?>active in<?php endif; ?>" id="mobile_reg">
-
-                                        <div class="form-group new-form">
-                                            <label for="mobile" class=".sr-only col-xs-12" style="display: none"></label>
-                                            <span class="new-icon phone-icon"></span>
-                                            <input type="text" id="mobile" class="form-control form_check new-input" check-type="UserMobile" check-url="<?php echo U('ucenter/member/checkAccount');?>" <?php if($key != 0): ?>disabled="disabled"<?php endif; ?>
-                                            placeholder="<?php echo L('_PLACEHOLDER_PHONE_');?>" .
-                                            errormsg="<?php echo L('_ERROR_PHONE_INPUT_');?>" value="" name="username">
-
-                                            <input type="hidden" name="reg_type" value="mobile" <?php if($key != 0): ?>disabled="disabled"<?php endif; ?>>
-                                        </div>
-                                        <span class="tips"><?php echo L('_PHONE_INPUT_');?></span>
-
-                                        <?php if(modC('MOBILE_VERIFY_TYPE', 0, 'USERCONFIG') == 1){ ?>
-
-                                        <div class="form-group new-form">
-                                            <span class="new-icon code-icon"></span>
-                                            <input type="text" class="form-control new-input" placeholder="<?php echo L('_VERIFY_CODE_');?>" name="reg_verify" <?php if($key != 0): ?>disabled="disabled"<?php endif; ?>>
-                                            <a class="get-code green-btn" data-role="getVerify"><?php echo L('_PHONE_VERIFY_');?></a>
-                                        </div>
-                                        <span class="tips"><?php echo L('_VERIFY_CODE_INPUT_');?></span>
-
-                                        <div class="form-group new-form verify-check" style=" display:none;">
-                                            <h3>确认发送验证码</h3>
-                                            <div class="row">
-                                                <div class="col-xs-6">
-
-                                                    <div class="lg_lf_fm_verify">
-                                                        <img class="verifyimg reloadverify img-responsive" alt="点击切换" src="<?php echo U('verify',array('id'=>2));?>">
-                                                    </div>
-                                                    <div class="col-xs-12 Validform_checktip text-warning lg_lf_fm_tip"></div>
-                                                </div>
-                                                <div class="col-xs-6 input-box">
-                                                    <label for="verifyCode2" class=".sr-only col-xs-12" style="display: none"></label>
-                                                    <span class="new-icon code-icon"></span>
-                                                    <input type="text" id="verifyCode2" class="form-control" placeholder="图片验证码"
-                                                           errormsg="请填写正确的验证码" nullmsg="请填写验证码" datatype="*5-5" name="verify">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <button class="btn y-btn" data-role="checkVerify">确定</button>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <button class="btn c-btn" data-role="closeVerify">取消</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <?php } else { ?>
-                                        <?php if(check_verify_open('reg')): ?><div class="form-group new-form">
-                                                <label for="verifyCode5" class=".sr-only col-xs-12"
-                                                       style="display: none"></label>
-                                                <span class="new-icon code-icon"></span>
-                                                <input type="text" id="verifyCode5" class="form-control new-input" placeholder="验证码"
-                                                       errormsg="请填写正确的验证码" nullmsg="请填写验证码" datatype="*5-5" name="verify">
-
-                                                <div class="new-code lg_lf_fm_verify">
-                                                    <img class="verifyimg reloadverify img-responsive" alt="点击切换"
-                                                         src="<?php echo U('verify');?>">
-                                                </div>
-                                                <div class="col-xs-12 Validform_checktip text-warning lg_lf_fm_tip"></div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <span class="tips">输入验证码</span><?php endif; ?>
-                                        <?php } ?>
-
-                                    </div>
-                                    <!--手机注册end--><?php break; endswitch; endforeach; endif; else: echo "" ;endif; ?>
-
-
-
-                        <div class="form-group new-form">
-                            <label for="nickname" class=".sr-only col-xs-12" style="display: none"></label>
-                            <span class="new-icon name-icon"></span>
-                            <input type="text" id="nickname" class="form-control form_check new-input" check-type="Nickname"  check-url="<?php echo U('ucenter/member/checkNickname');?>" placeholder="请输入昵称" value="" name="nickname">
+        <div id="main-container" class="container user-config" style="margin-top: 60px">
+            <div class="row">
+                <div class=" col-xs-3" style="width: 220px">
+                    <div>
+                        <div class="user-info-panel  text-center margin_bottom_10">
+                            <img class="avatar-img" src="<?php echo ($self["avatar128"]); ?>">
+                            <a class="nickname" href="<?php echo ($self["space_url"]); ?>"><?php echo ($self["nickname"]); ?></a>
                         </div>
-                        <span class="tips">输入昵称，只允许中文、字母和数字和下划线</span>
-                        <div class="form-group new-form password_block">
-                            <span class="new-icon password-icon"></span>
-                            <input type="password" id="inputPassword" class="form-control new-input" check-length="6,30"  placeholder="请输入密码"  name="password">
-
-                            <div class="input-group-addon show-password green-btn">
-                                <a  href="javascript:void(0);" onclick="change_show(this)">show</a>
-                            </div>
-                        </div>
-                        <span class="tips">请输入密码，6-30位字符</span>
-
-                        <!--<div style="float: left;vertical-align: bottom;margin-top: 12px;color: #848484;">
-                            已有账户， <a href="<?php echo U('Ucenter/Member/login');?>" title="" style="color: #03B38B;">登录</a>
-                        </div>-->
-                        <button type="submit" class="btn btn-primary new-btn green-btn">注册</button>
-
-
                     </div>
-                </form>
-            </div>
-            <div class="col-xs-3 right-box">
-                <p class="p1">已有账号？</p>
-                <a href="<?php echo U('Ucenter/Member/login');?>"><p class="p2">直接登录</p></a>
-            </div><?php endif; ?>
-        <?php if($step != 'start' and $step != 'finish'): echo W('RegStep/view'); endif; ?>
-        <?php if($step == 'finish'): ?><div class="col-xs-12" style="font-size: 16px;margin-top: 30px;">
-                    <span>感谢您注册 <?php echo modC('WEB_SITE_NAME','OpenSNS开源社交系统','Config');?> ，希望你玩的愉快！
-                        <a class="btn y-btn" href="<?php echo U('Ucenter/Config/index');?>" title="">完善个人资料</a> 或
-                        <a class="btn y-btn" href="<?php echo U('home/Index/index');?>" title="">前往首页</a></span>
-            </div><?php endif; ?>
+                    <div>
+                        <nav class="menu" data-toggle="menu">
+                            <ul class="nav nav-primary side-menu">
+                                <li id="info"><a href="<?php echo U('Config/index');?>"><i class="icon-th"></i>
+                                    <?php echo L('_SETTINGS_DATA_');?></a></li>
+                                <li id="short_url"><a href="<?php echo U('Config/shortUrl');?>"><i class="icon-link"></i> 个性域名</a>
+                                </li>
+                                <li id="tag"><a href="<?php echo U('Config/tag');?>"><i class="icon-tag"></i> <?php echo L('_USER_TAG_');?></a></li>
+                                <li id="avatar"><a href="<?php echo U('Config/avatar');?>"><i class="icon-user"></i>
+                                    <?php echo L('_AVATAR_MODIFY_');?></a></li>
+                                <li id="password"><a href="<?php echo U('Config/password');?>"><i class="icon-lock"></i>
+                                    <?php echo L('_PASSWORD_MODIFY_');?></a></li>
+                                <?php if(($can_show_role) == "1"): ?><li id="role"><a href="<?php echo U('Config/role');?>"><i class="icon-group"></i>
+                                        <?php echo L('_SETTINGS_IDENTITY_');?></a></li><?php endif; ?>
+                                <li id="score"><a href="<?php echo U('Config/score');?>"><i class="icon-bar-chart"></i> <?php echo L('_SCORE_MY_');?></a>
+                                </li>
+                                <li id="process"><a href="<?php echo U('Attest/process',array('go_index'=>1));?>"><i class="icon-certificate"></i> 申请认证</a>
+                                </li>
+                                <li id="rank"><a href="<?php echo U('Config/rank');?>"><i class="icon-tags"></i> 头衔</a>
+                                </li>
+                                <li id="other"><a href="<?php echo U('Config/other');?>"><i class="icon-list-ul"></i> <?php echo L('_OTHER_');?></a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <script>
+                            $("#<?php echo ($tab); ?>").addClass('active');
+                        </script>
+                    </div>
+                </div>
+                <div class="col-xs-9 ">
+                    <div id="usercenter-content-td ">
+                        <div class="container-fluid common_block_border" style="min-height: 600px">
+                            
+<script>
+    function center_toggle(name) {
+        var show = $('#' + name + '_panel').css('display');
+        $('.center_panel').hide();
+        $('.center_arrow_right').show();
+        $('.center_arrow_bottom').hide()
+        if (show == 'none') {
+            $('#' + name + '_panel').show();
+            $('#' + name + '_toggle_right').hide();
+            $('#' + name + '_toggle_bottom').show()
+        } else {
+            $('#' + name + '_toggle_right').show();
+            $('#' + name + '_toggle_bottom').hide()
+        }
 
-    </div>
+    }
+</script>
+<div id="center">
+<div id="center_base">
+<div>
+
+
+<div id="center_account">
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="nav nav-secondary">
+                <li class="active"><a href="#base" data-toggle="tab"><?php echo L('_DATA_BASIC_');?></a></li>
+                <?php if(is_array($profile_group_list)): $i = 0; $__LIST__ = $profile_group_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vl): $mod = ($i % 2 );++$i;?><li>
+                        <a href="#expand_tab_<?php echo ($vl["id"]); ?>" data-toggle="tab"><?php echo ($vl["profile_name"]); ?></a>
+                    </li><?php endforeach; endif; else: echo "" ;endif; ?>
+            </ul>
 
         </div>
     </div>
-</div>
-	<!-- /主体 -->
+    <div class="tab-content">
+        <div class="tab-pane active" id="base">
+            <div class="with-padding" style="padding: 20px">
+                <div class="row">
+                    <div class="col-xs-8 center_info form-horizontal">
+                        <?php if(check_reg_type('username')){ ?>
+                        <div class="form-group">
+                            <label for="aUsername" class="col-xs-2 control-label"><?php echo L('_USERNAME_');?></label>
 
-	<!-- 底部 -->
-	<footer class="footer">
+                            <div class="col-xs-10">
+                                <?php if($accountInfo['username']){ ?>
+                                <span class="lh32"><?php echo ($accountInfo['username']); ?></span>
+                                <?php }else{ ?>
+                                <input type="text" class="form-control pull-left" id="aUsername" value=""
+                                       placeholder="<?php echo L('_USER_NAME_NOT_SET_'); echo L('_WAVE_');?>">
+                                <a class="pull-left lh32 saveUsername" style="margin-left: 10px"><?php echo L('_SETTINGS_');?></a>
+                                <script>
+                                    $(function () {
+                                        $('.saveUsername').click(function () {
+                                            var username = $(this).prev().val();
+                                            if (!username) {
+                                                toast.error("<?php echo L('_USERNAME_NOT_EMPTY_'); echo L('_EXCLAMATION_');?>");
+                                                return false;
+                                            }
+                                            if (confirm("<?php echo L('_USERNAME_SET_ONCE_'); echo L('_QUESTION_');?>")) {
+                                                $.post("<?php echo U('ucenter/config/saveUsername');?>", {username: username}, function (res) {
+                                                    handleAjax(res);
+                                                })
+                                            }
+                                        })
+                                    })
+                                </script>
+                                <?php } ?>
+                            </div>
+                        </div>
+
+                        <?php } ?>
+
+                        <?php if(check_reg_type('email')){ ?>
+                        <div class="form-group">
+                            <label for="aEmail" class="col-xs-2 control-label"><?php echo L('_EMAIL_');?></label>
+
+                            <div class="col-xs-10">
+
+                                <?php echo ((isset($accountInfo["email"]) && ($accountInfo["email"] !== ""))?($accountInfo["email"]):L('_SET_NOT_')); ?>
+                                <a class=" lh32 " style="margin-left: 10px"
+                                   data-remote="<?php echo U('ucenter/config/changeaccount',array('tag'=>'email'));?>"
+                                   data-toggle="modal"><?php echo L('_EMAIL_MODIFY_');?></a>
+                            </div>
+                        </div>
+                        <?php } ?>
+
+                        <?php if(check_reg_type('mobile')){ ?>
+
+                        <div class="form-group">
+                            <label for="aMobile" class="col-xs-2 control-label"><?php echo L('_PHONE_');?></label>
+
+                            <div class="col-xs-10">
+                                <?php echo ((isset($accountInfo["mobile"]) && ($accountInfo["mobile"] !== ""))?($accountInfo["mobile"]):L('_SET_NOT_')); ?>
+
+                                <a class=" lh32 " style="margin-left: 10px"
+                                   data-remote="<?php echo U('ucenter/config/changeaccount',array('tag'=>'mobile'));?>"
+                                   data-toggle="modal"><?php echo L('_PHONE_MODIFY_');?></a>
+                            </div>
+                        </div>
+                        <?php } ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <form class="form-horizontal center_info ajax-form" role="form"
+                              action="<?php echo U('Ucenter/Config/index');?>" method="post">
+                            <div class="form-group">
+                                <label for="nickname" class="col-xs-2 control-label"><?php echo L('_NICKNAME_');?></label>
+
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="nickname" name="nickname"
+                                           value="<?php echo (op_t($user["nickname"])); ?>"
+                                           placeholder="<?php echo L('_NICKNAME_');?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-2 control-label"><?php echo L('_SEX_');?></label>
+
+                                <div class="col-xs-10">
+                                    <label class="radio-inline">
+                                        <input name="sex" type="radio" value="1"
+                                        <?php if(($user["sex"]) == "1"): ?>checked<?php endif; ?>
+                                       ><?php echo L('_MAN_');?>
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input name="sex" type="radio" value="2"
+                                        <?php if(($user["sex"]) == "2"): ?>checked<?php endif; ?>
+                                       ><?php echo L('_WOMAN_');?>
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input name="sex" type="radio" value="0"
+                                        <?php if(($user["sex"]) == "0"): ?>checked<?php endif; ?>
+                                       ><?php echo L('_SECRECY_');?>
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group position">
+                                <label for="email" class="col-xs-2 control-label"><?php echo L('_PLACE_');?></label>
+
+                                <div class="col-xs-10">
+                                    <?php echo hook('J_China_City',array('province'=>$user['pos_province'],'city'=>$user['pos_city'],'district'=>$user['pos_district'],'community'=>$user['pos_community']));?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="signature" class="col-xs-2 control-label"><?php echo L('_SIGNATURE_');?></label>
+
+                                <div class="col-xs-10">
+                                    <textarea id="signature" name="signature" class="form-control"
+                                              style="width: 100%; height: 6em;resize: none"><?php echo (htmlspecialchars($user["signature"])); ?></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-xs-10">
+                                    <button type="submit" class="btn btn-primary"><?php echo L('_SAVE_');?></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+            <?php if(is_array($profile_group_list)): $i = 0; $__LIST__ = $profile_group_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="tab-pane" id="expand_tab_<?php echo ($vo["id"]); ?>">
+                    <form action="<?php echo U('Config/edit_expandinfo');?>" method="post" class="ajax-form">
+                    <div class="with-padding">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <input type="hidden" name="profile_group_id" value="<?php echo ($vo["id"]); ?>">
+                                <div>
+                                    <?php if(is_array($vo["fields"])): $i = 0; $__LIST__ = $vo["fields"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vl): $mod = ($i % 2 );++$i;?><dl>
+                                            <?php echo W('InputRender/inputRender',array($vl,'personal'));?>
+                                        </dl><?php endforeach; endif; else: echo "" ;endif; ?>
+                                </div>
+                                <?php if(count($vo['fields']) != 0): ?><input type="submit" value="<?php echo L('_SAVE_');?>" id="submit_btn"
+                                           class="btn btn-primary expandinfo-sumbit">
+                                    <?php else: ?>
+                                    <span class="expandinfo-noticeinfo"><?php echo L('_MESSAGE_EXPAND_NONE_'); echo L('_EXCLAMATION_');?></span><?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                </div><?php endforeach; endif; else: echo "" ;endif; ?>
+
+    </div>
+
+
+</div>
+</div>
+
+
+</div>
+</div>
+
+
+</div>
+<script type="text/javascript" src="/yoyo/Application/Ucenter/Static/js/expandinfo-form.js"></script>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $(window).resize(function () {
+                $("#main-container").css("min-height", $(window).height() - 343);
+            }).resize();
+        })
+    </script>
+
+<!-- /主体 -->
+
+<!-- 底部 -->
+</div>
+<footer class="footer">
     <div class="container ftTop">
         <div class="ftBox">
             <p class="ftTit">关于我们</p>
@@ -655,190 +700,7 @@
 
 <script src="/yoyo/Public/js/socket.io.js"></script>
 
-
-    <script>
-        $(function(){
-            $('.new-input').focus(function () {
-                $(this).closest(".new-form").css('marginBottom','15px').next().css('display','block');
-            });
-            $('.new-input').blur(function () {
-                $(this).closest(".new-form").css('marginBottom','30px').next().css('display','none');
-            })
-        })
-    </script>
-    <script type="text/javascript">
-        var step="<?php echo ($step); ?>";
-        if (MID == 0&&step=='start') {
-            $(document)
-                .ajaxStart(function () {
-                    $("button:submit").addClass("log-in").attr("disabled", true);
-                })
-                .ajaxStop(function () {
-                    $("button:submit").removeClass("log-in").attr("disabled", false);
-                });
-            $("form").submit(function () {
-                toast.showLoading();
-                var self = $(this);
-//                console.log(self.serialize());
-                $.post(self.attr("action"), self.serialize(), success, "json");
-                return false;
-
-                function success(data) {
-                    if (data.status) {
-                        //toast.success(data.info, '温馨提示');
-                        setTimeout(function () {
-                            window.location.href = data.url
-                        }, 10);
-                    } else {
-                        toast.error(data.info, '温馨提示');
-                        //self.find(".Validform_checktip").text(data.info);
-                        //刷新验证码
-                        $(".reloadverify").click();
-                    }
-                    toast.hideLoading();
-                }
-            });
-
-            function change_show(obj) {
-                if ($(obj).text().trim() == 'show') {
-                    $(obj).html('hide');
-                    $(obj).parents('.password_block').find('input').attr('type', 'text');
-                } else {
-                    $(obj).html('show');
-                    $(obj).parents('.password_block').find('input').attr('type', 'password');
-                }
-            }
-
-
-            function setNickname(obj) {
-                var text = jQuery.trim($(obj).val());
-                if (text != null && text != '') {
-                    $('#nickname').val(text);
-                }
-            }
-
-            $(function () {
-
-                $(".reloadverify").click(function () {
-                    var $this = $(this);
-                    var verifyimg = $this.attr("src");
-                    $this.attr("src", verifyimg + '&random=' + Math.random());
-                });
-            });
-
-
-
-            $(function () {
-                $("[data-role='getVerify']").click(function () {
-                    var $this = $(this);
-//                    toast.showLoading();
-                    var account = $this.parents('.tab-pane').find('[name="username"]').val();
-                    var type = $this.parents('.tab-pane').find('[name="reg_type"]').val();
-//                    var url = "<?php echo U('ucenter/member/checkAccount');?>";
-
-                    $.post(U('ucenter/member/checkAccount'),{account:account,type:type},function(res){
-                        ajaxRerurn(res);
-                        if(res.info == '验证成功') {
-                            $('.verify-check').show();
-                            $('[data-role="closeVerify"]').click(function() {
-                                $('.verify-check').hide();
-                                return false;
-                            })
-                        }
-                    },'json')
-                });
-
-                $('[data-role="checkVerify"]').click(function(event) {
-                    var $this = $(this);
-//                    toast.showLoading();
-                    var account = $this.parents('.tab-pane').find('[name="username"]').val();
-                    var type = $this.parents('.tab-pane').find('[name="reg_type"]').val();
-                    var verify = $this.parents('.tab-pane').find('[name="verify"]').val();
-
-                    $.post("<?php echo U('ucenter/verify/sendVerify');?>", {account: account, type: type, action: 'member',verify:verify}, function (res) {
-                        if (res.status) {
-                            $('.verify-check').hide();
-                            DecTime.obj = $this;
-                            DecTime.time = "<?php echo modC('SMS_RESEND','60','USERCONFIG');?>";
-                            $this.attr('disabled',true);
-                            DecTime.dec_time();
-
-                            toast.success(res.info);
-                        }
-                        else {
-                            toast.error(res.info);
-                        }
-                        toast.hideLoading();
-                    });
-                    event.preventDefault();
-                });
-
-                $('#reg_nav li a').click(function(){
-                    $('.tab-pane').find('input').attr('disabled',true);
-                    $('.tab-pane').eq($("#reg_nav li a").index(this)).find('input').attr('disabled',false);
-                })
-                $("[type='submit']").click(function () {
-                    $(this).parents('form').submit();
-                })
-
-                $('[href="#<?php echo ($type); ?>_reg"]').click()
-
-
-            })
-        }
-
-
-
-        var DecTime = {
-            obj:0,
-            time:0,
-            dec_time : function(){
-                if(this.time > 0){
-                    this.obj.text(this.time--+'S')
-                    setTimeout("DecTime.dec_time()",1000)
-                }else{
-                    this.obj.text("<?php echo L('_EMAIL_VERIFY_');?>")
-                    this.obj.attr('disabled',false)
-                }
-
-            }
-        }
-
-    </script>
-    <link href="/yoyo/Application/Core/Static/css/form_check.css" rel="stylesheet" type="text/css">
-    <script src='/yoyo/Application/Core/Static/js/form_check.js'></script>
-    <script>
-        // 验证密码长度
-        $(function(){
-            $('#inputPassword').after('<div class=" show_info" ></div>');
-            $('#inputPassword').blur(function(){
-
-                var obj =$('#inputPassword');
-                var str =  obj.val().replace(/\s+/g, "");
-                var html = '';
-                if (str.length == 0) {
-                    html = '<div class="send red"><div class="arrow"></div>'+"<?php echo L('_EMPTY_CANNOT_');?>"+'</div>';
-                } else {
-                    if (typeof (obj.attr('check-length')) != 'undefined') {
-                        var strs = new Array(); //定义一数组
-                        strs = obj.attr('check-length').split(","); //字符分割
-                        if (strs[1]) {
-                            if (strs[1] < str.length || str.length < strs[0]) {
-                                html = '<div class="send red"><div class="arrow"></div>'+"<?php echo L('_LENGTH_ILLEGAL_');?>"+'</div>';
-                            }
-                        }
-                        else {
-                            if (strs[0] < str.length) {
-                                html = '<div class="send red"><div class="arrow"></div>'+"<?php echo L('_LENGTH_ILLEGAL_');?>"+'</div>';
-                            }
-                        }
-                    }
-                    obj.parent().find('.show_info').html(html);
-                }
-            })
-        })
-    </script>
-
+<!-- 用于加载js代码 -->
 <!-- 页面footer钩子，一般用于加载插件JS文件和JS代码 -->
 <?php echo hook('pageFooter', 'widget');?>
 <!-- 调用全站公告部件-->
@@ -856,6 +718,40 @@
   //  new Bugtags('d6023daa6c7467634636c87b3f16213e','8.12','VERSION_CODE');
 </script>
 
-	<!-- /底部 -->
+<!-- /底部 -->
+
+<script>
+    $(function () {
+        var $sidebar = $('#usercenter-sidebar-td');
+        var $sidebar_xs = $('#usercenter-sidebar-xs');
+        var $sidebar_sm = $('#usercenter-sidebar-sm');
+        var $content = $('#usercenter-content-td');
+
+        function trigger_resp() {
+            var width = $(window).width();
+            if (width < 768) {
+                on_xs();
+            } else {
+                on_sm();
+            }
+        }
+
+        function on_xs() {
+            $sidebar_xs.append($sidebar);
+            $content.css({'padding-left': 0, 'padding-right': 0});
+        }
+
+        function on_sm() {
+            $sidebar_sm.prepend($sidebar);
+        }
+
+        trigger_resp();
+
+        $(window).resize(function () {
+            trigger_resp();
+        })
+    })
+</script>
+
 </body>
 </html>

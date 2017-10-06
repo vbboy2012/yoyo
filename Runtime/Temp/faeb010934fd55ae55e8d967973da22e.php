@@ -1,3 +1,0 @@
-<?php
-//000000003600a:2:{i:0;a:5:{s:3:"uid";s:1:"1";s:4:"fans";s:1:"1";s:8:"nickname";s:11:"yoyocoinsdd";s:9:"avatar128";s:48:"/yoyo/Uploads/Avatar/1/59c9fe662f4d9_128_128.jpg";s:9:"space_url";s:28:"http://127.0.0.1/yoyo/u/jzbk";}i:1;a:5:{s:3:"uid";s:3:"100";s:4:"fans";s:1:"1";s:8:"nickname";s:5:"vbboy";s:9:"avatar128";s:46:"/yoyo/Public/images/default_avatar_128_128.jpg";s:9:"space_url";s:51:"/yoyo/index.php?s=/ucenter/index/index/uid/100.html";}}
-?>
