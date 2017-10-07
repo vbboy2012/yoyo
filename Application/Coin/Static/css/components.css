@@ -39,13 +39,13 @@ li {
 General reset
 ***/
 /* Set default body */
-body {
-  color: #34495e;
-  font-family: "Open Sans", sans-serif;
-  padding: 0px !important;
-  margin: 0px !important;
-  direction: "ltr";
-  font-size: 14px; }
+/*body {*/
+  /*color: #34495e;*/
+  /*font-family: "Open Sans", sans-serif;*/
+  /*padding: 0px !important;*/
+  /*margin: 0px !important;*/
+  /*direction: "ltr";*/
+  /*font-size: 14px; }*/
 
 /*
  Internet Explorer 10 doesn't differentiate device width from viewport width, and thus doesn't

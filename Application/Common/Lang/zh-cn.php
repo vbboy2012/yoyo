@@ -387,6 +387,7 @@ $common_lang = array(
 
     //js
     '_KINDLY_REMINDER_'=>'温馨提示',
+
     
 
 );

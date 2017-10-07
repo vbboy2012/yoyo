@@ -18,13 +18,14 @@
             <div class="row">
                 <div style="padding: 0 10px;width: 100%;float: left;">
                     <form class="form-horizontal ajax-form" action="{:U('Ad/Index/doPost')}" method="post">
+                        <input type="hidden" name="isNew" value="{$isNew}">
                         <div class="form-group">
                             <div class="col-xs-2">
                                 <label class="required">{:L('_AD_COIN_TYPE_LABEL_')}</label>
                             </div>
                             <div class="col-xs-10">
-                                <label> <input name="coin_type" value="1" type="radio"/>BTC</label>
-                                <label class="ad_magrain40"> <input name="coin_type" value="2" type="radio"/>ETH</label>
+                                <label> <input name="coin_type" value="1" type="radio" <if condition="$ad['type'] eq '1'">checked</if>/>BTC</label>
+                                <label class="ad_magrain40"> <input name="coin_type" value="2" type="radio" <if condition="$ad['type'] eq '2'">checked</if>/>ETH</label>
                                 <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;此广告的币种（BTC或ETH）。</div>
                             </div>
                         </div>
@@ -34,10 +35,10 @@
                                 <label class="required">{:L('_AD_TYPE_LABEL_')}</label>
                             </div>
                             <div class="col-xs-10">
-                                <label> <input name="type" value="1" type="radio"/>{:L('_AD_ONLINE_SELL_')}</label>
-                                <label class="ad_magrain40"> <input name="type" value="2" type="radio"/>{:L('_AD_ONLINE_BUY_')}</label>
-                                <label class="ad_magrain40"> <input name="type" value="3" type="radio"/>{:L('_AD_LOCAL_SELL_')}</label>
-                                <label class="ad_magrain40"> <input name="type" value="4" type="radio"/>{:L('_AD_LOCAL_BUY_')}</label>
+                                <label> <input name="type" value="1" type="radio" <if condition="$ad['type'] eq '1'">checked</if>/>{:L('_AD_ONLINE_SELL_')}</label>
+                                <label class="ad_magrain40"> <input name="type" value="2" type="radio" <if condition="$ad['type'] eq '2'">checked</if>/>{:L('_AD_ONLINE_BUY_')}</label>
+                                <label class="ad_magrain40"> <input name="type" value="3" type="radio" <if condition="$ad['type'] eq '3'">checked</if>/>{:L('_AD_LOCAL_SELL_')}</label>
+                                <label class="ad_magrain40"> <input name="type" value="4" type="radio" <if condition="$ad['type'] eq '4'">checked</if>/>{:L('_AD_LOCAL_BUY_')}</label>
                                 <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;您想要创建什么样的交易广告？</div>
                             </div>
                         </div>
@@ -49,7 +50,7 @@
                             <div class="col-xs-6">
                                 <select name="country" class="select2" style="width: 100%">
                                     <volist name="country" id="top">
-                                        <option value="{$top.id}" >
+                                        <option value="{$top.id}" <if condition="$ad['country'] eq $top['id']">selected</if>>
                                             {$top.code} {$top.name}
                                         </option>
                                     </volist>
@@ -65,7 +66,7 @@
                             <div class="col-xs-6">
                                 <select name="currency" class="select2" style="width: 100%">
                                     <volist name="currency" id="top">
-                                        <option value="{$top.code}" >
+                                        <option value="{$top.code}" <if condition="$ad['currency'] eq $top['code']">selected</if>>
                                             {$top.code}
                                         </option>
                                     </volist>
@@ -79,7 +80,7 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="input-group input-group-lg">
-                                    <input type="text" class="form-control form_check" name="pre_price" check-type="IntNum">
+                                    <input type="text" class="form-control form_check" value="{$ad['pre_price']}" name="pre_price" check-type="IntNum">
                                     <span class="input-group-addon">%</span>
                                 </div>
                                 <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;输入溢价比例，会根据部分大型交易所实时价格计算出价格，比如当前价格为20000，溢价比例为10%，那么价格为22000。</div>
@@ -92,7 +93,7 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="input-group input-group-lg">
-                                    <input type="text" class="form-control" name="price" onfocus=this.blur()>
+                                    <input type="text" class="form-control" value="{$ad['price']}" name="price" onfocus=this.blur()>
                                     <span class="input-group-addon">CNY</span>
                                 </div>
                                 <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;根据溢价比例得出的报价，10分钟更新一次。</div>
@@ -105,7 +106,7 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="input-group input-group-lg" style="width: 100%">
-                                    <input type="text" class="form-control" name="pay_addr">
+                                    <input type="text" class="form-control" value="{$ad['pay_addr']}" name="pay_addr">
                                 </div>
                                 <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;广告交易的见面地点，例如咖啡厅。</div>
                             </div>
@@ -117,7 +118,7 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="input-group input-group-lg">
-                                    <input type="text" class="form-control form_check" name="low_price" check-type="IntNum" can-empty="1">
+                                    <input type="text" class="form-control form_check" value="{$ad['low_price']}" name="low_price" check-type="IntNum" can-empty="1">
                                     <span class="input-group-addon">CNY</span>
                                 </div>
                                 <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;广告最低可成交的价格，可帮您在价格剧烈波动的时候保持稳定的盈利，比如最低价格22000，市场价格低于22000以下时，您的广告依旧以22000价格展示出来。</div>
@@ -130,7 +131,7 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="input-group input-group-lg">
-                                    <input type="text" class="form-control form_check" name="min_price" check-type="IntNum">
+                                    <input type="text" class="form-control form_check" value="{$ad['min_price']}" name="min_price" check-type="IntNum">
                                     <span class="input-group-addon">CNY</span>
                                 </div>
                                 <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;每笔交易的最低限额。</div>
@@ -143,7 +144,7 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="input-group input-group-lg">
-                                    <input type="text" class="form-control form_check" name="max_price" check-type="IntNum">
+                                    <input type="text" class="form-control form_check" value="{$ad['max_price']}" name="max_price" check-type="IntNum">
                                     <span class="input-group-addon">CNY</span>
                                 </div>
                                 <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;每笔交易的最大限额，必须大于最小限额，您的钱包余额会影响最大额度的设置。</div>
@@ -156,7 +157,7 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="input-group input-group-lg">
-                                    <input type="text" class="form-control form_check" value="90" name="pay_time" check-type="IntNum">
+                                    <input type="text" class="form-control form_check" value="<if condition="$ad['pay_time'] gt 0">{$ad['pay_time']}<else/>90</if>" name="pay_time" check-type="IntNum">
                                     <span class="input-group-addon">分钟</span>
                                 </div>
                                 <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;您承诺在多少分钟内进行付款。</div>
@@ -169,8 +170,9 @@
                             </div>
                             <div class="col-xs-6">
                                 <select name="pay_type" class="chosen-select select2" style="width: 100%">
+                                    <option value="" disabled selected>{:L('_AD_PAY_TIPS_')}</option>
                                     <volist name="payType" id="top">
-                                        <option value="{$top.id}" >
+                                        <option value="{$top.id}" <if condition="$ad['pay_type'] eq $top['id']">selected</if>>
                                             {$top.name}
                                         </option>
                                     </volist>
@@ -183,7 +185,7 @@
                                 <label class="required">{:L('_AD_PAY_TEXT_LABEL_')}</label>
                             </div>
                             <div class="col-xs-6">
-                                <textarea name="pay_text" class="text form-control" placeholder="{:L('_AD_PAY_TEXT_TIPS_LABEL_')}" style="height: 8em;height: 160px"></textarea>
+                                <textarea name="pay_text" class="text form-control" placeholder="{:L('_AD_PAY_TEXT_TIPS_LABEL_')}" style="height: 8em;height: 160px">{$ad['pay_text1']}</textarea>
                             </div>
                         </div>
 
@@ -195,7 +197,7 @@
                                     <label>{:L('_AD_MESSAGE_LABEL_')}</label>
                                 </div>
                                 <div class="col-xs-6">
-                                    <textarea name="auto_mesage" class="text input-large form-control" style="height: 8em;height: 100px"></textarea>
+                                    <textarea name="auto_mesage" class="text input-large form-control" style="height: 8em;height: 100px">{$ad['auto_mesage']}</textarea>
                                     <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;用户通过此广告向您发起交易时，系统自动将您选择的自动回复用语发送给对方。</div>
                                 </div>
                             </div>
@@ -205,8 +207,8 @@
                                     <label>{:L('_AD_SAFE_LABEL_')}</label>
                                 </div>
                                 <div class="col-xs-10">
-                                    <label> <input name="is_safe" value="1" type="radio"/>{:L('_AD_OPEN_')}</label>&nbsp;&nbsp;&nbsp;
-                                    <label class=""> <input name="is_safe" value="0" type="radio" checked/>{:L('_AD_CLOSE_')}</label>
+                                    <label> <input name="is_safe" value="1" type="radio" <if condition="$ad['is_safe'] eq '1'">checked</if>/>{:L('_AD_OPEN_')}</label>&nbsp;&nbsp;&nbsp;
+                                    <label class=""> <input name="is_safe" value="0" type="radio" <if condition="$ad['is_safe'] eq '0'">checked</if>/>{:L('_AD_CLOSE_')}</label>
                                     <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;启用后，仅限于已验证身份证和通过短信验证的用户与本广告交易。</div>
                                 </div>
                             </div>
@@ -216,8 +218,8 @@
                                     <label>{:L('_AD_TRUST_LABEL_')}</label>
                                 </div>
                                 <div class="col-xs-10">
-                                    <label> <input name="is_trust" value="1" type="radio"/>{:L('_AD_OPEN_')}</label>&nbsp;&nbsp;&nbsp;
-                                    <label class=""> <input name="is_trust" value="0" type="radio" checked/>{:L('_AD_CLOSE_')}</label>
+                                    <label> <input name="is_trust" value="1" type="radio" <if condition="$ad['is_trust'] eq '1'">checked</if>/>{:L('_AD_OPEN_')}</label>&nbsp;&nbsp;&nbsp;
+                                    <label class=""> <input name="is_trust" value="0" type="radio" <if condition="$ad['is_trust'] eq '0'">checked</if>/>{:L('_AD_CLOSE_')}</label>
                                     <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;启用后，仅限于自己信任的用户与本广告交易。</div>
                                 </div>
                             </div>
@@ -239,14 +241,14 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="start_time7" class="form-control ">
-                                            <option value="00.00" >
+                                            <option value="00.00" <if condition="$openTime:st7 eq '00.00'">selected</if>>
                                                 {:L('_START_TIME_')}
                                             </option>
-                                            <option value="-1" >
+                                            <option value="-1" <if condition="$openTime:st7 eq -1">selected</if>>
                                                 {:L('_CLOSE_TIME_')}
                                             </option>
                                             <volist name="time" id="top">
-                                                <option value="{$top.time}" >
+                                                <option value="{$top.time}" <if condition="$openTime:st7 eq $top['time']">selected</if>>
                                                     {$top.time}
                                                 </option>
                                             </volist>
@@ -256,14 +258,14 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="end_time7" class="form-control ">
-                                            <option value="24.00" >
+                                            <option value="24.00" <if condition="$openTime:et7 eq '24.00'">selected</if>>
                                                 {:L('_END_TIME_')}
                                             </option>
-                                            <option value="-1" >
+                                            <option value="-1" <if condition="$openTime:et7 eq -1">selected</if>>
                                                 {:L('_CLOSE_TIME_')}
                                             </option>
                                             <volist name="time" id="top">
-                                                <option value="{$top.time}" >
+                                                <option value="{$top.time}" <if condition="$openTime:et7 eq $top['time']">selected</if>>
                                                     {$top.time}
                                                 </option>
                                             </volist>
@@ -278,16 +280,16 @@
                                 </div>
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
-                                        <select name="start_time1" class="form-control">
-                                            <option value="00.00" >
-                                                {:L('_START_TIME_')}
+                                        <select name="start_time1" class="form-control ">
+                                            <option value="00.00" <if condition="$openTime:st1 eq '00.00'">selected</if>>
+                                            {:L('_START_TIME_')}
                                             </option>
-                                            <option value="-1" >
-                                                {:L('_CLOSE_TIME_')}
+                                            <option value="-1" <if condition="$openTime:st1 eq -1">selected</if>>
+                                            {:L('_CLOSE_TIME_')}
                                             </option>
                                             <volist name="time" id="top">
-                                                <option value="{$top.time}" >
-                                                    {$top.time}
+                                                <option value="{$top.time}" <if condition="$openTime:st1 eq $top['time']">selected</if>>
+                                                {$top.time}
                                                 </option>
                                             </volist>
                                         </select>
@@ -296,15 +298,15 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="end_time1" class="form-control ">
-                                            <option value="24:00" >
-                                                {:L('_END_TIME_')}
+                                            <option value="24.00" <if condition="$openTime:et1 eq '24.00'">selected</if>>
+                                            {:L('_END_TIME_')}
                                             </option>
-                                            <option value="-1" >
-                                                {:L('_CLOSE_TIME_')}
+                                            <option value="-1" <if condition="$openTime:et1 eq -1">selected</if>>
+                                            {:L('_CLOSE_TIME_')}
                                             </option>
                                             <volist name="time" id="top">
-                                                <option value="{$top.time}" >
-                                                    {$top.time}
+                                                <option value="{$top.time}" <if condition="$openTime:et1 eq $top['time']">selected</if>>
+                                                {$top.time}
                                                 </option>
                                             </volist>
                                         </select>
@@ -319,16 +321,16 @@
                                 </div>
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
-                                        <select name="start_time2" class="form-control">
-                                            <option value="00.00" >
-                                                {:L('_START_TIME_')}
+                                        <select name="start_time2" class="form-control ">
+                                            <option value="00.00" <if condition="$openTime:st2 eq '00.00'">selected</if>>
+                                            {:L('_START_TIME_')}
                                             </option>
-                                            <option value="-1" >
-                                                {:L('_CLOSE_TIME_')}
+                                            <option value="-1" <if condition="$openTime:st2 eq -1">selected</if>>
+                                            {:L('_CLOSE_TIME_')}
                                             </option>
                                             <volist name="time" id="top">
-                                                <option value="{$top.time}" >
-                                                    {$top.time}
+                                                <option value="{$top.time}" <if condition="$openTime:st2 eq $top['time']">selected</if>>
+                                                {$top.time}
                                                 </option>
                                             </volist>
                                         </select>
@@ -337,15 +339,15 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="end_time2" class="form-control ">
-                                            <option value="24.00" >
-                                                {:L('_END_TIME_')}
+                                            <option value="24.00" <if condition="$openTime:et2 eq '24.00'">selected</if>>
+                                            {:L('_END_TIME_')}
                                             </option>
-                                            <option value="-1" >
-                                                {:L('_CLOSE_TIME_')}
+                                            <option value="-1" <if condition="$openTime:et2 eq -1">selected</if>>
+                                            {:L('_CLOSE_TIME_')}
                                             </option>
                                             <volist name="time" id="top">
-                                                <option value="{$top.time}" >
-                                                    {$top.time}
+                                                <option value="{$top.time}" <if condition="$openTime:et2 eq $top['time']">selected</if>>
+                                                {$top.time}
                                                 </option>
                                             </volist>
                                         </select>
@@ -361,15 +363,15 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="start_time3" class="form-control ">
-                                            <option value="00.00" >
-                                                {:L('_START_TIME_')}
+                                            <option value="00.00" <if condition="$openTime:st3 eq '00.00'">selected</if>>
+                                            {:L('_START_TIME_')}
                                             </option>
-                                            <option value="-1" >
-                                                {:L('_CLOSE_TIME_')}
+                                            <option value="-1" <if condition="$openTime:st3 eq -1">selected</if>>
+                                            {:L('_CLOSE_TIME_')}
                                             </option>
                                             <volist name="time" id="top">
-                                                <option value="{$top.time}" >
-                                                    {$top.time}
+                                                <option value="{$top.time}" <if condition="$openTime:st3 eq $top['time']">selected</if>>
+                                                {$top.time}
                                                 </option>
                                             </volist>
                                         </select>
@@ -378,15 +380,15 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="end_time3" class="form-control ">
-                                            <option value="24.00" >
-                                                {:L('_END_TIME_')}
+                                            <option value="24.00" <if condition="$openTime:et3 eq '24.00'">selected</if>>
+                                            {:L('_END_TIME_')}
                                             </option>
-                                            <option value="-1" >
-                                                {:L('_CLOSE_TIME_')}
+                                            <option value="-1" <if condition="$openTime:et3 eq -1">selected</if>>
+                                            {:L('_CLOSE_TIME_')}
                                             </option>
                                             <volist name="time" id="top">
-                                                <option value="{$top.time}" >
-                                                    {$top.time}
+                                                <option value="{$top.time}" <if condition="$openTime:et3 eq $top['time']">selected</if>>
+                                                {$top.time}
                                                 </option>
                                             </volist>
                                         </select>
@@ -402,15 +404,15 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="start_time4" class="form-control ">
-                                            <option value="00.00" >
-                                                {:L('_START_TIME_')}
+                                            <option value="00.00" <if condition="$openTime:st4 eq '00.00'">selected</if>>
+                                            {:L('_START_TIME_')}
                                             </option>
-                                            <option value="-1" >
-                                                {:L('_CLOSE_TIME_')}
+                                            <option value="-1" <if condition="$openTime:st4 eq -1">selected</if>>
+                                            {:L('_CLOSE_TIME_')}
                                             </option>
                                             <volist name="time" id="top">
-                                                <option value="{$top.time}" >
-                                                    {$top.time}
+                                                <option value="{$top.time}" <if condition="$openTime:st4 eq $top['time']">selected</if>>
+                                                {$top.time}
                                                 </option>
                                             </volist>
                                         </select>
@@ -419,15 +421,15 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="end_time4" class="form-control ">
-                                            <option value="24.00" >
-                                                {:L('_END_TIME_')}
+                                            <option value="24.00" <if condition="$openTime:et4 eq '24.00'">selected</if>>
+                                            {:L('_END_TIME_')}
                                             </option>
-                                            <option value="-1" >
-                                                {:L('_CLOSE_TIME_')}
+                                            <option value="-1" <if condition="$openTime:et4 eq -1">selected</if>>
+                                            {:L('_CLOSE_TIME_')}
                                             </option>
                                             <volist name="time" id="top">
-                                                <option value="{$top.time}" >
-                                                    {$top.time}
+                                                <option value="{$top.time}" <if condition="$openTime:et4 eq $top['time']">selected</if>>
+                                                {$top.time}
                                                 </option>
                                             </volist>
                                         </select>
@@ -443,15 +445,15 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="start_time5" class="form-control ">
-                                            <option value="00.00" >
-                                                {:L('_START_TIME_')}
+                                            <option value="00.00" <if condition="$openTime:st5 eq '00.00'">selected</if>>
+                                            {:L('_START_TIME_')}
                                             </option>
-                                            <option value="-1" >
-                                                {:L('_CLOSE_TIME_')}
+                                            <option value="-1" <if condition="$openTime:st5 eq -1">selected</if>>
+                                            {:L('_CLOSE_TIME_')}
                                             </option>
                                             <volist name="time" id="top">
-                                                <option value="{$top.time}" >
-                                                    {$top.time}
+                                                <option value="{$top.time}" <if condition="$openTime:st5 eq $top['time']">selected</if>>
+                                                {$top.time}
                                                 </option>
                                             </volist>
                                         </select>
@@ -460,15 +462,15 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="end_time5" class="form-control ">
-                                            <option value="24.00" >
-                                                {:L('_END_TIME_')}
+                                            <option value="24.00" <if condition="$openTime:et5 eq '24.00'">selected</if>>
+                                            {:L('_END_TIME_')}
                                             </option>
-                                            <option value="-1" >
-                                                {:L('_CLOSE_TIME_')}
+                                            <option value="-1" <if condition="$openTime:et5 eq -1">selected</if>>
+                                            {:L('_CLOSE_TIME_')}
                                             </option>
                                             <volist name="time" id="top">
-                                                <option value="{$top.time}" >
-                                                    {$top.time}
+                                                <option value="{$top.time}" <if condition="$openTime:et5 eq $top['time']">selected</if>>
+                                                {$top.time}
                                                 </option>
                                             </volist>
                                         </select>
@@ -484,15 +486,15 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="start_time6" class="form-control ">
-                                            <option value="00.00" >
-                                                {:L('_START_TIME_')}
+                                            <option value="00.00" <if condition="$openTime:st6 eq '00.00'">selected</if>>
+                                            {:L('_START_TIME_')}
                                             </option>
-                                            <option value="-1" >
-                                                {:L('_CLOSE_TIME_')}
+                                            <option value="-1" <if condition="$openTime:st6 eq -1">selected</if>>
+                                            {:L('_CLOSE_TIME_')}
                                             </option>
                                             <volist name="time" id="top">
-                                                <option value="{$top.time}" >
-                                                    {$top.time}
+                                                <option value="{$top.time}" <if condition="$openTime:st6 eq $top['time']">selected</if>>
+                                                {$top.time}
                                                 </option>
                                             </volist>
                                         </select>
@@ -501,15 +503,15 @@
                                 <div class="col-xs-3">
                                     <div class="input-group input-group-lg">
                                         <select name="end_time6" class="form-control ">
-                                            <option value="24.00" >
-                                                {:L('_END_TIME_')}
+                                            <option value="24" <if condition="$openTime:et6 eq '24.00'">selected</if>>
+                                            {:L('_END_TIME_')}
                                             </option>
-                                            <option value="-1" >
-                                                {:L('_CLOSE_TIME_')}
+                                            <option value="-1" <if condition="$openTime:et6 eq -1">selected</if>>
+                                            {:L('_CLOSE_TIME_')}
                                             </option>
                                             <volist name="time" id="top">
-                                                <option value="{$top.time}" >
-                                                    {$top.time}
+                                                <option value="{$top.time}" <if condition="$openTime:et6 eq $top['time']">selected</if>>
+                                                {$top.time}
                                                 </option>
                                             </volist>
                                         </select>

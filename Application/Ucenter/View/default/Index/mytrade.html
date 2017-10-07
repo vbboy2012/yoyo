@@ -1,0 +1,58 @@
+<extend name="Base/common"/>
+
+<block name="style">
+    <link href="__CSS__/ad.css" rel="stylesheet" type="text/css"/>
+</block>
+<block name="header">
+    <br/>
+</block>
+<block name="body">
+    <div class="col-xs-12 usercenter">
+        <div class="uc">
+            <div class="uc-cont">
+                <div class="col-xs-2">
+                    <include file="admenu"/>
+                </div>
+                <div class="col-xs-10 common-cont-wrap">
+                    <table class="table table-striped table-hover">
+                        <thead style="text-align: center;">
+                        <tr>
+                            <th style="vertical-align: middle;">广告编号</th>
+                            <th style="vertical-align: middle;">广告类型</th>
+                            <th style="vertical-align: middle;">币种</th>
+                            <th style="vertical-align: middle;">国家</th>
+                            <th style="vertical-align: middle;">价格</th>
+                            <th style="vertical-align: middle;">益价比例</th>
+                            <th style="vertical-align: middle;">创建时间</th>
+                            <th style="vertical-align: middle;">状态</th>
+                            <th style="vertical-align: middle;">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <volist name="adList" id="vo">
+                            <tr>
+                                <php>
+                                    $img = substr($vo['path'],0,strlen($vo['path'])-4);$img.='_64_64';
+                                    $minPrice = number_format($vo['min_price']);
+                                    $maxPrice = number_format($vo['max_price']);
+                                    $price = number_format($vo['price'],2);
+                                </php>
+                                <td style="vertical-align: middle;">{$vo.id}</td>
+                                <td style="vertical-align: middle;">{$vo.type}</td>
+                                <td style="vertical-align: middle">{$vo.coin_type}</td>
+                                <td style="vertical-align: middle">{$vo.country}</td>
+                                <td style="vertical-align: middle;color: #0C7F12"><b>{$price} {$vo.currency}</b></td>
+                                <td style="vertical-align: middle">{$vo.pre_price}%</td>
+                                <td style="vertical-align: middle">{$vo.create_time}</td>
+                                <td style="vertical-align: middle">{$vo.status}</td>
+                                <td style="vertical-align: middle"><a href="">激活</a><a href=""></a><a href="">编辑</a><a href="">删除</a></td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+

@@ -159,7 +159,7 @@ class IndexController extends Controller{
         $this->display();
     }
 
-    public function ad()
+    public function tradead()
     {
         if (IS_POST) {
             $status = I('post.status');
@@ -202,7 +202,6 @@ class IndexController extends Controller{
         }else{
             $ratePrice = 25000;
             $id = I('get.id');
-            $current = I('get.current');
             $tradead = M('tradead')->join('ocenter_member on ocenter_tradead.uid = ocenter_member.uid')
                 ->join('ocenter_avatar on ocenter_avatar.uid = ocenter_tradead.uid')
                 ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
@@ -210,7 +209,6 @@ class IndexController extends Controller{
                 ->field('ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.pay_text1,ocenter_tradead.type,ocenter_tradead.coin_type,ocenter_tradead.pay_time,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_country.name as country,ocenter_pay.name as payName,ocenter_pay.en_name as payEn,ocenter_member.nickname,ocenter_avatar.path,ocenter_tradead.open_time')
                 ->where('ocenter_tradead.id='.$id)->find();
             $this->assign('tradead', $tradead);
-            $this->assign('current', $current);
             $this->assign('ratePrice', $ratePrice);
             $this->display();
         }

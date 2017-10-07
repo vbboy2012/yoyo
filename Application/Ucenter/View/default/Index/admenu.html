@@ -1,0 +1,24 @@
+<php>
+    if(ACTION_NAME=='myad'){ $tabClass['ad'] = 'active'; }
+    elseif(ACTION_NAME=='mytrade'){ $tabClass['adtrade'] = 'active'; }
+    else{ $tabClass[$type] = 'active'; }
+</php>
+
+<style>
+    .nav.navbar-nav li a.active{
+        border-left: 3px solid #1ABC9C;
+    }
+</style>
+<nav class="navbar navbar-default uc_navbar" role="navigation">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav new-nav">
+            <li>
+                <a href="{:U('coin/ad',array('uid'=>$user_info['uid']))}" class="{$tabClass.ad}">我的广告</a>
+                <a href="{:U('mytrade',array('uid'=>$user_info['uid']))}" class="{$tabClass.adtrade}">我的交易</a>
+            </li>
+
+        </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+</nav>

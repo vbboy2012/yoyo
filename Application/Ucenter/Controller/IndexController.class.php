@@ -763,4 +763,29 @@ class IndexController extends BaseController
         return $multi_array;
     }
 
+    public function myad()
+    {
+        $uid = is_login();
+        if (!$uid) {
+            $this->error(L('_ERROR_NEED_LOGIN_'));
+        }
+        if (isset($_GET['active'])){
+            $status =  I('get.status');
+            $id = I('get.active');
+            M('tradead')->where('id='.$id)->save(array('status'=>$status==1?0:1));
+        }
+        $tradead = M('tradead');
+        $adList = $tradead->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
+            ->join('ocenter_pay on ocenter_tradead.pay_type = ocenter_pay.id')
+            ->field('ocenter_tradead.id,ocenter_tradead.type,ocenter_tradead.coin_type,ocenter_country.name,ocenter_tradead.price,ocenter_tradead.pre_price,ocenter_tradead.create_time,ocenter_tradead.status,ocenter_country.en_name as countryEn,ocenter_pay.en_name as payEn')
+            ->where('ocenter_tradead.uid='.$uid)->select();
+        $this->assign('adList', $adList);
+        $this->display();
+    }
+
+    public function mytrade()
+    {
+        $this->display();
+    }
+
 }

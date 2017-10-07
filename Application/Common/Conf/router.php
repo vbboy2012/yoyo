@@ -19,6 +19,8 @@ return array(
      */
     'router' => array_merge(array(), merge_route_rule('Weibo',$type)
         , merge_route_rule('Home',$type)
+        , merge_route_rule('Coin',$type)
+        , merge_route_rule('Ad',$type)
         , merge_route_rule('People',$type)
         , merge_route_rule('Mob',$type)
         , merge_route_rule('Event',$type)

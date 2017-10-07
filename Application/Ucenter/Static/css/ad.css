@@ -1,0 +1,38 @@
+
+.uc-cont {
+    margin-top: 20px;
+    width: 100%;
+    position: relative;
+}
+.uc-cont .nav-wrap {
+    width: 200px;
+    float: left;
+    margin-right: 20px;
+    background-color: #ffffff;
+}
+.uc-cont .cont-wrap {
+    width: 100%;
+    float: left;
+}
+.uc-cont a{
+    padding-right: 5px;
+    color: #337ab7;
+}
+.new-nav {
+    width: 100%;
+    background-color: #ffffff;
+}
+.new-nav li {
+    float: none;
+    border-bottom: 1px solid #efefef;
+}
+.common-cont-wrap {
+    background-color: #ffffff;
+    padding: 20px;
+}
+.common-cont-wrap .nav > li > a:hover,
+.common-cont-wrap .nav > li > a:focus {
+    color: #0e385a;
+    text-decoration: none;
+    background-color: transparent;
+}

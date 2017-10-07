@@ -1,0 +1,81 @@
+<extend name="Base/common"/>
+
+<block name="style">
+    <link href="__CSS__/ad.css" rel="stylesheet" type="text/css"/>
+</block>
+<block name="header">
+    <br/>
+</block>
+<block name="body">
+    <div class="col-xs-12 usercenter">
+        <div class="uc">
+            <div class="uc-cont">
+                <div class="col-xs-2">
+                    <include file="admenu"/>
+                </div>
+                <div class="col-xs-10 common-cont-wrap">
+                    <table class="table table-striped table-hover">
+                        <thead style="text-align: center;">
+                        <tr>
+                            <th style="vertical-align: middle;">广告编号</th>
+                            <th style="vertical-align: middle;">广告类型</th>
+                            <th style="vertical-align: middle;">币种</th>
+                            <th style="vertical-align: middle;">国家</th>
+                            <th style="vertical-align: middle;">价格</th>
+                            <th style="vertical-align: middle;">益价比例</th>
+                            <th style="vertical-align: middle;">创建时间</th>
+                            <th style="vertical-align: middle;">状态</th>
+                            <th style="vertical-align: middle;">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <volist name="adList" id="vo">
+                            <tr>
+                                <php>
+                                    $img = substr($vo['path'],0,strlen($vo['path'])-4);$img.='_64_64';
+                                    $minPrice = number_format($vo['min_price']);
+                                    $maxPrice = number_format($vo['max_price']);
+                                    $price = number_format($vo['price'],2);
+                                    if($vo['type'] == 1){
+                                        $type = '在线出售';
+                                    }else if($vo['type'] == 2){
+                                        $type = '在线购买';
+                                    }else if($vo['type'] == 3){
+                                        $type = '本地出售';
+                                    }else if($vo['type'] == 4){
+                                        $type = '本地购买';
+                                    }
+                                    $coinType = $vo['coin_type'] == 1 ? 'BTC':'ETH';
+                                    $time = date('Y-m-d H:i:s', $vo['create_time']);
+
+                                    $params = '';
+                                    if($vo['type'] == 1){
+                                    $params = 'sellonline-';
+                                    }else if($vo['type'] == 2){
+                                    $params = 'buyonline-';
+                                    }else if($vo['type'] == 3){
+                                    $params = 'selllocal-';
+                                    }else if($vo['type'] == 4){
+                                    $params = 'buylocal-';
+                                    }
+                                    $params.=$vo['payEn']."-".$vo['countryEn'];
+                                </php>
+                                <td style="vertical-align: middle;"><input type="hidden" value="{$vo.id}"><a href="__ROOT__/ad/{$vo.id}/{$params}" style="color: #337ab7">#{$vo.id}</a></td>
+                                <td style="vertical-align: middle;">{$type}</td>
+                                <td style="vertical-align: middle">{$coinType}</td>
+                                <td style="vertical-align: middle">{$vo.name}</td>
+                                <td style="vertical-align: middle;color: #0C7F12"><b>{$price} {$vo.currency}</b></td>
+                                <td style="vertical-align: middle">{$vo.pre_price}%</td>
+                                <td style="vertical-align: middle">{$time}</td>
+                                <td style="vertical-align: middle;color: #0C7F12">{$vo['status']==0?下架:激活}</td>
+                                <td style="vertical-align: middle;"><a href="__ROOT__/ad/advertise/{$vo.id}" target="_blank">编辑</a><a href="__ROOT__/ucenter/index/myad/active/{$vo.id}/status/{$vo.status}">{$vo['status']==0?激活:下架}</a><a id="delete" href="#">删除</a></td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+

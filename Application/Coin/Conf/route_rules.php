@@ -10,8 +10,7 @@
 
 return array(
     'route_rules' => array(
-        'ad/:current/:id/:info'    => 'index/ad',
-        'order/:orderId'    => 'index/order',
+        'tradead/:id/:info'    => 'coin/index/tradead',
     ),
 
 

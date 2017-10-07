@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_tradead` (
   `country` smallint(4) NOT NULL COMMENT '国家地区',
   `currency` varchar(5) NOT NULL COMMENT '货币类型',
   `price` decimal(10,2) NOT NULL COMMENT '价格',
-  `pre_price` decimal(10,2) NOT NULL COMMENT '溢价',
+  `pre_price` tinyint(2) NOT NULL COMMENT '溢价',
   `low_price` decimal(10,2) NOT NULL COMMENT '最低价',
   `max_price` int(11) NULL COMMENT 'max',
   `min_price` int(11) NULL COMMENT 'min',
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_tradead` (
   `status` tinyint(2) NOT NULL COMMENT '状态：1开放，0关闭',
   `create_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='交易广告表';
+) ENGINE=MyISAM AUTO_INCREMENT=4003 DEFAULT CHARSET=utf8 COMMENT='交易广告表';
 
 -- -----------------------------
 -- 表结构 `ocenter_trade_order`

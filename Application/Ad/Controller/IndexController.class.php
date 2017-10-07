@@ -17,6 +17,21 @@ class IndexController extends Controller{
 
     public function add()
     {
+        if (!is_login()) {
+            $this->redirect('ucenter/member/login');
+        }
+        if (isset($_GET['id'])){
+            $isNew = 0;
+            $id = I('get.id');
+            $uid = get_uid();
+            $ad = M('tradead')->where('id='.$id.' and uid='.$uid)->find();
+            $openTime = json_decode($ad['open_time']);
+            $this->assign('ad',$ad);
+            $this->assign('openTime',$openTime);
+            var_dump($openTime);
+        }else{
+            $isNew = 1;
+        }
         $country = D('Country')->field('id,name,code')->select();
         $currency = D('Currency')->select();
         $payType = D('Pay')->select();
@@ -37,6 +52,7 @@ class IndexController extends Controller{
         $this->assign('payType', $payType);
         $this->assign('time', $time);
         $this->assign('ratePrice', $ratePrice);
+        $this->assign('isNew', $isNew);
         $this->display();
     }
 

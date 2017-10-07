@@ -467,5 +467,7 @@ return array(
     '_COMMENT_'=>'评论',
 
     '_TIME_TO_BUY_'=>'兑换',
-    ' _INVITATION_'=>'邀请码'
+    ' _INVITATION_'=>'邀请码',
+
+    '_ERROR_NEED_LOGIN_' => '请先登录',
 );

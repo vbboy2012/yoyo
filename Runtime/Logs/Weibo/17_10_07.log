@@ -1,0 +1,843 @@
+[ 2017-10-07T18:04:55+08:00 ] 127.0.0.1 /yoyo/index.php?s=/weibo/index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000843s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000943s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.001771s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.001211s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000521s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.010164s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010772s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.002068s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000706s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000125s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000155s ]
+SQL: SHOW COLUMNS FROM `ocenter_checkin` [ RunTime:0.002098s ]
+SQL: SELECT * FROM `ocenter_checkin` WHERE `uid` = 1 AND `create_time` >= 1507305600 LIMIT 1   [ RunTime:0.000245s ]
+SQL: select con_check,total_check from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=1 limit 1 [ RunTime:0.000255s ]
+NOTIC: [2] array_merge(): Argument #1 is not an array /Applications/XAMPP/xamppfiles/htdocs/yoyo/Addons/CheckIn/Model/CheckInModel.class.php 第 19 行.
+NOTIC: [2] unlink(./Runtime/Temp/6bddfdd36c4bf15f78c86f2bfb7b3cbb.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/67a4ca072daae24c8dcbec6228726770.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_WEIBO_WEIBO_DEFAULT_TAB' LIMIT 1   [ RunTime:0.000227s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_WEIBO_SUGGESTED_RAND' LIMIT 1   [ RunTime:0.000245s ]
+SQL: SHOW COLUMNS FROM `ocenter_weibo` [ RunTime:0.001206s ]
+SQL: SELECT MAX(id) AS tp_max FROM `ocenter_weibo` WHERE `status` = 1 AND `is_top` = 0 LIMIT 1   [ RunTime:0.000218s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_WEIBO_SUGGESTED_VALUE' LIMIT 1   [ RunTime:0.000148s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_WEIBO_SUGGESTED_NUM' LIMIT 1   [ RunTime:0.000164s ]
+SQL: SHOW COLUMNS FROM `ocenter_weibo` [ RunTime:0.002248s ]
+SQL: SHOW COLUMNS FROM `ocenter_follow` [ RunTime:0.002017s ]
+SQL: SELECT * FROM `ocenter_follow` WHERE `who_follow` = 1  [ RunTime:0.000328s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.001992s ]
+SQL: SELECT `uid`,`fans` FROM `ocenter_member` WHERE `status` = 1 AND `uid` NOT IN ('100','1') AND `fans` > 0 ORDER BY fans desc,uid asc LIMIT 15   [ RunTime:0.001521s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Weibo/Model/WeiboModel.class.php 第 294 行.
+NOTIC: [2] unlink(./Runtime/Temp/3ecb4137fee8bfea9128f12d11ccf7e8.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/c56f84da6e0e702b033aa7a3518befb4.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SHOW COLUMNS FROM `ocenter_weibo_crowd` [ RunTime:0.001857s ]
+SQL: SELECT * FROM `ocenter_weibo_crowd` WHERE `status` = 1 AND `invisible` = 1 AND `type` = 1  [ RunTime:0.000244s ]
+NOTIC: [2] unlink(./Runtime/Temp/49bdab5028a82434e9bcd58c8dfa263c.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/c887ede2c62710b72c2d37a35af2ffbc.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SELECT * FROM `ocenter_weibo` WHERE `status` = 1 AND `is_top` = 1 ORDER BY create_time desc  [ RunTime:0.000243s ]
+SQL: SELECT `id` FROM `ocenter_weibo` WHERE `status` = 1 AND `is_top` = 0 ORDER BY create_time desc LIMIT 10   [ RunTime:0.000177s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_weibo` WHERE `status` = 1 AND `is_top` = 0 LIMIT 1   [ RunTime:0.000154s ]
+SQL: SHOW COLUMNS FROM `ocenter_user_config` [ RunTime:0.001837s ]
+SQL: SELECT * FROM `ocenter_user_config` WHERE `uid` = 1 AND `name` = 'user_cover' AND `role_id` = 0 AND `model` = '' LIMIT 1   [ RunTime:0.000243s ]
+SQL: SHOW COLUMNS FROM `ocenter_picture` [ RunTime:0.003117s ]
+SQL: SELECT * FROM `ocenter_picture` WHERE `status` = 1 AND `id` = null LIMIT 1   [ RunTime:0.000259s ]
+NOTIC: [2] unlink(./Runtime/Temp/945c180f3240ad0e35d9eb8beb06401b.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/deec309cb1249b5b7776ac8c8f45123b.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_WEIBO_RECOMMEND_TOPIC' LIMIT 1   [ RunTime:0.000207s ]
+SQL: SELECT * FROM `ocenter_checkin` WHERE `uid` = 1 AND `create_time` >= 1507305600 LIMIT 1   [ RunTime:0.000255s ]
+NOTIC: [2] array_merge(): Argument #1 is not an array /Applications/XAMPP/xamppfiles/htdocs/yoyo/Addons/CheckIn/Model/CheckInModel.class.php 第 19 行.
+NOTIC: [2] unlink(./Runtime/Temp/6bddfdd36c4bf15f78c86f2bfb7b3cbb.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/67a4ca072daae24c8dcbec6228726770.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SHOW COLUMNS FROM `ocenter_score_log` [ RunTime:0.001966s ]
+SQL: SELECT `value` FROM `ocenter_score_log` WHERE `uid` = 1 AND `type` = 1 AND `action` = 'inc' AND `create_time` BETWEEN 1507305600 AND 1507392000  [ RunTime:0.000273s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Weibo/Controller/IndexController.class.php 第 203 行.
+SQL: SHOW COLUMNS FROM `ocenter_weibo_topic` [ RunTime:0.001185s ]
+SQL: SELECT * FROM `ocenter_weibo_topic` WHERE `status` = 1 ORDER BY weibo_num desc LIMIT 10   [ RunTime:0.000191s ]
+NOTIC: [2] unlink(./Runtime/Temp/93113cb49267a4cbb27767a6e1b635c1.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/108531d2299820ecd3c3d7bcc6bf9a7b.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SHOW COLUMNS FROM `ocenter_weibo_crowd` [ RunTime:0.002061s ]
+SQL: SELECT * FROM `ocenter_weibo_crowd` WHERE `status` = 1 ORDER BY member_count desc LIMIT 5   [ RunTime:0.000265s ]
+NOTIC: [2] unlink(./Runtime/Temp/92116dce6de6799c799aac6de4e6875f.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/2824230eb4cf16341de553387290a539.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Weibo/Controller/IndexController.class.php 第 217 行.
+SQL: SHOW COLUMNS FROM `ocenter_weibo_crowd_member` [ RunTime:0.002195s ]
+SQL: SELECT * FROM `ocenter_weibo_crowd_member` WHERE `uid` = 1 AND `status` = 1  [ RunTime:0.000348s ]
+NOTIC: [2] unlink(./Runtime/Temp/0da9e2274394db85b64a73f45d47dc62.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/9603183ab4c46bfe3761f40dd3fee55f.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Weibo/Controller/IndexController.class.php 第 225 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000630s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000667s ]
+INFO: [ syncMeta ] --START--
+INFO: Run Addons\SyncLogin\SyncLoginAddon [ RunTime:0.000550s ]
+INFO: [ syncMeta ] --END-- [ RunTime:0.000591s ]
+SQL: SHOW COLUMNS FROM `ocenter_seo_rule` [ RunTime:0.002114s ]
+NOTIC: [8192] mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/SeoRuleModel.class.php 第 78 行.
+NOTIC: [8192] mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/SeoRuleModel.class.php 第 79 行.
+NOTIC: [8192] mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/SeoRuleModel.class.php 第 80 行.
+SQL: SELECT * FROM `ocenter_seo_rule` WHERE ( (app='' or app='Weibo') and (controller='' or controller='Index') and (action='' or action='index') and status=1 ) ORDER BY sort asc  [ RunTime:0.000375s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000022s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.013144s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000734s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.000764s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000092s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000112s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000017s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.014049s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000718s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.000204s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000010s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000855s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000023s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.015117s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000988s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.001161s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000011s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.002101s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000508s ]
+SQL: SHOW COLUMNS FROM `ocenter_pushing` [ RunTime:0.001759s ]
+ERR: 1146:Table 'yoyobit.ocenter_pushing' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `ocenter_pushing`
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.001715s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_CONFIG_LOGO' LIMIT 1   [ RunTime:0.000219s ]
+SQL: SHOW COLUMNS FROM `ocenter_channel` [ RunTime:0.001852s ]
+NOTIC: [8] Undefined index: _ /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 134 行.
+NOTIC: [8] Undefined index: _ /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 134 行.
+NOTIC: [8] Undefined index: _ /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 134 行.
+NOTIC: [8] Undefined index: _ /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 134 行.
+NOTIC: [8] Undefined index: _ /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 134 行.
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.001951s ]
+SQL: SELECT `reg_time` FROM `ocenter_member` WHERE `uid` = 1 LIMIT 1   [ RunTime:0.000287s ]
+SQL: SELECT * FROM `ocenter_user_config` WHERE `uid` = 1 AND `name` = 'user_cover' AND `role_id` = 0 AND `model` = '' LIMIT 1   [ RunTime:0.000283s ]
+SQL: SELECT * FROM `ocenter_picture` WHERE `status` = 1 AND `id` = null LIMIT 1   [ RunTime:0.000169s ]
+NOTIC: [2] unlink(./Runtime/Temp/945c180f3240ad0e35d9eb8beb06401b.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/deec309cb1249b5b7776ac8c8f45123b.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_WEIBO_WEIBO_INFO' LIMIT 1   [ RunTime:0.000228s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_WEIBO_CAN_IMAGE' LIMIT 1   [ RunTime:0.000198s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_WEIBO_CAN_TOPIC' LIMIT 1   [ RunTime:0.000185s ]
+NOTIC: [8] Undefined variable: crowd_type /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 458 行.
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_WEIBO_USE_TOPIC' LIMIT 1   [ RunTime:0.000155s ]
+NOTIC: [8] Undefined variable: weibo /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 545 行.
+NOTIC: [8] Undefined variable: need_login_tab /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 553 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 553 行.
+NOTIC: [8] Undefined variable: need_login_tab /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 553 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 553 行.
+NOTIC: [8] Undefined variable: need_login_tab /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 553 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 553 行.
+NOTIC: [8] Undefined variable: need_login_tab /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 553 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 553 行.
+NOTIC: [8] Use of undefined constant concerned - assumed 'concerned' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 579 行.
+NOTIC: [8] Undefined variable: invisible /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 835 行.
+NOTIC: [8] Undefined variable: module /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 178 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 191 行.
+INFO: [ checkIn ] --START--
+SQL: SELECT * FROM `ocenter_checkin` WHERE `uid` = 1 AND `create_time` >= 1507305600 LIMIT 1   [ RunTime:0.000265s ]
+NOTIC: [2] array_merge(): Argument #1 is not an array /Applications/XAMPP/xamppfiles/htdocs/yoyo/Addons/CheckIn/Model/CheckInModel.class.php 第 19 行.
+NOTIC: [2] unlink(./Runtime/Temp/6bddfdd36c4bf15f78c86f2bfb7b3cbb.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/67a4ca072daae24c8dcbec6228726770.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000036s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.036157s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001627s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.021708s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000007s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.023259s ]
+INFO: Run Addons\CheckIn\CheckInAddon [ RunTime:0.002962s ]
+INFO: [ checkIn ] --END-- [ RunTime:0.002989s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000399s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000007s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.125068s ]
+SQL: SHOW COLUMNS FROM `ocenter_adv_pos` [ RunTime:0.001910s ]
+SQL: SELECT * FROM `ocenter_adv_pos` WHERE `name` = 'below_self_info' AND `path` = 'Weibo/Index/index' AND `status` = 1 LIMIT 1   [ RunTime:0.000261s ]
+SQL: SHOW COLUMNS FROM `ocenter_adv` [ RunTime:0.001003s ]
+SQL: SELECT * FROM `ocenter_adv` WHERE `pos_id` = 4 AND `status` = 1 AND `start_time` < 1507370695 AND `end_time` > 1507370695 ORDER BY sort asc  [ RunTime:0.000248s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/AdvModel.class.php 第 31 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000032s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.045901s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002797s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.030801s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000019s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.033558s ]
+INFO: [ weiboSide ] --START--
+NOTIC: [2] unlink(./Runtime/Temp/c589e0d7eccd0d0f914bc30da364fa34.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/a4cb3560e9865d9beedfa040de1c8519.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SHOW COLUMNS FROM `ocenter_addons` [ RunTime:0.002039s ]
+SQL: SELECT * FROM `ocenter_addons` WHERE `name` = 'Recommend' LIMIT 1   [ RunTime:0.000360s ]
+NOTIC: [2] array_diff(): Argument #1 is not an array /Applications/XAMPP/xamppfiles/htdocs/yoyo/Addons/Recommend/Common/function.php 第 25 行.
+NOTIC: [2] sort() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Addons/Recommend/Common/function.php 第 26 行.
+INFO: Run Addons\Recommend\RecommendAddon [ RunTime:0.005186s ]
+INFO: [ weiboSide ] --END-- [ RunTime:0.005213s ]
+SQL: SELECT * FROM `ocenter_adv_pos` WHERE `name` = 'below_checkrank' AND `path` = 'Weibo/Index/index' AND `status` = 1 LIMIT 1   [ RunTime:0.000398s ]
+SQL: SELECT * FROM `ocenter_adv` WHERE `pos_id` = 2 AND `status` = 1 AND `start_time` < 1507370695 AND `end_time` > 1507370695 ORDER BY sort asc  [ RunTime:0.000240s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/AdvModel.class.php 第 31 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000079s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.055900s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001793s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.041482s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000007s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.043199s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000411s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000007s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.144862s ]
+NOTIC: [2] Missing argument 1 for Common\Widget\SuperLinksWidget::superLinks() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Widget/SuperLinksWidget.class.php 第 15 行.
+SQL: SHOW COLUMNS FROM `ocenter_super_links` [ RunTime:0.001887s ]
+SQL: SELECT * FROM `ocenter_super_links` WHERE ( status = 1 ) ORDER BY level desc,id asc  [ RunTime:0.000185s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/SuperLinksModel.class.php 第 37 行.
+NOTIC: [8] Undefined variable: data /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/SuperLinksModel.class.php 第 48 行.
+NOTIC: [8] Undefined variable: param /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Widget/SuperLinksWidget.class.php 第 19 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000030s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.063171s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002913s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.047719s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000008s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.050566s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_CONFIG_QRCODE_BOTTOM' LIMIT 1   [ RunTime:0.000450s ]
+NOTIC: [8] Undefined variable: site /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 1194 行.
+NOTIC: [8] Undefined variable: crowd_type /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 1215 行.
+INFO: [ pageFooter ] --START--
+INFO: Run Addons\SuperLinks\SuperLinksAddon [ RunTime:0.000645s ]
+INFO: [ pageFooter ] --END-- [ RunTime:0.000708s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000378s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000006s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.154122s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000363s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000006s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.155557s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000021s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.069798s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.055672s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000007s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.056585s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001198s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.055672s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000004s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.056776s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000535s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000580s ]
+
+[ 2017-10-07T18:04:55+08:00 ] 127.0.0.1 /yoyo/index.php?s=/weibo/index/loadweibo/uid/0.html&page=1&lastId=3&type=all&loadCount=1&crowd=&select=all_
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.001094s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001188s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.002628s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000664s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000441s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.013699s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.014508s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.003792s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000384s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000138s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000177s ]
+SQL: SHOW COLUMNS FROM `ocenter_weibo` [ RunTime:0.003400s ]
+SQL: SHOW COLUMNS FROM `ocenter_weibo_crowd` [ RunTime:0.003956s ]
+SQL: SELECT * FROM `ocenter_weibo_crowd` WHERE `status` = 1 AND `invisible` = 1 AND `type` = 1  [ RunTime:0.000412s ]
+NOTIC: [2] unlink(./Runtime/Temp/49bdab5028a82434e9bcd58c8dfa263c.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/c887ede2c62710b72c2d37a35af2ffbc.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SHOW COLUMNS FROM `ocenter_weibo` [ RunTime:0.002218s ]
+SQL: SELECT MAX(id) AS tp_max FROM `ocenter_weibo` WHERE `status` = 1 AND `is_top` = 0 LIMIT 1   [ RunTime:0.000328s ]
+SQL: SHOW COLUMNS FROM `ocenter_follow` [ RunTime:0.001996s ]
+SQL: SELECT * FROM `ocenter_follow` WHERE `who_follow` = 1  [ RunTime:0.000281s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.002622s ]
+SQL: SELECT `uid`,`fans` FROM `ocenter_member` WHERE `status` = 1 AND `uid` NOT IN ('100','1') AND `fans` > 0 ORDER BY fans desc,uid asc LIMIT 15   [ RunTime:0.000933s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Weibo/Model/WeiboModel.class.php 第 294 行.
+NOTIC: [2] unlink(./Runtime/Temp/3ecb4137fee8bfea9128f12d11ccf7e8.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/c56f84da6e0e702b033aa7a3518befb4.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SELECT `id` FROM `ocenter_weibo` WHERE `status` = 1 AND `is_top` = 0 AND `id` < 3 ORDER BY create_time desc LIMIT 10   [ RunTime:0.000674s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000076s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000151s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000728s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000007s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.045678s ]
+SQL: SHOW COLUMNS FROM `ocenter_weibo_cache` [ RunTime:0.003072s ]
+SQL: DELETE FROM `ocenter_weibo_cache` WHERE `create_time` < 1507369495 [ RunTime:0.000240s ]
+SQL: SHOW COLUMNS FROM `ocenter_auth_group_access` [ RunTime:0.002447s ]
+SQL: SELECT * FROM `ocenter_auth_group_access` WHERE `uid` = 1  [ RunTime:0.000352s ]
+SQL: SELECT * FROM `ocenter_weibo_cache` WHERE `groups` = '1' AND `weibo_id` = 2 AND `create_time` >= 1507369495 LIMIT 1   [ RunTime:0.000391s ]
+SQL: SHOW COLUMNS FROM `ocenter_weibo` [ RunTime:0.001174s ]
+SQL: SHOW COLUMNS FROM `ocenter_follow` [ RunTime:0.004088s ]
+SQL: SELECT * FROM `ocenter_follow` WHERE `who_follow` = 1 AND `follow_who` = 100 LIMIT 1   [ RunTime:0.000379s ]
+NOTIC: [2] array_intersect(): Argument #2 is not an array /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/UserModel.class.php 第 128 行.
+SQL: SELECT * FROM `ocenter_weibo_crowd` WHERE `id` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.000314s ]
+NOTIC: [2] unlink(./Runtime/Temp/e55492fcd21a48bbc72af0f5885da257.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/fc59e320cade438099603650f7b56b63.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000059s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.027183s ]
+NOTIC: [8] Undefined variable: crowd_weibo_list /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/067525fa7c1785f989e580e327562b2e.php 第 6 行.
+NOTIC: [8] Undefined variable: crowd_weibo_list /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/067525fa7c1785f989e580e327562b2e.php 第 8 行.
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_WEIBO_SHOW_TITLE' LIMIT 1   [ RunTime:0.000257s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000456s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000009s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.071660s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000042s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.034082s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002945s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003004s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000219s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000259s ]
+INFO: [ report ] --START--
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000071s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.037987s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003380s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.001481s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000014s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.004691s ]
+INFO: Run Addons\Report\ReportAddon [ RunTime:0.004662s ]
+INFO: [ report ] --END-- [ RunTime:0.004685s ]
+INFO: [ support ] --START--
+SQL: SHOW COLUMNS FROM `ocenter_support` [ RunTime:0.002767s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_support` WHERE `appname` = 'Weibo' AND `table` = 'weibo' AND `row` = 2 LIMIT 1   [ RunTime:0.000311s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_support` WHERE `appname` = 'Weibo' AND `table` = 'weibo' AND `row` = 2 AND `uid` = 1 LIMIT 1   [ RunTime:0.000354s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000028s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.046906s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001545s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.010330s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000006s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.011640s ]
+INFO: Run Addons\Support\SupportAddon [ RunTime:0.006783s ]
+INFO: [ support ] --END-- [ RunTime:0.006802s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_WEIBO_SHOW_COMMENT' LIMIT 1   [ RunTime:0.000277s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000449s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000010s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.090634s ]
+SQL: SHOW COLUMNS FROM `ocenter_weibo_comment` [ RunTime:0.004525s ]
+SQL: SELECT `id` FROM `ocenter_weibo_comment` WHERE `weibo_id` = 2 AND `status` = 1 ORDER BY create_time desc LIMIT 0,10   [ RunTime:0.000377s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Weibo/Model/WeiboCommentModel.class.php 第 123 行.
+SQL: SELECT * FROM `ocenter_follow` WHERE `who_follow` = 1 AND `follow_who` = 100 LIMIT 1   [ RunTime:0.000251s ]
+NOTIC: [2] array_intersect(): Argument #2 is not an array /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/UserModel.class.php 第 128 行.
+SQL: SELECT * FROM `ocenter_weibo_crowd` WHERE `id` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.000242s ]
+NOTIC: [2] unlink(./Runtime/Temp/e55492fcd21a48bbc72af0f5885da257.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/fc59e320cade438099603650f7b56b63.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000033s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.060508s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002747s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.023560s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000008s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.026086s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002880s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.023560s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000004s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.026191s ]
+SQL: INSERT INTO `ocenter_weibo_cache` (`groups`,`weibo_id`,`cache_html`,`create_time`) VALUES ('1',2,'<div style=\"max-width: 680px;\" data-role=\"id_weibo\" id=\"weibo_2\" class=\"\">\n    <div class=\"all-wrap\">\n                    <div class=\"new-user-first-weibo\"></div>                <div class=\"weibo-content\">\n            <div class=\"content-head\">\n                <div class=\"avat-box pull-left\">\n                    <a href=\"/yoyo/index.php?s=/ucenter/index/index/uid/100.html\" ucard=\"100\">\n                        <span style=\"position: relative;display: inline-block;\">\n                                    <img src=\"/yoyo/Public/images/default_avatar_128_128.jpg\" class=\"avatar-img\">\n                                  </span>                    </a>\n                    <div class=\"show-follow pull-right\">\n                        <div class=\"follow-btn\" style=\"display: none;\">\n                            [follow:100]\n                        </div>\n                    </div>\n                </div>\n                <div class=\"op-box pull-right\">\n                    <div class=\"op-tb op-top\">\n                        <a ucard=\"100\" href=\"/yoyo/index.php?s=/ucenter/index/index/uid/100.html\" class=\"user_name\">\n                            [nickname:100]\n                        </a>\n                        <small class=\"font_grey\">Lv1 实习</small>                        &nbsp;\n                        <!--隐藏操作列表-->\n                        <div class=\"pull-right show-operate-wrap\">\n                            <a href=\"javascript:\" class=\"show-operate pull-right icon-angle-down\"></a>\n                            <div class=\"operate-box\" >\n                                <li data-weibo-id=\"2\" title=\"设置置顶\" data-role=\"weibo_set_top\">\n                                            置顶\n                                        </li>\n                                                                                                        <li data-weibo-id=\"2\" title=\"删除\" data-role=\"del_weibo\">\n                                        删除\n                                    </li>                                                                <li><a data-type=\"ajax\" data-url=\"/yoyo/index.php?s=/home/addons/_addons/report/_controller/report/_action/eject/param/type%3D%25E5%258A%25A8%25E6%2580%2581Pro%252F%25E5%258A%25A8%25E6%2580%2581Pro%26url%3DWeibo%252FIndex%252FweiboDetail%253Fid%253D2%26data%255Bweibo-id%255D%3D2.html\" data-title=\"举报\"  data-toggle=\"modal\" >举报</a></li>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"op-tb op-bottom\">\n                        <a data-hover=\"查看详情\" class=\"wb-time\" href=\"/yoyo/index.php?s=/weibo/index/weibodetail/id/2.html\">\n                            [time:1506498138]\n                                                    </a>\n                    </div>\n                </div>\n            </div>\n            <div class=\"content-info row\">\n                <div class=\"long-weibo-list-content\">\n    <a class=\"article-link\" href=\"/yoyo/index.php?s=/weibo/index/weibodetail/id/2.html\">\n        <div class=\"long-block\">\n            <h1 style=\"width: 100%;\" class=\"text-more\">123教程| 如何从btc123提TV到ebtcbank</h1>\n            <p class=\"word-wrap\">\n                1、登陆https://ebtcbank.com/，未注册用户请点击蓝色注册按钮。<br/> \n<br/> \n<br/> \n2、按要求填写注册信息，设置交易密码，进行实名认证，注册成功即可点击去交易。<br/> \n<br/> \n<br/> \n<br/> \n<br/> \n3、在财务中心，点击转入虚拟币，下拉菜单选择并点击钛值（TV）。<br/> \n<br/> \n<br/> \n4、出现钛值（TV）地址，进行复制。<br/> \n<br/> \n5、登陆www.btc123.com,在资产管理中选择TV资产，点击提现TV。<br/> \n<br/> \n<br/> \n6、发送至            </p>\n            <div class=\"position-block\"><div class=\"read-long-weibo-logo\"><i class=\"logo\"></i></div>阅读全文</div>\n        </div>\n    </a>\n</div>                 <div class=\"form-where\">\n                    <div class=\"where w-left\">\n                        <!--<span>来自 <b> 全站动态</b></span>-->\n                                                    <span></span>\n                    </div>\n                    <div class=\"where w-right  bottom-operate\" data-weibo-id=\"2\">\n                                                <div class=\"col-xs-3 operate-color\">\n     <a title=\"喜欢\"\n     class=\"support_btn\" table=\"weibo\" row=\"2\" uid=\"100\" jump=\"weibo/index/weibodetail\">\n\n            <i id=\"ico_like\" class=\"icon-heart-empty\"></i>\n\n    <span id=\"support_Weibo_weibo_2_pos\"><span id=\"support_Weibo_weibo_2\">0</span> </span>\n</a>\n<script>\n    bind_support();\n</script></div>\n<div class=\" col-xs-3 operate-color\" data-role=\"weibo_comment_btn\"  data-weibo-id=\"2\">\n   <i class=\"os-icon-bubbles\"></i> 0</div>\n<div class=\"col-xs-3 operate-color\">\n        <a title=\"转发\"  data-role=\"send_repost\"  href=\"/yoyo/index.php?s=/weibo/index/sendrepost/sourceId/2/weiboId/2.html\"><i class=\"os-icon-share-alt\"></i> 0</a>\n</div>\n<div class=\"share_button col-xs-3  operate-color\" style=\"padding: 0px;position: relative;\">\n    <span class=\"cpointer weibo_share_btn_2\" data-weibo-id=\"2\">\n        <a data-role=\"weibo_share_btn\" class=\"share-btn\" title=\"分享\"><i class=\"os-icon-share\"></i><!--<span class=\"share_count\" title=\"累计分享0次\" style=\"margin-left: 5px;\">0</span>--></a>\n    </span>\n    <div class=\"share_block\" data-url=\"http://127.0.0.1/yoyo/index.php?s=/weibo/index/weibodetail/id/2.html\" data-text=\"1、登陆https://ebtcbank.com/，未注册用户请点击蓝色注册按钮。 \n \n \n2、按要求填写注册信息，设置交易密码，进行实名认证，注册成功即可点击去交易。 \n \n \n \n \n3、在财务中心，点击转入虚拟币，下拉菜单选择并点击钛值（TV）。 \n \n \n4、出现钛值（TV）地址，进行复制。 \n \n5、登陆www.btc123.com,在资产管理中选择TV资产，点击提现TV。 \n \n \n6、发送至\" data-dec=\"分享微博\" style=\"display: none;\">\n        <div class=\"bdsharebuttonbox\" data-tag=\"share_feedlist\">\n            <a class=\"bds_qzone\" data-cmd=\"qzone\" title=\"分享到QQ空间\" data-id=\"2\">QQ空间</a>\n            <a class=\"bds_tsina\" data-cmd=\"tsina\" title=\"分享到新浪微博\" data-id=\"2\">新浪微博</a>\n            <a class=\"bds_tqq\" data-cmd=\"tqq\" title=\"分享到腾讯微博\" data-id=\"2\">腾讯微博</a>\n            <a class=\"bds_weixin\" data-cmd=\"weixin\" title=\"分享到微信\" data-id=\"2\">微信</a>\n            <a class=\"bds_sqq\" data-cmd=\"sqq\" title=\"分享到QQ好友\" data-id=\"2\">QQ好友</a>\n            <!--<a class=\"bds_count\" data-cmd=\"count\" style=\"display: none;\"></a>-->\n        </div>\n        <div style=\"position: relative;\">\n            <div class=\"tip\"></div>\n            <div class=\"tip-xs\"></div>\n        </div>\n    </div>\n    <script src=\"/yoyo/Application/Weibo/Static/js/bdshare.js\"></script>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        </div>\n    <div class=\"weibo-comment-list row\" style=\"display: block;margin:0;\"  data-weibo-id=\"2\">\n    <div class=\" weibo-comment-block\">\n            <div class=\"weibo-comment-container\">\n                <div class=\"weibo_post_box\">\n            <p class=\"comment-area\">\n                <input type=\"hidden\"  name=\"reply_id\" value=\"0\"/>\n\n                <input type=\"text\" placeholder=\"评论（Ctrl+Enter）\" id=\"text_2\" rows=\"2\" data-weibo-id=\"2\"\n                       class=\"comment-input  weibo-comment-content comment_text_inputor\">\n                <a style=\"margin-right: 10px\"  class=\"\"                  onclick=\"insertFace($(this))\"><i style=\"color: #999;\" class=\"os-icon-emoticon-smile\"></i> </a>\n                <a  data-role=\"do_comment\" id=\"btn_2\" data-weibo-id=\"2\">\n                    <i class=\"os-icon-paper-plane\"></i> </a>\n            </p>\n\n    <div id=\"emot_content\" class=\"emot_content\" style=\"position: absolute;    right: 425px;\n    top: 45px;\"></div>\n    <!--评论列表-->\n</div>\n<div id=\"show_comment_2\" class=\"weibo_comment_list\" data-comment-count=\"0\">\n    <div class=\"pager\" style=\"display: none!important;\">\n    </div>\n</div>\n\n\n<script>\n    $(function () {\n        var weiboid = \'2\';\n        $(\'#text_\' + weiboid + \'\').keypress(function (e) {\n            if (e.ctrlKey && e.which == 13 || e.which == 10) {\n                $(\'#btn_\' + weiboid + \'\').click();\n            }\n        });\n    });\n</script>            </div>\n        </div>    </div>\n    </div>\n</if>\n<style>\n    .suofang {MARGIN: auto;WIDTH: 200px;}\n    .suofang img{MAX-WIDTH: 100%!important;HEIGHT: auto!important;width:expression(this.width > 300 ? \"300px\" :this.width)!important;}\n</style>',1507370695) [ RunTime:0.000487s ]
+SQL: SHOW COLUMNS FROM `ocenter_follow` [ RunTime:0.002043s ]
+SQL: SELECT * FROM `ocenter_follow` WHERE `follow_who` = 100 AND `who_follow` = 1 LIMIT 1   [ RunTime:0.000364s ]
+NOTIC: [8] Undefined variable: show_follow /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Weibo/Common/function.php 第 291 行.
+SQL: SHOW COLUMNS FROM `ocenter_support` [ RunTime:0.004433s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_support` WHERE `appname` = 'Weibo' AND `table` = 'weibo' AND `row` = 2 AND `uid` = 1 LIMIT 1   [ RunTime:0.000421s ]
+SQL: SELECT * FROM `ocenter_follow` WHERE `who_follow` = 1 AND `follow_who` = 100 LIMIT 1   [ RunTime:0.000314s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000092s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.074432s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002566s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.036900s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000008s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.039246s ]
+SQL: DELETE FROM `ocenter_weibo_cache` WHERE `create_time` < 1507369495 [ RunTime:0.000228s ]
+SQL: SELECT * FROM `ocenter_weibo_cache` WHERE `groups` = '1' AND `weibo_id` = 1 AND `create_time` >= 1507369495 LIMIT 1   [ RunTime:0.000331s ]
+NOTIC: [2] array_intersect(): Argument #2 is not an array /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/UserModel.class.php 第 128 行.
+SQL: SELECT * FROM `ocenter_weibo_crowd` WHERE `id` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.000442s ]
+NOTIC: [2] unlink(./Runtime/Temp/e55492fcd21a48bbc72af0f5885da257.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/fc59e320cade438099603650f7b56b63.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000065s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.081075s ]
+NOTIC: [8] Undefined variable: crowd_weibo_list /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/067525fa7c1785f989e580e327562b2e.php 第 6 行.
+NOTIC: [8] Undefined variable: crowd_weibo_list /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/067525fa7c1785f989e580e327562b2e.php 第 8 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000051s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.089631s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003847s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.051035s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000008s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.054678s ]
+INFO: [ report ] --START--
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000021s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.091109s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000816s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.055109s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000006s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.055681s ]
+INFO: Run Addons\Report\ReportAddon [ RunTime:0.000932s ]
+INFO: [ report ] --END-- [ RunTime:-0.049976s ]
+INFO: [ support ] --START--
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_support` WHERE `appname` = 'Weibo' AND `table` = 'weibo' AND `row` = 1 LIMIT 1   [ RunTime:0.000284s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_support` WHERE `appname` = 'Weibo' AND `table` = 'weibo' AND `row` = 1 AND `uid` = 1 LIMIT 1   [ RunTime:0.000236s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000024s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.093414s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001193s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.057139s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000006s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.058094s ]
+INFO: Run Addons\Support\SupportAddon [ RunTime:0.002360s ]
+INFO: [ support ] --END-- [ RunTime:-0.044078s ]
+SQL: SELECT `id` FROM `ocenter_weibo_comment` WHERE `weibo_id` = 1 AND `status` = 1 ORDER BY create_time desc LIMIT 0,10   [ RunTime:0.000226s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Weibo/Model/WeiboCommentModel.class.php 第 123 行.
+NOTIC: [2] array_intersect(): Argument #2 is not an array /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/UserModel.class.php 第 128 行.
+SQL: SELECT * FROM `ocenter_weibo_crowd` WHERE `id` = 0 AND `status` = 1 LIMIT 1   [ RunTime:0.000308s ]
+NOTIC: [2] unlink(./Runtime/Temp/e55492fcd21a48bbc72af0f5885da257.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/fc59e320cade438099603650f7b56b63.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000043s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.097150s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002741s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.059984s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000015s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.062517s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002919s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.059984s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000005s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.062656s ]
+SQL: INSERT INTO `ocenter_weibo_cache` (`groups`,`weibo_id`,`cache_html`,`create_time`) VALUES ('1',1,'<div style=\"max-width: 680px;\" data-role=\"id_weibo\" id=\"weibo_1\" class=\"\">\n    <div class=\"all-wrap\">\n                    <div class=\"new-user-first-weibo\"></div>                <div class=\"weibo-content\">\n            <div class=\"content-head\">\n                <div class=\"avat-box pull-left\">\n                    <a href=\"http://127.0.0.1/yoyo/u/jzbk\" ucard=\"1\">\n                        <span style=\"position: relative;display: inline-block;\">\n                                    <img src=\"/yoyo/Uploads/Avatar/1/59c9fe662f4d9_128_128.jpg\" class=\"avatar-img\">\n                                  </span>                    </a>\n                    <div class=\"show-follow pull-right\">\n                        <div class=\"follow-btn\" style=\"display: none;\">\n                            [follow:1]\n                        </div>\n                    </div>\n                </div>\n                <div class=\"op-box pull-right\">\n                    <div class=\"op-tb op-top\">\n                        <a ucard=\"1\" href=\"http://127.0.0.1/yoyo/u/jzbk\" class=\"user_name\">\n                            [nickname:1]\n                        </a>\n                        <small class=\"font_grey\">Lv1 实习</small>                        &nbsp;\n                        <!--隐藏操作列表-->\n                        <div class=\"pull-right show-operate-wrap\">\n                            <a href=\"javascript:\" class=\"show-operate pull-right icon-angle-down\"></a>\n                            <div class=\"operate-box\" >\n                                <li data-weibo-id=\"1\" title=\"设置置顶\" data-role=\"weibo_set_top\">\n                                            置顶\n                                        </li>\n                                                                                                        <li data-weibo-id=\"1\" title=\"删除\" data-role=\"del_weibo\">\n                                        删除\n                                    </li>                                                                <li><a data-type=\"ajax\" data-url=\"/yoyo/index.php?s=/home/addons/_addons/report/_controller/report/_action/eject/param/type%3D%25E5%258A%25A8%25E6%2580%2581Pro%252F%25E5%258A%25A8%25E6%2580%2581Pro%26url%3DWeibo%252FIndex%252FweiboDetail%253Fid%253D1%26data%255Bweibo-id%255D%3D1.html\" data-title=\"举报\"  data-toggle=\"modal\" >举报</a></li>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"op-tb op-bottom\">\n                        <a data-hover=\"查看详情\" class=\"wb-time\" href=\"/yoyo/index.php?s=/weibo/index/weibodetail/id/1.html\">\n                            [time:1506494855]\n                                                    </a>\n                    </div>\n                </div>\n            </div>\n            <div class=\"content-info row\">\n                <div class=\"long-weibo-list-content\">\n    <a class=\"article-link\" href=\"/yoyo/index.php?s=/weibo/index/weibodetail/id/1.html\">\n        <div class=\"long-block\">\n            <h1 style=\"width: 100%;\" class=\"text-more\">SEC创建新的机构对ICO违规进行监管</h1>\n            <p class=\"word-wrap\">\n                <br/> \n<br/> \n美国证券交易委员会（SEC）今天发布了一项有关新建专门的“网络单位（Cyber&nbsp;Unit）”的新闻公告。值得注意的是，这一新机构将执行一些对象为数字货币的监管。<br/> \n<br/> \n广阔的监管范围<br/> \n<br/> \nSEC指出：<br/> \n<br/> \n“网络单位”将聚焦网络违规操作，如：<br/> \n<br/> \n重磅：SEC宣布创建新的机构&nbsp;对ICO和分布式账本违规进行监管<br/> \n<br/> \n如果上述行为全部被纳入这个新的“网络            </p>\n            <div class=\"position-block\"><div class=\"read-long-weibo-logo\"><i class=\"logo\"></i></div>阅读全文</div>\n        </div>\n    </a>\n</div>                 <div class=\"form-where\">\n                    <div class=\"where w-left\">\n                        <!--<span>来自 <b> 全站动态</b></span>-->\n                                                    <span></span>\n                    </div>\n                    <div class=\"where w-right  bottom-operate\" data-weibo-id=\"1\">\n                                                <div class=\"col-xs-3 operate-color\">\n     <a title=\"喜欢\"\n     class=\"support_btn\" table=\"weibo\" row=\"1\" uid=\"1\" jump=\"weibo/index/weibodetail\">\n\n    <i id=\"ico_like\" class=\"icon-heart\"></i>\n        \n\n    <span id=\"support_Weibo_weibo_1_pos\"><span id=\"support_Weibo_weibo_1\">1</span> </span>\n</a>\n<script>\n    bind_support();\n</script></div>\n<div class=\" col-xs-3 operate-color\" data-role=\"weibo_comment_btn\"  data-weibo-id=\"1\">\n   <i class=\"os-icon-bubbles\"></i> 0</div>\n<div class=\"col-xs-3 operate-color\">\n        <a title=\"转发\"  data-role=\"send_repost\"  href=\"/yoyo/index.php?s=/weibo/index/sendrepost/sourceId/1/weiboId/1.html\"><i class=\"os-icon-share-alt\"></i> 0</a>\n</div>\n<div class=\"share_button col-xs-3  operate-color\" style=\"padding: 0px;position: relative;\">\n    <span class=\"cpointer weibo_share_btn_1\" data-weibo-id=\"1\">\n        <a data-role=\"weibo_share_btn\" class=\"share-btn\" title=\"分享\"><i class=\"os-icon-share\"></i><!--<span class=\"share_count\" title=\"累计分享0次\" style=\"margin-left: 5px;\">0</span>--></a>\n    </span>\n    <div class=\"share_block\" data-url=\"http://127.0.0.1/yoyo/index.php?s=/weibo/index/weibodetail/id/1.html\" data-text=\"美国证券交易委员会（SEC）今天发布了一项有关新建专门的“网络单位（Cyber&nbsp;Unit）”的新闻公告。值得注意的是，这一新机构将执行一些对象为数字货币的监管。 \n \n广阔的监管范围 \n \nSEC指出： \n \n“网络单位”将聚焦网络违规操作，如： \n \n重磅：SEC宣布创建新的机构&nbsp;对ICO和分布式账本违规进行监管 \n \n如果上述行为全部被纳入这个新的“网络\" data-dec=\"分享微博\" style=\"display: none;\">\n        <div class=\"bdsharebuttonbox\" data-tag=\"share_feedlist\">\n            <a class=\"bds_qzone\" data-cmd=\"qzone\" title=\"分享到QQ空间\" data-id=\"1\">QQ空间</a>\n            <a class=\"bds_tsina\" data-cmd=\"tsina\" title=\"分享到新浪微博\" data-id=\"1\">新浪微博</a>\n            <a class=\"bds_tqq\" data-cmd=\"tqq\" title=\"分享到腾讯微博\" data-id=\"1\">腾讯微博</a>\n            <a class=\"bds_weixin\" data-cmd=\"weixin\" title=\"分享到微信\" data-id=\"1\">微信</a>\n            <a class=\"bds_sqq\" data-cmd=\"sqq\" title=\"分享到QQ好友\" data-id=\"1\">QQ好友</a>\n            <!--<a class=\"bds_count\" data-cmd=\"count\" style=\"display: none;\"></a>-->\n        </div>\n        <div style=\"position: relative;\">\n            <div class=\"tip\"></div>\n            <div class=\"tip-xs\"></div>\n        </div>\n    </div>\n    <script src=\"/yoyo/Application/Weibo/Static/js/bdshare.js\"></script>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        </div>\n    <div class=\"weibo-comment-list row\" style=\"display: block;margin:0;\"  data-weibo-id=\"1\">\n    <div class=\" weibo-comment-block\">\n            <div class=\"weibo-comment-container\">\n                <div class=\"weibo_post_box\">\n            <p class=\"comment-area\">\n                <input type=\"hidden\"  name=\"reply_id\" value=\"0\"/>\n\n                <input type=\"text\" placeholder=\"评论（Ctrl+Enter）\" id=\"text_1\" rows=\"2\" data-weibo-id=\"1\"\n                       class=\"comment-input  weibo-comment-content comment_text_inputor\">\n                <a style=\"margin-right: 10px\"  class=\"\"                  onclick=\"insertFace($(this))\"><i style=\"color: #999;\" class=\"os-icon-emoticon-smile\"></i> </a>\n                <a  data-role=\"do_comment\" id=\"btn_1\" data-weibo-id=\"1\">\n                    <i class=\"os-icon-paper-plane\"></i> </a>\n            </p>\n\n    <div id=\"emot_content\" class=\"emot_content\" style=\"position: absolute;    right: 425px;\n    top: 45px;\"></div>\n    <!--评论列表-->\n</div>\n<div id=\"show_comment_1\" class=\"weibo_comment_list\" data-comment-count=\"0\">\n    <div class=\"pager\" style=\"display: none!important;\">\n    </div>\n</div>\n\n\n<script>\n    $(function () {\n        var weiboid = \'1\';\n        $(\'#text_\' + weiboid + \'\').keypress(function (e) {\n            if (e.ctrlKey && e.which == 13 || e.which == 10) {\n                $(\'#btn_\' + weiboid + \'\').click();\n            }\n        });\n    });\n</script>            </div>\n        </div>    </div>\n    </div>\n</if>\n<style>\n    .suofang {MARGIN: auto;WIDTH: 200px;}\n    .suofang img{MAX-WIDTH: 100%!important;HEIGHT: auto!important;width:expression(this.width > 300 ? \"300px\" :this.width)!important;}\n</style>',1507370695) [ RunTime:0.000421s ]
+NOTIC: [8] Undefined variable: show_follow /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Weibo/Common/function.php 第 291 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_support` WHERE `appname` = 'Weibo' AND `table` = 'weibo' AND `row` = 1 AND `uid` = 1 LIMIT 1   [ RunTime:0.000328s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000058s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.102057s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002993s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.064403s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000011s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.067180s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003124s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.064403s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000005s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.067283s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000829s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000925s ]
+
+[ 2017-10-07T18:04:59+08:00 ] 127.0.0.1 /yoyo/index.php?s=/weibo/index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.001713s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001801s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.002092s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000352s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000289s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.008147s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.008504s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.001947s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000328s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000116s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000143s ]
+SQL: SHOW COLUMNS FROM `ocenter_checkin` [ RunTime:0.001867s ]
+SQL: SELECT * FROM `ocenter_checkin` WHERE `uid` = 1 AND `create_time` >= 1507305600 LIMIT 1   [ RunTime:0.000284s ]
+NOTIC: [2] array_merge(): Argument #1 is not an array /Applications/XAMPP/xamppfiles/htdocs/yoyo/Addons/CheckIn/Model/CheckInModel.class.php 第 19 行.
+NOTIC: [2] unlink(./Runtime/Temp/6bddfdd36c4bf15f78c86f2bfb7b3cbb.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/67a4ca072daae24c8dcbec6228726770.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SHOW COLUMNS FROM `ocenter_weibo` [ RunTime:0.002220s ]
+SQL: SELECT MAX(id) AS tp_max FROM `ocenter_weibo` WHERE `status` = 1 AND `is_top` = 0 LIMIT 1   [ RunTime:0.000320s ]
+SQL: SHOW COLUMNS FROM `ocenter_weibo` [ RunTime:0.002570s ]
+SQL: SHOW COLUMNS FROM `ocenter_follow` [ RunTime:0.001897s ]
+SQL: SELECT * FROM `ocenter_follow` WHERE `who_follow` = 1  [ RunTime:0.000242s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.002255s ]
+SQL: SELECT `uid`,`fans` FROM `ocenter_member` WHERE `status` = 1 AND `uid` NOT IN ('100','1') AND `fans` > 0 ORDER BY fans desc,uid asc LIMIT 15   [ RunTime:0.000313s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Weibo/Model/WeiboModel.class.php 第 294 行.
+NOTIC: [2] unlink(./Runtime/Temp/3ecb4137fee8bfea9128f12d11ccf7e8.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/c56f84da6e0e702b033aa7a3518befb4.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SHOW COLUMNS FROM `ocenter_weibo_crowd` [ RunTime:0.002330s ]
+SQL: SELECT * FROM `ocenter_weibo_crowd` WHERE `status` = 1 AND `invisible` = 1 AND `type` = 1  [ RunTime:0.000344s ]
+NOTIC: [2] unlink(./Runtime/Temp/49bdab5028a82434e9bcd58c8dfa263c.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/c887ede2c62710b72c2d37a35af2ffbc.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SELECT * FROM `ocenter_weibo` WHERE `status` = 1 AND `is_top` = 1 ORDER BY create_time desc  [ RunTime:0.000325s ]
+SQL: SELECT `id` FROM `ocenter_weibo` WHERE `status` = 1 AND `is_top` = 0 ORDER BY create_time desc LIMIT 10   [ RunTime:0.000201s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_weibo` WHERE `status` = 1 AND `is_top` = 0 LIMIT 1   [ RunTime:0.000188s ]
+SQL: SHOW COLUMNS FROM `ocenter_user_config` [ RunTime:0.001933s ]
+SQL: SELECT * FROM `ocenter_user_config` WHERE `uid` = 1 AND `name` = 'user_cover' AND `role_id` = 0 AND `model` = '' LIMIT 1   [ RunTime:0.000248s ]
+SQL: SHOW COLUMNS FROM `ocenter_picture` [ RunTime:0.002193s ]
+SQL: SELECT * FROM `ocenter_picture` WHERE `status` = 1 AND `id` = null LIMIT 1   [ RunTime:0.000281s ]
+NOTIC: [2] unlink(./Runtime/Temp/945c180f3240ad0e35d9eb8beb06401b.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/deec309cb1249b5b7776ac8c8f45123b.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_WEIBO_RECOMMEND_TOPIC' LIMIT 1   [ RunTime:0.000233s ]
+SQL: SELECT * FROM `ocenter_checkin` WHERE `uid` = 1 AND `create_time` >= 1507305600 LIMIT 1   [ RunTime:0.000246s ]
+NOTIC: [2] array_merge(): Argument #1 is not an array /Applications/XAMPP/xamppfiles/htdocs/yoyo/Addons/CheckIn/Model/CheckInModel.class.php 第 19 行.
+NOTIC: [2] unlink(./Runtime/Temp/6bddfdd36c4bf15f78c86f2bfb7b3cbb.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/67a4ca072daae24c8dcbec6228726770.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SHOW COLUMNS FROM `ocenter_weibo_topic` [ RunTime:0.002069s ]
+SQL: SELECT * FROM `ocenter_weibo_topic` WHERE `status` = 1 ORDER BY weibo_num desc LIMIT 10   [ RunTime:0.000205s ]
+NOTIC: [2] unlink(./Runtime/Temp/93113cb49267a4cbb27767a6e1b635c1.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/108531d2299820ecd3c3d7bcc6bf9a7b.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SHOW COLUMNS FROM `ocenter_weibo_crowd` [ RunTime:0.002401s ]
+SQL: SELECT * FROM `ocenter_weibo_crowd` WHERE `status` = 1 ORDER BY member_count desc LIMIT 5   [ RunTime:0.000290s ]
+NOTIC: [2] unlink(./Runtime/Temp/92116dce6de6799c799aac6de4e6875f.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/2824230eb4cf16341de553387290a539.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Weibo/Controller/IndexController.class.php 第 217 行.
+SQL: SHOW COLUMNS FROM `ocenter_weibo_crowd_member` [ RunTime:0.002218s ]
+SQL: SELECT * FROM `ocenter_weibo_crowd_member` WHERE `uid` = 1 AND `status` = 1  [ RunTime:0.000316s ]
+NOTIC: [2] unlink(./Runtime/Temp/0da9e2274394db85b64a73f45d47dc62.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/9603183ab4c46bfe3761f40dd3fee55f.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Weibo/Controller/IndexController.class.php 第 225 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000643s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000684s ]
+INFO: [ syncMeta ] --START--
+INFO: Run Addons\SyncLogin\SyncLoginAddon [ RunTime:0.000989s ]
+INFO: [ syncMeta ] --END-- [ RunTime:0.001074s ]
+SQL: SHOW COLUMNS FROM `ocenter_seo_rule` [ RunTime:0.002182s ]
+INFO: [ view_parse ] --START--
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000137s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.000166s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000087s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000107s ]
+INFO: [ view_parse ] --START--
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000093s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.000188s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000004s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000191s ]
+INFO: [ view_parse ] --START--
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000087s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.000390s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000004s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000385s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000339s ]
+SQL: SHOW COLUMNS FROM `ocenter_pushing` [ RunTime:0.002266s ]
+ERR: 1146:Table 'yoyobit.ocenter_pushing' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `ocenter_pushing`
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.002385s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_CONFIG_LOGO' LIMIT 1   [ RunTime:0.000247s ]
+SQL: SHOW COLUMNS FROM `ocenter_channel` [ RunTime:0.002402s ]
+NOTIC: [8] Undefined index: _ /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 134 行.
+NOTIC: [8] Undefined index: _ /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 134 行.
+NOTIC: [8] Undefined index: _ /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 134 行.
+NOTIC: [8] Undefined index: _ /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 134 行.
+NOTIC: [8] Undefined index: _ /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 134 行.
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.002352s ]
+SQL: SELECT `reg_time` FROM `ocenter_member` WHERE `uid` = 1 LIMIT 1   [ RunTime:0.000369s ]
+SQL: SELECT * FROM `ocenter_user_config` WHERE `uid` = 1 AND `name` = 'user_cover' AND `role_id` = 0 AND `model` = '' LIMIT 1   [ RunTime:0.000283s ]
+SQL: SELECT * FROM `ocenter_picture` WHERE `status` = 1 AND `id` = null LIMIT 1   [ RunTime:0.000220s ]
+NOTIC: [2] unlink(./Runtime/Temp/945c180f3240ad0e35d9eb8beb06401b.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/deec309cb1249b5b7776ac8c8f45123b.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [8] Undefined variable: crowd_type /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 458 行.
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_WEIBO_USE_TOPIC' LIMIT 1   [ RunTime:0.000222s ]
+NOTIC: [8] Undefined variable: weibo /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 545 行.
+NOTIC: [8] Undefined variable: need_login_tab /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 553 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 553 行.
+NOTIC: [8] Undefined variable: need_login_tab /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 553 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 553 行.
+NOTIC: [8] Undefined variable: need_login_tab /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 553 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 553 行.
+NOTIC: [8] Undefined variable: need_login_tab /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 553 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 553 行.
+NOTIC: [8] Use of undefined constant concerned - assumed 'concerned' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 579 行.
+NOTIC: [8] Undefined variable: invisible /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 835 行.
+NOTIC: [8] Undefined variable: module /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 178 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 191 行.
+INFO: [ checkIn ] --START--
+SQL: SELECT * FROM `ocenter_checkin` WHERE `uid` = 1 AND `create_time` >= 1507305600 LIMIT 1   [ RunTime:0.000367s ]
+NOTIC: [2] array_merge(): Argument #1 is not an array /Applications/XAMPP/xamppfiles/htdocs/yoyo/Addons/CheckIn/Model/CheckInModel.class.php 第 19 行.
+NOTIC: [2] unlink(./Runtime/Temp/6bddfdd36c4bf15f78c86f2bfb7b3cbb.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/67a4ca072daae24c8dcbec6228726770.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000035s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.036146s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001691s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.020349s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000006s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.021972s ]
+INFO: Run Addons\CheckIn\CheckInAddon [ RunTime:0.003547s ]
+INFO: [ checkIn ] --END-- [ RunTime:0.003579s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000394s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000007s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.117354s ]
+SQL: SHOW COLUMNS FROM `ocenter_adv_pos` [ RunTime:0.002094s ]
+SQL: SHOW COLUMNS FROM `ocenter_adv` [ RunTime:0.002522s ]
+SQL: SELECT * FROM `ocenter_adv` WHERE `pos_id` = 4 AND `status` = 1 AND `start_time` < 1507370699 AND `end_time` > 1507370699 ORDER BY sort asc  [ RunTime:0.000335s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/AdvModel.class.php 第 31 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000027s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.046120s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001603s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.030461s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000007s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.031996s ]
+INFO: [ weiboSide ] --START--
+NOTIC: [2] unlink(./Runtime/Temp/c589e0d7eccd0d0f914bc30da364fa34.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/a4cb3560e9865d9beedfa040de1c8519.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] array_diff(): Argument #1 is not an array /Applications/XAMPP/xamppfiles/htdocs/yoyo/Addons/Recommend/Common/function.php 第 25 行.
+NOTIC: [2] sort() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Addons/Recommend/Common/function.php 第 26 行.
+INFO: Run Addons\Recommend\RecommendAddon [ RunTime:0.001149s ]
+INFO: [ weiboSide ] --END-- [ RunTime:0.001172s ]
+SQL: SELECT * FROM `ocenter_adv` WHERE `pos_id` = 2 AND `status` = 1 AND `start_time` < 1507370699 AND `end_time` > 1507370699 ORDER BY sort asc  [ RunTime:0.000301s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/AdvModel.class.php 第 31 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000051s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.050100s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002170s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.034238s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000009s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.036374s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000427s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000007s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.131969s ]
+NOTIC: [2] Missing argument 1 for Common\Widget\SuperLinksWidget::superLinks() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Widget/SuperLinksWidget.class.php 第 15 行.
+SQL: SHOW COLUMNS FROM `ocenter_super_links` [ RunTime:0.002024s ]
+SQL: SELECT * FROM `ocenter_super_links` WHERE ( status = 1 ) ORDER BY level desc,id asc  [ RunTime:0.000187s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/SuperLinksModel.class.php 第 37 行.
+NOTIC: [8] Undefined variable: data /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/SuperLinksModel.class.php 第 48 行.
+NOTIC: [8] Undefined variable: param /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Widget/SuperLinksWidget.class.php 第 19 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000031s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.057335s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002306s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.041161s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000009s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.043406s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_CONFIG_QRCODE_BOTTOM' LIMIT 1   [ RunTime:0.000475s ]
+NOTIC: [8] Undefined variable: site /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 1194 行.
+NOTIC: [8] Undefined variable: crowd_type /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Weibo/c2993ac2a6b2be2fd3fb80417f33d2d4.php 第 1215 行.
+INFO: [ pageFooter ] --START--
+INFO: Run Addons\SuperLinks\SuperLinksAddon [ RunTime:0.000558s ]
+INFO: [ pageFooter ] --END-- [ RunTime:0.000622s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000528s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000007s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.141376s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000391s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000006s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.142895s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000022s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.064606s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000965s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.049263s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000006s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.050145s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001157s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.049263s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000005s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.050347s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000672s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000733s ]
+
+[ 2017-10-07T18:04:59+08:00 ] 127.0.0.1 /yoyo/index.php?s=/weibo/index/loadweibo/uid/0.html&page=1&lastId=3&type=all&loadCount=1&crowd=&select=all_
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.001776s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001889s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.004581s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000718s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000563s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.022092s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.022755s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.002707s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.001608s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000372s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000455s ]
+SQL: SHOW COLUMNS FROM `ocenter_weibo` [ RunTime:0.008227s ]
+SQL: SHOW COLUMNS FROM `ocenter_weibo_crowd` [ RunTime:0.003234s ]
+SQL: SELECT * FROM `ocenter_weibo_crowd` WHERE `status` = 1 AND `invisible` = 1 AND `type` = 1  [ RunTime:0.000357s ]
+NOTIC: [2] unlink(./Runtime/Temp/49bdab5028a82434e9bcd58c8dfa263c.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/c887ede2c62710b72c2d37a35af2ffbc.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SHOW COLUMNS FROM `ocenter_weibo` [ RunTime:0.002255s ]
+SQL: SELECT MAX(id) AS tp_max FROM `ocenter_weibo` WHERE `status` = 1 AND `is_top` = 0 LIMIT 1   [ RunTime:0.000265s ]
+SQL: SHOW COLUMNS FROM `ocenter_follow` [ RunTime:0.003195s ]
+SQL: SELECT * FROM `ocenter_follow` WHERE `who_follow` = 1  [ RunTime:0.000723s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.004852s ]
+SQL: SELECT `uid`,`fans` FROM `ocenter_member` WHERE `status` = 1 AND `uid` NOT IN ('100','1') AND `fans` > 0 ORDER BY fans desc,uid asc LIMIT 15   [ RunTime:0.000717s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Weibo/Model/WeiboModel.class.php 第 294 行.
+NOTIC: [2] unlink(./Runtime/Temp/3ecb4137fee8bfea9128f12d11ccf7e8.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/c56f84da6e0e702b033aa7a3518befb4.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SELECT `id` FROM `ocenter_weibo` WHERE `status` = 1 AND `is_top` = 0 AND `id` < 3 ORDER BY create_time desc LIMIT 10   [ RunTime:0.000464s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000045s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000079s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000392s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000006s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.045994s ]
+SQL: SHOW COLUMNS FROM `ocenter_weibo_cache` [ RunTime:0.002161s ]
+SQL: DELETE FROM `ocenter_weibo_cache` WHERE `create_time` < 1507369499 [ RunTime:0.000223s ]
+SQL: SELECT * FROM `ocenter_weibo_cache` WHERE `groups` = '1' AND `weibo_id` = 2 AND `create_time` >= 1507369499 LIMIT 1   [ RunTime:0.000289s ]
+SQL: SHOW COLUMNS FROM `ocenter_follow` [ RunTime:0.002334s ]
+SQL: SELECT * FROM `ocenter_follow` WHERE `follow_who` = 100 AND `who_follow` = 1 LIMIT 1   [ RunTime:0.000239s ]
+NOTIC: [8] Undefined variable: show_follow /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Weibo/Common/function.php 第 291 行.
+SQL: SHOW COLUMNS FROM `ocenter_support` [ RunTime:0.002207s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_support` WHERE `appname` = 'Weibo' AND `table` = 'weibo' AND `row` = 2 AND `uid` = 1 LIMIT 1   [ RunTime:0.000340s ]
+SQL: SHOW COLUMNS FROM `ocenter_follow` [ RunTime:0.002440s ]
+SQL: SELECT * FROM `ocenter_follow` WHERE `who_follow` = 1 AND `follow_who` = 100 LIMIT 1   [ RunTime:0.000223s ]
+INFO: [ view_parse ] --START--
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000195s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.000224s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000092s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000119s ]
+SQL: DELETE FROM `ocenter_weibo_cache` WHERE `create_time` < 1507369499 [ RunTime:0.000234s ]
+SQL: SELECT * FROM `ocenter_weibo_cache` WHERE `groups` = '1' AND `weibo_id` = 1 AND `create_time` >= 1507369499 LIMIT 1   [ RunTime:0.000250s ]
+NOTIC: [8] Undefined variable: show_follow /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Weibo/Common/function.php 第 291 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_support` WHERE `appname` = 'Weibo' AND `table` = 'weibo' AND `row` = 1 AND `uid` = 1 LIMIT 1   [ RunTime:0.000231s ]
+INFO: [ view_parse ] --START--
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000168s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.001608s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000006s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.001691s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000251s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.001608s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000003s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.001777s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001089s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001198s ]
+
