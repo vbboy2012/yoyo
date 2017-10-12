@@ -242,12 +242,27 @@ class MemberController extends Controller
         if (IS_POST) {
             $result = A('Ucenter/Login', 'Widget')->doLogin();
             if ($result['status']) {
+
                 $this->success($result['info'], I('post.from', U('Home/index/index'), 'text'));
             } else {
                 $this->error($result['info']);
             }
         } else { //显示登录页面
             $this->display();
+        }
+    }
+
+    /**
+     * 检测是否开启双重身份验证
+     */
+    public function checkGooglever()
+    {
+        $username = I('post.username', '', 'op_t');
+        $aAccount = UCenterMember()->where("email='".$username."' or username='".$username."' or mobile='".$username."'")->field('google_ver')->find();
+        if ($aAccount['google_ver'] != null and $aAccount['google_ver'] != '' and strlen($aAccount['google_ver'])>5){
+            echo 1;
+        }else{
+            echo 0;
         }
     }
 

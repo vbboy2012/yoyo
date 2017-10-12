@@ -97,7 +97,7 @@ return $forum_list;
 
 
 
-    /**关注版块
+    /**信任版块
      * @param int $id 版块ID
      * @param int $uid 用户ID，默认为登陆帐户
      * @return bool
@@ -131,7 +131,7 @@ return $forum_list;
         }
     }
 
-    /**获取关注的版块列表
+    /**获取信任的版块列表
      * @param $uid
      * @return array
      */

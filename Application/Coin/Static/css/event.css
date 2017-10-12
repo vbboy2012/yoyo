@@ -515,3 +515,13 @@ hr {
 .pad10{
   padding: 10px;
 }
+
+.tradeorder{
+  margin: 0 0;
+}
+.tradeorder a{
+  color: #337ab7;
+}
+.tradeorder i{
+  color: #337ab7;
+}

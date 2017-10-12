@@ -25,10 +25,14 @@ class IndexController extends Controller{
             $id = I('get.id');
             $uid = get_uid();
             $ad = M('tradead')->where('id='.$id.' and uid='.$uid)->find();
-            $openTime = json_decode($ad['open_time']);
-            $this->assign('ad',$ad);
-            $this->assign('openTime',$openTime);
-            var_dump($openTime);
+            if ($ad){
+                $openTime = json_decode($ad['open_time']);
+                $this->assign('id',$id);
+                $this->assign('ad',$ad);
+                $this->assign('openTime',$openTime);
+            }else{
+                $this->redirect('/ad/advertise');
+            }
         }else{
             $isNew = 1;
         }
@@ -56,7 +60,7 @@ class IndexController extends Controller{
         $this->display();
     }
 
-    public function doPost($coin_type = 0,$type = 0,$country=0,$currency='',$pre_price=0,$price=0,$pay_time=0,$pay_addr='',$low_price=0,$min_price=0,$max_price=0,$pay_type=0,$pay_text='',$auto_message='',$is_safe=0,$is_trust=0,$start_time1=0,$start_time2=0,$start_time3=0,$start_time4=0,$start_time5=0,$start_time6=0,$start_time7=0,$end_time1=0,$end_time2=0,$end_time3=0,$end_time4=0,$end_time5=0,$end_time6=0,$end_time7=0)
+    public function doPost($id=0,$coin_type = 0,$type = 0,$country=0,$currency='',$pre_price=0,$price=0,$pay_time=0,$pay_addr='',$low_price=0,$min_price=0,$max_price=0,$pay_type=0,$pay_text='',$auto_message='',$is_safe=0,$is_trust=0,$start_time1=0,$start_time2=0,$start_time3=0,$start_time4=0,$start_time5=0,$start_time6=0,$start_time7=0,$end_time1=0,$end_time2=0,$end_time3=0,$end_time4=0,$end_time5=0,$end_time6=0,$end_time7=0)
     {
         if (!is_login()) {
             $this->error(L('_ERROR_LOGIN_'));
@@ -89,7 +93,6 @@ class IndexController extends Controller{
             $this->error(L('_ERROR_TEXT_'));
         }
         $content = D('Tradead')->create();
-        $content['uid'] = is_login();
         $content['type'] = $type;
         $content['coin_type'] = $coin_type;
         $content['country'] = $country;
@@ -102,7 +105,7 @@ class IndexController extends Controller{
         $content['pay_type'] = $pay_type;
         $content['pay_time'] = $pay_time;
         $content['pay_addr'] = $pay_addr;
-        $content['pay_text1'] = $pay_text;
+        $content['pay_text'] = $pay_text;
         $content['auto_message'] = $auto_message;
         $content['is_safe'] = $is_safe;
         $content['is_trust'] = $is_trust;
@@ -115,10 +118,15 @@ class IndexController extends Controller{
             'et4'=>$end_time4,'et5'=>$end_time5,
             );
         $content['open_time'] = json_encode($openTime);
-        $content['status'] = 1;
-        $content['create_time'] = time();
-        D('Tradead')->add($content);
-        $this->success(L('_SUCCESS_POST_'), U('coin/index/index'));
+        $content['status'] = 0;     //发布广告默认为下架状态
+        if ($id > 0){
+            D('Tradead')->where('id='.$id)->save($content);
+        }else{
+            $content['uid'] = is_login();
+            $content['create_time'] = time();
+            D('Tradead')->add($content);
+        }
+        $this->success(L('_SUCCESS_POST_'), U('ucenter/index/myad'));
     }
 
 

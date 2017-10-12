@@ -67,7 +67,7 @@
                                 <div class="f2">{$vo.fans|int2str}</div>
                             </div>
                             <div class="focus">
-                                <div class="fo1">关注</div>
+                                <div class="fo1">信任</div>
                                 <div class="fo2">{$vo.following|int2str}</div>
                             </div>
                         </div>
@@ -75,10 +75,10 @@
                             <volist name="isfollow" id="fol">
                                 <if condition="$fol['uid'] eq $vo['uid']">
                                     <if condition="$fol['is_follow'] eq 1">
-                                        <button class="box" data-role="unfollow" data-follow-who="{$fol['uid']}">已关注</button>
+                                        <button class="box" data-role="unfollow" data-follow-who="{$fol['uid']}">已信任</button>
                                         <else/>
                                         <if condition="is_login() && $fol['uid'] != get_uid()">
-                                            <button class="box" data-role="follow" data-follow-who="{$fol['uid']}"><span>+</span>关注</button>
+                                            <button class="box" data-role="follow" data-follow-who="{$fol['uid']}"><span>+</span>信任</button>
                                             <else/>
                                             <if condition="$fol['uid'] == get_uid()">
                                                 <p class="text-center">
@@ -88,7 +88,7 @@
                                                 </p>
                                             </if>
                                             <if  condition="is_login() eq 0">
-                                                <button class="box" data-role="go-login"><span>+</span>关注</button>
+                                                <button class="box" data-role="go-login"><span>+</span>信任</button>
                                             </if>
                                         </if>
                                     </if>

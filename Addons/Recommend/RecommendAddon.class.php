@@ -7,14 +7,14 @@ use Common\Controller\Addon;
 require_once(ONETHINK_ADDON_PATH . 'Recommend/Common/function.php');
 
 /**
- * 推荐关注插件
+ * 推荐信任插件
  * @author 嘉兴想天信息科技有限公司
  */
 class RecommendAddon extends Addon
 {
     public $info = array(
         'name' => 'Recommend',
-        'title' => '推荐关注',
+        'title' => '推荐信任',
         'description' => '可选择多种方法推荐用户',
         'status' => 1,
         'author' => '嘉兴想天信息科技有限公司',

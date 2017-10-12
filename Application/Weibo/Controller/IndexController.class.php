@@ -35,7 +35,7 @@ class IndexController extends BaseController
             $this->assign('need_login_tab', $need_login_tab);
         }
 
-        //推荐关注
+        //推荐信任
         $tag = 'suggested_rand_' . $uid;
         $rand = S($tag);
         if ($rand === false) {
@@ -380,7 +380,7 @@ class IndexController extends BaseController
             $param['count'] = 10;
         }
 
-        //推荐关注
+        //推荐信任
         $uid = is_login();
         $tag = 'suggested_rand_' . $uid;
         $rand = S($tag);
@@ -451,7 +451,7 @@ class IndexController extends BaseController
             $param['page'] = $aPage;
         }
 
-        //推荐关注
+        //推荐信任
         $uid = is_login();
         $tag = 'suggested_rand_' . $uid;
         $rand = S($tag);
@@ -465,7 +465,7 @@ class IndexController extends BaseController
     }
 
     /**
-     * _suggestedFollows   推荐关注渲染数据
+     * _suggestedFollows   推荐信任渲染数据
      * @author:路飞 lf@ourstu.com
      */
     public function _suggestedFollows($uid)
@@ -484,7 +484,7 @@ class IndexController extends BaseController
     }
 
     /**
-     * clearSuggestedFollows   关注后清除对应缓存
+     * clearSuggestedFollows   信任后清除对应缓存
      * @author 路飞<lf@ourstu.com>
      */
     public function clearSuggestedFollows()

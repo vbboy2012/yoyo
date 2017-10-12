@@ -77,6 +77,24 @@ class VerifyController extends Controller
 
     }
 
+    public function sendEmailCode()
+    {
+        $aAction = I('post.action', 'config', 'op_t');
+        $aAccount = UCenterMember()->field('email')->find(is_login());
+        $verify = D('Verify')->addVerify($aAccount['email'], 'email',$uid = 0,$check_verify = 0);
+        if (!$verify) {
+            $error =  D('Verify')->getError();
+            $this->error($error ? $error :L('_ERROR_FAIL_SEND_').L('_EXCLAMATION_'));
+        }
+
+        $res =  A(ucfirst($aAction))->doSendVerify($aAccount['email'], $verify, 'email');
+        if ($res === true) {
+            $this->success(L('_ERROR_SUCCESS_SEND_'));
+        } else {
+            $this->error($res);
+        }
+    }
+
 
     public function sendVerifyFindPsw()
     {

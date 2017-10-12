@@ -32,9 +32,6 @@
                         <volist name="adList" id="vo">
                             <tr>
                                 <php>
-                                    $img = substr($vo['path'],0,strlen($vo['path'])-4);$img.='_64_64';
-                                    $minPrice = number_format($vo['min_price']);
-                                    $maxPrice = number_format($vo['max_price']);
                                     $price = number_format($vo['price'],2);
                                     if($vo['type'] == 1){
                                         $type = '在线出售';
@@ -60,7 +57,7 @@
                                     }
                                     $params.=$vo['payEn']."-".$vo['countryEn'];
                                 </php>
-                                <td style="vertical-align: middle;"><input type="hidden" value="{$vo.id}"><a href="__ROOT__/ad/{$vo.id}/{$params}" style="color: #337ab7">#{$vo.id}</a></td>
+                                <td style="vertical-align: middle;"><a href="__ROOT__/tradead/{$vo.id}/{$params}" style="color: #337ab7">#{$vo.id}</a></td>
                                 <td style="vertical-align: middle;">{$type}</td>
                                 <td style="vertical-align: middle">{$coinType}</td>
                                 <td style="vertical-align: middle">{$vo.name}</td>
@@ -68,7 +65,7 @@
                                 <td style="vertical-align: middle">{$vo.pre_price}%</td>
                                 <td style="vertical-align: middle">{$time}</td>
                                 <td style="vertical-align: middle;color: #0C7F12">{$vo['status']==0?下架:激活}</td>
-                                <td style="vertical-align: middle;"><a href="__ROOT__/ad/advertise/{$vo.id}" target="_blank">编辑</a><a href="__ROOT__/ucenter/index/myad/active/{$vo.id}/status/{$vo.status}">{$vo['status']==0?激活:下架}</a><a id="delete" href="#">删除</a></td>
+                                <td style="vertical-align: middle;"><a href="__ROOT__/ad/advertise/{$vo.id}" target="_blank">编辑</a><a href="__ROOT__/ucenter/index/myad/active/{$vo.id}/status/{$vo.status}">{$vo['status']==0?激活:下架}</a><a class="delete" href="__ROOT__/ucenter/index/myad/delete/{$vo.id}">删除</a></td>
                             </tr>
                         </volist>
                         </tbody>
@@ -77,5 +74,16 @@
             </div>
         </div>
     </div>
+    <script>
+        $("a.delete").click(function () {
+//           var id = $(this).attr('href');
+//           id = id.substr(1,id.length);
+            if (confirm("确认要删除吗?")){
+                return true;
+            }else{
+                return false;
+            }
+        });
+    </script>
 </block>
 

@@ -17,9 +17,9 @@ class IndexController extends Controller
         }
         
         $field3=modC('USER_SHOW_ORDER_FIELD3','rand','people');
-        $title3=modC('USER_SHOW_TITLE3','随机推荐关注','people');
+        $title3=modC('USER_SHOW_TITLE3','随机推荐信任','people');
         $field0=modC('USER_SHOW_ORDER_FIELD0','friend','people');
-        $title0=modC('USER_SHOW_TITLE0','好友也关注','people');
+        $title0=modC('USER_SHOW_TITLE0','好友也信任','people');
         $data3=show_side($field3,3);
         $data0=show_side($field0,0);
 
@@ -290,10 +290,10 @@ class IndexController extends Controller
             $addf=D('Common/Follow')->addFollow($who_follow,$follow_who);
 
             if($addf===false){
-                $data['info']='关注失败~';
+                $data['info']='信任失败~';
                 $data['status']=0;
             }else{
-                $data['info']='关注成功~';
+                $data['info']='信任成功~';
                 $data['status']=1;
                 D('Common/Member')->where(array('uid' => $follow_who))->setInc('fans', 1);
             }

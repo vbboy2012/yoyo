@@ -121,7 +121,7 @@ ThinkPHP无需安装，下载ThinkPHP核心包或者完整版之后，把解压�
 你的WEB服务器或者WEB目录即可。 
 
 [ 鸣谢 ]
-特别要鸣谢ThinkPHP团队和所有关注和支持ThinkPHP的用户。 
+特别要鸣谢ThinkPHP团队和所有信任和支持ThinkPHP的用户。
 
 [ 支持 ]
 更多内容和支持请访问ThinkPHP官方网站http://thinkphp.cn/。

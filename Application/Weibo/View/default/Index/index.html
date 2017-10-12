@@ -98,7 +98,7 @@
                 <!--圈子触发按钮-->
                 <div class="show-circle" data-role="show-circle"></div>
                 <!--圈子触发按钮-->
-                <!--我关注的圈子列表stat-->
+                <!--我信任的圈子列表stat-->
                 <div class="my-follow-circle" data-role="close-circle">
                     <div class="follow-left">
                         <div class="l-circle">
@@ -107,8 +107,8 @@
                         <div class="m-circle">
                             <a href={:U('Weibo/Index/index',array('type'=>concerned))}>
                                 <div class="my-circle">
-                                    <img class="m-cover" src="__IMG__/follow.png" alt="" title="我的关注">
-                                    <p class="text-more" style="display: block" title="我的关注">我的关注</p>
+                                    <img class="m-cover" src="__IMG__/follow.png" alt="" title="我的信任">
+                                    <p class="text-more" style="display: block" title="我的信任">我的信任</p>
                                 </div>
                             </a>
                             <volist name="follow_crowd_list" id="data">
@@ -127,7 +127,7 @@
                         </div>
                     </a>
                 </div>
-                <!--我关注的圈子列表end-->
+                <!--我信任的圈子列表end-->
             </div>
             <script>
                 $('#weibo_filter #{$filter_tab}').addClass('active');

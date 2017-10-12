@@ -397,9 +397,9 @@ class IndexController extends Controller
                 break;
             case 'follow':
                 if($aUid==is_login()){
-                    $title='我的关注';
+                    $title='我的信任';
                 }else{
-                    $title='他的关注';
+                    $title='他的信任';
                 }
                 $this->assign('type','follow');
                 $data = D('Follow')->getFollowing($aUid, $page, array('avatar128', 'uid', 'nickname', 'fans', 'following', 'weibocount', 'space_url', 'title','space_mob_url'));
@@ -407,9 +407,9 @@ class IndexController extends Controller
                 break;
             default:
                 if($aUid==is_login()){
-                    $title='我的关注';
+                    $title='我的信任';
                 }else{
-                    $title='他的关注';
+                    $title='他的信任';
                 }
                 $this->assign('type','follow');
                 $data = D('Follow')->getFollowing($aUid, $page, array('avatar128', 'uid', 'nickname', 'fans', 'following', 'weibocount', 'space_url', 'title','space_mob_url'));
@@ -417,7 +417,7 @@ class IndexController extends Controller
         }
        return array($title,$data);
     }
-    //我的关注、粉丝、好友
+    //我的信任、粉丝、好友
     public function fans(){
             $aUid = I('get.uid', 0, 'intval');
             $aType = I('get.type', 'follow', 'text');
@@ -457,10 +457,10 @@ class IndexController extends Controller
         }
         $res = D('Common/Follow')->isFollow(is_login(), $aUid);
         if ($res == 1) {
-            $user['follow_status'] = '已关注';
+            $user['follow_status'] = '已信任';
             $user['is_follow'] = 'unfollow';
         } else {
-            $user['follow_status'] = '关注';
+            $user['follow_status'] = '信任';
             $user['is_follow'] = 'follow';
         }
         $user['is_login'] = is_login();

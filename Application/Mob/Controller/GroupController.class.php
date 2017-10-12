@@ -489,7 +489,7 @@ public function addMoreIndex(){
         }
         $group['GroupType'] = D('GroupType')->where(array('id' => $group['type_id']))->find();
         $group['notice'] = D('GroupNotice')->where(array('group_id' => $id))->find();
-        $map['position'] = array('in',array(2,3));//去除已关注的人
+        $map['position'] = array('in',array(2,3));//去除已信任的人
 
         $group ['canAdmin']=D('GroupMember')->where(array('group_id' => $id,$map))->field('uid')->select();
         $group ['canAdmin']=array_column($group ['canAdmin'],'uid');

@@ -160,8 +160,8 @@ INSERT INTO `ocenter_menu` (`title`, `pid`, `sort`, `url`, `hide`, `tip`, `group
 ( '设置圈子类型状态',@pid,'0','Weibo/setcrowdtypestatus','1','','圈子管理','0','',''),
 ( '设置圈子状态',@pid,'0','Weibo/setcrowdstatus','1','','圈子管理','0','',''),
 ( '圈子是否可发送微博',@pid,'0','Weibo/doCrowdAllowPost','1','','圈子管理','0','',''),
-( '执行默认关注',@pid,'0','Weibo/followCrowd','1','','圈子管理','0','',''),
-( '修复关注数脚本',@pid,'0','Weibo/repaircrowdfollow','1','','圈子管理','0','','');
+( '执行默认信任',@pid,'0','Weibo/followCrowd','1','','圈子管理','0','',''),
+( '修复信任数脚本',@pid,'0','Weibo/repaircrowdfollow','1','','圈子管理','0','','');
 
 
 

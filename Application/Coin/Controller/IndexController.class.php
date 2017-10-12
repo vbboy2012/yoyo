@@ -43,7 +43,7 @@ class IndexController extends Controller{
             ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
             ->join('ocenter_pay on ocenter_tradead.pay_type = ocenter_pay.id')
             ->field('ocenter_tradead.pay_type,ocenter_tradead.type,ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_member.nickname,ocenter_member.trade_num,ocenter_avatar.path,ocenter_country.en_name as countryEn,ocenter_pay.name as payName,ocenter_pay.en_name as payEn')
-            ->where('ocenter_tradead.status=1')->select();
+            ->where('ocenter_tradead.status=1')->order('ocenter_tradead.id desc')->select();
         $country = D('Country')->field('id,name,code')->select();
         $currency = D('Currency')->select();
         $payType = array(
@@ -177,28 +177,27 @@ class IndexController extends Controller{
             $coinNum = I('post.coin_num');
             $price = I('post.price');
             $payText = I('post.pay_text');
+            $currency = I('post.currency');
             $content = D('trade_order')->create();
             $content['ad_id'] = $adId;
             $orderId = date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
             $content['order_id'] = $orderId;      //需改
-            if ($coin_type == 1 || $coin_type == 3){    //广告是卖家
-                $content['buy_uid'] = $uid;
-                $content['sell_uid'] = $adUid;
-            }else{              //广告是买家
-                $content['buy_uid'] = $adUid;
-                $content['sell_uid'] = is_login();
-            }
+            $content['get_uid'] = $uid;
+            $content['ad_uid'] = $adUid;
             $content['type'] = $type;
             $content['coin_type'] = $coin_type;
             $content['coin_num'] = $coinNum;
             $content['price'] = $price;
-            $content['fee'] = 1;
+            $content['fee'] = $coinNum * 0.005;
+            $content['currency'] = $currency;
+            $content['pay_text'] = $payText;
             $content['status'] = 1;
             $content['create_time'] = time();
+            D('trade_order')->add($content);
             //创建交易聊天
             $memebers = array($adUid);
             D('Common/Talk')->createTradeTalk($memebers,$orderId);
-            $this->success(L('_SUCCESS_POST_'), U('coin/order/'.$orderId));
+            $this->success(L('_SUCCESS_POST_'), U('/order/'.$orderId));
         }else{
             $ratePrice = 25000;
             $id = I('get.id');
@@ -206,7 +205,7 @@ class IndexController extends Controller{
                 ->join('ocenter_avatar on ocenter_avatar.uid = ocenter_tradead.uid')
                 ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
                 ->join('ocenter_pay on ocenter_tradead.pay_type = ocenter_pay.id')
-                ->field('ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.pay_text1,ocenter_tradead.type,ocenter_tradead.coin_type,ocenter_tradead.pay_time,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_country.name as country,ocenter_pay.name as payName,ocenter_pay.en_name as payEn,ocenter_member.nickname,ocenter_avatar.path,ocenter_tradead.open_time')
+                ->field('ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.pay_text,ocenter_tradead.type,ocenter_tradead.coin_type,ocenter_tradead.pay_time,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_country.name as country,ocenter_pay.name as payName,ocenter_pay.en_name as payEn,ocenter_member.nickname,ocenter_avatar.path,ocenter_tradead.open_time')
                 ->where('ocenter_tradead.id='.$id)->find();
             $this->assign('tradead', $tradead);
             $this->assign('ratePrice', $ratePrice);
@@ -214,9 +213,10 @@ class IndexController extends Controller{
         }
     }
 
-    public function order($orderId)
+    public function order()
     {
       //  $order = M('trade_order')->where('order_id='.$orderId)->find();
+        $orderId = I('get.orderId');
         $this->assign('orderId', $orderId);
         $this->display();
     }

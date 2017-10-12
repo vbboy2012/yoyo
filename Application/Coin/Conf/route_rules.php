@@ -11,6 +11,7 @@
 return array(
     'route_rules' => array(
         'tradead/:id/:info'    => 'coin/index/tradead',
+        'order/:orderId'    => 'coin/index/order',
     ),
 
 

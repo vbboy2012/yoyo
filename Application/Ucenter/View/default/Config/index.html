@@ -79,12 +79,9 @@
                         <div class="form-group">
                             <label for="aEmail" class="col-xs-2 control-label">{:L('_EMAIL_')}</label>
 
-                            <div class="col-xs-10">
+                            <div class="col-xs-10 lh32">
 
                                 {$accountInfo.email|default=L('_SET_NOT_')}
-                                <a class=" lh32 " style="margin-left: 10px"
-                                   data-remote="{:U('ucenter/config/changeaccount',array('tag'=>'email'))}"
-                                   data-toggle="modal">{:L('_EMAIL_MODIFY_')}</a>
                             </div>
                         </div>
                         <php>}</php>
@@ -94,12 +91,8 @@
                         <div class="form-group">
                             <label for="aMobile" class="col-xs-2 control-label">{:L('_PHONE_')}</label>
 
-                            <div class="col-xs-10">
+                            <div class="col-xs-10 lh32">
                                 {$accountInfo.mobile|default=L('_SET_NOT_')}
-
-                                <a class=" lh32 " style="margin-left: 10px"
-                                   data-remote="{:U('ucenter/config/changeaccount',array('tag'=>'mobile'))}"
-                                   data-toggle="modal">{:L('_PHONE_MODIFY_')}</a>
                             </div>
                         </div>
                         <php>}</php>
@@ -111,11 +104,8 @@
                               action="{:U('Ucenter/Config/index')}" method="post">
                             <div class="form-group">
                                 <label for="nickname" class="col-xs-2 control-label">{:L('_NICKNAME_')}</label>
-
-                                <div class="col-xs-10">
-                                    <input type="text" class="form-control" id="nickname" name="nickname"
-                                           value="{$user.nickname|op_t}"
-                                           placeholder="{:L('_NICKNAME_')}">
+                                <div class="col-xs-10 lh32">
+                                    {$user.nickname|op_t}
                                 </div>
                             </div>
                             <div class="form-group">

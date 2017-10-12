@@ -19,7 +19,7 @@ return array(
     'comment' => '回复',
     'validate_code' => '验证码',
     'addweibo' => '发微博',
-    'myfocus' => '我的关注',
+    'myfocus' => '我的信任',
     'addissue' => '发专辑',
     'issuetype' => '专辑分类',
     'issuedetail' => '专辑详情',

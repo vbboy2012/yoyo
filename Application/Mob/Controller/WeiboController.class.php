@@ -688,18 +688,18 @@ class WeiboController extends BaseController
     }
 
     /**
-     * 我的关注
+     * 我的信任
      */
     public function myFocus()
     {
         $aPage = I('post.page', 1, 'op_t');
         $aCount = I('post.count', 10, 'op_t');
-        $this->setTopTitle('我的关注');
+        $this->setTopTitle('我的信任');
         $follow_who_ids = D('Follow')->where(array('who_follow' => is_login()))->field('follow_who')->select();
         $follow_who_ids = array_column($follow_who_ids, 'follow_who');//简化数组操作。
         $follow_who_ids = array_merge($follow_who_ids, array(is_login()));//加上自己的微博
         $map['uid'] = array('in', $follow_who_ids);
-        $weibo = D('Weibo')->where(array('status' => 1, $map))->page($aPage, $aCount)->order('create_time desc')->select();//我关注的人的微博
+        $weibo = D('Weibo')->where(array('status' => 1, $map))->page($aPage, $aCount)->order('create_time desc')->select();//我信任的人的微博
         $totalCount = D('Weibo')->where(array('status' => 1, $map))->count();
         if ($totalCount <= $aPage * $aCount) {
             $pid['count'] = 0;
@@ -824,7 +824,7 @@ class WeiboController extends BaseController
     }
 
     /**
-     * 加载更多我的关注
+     * 加载更多我的信任
      */
 
     public function addMoreMyFocus()

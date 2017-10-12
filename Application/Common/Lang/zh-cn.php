@@ -3,9 +3,11 @@
 
 $common_lang = array(
     '_OPEN_SNS_' => 'OpenSNS开源社交系统',
-    '_FOLLOWERS_' => '关注',
+    '_FOLLOWERS_' => '信任',
     '_SELF_' => '自己',
-    '_FOLLOWED_' => '已关注',
+    '_USER_' => '用户',
+    '_TRUST_' => '屏蔽',
+    '_TRUST_CANCEL_' => '屏蔽',
     /*举报*/
     '_REPORT_' => '举报',
 
@@ -116,7 +118,7 @@ $common_lang = array(
     /*footer*/
     '_ABOUT_US_' => '关于我们',
     '_NOT_SET_NOW_' => '暂未设置',
-    '_FOLLOW_US_' => '关注我们',
+    '_FOLLOW_US_' => '信任我们',
     '_FRIENDLY_LINK_' => '友情链接',
     '_RECORD_N_' => '备案号：',
     '_LANGUAGE_'=>'语言',
@@ -343,9 +345,9 @@ $common_lang = array(
 
 //FollowModel
     '_FANS_NUMBER_INCREASED_' => '粉丝数增加',
-    '_CONCERN_YOU_WITH_PERIOD_' => ' 关注了你。',
+    '_CONCERN_YOU_WITH_PERIOD_' => ' 信任了你。',
     '_NUMBER_OF_FANS_' => '粉丝数减少',
-    '_CANCEL_YOUR_ATTENTION_WITH_PERIOD_' => ' 取消了对你的关注。',
+    '_CANCEL_YOUR_ATTENTION_WITH_PERIOD_' => ' 取消了对你的信任。',
     '_INVITED_' => '邀请者 ',
     '_YOURE_INVITING_THE_USER_' => '你邀请的用户 ',
     '_SYSTEM_RECOMMENDED_USERS_' => '系统推荐用户 ',
@@ -388,8 +390,24 @@ $common_lang = array(
     //js
     '_KINDLY_REMINDER_'=>'温馨提示',
 
-    
-
+    '_EMAIL_'=>'邮箱',
+    '_MOBILE_'=>'手机号',
+    '_EMAIL_ADDR_'=>'电子邮件地址',
+    '_EMAIL_ADDR_VER_'=>'电子邮件验证',
+    '_MOBILE_VER_'=>'手机号验证',
+    '_GET_MOBILE_'=>'获取手机验证码',
+    '_GET_EMAIL_'=>'获取邮箱验证码',
+    '_SAFE_PASS_'=>'资金密码',
+    '_SEND_'=>'发送',
+    '_SET_NEW_'=>'设置新',
+    '_GOOGLE_VER_'=>'双重身份验证',
+    '_GOOGLE_VER_NO_'=>'您的账户未启用双重验证。',
+    '_GOOGLE_VER_TIPS1_'=>'Google Authenticator双重验证可以更安全的保护您的账户，未开户双重验证不影响正常的交易。',
+    '_GOOGLE_VER_TIPS2_'=>'开户双重验证功能后，在您每次进行提现操作时，系统都会提示您输入手机应用程序上显示的一次性密码，来确保您的资金安全。您可以依照下面的步骤来设置并启用这一功能。',
+    '_GOOGLE_VER_FAILED_'=>'双重验证码错误',
+    '_GOOGLE_VER_REMEMBER_'=>'请记住安全密钥',
+    '_GOOGLE_VER_OPEN_'=>'验证启用',
+    '_GOOGLE_VER_CLOSE_'=>'验证关闭',
 );
 
 return  function_exists('get_all_module_lang') ? get_all_module_lang($common_lang) : $common_lang;

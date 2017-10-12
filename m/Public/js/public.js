@@ -144,20 +144,20 @@ $(function(){
         $.closeModal();
     });
 
-    // 关注
+    // 信任
     $(document).on('click','.do-active',function () {
         var $this=$(this);
         var type=$this.attr('data-value');
         var uid=$this.attr('data-uid');
         var url=U('Ucenter/Index/follow');
         if(type=='unfollow'){
-            $.confirm('取消关注?', function () {
+            $.confirm('取消信任?', function () {
                     $.post(url,{uid:uid,type:type},function (res) {
                         if(res.status==0){
                             $.toast(res.info);
                         }else{
-                            $.toast("取消了关注");
-                            $this.html('关注');
+                            $.toast("取消了信任");
+                            $this.html('信任');
                             $this.attr('data-value','follow');
                         }
                     })
@@ -168,8 +168,8 @@ $(function(){
                 if(res.status==0){
                     $.toast(res.info);
                 }else{
-                    $.toast("关注了TA");
-                    $this.html('已关注');
+                    $.toast("信任了TA");
+                    $this.html('已信任');
                     $this.attr('data-value','unfollow');
                 }
             })

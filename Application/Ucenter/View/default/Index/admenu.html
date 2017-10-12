@@ -1,6 +1,6 @@
 <php>
     if(ACTION_NAME=='myad'){ $tabClass['ad'] = 'active'; }
-    elseif(ACTION_NAME=='mytrade'){ $tabClass['adtrade'] = 'active'; }
+    elseif(ACTION_NAME=='myorder'){ $tabClass['myorder'] = 'active'; }
     else{ $tabClass[$type] = 'active'; }
 </php>
 
@@ -14,8 +14,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav new-nav">
             <li>
-                <a href="{:U('coin/ad',array('uid'=>$user_info['uid']))}" class="{$tabClass.ad}">我的广告</a>
-                <a href="{:U('mytrade',array('uid'=>$user_info['uid']))}" class="{$tabClass.adtrade}">我的交易</a>
+                <a href="{:U('ucenter/index/myad')}" class="{$tabClass.ad}">我的广告</a>
+                <a href="{:U('ucenter/index/myorder')}" class="{$tabClass.myorder}">我的交易</a>
             </li>
 
         </ul>

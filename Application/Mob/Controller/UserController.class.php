@@ -111,7 +111,7 @@ class UserController extends BaseController
         $aPage = I('post.page', 1, 'op_t');
         $aCount = I('post.count', 10, 'op_t');
 
-        $weibo = D('Weibo')->where(array('status' => 1, 'uid'=>$uid))->order('create_time desc')->page($aPage, $aCount)->select();//我关注的人的微博
+        $weibo = D('Weibo')->where(array('status' => 1, 'uid'=>$uid))->order('create_time desc')->page($aPage, $aCount)->select();//我信任的人的微博
 
         $support['appname'] = 'Weibo';                              //查找是否点赞
         $support['table'] = 'weibo';
@@ -215,7 +215,7 @@ class UserController extends BaseController
         $aPage = I('post.page', 1, 'op_t');
         $aCount = I('post.count', 10, 'op_t');
         $uid = I('post.uid', '', 'op_t');
-        $weibo = D('Weibo')->where(array('status' => 1, 'uid'=>$uid))->order('create_time desc')->page($aPage, $aCount)->select();//我关注的人的微博
+        $weibo = D('Weibo')->where(array('status' => 1, 'uid'=>$uid))->order('create_time desc')->page($aPage, $aCount)->select();//我信任的人的微博
 
         $support['appname'] = 'Weibo';                              //查找是否点赞
         $support['table'] = 'weibo';

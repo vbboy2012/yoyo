@@ -23,17 +23,6 @@ CREATE TABLE IF NOT EXISTS `ocenter_coin_addr` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='钱包地址表';
 
 -- -----------------------------
--- 表结构 `ocenter_trade_trust`
--- -----------------------------
-CREATE TABLE IF NOT EXISTS `ocenter_trade_trust` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `recv_uid` int(11) NOT NULL,
-  `click_uid` int(11) NOT NULL,
-  `trust` tinyint(2) NOT NULL COMMENT '信任：0未信任，1信任，2屏蔽',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户信任表';
-
--- -----------------------------
 -- 表结构 `ocenter_tradead`
 -- -----------------------------
 
@@ -52,8 +41,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_tradead` (
   `pay_type` smallint(4) NOT NULL COMMENT '付款方式',
   `pay_time` int(11) NULL,
   `pay_addr` varchar(50) NULL COMMENT '见面地点',
-  `pay_text1` varchar(50) NULL COMMENT '交易条款',
-  `pay_text2` varchar(50) NULL COMMENT '交易条款',
+  `pay_text` varchar(50) NULL COMMENT '交易条款',
   `auto_message` varchar(100) NULL COMMENT '自动回复消息',
   `is_safe` tinyint(2) NOT NULL DEFAULT '0' COMMENT '安全验证',
   `is_trust` tinyint(2) NOT NULL DEFAULT '0'  COMMENT '信任验证',
@@ -69,30 +57,20 @@ CREATE TABLE IF NOT EXISTS `ocenter_tradead` (
 CREATE TABLE IF NOT EXISTS `ocenter_trade_order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ad_id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `buy_uid` int(11) NOT NULL,
-  `sell_uid` int(11) NOT NULL,
+  `order_id` varchar(20) NOT NULL,
+  `ad_uid` int(11) NOT NULL,
+  `get_uid` int(11) NOT NULL,
   `type` tinyint(2) NOT NULL COMMENT '广告类型：1在线sell，2在线buy，3本地sell，4本地buy',
   `coin_type` tinyint(2) NOT NULL COMMENT '币种',
   `coin_num` decimal(10,8) NOT NULL COMMENT '交易数量',
   `price` decimal(10,4) NOT NULL COMMENT '交易价格',
-  `fee` decimal(10,4) NOT NULL COMMENT '手续费',
+  `fee` decimal(10,8) NOT NULL COMMENT '手续费',
+  `currency` varchar(5) NOT NULL COMMENT '货币类型',
+  `pay_text` varchar(50) NULL COMMENT '交易条款',
   `status` tinyint(2) NOT NULL COMMENT '状态：1等待付款，2付款完毕，3确认完成，4，申诉，0取消',
   `create_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='交易表';
-
--- -----------------------------
--- 表结构 `ocenter_trade_message`
--- -----------------------------
-CREATE TABLE IF NOT EXISTS `ocenter_trade_message` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) NOT NULL,
-  `tid` int(11) NOT NULL,
-  `mesage` varchar(100) NULL COMMENT '消息',
-  `create_time` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='交易留言';
 
 -- -----------------------------
 -- 表结构 `ocenter_ticket`

@@ -234,3 +234,18 @@
 .tag-select-block .select-option.my-tag-block .one_tag .btn {
   padding-right: 5px;
 }
+
+.panel-heading h4{
+  padding: 10px 0;
+  color: #9b9b9b;
+}
+.panel-heading a{
+  margin-left: 10px;
+}
+.panel-body label{
+  color: #9b9b9b;
+}
+.panel-body p{
+  color: #9b9b9b;
+  padding: 3px 0;
+}

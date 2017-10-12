@@ -46,7 +46,7 @@
                         <attr title="{$user_info.signature}">{$user_info.signature}</attr>
                     </if></p>
 
-                <p class="p1"><span>粉丝：{$user_info.fans}</span>&nbsp;<span>关注：{$user_info.following}</span>&nbsp;<span>积分：{$user_info.score}</span></p>
+                <p class="p1"><span>粉丝：{$user_info.fans}</span>&nbsp;<span>信任：{$user_info.following}</span>&nbsp;<span>积分：{$user_info.score}</span></p>
             </div>
             <div class="am-u-sm-3 self">
                     {:W('Mob/Follow/follow',array('follow_who'=>$user_info['uid'],'btn-before','btn-after'))}
@@ -76,7 +76,7 @@
 
                         <a href="{:U('Mob/User/index',array('tab'=>'focus','uid'=>$_GET['uid']))}"
                         <if condition="$_GET['tab'] eq 'focus'"> class="current"</if>
-                        >关注</a>
+                        >信任</a>
                         <!--       <li><a>问答</a></li>-->
                     </div>
 

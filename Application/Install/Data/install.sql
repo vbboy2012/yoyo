@@ -93,7 +93,7 @@ INSERT INTO `ocenter_addons` (`id`, `name`, `title`, `description`, `status`, `c
 (10, 'Report', '举报后台', '可举报不法数据', 1, '{"meta":""}', '想天科技xuminwei', '0.1', 1432792026, 1),
 (11, 'LocalComment', '本地评论', '本地评论插件，不依赖社会化评论平台', 1, '{"can_guest_comment":"0"}', 'caipeichao', '0.1', 1432792035, 0),
 (12, 'ChinaCity', '中国省市区三级联动', '每个系统都需要的一个中国省市区三级联动插件。想天-駿濤修改，将镇级地区移除', 1, 'null', 'i友街', '2.0', 1432792040, 0),
-(13, 'Recommend', '推荐关注', '可选择多种方法推荐用户', 1, '{"howToRecommend":"1","howManyRecommend":"1","recommendUser":"1"}', '嘉兴想天信息科技有限公司', '0.1', 1432792055, 1),
+(13, 'Recommend', '推荐信任', '可选择多种方法推荐用户', 1, '{"howToRecommend":"1","howManyRecommend":"1","recommendUser":"1"}', '嘉兴想天信息科技有限公司', '0.1', 1432792055, 1),
 (14, 'SyncLogin', '同步登陆', '同步登陆', 1, '{"type":null,"meta":"","bind":"0","QqKEY":"","QqSecret":"","SinaKEY":"","SinaSecret":"","WeixinKEY":"","WeixinSecret":""}', 'xjw129xjt', '0.1', 1432792112, 0);
 
 DROP TABLE IF EXISTS `ocenter_attachment`;
@@ -4404,13 +4404,13 @@ CREATE TABLE IF NOT EXISTS `ocenter_file` (
 
 CREATE TABLE IF NOT EXISTS `ocenter_follow` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `follow_who` int(11) NOT NULL COMMENT '关注谁',
-  `who_follow` int(11) NOT NULL COMMENT '谁关注',
+  `follow_who` int(11) NOT NULL COMMENT '信任谁',
+  `who_follow` int(11) NOT NULL COMMENT '谁信任',
   `create_time` int(11) NOT NULL,
   `alias` varchar(40) NOT NULL COMMENT '备注',
   `group_id` int(11) NOT NULL COMMENT '分组ID',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='关注表' AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='信任表' AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `ocenter_hooks`;
 CREATE TABLE IF NOT EXISTS `ocenter_hooks` (
@@ -4513,7 +4513,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_invite_type` (
   `pay_score_type` int(11) NOT NULL COMMENT '购买消耗积分类型',
   `income_score` int(10) NOT NULL COMMENT '每邀请成功一个用户，邀请者增加积分',
   `income_score_type` int(11) NOT NULL COMMENT '邀请成功后增加积分类型id',
-  `is_follow` tinyint(2) NOT NULL COMMENT '邀请成功后是否互相关注',
+  `is_follow` tinyint(2) NOT NULL COMMENT '邀请成功后是否互相信任',
   `status` tinyint(2) NOT NULL,
   `create_time` int(11) NOT NULL COMMENT '创建时间',
   `update_time` int(11) NOT NULL COMMENT '更新时间',
@@ -5112,7 +5112,7 @@ INSERT INTO `ocenter_seo_rule` (`id`, `title`, `app`, `controller`, `action`, `s
 (1016, '全部版块', 'Forum', 'Index', 'lists', 1, '', '', '', 0, '-'),
 (1017, '资讯首页/某个分类下的文章列表', 'News', 'Index', 'index', 1, '', '', '', 0, 'now_category.title 当前分类的名称'),
 (1018, '某篇文章的内容页', 'News', 'Index', 'detail', 1, '', '', '', 0, 'now_category.title 当前分类的名称\ninfo：文章变量集\n   info.title 文章标题\n   info.description 文章摘要\n   info.source 文章来源\n   info.detail.content 文章内容\nauthor.nickname 作者昵称\nauthor.signature 作者签名\n   '),
-(1019, '微博首页', 'Weibo', 'Index', 'index', 1, '{$MODULE_ALIAS}', '{$MODULE_ALIAS}首页', '{$MODULE_ALIAS}-{$website_name}', 0, 'title：我关注的、热门微博、全站关注'),
+(1019, '微博首页', 'Weibo', 'Index', 'index', 1, '{$MODULE_ALIAS}', '{$MODULE_ALIAS}首页', '{$MODULE_ALIAS}-{$website_name}', 0, 'title：我信任的、热门微博、全站信任'),
 (1020, '某条微博的详情页', 'Weibo', 'Index', 'weibodetail', 1, '{$weibo.title|text},{$website_name},{$MODULE_ALIAS}', '{$weibo.content|text}', '{$weibo.content|text}——{$MODULE_ALIAS}', 0, 'weibo:微博变量集\n   weibo.user.nickname 发布者昵称\n   weibo.content 微博内容'),
 (1021, '微博搜索页面', 'Weibo', 'Index', 'search', 1, '', '', '', 0, 'search_keywords：搜索关键词'),
 (1022, '热门话题列表', 'Weibo', 'Topic', 'topic', 1, '', '', '', 0, '-'),
@@ -5120,7 +5120,7 @@ INSERT INTO `ocenter_seo_rule` (`id`, `title`, `app`, `controller`, `action`, `s
 (1024, '自动跳转到我的群组', 'Group', 'Index', 'index', 1, '', '', '', 0, '-'),
 (1025, '全部群组', 'Group', 'Index', 'groups', 1, '', '', '', 0, '-'),
 (1026, '我的群组-帖子列表', 'Group', 'Index', 'my', 1, '', '', '', 0, '-'),
-(1027, '我的群组-全部关注的群组列表', 'Group', 'Index', 'mygroup', 1, '', '', '', 0, '-'),
+(1027, '我的群组-全部信任的群组列表', 'Group', 'Index', 'mygroup', 1, '', '', '', 0, '-'),
 (1028, '某个群组的帖子列表页面', 'Group', 'Index', 'group', 1, '', '', '', 0, 'search_key：如果查找帖子，则是关键词\ngroup：群组变量集\n   group.title 群组标题\n   group.user.nickname 创始人昵称\n   group.member_count 群组人数'),
 (1029, '某篇帖子的内容页', 'Group', 'Index', 'detail', 1, '', '', '', 0, 'group：群组变量集\n   group.title 群组标题\n   group.user.nickname 创始人昵称\n   group.member_count 群组人数\npost：帖子变量集\n   post.title 帖子标题\n   post.content 帖子内容'),
 (1030, '创建群组', 'Group', 'Index', 'create', 1, '', '', '', 0, '-'),

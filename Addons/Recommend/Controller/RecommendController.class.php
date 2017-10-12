@@ -14,8 +14,8 @@ require_once(ONETHINK_ADDON_PATH . 'Recommend/Common/function.php');
 class RecommendController extends Controller
 {
     /**
-     * 实现推荐数据的关注功能
-     * 关注一个数据并调用查找再找一个数据显示
+     * 实现推荐数据的信任功能
+     * 信任一个数据并调用查找再找一个数据显示
      * Date:2015/3/25
      * @author 徐敏威<zzl@ourstu.com>
      */
@@ -23,7 +23,7 @@ class RecommendController extends Controller
     {
 
         $aUid = I('post.uid', 0, 'intval');
-        $result = D('Follow')->follow($aUid);//进行关注
+        $result = D('Follow')->follow($aUid);//进行信任
 
         $data['status'] = 0;
         if ($result) {
@@ -33,16 +33,16 @@ class RecommendController extends Controller
                 $data['status'] = 1;
             } else {
                 $data['status'] = 1;
-                $data['info'] = '获取关注失败！';
+                $data['info'] = '获取信任失败！';
             }
         } else {
-            $data['info'] = '关注失败！';
+            $data['info'] = '信任失败！';
         }
         $this->ajaxReturn($data);
     }
 
     /**
-     * 实现推荐关注换一换功能
+     * 实现推荐信任换一换功能
      * 调用查找，找两个数据传显示
      * Date:2015/3/25
      * @author 徐敏威<zzl@ourstu.com>

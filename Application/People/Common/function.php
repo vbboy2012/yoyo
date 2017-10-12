@@ -5,7 +5,7 @@
  * Date: 2016/9/5 0005  下午 2:05
  */
 /**
- * 随机推荐关注
+ * 随机推荐信任
  * 范佳炜 fjw@ourstu.com
  */
 function rand_follow($count,$time){
@@ -37,7 +37,7 @@ function rand_follow($count,$time){
 }
 
 /**
- * 好友也关注
+ * 好友也信任
  * 范佳炜 fjw@ourst.com
  */
 function friend_follow($count,$time){

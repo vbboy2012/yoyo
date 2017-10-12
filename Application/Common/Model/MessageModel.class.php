@@ -754,11 +754,11 @@ class MessageModel extends Model
         return true;
     }
     /**
-     * 检测关注话题的用户是否已读上次的消息提示
+     * 检测信任话题的用户是否已读上次的消息提示
      */
     public function topicMessageRead($content,$uids)
     {
-        $content_id=D('message_content')->where(array('title'=>'话题通知','content'=>'您关注的#'.$content.'#话题已更新。','url'=>'Weibo/Topic/index'))->field('id')->select();
+        $content_id=D('message_content')->where(array('title'=>'话题通知','content'=>'您信任的#'.$content.'#话题已更新。','url'=>'Weibo/Topic/index'))->field('id')->select();
          foreach ($content_id as $cid){
              $cids[]=$cid['id'];
          }

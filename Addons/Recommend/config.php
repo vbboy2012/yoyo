@@ -8,7 +8,7 @@ return array(
             'city'=>'同城推荐',
             'admin'=>'管理员推荐',
             'data'=>'同资料推荐',
-            'followfollow'=>'我关注的人关注推荐'
+            'followfollow'=>'我信任的人信任推荐'
         ),
         'value'=>'1',                      //表单的默认值
     ),

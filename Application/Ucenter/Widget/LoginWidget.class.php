@@ -38,13 +38,19 @@ class LoginWidget extends Action
 
 
         /* 检测验证码 */
-        if (check_verify_open('login')) {
-            if (!check_verify($aVerify)) {
-                $res['info']=L('_INFO_VERIFY_CODE_INPUT_ERROR_').L('_PERIOD_');
-                return $res;
+        $googleVer = UCenterMember()->where("email='".$username."' or username='".$username."' or mobile='".$username."'")->field('google_ver')->find();
+        if ($googleVer['google_ver'] != null && $googleVer['google_ver'] != '' && strlen($googleVer['google_ver'])>5){
+            if (!$aVerify){
+                $this->error(-1);
+            }
+            require_once(ONETHINK_ADDON_PATH . 'PHPGangsta/GoogleAuthenticator.php');
+            $ga = new \PHPGangsta_GoogleAuthenticator();
+
+            $checkResult = $ga->verifyCode($googleVer['google_ver'], $aVerify, 0);
+            if (!$checkResult){
+                $this->error(L('_GOOGLE_VER_FAILED_'));
             }
         }
-
         /* 调用UC登录接口登录 */
         check_username($aUsername, $email, $mobile, $aUnType);
 

@@ -53,7 +53,7 @@ class UserConfigController extends AdminController
         $apps[] = array('data-id' => 'info', 'sort' => '0', 'title' => '资料', 'key' => 'info');
         $apps[] = array('data-id' => 'rank_title', 'sort' => '0', 'title' => L('_RANK_TITLE_'), 'key' => 'rank_title');
         $apps[] = array('data-id' => 'follow', 'sort' => '0', 'title' => L('_FOLLOWERS_NO_SPACE_') . '/粉丝', 'key' => 'follow');
-        $apps[] = array('data-id' => 'topic_list', 'sort' => '0', 'title' => '关注的话题', 'key' => 'topic_list');
+        $apps[] = array('data-id' => 'topic_list', 'sort' => '0', 'title' => '信任的话题', 'key' => 'topic_list');
         $apps = $this->sortApps($apps);
 
         $default1 = array(array('data-id' => 'disable', 'title' => L('_DISABLE_'), 'items' => $menu), array('data-id' => 'enable', 'title' =>L('_ENABLE_'), 'items' => $apps));

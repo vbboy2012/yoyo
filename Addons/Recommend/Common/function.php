@@ -61,7 +61,7 @@ function _getRecommendList($num)
                 }
                 break;
             case 'followfollow':
-                $result = _followFollowId();//todo 关注的关注
+                $result = _followFollowId();//todo 信任的信任
                 if ($result) {
                     $list[] = $result;
                 } else {
@@ -113,7 +113,7 @@ function _randRecommend()
         $other_follow = array_merge($follow_who_ids, $already_show);
         $other_follow = array_merge($other_follow, array(is_login()));
         $map_1['status']=array('eq',1);
-        $map_1['uid'] = array('not in', $other_follow);//去除已关注的人
+        $map_1['uid'] = array('not in', $other_follow);//去除已信任的人
         $other_follow = D('Member')->where($map_1)->field('uid')->order('rand()')->limit(1)->select();
         $other_follow = array_column($other_follow, 'uid');
         S('recommend_follow_id_' . is_login(), array_merge($already_show, $other_follow), 600);
@@ -122,7 +122,7 @@ function _randRecommend()
         $other_follow = $follow_who_ids;
         $other_follow = array_merge($other_follow, array(is_login()));
         $map_2['status']=array('eq',1);
-        $map_2['uid'] = array('not in', $other_follow);//去除已关注的人
+        $map_2['uid'] = array('not in', $other_follow);//去除已信任的人
         $other_follow = D('Member')->where($map_2)->field('uid')->order('rand()')->limit(1)->select();
 
         $other_follow = array_column($other_follow, 'uid');
@@ -158,7 +158,7 @@ function _sameCityRecommend()
         $follow_who_ids = array_merge($follow_who_ids, array(is_login()));
     }
     $map_d['status']=array('eq',1);
-    $map_d['uid'] = array('not in', $follow_who_ids);//去除已关注的人
+    $map_d['uid'] = array('not in', $follow_who_ids);//去除已信任的人
     $map_d['pos_district'] = $my_place['pos_district'];
     $other_follow = D('Member')->where($map_d)->field('uid')->limit(1)->select();//符合以上条件的推荐
     $other_follow = array_column($other_follow, 'uid');
@@ -172,7 +172,7 @@ function _sameCityRecommend()
         S('recommend_follow_id_' . is_login(), $map, 600);
     } else {
         $map_c['status']=array('eq',1);
-        $map_c['uid'] = array('not in', $follow_who_ids);//去除已关注的人
+        $map_c['uid'] = array('not in', $follow_who_ids);//去除已信任的人
         $map_c['pos_city'] = $my_place['pos_city'];
         $other_follow = D('Member')->where($map_c)->field('uid')->limit(1)->select();//符合以上条件的推荐
         $other_follow = array_column($other_follow, 'uid');
@@ -186,7 +186,7 @@ function _sameCityRecommend()
             S('recommend_follow_id_' . is_login(), $map, 600);
         } else {
             $map_p['status']=array('eq',1);
-            $map_p['uid'] = array('not in', $follow_who_ids);//去除已关注的人
+            $map_p['uid'] = array('not in', $follow_who_ids);//去除已信任的人
             $map_p['pos_province'] = $my_place['pos_province'];
             $other_follow = D('Member')->where($map_p)->field('uid')->limit(1)->select();//符合以上条件的推荐
             $other_follow = array_column($other_follow, 'uid');
@@ -199,7 +199,7 @@ function _sameCityRecommend()
                 S('recommend_follow_id_' . is_login(), $map, 600);
             } else {
                 $map_o['status']=array('eq',1);
-                $map_o['uid'] = array('not in', $follow_who_ids);//去除已关注的人
+                $map_o['uid'] = array('not in', $follow_who_ids);//去除已信任的人
                 $other_follow = D('Member')->where($map_o)->order('rand()')->field('uid')->limit(1)->select();//符合以上条件的推荐
                 $other_follow = array_column($other_follow, 'uid');
                 if ($other_follow) {
@@ -246,7 +246,7 @@ function _adminRecommend()
     if ($already_show) {
         $other_follow = array_merge($follow_who_ids, $already_show);
         $other_follow = array_unique($other_follow);
-        $recommend_uid = array_diff($recommend_uid, $other_follow);//去除已经关注的人。
+        $recommend_uid = array_diff($recommend_uid, $other_follow);//去除已经信任的人。
         $map['status']=array('eq',1);
         $map['uid'] = array('in', $recommend_uid);
         $other_follow = D('Member')->where($map)->limit(1)->select();
@@ -255,7 +255,7 @@ function _adminRecommend()
     } else {
         $other_follow = $follow_who_ids;
        // $other_follow = array_column($other_follow, 'uid');
-        $recommend_uid = array_diff($recommend_uid, $other_follow);//去除已经关注的人。
+        $recommend_uid = array_diff($recommend_uid, $other_follow);//去除已经信任的人。
         $map['status']=array('eq',1);
         $map['uid'] = array('in', $recommend_uid);
         $other_follow = D('Member')->where($map)->limit(1)->select();
@@ -294,7 +294,7 @@ function _sameDataRecommend()
         $follow_who_ids = array_merge($follow_who_ids, array(is_login()));
     }
     $map_b['status']=array('eq',1);
-    $map_b['uid'] = array('not in', $follow_who_ids);//去除已关注的人
+    $map_b['uid'] = array('not in', $follow_who_ids);//去除已信任的人
     $map_b['birthday'] = $my_data['birthday'];
     $other_follow = D('Member')->where($map_b)->field('uid')->limit(1)->select();//符合以上条件的推荐
     $other_follow = array_column($other_follow, 'uid');
@@ -309,7 +309,7 @@ function _sameDataRecommend()
 
     } else {
         $map_c['status']=array('eq',1);
-        $map_c['uid'] = array('not in', $follow_who_ids);//去除已关注的人
+        $map_c['uid'] = array('not in', $follow_who_ids);//去除已信任的人
         $map_c['score'] = $my_data['score'];
         $other_follow = D('Member')->where($map_c)->field('uid')->limit(1)->select();//符合以上条件的推荐
         $other_follow = array_column($other_follow, 'uid');
@@ -322,7 +322,7 @@ function _sameDataRecommend()
             S('recommend_follow_id_' . is_login(), $map, 600);
         } else {
             $map_p['status']=array('eq',1);
-            $map_p['uid'] = array('not in', $follow_who_ids);//去除已关注的人
+            $map_p['uid'] = array('not in', $follow_who_ids);//去除已信任的人
             $map_p['sex'] = $my_data['sex'];
             $other_follow = D('Member')->where($map_p)->field('uid')->limit(1)->select();//符合以上条件的推荐
             $other_follow = array_column($other_follow, 'uid');
@@ -336,7 +336,7 @@ function _sameDataRecommend()
                 S('recommend_follow_id_' . is_login(), $map, 600);
             } else {
                 $map_o['status']=array('eq',1);
-                $map_o['uid'] = array('not in', $follow_who_ids);//去除已关注的人
+                $map_o['uid'] = array('not in', $follow_who_ids);//去除已信任的人
                 $other_follow = D('Member')->where($map_o)->order('rand()')->field('uid')->limit(1)->select();//符合以上条件的推荐
                 $other_follow = array_column($other_follow, 'uid');
                 if ($other_follow) {
@@ -363,7 +363,7 @@ function _sameDataRecommend()
 
 /**
  * @return array|mixed
- * 我关注的人关注推荐方法，返回otherfollow
+ * 我信任的人信任推荐方法，返回otherfollow
  * Date:2015/3/25
  * @author 徐敏威<zzl@ourstu.com>
  */
@@ -376,7 +376,7 @@ function _followFollowId()
     if (count($follow_who_ids)) {
         $map['status']=array('eq',1);
         $map['who_follow'] = array('in', $follow_who_ids);
-        $follow_follow_ids = D('Follow')->where($map)->field('follow_who')->select();  //where的查询条件,得到我关注的人，关注的人的ID。
+        $follow_follow_ids = D('Follow')->where($map)->field('follow_who')->select();  //where的查询条件,得到我信任的人，信任的人的ID。
         $follow_follow_ids = array_column($follow_follow_ids, 'follow_who');
         if (count($follow_follow_ids)) {
 

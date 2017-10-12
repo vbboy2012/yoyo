@@ -14,12 +14,13 @@
             </div>
             <div class="aline" style="margin-bottom: 35px"></div>
             <div class="ad-form">
-                <form class="form-horizontal ajax-form" action="{:U('Coin/Index/ad')}" method="post">
+                <form class="form-horizontal ajax-form" action="{:U('Coin/Index/tradead')}" method="post">
                     <input type="hidden" name="adId" value="{$tradead.id}">
                     <input type="hidden" name="adUid" value="{$tradead.uid}">
                     <input type="hidden" name="type" value="{$tradead.type}">
                     <input type="hidden" name="coin_type" value="{$tradead.coin_type}">
-                    <div class="">
+                    <input type="hidden" name="currency" value="{$tradead.currency}">
+                    <div class="form-group tradeorder">
                         <div class="col-xs-2">
                             <label>价格：</label>
                         </div>
@@ -31,7 +32,7 @@
                             <p> {$price} / {$coinType}</p>
                         </div>
                     </div>
-                    <div class="">
+                    <div class="form-group tradeorder">
                         <div class="col-xs-2">
                             <label>付款方式：</label>
                         </div>
@@ -39,7 +40,7 @@
                             <p> {$tradead['payName']}</p>
                         </div>
                     </div>
-                    <div class="">
+                    <div class="form-group tradeorder">
                         <div class="col-xs-2">
                             <label>交易限额：</label>
                         </div>
@@ -51,7 +52,7 @@
                             <p> {$minPrice}-{$maxPrice} {$tradead['currency']}</p>
                         </div>
                     </div>
-                    <div class="">
+                    <div class="form-group tradeorder">
                         <div class="col-xs-2">
                             <label>所在地：</label>
                         </div>
@@ -59,7 +60,7 @@
                             <p> {$tradead['country']}</p>
                         </div>
                     </div>
-                    <div class="">
+                    <div class="form-group tradeorder">
                         <div class="col-xs-2">
                             <label>付款期限：</label>
                         </div>
@@ -67,55 +68,64 @@
                             <p> {$tradead['pay_time']} 分钟</p>
                         </div>
                     </div>
-                    <div class="">
+                    <div class="form-group tradeorder">
                         <div class="col-xs-12">
-                            <label>您想买多少？</label>
+                            <i class="icon icon-flag"></i><a href="">举报这条交易广告？</a>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-xs-5">
-                            <div class="input-group input-group-lg">
-                                <input type="text" class="form-control" id="price" name="price" placeholder="输入想买入的金额">
-                                <span class="input-group-addon">CNY</span>
+                    <if condition="$tradead['uid'] eq get_uid()">
+                        <div class="alert alert-warning" style="margin-top: 10px">您无法向自己的交易广告发出交易请求。</div>
+                        <else/>
+                        <div class="form-group tradeorder">
+                            <div class="col-xs-12">
+                                <label>您想买多少？</label>
                             </div>
                         </div>
-                        <div class="col-xs-2" style="text-align: center;padding-top: 5px"><img src="__IMG__/xchange.png" style="width: 20%"></div>
-                        <div class="col-xs-5">
-                            <div class="input-group input-group-lg">
-                                <input type="text" class="form-control" id="coinNum" name="coin_num" placeholder="输入想买入BTC数量">
-                                <span class="input-group-addon">BTC</span>
+                        <div class="form-group tradeorder">
+                            <div class="col-xs-5">
+                                <div class="input-group input-group-lg">
+                                    <input type="text" class="form-control" id="price" name="price" placeholder="输入想买入的金额">
+                                    <span class="input-group-addon">CNY</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-2" style="text-align: center;padding-top: 5px"><img src="__IMG__/xchange.png" style="width: 20%"></div>
+                            <div class="col-xs-5">
+                                <div class="input-group input-group-lg">
+                                    <input type="text" class="form-control" id="coinNum" name="coin_num" placeholder="输入想买入BTC数量">
+                                    <span class="input-group-addon">BTC</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="">
-                        <div class="col-xs-12">
-                            <input id="status" type="hidden" name="status" value="0">
-                            <label id="show-min" style="display: none;color: red">您可以从此广告中购买的最小金额为 {$minPrice} {$tradead['currency']}。</label>
-                            <label id="show-max" style="display: none;color: red">您可以从此广告中购买的最大金额为 {$maxPrice} {$tradead['currency']}。</label>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <input id="status" type="hidden" name="status" value="0">
+                                <label id="show-min" style="display: none;color: red">您可以从此广告中购买的最小金额为 {$minPrice} {$tradead['currency']}。</label>
+                                <label id="show-max" style="display: none;color: red">您可以从此广告中购买的最大金额为 {$maxPrice} {$tradead['currency']}。</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <textarea name="pay_text" class="text form-control" placeholder="{:L('_AD_PAY_TEXT2_TIPS_LABEL_')}" style="height: 8em;height: 100px"></textarea>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <textarea name="pay_text" class="text form-control" placeholder="{:L('_AD_PAY_TEXT2_TIPS_LABEL_')}" style="height: 8em;height: 100px"></textarea>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-6 col-md-offset-3" style="text-align: center">
-                            <button type="submit" class="btn btn-success btn-block btn-lg" href="{:U('Coin/Index/ad')}" style="outline: none">
-                                <php>
-                                    if($tradead['coin_type'] == 1 && ($tradead['type'] == 1 || $tradead['type'] == 3)){
+                        <div class="form-group">
+                            <div class="col-xs-6 col-md-offset-3" style="text-align: center">
+                                <button type="submit" class="btn btn-success btn-block btn-lg" href="{:U('Coin/Index/ad')}" style="outline: none">
+                                    <php>
+                                        if($tradead['coin_type'] == 1 && ($tradead['type'] == 1 || $tradead['type'] == 3)){
                                         echo L('_AD_BUY_BTC_COINS_');
-                                    }else if($tradead['coin_type'] == 1 && ($tradead['type'] == 2 || $tradead['type'] == 4)){
+                                        }else if($tradead['coin_type'] == 1 && ($tradead['type'] == 2 || $tradead['type'] == 4)){
                                         echo L('_AD_SELL_BTC_COINS_');
-                                    }else if($tradead['coin_type'] == 2 && ($tradead['type'] == 1 || $tradead['type'] == 3)){
+                                        }else if($tradead['coin_type'] == 2 && ($tradead['type'] == 1 || $tradead['type'] == 3)){
                                         echo L('_AD_SELL_ETH_COINS_');
-                                    }else if($tradead['coin_type'] == 2 && ($tradead['type'] == 2 || $tradead['type'] == 4)){
+                                        }else if($tradead['coin_type'] == 2 && ($tradead['type'] == 2 || $tradead['type'] == 4)){
                                         echo L('_AD_SELL_ETH_COINS_');
-                                    }
-                                </php>
-                            </button>
+                                        }
+                                    </php>
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    </if>
                 </form>
 
             </div>
@@ -125,7 +135,7 @@
                     {$tradead.nickname} 的广告留言
                 </div>
                 <div class="panel-body">
-                    {$tradead.pay_text1}
+                    {$tradead.pay_text}
                 </div>
             </div>
             <div class="panel panel-primary">

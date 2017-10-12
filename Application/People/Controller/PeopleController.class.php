@@ -25,14 +25,14 @@ class PeopleController extends AdminController
         $builder->keyKanban('SHOW_ROLE_TAB', L('_IDENTITY_TAB_'),L('_IDENTITY_TAB_AFFIX_'));
         $data['SHOW_ROLE_TAB'] = $builder->parseKanbanArray($data['SHOW_ROLE_TAB'], $role_list, $default);
 
-        $data['USER_SHOW_TITLE0'] = $data['USER_SHOW_TITLE0'] ? $data['USER_SHOW_TITLE0'] : '好友也关注';
+        $data['USER_SHOW_TITLE0'] = $data['USER_SHOW_TITLE0'] ? $data['USER_SHOW_TITLE0'] : '好友也信任';
         $data['USER_SHOW_COUNT0'] = $data['USER_SHOW_COUNT0'] ? $data['USER_SHOW_COUNT0'] : 4;
         $data['USER_SHOW_ORDER_FIELD0'] = $data['USER_SHOW_ORDER_FIELD0'] ? $data['USER_SHOW_ORDER_FIELD0'] : 'friend';
         $data['USER_SHOW_ORDER_TYPE0'] = $data['USER_SHOW_ORDER_TYPE0'] ? $data['USER_SHOW_ORDER_TYPE0'] : 'desc';
         $data['USER_SHOW_CACHE_TIME0'] = $data['USER_SHOW_CACHE_TIME0'] ? $data['USER_SHOW_CACHE_TIME0'] : '600';
 
 
-        $data['USER_SHOW_TITLE3'] = $data['USER_SHOW_TITLE3'] ? $data['USER_SHOW_TITLE3'] : '随机推荐关注';
+        $data['USER_SHOW_TITLE3'] = $data['USER_SHOW_TITLE3'] ? $data['USER_SHOW_TITLE3'] : '随机推荐信任';
         $data['USER_SHOW_COUNT3'] = $data['USER_SHOW_COUNT3'] ? $data['USER_SHOW_COUNT3'] : 4;
         $data['USER_SHOW_ORDER_FIELD3'] = $data['USER_SHOW_ORDER_FIELD3'] ? $data['USER_SHOW_ORDER_FIELD3'] : 'rand';
         $data['USER_SHOW_ORDER_TYPE3'] = $data['USER_SHOW_ORDER_TYPE3'] ? $data['USER_SHOW_ORDER_TYPE3'] : 'desc';
@@ -40,8 +40,8 @@ class PeopleController extends AdminController
 
         $order0['reg_time']=L('_REGISTER_TIME_');
         $order0['last_login_time']=L('_LAST_LOGIN_TIME_');
-        $order0['rand']='随机推荐关注';
-        $order0['friend']='好友也关注';
+        $order0['rand']='随机推荐信任';
+        $order0['friend']='好友也信任';
 
         foreach ($score as $s) {
             $order0['score'.$s['id']]='【'.$s['title'].'】';

@@ -12,8 +12,8 @@ return array(
     '_NEED_'=>'需要',
     '_LV_UP_PROGRESS_'=>'升级进度',
     '_FANS_'=>'粉丝',
-    '_FOLLOWERS_'=>'关注',
-    '_FOLLOWED_'=>'已关注',
+    '_FOLLOWERS_'=>'信任',
+    '_FOLLOWED_'=>'已信任',
     '_NUMBER_'=>'数',
     '_SELF_'=>'自己',
 

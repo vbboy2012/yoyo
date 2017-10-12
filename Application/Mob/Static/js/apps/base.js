@@ -159,11 +159,12 @@ var follower = {
         $('[data-role="follow"]').click(function () {
             var $this = $(this);
             var uid = $this.attr('data-follow-who');
-            $.post(U('Core/Public/follow'), {uid: uid}, function (msg) {
+            var type = $this.attr('data-follow-type');
+            $.post(U('Core/Public/follow'), {uid: uid,type:type}, function (msg) {
                 if (msg.status) {
                     $this.attr('class', $this.attr('data-before'));
                     $this.attr('data-role', 'unfollow');
-                    $this.html('已关注');
+                    $this.html('已信任');
                     follower.bind_follow();
                     toast.success(msg.info, '温馨提示');
                 } else {
@@ -176,11 +177,12 @@ var follower = {
         $('[data-role="unfollow"]').click(function () {
             var $this = $(this);
             var uid = $this.attr('data-follow-who');
-            $.post(U('Core/Public/unfollow'), {uid: uid}, function (msg) {
+            var type = $this.attr('data-follow-type');
+            $.post(U('Core/Public/unfollow'), {uid: uid,type:type}, function (msg) {
                 if (msg.status) {
                     $this.attr('class', $this.attr('data-after'));
                     $this.attr('data-role', 'follow');
-                    $this.html('关注');
+                    $this.html('信任');
                     follower.bind_follow();
                     toast.success(msg.info, '温馨提示');
                 } else {

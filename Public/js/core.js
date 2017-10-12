@@ -146,12 +146,17 @@ var follower = {
         $('[data-role="follow"]').click(function () {
             var $this = $(this);
             var uid = $this.attr('data-follow-who');
-            $.post(U('Core/Public/follow'), {uid: uid}, function (msg) {
+            var type = $this.attr('data-follow-type');
+            if(type == '1'){
+                $this.html('取消信任');
+            }else{
+                $("#follow").css('visibility','hidden');
+                $this.html('取消屏蔽');
+            }
+            $.post(U('Core/Public/follow'), {uid: uid,type:type}, function (msg) {
                 if (msg.status) {
-
                     $this.attr('class', $this.attr('data-before'));
                     $this.attr('data-role', 'unfollow');
-                    $this.html('已关注');
                     follower.bind_follow();
                     toast.success(msg.info, L('_KINDLY_REMINDER_'));
                 } else {
@@ -164,11 +169,19 @@ var follower = {
         $('[data-role="unfollow"]').click(function () {
             var $this = $(this);
             var uid = $this.attr('data-follow-who');
-            $.post(U('Core/Public/unfollow'), {uid: uid}, function (msg) {
+            var type = $this.attr('data-follow-type');
+            if(type == '1'){
+                $this.html('信任用户');
+            }else{
+                $("#follow").css('visibility','');
+                $("#follow").html('信任用户');
+                $("#follow").attr('data-role', 'follow');
+                $this.html('屏蔽用户');
+            }
+            $.post(U('Core/Public/unfollow'), {uid: uid,type:type}, function (msg) {
                 if (msg.status) {
                     $this.attr('class', $this.attr('data-after'));
                     $this.attr('data-role', 'follow');
-                    $this.html('关注');
                     follower.bind_follow();
                     toast.success(msg.info, L('_KINDLY_REMINDER_'));
                 } else {

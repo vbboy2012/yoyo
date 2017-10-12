@@ -82,10 +82,46 @@ class ConfigController extends BaseController
         $this->assign('tab', $name);
     }
 
-    public function password()
+    public function googleVerify($secret = '',$oneCode,$type,$remember = null)
     {
+        if($type == 'open'){
+            if($remember == null){
+                $this->error(L('_GOOGLE_VER_REMEMBER_'));
+            }
+            $text = L('_GOOGLE_OPEN_');
+        }else{
+            $text = L('_GOOGLE_CLOSE_');
+            $info = UCenterMember()->field('google_ver')->find(is_login());
+            $secret = $info['google_ver'];
+        }
+        require_once(ONETHINK_ADDON_PATH . 'PHPGangsta/GoogleAuthenticator.php');
+        $ga = new \PHPGangsta_GoogleAuthenticator();
 
+        $checkResult = $ga->verifyCode($secret, $oneCode, 0);
+        if ($checkResult) {
+            $memberModel = UCenterMember();
+            $res = $memberModel->setGooglecode($secret,$type);
+            if($res){
+                $this->success($text, 'refresh');
+            }else{
+                $this->error($memberModel->getErrorMessage());
+            }
+        } else {
+            $this->error(L('_GOOGLE_VER_FAILED_'));
+        }
+    }
+
+    public function safe()
+    {
+        $info = UCenterMember()->field('safe_pw,email,mobile,google_ver')->find(is_login());
+        if ($info['google_ver'] == ''){
+            require_once(ONETHINK_ADDON_PATH . 'PHPGangsta/GoogleAuthenticator.php');
+            $ga = new \PHPGangsta_GoogleAuthenticator();
+            $secret = $ga->createSecret();
+            $this->assign('secret', $secret);
+        }
         $this->_setTab('password');
+        $this->assign('accountInfo', $info);
         $this->display();
     }
 
@@ -717,6 +753,25 @@ class ConfigController extends BaseController
         //调用接口
         $memberModel = UCenterMember();
         $res = $memberModel->changePassword($old_password, $new_password);
+        if ($res) {
+            $this->success(L('_SUCCESS_PASSWORD_ALTER_').L('_PERIOD_'), 'refresh');
+        } else {
+            $this->error($memberModel->getErrorMessage());
+        }
+
+    }
+
+    public function doChangeSafepw($safe_pw)
+    {
+        $aVerify = I('verify', '', 'op_t');
+        $aUid = I('uid', 0, 'intval');
+        $aAccount = UCenterMember()->field('email')->find(is_login());
+        $res = D('Verify')->checkVerify($aAccount['email'], 'email', $aVerify, $aUid);
+        if (!$res) {
+            $this->error(L('_FAIL_VERIFY_'));
+        }
+        $memberModel = UCenterMember();
+        $res = $memberModel->changeSafepw($safe_pw);
         if ($res) {
             $this->success(L('_SUCCESS_PASSWORD_ALTER_').L('_PERIOD_'), 'refresh');
         } else {

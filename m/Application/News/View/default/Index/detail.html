@@ -49,10 +49,10 @@
                                 <div class="flexRight" <if condition="is_login() eq $data['uid']">style="display: none"</if> >
                                     <if condition="$data['follow'] eq 0">
                                         <a href="javascript:" class="focus" data-role="follow"
-                                           data-follow-who="{$data['uid']}">+ 关注</a>
+                                           data-follow-who="{$data['uid']}">+ 信任</a>
                                         <else/>
                                         <a href="javascript:" class="focus" data-role="unfollow"
-                                           data-follow-who="{$data['uid']}">已关注</a>
+                                           data-follow-who="{$data['uid']}">已信任</a>
                                     </if>
                                 </div>
                             </div>

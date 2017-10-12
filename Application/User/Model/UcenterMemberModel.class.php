@@ -598,9 +598,36 @@ class UcenterMemberModel extends Model
         return true;
     }
 
+    /**
+     * 设置资金密码
+     */
+    public function changeSafepw($safe_password)
+    {
+        //更新用户信息
+        $model = $this;
+        $data = array('safe_pw' => $safe_password);
+        $model->where(array('id' => get_uid()))->save($data);
+        return true;
+    }
+
+    /**
+     * 设置Google code验证
+     */
+    public function setGooglecode($google_ver,$type)
+    {
+        //更新用户信息
+        $model = $this;
+        if($type == 'close'){
+            $data = array('google_ver' => '');
+        }else{
+            $data = array('google_ver' => $google_ver);
+        }
+        $model->where(array('id' => get_uid()))->save($data);
+        return true;
+    }
+
     public function getErrorMessage($error_code = null)
     {
-
         $error = $error_code == null ? $this->error : $error_code;
         switch ($error) {
             case -1:

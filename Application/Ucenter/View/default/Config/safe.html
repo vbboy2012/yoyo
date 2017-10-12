@@ -1,0 +1,407 @@
+<extend name="Config/base"/>
+
+<block name="body">
+<div id="center">
+<div id="center_base" class="with-padding" style="padding: 20px">
+
+    <h2>
+        {:L('_SAFE_SET_')}
+    </h2>
+    <div class="row">
+        <div class="panel-group" id="accordionPanels" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" id="headingOne">
+                    <h4 class="panel-title">
+                        <php>
+                            if($accountInfo['google_ver']){
+                            $check = 'check';
+                            $btn = L('_GOOGLE_VER_CLOSE_');
+                            $type = 'close';
+                            }else{
+                            $check = 'times';
+                            $status = L('_GOOGLE_VER_NO_');
+                            $btn = L('_GOOGLE_VER_OPEN_');
+                            $type = 'open';
+                            }
+                        </php>
+                        <i class="icon icon-{$check}"></i>
+                        <a data-toggle="collapse" data-parent="#accordionPanels" href="#collapseOne">
+                            双重身份验证
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <php>if($type == 'open'){</php>
+                        <div>
+                            <label style="color: #0082df"><i class="icon icon-info-sign"></i>{$status}</label>
+                        </div>
+                        <div><p>{:L('_GOOGLE_VER_TIPS1_')}</p><p>{:L('_GOOGLE_VER_TIPS2_')}</p></div>
+                        <php>}</php>
+                        <div class="alert alert-success" style="margin-top: 5px">
+                            <php>if($type == 'open'){</php>
+                            <h4>step1 在您的手机上安装双重验证程序：Google Authenticator</h4>
+                            <hr>
+                            <p>iPhone手机：在App Store中搜索Google Authenticator<a href="https://itunes.apple.com/cn/app/google-authenticator/id388497605">下载应用</a></p>
+                            <p>Android手机：在应用市场中搜索“谷歌身份验证器”，或搜索Google Authenticator<a href="http://shouji.baidu.com/software/22417419.html">下载应用</a></p>
+                            <hr>
+                            <h4>step2 安装完成后，您需要对该应用程序进行如下配置</h4>
+                            <hr>
+                            <p>在“Google Authenticator (身份验证器)”应用程序中，点击“添加新账户 (iOS 下是 + 号)”，然后选择“扫描条形码”。将手机上的相机镜头对准下图扫描该条形码。</p>
+                            <img src="data:image/png;base64,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">
+                            <p>如果您无法扫描成功上图的条形码，您还可以手动添加账户，并输入如下密匙：<label style="color: #0082df">{$secret}</label></p>
+                            <hr>
+                            <h4>step3 配置完成</h4>
+                            <hr>
+                            <p>配置完成后，手机上会显示一个 6 位数字，每隔 30 秒变化一次。这个数字即为您的双重验证密码。</p>
+                            <p>请勿删除此双重验证密码账户，否则会导致您无法进行账户操作。</p>
+                            <p>每次登录时，输入一个一次性代码，这样可以保护您的用户帐户。</p>
+                            <php>}</php>
+                            <form class="orm-horizontal center_info ajax-form" action="{:U('ucenter/config/googleVerify')}" method="post">
+                                <label>双重验证密码：</label>
+                                <input type="hidden" name="secret" value="{$secret}">
+                                <input type="hidden" name="type" value="{$type}">
+                                <input type="text" name="oneCode">
+                                <php>
+                                    if($type == 'open'){
+                                </php>
+                                <div class="checkbox">
+                                    <label style="color: #0082df">
+                                        <input type="checkbox" name="remember"> 请在纸上写下安全密钥 {$secret}
+                                    </label>
+                                </div>
+                                <php>}</php>
+                                <button type="submit" class="btn btn-primary" style="margin-left: 5px">{$btn}</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" id="headingTwo">
+                    <h4 class="panel-title">
+                        <php>
+                            if($accountInfo['safe_pw']){
+                            $check = 'check';
+                            $status = L('_YES_');
+                            }else{
+                            $check = 'times';
+                            $status = L('_NO_');
+                            }
+                        </php>
+                        <i class="icon icon-{$check}"></i>
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionPanels" href="#collapseTwo">
+                            资金密码
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body col-xs-8">
+                        <form class="form-horizontal center_info ajax-form" role="form"
+                              action="{:U('ucenter/config/doChangeSafepw')}" method="post">
+                            <div class="form-group">
+                                <label for="account" class="col-xs-2 control-label">{:L('_SAFE_PASS_')}</label>
+
+                                <label for="account" class="col-xs-2 control-label" style="text-align: left">{$status}</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="account" class="col-xs-2 control-label">{:L('_SET_NEW_')}{:L('_PASSWORD_')}</label>
+
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control pull-left" id="safe_pw" name="safe_pw">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="verify" class="col-xs-2 control-label">{:L('_EMAIL_')}{:L('_VERIFY_CODE_')}</label>
+
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control pull-left" id="verify" name="verify">
+                                    <a class="pull-left btn btn-default " data-role="getEmailVerify">{:L('_SEND_')}</a>
+                                </div>
+                            </div>
+                            <input type="hidden" class="form-control" name="uid" value="{:is_login()}">
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-xs-10">
+                                    <button type="submit" data-role="submit" class="btn btn-primary">{:L('_SUBMIT_')}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" id="headingFour">
+                    <h4 class="panel-title">
+                        <php>
+                            if($accountInfo['mobile']){
+                            $check = 'check';
+                            $status = L('_YES_');
+                            }else{
+                            $check = 'times';
+                            $status = L('_NO_');
+                            }
+                        </php>
+                        <i class="icon icon-{$check}"></i>
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionPanels" href="#collapseFour">
+                            手机验证
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse">
+                    <div class="panel-body col-xs-8">
+                        <form class="form-horizontal center_info ajax-form" role="form"
+                              action="{:U('ucenter/config/checkVerify')}" method="post">
+                            <div class="form-group">
+                                <label for="account" class="col-xs-2 control-label">{:L('_MOBILE_VER_')}</label>
+                                <label for="account" class="col-xs-2 control-label" style="text-align: left">{$status}</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="account" class="col-xs-2 control-label">{:L('_MOBILE_')}</label>
+
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control pull-left" id="account" name="account">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="verifyCode2" class="col-xs-2 control-label" >输入验证码</label>
+
+                                <div class="col-xs-4">
+                                    <input type="text" id="verifyCode2" class="form-control" placeholder="验证码"
+                                           errormsg="请填写正确的验证码" nullmsg="请填写验证码" datatype="*5-5" name="verify" >
+                                </div>
+                                <div class="col-xs-6 lg_lf_fm_verify">
+                                    <img class="verifyimg reloadverify img-responsive" alt="点击切换"
+                                         src="{:U('verify',array('id'=>$type=='email'?3:2))}"
+                                         style="cursor:pointer;width: 150px;">
+                                </div>
+                                <div class="col-xs-12 Validform_checktip text-warning lg_lf_fm_tip"></div>
+                                <div class="clearfix"></div>
+                                <a class="pull-left btn btn-default " data-role="getVerify" style="margin-left: 105px;margin-top: 5px">{:L('_GET_MOBILE_')}</a>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+                                <label for="verify" class="col-xs-2 control-label">{:L('_VERIFY_CODE_')}</label>
+
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="verify" name="verify">
+                                </div>
+                            </div>
+
+                            <input type="hidden" class="form-control" name="type" value="mobile">
+                            <input type="hidden" class="form-control" name="uid" value="{:is_login()}">
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-xs-10">
+                                    <button type="submit" data-role="submit" class="btn btn-primary">{:L('_SUBMIT_')}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" id="headingFive">
+                    <h4 class="panel-title">
+                        <php>
+                            if($accountInfo['email']){
+                            $check = 'check';
+                            $status = L('_YES_');
+                            }else{
+                            $check = 'times';
+                            $status = L('_NO_');
+                            }
+                        </php>
+                        <i class="icon icon-{$check}"></i>
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionPanels" href="#collapseFive">
+                            邮箱验证
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFive" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="form-group col-xs-12">
+                            <label class="col-xs-2 control-label">{:L('_EMAIL_ADDR_VER_')}</label>
+                            <div class="col-xs-10">
+                                {$status}
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <label class="col-xs-2 control-label">{:L('_EMAIL_ADDR_')}</label>
+                            <div class="col-xs-10">
+                                {$accountInfo.email|default=L('_SET_NOT_')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" id="headingSix">
+                    <h4 class="panel-title"><i class="icon icon-check"></i>
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionPanels" href="#collapseSix">
+                            登录密码
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseSix" class="panel-collapse collapse">
+                    <div class="panel-body col-xs-8">
+                        <form id="changePasswordForm"  action="{:U('Ucenter/Config/doChangePassword')}" method="post" class="ajax-form form-horizontal">
+                        <div class="form-group">
+                            <label for="inputOldPassword" class="col-xs-2 control-label">{:L('_PW_OLD_')}</label>
+
+                            <div class="col-xs-10">
+                                <input type="password" class="form-control" id="inputOldPassword" value="" name="old_password">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputNewPassword" class="col-xs-2 control-label">{:L('_PW_NEW_')}</label>
+
+                            <div class="col-xs-10">
+                                <input type="password" class="form-control" id="inputNewPassword" value="" name="new_password">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputConfirmPassword" class="col-xs-2 control-label">{:L('_PW_CONFIRM_')}</label>
+
+                            <div class="col-xs-10">
+                                <input type="password" class="form-control" id="inputConfirmPassword" value="" name="confirm_password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-xs-10">
+                                <p class="text-danger" id="submitTip"></p>
+                                <button type="submit" class="btn btn-primary">{:L('_PW_SAVE_')}</button>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</div>
+    <script type="text/javascript" src="__JS__/expandinfo-form.js"></script>
+</block>
+<block name="script">
+    <script>
+        //检查两次输入的密码是否一致
+        $(function(){
+            $('#changePasswordForm').submit(function(e){
+                var newPassword = $('#inputNewPassword').val();
+                var confirmPassword = $('#inputConfirmPassword').val();
+                if(newPassword != confirmPassword) {
+                    toast.error("{:L('_PW_NOT_SAME_')}");
+                    e.stopPropagation();
+                    return false;
+                }
+            })
+
+            $(".panel-title").click(function () {
+                var a = $(this).find('a');
+                a[0].click();
+            })
+        })
+    </script>
+    <script>
+        $(function () {
+
+            $(".reloadverify").click(function () {
+                var $this = $(this);
+                var verifyimg = $this.attr("src");
+                if (verifyimg.indexOf('?') > 0) {
+                    $this.attr("src", verifyimg + '&random=' + Math.random());
+                } else {
+                    $this.attr("src", verifyimg.replace(/\?.*$/, '') + '?' + Math.random());
+                }
+            });
+        });
+
+
+        $(function () {
+
+            $("[data-role='getVerify']").click(function () {
+                var $this = $(this);
+                toast.showLoading();
+                var account =$this.parents('.center_info').find('#account').val();
+                var type = $this.parents('.center_info').find('[name="type"]').val();
+
+                var verify = $this.parents('.center_info').find('[name="verify"]').val();
+
+
+                if(account == ''){
+                    toast.error('请输入帐号');
+                    toast.hideLoading();
+                    return false;
+                }
+                if(verify == ''){
+                    toast.error('请输入验证码');
+                    toast.hideLoading();
+                    return false;
+                }
+
+
+
+                $.post("{:U('ucenter/verify/sendVerify')}", {account: account, type: type,action:'config',verify:verify}, function (res) {
+                    if(res.status){
+
+                        DecTime.obj = $this
+                        DecTime.time = "{: modC('SMS_RESEND','60','USERCONFIG')}";
+                        $this.attr('disabled',true)
+                        DecTime.dec_time();
+
+                        toast.success(res.info);
+                    }
+                    else{
+                        toast.error(res.info);
+                    }
+                    toast.hideLoading();
+                })
+            })
+        })
+
+        $(function(){
+            $("[data-role='getEmailVerify']").click(function () {
+                var $this = $(this);
+                toast.showLoading();
+                $.post("{:U('ucenter/verify/sendEmailCode')}", {action:'config'}, function (res) {
+                    if(res.status){
+                        DecTime.obj = $this
+                        DecTime.time = "{: modC('SMS_RESEND','60','USERCONFIG')}";
+                        $this.attr('disabled',true)
+                        DecTime.dec_time();
+
+                        toast.success(res.info);
+                    }
+                    else{
+                        toast.error(res.info);
+                    }
+                    toast.hideLoading();
+                })
+            })
+        })
+
+        var DecTime = {
+            obj:0,
+            time:0,
+            dec_time : function(){
+                if(this.time > 0){
+                    this.obj.text(this.time--+'S')
+                    setTimeout("DecTime.dec_time()",1000)
+                }else{
+                    this.obj.text('获取邮箱验证码')
+                    this.obj.attr('disabled',false)
+                }
+
+            }
+        }
+    </script>
+</block>

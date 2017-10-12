@@ -30,8 +30,7 @@
             <if condition="is_login() && $user_info['uid'] != get_uid()">
             <div class="col-xs-4 bt-group">
                 {:W('Common/Follow/follow',array('follow_who'=>$user_info['uid']))}
-                <button type="button" class="btn btn-default" onclick="talker.start_talk({$user_info['uid']},{$has_wukong})">{:L('_CHAT_')}
-                </button>
+                {:W('Common/Follow/trust',array('follow_who'=>$user_info['uid']))}
             </div>
             </if>
         </div>

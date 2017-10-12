@@ -680,10 +680,10 @@ class IndexController extends BaseController
             $v = query_user(array('uid', 'avatar128', 'nickname', 'signature', 'space_mob_url'), $v);
             $res = D('Common/Follow')->isFollow(is_login(), $v['uid']);
             if ($res == 1) {
-                $v['follow_status'] = '已关注';
+                $v['follow_status'] = '已信任';
                 $v['is_follow'] = 'unfollow';
             } else {
-                $v['follow_status'] = '关注';
+                $v['follow_status'] = '信任';
                 $v['is_follow'] = 'follow';
             }
         }
@@ -694,10 +694,10 @@ class IndexController extends BaseController
             $v = query_user(array('uid', 'avatar128', 'nickname', 'signature', 'space_mob_url'), $v);
             $res = D('Common/Follow')->isFollow(is_login(), $v['uid']);
             if ($res == 1) {
-                $v['follow_status'] = '已关注';
+                $v['follow_status'] = '已信任';
                 $v['is_follow'] = 'unfollow';
             } else {
-                $v['follow_status'] = '关注';
+                $v['follow_status'] = '信任';
                 $v['is_follow'] = 'follow';
             }
         }
@@ -710,10 +710,10 @@ class IndexController extends BaseController
             $v['user'] = query_user(array('uid', 'avatar128', 'space_mob_url'), $v['uid']);
             $res = D('Common/Follow')->isFollow(is_login(), $v['uid']);
             if ($res == 1) {
-                $v['follow_status'] = '已关注';
+                $v['follow_status'] = '已信任';
                 $v['is_follow'] = 'unfollow';
             } else {
-                $v['follow_status'] = '关注';
+                $v['follow_status'] = '信任';
                 $v['is_follow'] = 'follow';
             }
             if (in_array($v['uid'], $adminList)) {

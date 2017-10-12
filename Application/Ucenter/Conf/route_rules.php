@@ -8,6 +8,9 @@
  */
 return array(
     'route_rules' => array(
+        'ucenter/myad'    => 'ucenter/index/myad',
+        'ucenter/myorder'    => 'ucenter/index/myorder',
+        'ucenter/following/:uid'    => 'ucenter/index/following',
         'u/[:user_short_url]' => is_mobile() ? 'mob/ucenter/index' : 'Ucenter/index/index',
     ),
     'router' => array(

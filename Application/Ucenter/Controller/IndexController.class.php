@@ -323,7 +323,7 @@ class IndexController extends BaseController
         $apps[] = array('data-id' => 'info', 'sort' => '0', 'title' => '资料', 'key' => 'info');
         $apps[] = array('data-id' => 'rank_title', 'sort' => '0', 'title' => L('_RANK_TITLE_'), 'key' => 'rank_title');
         $apps[] = array('data-id' => 'follow', 'sort' => '0', 'title' => L('_FOLLOWERS_NO_SPACE_') . '/粉丝', 'key' => 'follow');
-        $apps[] = array('data-id' => 'topic_list', 'sort' => '0', 'title' => '关注的话题', 'key' => 'topic_list');
+        $apps[] = array('data-id' => 'topic_list', 'sort' => '0', 'title' => '信任的话题', 'key' => 'topic_list');
 
         $apps = $this->sortApps($apps);
         $apps = array_combine(array_column($apps, 'key'), $apps);
@@ -355,7 +355,7 @@ class IndexController extends BaseController
         $this->assign('fans_totalCount', $fans_totalCount);
         $this->assign('fans_default', $fans_default);
 
-        //我关注的展示
+        //我信任的展示
         $map_follow['who_follow'] = $uid;
         $follow_default = D('Follow')->where($map_follow)->field('follow_who')->order('create_time desc')->limit(8)->select();
         $follow_totalCount = D('Follow')->where($map_follow)->count();
@@ -419,9 +419,9 @@ class IndexController extends BaseController
 
         //四处一词 seo
         $str = '{$user_info.nickname|op_t}';
-        $this->setTitle($str . '关注的话题页');
+        $this->setTitle($str . '信任的话题页');
         $this->setKeywords($str . '，微博话题');
-        $this->setDescription($str . '关注的话题页');
+        $this->setDescription($str . '信任的话题页');
         //四处一词 seo end
 
         $this->display();
@@ -774,18 +774,41 @@ class IndexController extends BaseController
             $id = I('get.active');
             M('tradead')->where('id='.$id)->save(array('status'=>$status==1?0:1));
         }
+        if (isset($_GET['delete'])){
+            $id = I('get.delete');
+            M('tradead')->where('id='.$id)->delete();
+            $this->redirect('/ucenter/index/myad');
+        }
         $tradead = M('tradead');
         $adList = $tradead->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
             ->join('ocenter_pay on ocenter_tradead.pay_type = ocenter_pay.id')
             ->field('ocenter_tradead.id,ocenter_tradead.type,ocenter_tradead.coin_type,ocenter_country.name,ocenter_tradead.price,ocenter_tradead.pre_price,ocenter_tradead.create_time,ocenter_tradead.status,ocenter_country.en_name as countryEn,ocenter_pay.en_name as payEn')
-            ->where('ocenter_tradead.uid='.$uid)->select();
+            ->where('ocenter_tradead.uid='.$uid)->order('id desc')->select();
         $this->assign('adList', $adList);
         $this->display();
     }
 
-    public function mytrade()
+    public function myorder()
     {
+        $uid = is_login();
+        if (!$uid) {
+            $this->error(L('_ERROR_NEED_LOGIN_'));
+        }
+//        $status = I('get.status');
+//        $status = $status == null ? 1: $status;
+        $tradeOrder = M('trade_order');
+        $orderList1 = $tradeOrder->where('(ocenter_trade_order.get_uid='.$uid.' or ocenter_trade_order.ad_uid='.$uid.') and (status=1 or status=2)')->select();
+        $orderList3 = $tradeOrder->where('(ocenter_trade_order.get_uid='.$uid.' or ocenter_trade_order.ad_uid='.$uid.') and status=3')->select();
+        $orderList0 = $tradeOrder->where('(ocenter_trade_order.get_uid='.$uid.' or ocenter_trade_order.ad_uid='.$uid.') and status=0')->select();
+        $orderList4 = $tradeOrder->where('(ocenter_trade_order.get_uid='.$uid.' or ocenter_trade_order.ad_uid='.$uid.') and status=4')->select();
+  //      $this->assign('tab', $status);
+        $this->assign('orderList1', $orderList1);
+        $this->assign('orderList3', $orderList3);
+        $this->assign('orderList0', $orderList0);
+        $this->assign('orderList4', $orderList4);
         $this->display();
     }
+
+
 
 }

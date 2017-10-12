@@ -1,0 +1,9 @@
+<php>if($is_trusting && !$is_self){</php>
+<button type="button" class="{$after|default='btn btn-default'}" data-after="{$before|default='btn btn-default'}"  data-before="{$after|default='btn btn-primary'}" data-role="unfollow" data-follow-who="{$follow_who}" data-follow-type="2" style="width: 65px">
+    {:L('_CANCEL_')}{:L('_TRUST_')}
+</button>
+<php>}elseif(!$is_trusting && !$is_self){</php>
+<button type="button" class="{$before|default='btn btn-primary'}" data-after="{$before|default='btn btn-default'}"  data-before="{$after|default='btn btn-primary'}"  data-role="follow" data-follow-who="{$follow_who}" data-follow-type="2" style="width: 65px">
+    {:L('_TRUST_')}{:L('_USER_')}
+</button>
+<php>}</php>

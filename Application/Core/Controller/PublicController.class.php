@@ -20,39 +20,49 @@ class PublicController extends Controller
 {
 
 
-    /**关注某人
+    /**信任某人
      * @param int $uid
      * @auth 陈一枭
      */
     public function follow()
     {
         $aUid=I('post.uid',0,'intval');
+        $aType = I('post.type',0,'intval');
         if (!is_login()) {
             $this->ajaxReturn(array('status' => 0, 'info' => L("_PLEASE_")." ".L("_LOG_IN_")));
         }
 
-        if (D('Follow')->follow($aUid)) {
-            D('Member')->where(array('uid' => $aUid))->setInc('fans', 1);
-            $this->ajaxReturn(array('status' => 1, 'info' => L("_FOLLOWERS_")." ".L('_SUCCESS_')));
+        if (D('Follow')->follow($aUid,$aType)) {
+            $text = L("_PINGBI_");
+            if ($aType == 1){
+                D('Member')->where(array('uid' => $aUid))->setInc('fans', 1);
+                $text = L("_FOLLOWERS_");
+            }
+            $this->ajaxReturn(array('status' => 1, 'info' => $text." ".L('_SUCCESS_')));
         } else {
             $this->ajaxReturn(array('status' => 0, 'info' => L("_FOLLOWERS_")." ".L("_FAIL_")));
         }
     }
 
-    /**取消对某人的关注
+    /**取消对某人的信任
      * @param int $uid
      * @auth 陈一枭
      */
     public function unfollow()
     {
         $aUid=I('post.uid',0,'intval');
+        $aType = I('post.type',0,'intval');
         if (!is_login()) {
             $this->ajaxReturn(array('status' => 0, 'info' => L("_PLEASE_")." ".L("_LOG_IN_")));
         }
 
         if (D('Follow')->unfollow($aUid)) {
-            D('Member')->where(array('uid' => $aUid))->setDec('fans', 1);
-            $this->ajaxReturn(array('status' => 1, 'info' =>  L("_CANCEL_")." ".L("_FOLLOWERS_")." ".L("_SUCCESS_")));
+            $text = L("_PINGBI_");
+            if ($aType == 1){
+                D('Member')->where(array('uid' => $aUid))->setDec('fans', 1);
+                $text = L("_FOLLOWERS_");
+            }
+            $this->ajaxReturn(array('status' => 1, 'info' =>  L("_CANCEL_")." ".$text." ".L("_SUCCESS_")));
         } else {
             $this->ajaxReturn(array('status' => 0, 'info' =>  L("_CANCEL_")." ".L("_FOLLOWERS_")." ".L("_FAIL_")));
         }
