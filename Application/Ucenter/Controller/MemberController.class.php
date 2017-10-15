@@ -27,19 +27,9 @@ class MemberController extends Controller
 
         //获取参数
         $aUsername = $username = I('post.username', '', 'op_t');
-        $aNickname = I('post.nickname', '', 'op_t');
+        $email = I('post.email', '', 'op_t');
         $aPassword = I('post.password', '', 'op_t');
-        $aVerify = I('post.verify', '', 'op_t');
-        $aRegVerify = I('post.reg_verify', '', 'op_t');
-        $aRegType = I('post.reg_type', '', 'op_t');
-        $aStep = I('get.step', 'start', 'op_t');
-        $aRole = I('post.role', 0, 'intval');
-
-
-        if (!modC('REG_SWITCH', 'email', 'USERCONFIG')) {
-            $this->error(L('_ERROR_REGISTER_CLOSED_'));
-        }
-
+        $aRole = 0;
 
         if (IS_POST) {
             if ($aUsername == null) {
@@ -50,79 +40,25 @@ class MemberController extends Controller
             if ($return && !$return['state']) {
                 $this->error($return['info'], $return['url']);
             }
-            /* 检测验证码 */
-            if (check_verify_open('reg') && (!$aRegVerify)) {
-                if (!check_verify($aVerify)) {
-                    $this->error(L('_ERROR_VERIFY_CODE_') . L('_PERIOD_'));
-                }
-            }
-            if (!$aRole) {
-                $this->error(L('_ERROR_ROLE_SELECT_') . L('_PERIOD_'));
-            }
-
-            if (($aRegType == 'mobile' && modC('MOBILE_VERIFY_TYPE', 0, 'USERCONFIG') == 1) || (modC('EMAIL_VERIFY_TYPE', 0, 'USERCONFIG') == 2 && $aRegType == 'email')) {
-                if (!D('Verify')->checkVerify($aUsername, $aRegType, $aRegVerify, 0)) {
-                    $str = $aRegType == 'mobile' ? L('_PHONE_') : L('_EMAIL_');
-                    $this->error($str . L('_FAIL_VERIFY_'));
-                }
-            }
-            $aUnType = 0;
-            //获取注册类型
-            check_username($aUsername, $email, $mobile, $aUnType);
-            if ($aRegType == 'email' && $aUnType != 2) {
-                $this->error(L('_ERROR_EMAIL_FORMAT_'));
-            }
-            if ($aRegType == 'mobile' && $aUnType != 3) {
-                $this->error(L('_ERROR_PHONE_FORMAT_'));
-            }
-            if ($aRegType == 'username') {
-                $this->error('该种注册方式已弃用！');
-            }
-            if (!check_reg_type($aUnType)) {
-                $this->error(L('_ERROR_REGISTER_NOT_OPENED_') . L('_PERIOD_'));
-            }
-
-            $aCode = I('post.code', '', 'op_t');
-            if (!$this->checkInviteCode($aCode)) {
-                $this->error(L('_ERROR_INV_ILLEGAL_') . L('_EXCLAMATION_'));
-            }
 
             /* 注册用户 */
             $ucenterMemberModel = UCenterMember();
-            $uid = $ucenterMemberModel->register($aUsername, $aNickname, $aPassword, $email, $mobile, $aUnType);
+            $uid = $ucenterMemberModel->register($aUsername, $aPassword, $email);
             if (0 < $uid) { //注册成功
-                $this->initInviteUser($uid, $aCode, $aRole);
+                $this->initInviteUser($uid, '', $aRole);
                 $ucenterMemberModel->initRoleUser($aRole, $uid); //初始化角色用户
-                if (modC('EMAIL_VERIFY_TYPE', 0, 'USERCONFIG') == 1 && $aUnType == 2) {
-                    set_user_status($uid, 3);
-                    $verify = D('Verify')->addVerify($email, 'email', $uid, 0);
-                    $res = $this->sendActivateEmail($email, $verify, $uid); //发送激活邮件
-                    // $this->success('注册成功，请登录邮箱进行激活');
-                }
-
-                $uid = $ucenterMemberModel->login($username, $aPassword, $aUnType); //通过账号密码取到uid
-                send_message($uid, '注册成功提醒', '欢迎你注册本系统', 'Ucenter/Index/index', array(), 1);
-                D('Member')->login($uid, false, $aRole); //登陆
-                $this->success('', U('Ucenter/member/step', array('step' => get_next_step('start'))));
+                set_user_status($uid, 3);
+                $verify = D('Verify')->addVerify($email, 'email', $uid, 0);
+                $this->sendActivateEmail($email, $verify, $uid); //发送激活邮件
+                $this->success('注册成功，请登录邮箱进行激活',U('ucenter/member/activate'));
+//                $uid = $ucenterMemberModel->login($username, $aPassword, 1); //通过账号密码取到uid
+//                send_message($uid, '注册成功提醒', '欢迎你注册本系统', 'Ucenter/Index/index', array(), 1);
+//                D('Member')->login($uid, false, $aRole); //登陆
+//                $this->success('注册成功，请登录邮箱进行激活', U('Home/Index/index'));
             } else { //注册失败，显示错误信息
                 $this->error($this->showRegError($uid));
             }
         } else {
-            //显示注册表单
-            if (is_login()) {
-                redirect(U('Home/Index/index'));
-            }
-            $this->checkRegisterType();
-            $aType = I('get.type', '', 'op_t');
-            $regSwitch = modC('REG_SWITCH', '', 'USERCONFIG');
-            $regSwitch = explode(',', $regSwitch);
-            $regSwitch = array_diff($regSwitch, array('username'));
-            if (!count($regSwitch)) {
-                $this->error('系统没有开启注册！');
-            }
-            $this->assign('regSwitch', $regSwitch);
-            $this->assign('step', $aStep);
-            $this->assign('type', $aType == '' ? 'email' : $aType);
             $this->display();
         }
     }
@@ -705,7 +641,7 @@ class MemberController extends Controller
         $check = D('Common/Verify')->checkVerify($aAccount, $aType, $aVerify, $aUid);
         if ($check) {
             set_user_status($aUid, 1);
-            $this->success(L('_SUCCESS_ACTIVE_'), U('Ucenter/member/step', array('step' => get_next_step('start'))));
+            $this->success(L('_SUCCESS_ACTIVE_'), U('Home/index/index'));
         } else {
             $this->error(L('_FAIL_ACTIVE_') . L('_EXCLAMATION_'));
         }

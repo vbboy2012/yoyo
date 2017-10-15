@@ -129,7 +129,7 @@
         direction: "ltr";
         font-size: 14px; }
     .navbar-brand{
-        font-size: 25px;
+        font-size: 20px;
         color: #43cb83;
     }
     .navbar-brand:hover{
@@ -142,8 +142,8 @@
 </script>
 <div class="container-fluid topp-box clearfloat">
     <div class="col-xs-2 box">
-        <div class="img-wrap" style="">
-            <a class="navbar-brand" href="<?php echo U('Home/Index/index');?>"><i class="icon icon-compass icon-2x"></i>YoYoCoins</a>
+        <div class="" style="">
+            <a class="navbar-brand" href="<?php echo U('Home/Index/index');?>"><i class="icon icon-compass icon-2x"></i>YOYOCOINS</a>
         </div>
     </div>
     <div class="col-xs-7 box ">
@@ -392,7 +392,6 @@
         <div class="row">
             
     <div class="all-box">
-        <div id="particles-js"></div>
         <form action="/yoyo/index.php?s=/ucenter/member/login.html" method="post" class="lg_lf_form ">
             <div class="login-wrap">
                 <p class="head">登 录</p>

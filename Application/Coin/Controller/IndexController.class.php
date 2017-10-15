@@ -205,7 +205,7 @@ class IndexController extends Controller{
                 ->join('ocenter_avatar on ocenter_avatar.uid = ocenter_tradead.uid')
                 ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
                 ->join('ocenter_pay on ocenter_tradead.pay_type = ocenter_pay.id')
-                ->field('ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.pay_text,ocenter_tradead.type,ocenter_tradead.coin_type,ocenter_tradead.pay_time,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_country.name as country,ocenter_pay.name as payName,ocenter_pay.en_name as payEn,ocenter_member.nickname,ocenter_avatar.path,ocenter_tradead.open_time')
+                ->field('ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.pay_text,ocenter_tradead.type,ocenter_tradead.coin_type,ocenter_tradead.pay_time,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_country.name as country,ocenter_pay.name as payName,ocenter_pay.en_name as payEn,ocenter_member.nickname,ocenter_member.trade_count,ocenter_member.trade_score,ocenter_member.fans,ocenter_avatar.path,ocenter_tradead.open_time')
                 ->where('ocenter_tradead.id='.$id)->find();
             $this->assign('tradead', $tradead);
             $this->assign('ratePrice', $ratePrice);

@@ -253,6 +253,7 @@ $common_lang = array(
     '_REMEMBER_LOGIN_' => '记住登录',
     '_FORGET_PW_' => '忘记密码',
     '_LOGIN_SPACE_' => '登 录',
+    '_REGISTER_SPACE_' => '注 册',
     '_ACCOUNT_LOST_' => '没有账号',
     '_REG_JUST_FOR_INV_' => '邀请用户才能注册',
     '_REGISTER_USERNAME_' => '用户名注册',
@@ -411,6 +412,9 @@ $common_lang = array(
     '_GOOGLE_VER_REMEMBER_'=>'请记住安全密钥',
     '_GOOGLE_VER_OPEN_'=>'验证启用',
     '_GOOGLE_VER_CLOSE_'=>'验证关闭',
+    '_PASSWORD_'=>'密码',
+    '_PASSWORD_TWO_'=>'再次确认密码',
+
 );
 
 return  function_exists('get_all_module_lang') ? get_all_module_lang($common_lang) : $common_lang;

@@ -150,25 +150,19 @@ class UcenterMemberModel extends Model
      * @param  string $mobile 用户手机号码
      * @return integer          注册成功-用户信息，注册失败-错误编号
      */
-    public function register($username, $nickname, $password, $email='', $mobile='', $type=1)
+    public function register($username, $password, $email='', $type=1)
     {
         $data = array(
             'username' => $username,
             'password' => $password,
             'email' => $email,
-            'mobile' => $mobile,
             'type' => $type,
         );
-
-        //验证手机
-        if (empty($data['mobile'])) unset($data['mobile']);
-        if (empty($data['username'])) unset($data['username']);
-        if (empty($data['email'])) unset($data['email']);
 
         /* 添加用户 */
         $usercenter_member = $this->create($data);
         if ($usercenter_member) {
-            $result = D('Common/Member')->registerMember($nickname);
+            $result = D('Common/Member')->registerMember($username);
             if ($result > 0) {
                 $usercenter_member['id'] = $result;
                 $uid = $this->add($usercenter_member);
