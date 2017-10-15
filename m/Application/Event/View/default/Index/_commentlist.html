@@ -1,0 +1,32 @@
+<empty name="comments">
+    <div class="comment-box noMore">
+        暂无评论~
+    </div>
+</empty>
+<volist name="comments" id="vo">
+    <div class="comment-box">
+        <div class="user">
+            <div class="user-info"><img src="{$vo.user.avatar64}" /><span>{$vo.user.nickname}</span></div>
+            <span class="time">{$vo.create_time}</span>
+        </div>
+        <div class="comment">
+            {$vo.content}
+        </div>
+        <div class="bottom-box">
+            <ul>
+                <li data-role="event-support-c" data-id="{$vo.id}" data-uid="{$uid}"><i class="iconfont icon-dianzan" <if condition="$vo['is_support'] eq 1">style="color:#ec725d"</if>></i>(<span>{$vo.support_all_count|default=0}</span>)</li>
+                <li>
+                    <if condition="$flag eq 0">
+                        <a href="{:U('Index/lzlComment',array('id'=>$vo['id'], 'eid'=>$eid))}">
+                            <i class="iconfont icon-pinglun1"></i>({$vo.all_count|default=0})
+                        </a>
+                    <else/>
+                        <a href="javascript:void(0);" class="lzl-comment open-popup" data-name="{$vo.user.nickname}" data-popup=".answer" data-role="answer_button">
+                            <i class="iconfont icon-pinglun1"></i>
+                        </a>
+                    </if>
+                </li>
+            </ul>
+        </div>
+    </div>
+</volist>

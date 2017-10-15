@@ -1,0 +1,58 @@
+<volist name="list" id="vo">
+    <li class="event-info" data-role="li-box" data-id="{$vo.id}">
+        <div class="event-dic">
+            <a href="{:U('Index/detail',array('id'=>$vo['id']))}">
+                <img class="event-img"  src="{$vo.cover_id|getThumbImageById=420,320}" title="{$vo.title}"/>
+                <if condition="(time() gt $vo['eTime'])">
+                    <span class="mark end">
+                        {:L('_ALREADY_OVER_')}
+                    </span>
+                <elseif condition="(time() gt $vo['deadline'])"/>
+                    <span class="mark end">
+                    {:L('_REGISTRATION_HAS_OVER_')}
+                    </span>
+                <elseif condition="$vo['limitCount'] eq $vo['attendionCount']"/>
+                    <span class="mark end">
+                    名额已满
+                    </span>
+                <else/>
+                    <span class="mark">
+                    {:L('_IN_PROGRESS_')}
+                    </span>
+                </if>
+            </a>
+            <div class="event-zan" <if condition="$uid gt 0">data-role="event-support" data-id="{$vo.id}"<else/>onclick="checkLogin(this)"</if>>
+                <i <if condition="$vo['support_count'] neq false">class="iconfont icon-approve_after" style="color:#ec725d"<else/>class="iconfont icon-love_icon"</if>></i>
+            </div>
+            <div class="event-bottom">
+                <a href="{:U('Index/detail',array('id'=>$vo['id']))}">
+                    <p class="eTitle textMore ev-font">{$vo.title}</p>
+                    <div class="time-address">
+                        <div class="taTxt textMore"><i class="iconfont icon-map"></i>{$vo.address}</div>
+                        <div class="taTxt"><i class="iconfont icon-shizhong"></i>{$vo.sTime|date='Y.m.d',###}-{$vo.eTime|date='Y.m.d',###}</div>
+                    </div>
+                </a>
+                <if condition="$active eq 'mine'">
+                    <div class="ev-edit">
+                        <span class="ev-font ev-span" data-role="edit-event" data-id="{$vo.id}" data-value="off">{:L('_EVENT_EDIT_')}<i class="iconfont icon-xiangxiajiantou"></i></span>
+                    </div>
+                    <div class="edit-box" data-role="edit-box" data-value="{$vo.id}">
+                        <ul>
+                            <li><a class="active" href="{:U('Index/edit',array('id'=>$vo['id']))}" data-role="to-edit" data-value="{$vo.id}">{:L('_EVENT_EDIT_')}</a></li>
+                            <if condition="time() lt $vo['eTime']">
+                                <li><a href="javascript:void(0);" data-role="end-event" data-value="{$vo.id}">{:L('_OVER_AHEAD_')}</a></li>
+                            </if>
+                            <li><a href="javascript:void(0);" data-role="del-event" data-value="{$vo.id}">{:L('_EVENT_DELETE_')}</a></li>
+                        </ul>
+                    </div>
+                <elseif condition="$active eq 'all'"/>
+                    <div class="join-numb taTxt">
+                        <span><i class="iconfont icon-add-friends_icon number"></i>{$vo.attentionCount}人报名</span>
+                        <div class="price"><span>￥</span>{$vo.price|show_price}</div>
+                    </div>
+                </if>
+            </div>
+        </div>
+    </li>
+    <div class="hidd-list" data-role="hidd-list" data-value="{$vo.id}"></div>
+</volist>

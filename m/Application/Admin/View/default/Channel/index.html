@@ -25,7 +25,9 @@
         <form action="{:U()}" method="post" class="form-horizontal" >
             <ul class="channel-ul">
                 <volist name="list" id="nav">
-                    <include file="_li"/>
+                    <if condition="(strtolower($nav['url']) neq 'message/index/index') AND (strtolower($nav['url']) neq 'ucenter/index/index')">
+                        <include file="_li"/>
+                    </if>
                 </volist>
             </ul>
 

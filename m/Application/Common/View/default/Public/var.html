@@ -23,6 +23,23 @@
         'URL_MODEL': "{:C('URL_MODEL')}",
         'WEIBO_ID': "{:C('SHARE_WEIBO_ID')}"
     }
-
+    var cookie_config={
+        "prefix":"{:C('COOKIE_PREFIX')}",// cookie 名称前缀
+        "path" :"{:C('COOKIE_PATH')}", // cookie 保存路径
+        "domain":"{:C('COOKIE_DOMAIN')}" // cookie 有效域名
+    }
     var weibo_comment_order = "{:modC('COMMENT_ORDER',0,'WEIBO')}";
+    function no_login() {
+        if(MID > 0){
+            return true ;
+        }
+        $.toast('请登录~',1000) ;
+        setTimeout(function (){
+            $.toast('正在跳转...',1500) ;
+            setTimeout(function () {
+                window.location.href=U('Ucenter/index/index') ;
+            },1000) ;
+            return false;
+        },1100)
+    }
 </script>

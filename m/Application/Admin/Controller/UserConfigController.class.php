@@ -53,7 +53,7 @@ class UserConfigController extends AdminController
         $apps[] = array('data-id' => 'info', 'sort' => '0', 'title' => '资料', 'key' => 'info');
         $apps[] = array('data-id' => 'rank_title', 'sort' => '0', 'title' => L('_RANK_TITLE_'), 'key' => 'rank_title');
         $apps[] = array('data-id' => 'follow', 'sort' => '0', 'title' => L('_FOLLOWERS_NO_SPACE_') . '/粉丝', 'key' => 'follow');
-        $apps[] = array('data-id' => 'topic_list', 'sort' => '0', 'title' => '信任的话题', 'key' => 'topic_list');
+        $apps[] = array('data-id' => 'topic_list', 'sort' => '0', 'title' => '关注的话题', 'key' => 'topic_list');
         $apps = $this->sortApps($apps);
 
         $default1 = array(array('data-id' => 'disable', 'title' => L('_DISABLE_'), 'items' => $menu), array('data-id' => 'enable', 'title' =>L('_ENABLE_'), 'items' => $apps));
@@ -87,6 +87,13 @@ str;
                 }
             }
         }
+
+        $role_ids = D("Admin/Role")->selectByMap(array('status' => 1));
+        foreach ($role_ids as $val) {
+            $role_id[$val['id']] = $val['title'];
+        }
+        unset($val);
+
         $admin_config->title(L('_USER_CONFIGURATION_'))->data($data)
             ->keyCheckBox('REG_SWITCH', L('_REGISTRATION_SWITCH_'), L('_THE_REGISTRATION_OPTION_THAT_ALLOWS_THE_USE_OF_THE_REGISTRATION_IS_CLOSED_'), array( 'email' => L('_MAILBOX_'), 'mobile' => L('_MOBILE_PHONE_')))
             ->keyRadio('EMAIL_VERIFY_TYPE', L('_MAILBOX_VERIFICATION_TYPE_'), L('_TYPE_MAILBOX_VERIFICATION_'), array(0 => L('_NOT_VERIFIED_'), 1 => L('_POST_REGISTRATION_ACTIVATION_MAIL_'), 2 => L('_EMAIL_VERIFY_SEND_BEFORE_REG_')))
@@ -95,9 +102,9 @@ str;
             ->keyText('NEW_USER_FANS', L('_NEW_USER_FANS_'), L('_ID_INPUT_SEPARATE_COMMA_'))
             ->keyText('NEW_USER_FRIENDS', L('_NEW_FRIENDS_'), L('_ID_INPUT_SEPARATE_COMMA_'))
 
-            ->keyKanban('REG_STEP', L('_REGISTRATION_STEP_'), L('_STEPS_TO_BE_MADE_AFTER_REGISTRATION_'))//看板
+//            ->keyKanban('REG_STEP', L('_REGISTRATION_STEP_'), L('_STEPS_TO_BE_MADE_AFTER_REGISTRATION_'))//看板
 
-            ->keyCheckBox('REG_CAN_SKIP', L('_WHETHER_THE_REGISTRATION_STEP_CAN_BE_SKIPPED_'), L('_CHECK_TO_SKIP_AND_YOU_CANT_SKIP_THE_DEFAULT_'),$mStep)
+//            ->keyCheckBox('REG_CAN_SKIP', L('_WHETHER_THE_REGISTRATION_STEP_CAN_BE_SKIPPED_'), L('_CHECK_TO_SKIP_AND_YOU_CANT_SKIP_THE_DEFAULT_'),$mStep)
 
             ->keyEditor('REG_EMAIL_VERIFY', L('_MAILBOX_VERIFICATION_TEMPLATE_'), L('_PLEASE_EMAIL_VERIFY_'),'all')
             ->keyEditor('REG_EMAIL_ACTIVATE', L('_MAILBOX_ACTIVATION_TEMPLATE_'), L('_PLEASE_USER_ACTIVE_'))
@@ -121,8 +128,10 @@ str;
 
             ->keyCheckBox('LOGIN_SWITCH', L('_LOGIN_PROMPT_SWITCH_'), L('_JUST_THE_TIP_OF_THE_LOGIN_BOX_'), array('email' => L('_MAILBOX_'), 'mobile' => L('_MOBILE_PHONE_')))
             ->keyText('SYNC_LOGIN_EMAIL_SUFFIX','第三方登录邮箱后缀','格式:@xx.xxx')
+            ->keySelect('SYNC_REGISTER_ROLE', '公众号授权登录用户初始身份组', '默认为第一个普通用户组', $role_id)
+
             ->group(L('_REGISTER_CONFIGURATION_'), 'REG_SWITCH,EMAIL_VERIFY_TYPE,MOBILE_VERIFY_TYPE,REG_STEP,REG_CAN_SKIP,NEW_USER_FOLLOW,NEW_USER_FANS,NEW_USER_FRIENDS')
-            ->group(L('_LOGIN_CONFIGURATION_'), 'OPEN_QUICK_LOGIN,LOGIN_SWITCH,SYNC_LOGIN_EMAIL_SUFFIX')
+            ->group(L('_LOGIN_CONFIGURATION_'), 'OPEN_QUICK_LOGIN,LOGIN_SWITCH,SYNC_LOGIN_EMAIL_SUFFIX,SYNC_REGISTER_ROLE')
             ->group(L('_MAILBOX_VERIFICATION_TEMPLATE_'), 'REG_EMAIL_VERIFY')
             ->group(L('_MAILBOX_ACTIVATION_TEMPLATE_'), 'REG_EMAIL_ACTIVATE')
             ->group(L('_SMS_CONFIGURATION_'), 'SMS_HTTP,SMS_UID,SMS_PWD,SMS_CONTENT,SMS_HOOK,SMS_RESEND')

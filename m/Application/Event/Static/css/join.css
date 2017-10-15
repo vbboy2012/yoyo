@@ -1,0 +1,56 @@
+.j-head {
+  padding: 10px 15px;
+  background-color: #ffffff;
+}
+.j-head .event-info {
+  padding-bottom: 10px;
+  display: flex;
+  border-bottom: 1px solid #e5e5e5;
+}
+.j-head .event-info img {
+  margin-right: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 3px;
+}
+.j-head .event-info .join-title {
+  color: #333333;
+  font-size: 14px;
+}
+.j-head .event-time {
+  padding-top: 10px;
+  color: #333333;
+  font-size: 12px;
+}
+.join-user {
+  margin: 15px 0 10px 15px;
+}
+.info-box {
+  display: flex;
+  height: 45px;
+  align-items: center;
+}
+.info-box input {
+  display: block;
+  width: 200px;
+  height: 40px;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  margin: 0;
+  font-family: inherit;
+  font-size: 13px;
+  color: #999999;
+  background: 0 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+}
+.info-box .info-np {
+  margin-right: 30px;
+  color: #333333;
+  font-size: 14px;
+}

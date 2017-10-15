@@ -25,7 +25,17 @@ $(function () {
     // 上传图片
     $('[data-role="add_cover"]').click(function () {
         $(this).parent().css('height', '120px');
-        $('.addCover').uploadImage({limit:5});
+        $(this).css('display', 'none') ;
+        var add = $('.addCover') ;
+        if (is_weixin()&&is_android()) {
+            $('.img-list').css('display', 'inline-flex') ;
+            add.addClass('image_uploader') ;
+        }else{
+            if (add.hasClass('image_uploader') == false) {
+                add.html('') ;
+                add.uploadImage({limit:1});
+            }
+        }
     });
     // 选择分类
     var crowdIdArr = [];
@@ -231,6 +241,7 @@ $(function () {
             }
         })
     });
+    add_img(5);
 });
 
 function addscore() {

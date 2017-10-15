@@ -14,9 +14,13 @@
         </a>
         <p> <a ucard="{$user_info.uid}" class="n-name" href="{$user_info.space_url}" title="">{$user_info.nickname|htmlspecialchars}</a></p>
         <p class="f-l">
-            <span><a href="{:U('Ucenter/Index/fans',array('uid'=>$user_info['uid']))}" title="{:L('_FANS_NUMBER_')}">{$user_info.fans}</a>{:L('_FANS_')}</span>
+            <span>{:L('_BEI_')}{$user_info.fans}{:L('_PEOPLE_')}{:L('_FOLLOWERS_')}</span>
             <span class="fen-ge">/</span>
-            <span><a href="{:U('Ucenter/Index/following',array('uid'=>$user_info['uid']))}" title="{:L('_FOLLOWERS_NUMBER_')}">{$user_info.following}</a>{:L('_FOLLOWERS_')}</span>
+            <span>{:L('_BEI_')}{$user_info.trust}{:L('_PEOPLE_')}{:L('_TRUST_')}</span>
+            <span class="fen-ge">/</span>
+            <span>{:L('_FOLLOWERS_')}{$user_info.following}{:L('_PEOPLE_')}</span>
+            <span class="fen-ge">/</span>
+            <span>{:L('_TRUST_')}{$user_info.trusting}{:L('_PEOPLE_')}</span>
         </p>
         <div class="bottom-wrap row">
             <div class="col-xs-8 text-more">

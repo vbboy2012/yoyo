@@ -69,7 +69,7 @@
 <block name="script">
     <script src="__JS__/active.js"></script>
     <script>
-        //实现信任板块版主的逻辑
+        //实现关注板块版主的逻辑
         $(document).on('click','[data-role="follow"]', function () {
             var $this = $(this);
             var follow = $(this).attr('data-follow');
@@ -80,9 +80,9 @@
                     if (res){
                         $this.text("{:L('_FOLLOWED_')}");
                         $this.attr("data-follow",'unfollow');
-                        $.toast('信任成功！')
+                        $.toast('关注成功！')
                     }else{
-                        $.toast('信任失败！')
+                        $.toast('关注失败！')
                     }
                 })
             }else{
@@ -91,9 +91,9 @@
                     if (res){
                         $this.text("+ {:L('_FOLLOWERS_')}");
                         $this.attr("data-follow",'follow');
-                        $.toast('取消信任成功！')
+                        $.toast('取消关注成功！')
                     }else{
-                        $.toast('取消信任失败！')
+                        $.toast('取消关注失败！')
                     }
                 })
             }

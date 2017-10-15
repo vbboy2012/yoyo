@@ -1,0 +1,19 @@
+<volist name="friend_list" id="vo">
+    <li class="friend-li">
+        <a external href="{:U('Ucenter/Index/mine',array('uid'=>$vo['uid']))}">
+            <img class="avatar" src="{$vo.avatar512}" alt="">
+        </a>
+        <div class="name">
+            <a external href="{:U('Ucenter/Index/mine',array('uid'=>$vo['uid']))}">{$vo.nickname}</a>
+        </div>
+        <if condition="$vo['is_follow'] eq 1">
+            <a data-role="follow" data-value="unfollow" data-uid="{$vo.uid}" class="follow do-active">已关注</a>
+            <else/>
+            <if condition="$vo['uid'] eq is_login()">
+                <a class="follow self">自己</a>
+                <else/>
+                <a data-role="follow" data-value="follow" data-uid="{$vo.uid}" class="follow do-active">关注</a>
+            </if>
+        </if>
+    </li>
+</volist>

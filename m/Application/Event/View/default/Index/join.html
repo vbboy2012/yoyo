@@ -1,0 +1,50 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">{:L('_SIGN_')}</a>
+            </header>
+            <div class="content infinite-scroll">
+                <div class="content-block noEdge">
+                    <!-- 参加页面 start-->
+                    <div class="j-head">
+                        <div class="event-info">
+                            <img src="{$event.cover}"/>
+                            <div class="join-title">{$event.title}</div>
+                        </div>
+                        <div class="event-time">{:L('_EVENT_TIME_')}：{$event.sTime|date='Y.m.d',###} - {$event.eTime|date='Y.m.d',###}</div>
+                    </div>
+                    <div class="join-user">申请人信息</div>
+                    <div class="bg-jamb">
+                        <div class="info-box">
+                            <div class="info-np">姓名</div>
+                            <input type="text" placeholder="请输入您的真实姓名" name="name"/>
+                        </div>
+                    </div>
+                    <input type="hidden" name="id" value="{$event.id}"/>
+                    <div class="bg-jamb">
+                        <div class="info-box">
+                            <div class="info-np">手机</div>
+                            <input type="text" placeholder="请输入您常用的手机号" name="phone"/>
+                        </div>
+                    </div>
+                    <!-- 参加页面 end-->
+                    <!--参加按钮 start-->
+                    <div class="sub-button">
+                        <button data-role="send-event" type="button" data-url="{:U('Index/doSign')}" data-to-url="{:U('Index/detail',array('id'=>$event['id']))}">{:L('_REGISTER_OP_')}</button>
+                    </div>
+                    <!--参加按钮 end-->
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/join.js"></script>
+</block>

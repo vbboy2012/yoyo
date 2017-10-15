@@ -281,10 +281,30 @@ function sendSMS($mobile, $content)
     }
     $name = get_addon_class($sms_hook);
     $class = new $name();
-    return $class->sendSms($mobile, $content);
+    $return = $class->sendSms($mobile, $content);
+    send_sms_log($mobile, $content, $return) ;
+    return $return ;
 
 }
 
+/**记录短信发送行为
+ * @param $mobile
+ * @param $content
+ * @author szh(施志宏) szh@ourstu.com
+ */
+function send_sms_log($mobile, $content, $return) {
+    $msg['mobile'] = $mobile ;
+    $msg['content'] = $content ;
+    $msg['return'] = serialize($return) ;
+    $msg['status'] = 1 ;
+    $msg['create_time'] = time() ;
+    $mark = '' ;
+    if (!is_mobile()) {
+        $mark = 'PC端登陆' ;
+    }
+    $msg['type'] = $mark.'移动端' ;
+    M('send_sms_log')->add($msg) ;
+}
 
 /**
  * get_kanban_config  获取看板配置

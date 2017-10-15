@@ -32,6 +32,9 @@ class UploadAvatarWidget extends Controller
 
             if($avatar['driver'] == 'local'){
                 $avatar_path = "/Uploads/Avatar".$avatar['path'];
+              /*  if(file_exists($avatar_path)) {
+                    $avatar_path=
+                }*/
                 return $this->getImageUrlByPath($avatar_path, $size);
             }else{
                 $new_img = $avatar['path'];

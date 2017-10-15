@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_forum_follow` (
   `uid` int(11) NOT NULL,
   `forum_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COMMENT='版块信任';
+) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COMMENT='版块关注';
 
 
 -- -----------------------------
@@ -57,6 +57,18 @@ CREATE TABLE IF NOT EXISTS `ocenter_forum_lzl_reply` (
   `is_del` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=85 DEFAULT CHARSET=utf8;
+
+
+-- -----------------------------
+-- 表结构 `ocenter_forum_pay`
+-- -----------------------------
+CREATE TABLE IF NOT EXISTS `ocenter_forum_pay` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL,
+  `forum_post_id` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 -- -----------------------------
@@ -83,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_forum_post` (
   `pay_num` int(11) NOT NULL COMMENT '付费数量',
   `pay_on` text NOT NULL COMMENT '是否开启付费下载',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=140 ;
+) ENGINE=MyISAM AUTO_INCREMENT=140 DEFAULT CHARSET=utf8;
 
 
 -- -----------------------------
@@ -115,6 +127,18 @@ CREATE TABLE IF NOT EXISTS `ocenter_forum_type` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='论坛分类表';
 
+
+-- 新增加精字段
+ALTER TABLE  `ocenter_forum_post` ADD  `is_essence` INT( 1 ) NOT NULL DEFAULT  '0' COMMENT  '是否加精';
+
+ALTER TABLE `ocenter_forum_post` ADD `file_id` INT(11) NULL DEFAULT '0';
+ALTER TABLE  `ocenter_forum_post` ADD  `pay_type` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT  '付费类型';
+ALTER TABLE  `ocenter_forum_post` ADD  `pay_num` INT( 11 ) NOT NULL COMMENT  '付费数量';
+ALTER TABLE  `ocenter_forum_post` ADD  `pay_on` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT  '是否开启付费下载';
+ALTER TABLE  `ocenter_forum_post` ADD  `hide` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT  '是否回复可见';
+
+
+
 -- -----------------------------
 -- 表内记录 `ocenter_forum`
 -- -----------------------------
@@ -125,14 +149,3 @@ INSERT INTO `ocenter_forum` VALUES ('2', '官方公告', '1417424922', '2', '1',
 -- -----------------------------
 INSERT INTO `ocenter_forum_type` VALUES ('1', '默认分类', '1', '0', '0');
 INSERT INTO `ocenter_forum_type` VALUES ('2', '官方板块', '1', '1', '0');
-
--- -----------------------------
--- 表的结构 `ocenter_forum_pay`
--- -----------------------------
-CREATE TABLE IF NOT EXISTS `ocenter_forum_pay` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) NOT NULL,
-  `forum_post_id` int(11) NOT NULL,
-  `create_time` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

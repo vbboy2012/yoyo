@@ -1,65 +1,47 @@
-<div class="modal fade announce" id="AnnounceModel" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="myModalLabel">
-                    公告
-                </h2>
+<div class="announce" data-role="AnnounceModel">
+    <div class="ann-body">
+        <div>
+            <h1 class="ann-b-title">{$announce.title}</h1>
+            <div class="ann-content">
+                {$announce.content}
             </div>
-            <div class="modal-body">
-               <div>
-                   <h4>{$announce.title}</h4>
-                   <div>
-                       {$announce.content}
-                   </div>
-               </div>
-            </div>
-            <div class="modal-footer">
-                <neq name="announce.link" value="">
-                    <a type="button" data-role="set-announce-arrive" data-url="{$announce['link']}" class="btn btn-default announce-btn">
-                        查看详情
-                    </a>
-                    <else/>
-                    <a type="button" data-role="set-announce-arrive" class="btn btn-default announce-btn">
-                        了解
-                    </a>
-                </neq>
-                <a type="button" data-role="set-announce-arrive" class="btn btn-default announce-btn">
-                    忽略
-                </a>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+    </div>
+    <div class="ann-footer">
+        <neq name="announce.link" value="">
+            <a type="button" data-role="set-announce-arrive" class="btn btn-default ann-button">
+                取消
+            </a>
+            <a type="button" data-role="set-announce-arrive" data-url="{$announce['link']}" class="btn btn-default ann-button">
+            查看详情
+            </a>
+        <else/>
+            <a type="button" data-role="set-announce-arrive" class="btn btn-default ann-button">
+            了解
+            </a>
+        </neq>
+    </div>
 </div>
-<php>
-    if(strlen($announce['content'])>400){
-</php>
-<style>
-    .announce .modal-dialog{
-        width: 600px;
-    }
-</style>
-<php>
-    }
-</php>
-
+<div class="announce-hide"></div>
+<script src="__PUBLIC__/js/announce.js"></script>
 <script>
     var announce_id="{$announce['id']}";
+    var hide_box = $('.announce-hide') ;
+    var content_box = $('[data-role="AnnounceModel"]') ;
     $(function(){
-        $('#AnnounceModel').modal({
-            backdrop:'static',
-            keyboard:false,
-            show:true
-        });
+        hide_box.fadeIn(500) ;
+        content_box.fadeIn(500) ;
         $('[data-role="set-announce-arrive"]').click(function(){
             un_show_announce();
             var url=$(this).attr('data-url');
             if(url!=undefined){
                 window.open(url);
             }
-            $('#AnnounceModel').modal('hide');
+            hide_box.fadeOut(500) ;
+            content_box.fadeOut(500) ;
         });
     });
+
     var un_show_announce=function(){
         if(is_login()){
             $.post(U('Core/Announce/setArrive'),{announce_id:announce_id});
@@ -113,5 +95,5 @@
         newArr.push(oneAnnounce);
         unShow=newArr.join('|');
         return unShow;
-    }
+    };
 </script>

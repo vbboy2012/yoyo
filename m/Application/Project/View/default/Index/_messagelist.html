@@ -1,0 +1,35 @@
+<volist name="message" id="list">
+    <switch name="list.type">
+        <case value="Project_project">
+            <!--圈子消息-->
+            <div class="baseBox">
+                <div class="info">
+                    <div class="avatar">
+                        <img src="{$list.content.user.avatar128}" alt="">
+                    </div>
+                    <div class="name">
+                        <p class="textMore">{$list.content.user.nickname}</p>
+                        <p class="location textMore">{$list.create_time|friendlyDate}</p>
+                    </div>
+                </div>
+                <a href="{$list.content.web_url}">
+                    <div class="proContent">{$list.content.content}</div>
+                </a>
+            </div>
+        </case>
+        <case value="Ticket_ticket">
+            <div class="baseBox">
+                <div class="info">
+                    <div class="avatar">
+                        <img src="{$list.content.user.avatar128}" alt="">
+                    </div>
+                    <div class="name">
+                        <p class="textMore">{$list.content.title}</p>
+                        <p class="location textMore">{$list.create_time|friendlyDate}</p>
+                    </div>
+                </div>
+                <div class="proContent">{$list.content.content}，请前往pc端查看</div>
+            </div>
+        </case>
+    </switch>
+</volist>

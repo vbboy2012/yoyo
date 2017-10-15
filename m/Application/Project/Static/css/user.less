@@ -1,0 +1,90 @@
+@import "core";
+.me a{
+  width:100%;
+}
+.mIntro{
+   color: @minorTextColor;
+  margin-top: 5px;
+ }
+.baseBox{
+  margin-bottom: .5rem;
+  .list-block{
+    margin: 0;
+    font-size: .7rem;
+    .myBox {
+      padding: 10px 0;
+      .flexLeft{
+        width: 100%;
+      }
+        .leftDiv {
+          margin-left: 10px;
+          .eAvatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+          }
+        }
+        .rightDiv{
+          flex-direction: row;
+          flex: 2;
+        }
+        .iconfont{
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+        }
+      .mName{
+        font-size: 16px;
+      }
+    }
+    .myNum{
+      display: flex;
+      padding: 10px 0;
+      border-top: 1px solid #eee;
+      .oneNum{
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+      }
+    }
+  }
+  h3{
+    border-left: 2px solid @themeColor;
+    padding-left: 10px ;
+    margin:10px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .ask{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .button-color{
+      background-color: @themeColor;
+      color: @comColor;
+    }
+  }
+  .load{
+    width: 74px;
+    font-size: 14px;
+    .iconfont{
+      font-size: 14px;
+    }
+  }
+}
+.unbinding{
+  color: #fff;
+  background-color:#ec725d;
+}
+.binding{
+  display: inline-block;
+  height:25px;
+  padding:0 10px;
+  border-radius:5px;
+  line-height:25px;
+  text-align: center;
+  margin-bottom: 7px;
+  font-size: 13px;
+}

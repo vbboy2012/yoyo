@@ -1,0 +1,82 @@
+[ 2017-10-15T07:59:58+08:00 ] 127.0.0.1 /yoyo/index.php?s=/ucenter/public/getinformation.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.001201s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001314s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.008954s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.003878s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000516s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.016417s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.017032s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.004419s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000598s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000193s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000246s ]
+SQL: SHOW COLUMNS FROM `ocenter_message` [ RunTime:0.003285s ]
+SQL: SHOW COLUMNS FROM `ocenter_message` [ RunTime:0.002529s ]
+SQL: SELECT * FROM `ocenter_message` WHERE ( to_uid=0 and  is_read=0  and last_toast=0 ) ORDER BY id desc LIMIT 99999   [ RunTime:0.000404s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/MessageModel.class.php 第 743 行.
+SQL: UPDATE `ocenter_message` SET `last_toast`=1508025598 WHERE ( to_uid=0 and  is_read=0 and last_toast=0 ) [ RunTime:0.001112s ]
+SQL: SHOW COLUMNS FROM `ocenter_talk_push` [ RunTime:0.003568s ]
+SQL: SELECT * FROM `ocenter_talk_push` WHERE `uid` = 0 AND `status` = 0  [ RunTime:0.000343s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/TalkPushModel.class.php 第 21 行.
+SQL: UPDATE `ocenter_talk_push` SET `status`=1 WHERE `uid` = 0 AND `status` = 0 [ RunTime:0.000319s ]
+SQL: SHOW COLUMNS FROM `ocenter_talk_message_push` [ RunTime:0.003592s ]
+SQL: SELECT * FROM `ocenter_talk_message_push` WHERE `uid` = 0 AND `status` = 0  [ RunTime:0.000386s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/TalkMessagePushModel.class.php 第 22 行.
+SQL: UPDATE `ocenter_talk_message_push` SET `status`=1 WHERE `uid` = 0 AND `status` = 0 [ RunTime:0.000508s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Ucenter/Controller/PublicController.class.php 第 147 行.
+
+[ 2017-10-15T08:00:07+08:00 ] 127.0.0.1 /yoyo/index.php?s=/ucenter/public/getinformation.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000715s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000793s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.002585s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000402s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000285s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.008570s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.008913s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.002234s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000420s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000113s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000138s ]
+SQL: SHOW COLUMNS FROM `ocenter_message` [ RunTime:0.001846s ]
+SQL: SHOW COLUMNS FROM `ocenter_message` [ RunTime:0.002803s ]
+SQL: SELECT * FROM `ocenter_message` WHERE ( to_uid=0 and  is_read=0  and last_toast=0 ) ORDER BY id desc LIMIT 99999   [ RunTime:0.000519s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/MessageModel.class.php 第 743 行.
+SQL: UPDATE `ocenter_message` SET `last_toast`=1508025607 WHERE ( to_uid=0 and  is_read=0 and last_toast=0 ) [ RunTime:0.000838s ]
+SQL: SHOW COLUMNS FROM `ocenter_talk_push` [ RunTime:0.001780s ]
+SQL: SELECT * FROM `ocenter_talk_push` WHERE `uid` = 0 AND `status` = 0  [ RunTime:0.000199s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/TalkPushModel.class.php 第 21 行.
+SQL: UPDATE `ocenter_talk_push` SET `status`=1 WHERE `uid` = 0 AND `status` = 0 [ RunTime:0.000147s ]
+SQL: SHOW COLUMNS FROM `ocenter_talk_message_push` [ RunTime:0.002824s ]
+SQL: SELECT * FROM `ocenter_talk_message_push` WHERE `uid` = 0 AND `status` = 0  [ RunTime:0.000237s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/TalkMessagePushModel.class.php 第 22 行.
+SQL: UPDATE `ocenter_talk_message_push` SET `status`=1 WHERE `uid` = 0 AND `status` = 0 [ RunTime:0.000212s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Ucenter/Controller/PublicController.class.php 第 147 行.
+

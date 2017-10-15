@@ -23,7 +23,7 @@
 <link href="/yoyo/Public/static/os-loading/loading.css" rel="stylesheet">
 <link href="/yoyo/Public/css/core.css" rel="stylesheet"/>
 <link type="text/css" rel="stylesheet" href="/yoyo/Public/js/ext/magnific/magnific-popup.css"/>
-<link type="text/css" rel="stylesheet" href="//at.alicdn.com/t/font_m3e1llc4usypsyvi.css"/>
+
 <!--<script src="/yoyo/Public/js/jquery-2.0.3.min.js"></script>
 <script type="text/javascript" src="/yoyo/Public/js/com/com.functions.js"></script>
 
@@ -118,15 +118,31 @@
 </div>
 <![endif]-->
 <script src="/yoyo/Public/js/canvas.js"></script>
-<link rel="stylesheet" href="http://at.alicdn.com/t/font_iwj71cmtw1dobt9.css">
+<script src="/yoyo/Public/css/fa.css"></script>
+<style>
+    body {
+        color: #34495e;
+        font-family: "Open Sans", sans-serif;
+        padding: 0px !important;
+        margin: 0px !important;
+        direction: "ltr";
+        font-size: 14px; }
+    .navbar-brand{
+        font-size: 20px;
+        color: #43cb83;
+    }
+    .navbar-brand:hover{
+        color: #2a985e;
+    }
+</style>
+
 <script>
 
 </script>
 <div class="container-fluid topp-box clearfloat">
     <div class="col-xs-2 box">
-        <div class="img-wrap">
-            <?php $logo = get_cover(modC('LOGO',0,'Config'),'path'); $logo = $logo?$logo:'/yoyo/Public/images/logo.png'; ?>
-            <a class="navbar-brand logo" href="<?php echo U('Home/Index/index');?>"><img src="<?php echo ($logo); ?>"/></a>
+        <div class="" style="">
+            <a class="navbar-brand" href="<?php echo U('Home/Index/index');?>"><i class="icon icon-compass icon-2x"></i>YOYOCOINS</a>
         </div>
     </div>
     <div class="col-xs-7 box ">
@@ -255,7 +271,7 @@
 
                     <div class="link-wrap">
                         <div class="link-box row">
-                            <a href="<?php echo ($self["space_url"]); ?>">
+                            <a href="<?php echo U('Ucenter/index/information',array('uid'=>$self['uid']));?>">
                                 <div class="col-xs-6 l-p0">
                                     <i class="os-icon-user"></i>
                                     个人主页
@@ -388,9 +404,13 @@
         </a>
         <p> <a ucard="<?php echo ($user_info["uid"]); ?>" class="n-name" href="<?php echo ($user_info["space_url"]); ?>" title=""><?php echo (htmlspecialchars($user_info["nickname"])); ?></a></p>
         <p class="f-l">
-            <span><a href="<?php echo U('Ucenter/Index/fans',array('uid'=>$user_info['uid']));?>" title="<?php echo L('_FANS_NUMBER_');?>"><?php echo ($user_info["fans"]); ?></a><?php echo L('_FANS_');?></span>
+            <span><?php echo L('_BEI_'); echo ($user_info["fans"]); echo L('_PEOPLE_'); echo L('_FOLLOWERS_');?></span>
             <span class="fen-ge">/</span>
-            <span><a href="<?php echo U('Ucenter/Index/following',array('uid'=>$user_info['uid']));?>" title="<?php echo L('_FOLLOWERS_NUMBER_');?>"><?php echo ($user_info["following"]); ?></a><?php echo L('_FOLLOWERS_');?></span>
+            <span><?php echo L('_BEI_'); echo ($user_info["trust"]); echo L('_PEOPLE_'); echo L('_TRUST_');?></span>
+            <span class="fen-ge">/</span>
+            <span><?php echo L('_FOLLOWERS_'); echo ($user_info["following"]); echo L('_PEOPLE_');?></span>
+            <span class="fen-ge">/</span>
+            <span><?php echo L('_TRUST_'); echo ($user_info["trusting"]); echo L('_PEOPLE_');?></span>
         </p>
         <div class="bottom-wrap row">
             <div class="col-xs-8 text-more">
@@ -408,7 +428,7 @@
 </div>
             <div class="uc-cont">
                 <div class="nav-wrap">
-                    <?php if(ACTION_NAME=='information'){ $tabClass['user_data'] = 'active'; } elseif(ACTION_NAME=='fans'||ACTION_NAME=='following'){ $tabClass['user_fans'] = 'active'; } elseif(ACTION_NAME=='topiclist'){ $tabClass['user_topic'] = 'active'; } elseif(ACTION_NAME=='rankverify'||ACTION_NAME=='rank'||ACTION_NAME=='rankverifyfailure'||ACTION_NAME=='rankverifywait'){ $tabClass['user_rank'] = 'active'; } else{ $tabClass[$type] = 'active'; } ?>
+                    <?php if(ACTION_NAME=='information'){ $tabClass['user_data'] = 'active'; } elseif(ACTION_NAME=='fans'||ACTION_NAME=='following'){ $tabClass['user_fans'] = 'active'; } elseif(ACTION_NAME=='ad'){ $tabClass['user_ad'] = 'active'; } elseif(ACTION_NAME=='rankverify'||ACTION_NAME=='rank'||ACTION_NAME=='rankverifyfailure'||ACTION_NAME=='rankverifywait'){ $tabClass['user_rank'] = 'active'; } else{ $tabClass[$type] = 'active'; } ?>
 
         <style>
             .nav.navbar-nav li a.active{
@@ -419,14 +439,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav new-nav">
-            <?php if(!empty($appArr)): if(is_array($appArr)): $i = 0; $__LIST__ = $appArr;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
-                        <?php switch($vo["key"]): case "follow": ?><a href="<?php echo U('following',array('uid'=>$user_info['uid']));?>" class="<?php echo ($tabClass["user_fans"]); ?>"><?php echo ($vo["title"]); ?></a><?php break;?>
-                            <?php case "info": ?><a href="<?php echo U('information',array('uid'=>$user_info['uid']));?>" class="<?php echo ($tabClass["user_data"]); ?>"><?php echo ($vo["title"]); ?></a><?php break;?>
-                            <?php case "rank_title": ?><a href="<?php echo U('rank',array('uid'=>$user_info['uid']));?>" class="<?php echo ($tabClass["user_rank"]); ?>"><?php echo ($vo["title"]); ?></a><?php break;?>
-                            <?php case "topic_list": ?><a href="<?php echo U('topicList',array('uid'=>$user_info['uid']));?>" class="<?php echo ($tabClass["user_topic"]); ?>"><?php echo ($vo["title"]); ?></a><?php break;?>
-                            <?php default: ?><a href="<?php echo U('appList',array('type'=>$key,'uid'=>$user_info['uid']));?>"  class="<?php echo ($tabClass[$key]); ?>"><?php echo ($vo["title"]); ?></a><?php endswitch;?>
-                    </li><?php endforeach; endif; else: echo "" ;endif; endif; ?>
-
+            <li><a href="<?php echo U('information',array('uid'=>$user_info['uid']));?>" class="<?php echo ($tabClass["user_data"]); ?>"><?php echo L('_INFO_PEOPLE_');?></a></li>
+            <li><a href="<?php echo U('following',array('uid'=>$user_info['uid']));?>" class="<?php echo ($tabClass["user_fans"]); ?>"><?php echo L('_FOLLOWERS_'); echo L('_USER_');?></a></li>
+            <li><a href="<?php echo U('ad',array('uid'=>$user_info['uid']));?>" class="<?php echo ($tabClass["user_ad"]); ?>"><?php echo L('_USER_'); echo L('_AD_');?></a></li>
         </ul>
     </div>
     <!-- /.navbar-collapse -->
@@ -438,13 +453,13 @@
                             <ul class="nav nav-pills ucenter-tab">
                                 <li   <?php if(($tab) == "following"): ?>class="active"<?php endif; ?>>
                                     <a class="my-num my-after" href="<?php echo U('Ucenter/Index/following',array('uid'=>$user_info['uid']));?>">
-                                        <?php if($user_info['uid'] == is_login()): ?><strong><?php echo ($user_info["following"]); ?></strong><?php else: ?>TA的<?php endif; echo L('_DE_FOLLOWER_');?>
+                                        <?php echo L('_DE_FOLLOWER_'); echo L('_USER_');?>
                                     </a>
                                 </li>
 
                                 <li<?php if(($tab) == "fans"): ?>class="active"<?php endif; ?>>
                                     <a class="my-num" href="<?php echo U('Ucenter/Index/fans',array('uid'=>$user_info['uid']));?>">
-                                        <?php if($user_info['uid'] == is_login()): ?><strong><?php echo ($user_info["fans"]); ?></strong><?php else: ?>Ta的<?php endif; echo L('_DE_FANS_');?>
+                                        被<?php echo L('_DE_FOLLOWER_'); echo L('_USER_');?>
                                     </a>
                                 </li>
                             </ul>

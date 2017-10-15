@@ -1,0 +1,65 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+    <link rel="stylesheet" href="__CSS__/expand.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a external class="iconfont icon-xiangzuojiantou pull-left button button-link"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title open-about">基本资料</a>
+            </header>
+            <div class="content userdata">
+                <div class="content-block noEdge">
+                    <div class="content">
+                        <div class="content-block">
+                            <div class="buttons-row">
+                                <volist name="profile_group_list" id="group_vl" key="type_count">
+                                    <a href="#tab{$type_count}" class="tab-link button <eq name="type_count" value="1">active</eq>">{$group_vl.profile_name}</a>
+                                </volist>
+                            </div>
+                        </div>
+                        <div class="tabs">
+                            <volist name="profile_group_list" id="vo" key="type_count">
+                                <div id="tab{$type_count}" class="tab <eq name="type_count" value="1">active</eq>">
+                                    <div class="content-block">
+                                        <form method="post" data-role="" data-url="{:U('edit_expandinfo')}" id="edit_expandinfo_{$vo.id}">
+                                            <input type="hidden" name="profile_group_id" value="{$vo.id}">
+                                            <volist name="vo['info_list']" id="info_vl">
+                                                <div class="baseBox">
+                                                    <div class="list-block">
+                                                        {:W('Ucenter/InputRender/inputRender',array($info_vl,'personal'))}
+                                                    </div>
+                                                </div>
+                                            </volist>
+
+
+                                            <if condition="count($vo['info_list']) neq 0">
+                                                <input type="button" value="{:L('_SAVE_')}" id="submit_btn" data-role="submit_btn" data-button-id="{$vo.id}"
+                                                       class="am-btn am-btn-primary am-btn-block" style="z-index: auto">
+                                                <else/>
+                                                <span class="expandinfo-noticeinfo">{:L('_MESSAGE_EXPAND_NONE_')}{:L('_EXCLAMATION_')}</span>
+                                            </if>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </volist>
+
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+
+    <if condition="$uid eq is_login()">
+        <script src="__JS__/expand.js"></script>
+    </if>
+
+</block>

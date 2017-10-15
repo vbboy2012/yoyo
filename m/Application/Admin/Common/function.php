@@ -670,3 +670,17 @@ function parse_package($type)
     }
     return '更新包';
 }
+
+/**短息行为列表页切割信息，优化展示
+ * @param $data
+ * @param int $length
+ * @param string $code
+ * @return string
+ * @author szh(施志宏) szh@ourstu.com
+ */
+function cut_sms_info($data, $length=57, $code='utf-8'){
+    if (is_string($data) && mb_strlen($data, $code)>$length) {
+        $data = mb_substr($data, 0, $length, $code) . '...' ;
+    }
+    return $data ;
+}

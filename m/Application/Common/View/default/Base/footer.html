@@ -1,0 +1,17 @@
+<nav class="bar bar-tab bottomBar">
+    <a id="bottom_flag_feed" class="tab-item external" href="{:U('Project/Index/index')}">
+        <span class="icon iconfont icon-guizhangzhidu"></span>
+        <span class="tab-label">项目</span>
+    </a>
+    <a id="bottom_flag_message" class="tab-item external" href="{:U('Project/Index/message')}">
+        <span class="icon iconfont icon-xiaoxi1"></span>
+        <span class="tab-label">消息</span>
+        <gt name="count" value="0">
+            <span class="badge">{$count}</span>
+        </gt>
+    </a>
+    <a id="bottom_flag_mine" class="tab-item external" href="{:U('Project/Index/user')}">
+        <span class="icon iconfont icon-wode1"></span>
+        <span class="tab-label">我的</span>
+    </a>
+</nav>

@@ -1,0 +1,55 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/schedule.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a external="" class="iconfont icon-xiangzuojiantou pull-left button button-link" href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">{$project.title}</a>
+            </header>
+            <include file="./Application/Common/View/default/Project/footer.html"/>
+            <div class="content infinite-scroll">
+                <div class="content-block noEdge">
+                     <div class="plan" >
+                        <div class="cover"><img src="{$project.cover|getThumbImageById=170,170}" alt="封面"></div>
+                        <div class="nwInfo">
+                            <a href="#" class="cont">{$project.title}</a>
+                            <div class="textMore">开发阶段</div>
+                            <!--进度条-->
+                            <div class="progress">
+                                <div class="am-progress">
+                                    <div class="am-progress-bar" style="width: {$project.progress}%"></div>
+                                </div>
+                                <div class="text-color text-font">{$project.progress}%</div>
+                            </div>
+                        </div>
+                     </div>
+
+                    <div class="buttons-tab">
+                        <a href="#tab1"   class="tab-link active button" data-role="progress" data-total="">进度</a>
+                        <a href="#tab2" class="tab-link button" data-role="document" data-total="">文档</a>
+                    </div>
+                    <div class="mt" data-distance="100" data-ptr-distance="55">
+                        <div class="tabs">
+                            <ul id="tab1" class="tab active list" >
+                                <include file="_progress" />
+                            </ul>
+                            <ul id="tab2" class="tab  list" >
+                                <if condition="$pro eq ''">
+                                    <h3 class="noMore">暂时还没有上传文档</h3>
+                                    <else/>
+                                    <volist name="pro" id="vo">
+                                        <include file="_document" />
+                                    </volist>
+                                </if>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

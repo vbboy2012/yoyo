@@ -290,7 +290,10 @@ abstract class Controller
     protected function success($message = '', $jumpUrl = '', $ajax = false)
     {
         $tip = '';
-        cookie('score_tip') !== null && $tip = cookie('score_tip') && cookie('score_tip', null);
+        if($message && cookie('score_tip') !== null) {
+            $tip = cookie('score_tip');
+            cookie('score_tip', null);
+        }
         $this->dispatchJump($message . $tip, 1, $jumpUrl, $ajax);
     }
 

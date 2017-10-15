@@ -1,0 +1,8 @@
+<div class="col-30">{$field_name}</div>
+<ul class="expandinfo-ul col-70" id="expand_{$field_id}" style="">
+    <volist name="items" id="vl">
+        <li class="expandinfo-li">
+            <label><input class="radio-inline" style="" type="radio" name="expand_{$field_id}" value="{$vl.value}" {$vl.checked}>{$vl.value|htmlspecialchars}</label>
+        </li>
+    </volist>
+</ul>

@@ -1,0 +1,25 @@
+<li>
+    <switch name="vo['file']['ext']">
+            <case value="pdf">
+                <div class="item-img"><i class="iconfont icon-pdf"></i></div>
+            </case>
+            <case value="docx|doc">
+                <div class="item-img"><i class="iconfont icon-word"></i></div>
+            </case>
+            <case value="rp">
+                <div class="item-img"><i class="iconfont icon-rp"></i></div>
+            </case>
+            <case value="zip|rar">
+                <div class="item-img"><i class="iconfont icon-zip"></i></div>
+            </case>
+        </switch>
+    <div class="text">
+        <span class="flexDiv">{$vo.name}</span>
+        <span style="margin-top: 10px;display: flex">{$vo.create_time|date='Y-m-d',###} {$vo.file.size}</span>
+    </div>
+    <div class="download">
+        <a href="{$vo.file_url}">
+            <i class="icon icon-download"></i>
+        </a>
+    </div>
+</li>

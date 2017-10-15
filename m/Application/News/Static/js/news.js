@@ -80,49 +80,71 @@ $(function () {
 
     var $swiper = null;
 
-
-//上传封面
-$('[data-role="add_cover"]').click(function () {
-    $(this).parent().css('height', '120px');
-    $('.addCover').uploadImage({limit:1});
-});
-
-// 选择圈子所属分类
-var crowdIdArr = [];
-var crowdTitleArr = [];
-$('.crowd_by_id').each(function(){
-    crowdIdArr.push($(this).text());
-});
-$('.crowd_by_title').each(function(){
-    crowdTitleArr.push($(this).text());
-});
-$('[data-role="chose_type"]').picker({
-    formatValue:function(picker, value, displayValue){
-        $('[data-role="crowd_type"]').val(value);
-        return displayValue;
-    },
-    toolbarTemplate: '<header class="bar bar-nav">\
-  <button class="button button-link pull-right close-picker">确定</button>\
-  <h1 class="title">选择分类</h1>\
-  </header>',
-    cols: [
-        {
-            textAlign: 'center',
-            values: crowdIdArr,
-            displayValues: crowdTitleArr
+    // 上传封面
+    $('[data-role="add_cover"]').click(function () {
+        $(this).parent().css('height', '120px');
+        $(this).css('display', 'none') ;
+        var add = $('.addCover') ;
+        if (is_weixin()&&is_android()) {
+            $('.img-list').css('display', 'inline-flex') ;
+            add.addClass('image_uploader') ;
+        }else{
+            if (add.hasClass('image_uploader') == false) {
+                add.html('') ;
+                add.uploadImage({limit:2});
+            }
         }
-    ]
-});
-
-//完成创建
-$('[data-role="complete"]').click(function () {
-    var data = $("#add_crowd").serialize();
-    var html = $editor.html();
-    var url = $("#add_crowd").attr('data-url');
-    $.post(url,{data:data,html:html}, function (msg) {
-        handleAjax(msg);
+        $(document).find('[data-role="tip-cover"]').show(500) ;
+        $(document).find('[data-role="tip-banner"]').show(500) ;
     });
-});
+    $(document).on('click', '[data-role="del_image"]', function(){
+        var id_box = $(document).find('input[name="image"]') ;
+        console.log(id_box) ;
+        if(id_box.length > 0) {
+            var ids = id_box.val() ;
+            var id = ids.split(",");
+            console.log(id) ;
+            if(id.length == 1 && id[0]==''){
+                $(document).find('[data-role="tip-banner"]').hide(500) ;
+            }
+        }
+    })
+
+     // 选择圈子所属分类
+    // var crowdIdArr = [];
+    // var crowdTitleArr = [];
+    // $('.crowd_by_id').each(function(){
+    //     crowdIdArr.push($(this).text());
+    // });
+    // $('.crowd_by_title').each(function(){
+    //     crowdTitleArr.push($(this).text());
+    // });
+    // $('[data-role="chose_type"]').picker({
+    //     formatValue:function(picker, value, displayValue){
+    //         $('[data-role="crowd_type"]').val(value);
+    //         return displayValue;
+    //     },
+    //     toolbarTemplate: '<header class="bar bar-nav">\
+    //   <button class="button button-link pull-right close-picker">确定</button>\
+    //   <h1 class="title">选择分类</h1>\
+    //   </header>',
+    //     cols: [
+    //         {
+    //             textAlign: 'center',
+    //             values: crowdIdArr,
+    //             displayValues: crowdTitleArr
+    //         }
+    //     ]
+    // });
+    //完成创建
+    $('[data-role="complete"]').click(function () {
+        var data = $("#add_crowd").serialize();
+        var html = $editor.html();
+        var url = $("#add_crowd").attr('data-url');
+        $.post(url,{data:data,html:html}, function (msg) {
+            handleAjax(msg);
+        });
+    });
 });
 
 function addscore() {
@@ -135,5 +157,6 @@ function addscore() {
         $('[data-role="moneyType"]').prepend(option);
     })
 }
+
 
 

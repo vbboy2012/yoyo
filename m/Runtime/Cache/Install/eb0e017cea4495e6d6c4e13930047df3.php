@@ -20,7 +20,7 @@
 
 <link rel="stylesheet" href="/yoyo/m/Public/css/core.css">
 <link rel="stylesheet" href="/yoyo/m/Public/css/animate.min.css">
-<link rel="stylesheet" href="//at.alicdn.com/t/font_v9h6rhwp9z9cc8fr.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_196881_waf4skjwgqh69a4i.css">
 <!--用于加载顶部css和js-->
 <?php $config = api('Config/lists'); C($config); $count_code=C('_MOB_STATISTICALCODE'); if(empty($count_code)){ $count_code=C('COUNT_CODE'); } ?>
 
@@ -41,8 +41,25 @@
         'URL_MODEL': "<?php echo C('URL_MODEL');?>",
         'WEIBO_ID': "<?php echo C('SHARE_WEIBO_ID');?>"
     }
-
+    var cookie_config={
+        "prefix":"<?php echo C('COOKIE_PREFIX');?>",// cookie 名称前缀
+        "path" :"<?php echo C('COOKIE_PATH');?>", // cookie 保存路径
+        "domain":"<?php echo C('COOKIE_DOMAIN');?>" // cookie 有效域名
+    }
     var weibo_comment_order = "<?php echo modC('COMMENT_ORDER',0,'WEIBO');?>";
+    function no_login() {
+        if(MID > 0){
+            return true ;
+        }
+        $.toast('请登录~',1000) ;
+        setTimeout(function (){
+            $.toast('正在跳转...',1500) ;
+            setTimeout(function () {
+                window.location.href=U('Ucenter/index/index') ;
+            },1000) ;
+            return false;
+        },1100)
+    }
 </script>
 <script>
     //全局内容的定义
@@ -143,6 +160,8 @@
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
 <script src="/yoyo/m/Public/com/com.functions.js"></script>
 
+<!-- 调用全站公告部件-->
+<?php echo W('Common/Announce/render');?>
 <script>
 	$(function(){
 		// plan A

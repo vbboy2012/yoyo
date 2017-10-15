@@ -870,6 +870,119 @@ i.icon.icon-f7 {
   text-align: center;
   width: 100%;
 }
+.weibo-img {
+  margin-top: 5px;
+  padding-bottom: 30%;
+  vertical-align: middle;
+  height: 0;
+}
+.img-hide {
+  overflow: hidden;
+}
+.img-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0;
+  z-index: 3;
+}
+.img-add {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+.img-btn-sit {
+  flex-shrink: 0;
+  position: relative;
+}
+.waitbox {
+  position: relative;
+  margin-right: 10px;
+}
+.waitbox img {
+  width: 90px;
+  height: 90px;
+  border-radius: 2px;
+}
+.waitbox .del-img-btn {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 100%;
+  display: block;
+  text-align: center;
+  margin-right: -5px;
+  margin-top: -5px;
+  color: #999;
+  top: 0;
+  right: 0;
+  line-height: 18px;
+}
+.announce-hide {
+  background: #000000;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 1000000;
+  filter: alpha(opacity=40);
+  opacity: 0.4 !important;
+}
+.announce {
+  position: fixed;
+  margin-left: 10%;
+  background: #ffffff;
+  left: 0px;
+  top: 20%;
+  width: 80%;
+  height: 310px;
+  z-index: 1000001;
+}
+.announce .ann-body {
+  margin: 0 15px;
+}
+.announce .ann-body .ann-b-title {
+  margin-top: 10px !important;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: left;
+}
+.announce .ann-body .ann-content {
+  max-height: 220px;
+  overflow-y: auto ;
+}
+.announce .ann-footer {
+  padding: 5px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: inline-flex;
+  border-top: 1px solid #e5e5e5;
+}
+.announce .ann-footer a {
+  text-align: center;
+  width: 100%;
+}
+.announce .ann-footer .ann-button {
+  padding: 3px 0;
+  font-size: 13px;
+}
+.announce .ann-footer .ann-button:first-child {
+  border-right: 1px solid #e5e5e5;
+}
+.letter-point {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 100%;
+  z-index: 5000;
+}
 .walletHead {
   background-color: #ec725d;
   height: 90px;

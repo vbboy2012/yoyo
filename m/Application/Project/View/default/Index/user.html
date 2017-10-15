@@ -1,0 +1,143 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/user.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a href="javascript:" class="title">我的</a>
+            </header>
+            <include file="./Application/Common/View/default/Base/footer.html"/>
+            <div class="content me">
+                <div class="content-block noEdge">
+                    <div class="baseBox">
+                        <div class="list-block">
+                            <div class="flexDiv myBox">
+                                <div  style="align-items: center;" class="flexLeft">
+                                    <div class="leftDiv">
+                                        <img src="{$user.avatar128}" alt="头像" class="eAvatar">
+                                    </div>
+                                    <div class="rightDiv" style="align-items: center;justify-content:space-between; ">
+                                        <div style="display: flex; flex-direction: column ">
+                                            <p class="textMore">
+                                                <span class="mName">{$user.nickname}</span>
+                                            </p>
+                                            <p class="mIntro textMore">查看或编辑个人资料</p>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column ">
+                                            <if condition="$is_sync">
+                                                <a data-role="cancel_bind" style="width: 120px;" class="unbinding binding" >取消微信绑定</a>
+                                                <else/>
+                                                <a href="{:U('Ucenter/Member/projectWeChatBind')}" style="width: 120px;" class="unbinding binding" >绑定微信</a>
+                                            </if>
+                                            <if condition="$is_mobile">
+                                                <a data-role="cancel_mobile_bind" style="width: 120px;" class="bd unbinding binding" >取消手机绑定</a>
+                                                <else/>
+                                                <a href="{:U('ucenter/index/mobile_bind',array('id'=>1))}" style="width: 120px;" class="unbinding binding" >绑定手机</a>
+                                            </if>
+                                        </div>
+                                    </div>
+                                    <i class='iconfont  icon-iconfontxiangyou'></i>
+                                </div>
+                            </div>
+                            <div class="myNum">
+                                <a href="{:U('Project/Index/index')}"><div class="oneNum"><span>项目</span><span>{$totalCount}</span></div></a>
+                                <a href="#"><div class="oneNum"><span>产品</span><span>0</span></div></a>
+                                <a href="#"><div class="oneNum"><span>建议</span><span>0</span></div></a>
+                            </div>
+                        </div>
+                    </div>
+                    <if condition="is_business() eq true">
+                        <div class="baseBox">
+                            <div class="list-block">
+                                <h3>我的销售顾问</h3>
+                                <div class="flexDiv myBox" style="border-top: 1px solid #f2f2ff">
+                                    <div class="flexLeft">
+                                        <div class="leftDiv">
+                                            <img src="{$sales_user.avatar128}" alt="头像" class="eAvatar">
+                                        </div>
+                                        <div class="rightDiv" style="align-items: flex-start">
+                                            <p class="textMore">
+                                                <span class="mName">{$sales_user.nickname}</span>
+                                            </p>
+                                            <p class="mIntro textMore">这个人很懒什么都没留下</p>
+                                        </div>
+                                        <div class="ask">
+                                            <div class="button button-color" data-role="ask">咨询</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="baseBox">
+                            <div class="list-block">
+                                <h3>我的工单<a  href="{:U('Project/index/ticketlist')}" class="mIntro load">查看更多<i class='iconfont  icon-iconfontxiangyou'></i></a></h3>
+                                <if condition="$ticket eq null">
+                                    <div class="flexDiv myBox" style="border-top: 1px solid #f2f2ff">
+                                        <div class="text" style="flex: 2;padding: 3px;">
+                                            <span class="mName textMore">您没有进行中的工单。</span>
+                                        </div>
+                                    </div>
+                                    <else />
+                                    <div class="flexDiv myBox" style="border-top: 1px solid #f2f2ff">
+                                        <div class="text" style="flex: 2;padding: 3px;">
+                                            <span class="mName textMore">{$ticket.title}</span>
+                                            <span class="mIntro flexDiv">{$ticket.status}，请前往pc端查看 <span>{$ticket.update_time|date}</span></span>
+                                        </div>
+                                    </div>
+                                </if>
+
+                            </div>
+                        </div>
+                    </if>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script>
+        $('[data-role="ask"]').click(function () {
+            $.post(U('Project/index/user'), {}, function (res) {
+                if(res){
+                    var modal = $.modal({
+                        afterText: '<div class="erweima"><img src="'+res+'"></div>',
+                    });
+                }
+            });
+        });
+        $('[data-role="cancel_bind"]').click(function () {
+            $.confirm('您确定取消绑定吗？', function () {
+                var url=U('project/Index/safe');
+                $.post(url,{sync:1},function (msg) {
+                    if (msg.status) {
+                        $.toast(msg.info);
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 2000);
+                    } else {
+                        $.toast(msg.info);
+                    }
+                })
+            });
+        });
+        $('[data-role="cancel_mobile_bind"]').click(function () {
+            $.confirm('您确定取消绑定吗？', function () {
+                var url=U('Ucenter/Index/safe');
+                $.post(url,{mobile:1},function (msg) {
+                    if (msg.status) {
+                        $.toast(msg.info);
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 2000);
+                    } else {
+                        $.toast(msg.info);
+                    }
+                })
+            });
+        });
+    </script>
+</block>

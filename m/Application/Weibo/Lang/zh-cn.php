@@ -1,7 +1,7 @@
 <?php
 return array(
     '_TEST1_' => '测试',
-    '_MY_FOLLOWING_' => '我的信任',
+    '_MY_FOLLOWING_' => '我的关注',
     '_HOT_' => '热门',
     '_MY_' => '我的',
 
@@ -9,8 +9,8 @@ return array(
     '_LOAD_MORE_' => '载入更多',
     '_FANS_' => '粉丝',
     '_FANS_COUNT_' => '粉丝数',
-    '_FOLLOW_' => '信任',
-    '_FOLLOW_COUNT_' => '信任数',
+    '_FOLLOW_' => '关注',
+    '_FOLLOW_COUNT_' => '关注数',
     '_ACTIVE_USER_' => '活跃用户',
     '_LAST_REGISTER_' => '最近注册',
     /*个人名片*/
@@ -59,9 +59,9 @@ return array(
 //    _TOPIC_/index
     '_READ_' => '阅读',
     '_SHARE_' => '分享',
-    '_FOLLOW_'=>'信任',
+    '_FOLLOW_'=>'关注',
     '_CANCEL_'=>'取消',
-    '_UN_FOLLOW_'=>'已信任',
+    '_UN_FOLLOW_'=>'已关注',
     '_PRESENTER_TOPIC_' => '话题主持人',
     '_SELF_' => '自己',
     '_STATEMENT_' => '此话题为用户观点，不代表本站观点！',
@@ -91,7 +91,7 @@ return array(
     '_ALL_WEBSITE_FOLLOW_' => '全站微博',
     '_ALL_WEBSITE_WEIBO_'=>'全站微博',
     '_MY_FAV_'=>'我的喜欢',
-    '_MY_FOLLOW_' => '我信任的',
+    '_MY_FOLLOW_' => '我关注的',
     '_MODULE_' => '微博',
     '_LINE_LINE_' => '——',
     '_ERROR_CANNOT_SEND_THIS_' => '无法发表该类型的微博',
@@ -148,8 +148,8 @@ return array(
     /*Weibo*/
     '_TIP_WEIBO_INFO_' => '有什么新鲜事想告诉大家',
     '_HOT_WEIBO_' => '热门微博',
-    '_ALL_WEBSITE_FOLLOW_' => '全站信任',
-    '_MY_FOLLOW_' => '我信任的',
+    '_ALL_WEBSITE_FOLLOW_' => '全站关注',
+    '_MY_FOLLOW_' => '我关注的',
     '_ENABLE_' => '启用',
     '_NEWEST_WEIBO_' => '最新微博',
     '_DELIVER_TIME_' => '发布时间',

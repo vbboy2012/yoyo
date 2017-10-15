@@ -149,7 +149,7 @@ class UserModel
         //获取头像，带认证图标的html代码
         $user_data = $this->getAvatarsHtml($fields, $uid, $user_data);
 
-        //粉丝数、信任数、微博数
+        //粉丝数、关注数、微博数
         if (in_array('fans', $fields)) {
             $user_data['fans'] = M('Follow')->where('follow_who=' . $uid)->count();
             $this->write_query_user_cache($uid, 'fans', $user_data['fans']);
@@ -162,7 +162,7 @@ class UserModel
             $user_data['weibocount'] = M('Weibo')->where('uid=' . $uid . ' and status >0')->count();
             $this->write_query_user_cache($uid, 'weibocount', $user_data['weibocount']);
         }
-        //是否信任、是否被信任
+        //是否关注、是否被关注
         if (in_array('is_following', $fields)) {
             $follow = D('Follow')->where(array('who_follow' => get_uid(), 'follow_who' => $uid))->find();
             $user_data['is_following'] = $follow ? true : false;
@@ -190,8 +190,8 @@ class UserModel
         if ($alias === false) {
             //没有缓存
             $alias = '';
-            $follow = D('Common/Follow')->getFollow(get_uid(), $uid);//获取信任情况
-            if ($follow && $follow['alias'] != '') {//已信任
+            $follow = D('Common/Follow')->getFollow(get_uid(), $uid);//获取关注情况
+            if ($follow && $follow['alias'] != '') {//已关注
                 $alias = $follow['alias'];
             }
             S($tag, $alias);
@@ -400,12 +400,12 @@ class UserModel
                 $avatarSize = intval(substr($e, 11));
                 if($user_info['attest']['has']){
                     $one_avatar_html='<span style="position:relative;display: inline-block;">
-                                 <img src="'.$user_info['avatar'.$avatarSize].'" class="avatar-img">
-                                 <img src="'.$user_info['attest']['logo'].'" class="attest-logo" style="position: absolute;width: 30%;right: 0;bottom: 0;" title="'.$user_info['attest']['info']['child_type'].'">
+                                 <img src="'.$user_info['avatar'.$avatarSize].'" class="avatar-img" >
+                                 <img src="'.$user_info['attest']['logo'].'" class="attest-logo" style="position: absolute;width: 40%;right: 1px;bottom:3px;" title="'.$user_info['attest']['info']['child_type'].'">
                               </span>';
                 }else{
                     $one_avatar_html='<span style="position: relative;display: inline-block;">
-                                    <img src="'.$user_info['avatar'.$avatarSize].'" class="avatar-img">
+                                    <img  src="'.$user_info['avatar'.$avatarSize].'" class="avatar-img"  >
                                   </span>';
                 }
                 $avatars_html[$e] = $one_avatar_html;

@@ -45,12 +45,14 @@ class WeiboCrowdMemberModel extends Model
         return $rs;
     }
 
-    public function getUserJoin($uid)
+    public function getUserJoin($uid, $page=1)
     {
-        $tag = 'crowd_joined_'.$uid;
+        $tag = 'crowd_joined_'.$uid.'_'.$page;
         $list = S($tag);
         if (empty($list)) {
-            $list = $this->where(array('uid'=>$uid,'status'=>1))->select();
+            $param['status'] = 1 ;
+            $param['uid'] = $uid ;
+            $list = $this->where($param)->page($page, 10)->select();
             S($tag,$list,60*60);
         }
         return $list;
@@ -126,12 +128,15 @@ class WeiboCrowdMemberModel extends Model
         return $list;
     }
 
-    public function getMycreateCrowd($uid)
+    public function getMycreateCrowd($uid, $page=1)
     {
-        $tag = 'crowd_create_by_'.$uid;
+        $tag = 'crowd_create_by_'.$uid.'_'.$page;
         $list = S($tag);
         if (empty($list)) {
-            $list = $this->where(array('status'=>1,'uid'=>$uid,'position'=>3))->select();
+            $param['status'] = 1 ;
+            $param['uid'] = $uid ;
+            $param['position'] = 3 ;
+            $list = $this->where($param)->page($page, 10)->select();
             S($tag,$list,60*60);
         }
         return $list;
@@ -174,5 +179,18 @@ class WeiboCrowdMemberModel extends Model
             S($tag, $crowd , 60*60);
         }
         return $crowd;
+    }
+
+    public function getMyCreateCount($uid) {
+        $param['status'] = 1 ;
+        $param['uid'] = $uid ;
+        $param['position'] = 3 ;
+        return $this->where($param)->count();
+    }
+
+    public function getUserJoinCount($uid) {
+        $param['status'] = 1 ;
+        $param['uid'] = $uid ;
+        return $this->where($param)->count();
     }
 }

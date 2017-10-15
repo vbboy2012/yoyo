@@ -1,5 +1,9 @@
 //问题回答
 $('[data-role="addAnswer"]').click(function(){
+    var login = no_login();
+    if(login == undefined){
+        return ;
+    }
     var id = $(this).attr('data-id');
     var html = $('.sendArea').html();
     var text = html.replace(/\<img.*?data\-title\="(.*?)" .*?>/g, "$1");

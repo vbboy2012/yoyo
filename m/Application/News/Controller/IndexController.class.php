@@ -4,6 +4,7 @@ namespace News\Controller;
 use Addons\ChinaCity\Model\DistrictModel;
 use Think\Controller;
 
+require_once('./Application/News/Conf/jssdk.php');
 class IndexController extends Controller
 {
 
@@ -303,8 +304,8 @@ class IndexController extends Controller
         }
         unset($val);
         $data=D('News')->getData($id);
-        if($data['dead_line']<=time() || $data['status'] !== 1){ //资讯过期了或者不是正常状态
-            if(!check_auth('News/Index/edit',is_login())){//没有管理权限
+        if($data['dead_line']<=time() || $data['status'] != 1){ //资讯过期了或者不是正常状态
+            if(!check_auth('News/Index/edit',array($data['uid']))){//没有管理权限
                 $this->error(L('_ERROR_EXPIRE_'));
             }
         }
@@ -345,6 +346,28 @@ class IndexController extends Controller
             'from'=>L('_MODULE_'),
             'site_link'=>U('news/index/detail',array('id'=>$data['id']))
         );
+        $shareImg = getThumbImageById($data['cover'],160,160);
+        //不存在http://
+        $not_http_remote = (strpos($shareImg, 'http://') === false);
+        //不存在https://
+        $not_https_remote = (strpos($shareImg, 'https://') === false);
+        if ($not_http_remote && $not_https_remote) {
+            //本地url
+            $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+            $a=substr($shareImg , 0 , 2);
+            if($a=='..'){
+                $shareImg=substr( $shareImg , 2 , strlen($shareImg)-2);
+            }else{
+                $_SERVER['HTTP_HOST']=$_SERVER['HTTP_HOST'].'/m/';
+            }
+            $shareImg =  $http_type.$_SERVER['HTTP_HOST']. $shareImg;
+        }
+        $appid=modC('APP_ID','','weixin');
+        $appsecret=modC('APP_SECRET','','weixin');
+        $jssdk = new \JSSDK ($appid,$appsecret);
+        $signPackage = $jssdk->GetSignPackage();
+        $this->assign("signPackage",$signPackage);
+        $this->assign('share_img',$shareImg);
         $this->assign('query', urlencode(http_build_query($query)));
         $this->assign('myResult',$myResult);
         $this->assign('rewardResult',$rewardResult);
@@ -556,17 +579,54 @@ class IndexController extends Controller
             $this->error('请您先登录', U('Ucenter/member/login'), 1);
         }
         $map['status']=1;
-        $type=D('NewsCategory')->getCategoryList($map);
-        $this->assign('type',$type);
+        $map['pid']=0;
+        $type=D('NewsCategory')->where($map)->field('id,title')->select();
+        foreach ($type as &$val){
+            $val['sub']=D('NewsCategory')->where(array('pid'=>$val['id'],'status'=>1))->field('id,pid,title')->select();
+        }
+        unset($val);
+        $this->assign('type',json_encode($type));
         if(IS_POST){
             $this->_isLogin();
             parse_str(I('post.data'),$arr);
             $data['title']=$arr['title'];
-            $data['category'] = $arr['type_id'];
             $data['cover'] = $arr['image'];
             $data['content'] = I('post.html', '', 'op_h');
-            if ($data['cover']==''){
+            $category=explode(',',$arr['type_id']);
+            $data['category']=$category[1] ? $category[1]:$category[0];
+            $imgIds = $arr['image'];
+            $imgId = explode(',', $imgIds) ;
+            if(is_numeric($imgId[0])&&is_numeric($imgId[1])){
+                if ($imgId[0]==false && $imgId[1]==false){
+                    $pic = get_pic($data['content']) ;
+                    if($pic==null){
+                        $data['cover']=0;
+                        $data['banner']=0;
+                    }else{
+                        if(substr($pic,0,4)=='http'){
+                            $str=$pic;
+                        }else{
+                            $str=substr($pic,1,strlen($pic)-1);
+                            $str=substr($str,strpos($str,'/'),strlen($str)-strpos($str,'/'));
+                        }
+                        $coverId=M('picture')->where(array('path'=>$str))->getField('id');
+                        //$this->error($coverId['id']);
+                        $data['cover']=$coverId;
+                        $data['banner']=$coverId;
+                    }
+                }elseif($imgId[0]>0 && $imgId[1]==false){
+                    $data['cover']=$imgId[0];
+                    $data['banner']=$imgId[0];
+                }elseif($imgId[0]==false && $imgId[1]>0){
+                    $data['cover']=$imgId[1];
+                    $data['banner']=$imgId[1];
+                }else{
+                    $data['cover']=$imgId[0];
+                    $data['banner']=$imgId[1];
+                }
+            }else{
                 $data['cover']=0;
+                $data['banner']=0;
             }
             $status = $this->_checkOk($data);
             $data['status']=$status;
@@ -589,7 +649,6 @@ class IndexController extends Controller
                 $return['status'] = 1;
                 $return['info'] = $msg;
                 $return['url'] = U('News/index/index');
-
             }else{
                 $return['info']='数据库写入失败';
             }

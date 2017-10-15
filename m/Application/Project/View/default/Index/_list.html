@@ -1,0 +1,39 @@
+<volist name="project" id="data">
+    <li>
+        <div class="plan">
+            <div class="cover"><img src="{$data.cover|getThumbImageById=170,170}" alt="封面"></div>
+            <div class="nwInfo">
+                <a href="{:U('Project/index/schedule',array('id'=>$data['id']))}" class="cont">{$data.title}<span>{$data.create_time|date='m-d',###}</span></a>
+                <div class="textMore">开发阶段</div>
+                <!--进度条-->
+                <div class="progress">
+                    <div class="am-progress">
+                        <div class="am-progress-bar" style="width:{$data['progress']}%"></div>
+                    </div>
+                    <div class="text-color text-font">{$data.progress}%</div>
+                </div>
+            </div>
+        </div>
+        <div class="plan" style="border-top:1px solid #F2F2F2" onclick="modal({$data['id']},{$data['count']})">
+            <notempty name="data.last.title">
+                <div  class="box">
+                    <span>最新进度</span>
+                    <span style="text-align: center">{$data.last.create_time|date='m-d',###}</span>
+                </div>
+                <div class="s-cover"><img src="{$data.cover|getThumbImageById=90,90}" alt="封面"/></div>
+                <div class="box s-nwInfo">
+                    <span class="textMore text-color">提交进度报告中</span>
+                    <span class="textMore ">{$data.last.title} 已提交
+                        <if condition="$data['last']['is_check'] eq 0 ">
+                            <span style="color: #ff544d">待查看</span>
+                            <else />
+                            <span>已查看</span>
+                        </if>
+                    </span>
+                </div>
+            <else />
+                <div class="noMore"> 当前进度还未更新，请等待</div>
+            </notempty>
+        </div>
+    </li>
+</volist>

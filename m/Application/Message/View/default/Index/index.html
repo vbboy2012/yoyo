@@ -9,59 +9,89 @@
                 <a href="javascript:" class="title">我的消息</a>
             </header>
             <include file="./Application/Common/View/default/Public/footer.html"/>
-            <div class="content me">
+            <div class="content me infinite-scroll">
                 <div class="content-block noEdge">
-                    <div class="dialog">
-                        <div class="list-block">
-                            <ul class="msgWrap">
-                                <volist name="message" id="list">
-                                    <a href="{:U('message',array('type'=>$list['type']))}">
-                                        <li class="msgList">
-                                            <div class="msgLeft">
-                                                <switch name="list.type">
-                                                    <case value="Common_system">
-                                                        <div class="msgCover" style="background-color: #e57b85">
-                                                            <i class="iconfont icon-xitongxiaoxi"></i>
-                                                        </div>
-                                                    </case>
-                                                    <case value="Weibo">
-                                                        <div class="msgCover" style="background-color: #F94D5A">
-                                                            <i class="iconfont icon-xiaoxi"></i>
-                                                        </div>
-                                                    </case>
-                                                    <case value="Weibo_crowd">
-                                                        <div class="msgCover" style="background-color: #F0726C">
-                                                            <i class="iconfont icon-quanzi"></i>
-                                                        </div>
-                                                    </case>
-                                                    <case value="Ucenter">
-                                                        <div class="msgCover" style="background-color: #8A9DA6">
-                                                            <i class="iconfont icon-haoyou"></i>
-                                                        </div>
-                                                    </case>
-                                                    <case value="Common_announce">
-                                                        <div class="msgCover" style="background-color: #64b221">
-                                                            <i class="iconfont icon-xitongxiaoxi"></i>
-                                                        </div>
-                                                    </case>
-                                                    <default />
-                                                </switch>
+                    <div class="buttons-row">
+                        <a href="#message" class="tab-link active button no-radius" data-role="message">消息</a>
+                        <a href="#letter" class="tab-link button no-radius" data-role="get-letter" style="position: relative">
+                            私信
+                            {:W('ucenter/letter/point','msg')}
+                        </a>
+                    </div>
+                </div>
+                <div class="tabs">
+                    <div id="message" class="tab active">
+                        <div class="content-block noEdge">
+                            <div class="dialog">
+                                <div class="list-block">
+                                    <ul class="msgWrap">
+                                        <volist name="message" id="list">
+                                            <a href="{:U('message',array('type'=>$list['type']))}">
+                                                <li class="msgList">
+                                                    <div class="msgLeft">
+                                                        <switch name="list.type">
+                                                            <case value="Common_system">
+                                                                <div class="msgCover" style="background-color: #e57b85">
+                                                                    <i class="iconfont icon-xitongxiaoxi"></i>
+                                                                </div>
+                                                            </case>
+                                                            <case value="Weibo">
+                                                                <div class="msgCover" style="background-color: #F94D5A">
+                                                                    <i class="iconfont icon-xiaoxi"></i>
+                                                                </div>
+                                                            </case>
+                                                            <case value="Weibo_crowd">
+                                                                <div class="msgCover" style="background-color: #F0726C">
+                                                                    <i class="iconfont icon-quanzi"></i>
+                                                                </div>
+                                                            </case>
+                                                            <case value="Ucenter">
+                                                                <div class="msgCover" style="background-color: #8A9DA6">
+                                                                    <i class="iconfont icon-haoyou"></i>
+                                                                </div>
+                                                            </case>
+                                                            <case value="Common_announce">
+                                                                <div class="msgCover" style="background-color: #64b221">
+                                                                    <i class="iconfont icon-xitongxiaoxi"></i>
+                                                                </div>
+                                                            </case>
+                                                            <default />
+                                                        </switch>
 
-                                                <div class="msgInfo">
-                                                    <p class="msgName">{$list.detail.title}</p>
-                                                    <p class="msgDetail">[ {$list.count} 条 ]<span class="msgNew textMore">{$list.last_message.title}</span></p>
-                                                </div>
-                                            </div>
-                                            <span>{$list.create_time|time_format='Y-m-d'}</span>
-                                        </li>
-                                    </a>
+                                                        <div class="msgInfo">
+                                                            <p class="msgName">{$list.detail.title}</p>
+                                                            <p class="msgDetail"><if condition="$list.count neq 0">[ {$list.count} 条 ] </if><span class="msgNew textMore">{$list.last_message.title}</span></p>
+                                                        </div>
+                                                    </div>
+                                                    <span>{$list.create_time|time_format='Y-m-d'}</span>
+                                                </li>
+                                            </a>
 
-                                </volist>
-                            </ul>
+                                        </volist>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="letter" class="tab">
+                        <div class="content-block noEdge">
+                            <div class="dialog">
+                                <div class="list-block">
+                                    <ul class="msgWrap" data-role="letter-list">
+                                    </ul>
+                                    <!-- 加载提示符 -->
+                                    <div class="infinite-scroll-preloader">
+                                        <div class="preloader"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</block>
+<block name="script">
+    <script src="__JS__/letter.js"></script>
 </block>

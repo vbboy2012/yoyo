@@ -199,7 +199,7 @@ var talker = {
             talker.append_message(talker.fetch_message_tpl(item, MID));
         });
         talker.append_message('<hr/>' +
-        '<div style="text-align: center;color: #666">以下为历史聊天记录</div>', MID);
+        '<div style="text-align: center;color: #666">以上为历史聊天记录</div>', MID);
     }
 
 

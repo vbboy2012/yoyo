@@ -371,7 +371,7 @@ class WechatAuth {
     }
 
     /**
-     * 获取信任者列表
+     * 获取关注者列表
      * @param  string $next_openid 下一个openid，在用户数大于10000时有效
      * @return array               用户列表
      */

@@ -35,17 +35,7 @@
                         </div>
                     </div>
                     <!--轮播图，后台设置-->
-                    <div class="swiper-container nwSlide" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="2000">
-                        <div class="swiper-wrapper">
-                            <if condition="$advertisementCount eq 0">
-                                <div class="swiper-slide"><img style="margin: 0 auto" src="__PUBLIC__/images/nobanner.png" alt=""></div>
-                                <else />
-                                <volist name="advertisement" id="vo">
-                                    <div class="swiper-slide"><a href="{$vo.link}"><img style="margin: 0 auto" src="{$vo.img}" alt=""></a></div>
-                                </volist>
-                            </if>
-                        </div>
-                    </div>
+                    {:W('Common/Adv/render',array(array('name'=>'information_adv','title'=>'资讯','type'=>2,'width'=>'370px','height'=>'200px',theme=>'all')))}
                     <!--热门文章-->
                     <!--<div class="hotType" style="margin-top: 5px;padding-bottom: 5px">-->
                         <!--<p class="hotTit flexDiv"><span>热门资讯</span></p>-->

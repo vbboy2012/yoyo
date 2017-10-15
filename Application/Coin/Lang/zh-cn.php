@@ -17,10 +17,7 @@ return array(
     '_AD_TIPS6_' => '所有交流必须在 CoinCola 上进行，请注意高风险有欺诈风险的付款方式。',
     '_AD_COIN_TYPE_LABEL_' => '选择币种',
     '_AD_TYPE_LABEL_' => '选择广告类型',
-    '_AD_ONLINE_SELL_' => '在线出售',
-    '_AD_ONLINE_BUY_' => '在线购买',
-    '_AD_LOCAL_SELL_' => '本地出售',
-    '_AD_LOCAL_BUY_' => '本地购买',
+
     '_AD_COUNTRY_LABEL_' => '国家',
     '_AD_CURRENCY_LABEL_' => '货币',
     '_AD_PRE_PRICE_LABEL_' => '溢价',

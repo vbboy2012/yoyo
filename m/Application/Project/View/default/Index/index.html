@@ -1,0 +1,69 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead boxHead" >
+                <li class="h_title h_active" data-role="private" data-total="{$private_count}">个人项目</li>
+                <li class="h_title " data-role="public" data-total="{$totalCount}">公共项目</li>
+            </header>
+            <div class="h_title box-icon" data-role="cache">
+                <i class=" iconfont icon-sandiangengduohen" data-cache="cache"></i>
+                <div class="down-menu" data-follow="{$is_follow}" data-role="follow">
+                    <ul class="box-ul">
+                        <if condition="$is_follow eq 0">
+                            <li data-role="changeClass">订阅</li>
+                            <else />
+                            <li data-role="changeClass">已订阅</li>
+                        </if>
+                    </ul>
+                </div>
+            </div>
+            <include file="./Application/Common/View/default/Base/footer.html"/>
+            <div class="content infinite-scroll">
+                <div class="content-block noEdge">
+                    <!--轮播图，后台设置-->
+                    <div class="swiper-container nwSlide" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="2000">
+                        <div class="swiper-wrapper">
+                            <if condition="$advertisementCount eq 0">
+                                <div class="swiper-slide"><img style="margin: 0 auto" src="__PUBLIC__/images/nobanner.png" alt=""></div>
+                                <else />
+                                <volist name="advertisement" id="vo">
+                                    <div class="swiper-slide"><a href="{$vo.link}"><img style="margin: 0 auto" src="{$vo.img}" alt=""></a> </div>
+                                </volist>
+                            </if>
+                        </div>
+                    </div>
+                    <!--项目进度-->
+                    <div class="main">
+                        <div class="main_box">
+                            <div class="underway">进行中的项目</div>
+                            <a href="{:U('Project/index/finish')}" class="finish">查看已完成的项目></a>
+                        </div>
+                        <ul id="tab" class="tab list" data-role="id" data-id="{$project.id}">
+
+
+                        </ul>
+                        <div class="mt" data-distance="100" data-ptr-distance="55">
+                            <div class="infinite-scroll-preloader">
+                                <div class="preloader"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/index.js"></script>
+    <script src="__JS__/refreshData.js"></script>
+    <script>
+        window.onload=function(){
+               modal_two({$userCount});
+        };
+    </script>
+</block>

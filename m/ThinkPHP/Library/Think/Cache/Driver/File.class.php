@@ -124,6 +124,7 @@ class File extends Cache {
         }
         $filename   =   $this->filename($name);
         $data   =   serialize($value);
+        $data   =   str_replace(PHP_EOL, '', $data);
         if( C('DATA_CACHE_COMPRESS') && function_exists('gzcompress')) {
             //数据压缩
             $data   =   gzcompress($data,3);

@@ -26,7 +26,7 @@ class IndexController extends Controller
             $uid=is_login();
         }
         if($uid!=is_login()){
-           redirect('404');
+            redirect(U('ucenter/index/mine',array('uid'=>$uid)));
         }
         $model=new \Core\Model\CheckInModel();
         $check = $model->getCheck($uid);
@@ -61,6 +61,390 @@ class IndexController extends Controller
         $this->assign('uid',$aUid);
         $this->display();
     }
+
+    public function userdata()
+    {
+        $this->setTitle('基本资料');
+        $this->setKeywords("基本资料");
+        $this->setDescription("基本资料");
+        $aUid = I('get.uid', 0, 'intval');
+        if (!$aUid) {
+            redirect(U('Weibo/Index/index'));
+        }
+        $userData=$this->_userData($aUid);
+        $userData['pos_province']=str_replace('省','',$userData['pos_province']);
+        $userData['pos_province']=str_replace('区','',$userData['pos_province']);
+        $userData['pos_city']=str_replace('市','',$userData['pos_city']);
+
+        $profile_group_list = $this->_profile_group_list($aUid);
+
+        foreach ($profile_group_list as &$val) {
+            $val['info_list'] = $this->_info_list111($val['id'], $aUid);
+            $val['fields'] = $this->_getExpandInfo($val['id']);
+        }
+        unset($val);
+//dump($profile_group_list);exit;
+        $this->assign('profile_group_list', $profile_group_list);
+
+        $typeCount = M('field_group')->where(array('status' => 1))->count();
+        $this->assign('type_count', $typeCount);
+
+        $this->assign('user',$userData);
+        $this->assign('uid',$aUid);
+        $this->display();
+    }
+
+    public function _profile_group_list($uid = null)
+    {
+        $profile_group_list=array();
+        $fields_list=$this->getRoleFieldIds($uid);
+
+        if($fields_list){
+            $fields_group_ids=D('FieldSetting')->where(array('id'=>array('in',$fields_list),'status' => '1'))->select();
+            if($fields_group_ids){
+                $fields_group_ids=array_unique(array_column($fields_group_ids,'profile_group_id'));
+                $map['id']=array('in',$fields_group_ids);
+
+                if (isset($uid) && $uid != is_login()) {
+                    $map['visiable'] = 1;
+                }
+                $map['status'] = 1;
+                $profile_group_list = D('field_group')->where($map)->order('sort asc')->select();
+            }
+        }
+        return $profile_group_list;
+    }
+
+    public function _info_list111($id = null, $uid = null)
+    {
+
+        $fields_list = $this->getRoleFieldIds($uid);
+        $info_list = null;
+
+        if (isset($uid) && $uid != is_login()) {
+            //查看别人的扩展信息
+            $field_setting_list = D('field_setting')->where(array('profile_group_id' => $id, 'status' => '1', 'visiable' => '1', 'id' => array('in', $fields_list)))->order('sort asc')->select();
+
+            if (!$field_setting_list) {
+                return null;
+            }
+            $map['uid'] = $uid;
+        } else if (is_login()) {
+            $field_setting_list = D('field_setting')->where(array('profile_group_id' => $id, 'status' => '1', 'id' => array('in', $fields_list)))->order('sort asc')->select();
+
+            if (!$field_setting_list) {
+                return null;
+            }
+            $map['uid'] = is_login();
+
+        } else {
+            $this->error(L('_ERROR_PLEASE_LOGIN_').L('_EXCLAMATION_'));
+        }
+        foreach ($field_setting_list as $val) {
+            $map['field_id'] = $val['id'];
+            $field = D('field')->where($map)->find();
+            $val['field_content'] = $field;
+            $info_list[$val['id']] = $val;
+            unset($map['field_id']);
+        }
+
+        return $info_list;
+    }
+
+    private function getRoleFieldIds($uid=null){
+        $role_id=get_role_id($uid);
+        $fields_list=S('Role_Expend_Info_'.$role_id);
+        if(!$fields_list){
+            $map_role_config=getRoleConfigMap('expend_field',$role_id);
+            $fields_list=D('RoleConfig')->where($map_role_config)->getField('value');
+            if($fields_list){
+                $fields_list=explode(',',$fields_list);
+                S('Role_Expend_Info_'.$role_id,$fields_list,600);
+            }
+        }
+        return $fields_list;
+    }
+
+    public function _getExpandInfo($profile_group_id = null)
+    {
+        $res = D('field_group')->where(array('id' => $profile_group_id, 'status' => '1'))->find();
+        if (!$res) {
+            return array();
+        }
+        $info_list = $this->_info_list($profile_group_id);
+
+        return $info_list;
+    }
+
+    public function _info_list($id = null, $uid = null)
+    {
+        $fields_list=$this->getRoleFieldIds($uid);
+        $info_list = null;
+
+        if (isset($uid) && $uid != is_login()) {
+            //查看别人的扩展信息
+            $field_setting_list = D('field_setting')->where(array('profile_group_id' => $id, 'status' => '1', 'visiable' => '1','id'=>array('in',$fields_list)))->order('sort asc')->select();
+
+            if (!$field_setting_list) {
+                return null;
+            }
+            $map['uid'] = $uid;
+        } else if (is_login()) {
+            $field_setting_list = D('field_setting')->where(array('profile_group_id' => $id, 'status' => '1','id'=>array('in',$fields_list)))->order('sort asc')->select();
+
+            if (!$field_setting_list) {
+                return null;
+            }
+            $map['uid'] = is_login();
+
+        } else {
+            $this->error('请先登录！');
+        }
+
+        foreach ($field_setting_list as &$val) {
+            $map_l['field_id'] = $val['id'];
+            $field = D('field')->where($map_l)->find();
+
+            $val['field_content'] = $field;
+            unset($map['field_id']);
+            $info_list[$val['id']] = $this->_get_field_data($val);
+            //当用户扩展资料为数组方式的处理@MingYangliu
+            $vlaa = explode('|', $val['form_default_value']);
+            $needle =':';//判断是否包含a这个字符
+            $tmparray = explode($needle,$vlaa[0]);
+            if(count($tmparray)>1){
+                foreach ($vlaa as $kye=>$vlaas){
+                    if(count($tmparray)>1){
+                        $vlab[] = explode(':', $vlaas);
+                        foreach ($vlab as $key=>$vlass){
+                            $items[$vlass[0]] = $vlass[1];
+                        }
+                    }
+                    continue;
+                }
+                $info_list[$val['id']]['field_data'] = $items[$info_list[$val['id']]['field_data']];
+            }
+            //当扩展资料为join时，读取数据并进行处理再显示到前端@MingYang
+            if($val['child_form_type'] == "join"){
+                $j = explode('|',$val['form_default_value']);
+                $a = explode(' ',$info_list[$val['id']]['field_data']);
+                $info_list[$val['id']]['field_data'] = get_userdata_join($a,$j[0],$j[1]);
+            }
+        }
+        return $info_list;
+    }
+
+    public function _get_field_data($data = null)
+    {
+        $result = null;
+        $result['field_name'] = $data['field_name'];
+        $result['field_data'] = "还未设置";
+        switch ($data['form_type']) {
+            case 'input':
+                $result['field_data'] = isset($data['field_content']['field_data']) ? $data['field_content']['field_data'] : "还未设置";
+                break;
+            case 'radio':
+                $result['field_data'] = isset($data['field_content']['field_data']) ? $data['field_content']['field_data'] : "还未设置";
+                break;
+            case 'textarea':
+                $result['field_data'] = isset($data['field_content']['field_data']) ? $data['field_content']['field_data'] : "还未设置";
+                break;
+            case 'select':
+                $result['field_data'] = isset($data['field_content']['field_data']) ? $data['field_content']['field_data'] : "还未设置";
+                break;
+            case 'checkbox':
+                $result['field_data'] = isset($data['field_content']['field_data']) ? implode(' ', explode('|', $data['field_content']['field_data'])) : "还未设置";
+                break;
+            case 'time':
+                $result['field_data'] = isset($data['field_content']['field_data']) ? date("Y-m-d", $data['field_content']['field_data']) : "还未设置";
+                break;
+        }
+        $result['field_data'] = op_t($result['field_data']);
+
+        return $result;
+    }
+
+    public function edit_expandinfo($profile_group_id)
+    {
+        $field_list = $this->getRoleFieldIds();
+        if ($field_list) {
+            $map_field['id'] = array('in', $field_list);
+        } else {
+            $this->ajaxReturn(array('status'=>0,'info'=>L('_ERROR_INFO_SAVE_NONE_').L('_EXCLAMATION_')));
+        }
+        $map_field['profile_group_id'] = $profile_group_id;
+        $map_field['status'] = 1;
+        $field_setting_list = D('field_setting')->where($map_field)->order('sort asc')->select();
+
+        if (!$field_setting_list) {
+            $this->ajaxReturn(array('status'=>0,'info'=>L('_ERROR_INFO_CHANGE_NONE_').L('_EXCLAMATION_')));
+        }
+
+        $data = null;
+        foreach ($field_setting_list as $key => $val) {
+            $data[$key]['uid'] = is_login();
+            $data[$key]['field_id'] = $val['id'];
+            switch ($val['form_type']) {
+                case 'input':
+                    $val['value'] = op_t($_POST['expand_' . $val['id']]);
+                    if (!$val['value'] || $val['value'] == '') {
+                        if ($val['required'] == 1) {
+                            $this->ajaxReturn(array('status'=>0,'info'=>$val['field_name'] . L('_ERROR_CONTENT_NONE_').L('_EXCLAMATION_')));
+                        }
+                    } else {
+                        $val['submit'] = $this->_checkInput($val);
+                        if ($val['submit'] != null && $val['submit']['succ'] == 0) {
+                            $this->ajaxReturn(array('status'=>0,'info'=>$val['submit']['msg']));
+                        }
+                    }
+                    $data[$key]['field_data'] = $val['value'];
+                    break;
+                case 'radio':
+                    $val['value'] = op_t($_POST['expand_' . $val['id']]);
+                    $data[$key]['field_data'] = $val['value'];
+                    break;
+                case 'checkbox':
+                    $val['value'] = $_POST['expand_' . $val['id']];
+                    if (!is_array($val['value']) && $val['required'] == 1) {
+                        $this->ajaxReturn(array('status'=>0,'info'=>L('_ERROR_AT_LIST_ONE_').L('_COLON_') . $val['field_name']));
+                    }
+                    $data[$key]['field_data'] = is_array($val['value']) ? implode('|', $val['value']) : '';
+                    break;
+                case 'select':
+                    $val['value'] = op_t($_POST['expand_' . $val['id']]);
+                    $data[$key]['field_data'] = $val['value'];
+                    break;
+                case 'time':
+                    $val['value'] = op_t($_POST['expand_' . $val['id']]);
+                    $val['value'] = strtotime($val['value']);
+                    $data[$key]['field_data'] = $val['value'];
+                    break;
+                case 'textarea':
+                    $val['value'] = op_t($_POST['expand_' . $val['id']]);
+                    if (!$val['value'] || $val['value'] == '') {
+                        if ($val['required'] == 1) {
+                            $this->ajaxReturn(array('status'=>0,'info'=>$val['field_name'] . L('_ERROR_CONTENT_NONE_').L('_EXCLAMATION_')));
+                        }
+                    } else {
+                        $val['submit'] = $this->_checkInput($val);
+                        if ($val['submit'] != null && $val['submit']['succ'] == 0) {
+                            $this->ajaxReturn(array('status'=>0,'info'=>$val['submit']['msg']));
+                        }
+                    }
+                    $val['submit'] = $this->_checkInput($val);
+                    if ($val['submit'] != null && $val['submit']['succ'] == 0) {
+                        $this->ajaxReturn(array('status'=>0,'info'=>$val['submit']['msg']));
+                    }
+                    $data[$key]['field_data'] = $val['value'];
+                    break;
+            }
+        }
+        $map['uid'] = is_login();
+        $map['role_id'] = get_login_role();
+        $is_success = false;
+        foreach ($data as $dl) {
+            $dl['role_id'] = $map['role_id'];
+
+            $map['field_id'] = $dl['field_id'];
+            $res = D('field')->where($map)->find();
+            if (!$res) {
+                if ($dl['field_data'] != '' && $dl['field_data'] != null) {
+                    $dl['createTime'] = $dl['changeTime'] = time();
+                    if (!D('field')->add($dl)) {
+                        $this->ajaxReturn(array('status'=>0,'info'=>L('_ERROR_INFO_ADD_').L('_EXCLAMATION_')));
+                    }
+                    $is_success = true;
+                }
+            } else {
+                $dl['changeTime'] = time();
+                if (!D('field')->where(array('id' => $res['id']))->save($dl)) {
+                    $this->ajaxReturn(array('status'=>0,'info'=>L('_ERROR_INFO_CHANGE_').L('_EXCLAMATION_')));
+                }
+                $is_success = true;
+            }
+            unset($map['field_id']);
+        }
+        clean_query_user_cache(is_login(), 'expand_info');
+        if ($is_success) {
+            $this->ajaxReturn(array('status'=>1,'info'=>L('_SUCCESS_SAVE_').L('_EXCLAMATION_'),'url'=>'refresh'));
+        } else {
+            $this->ajaxReturn(array('status'=>0,'info'=>L('_ERROR_SAVE_').L('_EXCLAMATION_')));
+        }
+    }
+
+    function _checkInput($data)
+    {
+        if ($data['form_type'] == "textarea") {
+            $validation = $this->_getValidation($data['validation']);
+            if (($validation['min'] != 0 && mb_strlen($data['value'], "utf-8") < $validation['min']) || ($validation['max'] != 0 && mb_strlen($data['value'], "utf-8") > $validation['max'])) {
+                if ($validation['max'] == 0) {
+                    $validation['max'] = '';
+                }
+                $info['succ'] = 0;
+                $info['msg'] = $data['field_name'] . L('_INFO_LENGTH_1_') . $validation['min'] . "-" . $validation['max'] . L('_INFO_LENGTH_2_');
+            }
+        } else {
+            switch ($data['child_form_type']) {
+                case 'string':
+                    $validation = $this->_getValidation($data['validation']);
+                    if (($validation['min'] != 0 && mb_strlen($data['value'], "utf-8") < $validation['min']) || ($validation['max'] != 0 && mb_strlen($data['value'], "utf-8") > $validation['max'])) {
+                        if ($validation['max'] == 0) {
+                            $validation['max'] = '';
+                        }
+                        $info['succ'] = 0;
+                        $info['msg'] = $data['field_name'] .  L('_INFO_LENGTH_1_') . $validation['min'] . "-" . $validation['max'] .  L('_INFO_LENGTH_2_');
+                    }
+                    break;
+                case 'number':
+                    if (preg_match("/^\d*$/", $data['value'])) {
+                        $validation = $this->_getValidation($data['validation']);
+                        if (($validation['min'] != 0 && mb_strlen($data['value'], "utf-8") < $validation['min']) || ($validation['max'] != 0 && mb_strlen($data['value'], "utf-8") > $validation['max'])) {
+                            if ($validation['max'] == 0) {
+                                $validation['max'] = '';
+                            }
+                            $info['succ'] = 0;
+                            $info['msg'] = $data['field_name'] .  L('_INFO_LENGTH_1_') . $validation['min'] . "-" . $validation['max'] .  L('_INFO_LENGTH_2_').L('_COMMA_').L('_INFO_AND_DIGITAL_');
+                        }
+                    } else {
+                        $info['succ'] = 0;
+                        $info['msg'] = $data['field_name'] . L('_INFO_DIGITAL_');
+                    }
+                    break;
+                case 'email':
+                    if (!preg_match("/^([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)$/i", $data['value'])) {
+                        $info['succ'] = 0;
+                        $info['msg'] = $data['field_name'] . L('_INFO_FORMAT_EMAIL_');
+                    }
+                    break;
+                case 'phone':
+                    if (!preg_match("/^\d{11}$/", $data['value'])) {
+                        $info['succ'] = 0;
+                        $info['msg'] = $data['field_name'] . L('_INFO_FORMAT_PHONE_');
+                    }
+                    break;
+            }
+        }
+        return $info;
+    }
+
+    function _getValidation($validation)
+    {
+        $data['min'] = $data['max'] = 0;
+        if ($validation != '') {
+            $items = explode('&', $validation);
+            foreach ($items as $val) {
+                $item = explode('=', $val);
+                if ($item[0] == 'min' && is_numeric($item[1]) && $item[1] > 0) {
+                    $data['min'] = $item[1];
+                }
+                if ($item[0] == 'max' && is_numeric($item[1]) && $item[1] > 0) {
+                    $data['max'] = $item[1];
+                }
+            }
+        }
+        return $data;
+    }
+
     public function mine(){
         $this->setTitle('个人中心');
         $this->setKeywords("个人中心");
@@ -74,10 +458,12 @@ class IndexController extends Controller
         $weibo_list=$this->_myWeibo($aUid);
         $mycrowd_list=$this->_myCrowd($aUid);
         $crowd_list=$this->_crowd($aUid);
+        $friend_btn=$this->_friends($aUid);
         $this->assign('weibo_list', $weibo_list);
         $this->assign('friend_list', $friend_list);
         $this->assign('mycrowd_list', $mycrowd_list);
         $this->assign('crowd_list', $crowd_list);
+        $this->assign('friend_btn', $friend_btn);
         $this->assign('uid', $aUid);
         $this->assign('page', 1);
         $this->assign('user_info', $user_info);
@@ -397,9 +783,9 @@ class IndexController extends Controller
                 break;
             case 'follow':
                 if($aUid==is_login()){
-                    $title='我的信任';
+                    $title='我的关注';
                 }else{
-                    $title='他的信任';
+                    $title='他的关注';
                 }
                 $this->assign('type','follow');
                 $data = D('Follow')->getFollowing($aUid, $page, array('avatar128', 'uid', 'nickname', 'fans', 'following', 'weibocount', 'space_url', 'title','space_mob_url'));
@@ -407,9 +793,9 @@ class IndexController extends Controller
                 break;
             default:
                 if($aUid==is_login()){
-                    $title='我的信任';
+                    $title='我的关注';
                 }else{
-                    $title='他的信任';
+                    $title='他的关注';
                 }
                 $this->assign('type','follow');
                 $data = D('Follow')->getFollowing($aUid, $page, array('avatar128', 'uid', 'nickname', 'fans', 'following', 'weibocount', 'space_url', 'title','space_mob_url'));
@@ -417,7 +803,7 @@ class IndexController extends Controller
         }
        return array($title,$data);
     }
-    //我的信任、粉丝、好友
+    //我的关注、粉丝、好友
     public function fans(){
             $aUid = I('get.uid', 0, 'intval');
             $aType = I('get.type', 'follow', 'text');
@@ -457,10 +843,10 @@ class IndexController extends Controller
         }
         $res = D('Common/Follow')->isFollow(is_login(), $aUid);
         if ($res == 1) {
-            $user['follow_status'] = '已信任';
+            $user['follow_status'] = '已关注';
             $user['is_follow'] = 'unfollow';
         } else {
-            $user['follow_status'] = '信任';
+            $user['follow_status'] = '关注';
             $user['is_follow'] = 'follow';
         }
         $user['is_login'] = is_login();
@@ -675,49 +1061,89 @@ class IndexController extends Controller
         $count=D('advertisement')->where($map)->count();
         $this->assign('count', $count);
         $this->assign('advertisement', $advertisement);
-        //渲染配置资讯
-        $newsResult=S('newsResult');
-        if($newsResult==false){
-            $newsId = modC('SET_NEWS','');
-            if($newsId!=""){
-                $newsId=explode(',', $newsId);
-                foreach ($newsId as $item) {
-                    $newsResult[]=D('news')->where(array('status'=>'1','id'=>$item))->order("create_time desc")->find();
-                }
-                S('newsResult', $newsResult,3600);
-            }
-
-        }
-
-        foreach ($newsResult as &$datum){
-            $datum['category']=D('news_category')->where(array('id'=>$datum['category']))->getfield('title');
-            $datum['uid']=query_user(array('uid','nickname','avatar512'),$datum['uid']);
-            $datum['create_time']=friendlyDate($datum['create_time']);
-        }
-        unset($datum);
-        $this->assign('data', $newsResult);
-        //渲染配置达人
-       $userResult=S('userResult');
-        if($userResult==false){
-            $userId = modC('SET_USER_ID','');
-            if($userId!=""){
-                $userId=explode(',', $userId);
-                $follow=D('Follow')->where(array('who_follow'=>get_uid()))->getfield('follow_who',true);
-
-                foreach ($userId as $item) {
-                    $list=query_user(array('nickname','avatar512','signature','uid'),$item);
-                    if(in_array($item,$follow)) {
-                        $list=array_merge(array('is_follow' => 1), $list);
-                    }
-                    $userResult[]=$list;
-                }
-                unset($item);
-                S('userResult', $userResult,3600);
-            }
-
-        }
+        $uid = is_login() ;
+        $this->assign('uid', $uid) ;
+        //渲染配置微博
+        $weiboList = get_square_weibo() ;
+        $this->assign('weibo', $weiboList) ;
+        $weiboHtml = $this->fetch(T('Weibo@Index/_list')) ;
+        $this->assign('weiboHtml', $weiboHtml) ;
+        //渲染推荐好友
+        $userResult = $this->getFriend() ;
         $this->assign('friend_list', $userResult);
+        //渲染配置资讯
+        S('SQUARE_NEWS_MODULE_LIVE') ;
+        if (D('Module')->checkInstalled('News')) {
+            $this->assign('news_module', 1) ;
+            $newsResult = get_square_list('News', 'newsResult', 'SET_NEWS', 'id', array('status'=>1), 'create_time desc', 'comment desc') ;
+            foreach ($newsResult as &$datum){
+                $datum['category']=D('news_category')->where(array('id'=>$datum['category']))->field('id,title')->find();
+                $datum['uid']=query_user(array('uid','nickname','avatar512'),$datum['uid']);
+                $datum['create_time']=friendlyDate($datum['create_time']);
+            }
+            unset($datum);
+            $this->assign('data', $newsResult);
+            $newsHtml = $this->fetch(T('News@Index/_list')) ;
+            $this->assign('newsHtml', $newsHtml) ;
+        }
+
+        //渲染配置论坛
+        if (D('Module')->checkInstalled('Forum')) {
+            $this->assign('forum_module', 1) ;
+            $forumResult = get_square_list('ForumPost', 'forumResult', 'SET_FORUM', 'id', array('status'=>1), 'create_time desc', 'view_count desc') ;
+            foreach ($forumResult as &$datum){
+                $datum['uid']=query_user(array('nickname','uid', 'avatar128', 'space_url',),$datum['uid']);
+                $datum['create_time']=friendlyDate($datum['create_time'], 'normal');
+                $datum['forum'] = D('Forum')->where(array('id'=>$datum['forum_id']))->field('title')->find() ;
+            }
+            unset($datum);
+            $this->assign('data', $forumResult);
+            $forumHtml = $this->fetch(T('Forum@Index/_list')) ;
+            $this->assign('forumHtml', $forumHtml) ;
+        }
+        //渲染配置问答
+        if (D('Module')->checkInstalled('Question')) {
+            $this->assign('question_module', 1) ;
+            $quResult = get_square_list('Question', 'questionResult', 'SET_QUESTION', 'id', array('status'=>1), 'create_time desc', 'answer_num desc') ;
+            $quResult = A('Question/Index')->fetchNewsData($quResult);
+            $this->assign('data', $quResult);
+            $quHtml = $this->fetch(T('Question@Index/_list')) ;
+            $this->assign('quHtml', $quHtml) ;
+        }
+        if(D('Module')->checkInstalled('Event')) {
+            $this->assign('event_module', 1) ;
+        }
+        $this->setTitle('广场') ;
         $this->display();
+    }
+
+    public function getFriend() {
+        $uid = is_login() ;
+        $userId = modC('SET_USER_ID','');
+        if($userId!=""){
+            $userId=explode(',', $userId);
+            $follow=D('Follow')->where(array('who_follow'=>$uid))->getfield('follow_who',true);
+            shuffle($userId) ;
+            $userId = array_slice($userId, 0, 3) ;
+            foreach ($userId as $item) {
+                $list=query_user(array('nickname','avatar512','signature','uid'),$item);
+                if(in_array($item,$follow)) {
+                    $list=array_merge(array('is_follow' => 1), $list);
+                }
+                $userResult[]=$list;
+            }
+            unset($item);
+        }
+        if(IS_AJAX){
+            $html = '' ;
+            $this->assign('friend_list', $userResult) ;
+            $html = $this->fetch('_friendbox') ;
+            if($html == false){
+                $this->ajaxReturn(array('status'=>0, 'data'=>$html)) ;
+            }
+            $this->ajaxReturn(array('status'=>1, 'data'=>$html)) ;
+        }
+        return $userResult ;
     }
 
     //申请认证
@@ -756,14 +1182,14 @@ class IndexController extends Controller
         $attest['type']=$this->attestTypeModel->getData($attest['attest_type_id'],1);
         if($attest['status']==1){
             if($redirect){
-                redirect(U('Ucenter/Attest/process'));
+                redirect(U('Ucenter/Index/process'));
             }
         }
         if($attest['status']==2||$attest['status']==0){
             $aChange=I('change',0,'intval');
             if(!$aChange){
                 if($redirect){
-                   $this->success("正在申请当中!");
+                    redirect(U('Ucenter/Index/process'));
                 }
             }else{
                 $this->assign('change',1);
@@ -771,6 +1197,31 @@ class IndexController extends Controller
         }
         $this->assign('attest',$attest);
         return $attest;
+    }
+    public function process()
+    {
+        $attest=$this->_checkAttestStatus();
+        if(!$attest){
+            $aIndex=I('get.go_index',0,'intval');
+            if($aIndex){
+                redirect(U('Ucenter/Attest/index'));
+            }else{
+                $this->error('还没有进行申请认证，请先申请！');
+            }
+        }
+        $this->assign('tab','process');
+        $this->display();
+    }
+    public function deleteApply()
+    {
+        $aId=I('get.id',0,'intval');
+        $res=$this->attestModel->deleteApply($aId);
+        if($res){
+            clean_query_user_cache(is_login(),array('avatars_html','attest'));
+            $this->success('取消认证成功！',U('Ucenter/Attest/index'));
+        }else{
+            $this->error('取消认证失败！');
+        }
     }
     private function _checkAttestConditions($attest_old=null)
     {
@@ -860,7 +1311,7 @@ class IndexController extends Controller
     {
         $attest_old=$this->_checkAttestStatus(1);
 
-        $this->checkAuth('Ucenter/attest/apply',-1,'你没有申请权限');
+        $this->checkAuth('Ucenter/Index/apply',-1,'你没有申请权限');
         if(IS_POST){
             $attest=$this->attestModel->create();
             //检测认证资料 start
@@ -1018,18 +1469,25 @@ class IndexController extends Controller
     {
         $aAccount = I('post.account', '', 'text');
         $aVerify = I('post.verify', '', 'text');
+        $ifIs = I('post.ifis', '', 'intval');
         $aUid = is_login();
         $aType = 'mobile';
-
         if (!is_login()) {
             $this->error('请先登录');
         }
-
         $res = D('Verify')->checkVerify($aAccount, $aType, $aVerify, $aUid);
         if (!$res) {
             $this->error(L('_FAIL_VERIFY_'));
         }
         UCenterMember()->where(array('id' => $aUid))->save(array($aType => $aAccount));
-        $this->success(L('_SUCCESS_VERIFY_'), U('Ucenter/Index/safe'));
+        $this->success(L('_SUCCESS_VERIFY_'), U($ifIs?'project/index/user':'Ucenter/Index/safe'));
+    }
+
+    private function _friends($uid) {
+        $mine = is_login() ;
+        if($mine == $uid) return 0 ;
+        $friend = D('Follow')->eachFriend($uid, $mine) ;
+        if($friend) return 1 ;
+            return 0 ;
     }
 }

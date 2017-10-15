@@ -20,13 +20,13 @@
                             <ul class="nav nav-pills ucenter-tab">
                                 <li   <eq name="tab" value="following"> class="active"</eq>>
                                 <a class="my-num my-after" href="{:U('Ucenter/Index/following',array('uid'=>$user_info['uid']))}">
-                                    <if condition="$user_info['uid'] eq is_login()"><strong>{$user_info.following}</strong><else/>TA的</if>{:L('_DE_FOLLOWER_')}
+                                    {:L('_DE_FOLLOWER_')}{:L('_USER_')}
                                 </a>
                                 </li>
 
                                 <li <eq name="tab" value="fans"> class="active"</eq>>
                                 <a class="my-num" href="{:U('Ucenter/Index/fans',array('uid'=>$user_info['uid']))}">
-                                    <if condition="$user_info['uid'] eq is_login()"><strong>{$user_info.fans}</strong><else/>Ta的</if>{:L('_DE_FANS_')}
+                                    被{:L('_DE_FOLLOWER_')}{:L('_USER_')}
                                 </a>
                                 </li>
                             </ul>

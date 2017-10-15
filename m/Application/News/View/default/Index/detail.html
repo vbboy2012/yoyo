@@ -49,14 +49,19 @@
                                 <div class="flexRight" <if condition="is_login() eq $data['uid']">style="display: none"</if> >
                                     <if condition="$data['follow'] eq 0">
                                         <a href="javascript:" class="focus" data-role="follow"
-                                           data-follow-who="{$data['uid']}">+ 信任</a>
-                                        <else/>
+                                           data-follow-who="{$data['uid']}">+ 关注</a>
+                                    <else/>
                                         <a href="javascript:" class="focus" data-role="unfollow"
-                                           data-follow-who="{$data['uid']}">已信任</a>
+                                           data-follow-who="{$data['uid']}">已关注</a>
                                     </if>
                                 </div>
                             </div>
                         </div>
+                        <notempty name="data['banner']">
+                            <div class="news-banner">
+                                <img src="{$data.banner|getThumbImageById='400','150'}" />
+                            </div>
+                        </notempty>
                         <if condition="$data['illegal_status'] neq false">
                             <div class="illegal-status">
                                 <span>此资讯的状态是{$data.illegal_status}状态，您是管理员所以依然可以阅读</span>
@@ -192,5 +197,50 @@
         var detailID = $('.cmtList').attr('data-id');
         var total = $('.cmtWlist').attr('data-total');
         refreshData('News/index/detail',total,'.cmtList',{id:detailID});
+    </script>
+    <script type="text/javascript" src='http://res.wx.qq.com/open/js/jweixin-1.0.0.js'></script>
+    <script type="text/javascript">
+        wx.config({
+            debug: false,
+            appId: '{$signPackage["appId"]}',
+            timestamp: '{$signPackage["timestamp"]}',
+            nonceStr: '{$signPackage["nonceStr"]}',
+            signature: '{$signPackage["signature"]}',
+            jsApiList: [
+                // 所有要调用的 API 都要加到这个列表中
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo',
+                'onMenuShareQZone'
+            ]
+        });
+    </script>
+    <script type="text/javascript src='http://203.195.235.76/jssdk/js/zepto.min.js"></script>
+    <script type="text/javascript">
+        //完成wx.config，执行这里
+        wx.ready(function () {
+            //分享到朋友圈
+            wx.onMenuShareTimeline({
+                title: '{$data.title}', // 分享标题
+                link:window.location.href,
+                imgUrl: "{$share_img}", // 分享图标
+            });
+
+            //分享给朋友
+            wx.onMenuShareAppMessage({
+                title: '{$data.title}', // 分享标题
+                desc: '{$data.description|shortDesc}',
+                link:window.location.href,
+                imgUrl: "{$share_img}", // 分享图标
+                trigger: function (res) {
+                    // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                },
+                fail: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+        });
     </script>
 </block>

@@ -41,9 +41,11 @@ $(function () {
         if($(this).hasClass('active')) return ;
         $(this).addClass('active') ;
         $("[data-role='forum-sort-hot']").removeClass('active') ;
+        $('.infinite-scroll-preloader').css('min-height','800px');
         // $(".list").addClass('list-height') ;
         sort='create_time';
         $('#tab li').remove();
+        $('[data-role="sort-name"]').html('最新帖子') ;
         page=0;
         addItems(type, lastIndex);
         // $(".list").removeClass('list-height') ;
@@ -52,9 +54,11 @@ $(function () {
         if($(this).hasClass('active')) return ;
         $(this).addClass('active') ;
         $("[data-role='forum-sort-time']").removeClass('active') ;
+        $('.infinite-scroll-preloader').css('min-height','800px');
         // $(".list").addClass('list-height') ;
         sort='last_reply_time';
         $('#tab li').remove();
+        $('[data-role="sort-name"]').html('最热帖子') ;
         page=0;
         addItems(type, lastIndex);
         // $(".list").removeClass('list-height') ;
@@ -80,11 +84,11 @@ $(function () {
                     $('#tab').append(res.data);
                     lastIndex = $('#tab li').length;
                     if (lastIndex<10){
-                        console.log(111)
                         $('.infinite-scroll-preloader').css('display','none');
                     }
-                    if (res.data==''){
-                        $('.infinite-scroll-preloader').css('display','none');
+                    if (res.data.length <= 4){
+                        $.detachInfiniteScroll($('.infinite-scroll'));
+                        $('.infinite-scroll-preloader').remove();
                     }
                     $('.infinite-scroll-preloader').css('display','none');
                 }
@@ -104,6 +108,8 @@ $(function () {
         if (loading) return;
         // 设置flag
         loading = true;
+        $('.infinite-scroll-preloader').css('display','');
+        $('.infinite-scroll-preloader').css('min-height',0);
         setTimeout(function() {
             loading = false;
 

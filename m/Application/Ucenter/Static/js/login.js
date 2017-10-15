@@ -14,7 +14,8 @@ $(function(){
         $.post(url,data,function(res){
             if (res.status == 1) {
                 $.toast('登录成功');
-                window.location.href = U('weibo');
+                window.location.href = U(res.projectUrl);
+
             } else {
                 $.toast(res.info);
             }

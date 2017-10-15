@@ -1,0 +1,23 @@
+<volist name="list['member']" id="vo">
+    <li>
+        <img src="{$vo.avatar64}"/>
+        <div class="m-box">
+            <div class="m-info">
+                <div class="name">{$vo.nickname}</div>
+                <div class="phone">
+                    <if condition="($level egt 2) && ($vo['phone'] neq 0)">
+                        <span>{$vo.name}</span>{$vo.phone}
+                    </if>
+                </div>
+            </div>
+            <if condition="($level egt 3) && ($vo['status'] eq 0)">
+                    <a class="agg" data-name="{$vo.nickname}" data-role="agree" data-id="{$list.id}" data-uid="{$vo.id}">{:L('_AUDIT_APPLY_')}</a>
+            <elseif condition="($level egt 3) && ($vo['status'] eq 1)" />
+                <a class="down">{:L('_AUDIT_ED_')}</a>
+            </if>
+        </div>
+    </li>
+</volist>
+<empty name="list['member']">
+    <li><span class="noMore">暂无数据~</span></li>
+</empty>

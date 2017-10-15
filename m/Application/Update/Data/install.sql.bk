@@ -3827,13 +3827,13 @@ CREATE TABLE IF NOT EXISTS `ocenter_file` (
 
 CREATE TABLE IF NOT EXISTS `ocenter_follow` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `follow_who` int(11) NOT NULL COMMENT '信任谁',
-  `who_follow` int(11) NOT NULL COMMENT '谁信任',
+  `follow_who` int(11) NOT NULL COMMENT '关注谁',
+  `who_follow` int(11) NOT NULL COMMENT '谁关注',
   `create_time` int(11) NOT NULL,
   `alias` varchar(40) NOT NULL COMMENT '备注',
   `group_id` int(11) NOT NULL COMMENT '分组ID',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='信任表' AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='关注表' AUTO_INCREMENT=1 ;
 
 
 DROP TABLE IF EXISTS `ocenter_local_comment`;
@@ -4077,8 +4077,8 @@ VALUES
   (10022, '设置圈子类型状态', 10019, 0, 'Weibo/setcrowdtypestatus', 1, '', '圈子管理', 0, '', ''),
   (10023, '设置圈子状态', 10021, 0, 'Weibo/setcrowdstatus', 1, '', '圈子管理', 0, '', ''),
   (10024, '圈子是否可发送动态', 10002, 0, 'Weibo/doCrowdAllowPost', 1, '', '圈子管理', 0, '', ''),
-  (10025, '执行默认信任', 10002, 0, 'Weibo/followCrowd', 1, '', '圈子管理', 0, '', ''),
-  (10026, '修复信任数脚本', 10002, 0, 'Weibo/repaircrowdfollow', 1, '', '圈子管理', 0, '', ''),
+  (10025, '执行默认关注', 10002, 0, 'Weibo/followCrowd', 1, '', '圈子管理', 0, '', ''),
+  (10026, '修复关注数脚本', 10002, 0, 'Weibo/repaircrowdfollow', 1, '', '圈子管理', 0, '', ''),
   (10036, '云端接口', 0, 8, 'Capi/index', 1, '', '', 0, '', 'Capi'),
   (10037, '云端配置', 10036, 0, 'Capi/config', 0, '', '云端配置', 0, '', 'Capi'),
   (10038, '商城', 0, 0, 'Mall/index', 1, '', '', 0, '', 'Mall'),

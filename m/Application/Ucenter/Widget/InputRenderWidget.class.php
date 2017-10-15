@@ -21,11 +21,11 @@ class InputRenderWidget extends Action
 
     public function inputRender($data = array(), $type)
     {
-        //dump($data);exit;
         $this->assign('type', $type);
         $this->assign('field_id', $data['id']);
         $this->assign('required', $data['required']);
         $this->assign('input_tips', $data['input_tips']);
+        $this->assign('form_type', $data['form_type']);
         if (!isset($data['field_content']) && $data['required'] && $data['form_default_value'] == '') {
             $this->assign('canSubmit', 0);
         } elseif (isset($data['field_content']['field_data']) && $data['field_content']['field_data'] == '' && $data['required']) {
@@ -146,6 +146,7 @@ class InputRenderWidget extends Action
                 break;
             case 'select':
                 $this->assign('field_name', $data['field_name']);
+                $this->assign('field_content', $data['field_content']['field_data']);
                 $selected = isset($data['field_content']['field_data']) ? $data['field_content']['field_data'] : L('_SELECT_NOT_');
                 if ($type == "personal") {
                     /*

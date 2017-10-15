@@ -150,12 +150,20 @@ class UserModel
 
         //粉丝数、信任数、微博数
         if (in_array('fans', $fields)) {
-            $user_data['fans'] = M('Follow')->where('follow_who=' . $uid)->count();
+            $user_data['fans'] = M('Follow')->where('follow_who=' . $uid.' and trust=0')->count();
             $this->write_query_user_cache($uid, 'fans', $user_data['fans']);
         }
         if (in_array('following', $fields)) {
-            $user_data['following'] = M('Follow')->where('who_follow=' . $uid)->count();
+            $user_data['following'] = M('Follow')->where('who_follow=' . $uid.' and trust=0')->count();
             $this->write_query_user_cache($uid, 'following', $user_data['following']);
+        }
+        if (in_array('trust', $fields)) {
+            $user_data['trust'] = M('Follow')->where('follow_who=' . $uid.' and trust=1')->count();
+            $this->write_query_user_cache($uid, 'trust', $user_data['trust']);
+        }
+        if (in_array('trusting', $fields)) {
+            $user_data['trusting'] = M('Follow')->where('who_follow=' . $uid.' and trust=1')->count();
+            $this->write_query_user_cache($uid, 'trusting', $user_data['trusting']);
         }
         if (in_array('weibocount', $fields)) {
             $user_data['weibocount'] = M('Weibo')->where('uid=' . $uid . ' and status >0')->count();

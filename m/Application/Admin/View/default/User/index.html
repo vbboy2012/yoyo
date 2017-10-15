@@ -94,6 +94,8 @@
                 <th class="">{:L('_LAST_LOGIN_TIME_')}</th>
                 <th class="">{:L('_LOGIN_IP_LAST_TIME_')}</th>
                 <th class="">{:L('_STATUS_')}</th>
+                <th class="">注册终端</th>
+                <th class="">注册方式</th>
 
             </tr>
             </thead>
@@ -131,6 +133,8 @@
                         <td><a href="http://ip138.com/ips138.asp?ip={$vo['last_login_ip']|long2ip}">{$vo['last_login_ip']|long2ip}</a>
                         </td>
                         <td>{$vo.status_text}</td>
+                        <td>{$vo.mark.from}</td>
+                        <td>{$vo.mark.type}</td>
 
 
 

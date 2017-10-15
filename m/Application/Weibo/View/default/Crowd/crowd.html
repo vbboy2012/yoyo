@@ -4,45 +4,127 @@
 </block>
 <block name="body">
     <div class="page-group">
-        <div class="page page-current" style="background-color: #fff">
+        <div class="page page-current">
             <header class="bar bar-nav comHead">
                 <a href="javascript:" class="title open-about">圈子</a>
             </header>
             <include file="./Application/Common/View/default/Public/footer.html"/>
-            <div class="content">
-                <div class="content-block noEdge circle">
-                    <div class="buttons-tab">
-                        <a href="#tab01" class="tab-link active button">全部圈子</a>
-                        <a href="#tab02" class="tab-link button">我加入的</a>
-                        <a href="#tab03" class="tab-link button">我创建的</a>
+            <div class="content infinite-scroll">
+                <div class="content-block noEdge">
+                    <!--顶部分类 start-->
+                    <div class="head-type headtop">
+                        <ul data-role="type-list">
+                            <li><a <if condition="$type eq 0">class="active"</if> href="javascript:void(0);" data-role="change-cate" data-value="0" data-code="200">{:L('_CATEGORY_ALL_')}</a></li>
+                            <notempty name="typeList">
+                                <volist name="typeList" id="vo">
+                                    <li><a <if condition="$type['id'] eq $vo['id']">class="active"</if> href="javascript:void(0);" data-role="change-cate" data-value="{$vo.id}" data-code="200">{$vo.title}</a></li>
+                                </volist>
+                                <else/>
+                                <li>暂无分类</li>
+                            </notempty>
+                        </ul>
+                        <div class="head-box headtop">
+                            <a class="do-box" href="javascript:void(0);" data-role="show-type"><i class="iconfont icon-xiangxiajiantou"></i></a>
+                            <a class="do-box" href="{:U('Weibo/Crowd/search')}"><i class="iconfont icon-weibiaoti3"></i></a>
+                        </div>
                     </div>
-                    <div class="content-block noEdge">
-                        <div class="tabs">
-                            <div id="tab01" class="tab active">
-                                <div class="content-block noEdge" style="padding: 0">
-                                    <include file="_crowdlist"/>
-                                </div>
+                    <div class="all-type" data-role="all-type" style="display: none">
+                        <ul data-list="e-type">
+                        </ul>
+                        <div class="infinite-scroll-preloader" id="head-loading">
+                            <div class="preloader"></div>
+                        </div>
+                    </div>
+                    <!--顶部分类 end-->
+                    <!-- 活动菜单 start-->
+                    <div class="head-nav">
+                        <div class="nav-list">
+                            <a href="javascript:void(0);" data-role="change-list" data-type="join" data-uid="{$uid}">
+                                <i class="iconfont icon-join-crowd join-crowd"></i>
+                                <div class="nav-title">我参加的圈子</div>
+                            </a>
+                        </div>
+                        <div class="nav-list">
+                            <a href="javascript:void(0);" data-role="change-list" data-type="mine" data-uid="{$uid}">
+                                <i class="iconfont icon-mine-crowd mine-crowd"></i>
+                                <div class="nav-title">我创建的圈子</div>
+                            </a>
+                        </div>
+                        <div class="nav-list">
+                            <a href="{:is_login()?U('crowd/create'):"javascript:no_login();"}">
+                                <i class="iconfont icon-add-crowd add-crowd"></i>
+                                <div class="nav-title">创建圈子</div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 活动菜单 end-->
+                    <div class="list-crowd-index">
+                        <notempty name="crowd">
+                            <div class="crowd-top">
+                                <div class="most-title">最新圈子</div>
                             </div>
-                            <div id="tab02" class="tab">
-                                <div class="content-block noEdge">
-                                    <include file="_followlist"/>
-                                </div>
+                            <div class="most-new">
+                                <ul class="list circleList">
+                                    <li class="one info" style="padding: 10px">
+                                        <a external href="{:U('Weibo/Index/index', array('crowd_id'=>$crowd['id']))}">
+                                            <div class="avatar">
+                                                <img src="{$crowd.logo|getThumbImageById=130,130}" alt="">
+                                            </div>
+                                        </a>
+                                        <div class="name">
+                                            <a external href="{:U('Weibo/Index/index', array('crowd_id'=>$crowd['id']))}">{$crowd.title}</a>
+                                            <p class="location textMore">{$crowd.intro}</p>
+                                            <p class="num">
+                                                <span><i class="iconfont icon-fensi"></i>{$crowd.member_count}</span>
+                                                <span><i class="iconfont icon-groupcopy5"></i>{$crowd.post_count}</span>
+                                            </p>
+                                        </div>
+                                        <switch name="$crowd.is_follow">
+                                            <case value="0">
+                                                <a href="javascript:" class="follow" <gt name="data.need_pay" value="0">data-toggle="modal" data-target="#myModal{$crowd.id}"<else/>data-role="follow_crowd" data-id="{$crowd.id}"</gt> >
+                                                加入
+                                                </a>
+                                            </case>
+                                            <case value="1">
+                                                <a href="javascript:" class="follow" data-role="unfollow_crowd" data-id="{$crowd.id}">
+                                                    已加入
+                                                </a>
+                                            </case>
+                                            <case value="2">
+                                                <a href="javascript:" class="follow" data-id="{$crowd.id}">
+                                                    待审核
+                                                </a>
+                                            </case>
+                                            <case value="-2">
+                                                <a href="javascript:" class="follow" <gt name="data.need_pay" value="0">data-toggle="modal" data-target="#inviteModal{$crowd.id}"<else/>data-role="follow_crowd" data-id="{$crowd.id}"</gt> >
+                                                被邀请
+                                                </a>
+                                            </case>
+                                            <default/>
+                                            <a href="javascript:" class="follow" data-role="follow_crowd" data-id="{$crowd.id}">
+                                                加入
+                                            </a>
+                                        </switch>
+                                    </li>
+                                </ul>
                             </div>
-                            <div id="tab03" class="tab">
-                                <div class="content-block noEdge">
-                                    <include file="_createlist"/>
-                                </div>
-                            </div>
+                        </notempty>
+                        <div class="crowd-top"><div class="most-title" data-role="list-title">热门圈子</div></div>
+                        <div class="list-crowd" data-type="all" data-total="{$total}">
+                        </div>
+                        <div class="infinite-scroll-preloader">
+                            <div class="preloader"></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <a class="sBtn iconfont icon-fabu"  href="{:is_login()?U('create'):"javascript:$.toast('请登录~')"}"></a>
+            <!--<a class="sBtn iconfont icon-fabu"  href="{:is_login()?U('create'):"javascript:$.toast('请登录~')"}"></a>-->
         </div>
     </div>
 </block>
 <block name="other"></block>
 <block name="script">
     <script src="__JS__/crowd.js"></script>
+    <script src="__JS__/crowdload.js"></script>
     <script src="__JS__/weibo.js"></script>
 </block>

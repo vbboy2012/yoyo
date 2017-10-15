@@ -7,7 +7,7 @@ $(document).on('click', '[data-role="follow"]', function () {
             $this.css('color', '#ec725d');
             $this.css('border-color', '#ec725d');
             $this.attr('data-role', 'unfollow');
-            $this.html('已信任');
+            $this.html('已关注');
             $.toast(msg.info);
         } else {
             $.toast(msg.info);
@@ -18,14 +18,14 @@ $(document).on('click', '[data-role="follow"]', function () {
 $(document).on('click', '[data-role="unfollow"]', function () {
     var $this = $(this);
     var uid = $this.attr('data-follow-who');
-    $.confirm('你确定要取消信任吗？',
+    $.confirm('你确定要取消关注吗？',
         function () {
             $.post(U('Core/Public/unfollow'), {uid: uid}, function (msg) {
                 if (msg.status) {
                     $this.css('color', '#ec725d');
                     $this.css('border-color', '#ec725d');
                     $this.attr('data-role', 'follow');
-                    $this.html('+ 信任');
+                    $this.html('+ 关注');
                     $.toast(msg.info);
                 } else {
                     $.toast(msg.info);

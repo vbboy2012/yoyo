@@ -1,0 +1,270 @@
+<extend name="Base/common"/>
+
+<block name="style">
+    <link href="__CSS__/usercenter.css" rel="stylesheet" type="text/css"/>
+</block>
+<block name="header">
+    <br/>
+</block>
+<block name="body">
+    <div class="col-xs-12 usercenter">
+        <div class="uc">
+            <include file="_top"/>
+            <div class="uc-cont">
+                <div class="nav-wrap">
+                    <include file="_top_menu"/>
+                </div>
+                <div class="cont-wrap common-cont-wrap">
+                    <div id="center_account">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <ul class="nav nav-secondary">
+                                    <li class="active"><a href="#tab_1" data-toggle="tab">{:L('_AD_ONLINE_SELL_')}</a></li>
+                                    <li><a href="#tab_2" data-toggle="tab">{:L('_AD_ONLINE_BUY_')}</a></li>
+                                    <li><a href="#tab_3" data-toggle="tab">{:L('_AD_LOCAL_SELL_')}</a></li>
+                                    <li><a href="#tab_4" data-toggle="tab">{:L('_AD_LOCAL_BUY_')}</a></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_1">
+                                <if condition="count($list1) eq 0"><p class="text-muted"
+                                                                           style="text-align: center; font-size: 3em;">
+                                    <br><br>
+                                    {:L('_AD_NONE_')}{:L('_WAVE_')}
+                                    <br><br><br>
+                                </p>
+
+                                    <else/>
+                                    <table class="table table-striped table-hover">
+                                        <thead style="text-align: center;">
+                                        <tr>
+                                            <th style="vertical-align: middle;">币种</th>
+                                            <th style="vertical-align: middle;">地区</th>
+                                            <th style="vertical-align: middle;">付款方式</th>
+                                            <th style="vertical-align: middle;">价格</th>
+                                            <th style="vertical-align: middle;">限额</th>
+                                            <th style="vertical-align: middle;"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <volist name="list1" id="vo">
+                                            <tr>
+                                                <php>
+                                                    $minPrice = number_format($vo['min_price']);
+                                                    $maxPrice = number_format($vo['max_price']);
+                                                    $price = number_format($vo['price'],2);
+                                                    $coinType = $vo['coin_type']==1?'BTC':'ETH';
+                                                </php>
+                                                <td style="vertical-align: middle;">{$coinType}</td>
+                                                <td style="vertical-align: middle;">{$vo.name}</td>
+                                                <td style="vertical-align: middle">{$vo.payName}</td>
+                                                <td style="vertical-align: middle;color: #0C7F12"><b>{$price} {$vo.currency}</b></td>
+                                                <td style="vertical-align: middle">{$minPrice}-{$maxPrice} {$vo.currency}</td>
+                                                <php>
+                                                    $params = '';
+                                                    if($vo['type'] == 1){
+                                                    $title = "购买";
+                                                    $params = 'sellonline-';
+                                                    }else if($vo['type'] == 2){
+                                                    $title = "出售";
+                                                    $params = 'buyonline-';
+                                                    }else if($vo['type'] == 3){
+                                                    $title = "购买";
+                                                    $params = 'selllocal-';
+                                                    }else if($vo['type'] == 4){
+                                                    $title = "出售";
+                                                    $params = 'buylocal-';
+                                                    }
+                                                    $params.=$vo['payEn']."-".$vo['countryEn'];
+                                                </php>
+                                                <td style="vertical-align: middle"><a class="btn btn-primary" href="tradead/{$vo.id}/{$params}" target="_blank">{$title}</a></td>
+                                            </tr>
+                                        </volist>
+                                        </tbody>
+                                    </table>
+                                </if>
+                            </div>
+                            <div class="tab-pane" id="tab_2">
+                                <if condition="count($list2) eq 0"><p class="text-muted"
+                                                                      style="text-align: center; font-size: 3em;">
+                                    <br><br>
+                                    {:L('_AD_NONE_')}{:L('_WAVE_')}
+                                    <br><br><br>
+                                </p>
+
+                                    <else/>
+                                    <table class="table table-striped table-hover">
+                                        <thead style="text-align: center;">
+                                        <tr>
+                                            <th style="vertical-align: middle;">币种</th>
+                                            <th style="vertical-align: middle;">地区</th>
+                                            <th style="vertical-align: middle;">付款方式</th>
+                                            <th style="vertical-align: middle;">价格</th>
+                                            <th style="vertical-align: middle;">限额</th>
+                                            <th style="vertical-align: middle;"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <volist name="list2" id="vo">
+                                            <tr>
+                                                <php>
+                                                    $minPrice = number_format($vo['min_price']);
+                                                    $maxPrice = number_format($vo['max_price']);
+                                                    $price = number_format($vo['price'],2);
+                                                    $coinType = $vo['coin_type']==1?'BTC':'ETH';
+                                                </php>
+                                                <td style="vertical-align: middle;">{$coinType}</td>
+                                                <td style="vertical-align: middle;">{$vo.name}</td>
+                                                <td style="vertical-align: middle">{$vo.payName}</td>
+                                                <td style="vertical-align: middle;color: #0C7F12"><b>{$price} {$vo.currency}</b></td>
+                                                <td style="vertical-align: middle">{$minPrice}-{$maxPrice} {$vo.currency}</td>
+                                                <php>
+                                                    $params = '';
+                                                    if($vo['type'] == 1){
+                                                    $title = "购买";
+                                                    $params = 'sellonline-';
+                                                    }else if($vo['type'] == 2){
+                                                    $title = "出售";
+                                                    $params = 'buyonline-';
+                                                    }else if($vo['type'] == 3){
+                                                    $title = "购买";
+                                                    $params = 'selllocal-';
+                                                    }else if($vo['type'] == 4){
+                                                    $title = "出售";
+                                                    $params = 'buylocal-';
+                                                    }
+                                                    $params.=$vo['payEn']."-".$vo['countryEn'];
+                                                </php>
+                                                <td style="vertical-align: middle"><a class="btn btn-primary" href="tradead/{$vo.id}/{$params}" target="_blank">{$title}</a></td>
+                                            </tr>
+                                        </volist>
+                                        </tbody>
+                                    </table>
+                                </if>
+                            </div>
+                            <div class="tab-pane" id="tab_3">
+                                <if condition="count($list3) eq 0"><p class="text-muted"
+                                                                      style="text-align: center; font-size: 3em;">
+                                    <br><br>
+                                    {:L('_AD_NONE_')}{:L('_WAVE_')}
+                                    <br><br><br>
+                                </p>
+
+                                    <else/>
+                                    <table class="table table-striped table-hover">
+                                        <thead style="text-align: center;">
+                                        <tr>
+                                            <th style="vertical-align: middle;">币种</th>
+                                            <th style="vertical-align: middle;">地区</th>
+                                            <th style="vertical-align: middle;">付款方式</th>
+                                            <th style="vertical-align: middle;">价格</th>
+                                            <th style="vertical-align: middle;">限额</th>
+                                            <th style="vertical-align: middle;"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <volist name="list3" id="vo">
+                                            <tr>
+                                                <php>
+                                                    $minPrice = number_format($vo['min_price']);
+                                                    $maxPrice = number_format($vo['max_price']);
+                                                    $price = number_format($vo['price'],2);
+                                                    $coinType = $vo['coin_type']==1?'BTC':'ETH';
+                                                </php>
+                                                <td style="vertical-align: middle;">{$coinType}</td>
+                                                <td style="vertical-align: middle;">{$vo.name}</td>
+                                                <td style="vertical-align: middle">{$vo.payName}</td>
+                                                <td style="vertical-align: middle;color: #0C7F12"><b>{$price} {$vo.currency}</b></td>
+                                                <td style="vertical-align: middle">{$minPrice}-{$maxPrice} {$vo.currency}</td>
+                                                <php>
+                                                    $params = '';
+                                                    if($vo['type'] == 1){
+                                                    $title = "购买";
+                                                    $params = 'sellonline-';
+                                                    }else if($vo['type'] == 2){
+                                                    $title = "出售";
+                                                    $params = 'buyonline-';
+                                                    }else if($vo['type'] == 3){
+                                                    $title = "购买";
+                                                    $params = 'selllocal-';
+                                                    }else if($vo['type'] == 4){
+                                                    $title = "出售";
+                                                    $params = 'buylocal-';
+                                                    }
+                                                    $params.=$vo['payEn']."-".$vo['countryEn'];
+                                                </php>
+                                                <td style="vertical-align: middle"><a class="btn btn-primary" href="tradead/{$vo.id}/{$params}" target="_blank">{$title}</a></td>
+                                            </tr>
+                                        </volist>
+                                        </tbody>
+                                    </table>
+                                </if>
+                            </div>
+                            <div class="tab-pane" id="tab_4">
+                                <if condition="count($list4) eq 0"><p class="text-muted"
+                                                                      style="text-align: center; font-size: 3em;">
+                                    <br><br>
+                                    {:L('_AD_NONE_')}{:L('_WAVE_')}
+                                    <br><br><br>
+                                </p>
+
+                                    <else/>
+                                    <table class="table table-striped table-hover">
+                                        <thead style="text-align: center;">
+                                        <tr>
+                                            <th style="vertical-align: middle;">币种</th>
+                                            <th style="vertical-align: middle;">地区</th>
+                                            <th style="vertical-align: middle;">付款方式</th>
+                                            <th style="vertical-align: middle;">价格</th>
+                                            <th style="vertical-align: middle;">限额</th>
+                                            <th style="vertical-align: middle;"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <volist name="list4" id="vo">
+                                            <tr>
+                                                <php>
+                                                    $minPrice = number_format($vo['min_price']);
+                                                    $maxPrice = number_format($vo['max_price']);
+                                                    $price = number_format($vo['price'],2);
+                                                    $coinType = $vo['coin_type']==1?'BTC':'ETH';
+                                                </php>
+                                                <td style="vertical-align: middle;">{$coinType}</td>
+                                                <td style="vertical-align: middle;">{$vo.name}</td>
+                                                <td style="vertical-align: middle">{$vo.payName}</td>
+                                                <td style="vertical-align: middle;color: #0C7F12"><b>{$price} {$vo.currency}</b></td>
+                                                <td style="vertical-align: middle">{$minPrice}-{$maxPrice} {$vo.currency}</td>
+                                                <php>
+                                                    $params = '';
+                                                    if($vo['type'] == 1){
+                                                    $title = "购买";
+                                                    $params = 'sellonline-';
+                                                    }else if($vo['type'] == 2){
+                                                    $title = "出售";
+                                                    $params = 'buyonline-';
+                                                    }else if($vo['type'] == 3){
+                                                    $title = "购买";
+                                                    $params = 'selllocal-';
+                                                    }else if($vo['type'] == 4){
+                                                    $title = "出售";
+                                                    $params = 'buylocal-';
+                                                    }
+                                                    $params.=$vo['payEn']."-".$vo['countryEn'];
+                                                </php>
+                                                <td style="vertical-align: middle"><a class="btn btn-primary" href="tradead/{$vo.id}/{$params}" target="_blank">{$title}</a></td>
+                                            </tr>
+                                        </volist>
+                                        </tbody>
+                                    </table>
+                                </if>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+

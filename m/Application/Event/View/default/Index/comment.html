@@ -1,0 +1,66 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">活动讨论</a>
+            </header>
+            <div class="bar bar-tab bottomBar">
+                <div class="down-box">
+                    <div class="something open-popup" data-popup=".answer" data-role="answer_button">
+                        说点什么...
+                    </div>
+                </div>
+            </div>
+            <div class="content infinite-scroll">
+                <div class="content-block noEdge">
+                    <div class="comments">
+                        <div data-list="comment-list" data-total="{$count}" data-id="{$event.id}">
+                        </div>
+                    </div>
+                    <div class="infinite-scroll-preloader">
+                        <div class="preloader"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="other">
+    <!--我来回答-->
+    <div class="popup popup-about sendWrap answer">
+        <div class="content-block noEdge">
+            <div class="newSend">
+                <div class="sendArea needsclick" contenteditable="true" style="height: 80px;border: 1px solid #eee;margin-bottom: 10px"></div>
+                <div class="commentOp">
+                    <i class="iconfont icon-biaoqing" data-role="open-emoji"></i>
+                    <a href="javascript:" data-role="sendComment" data-id="{$event.id}" class="proBtn close-popup">评论</a>
+                </div>
+            </div>
+
+            <div class="send-bottom emoji" style="display: none;">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper emoji-list"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="//cdn.bootcss.com/emojione/2.2.7/lib/js/emojione.min.js"></script>
+    <script src="__PUBLIC_JS__/core.js"></script>
+    <script src="__PUBLIC_JS__/public.js"></script>
+    <script src="__PUBLIC__/js/refreshData.js"></script>
+    <script src="__JS__/detail.js"></script>
+    <script>
+        var detailID = $('[data-list="comment-list"]').attr('data-id');
+        var total = $('[data-list="comment-list"]').attr('data-total');
+        refreshData('Event/index/getComment',total,'[data-list="comment-list"]',{id:detailID});
+    </script>
+</block>

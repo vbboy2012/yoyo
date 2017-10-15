@@ -132,27 +132,41 @@ class UcenterController extends AdminController{
         $builder= new AdminConfigBuilder();
         if(IS_POST){
             S('newsResult',null);
+            S('forumResult',null);
+            S('weiboResult',null);
+            S('quResult',null);
             S('userResult',null);
         }
         $data = $builder->handleConfig();
-        $builder->title("广场设置")->data($data)->keyAutoComplete("SET_NEWS","输入资讯id或者标题即可",'', array('url' => U('Ucenter/getNewsJson'), 'delimiter' => ','))
-            ->keyAutoComplete("SET_USER_ID","输入用户id或者用户名即可",'', array('url' => U('Ucenter/getUserJson'), 'delimiter' => ','))->buttonSubmit('','保存');
+        $builder->title("广场设置")->data($data)
+            ->keyAutoComplete("SET_NEWS","输入资讯id或者标题即可",'', array('url' => U('Ucenter/getNewsJson',array('model'=>'News')), 'delimiter' => ','))
+            ->keyAutoComplete("SET_FORUM","输入帖子id或者标题即可",'', array('url' => U('Ucenter/getNewsJson',array('model'=>'ForumPost')), 'delimiter' => ','))
+            ->keyAutoComplete("SET_QUESTION","输入问答id或者标题即可",'', array('url' => U('Ucenter/getNewsJson',array('model'=>'Question')), 'delimiter' => ','))
+            ->keyAutoComplete("SET_WEIBO","输入动态id或者标题即可",'', array('url' => U('Ucenter/getNewsJson',array('model'=>'Weibo')), 'delimiter' => ','))
+            ->keyAutoComplete("SET_USER_ID","输入用户id或者用户名即可",'', array('url' => U('Ucenter/getUserJson'), 'delimiter' => ','))
+            ->buttonSubmit('','保存');
 
         
         $builder->display();
     }
     public function getNewsJson()
     {
-
+        $model = I('get.model', '', 'string') ;
         $aQ = I('q', '', 'text');
+        if(strtolower($model) != 'weibo') {
+            $where['title'] = array('like', '%' . $aQ . '%');
+            $where['id'] = $aQ;
+            $where['_logic'] = 'or';
+            $map['_complex'] = $where;
+            $field = 'id,title' ;
+        }else{
+            $map['id'] = $aQ ;
+            $field = 'id' ;
+        }
 
-        $where['title'] = array('like', '%' . $aQ . '%');
-        $where['id'] = $aQ;
-        $where['_logic'] = 'or';
-        $map['_complex'] = $where;
         $map['status'] = 1;
 
-        $list = M('news')->where($map)->order('id desc')->field('id,title')->select();
+        $list = M($model)->where($map)->order('id desc')->field($field)->select();
         foreach ($list as &$v) {
             $v['name'] = $v['id'] . '[' . $v['title'] . ']';
             unset($v['title']);

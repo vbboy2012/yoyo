@@ -654,10 +654,10 @@ class MemberModel extends Model
                 $v = $this->getPeople($v);
                 $res = D('Common/Follow')->isFollow(is_login(), $v['uid']);
                 if ($res == 1) {
-                    $v['follow_status'] = '已信任';
+                    $v['follow_status'] = '已关注';
                     $v['is_follow'] = 'unfollow';
                 } else {
-                    $v['follow_status'] = '信任';
+                    $v['follow_status'] = '关注';
                     $v['is_follow'] = 'follow';
                 }
                 if (in_array($v['uid'],$adminList)) {

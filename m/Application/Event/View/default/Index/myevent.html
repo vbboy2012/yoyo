@@ -1,0 +1,81 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="{:U('Index/index')}"></a>
+                <a href="javascript:" class="title">{$title}</a>
+            </header>
+            <include file="./Application/Common/View/default/Public/footer.html"/>
+            <div class="content infinite-scroll">
+                <div class="content-block noEdge">
+                    <!-- 活动菜单 end-->
+                    <!-- 活动列表 start-->
+                    <div class="e-list" data-role="" >
+                        <ul data-list="event-list" class="event-list" data-total="{$total}" data-active="{$active}">
+                        </ul>
+                        <div class="infinite-scroll-preloader">
+                            <div class="preloader"></div>
+                        </div>
+                    </div>
+                    <!-- 活动列表 end-->
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script>
+        /**
+         * 删除活动事件
+         * */
+        $(document).on('click', '[data-role="del-event"]', function(){
+            var $this = $(this) ;
+            $.confirm("{:L('_PROMPT_DELETE_')}{:L('_QUESTION_')}",
+                function(){
+                    var event_id = $this.attr('data-value');
+                    $.post("{:U('Event/Index/doDelEvent')}", {event_id: event_id}, function (res) {
+                        if (res.status) {
+                            $.toast(res.info);
+                            setTimeout(function () {
+                                $('[data-role="li'+event_id+'"]').remove() ;
+                                $('[data-role="hidd-list"][data-value="'+event_id+'"]').remove() ;
+                            }, 1500);
+                        }
+                        else {
+                            $.toast(res.info);
+                        }
+                    }, 'json');
+                }
+            );
+        });
+        /**
+         * 提前结束活动点击事件
+         */
+        $(document).on('click', '[data-role="end-event"]', function(){
+            $.confirm("{:L('_PROMPT_OVER_')}{:L('_QUESTION_')}",
+                function(){
+                    var event_id = $(this).attr('data-value');
+                    $.post("{:U('Event/Index/doEndEvent')}", {event_id: event_id}, function (res) {
+                        if (res.status) {
+                            $.toast(res.info);
+                            setTimeout(function () {
+                                location.reload();
+                            }, 1500);
+                        }
+                        else {
+                            $.toast(res.info);
+                        }
+                    }, 'json')
+                }
+            );
+        });
+    </script>
+    <script src="__JS__/index.js"></script>
+    <script src="__JS__/edit.js"></script>
+    <script src="__PUBLIC__/js/public.js"></script>
+</block>

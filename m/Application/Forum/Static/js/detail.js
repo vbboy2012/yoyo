@@ -2,6 +2,10 @@
 $(function () {
 });
 $('[data-role="sendComment"]').click(function(){
+    var login = no_login();
+    if(login == undefined){
+        return ;
+    }
     var id = $(this).attr('data-id');
     var html = $('.sendArea').html();
     var text = html.replace(/\<img.*?data\-title\="(.*?)" .*?>/g, "$1");
@@ -76,6 +80,10 @@ $('[data-role="essence"]').click(function () {
 
 //点击付费下载
 $(document).on('click', '[data-role="payForDownload"]', function (){
+    var login = no_login();
+    if(login == undefined){
+        return ;
+    }
     var id = $(this).attr('data-id');
     var uid = $(this).attr('data-uid');
     var type = $(this).attr('data-type');

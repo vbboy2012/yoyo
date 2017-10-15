@@ -870,53 +870,199 @@ i.icon.icon-f7 {
   text-align: center;
   width: 100%;
 }
+.weibo-img {
+  margin-top: 5px;
+  padding-bottom: 30%;
+  vertical-align: middle;
+  height: 0;
+}
+.img-hide {
+  overflow: hidden;
+}
+.img-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0;
+  z-index: 3;
+}
+.img-add {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+.img-btn-sit {
+  flex-shrink: 0;
+  position: relative;
+}
+.waitbox {
+  position: relative;
+  margin-right: 10px;
+}
+.waitbox img {
+  width: 90px;
+  height: 90px;
+  border-radius: 2px;
+}
+.waitbox .del-img-btn {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 100%;
+  display: block;
+  text-align: center;
+  margin-right: -5px;
+  margin-top: -5px;
+  color: #999;
+  top: 0;
+  right: 0;
+  line-height: 18px;
+}
+.announce-hide {
+  background: #000000;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 1000000;
+  filter: alpha(opacity=40);
+  opacity: 0.4 !important;
+}
+.announce {
+  position: fixed;
+  margin-left: 10%;
+  background: #ffffff;
+  left: 0px;
+  top: 20%;
+  width: 80%;
+  height: 310px;
+  z-index: 1000001;
+}
+.announce .ann-body {
+  margin: 0 15px;
+}
+.announce .ann-body .ann-b-title {
+  margin-top: 10px !important;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: left;
+}
+.announce .ann-body .ann-content {
+  max-height: 220px;
+  overflow-y: auto ;
+}
+.announce .ann-footer {
+  padding: 5px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: inline-flex;
+  border-top: 1px solid #e5e5e5;
+}
+.announce .ann-footer a {
+  text-align: center;
+  width: 100%;
+}
+.announce .ann-footer .ann-button {
+  padding: 3px 0;
+  font-size: 13px;
+}
+.announce .ann-footer .ann-button:first-child {
+  border-right: 1px solid #e5e5e5;
+}
+.letter-point {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 100%;
+  z-index: 5000;
+}
 .fmSlide {
   padding: 0;
   overflow: hidden;
 }
 .moreNav {
   background-color: #ffffff;
-  padding: 10px;
+  padding: 15px 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 .moreNav .oneNav {
   width: 70px;
-  height: 100px;
-  margin: 10px 5px;
+  height: 60px;
   text-align: center;
 }
-.moreNav .oneNav p {
-  margin-top: 5px!important;
-}
-.moreNav .oneNav .round {
-  width: 75px;
-  height: 75px;
-  border-radius: 100%;
-  overflow: hidden;
-  position: relative;
-}
-.moreNav .oneNav .round i {
+.moreNav .oneNav i {
   font-size: 30px;
-  color: #ffffff;
 }
 .hotTit {
   border-left: 2px solid #ec725d;
   padding-left: 10px;
-  color: #999999;
+  color: #333333;
   line-height: 1;
 }
 .hotTit a {
   color: #999999;
-  font-size: 12px;
 }
 .hotType {
+  margin-top: 15px;
   background-color: #ffffff;
   padding: 10px 10px 0;
+  font-size: 15px !important;
 }
+/*微博列表样式 start*/
+.wbName {
+  color: #ec725d;
+}
+.info {
+  border-top: none ;
+  height: 64px;
+}
+.info .avatar {
+  width: 40px;
+}
+.info .avatar .avatar-img {
+  border-radius: 50%;
+  overflow: hidden;
+}
+.proWrap {
+  border-top: none;
+  box-shadow: none;
+}
+a.label-info {
+  font-size: .7rem;
+  white-space: nowrap;
+  vertical-align: baseline;
+  color: #ec725d;
+}
+.show-more {
+  width: 80px;
+  border-radius: 100px 100px 0 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  height: 25px;
+  line-height: 30px;
+  overflow: hidden;
+  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -40px;
+  display: none;
+}
+/*新闻列表样式 start*/
 .listWrap {
   background-color: #ffffff;
+  box-shadow: none;
 }
 .listWrap li {
   background-color: #ffffff;
@@ -954,7 +1100,6 @@ i.icon.icon-f7 {
 }
 .listWrap li .nwInfo .author a {
   margin: 0 8px;
-  color: #ec725d;
   max-width: 100px;
 }
 .listWrap li .nwInfo .author .time {
@@ -975,9 +1120,8 @@ i.icon.icon-f7 {
   max-width: 265px;
 }
 .listWrap li .nwInfo .otherInfo .type {
-  border: 1px solid #ec725d;
   color: #ec725d;
-  padding: 3px 8px;
+  padding: 3px 5px;
   display: inline-block;
   border-radius: 3px;
 }
@@ -986,4 +1130,195 @@ i.icon.icon-f7 {
   height: 85px;
   padding-left: 10px;
   overflow: hidden;
+}
+/*新闻样式 end*/
+/*推荐好友样式 start*/
+.friend-box {
+  background-color: #f2f2f2;
+  padding-top: 0;
+  display: flex;
+  justify-content: space-between;
+}
+.friend-box .refresh {
+  font-size: 12px;
+  color: #666666;
+}
+.friend-box .refresh i {
+  margin-right: 4px;
+}
+.friend-box .refresh .rotate {
+  transform: rotate(360deg);
+  transition: all 1s ease;
+}
+.friend-list {
+  margin-bottom: 2px;
+  display: flex;
+  justify-content: center;
+}
+.friend-list .friend-li {
+  margin: 10px 6px 0 6px;
+  padding: 10px 11px;
+  background-color: #fff;
+  text-align: center;
+}
+.friend-list .friend-li .avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+  overflow: hidden;
+}
+.friend-list .friend-li .name {
+  font-size: 13px;
+  color: #333333;
+}
+.friend-list .friend-li .follow {
+  position: relative;
+  display: block;
+  margin: 10px 0 5px;
+  width: 70px;
+  height: 19px;
+  border: 1px solid #ec725d;
+  font-size: 11px;
+  line-height: 17px;
+  border-radius: 19px;
+  color: #ec725d;
+}
+.friend-list .friend-li .self {
+  border: 1px solid #e5e5e5;
+  color: #999999;
+}
+/*推荐好友样式 end*/
+/*论坛样式 start*/
+.list {
+  padding: 0 15px;
+  background-color: #ffffff;
+}
+.list li {
+  padding: 15px 0;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+}
+.list li .whoWhen {
+  padding-bottom: 5px;
+  color: #999999;
+  font-size: 12px;
+  display: flex;
+}
+.list li .whoWhen a {
+  color: #ec725d;
+  margin-right: 10px;
+  font-size: 14px;
+}
+.list li .avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  overflow: hidden;
+}
+.list li .wbAvatar {
+  width: 40px !important;
+  height: 40px !important;
+}
+.list li .nickname {
+  color: #777;
+  font-size: .8rem !important;
+  line-height: 40px;
+}
+.list li .cont {
+  padding: 5px 0;
+  font-size: 15px !important;
+}
+.list li .opt {
+  padding-top: 2px;
+  color: #999999;
+  font-size: 13px;
+}
+.list li .opt .f-title {
+  margin-right: 15px;
+  color: #EF8A7A ;
+  font-weight: 500;
+}
+.list li .opt span {
+  color: #999;
+}
+.list li .opt b {
+  font-weight: normal;
+  opacity: 0.85;
+}
+.list li .opt .f-time {
+  float: right;
+}
+.list .best {
+  position: absolute;
+  color: #f14040;
+  right: 20px;
+  top: 10px;
+  font-size: 50px;
+}
+/*论坛样式 end*/
+/*问答样式 start*/
+.wrapList li {
+  padding: 10px;
+  background-color: #ffffff;
+  margin-bottom: 2px;
+}
+.wrapList li:last-child {
+  margin: 0;
+}
+.wrapList li .top .avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.wrapList li .top .name {
+  color: #ec725d;
+  font-size: 15px;
+}
+.wrapList li .top .time {
+  font-size: 13px;
+  color: #999999;
+}
+.wrapList li .detail {
+  padding: 5px 0;
+}
+.wrapList li .detail .qtTitle {
+  border-bottom: 1px dashed #eee;
+  padding-bottom: 5px;
+  max-width: 350px;
+}
+.wrapList li .detail .more p {
+  color: #999999;
+  font-size: 13px;
+}
+.wrapList li .detail .more .article {
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  /** 对象作为伸缩盒子模型显示 **/
+  -webkit-box-orient: vertical;
+  /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+  -webkit-line-clamp: 2;
+  /** 显示的行数 **/
+  overflow: hidden;
+  /** 隐藏超出的内容 **/
+}
+.wrapList li .other {
+  display: flex;
+  align-items: center;
+}
+.wrapList li .other .line {
+  height: 15px;
+  width: 1px;
+  background-color: #eee;
+  display: block;
+  margin: 0 10px;
+}
+.wrapList li .other p {
+  font-size: 12px;
+  color: #999999;
+}
+.wrapList li .other p i {
+  margin-right: 5px;
 }

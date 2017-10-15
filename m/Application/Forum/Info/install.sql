@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_forum_bookmark` (
   `post_id` int(11) NOT NULL,
   `create_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 
 -- -----------------------------
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_forum_follow` (
   `uid` int(11) NOT NULL,
   `forum_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COMMENT='版块信任';
+) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COMMENT='版块关注';
 
 
 -- -----------------------------
@@ -97,7 +97,6 @@ CREATE TABLE IF NOT EXISTS `ocenter_forum_post` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=140 DEFAULT CHARSET=utf8;
 
-
 -- -----------------------------
 -- 表结构 `ocenter_forum_post_reply`
 -- -----------------------------
@@ -126,7 +125,6 @@ CREATE TABLE IF NOT EXISTS `ocenter_forum_type` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='论坛分类表';
-
 
 -- 新增加精字段
 ALTER TABLE  `ocenter_forum_post` ADD  `is_essence` INT( 1 ) NOT NULL DEFAULT  '0' COMMENT  '是否加精';

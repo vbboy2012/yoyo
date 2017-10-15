@@ -2410,6 +2410,7 @@ function get_file_url($id){
     if($res) {
         $resUrl = $res['driver'] == 'local' ? 'http://'.$_SERVER['HTTP_HOST'].str_replace('/index.php','',$_SERVER['SCRIPT_NAME']). $res['savepath'] . $res['savename'] : $res['savepath'];
     }
+    $resUrl = "..".$res['savepath'].$res['savename'];
     return $resUrl;
 }
 
@@ -2422,7 +2423,7 @@ function get_file_url_forum($id){
     $res = M('File')->where(array('id' => $id))->find();
     $resUrl = '';
     if($res) {
-        $resUrl = $res['driver'] == 'local' ? 'http://'.$_SERVER['HTTP_HOST'].str_replace('/index.php','',$_SERVER['SCRIPT_NAME']). $res['savepath'] . $res['savename'] : $res['savepath'];
+        $resUrl = $res['driver'] == 'local' ? 'http://'.$_SERVER['HTTP_HOST'].str_replace('/m/index.php','',$_SERVER['SCRIPT_NAME']). $res['savepath'] . $res['savename'] : $res['savepath'];
     }
     return $resUrl;
 }
@@ -2526,4 +2527,10 @@ function use_topic()
 
     return $html;
 
+}
+
+function get_crowd_title($id)
+{
+    $crowd = D('Weibo/WeiboCrowd')->getCrowd($id);
+    return $crowd['title'];
 }

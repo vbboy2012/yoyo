@@ -22,70 +22,97 @@ class CrowdController extends BaseController
 
     public function crowd()
     {
-
-        $data=S(get_uid().'_crowds');
-
-        if($data===false){
-
-            //创建
-            $myCreateCrowd = D('WeiboCrowdMember')->getMyCreateCrowd(is_login());
-            foreach ($myCreateCrowd as $key => &$v) {
-                $res = D('WeiboCrowd')->getCrowd($v['crowd_id']);
-                $v['crowd'] = $res;
-                $v['crowd']['is_follow'] = D('WeiboCrowdMember')->getIsJoin(is_login(), $v['crowd']['id']);
-                if (empty($res)) {
-                    unset($myCreateCrowd[$key]);
-                }
-            }
-            unset($v);
-            //$this->assign('create_list', $myCreateCrowd);
-            $data['create_list']=$myCreateCrowd;
-            //加入
-            $followCrowd = D('WeiboCrowdMember')->getUserJoin(is_login());
-            foreach ($followCrowd as $key => &$v) {
-                $res = D('WeiboCrowd')->getCrowd($v['crowd_id']);
-                $v['crowd'] = $res;
-                $v['crowd']['is_follow'] = D('WeiboCrowdMember')->getIsJoin(is_login(), $v['crowd']['id']);
-                if (empty($res)) {
-                    unset($followCrowd[$key]);
-                }
-            }
-            unset($v);
-            //$this->assign('follow_list', $followCrowd);
-            $data['follow_list']=$followCrowd;
-
-            $field = D('Ucenter/Score')->getTypeList(array('status' => 1));
-            //$this->assign("field", $field);
-            $data['field']=$field;
-            S(get_uid().'_crowds',$data,600);
+        $uid = is_login() ;
+        //最新的圈子
+        $crowd = M('weibo_crowd')->where(array('status'=>1))->order('create_time desc')->find() ;
+        if($crowd != false) {
+            $crowd['is_follow'] = D('WeiboCrowdMember')->getIsJoin($uid, $crowd['id']);
         }
-        $this->assign($data);
+        $total = D('WeiboCrowd')->getAllCrowdCount();
 
-        $crowdList=S('crowd_list');
-        if($crowdList===false){
-            //全部圈子
-            $crowdList = D('WeiboCrowd')->getAllCrowd();
-            foreach ($crowdList as &$val) {
-                $val['crowd'] = D('WeiboCrowd')->getCrowd($val['id']);
-                $val['crowd']['is_follow'] = D('WeiboCrowdMember')->getIsJoin(is_login(), $val['crowd']['id']);
-            }
-            unset($val);
+        $this->assign('crowd', $crowd) ;
+        $this->assign('uid', $uid) ;
+        $this->assign('total', $total) ;
+        //圈子全部分类
+        $typeList = $this->getCrowdsType(1) ;
+        $this->assign('typeList', $typeList) ;
 
-            S('crowd_list',$crowdList);
-        }
-        $this->assign('crowd_list', $crowdList);
-
-        //按分类获取圈子
-        $list = $this->getCrowdsByType();
-        $this->assign('crowd_type', $list);
-        $crowdTypeCount = M('weibo_crowd_type')->where(array('status' => 1))->count();
-        $this->assign('type_count', $crowdTypeCount);
-        
-        //按显示获取圈子
-        $showList = $this->getCrowdByShow(1);
-        $this->assign('show_list', $showList);
         $this->display();
     }
+
+    /**获取圈子分类列表
+     * @param int $returnType
+     * @return mixed
+     */
+    public function getCrowdsType($returnType=0) {
+        if($returnType) {
+            $typeList = M('weibo_crowd_type')->where(array('status'=>1))->order('sort desc')->limit(8)->select() ;
+            return $typeList ;
+        }
+        $typeList = M('weibo_crowd_type')->where(array('status'=>1))->order('sort desc , create_time desc')->select() ;
+        if($typeList == false){
+            $this->ajaxReturn(array('status'=>0, 'info'=>'暂无分类~')) ;
+        }
+        $this->assign('list', $typeList) ;
+        $html = $this->fetch('_typelist') ;
+        $this->ajaxReturn(array('status'=>1, 'data'=>$html)) ;
+    }
+
+    /**
+     * ajax获取圈子列表
+     */
+    public function getListHtml() {
+        $page = I('page', 1, 'intval') ;
+        $type = I('type', 'all', 'string') ;
+        $id = I('id', 0, 'intval') ;
+        $uid = is_login() ;
+        if ($type == 'mine') {
+            $this->_isLogin() ;
+            //创建
+            $list = D('WeiboCrowdMember')->getMyCreateCrowd($uid, $page);
+            foreach ($list as $key => &$v) {
+                $res = D('WeiboCrowd')->getCrowd($v['crowd_id']);
+                $v = $res;
+                $v['is_follow'] = D('WeiboCrowdMember')->getIsJoin($uid, $v['id']);
+                if (empty($res)) {
+                    unset($v);
+                }
+            }
+            unset($v);
+            $total = D('WeiboCrowdMember')->getMyCreateCount($uid);
+        }elseif($type == 'join'){
+            $this->_isLogin() ;
+            //加入
+            $list = D('WeiboCrowdMember')->getUserJoin($uid, $page);
+            foreach ($list as $key => &$v) {
+                $res = D('WeiboCrowd')->getCrowd($v['crowd_id']);
+                $v = $res;
+                $v['is_follow'] = D('WeiboCrowdMember')->getIsJoin($uid, $v['id']);
+                if (empty($res)) {
+                    unset($v);
+                }
+            }
+            unset($v);
+            $total = D('WeiboCrowdMember')->getUserJoinCount($uid);
+        }else{
+            //全部圈子
+            $list = D('WeiboCrowd')->getAllCrowd($id, $page);
+            foreach ($list as &$val) {
+                $val = D('WeiboCrowd')->getCrowd($val['id']);
+                $val['is_follow'] = D('WeiboCrowdMember')->getIsJoin($uid, $val['id']);
+            }
+            unset($val);
+            $total = D('WeiboCrowd')->getAllCrowdCount($id);
+        }
+        $this->assign('list', $list) ;
+        $html = '' ;
+        $html = $this->fetch('_crowdtypelist') ;
+        if($html == false){
+            $this->ajaxReturn(array('status'=>0, 'info'=>'暂无数据~')) ;
+        }
+        $this->ajaxReturn(array('status'=>1, 'data'=>$html, 'total'=>$total)) ;
+    }
+
 
     private function getCrowdsByType()
     {
@@ -169,10 +196,7 @@ class CrowdController extends BaseController
                         }
                     }
                 }
-
-
             }
-
             $message = $isEdit ? '编辑成功' : '发布成功';
             if (modC('CREATE_CROWD_CHECK', '0') == 1 && !$flag) {
                 $message .= ',等待管理员审核';
@@ -563,5 +587,113 @@ class CrowdController extends BaseController
             }
             $this->ajaxReturn($msg);
         }
+    }
+
+
+    /**
+     * search
+     * 查询热门搜索
+     */
+    public function search(){
+        $change=D("weibo_crowd");
+        if(IS_POST){
+            $page=I("post.page","","intval");
+            $result=$change->where(array('status'=>1))->order("post_count desc")->page($page,8)->field("id,title")->select();
+            //如果是最后一组了就从第一组查
+            if($result==null){
+                $result=$change->where(array('status'=>1))->order("post_count desc")->page(1,8)->field("id,title")->select();
+                $res['is']=0;
+            }
+            foreach ($result as &$val) {
+                $val['url'] = U('Weibo/index/index',array('crowd_id'=>$val['id'])) ;
+            }
+            unset($val) ;
+            shuffle($result) ;
+            $res['status']="1";
+            $res['data']=$result;
+            $this->ajaxReturn($res);
+        }
+        else{
+            $history=D("weibo_crowd_search");
+            $result=$change->where(array('status'=>1))->order("post_count desc")->page(1,8)->select();
+            $this->assign("result",$result);
+            $historyResult=$history->where(array("uid"=>get_uid()))->order("create_time desc")->limit(10)->select();
+            $this->assign("historyResult",$historyResult);
+            $this->display();
+        }
+    }
+
+    /**
+     * allSearch
+     * 历史记录
+     */
+    public function allSearch(){
+        $is=0;
+        $title=I("post.title","","text");
+        $parame['status']=1;
+        $parame['title']=array("like","%".$title."%");
+        $change=D("weibo_crowd");
+        $uid = is_login() ;
+        if(I("post.is","","text")=="no"){
+            $result=$change->where($parame)->select();
+            if(!$result){
+                $this->ajaxReturn(array("status"=>"1","html"=>"none"));
+            }
+            $this->assign("list", $result);
+            $html = $this->fetch('_crowdtypelist');
+            $this->ajaxReturn(array("status" => "1","html" => $html));
+        }
+        $result=$change->where($parame)->select();
+        $history=D("weibo_crowd_search");
+        $historyContent=$history->where(array('uid'=>get_uid()))->select();
+        foreach ($historyContent as $val){
+            if($val["historical"]==$title){
+                $is=1;
+            } ;
+        }
+        unset($val) ;
+        if($is==0 && $uid>0){
+            $data["uid"]=$uid;
+            $data["historical"]=$title;
+            $data["create_time"]=time();
+            $history->add($data);
+        }
+        if ($uid > 0){
+            $historyResult=$history->where(array("uid"=>$uid))->order("create_time desc")->limit(8)->select();
+            $this->assign("historyResult",$historyResult);
+        }
+        $myHtml=$this->fetch("_history");
+        if(!$result){
+            $this->ajaxReturn(array("status"=>"1","html"=>"none","data"=>$myHtml));
+        } else {
+            $this->assign("list", $result);
+            $html = $this->fetch('_crowdtypelist');
+            $this->ajaxReturn(array("status" => "1", "html" => $html,"data"=>$myHtml));
+        }
+    }
+
+    /**
+     * delete
+     * 删除一条历史记录
+     */
+    public function delete(){
+        $history=D("weibo_crowd_search");
+        $id=I("post.id","","intval");
+        $uid = is_login() ;
+        $history->where(array("uid"=>$uid,"id"=>$id))->delete();
+        $historyResult=$history->where(array("uid"=>$uid))->order("create_time desc")->limit(8)->select();
+        $this->assign("historyResult",$historyResult);
+        $myHtml=$this->fetch("_history");
+        $this->ajaxReturn(array("status" => "1", "html" => $myHtml));
+    }
+
+    /**
+     * allDelete
+     * 清空历史记录
+     */
+    public function allDelete(){
+        $history=D("weibo_crowd_search");
+        $history->where(array("uid"=>is_login()))->delete();
+        $this->ajaxReturn(array("status" => "1"));
     }
 }

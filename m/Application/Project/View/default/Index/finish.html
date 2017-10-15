@@ -1,0 +1,34 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/schedule.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a external="" class="iconfont icon-xiangzuojiantou pull-left button button-link" href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">已完成</a>
+            </header>
+            <include file="./Application/Common/View/default/Base/footer.html"/>
+            <div class="content infinite-scroll">
+                <div class="content-block noEdge" >
+                    <if condition="$userCount neq 0">
+                        <h3 class="noMore">抱歉您还没有订阅，不能查看公共项目</h3>
+                        <else />
+                        <if condition="$project eq ''">
+                            <h3 class="noMore">项目还未完成，请耐心等待</h3>
+                        </if>
+                    </if>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/refreshData.js"></script>
+    <script>
+
+        refreshData('Project/index/finish',10,'.noEdge',{});
+    </script>
+</block>

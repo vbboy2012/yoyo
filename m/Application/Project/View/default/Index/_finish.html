@@ -1,0 +1,23 @@
+<volist name="project" id="list">
+    <div class="plan" >
+        <div class="cover"><img src="{$list.cover|getThumbImageById=170,170}" alt="封面"></div>
+        <div class="nwInfo">
+            <a href="{:U(Project/index/schedule,array('id'=>$list['id']))}" class="cont">{$list.title}</a>
+            <div class="textMore">
+                <if condition="$list['is_private'] eq 1">
+                    私人定制项目完成
+                    <else />
+                    公共项目完成
+                </if>
+
+            </div>
+            <!--进度条-->
+            <div class="progress">
+                <div class="am-progress">
+                    <div class="am-progress-bar" style="width: 100%"></div>
+                </div>
+                <div class="text-color text-font">已完成</div>
+            </div>
+        </div>
+    </div>
+</volist>

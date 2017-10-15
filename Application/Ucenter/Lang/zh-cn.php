@@ -118,6 +118,8 @@ return array(
 
 //    _I_ndex
     '_UPLOAD_PERSONAL_COVER_' => '上传个人封面',
+    '_BEI_' => '被',
+    '_PEOPLE_' => '人',
     '_FANS_NUMBER_' => '粉丝数',
     '_FANS_' => '粉丝',
     '_FOLLOWERS_NUMBER_' => '信任数',
@@ -133,7 +135,7 @@ return array(
     '_PAGE_' => '页',
     '_PAGE_PERSON_' => '，个人主页，个人',
     '_INFO_TITLE_' => '的个人资料页',
-    '_INFO_KEYWORDS_' => '，个人资料',
+    '_INFO_PEOPLE_' => '个人信息',
     '_INFO_DESC_' => '的个人资料页',
     '_DATA_BASIC_' => '基本资料',
     '_NICKNAME_' => '昵称',
@@ -478,4 +480,10 @@ return array(
     '_MY_TRADE_CANCEL_' => '已取消的交易',
     '_MY_TRADE_QUESTION_' => '申诉中的交易',
     '_ORDER_NONE_' => '暂无该类型交易记录',
+    '_AD_NONE_' => '还没有相关广告',
+
+    '_AD_ONLINE_SELL_' => '在线出售',
+    '_AD_ONLINE_BUY_' => '在线购买',
+    '_AD_LOCAL_SELL_' => '本地出售',
+    '_AD_LOCAL_BUY_' => '本地购买',
 );

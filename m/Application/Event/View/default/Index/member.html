@@ -1,0 +1,51 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">{:L('_EVENT_IN_PEOPLE_')}</a>
+            </header>
+            <div class="content infinite-scroll">
+                <div class="content-block noEdge">
+                    <!-- 审核页菜单 start-->
+                    <div class="m-nav">
+                        <div class="nav-list"  data-role="change-list" data-type="sign" data-total="{$sign_count}" data-id="{$content.id}">
+                            <div class="nav-title">{:L('_AUDIT_OP_')}</div>
+                        </div>
+                        <div class="nav-list" data-role="change-list" data-type="attend" data-total="{$attend_count}" data-id="{$content.id}">
+                            <div class="nav-title">{:L('_AUDIT_ED_')}</div>
+                        </div>
+                        <div class="nav-list active" data-role="change-list" data-type="all" data-total="{$all_count}" data-id="{$content.id}">
+                            <div class="nav-title">{:L('_ALL_MEMBER_')}</div>
+                        </div>
+                    </div>
+                    <!-- 审核页菜单 end-->
+                    <!-- 审核页列表 start-->
+                    <div class="e-list" data-url="{:U('Index/shenhe')}" data-role="get-url" data-mark="{:L('_AUDIT_ED_')}">
+                        <ul data-list="member-list" class="member-list" data-total="{$all_count}" data-type="{$tip}" data-id="{$content.id}">
+                        </ul>
+                        <div class="infinite-scroll-preloader">
+                            <div class="preloader"></div>
+                        </div>
+                    </div>
+                    <!-- 审核页列表 end-->
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/member.js"></script>
+    <script src="__PUBLIC__/js/refreshData.js"></script>
+    <script>
+        var detailID = $('[data-list="member-list"]').attr('data-id');
+        var total = $('[data-list="member-list"]').attr('data-total');
+        var type = $('[data-list="member-list"]').attr('data-type');
+        refreshData('Event/index/getAttendList',total,'[data-list="member-list"]',{id:detailID,tip:type});
+    </script>
+</block>

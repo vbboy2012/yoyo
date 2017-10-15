@@ -285,7 +285,38 @@ class NewsController extends AdminController{
             $data['content']=I('post.content','','filter_content');
             $data['category']=I('post.category',0,'intval');
             $data['description']=I('post.description','','op_t');
-            $data['cover']=I('post.cover',0,'intval');
+
+            $aCover=I('post.cover',0,'intval');
+            $aBanner=I('post.banner',0,'intval');
+            if($aCover==0&&$aBanner==0)
+            {
+                $match=get_pic($data['content']);
+                if($match==null){
+                    $data['cover']=0;
+                    $data['banner']=0;
+                }else{
+                    if(substr($match,0,4)=='http'){
+                        $str=$match;
+                    }else{
+                        $str=substr($match,1,strlen($match)-1);
+                        $str=substr($str,strpos($str,'/'),strlen($str)-strpos($str,'/'));
+                    }
+                    $coverId=M('picture')->where(array('path'=>$str))->getField('id');
+                    //$this->error($coverId['id']);
+                    $data['cover']=$coverId;
+                    $data['banner']=$coverId;
+                }
+            }elseif ($aCover==0 && $aBanner!=0){
+                $data['cover']=$aBanner;
+                $data['banner']=$aBanner;
+            }elseif ($aCover!=0 && $aBanner==0){
+                $data['cover']=$aCover;
+                $data['banner']=$aCover;
+            }else{
+                $data['cover']=$aCover;
+                $data['banner']=$aBanner;
+            }
+
             $data['view']=I('post.view',0,'intval');
             $data['comment']=I('post.comment',0,'intval');
             $data['collection']=I('post.collection',0,'intval');
@@ -344,6 +375,7 @@ class NewsController extends AdminController{
 
                 ->keyTextArea('description',L('_NOTE_'))
                 ->keySingleImage('cover',L('_COVER_'))
+                ->keySingleImage('banner','Banner图')
                 ->keyInteger('view',L('_VIEWS_'))->keyDefault('view',0)
                 ->keyInteger('comment',L('_COMMENTS_'))->keyDefault('comment',0)
                 ->keyInteger('collection',L('_COLLECTS_'))->keyDefault('collection',0)
@@ -354,7 +386,7 @@ class NewsController extends AdminController{
                 ->keyCheckBox('position',L('_RECOMMENDATIONS_'),L('_TIP_RECOMMENDATIONS_'),$position_options)
                 ->keyStatus()->keyDefault('status',1)
 
-                ->group(L('_BASIS_'),'id,uid,title,cover,content,category')
+                ->group(L('_BASIS_'),'id,uid,title,cover,banner,content,category')
                 ->group(L('_EXTEND_'),'description,view,comment,sort,dead_line,position,source,template,status')
 
                 ->buttonSubmit()->buttonBack()

@@ -1,0 +1,27 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/detail.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a external="" class="iconfont icon-xiangzuojiantou pull-left button button-link" href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">{$list.title}</a>
+            </header>
+            <div class="content">
+                <div class="content_title">
+                    <p class="textTitle"><b>{$list.title}</b></p>
+                    <p class="textColor">项目经理<span>{$list.create_time|date='Y-m-d',###}</span></p>
+                </div>
+                <div class="details">
+                  {$list.content}
+                </div>
+            </div>
+            <div class="complete" data-role="complete">
+                <a data-role="sure" href="javascript:history.go(-1);" class="cBtn">确认</a>
+            </div>
+
+        </div>
+    </div>
+</block>

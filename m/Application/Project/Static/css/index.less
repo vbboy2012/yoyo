@@ -1,0 +1,319 @@
+@import "core";
+//首页轮播图样式
+.nwSlide {
+  overflow: hidden;
+  position: relative;
+  padding: 0;
+  .swiper-slide {
+    overflow: hidden;
+  }
+}
+.boxHead {
+  display: flex;
+  justify-content: center;
+  .h_active {
+    border-bottom: 2px solid @comColor;
+    color: @comColor;
+  }
+}
+.h_title {
+  color: #a3cbf4;
+  list-style-type: none;
+  display: block;
+  padding: 0;
+  margin: 0 .5rem;
+  font-size: .85rem;
+  font-weight: 500;
+  line-height: 2.2rem;
+  text-align: center;
+  white-space: nowrap;
+}
+.box-icon {
+  position: absolute;
+  right: 0;
+  z-index: 11111;
+  display: none;
+}
+.box-active{
+  display: block;
+  color: @comColor;
+}
+
+.down-menu{
+  position: absolute;
+  right: -4px;
+  z-index: 11111;
+  top: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+  display: none;
+  margin: 0;
+  padding: 5px;
+  line-height: normal;
+  font-size:14px;
+  .box-ul{
+    color: #000;
+    &:before{
+      position: absolute;
+      top: -7px;
+      left: 45px;
+      width: .7rem;
+      height: .7rem;
+      content: ' ';
+      z-index:11;
+      background: rgba(255, 255, 255, .95);
+      border-radius: 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+  }
+}
+.main{
+  margin-top: 10px;
+  background-color: @comColor;
+  .main_box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px;
+    border-bottom: 1px solid #f2f2f2;
+    height: 45px;
+    .underway{
+      font-size: 16px;
+      color: @textTitle;
+    }
+    .finish{
+      color: @themeColor;
+    }
+
+  }
+}
+.follow{
+  background-color: #f2f2f2 !important;
+  width: 73%;
+  margin-left: 52px;
+  p{
+    padding: 5px;
+    text-align: center;
+  }
+
+}
+
+//项目列表样式
+.list{
+  background-color: #f2f2f2;
+  li{
+    background-color: #ffffff;
+    padding: 5px 5px 0 5px;
+    position: relative;
+    margin-bottom: 15px;
+    .plan{
+      display:flex;
+      padding:5px;
+      .cover{
+        width: 85px;
+        height: 85px;
+        overflow: hidden;
+        border-radius: 6px;
+      }
+      .nwInfo{
+        flex: 1px;
+        margin-left: 15px;
+        .cont{
+          color: #1a1a1a;
+          margin-bottom: 20px;
+          font-size: 16px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: flex;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          justify-content: space-between;
+        }
+      }
+      .box{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: inherit;
+        color: @textColor;
+        padding: 8px;
+      }
+      .s-cover{
+        width: 45px;
+        height: 45px;
+        overflow: hidden;
+        border-radius: 6px;
+        margin: 8px;
+      }
+    }
+
+  }
+}
+.text-color{
+  color: @themeColor;
+}
+
+//model样式
+.modal{
+  left: 0;
+  width: 90%;
+  margin-left: 5%;
+  top:30%
+}
+.check{
+  position: absolute;
+  top: -40px;
+  right: 0;
+  color: #FFFFFF;
+  font-size: 14px;
+}
+.close{
+  position: absolute;
+  top: 100%;
+  left: 45%;
+  color: #ffffff;
+  .iconfont{
+    font-size: 30px;
+  }
+}
+.signWrap{
+  margin-top: 367px;
+  width:100%;
+  padding: 20px 10px;
+  .mPlan{
+    padding: 10px;
+    display: flex;
+    background-color: @comColor;
+    border-bottom: 1px solid #f2f2f2;
+    .cover{
+      width: 75px;
+      height: 75px;
+      overflow: hidden;
+      border-radius: 6px;
+    }
+    .nwInfo{
+      flex: 1px;
+      padding-left: 10px;
+      .cont{
+        color: #1a1a1a;
+        display: flex;
+        font-size: 16px;
+        margin-bottom: 25px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        justify-content: space-between;
+      }
+    }
+  }
+  .tabs-height{
+    height: 300px;
+    overflow: scroll;
+  }
+  .teb-content{
+    background-color:@comColor;
+    margin: 10px 10px 0px 10px;
+    padding: 20px 0;
+    position: relative;
+    .box{
+      display: flex;
+      filter: grayscale(0.4);
+      color: @minorTextColor;
+      &:first-child{
+        filter: grayscale(0);
+        color: #1a1a1a !important;
+        .lineBox{
+          position: relative;
+          &:after{
+            content: '';
+            display: block;
+            width: 1px;
+            height: 61px;
+            background-color: #fff;
+            position: absolute;
+            z-index: 10;
+          }
+        }
+      }
+      .time{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        padding: 8px;
+        .big{
+          font-size: 16px;
+        }
+        .small{
+          font-size: 14px;
+        }
+      }
+      .lineBox{
+        position: relative;
+        &:after{
+          content: '';
+          display: block;
+          width: 1px;
+          height: 181%;
+          background-color: @minorTextColor;
+          position: absolute;
+          z-index: 9;
+        }
+      }
+      .boxNum{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        margin-left: 20px;
+        max-width: 120px;
+        .Num{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          align-items: center;
+          color: @comColor;
+          background-color: @themeColor;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          z-index: 11;
+        }
+        .boxColor{
+          border: 1px solid #ff544d;
+          border-radius:5px;
+          margin-left: 3px;
+          color: #ff544d;
+        }
+        .box-Color{
+          border: 1px solid #999;
+          border-radius:5px;
+          margin-left: 3px;
+          color: #999;
+        }
+      }
+      .boxWidth{
+        max-width: 120px;
+        align-items: flex-start;
+      }
+    }
+    .btn{
+      position: absolute;
+      top: 35px;
+      right: 0px;
+    }
+  }
+}
+//订阅弹窗样式
+.modal-title{
+  text-align: left;
+  margin-bottom: 10px;
+  color: @themeColor;
+}
+.modal-content{
+  text-align: left;
+}

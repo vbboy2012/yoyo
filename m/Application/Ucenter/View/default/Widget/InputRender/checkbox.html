@@ -1,0 +1,9 @@
+<label class="col-30">{$field_name}</label>
+<ul class="expandinfo-ul" id="expand_{$field_id}" style="">
+    <volist name="items" id="vl">
+        <li class="expandinfo-li">
+            <label><input class="checkbox-inline" style="" type="checkbox" name="expand_{$field_id}[]" value="<eq name="vl.join" value="1">{$vl.id}<else/>{$vl.value}</eq>"
+                <eq name="vl.selected" value="1">checked</eq>>{$vl.value}</label>
+        </li>
+    </volist>
+</ul>

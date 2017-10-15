@@ -1,0 +1,211 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/attest.css"/>
+    <style>
+        .app-btn{
+            margin-top:10px;
+        }
+    </style>
+</block>
+
+<block name="body">
+    <header class="bar bar-nav comHead">
+        <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+           href="javascript:history.go(-1);"></a>
+        <a href="javascript:" class="title">
+            申请认证
+        </a>
+    </header>
+    <div class="v-wrap id-wrap content apply-wrap ">
+        <div class="flow-path">
+            <div class="row">
+                <div class="col-30">
+                    <label>
+                        当前状态：
+                    </label>
+                </div>
+                <div class="col-70">
+                    <if condition="$attest['status'] eq 1 ">
+                        已通过审核
+                    <elseif condition="$attest['status'] eq 2"/>
+                        <i class="iconfont icon-shizhong mi"></i>已提交认证，等待审核
+                    <else/>
+                    <i class="iconfont icon-cuo" style="color:red;"></i>认证失败，请调整资料重新提交
+                    </if>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-30">
+                    <label>
+                        认证类型：
+                    </label>
+                </div>
+                <div class="col-70">
+                    {$attest['type']['title']}
+                </div>
+            </div>
+
+            <neq name="attest.type.fields.child_type" value="0">
+                <div class="row">
+                    <div class="col-30">
+                        <label>
+                            <span>*</span>认证分类：
+                        </label>
+                    </div>
+                    <div class="col-70">
+                        {$attest['child_type']}
+                    </div>
+                </div>
+            </neq>
+
+            <neq name="attest.type.fields.company_name" value="0">
+                <div class="row">
+                    <div class="col-30">
+                        <label>
+                            <eq name="attest.type.fields.company_name" value="1"><span>*</span></eq>
+                            <eq name="attest.type.name" value="company">企业<else/>组织机构</eq>名称：
+                        </label>
+                    </div>
+                    <div class="col-70">
+                        {$attest['company_name']}
+                    </div>
+                </div>
+            </neq>
+
+            <neq name="attest.type.fields.name" value="0">
+                <div class="row">
+                    <div class="col-30">
+                        <label>
+                            <eq name="attest.type.fields.name" value="1"><span>*</span></eq>
+                            真实姓名：
+                        </label>
+                    </div>
+                    <div class="col-70">
+                        {$attest['name']}
+                    </div>
+                </div>
+            </neq>
+
+            <neq name="attest.type.fields.id_num" value="0">
+                <div class="row">
+                    <div class="col-30">
+                        <label>
+                            <eq name="attest.type.fields.id_num" value="1"><span>*</span></eq>
+                            身份证号码：
+                        </label>
+                    </div>
+                    <div class="col-70">
+                        {$attest['id_num']}
+                    </div>
+                </div>
+            </neq>
+
+
+            <neq name="attest.type.fields.phone" value="0">
+                <div class="row">
+                    <div class="col-30">
+                        <label>
+                            <eq name="attest.type.fields.phone" value="1"><span>*</span></eq>
+                            联系方式：
+                        </label>
+                    </div>
+                    <div class="col-70">
+                        {$attest['phone']}
+                    </div>
+                </div>
+            </neq>
+
+            <neq name="attest.type.fields.image_type" value="0">
+                <div class="row">
+                    <div class="col-30">
+                        <label>
+                            <eq name="attest.type.fields.image_type" value="1"><span>*</span></eq>
+                            证件类型：
+                        </label>
+                    </div>
+                    <div class="col-70">
+                        {$attest['image_type']}
+                    </div>
+                </div>
+            </neq>
+
+            <neq name="attest.type.fields.prove_image" value="0">
+                <div class="row">
+                    <div class="col-30">
+                        <label>
+                            <eq name="attest.type.fields.prove_image" value="1"><span>*</span></eq>
+                            <eq name="attest.type.name" value="company">企业<else/>组织机构</eq>证件：
+                        </label>
+                    </div>
+                    <div class="col-70">
+                        <volist name="attest.prove_image" id="one_prove_image">
+                            <img src="{$one_prove_image|get_cover='path'}"/>
+                        </volist>
+                    </div>
+                </div>
+            </neq>
+
+            <neq name="attest.type.fields.image" value="0">
+                <div class="row">
+                    <div class="col-30">
+                        <label>
+                            <eq name="attest.type.fields.image" value="1"><span>*</span></eq>
+                            证件正反面照：
+                        </label>
+                    </div>
+                    <div class="col-70">
+                        <volist name="attest.image" id="one_image">
+                            <img src="{$one_image|get_cover='path'}"/>
+                        </volist>
+                    </div>
+                </div>
+            </neq>
+
+            <neq name="attest.type.fields.other_image" value="0">
+                <div class="row">
+                    <div class="col-30">
+                        <label>
+                            <eq name="attest.type.fields.other_image" value="1"><span>*</span></eq>
+                            其他证明材料：
+                        </label>
+                    </div>
+                    <div class="col-70">
+                        <volist name="attest.other_image" id="one_other_image">
+                            <img src="{$one_other_image|get_cover='path'}"/>
+                        </volist>
+                    </div>
+                </div>
+            </neq>
+
+            <neq name="attest.type.fields.info" value="0">
+                <div class="row">
+                    <div class="col-30">
+                        <label>
+                            <eq name="attest.type.fields.info" value="1"><span>*</span></eq>
+                            认证补充：
+                        </label>
+                    </div>
+                    <div class="col-70">
+                        {$attest['info']}
+                    </div>
+                </div>
+            </neq>
+            <if condition="$attest['status'] eq 1">
+                <div class="row sub-row">
+                    <a href="{:U('Ucenter/Attest/deleteApply',array('id'=>$attest['id']))}" class="a-btn">注销认证</a>
+                    <a href="{:U('Ucenter/Attest/index')}" class="a-btn" style="background-color: #cccccc;">认证中心</a>
+                </div>
+            <else/>
+                <div class="row sub-row">
+                    <a href="{:U('Ucenter/Index/apply',array('change'=>1))}" class="app-btn">修改认证资料</a>
+                    <a href="{:U('Ucenter/Index/deleteApply',array('id'=>$attest['id']))}" class="app-btn">取消认证</a>
+                    <a href="{:U('Ucenter/Index/index')}" class="app-btn" style="background-color: #cccccc;">认证中心</a>
+                </div>
+            </if>
+        </div>
+    </div>
+</block>
+
+
+</block>

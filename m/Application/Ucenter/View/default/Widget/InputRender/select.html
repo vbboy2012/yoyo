@@ -1,0 +1,17 @@
+<ul>
+    <li class="item-content item-link">
+        <div class="item-media"><i class="icon icon-f7"></i></div>
+        <div class="item-inner">
+            <div class="item-title">{$field_name}</div>
+            <div class="item-after item-after_right">
+                <input type="text" data-role="select" value="{$field_content}" placeholder="选择分类" id="picker" readonly="" data-value="expand_{$field_id}">
+                <input type="hidden" name="expand_{$field_id}" id="expand_{$field_id}" value="{$field_content}"/>
+                <div style="display: none">
+                    <volist name="items" id="vl">
+                        <span class="type_by_title">{$vl.value|htmlspecialchars}</span>
+                    </volist>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>

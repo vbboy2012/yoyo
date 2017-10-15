@@ -35,6 +35,10 @@ $(function(){
 
 
     $('[data-role="sendComment"]').click(function(){
+        var login = no_login();
+        if(login == undefined){
+            return ;
+        }
         var id = $(this).attr('data-id');
         var html = $('.sendArea').html();
         var text = html.replace(/\<img.*?data\-title\="(.*?)" .*?>/g, "$1");
@@ -146,7 +150,7 @@ $(function(){
         //容器发生改变,如果是js滚动，需要刷新滚动
         $.refreshScroller();
     });
-    // 点信任打开二维码
+    // 点关注打开二维码
     $('[data-role="open-code"]').click(function(){
         var $site = $('[data-role="site_info"]');
         var name = $site.attr('data-name');
@@ -155,5 +159,40 @@ $(function(){
         $.modal({
             afterText:'<div class="codeWrap"><img src="'+ qcode +'" alt=""><p class="name">'+ name +'</p><p class="intro">'+ intro +'</p></div>'
         })
+    });
+    //点赞
+    $('[data-role="comment-zan"]').click(function () {
+        // event.stopPropagation();
+        var me = $(this);
+        if (MID == 0) {
+            toast.error('请在登陆后再点赞。', L('_KINDLY_REMINDER_'));
+            return;
+        } else {
+            var row = $(this).attr('data-row');
+            var table = $(this).attr('data-table');
+            var uid = $(this).attr('data-uid');
+            var jump = $(this).attr('data-jump');
+            var weibo_id = $(this).attr('data-weibo_id');
+            if (typeof(THIS_MODEL_NAME) != 'undefined') {
+                MODULE_NAME = THIS_MODEL_NAME;
+            }
+            $.post(U('Weibo/Index/doSupport'), {appname: MODULE_NAME, row: row, table: table, uid: uid, jump: jump, weibo_id: weibo_id}, function (msg) {
+                if (msg.status) {
+                    var numb = me.find('span').text() ;
+                    if(msg.status == 1){
+                        me.find('i').addClass('support-on') ;
+                        me.find('span').html(Number(numb)+1) ;
+                    }else{
+                        me.find('i').removeClass('support-on') ;
+                        me.find('span').html(Number(numb)-1) ;
+                    }
+                    $.toast(msg.info);
+                } else {
+                    $.toast(msg.info);
+                }
+
+            }, 'json');
+        }
+
     });
 });

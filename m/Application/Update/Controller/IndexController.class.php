@@ -12,7 +12,7 @@ use Think\Controller;
 use Think\Storage;
 
 class IndexController extends Controller{
-    protected $currentVersion = '1.0.0';
+    protected $currentVersion = '1.5.0';
 
     //安装首页
     public function index(){
@@ -48,7 +48,7 @@ class IndexController extends Controller{
             $this->error('当前版本已经是最新版本');
         }
 
-        if($version == '0.5.0') {
+        if($version == '1.0.0') {
             $config = array(
                 'path'     => realpath('./Data') . DIRECTORY_SEPARATOR,
                 'part'     => C('DATA_BACKUP_PART_SIZE'),

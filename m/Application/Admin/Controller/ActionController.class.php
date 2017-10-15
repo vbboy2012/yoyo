@@ -211,4 +211,26 @@ class ActionController extends AdminController {
         fclose($myfile);
         $this->success('积分日志已成功导出到Data/Log下！');
     }
+
+    /**
+     * 短信日志列表
+     * @author szh(施志宏) szh@ourstu.com
+     */
+    public function smsLog(){
+        //获取列表数据
+        $aMobile=I('mobile', '','string');
+        if($aMobile) $map['mobile']=$aMobile;
+        $map['status']    =   array('eq', 1);
+
+        $list   =   $this->lists('SendSmsLog', $map);
+        // int_to_string($list);
+
+        $actionList = D('Action')->select();
+        $this->assign('action_list', $actionList);
+
+        $this->assign('mobile', $aMobile) ;
+        $this->assign('_list', $list);
+        $this->meta_title = '短信日志';
+        $this->display();
+    }
 }

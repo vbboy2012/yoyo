@@ -1,0 +1,210 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">{:L('_EVENT_DETAIL_')}</a>
+            </header>
+            <div class="bar bar-tab bottomBar">
+                <div class="down-box">
+                    <div class="left">
+                        <div class="do-box" data-role="to-commend">
+                            <i class="iconfont icon-pinglun1"></i>
+                            <notempty name="comment">
+                                <span class="count">{$comment}</span>
+                            </notempty>
+                            <div>评论</div>
+                        </div>
+                        <div class="do-box" <if condition="$uid gt 0">data-role="event-support" data-id="{$event.id}"<else/>onclick="checkLogin(this)"</if>>
+                            <i <if condition="$is_support eq 1">class="iconfont icon-approve_after" style="color:#ec725d"<else/>class="iconfont icon-love_icon"</if>></i>
+                            <div>点赞</div>
+                        </div>
+                        <div <if condition="$uid gt 0">class="do-box open-popup" data-popup=".share" data-role="share_button" data-value="{$event.id}"<else/>class="do-box" onclick="checkLogin(this)"</if>>
+                            <i class="iconfont icon-lingcunwei"></i>
+                            <div>分享</div>
+                        </div>
+                    </div>
+                    <if condition="(time() gt $event['eTime'])">
+                        <div class="right">
+                            {:L('_ALREADY_OVER_')}
+                        </div>
+                    <elseif condition="(time() gt $event['deadline'])"/>
+                        <div class="right">
+                            {:L('_REGISTRATION_HAS_OVER_')}
+                        </div>
+                    <elseif condition="$event['limitCount'] eq $event['attendionCount']"/>
+                        <div class="right">
+                            名额已满
+                        </div>
+                    <else/>
+                        <div class="right" onclick="checkLogin(this)" data-uid="{$uid}" <if condition="check_auth('Event/Index/doSign')">data-url="{:U('Index/join',array('id'=>$event['id']))}"</if>>
+                            {:L('_REGISTER_OP_')}
+                        </div>
+                    </if>
+                </div>
+            </div>
+            <div class="content infinite-scroll">
+                <div class="content-block noEdge">
+                    <div>
+                        <!-- 活动详情页头部 start-->
+                        <div class="ev-head">
+                            <img class="head-img" src="{$event.cover_id|getThumbImageById=420,320}"/>
+                            <div class="detail-box bg-jamb">
+                                <div class="head-title">{$event.title}</div>
+                                <div class="head-price"><span>￥</span>{$event.price|show_price}</div>
+                                <div class="head-t-a head-t"><i class="iconfont icon-shizhong"></i>{$event.sTime|date="Y.m.d",###}-{$event.eTime|date="Y.m.d",###}</div>
+                                <div class="head-t-a head-end"><i class="iconfont icon-jiezhishijian"></i>{$event.deadline|date="Y.m.d",###} 截止报名</div>
+                                <div class="head-t-a head-a"><i class="iconfont icon-map"></i>{$event.address}</div>
+                            </div>
+                        </div>
+                        <div class="ev-attend bg-jamb">
+                            <a href="{:U('Index/member',array('id'=>$event['id']))}">
+                                <div class="attend-numb">{:L('_EVENT_IN_PEOPLE_')}<span class="numb"><span>{$joinCount}</span>/<span>{$event.limitCount}</span></span></div>
+                            </a>
+                            <div class="attend-img">
+                                <a href="{:U('Index/member',array('id'=>$event['id']))}">
+                                    <ul>
+                                        <volist name="joinUser" id="vo">
+                                            <li><img class="bor" src="{$vo.user.avatar64}" /></li>
+                                        </volist>
+                                        <li><span class="count bor">{$joinCount}</span></li>
+                                    </ul>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- 活动详情页头部 end-->
+                        <!-- 活动详情 start-->
+                        <div class="ev-content bg-jamb">
+                            <div class="ev-title">{:L('_EVENT_DETAIL_')}</div>
+                            <div class="ev-detail">{$event.explain}</div>
+                        </div>
+                        <!-- 活动介绍 end-->
+                        <if condition="$eventTip neq false">
+                            <!-- 温馨提示 start-->
+                            <div class="ev-content bg-jamb" data-role="comment-top">
+                                <div class="ev-title">{:L('_TIP_TENDER_')}</div>
+                                <textarea class="ev-tip" readonly="readonly">{$eventTip}</textarea>
+                            </div>
+                            <!-- 温馨提示 end-->
+                        </if>
+                        <!-- 活动讨论区 start-->
+                        <div class="ev-comment">
+                            <div <if condition="$uid gt 0">class="to-add open-popup" data-popup=".answer" data-role="answer_button"<else/>class="to-add" onclick="checkLogin(this)"</if>><i class="iconfont icon-wenzi"></i>说几句，为组织者打气</div>
+                        </div>
+                        <div class="comments">
+                            <div class="ev-title ">
+                                <a href="{:U('Index/comment',array('id'=>$event['id']))}">
+                                    <span>活动讨论</span>
+                                </a>
+                                <a href="{:U('Index/comment',array('id'=>$event['id']))}">
+                                    <i class="iconfont icon-xiangyoujiantou"></i>
+                                </a>
+                            </div>
+                            <div data-list="comment-list">
+                                {$allComments}
+                            </div>
+                        </div>
+                        <!-- 活动讨论区 end-->
+                        <!-- 组织者 start-->
+                        <div class="up-user bg-jamb">
+                            <div class="up-info">
+                                <a href="{:U('ucenter/index/mine',array('uid'=>$event['user']['id']))}">
+                                    <img src="{$event.user.avatar64}" />
+                                </a>
+                                    <span>组织者：<a href="{:U('ucenter/index/mine',array('uid'=>$event['user']['id']))}">{$event.user.nickname}</a></span>
+                            </div>
+                            <if condition="$follow eq 1">
+                                <a class="up-follow" href="javascript:void(0)" data-role="unfollow" data-follow-who="{$event.user.id}">
+                                {:L('_FOLLOWED_')}
+                                </a>
+                            <elseif condition="$follow eq '-1'"/>
+                                <a class="up-follow up-self" href="javascript:void(0)" data-value="-1">
+                                    {:L('_SELF_')}
+                                </a>
+                            <else/>
+                                <a class="up-follow" href="javascript:void(0)" data-role="follow" data-follow-who="{$event.user.id}">
+                                + {:L('_FOLLOW_')}
+                                </a>
+                            </if>
+                        </div>
+                        <!-- 组织者 end-->
+                        <!-- 分类活动入口 start-->
+                        <div class="ev-type bg-jamb">
+                            <span><a href="{:U('Event/Index/index',array('type'=>$event['type']['id']))}">查看更多<span class="type-name">{$event.type.title}</span>活动</a></span>
+                            <a href="{:U('Event/Index/index',array('type'=>$event['type']['id']))}"><i class="iconfont icon-xiangyoujiantou"></i></a>
+                        </div>
+                        <!-- 分类活动入口 end-->
+                        <!-- 资讯电话 start-->
+                        <notempty name="event['phone']">
+                            <div class="ev-phone bg-jamb">
+                                <span>咨询电话：</span><span>{$event.phone}</span>
+                            </div>
+                        </notempty>
+                        <!-- 资讯电话 end-->
+                        <div class="end bg-jamb"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="other">
+    <!--我来回答-->
+    <div class="popup popup-about sendWrap answer">
+        <div class="content-block noEdge">
+            <div class="newSend">
+                <div class="sendArea needsclick" contenteditable="true" style="height: 80px;border: 1px solid #eee;margin-bottom: 10px"></div>
+                <div class="commentOp">
+                    <i class="iconfont icon-biaoqing" data-role="open-emoji"></i>
+                    <a href="javascript:" data-role="sendComment" data-id="{$event.id}" class="proBtn close-popup">评论</a>
+                </div>
+            </div>
+
+            <div class="send-bottom emoji" style="display: none;">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper emoji-list send-emoji"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--分享资讯-->
+    <div class="popup popup-about sendWrap share">
+        <div class="content-block noEdge">
+            <div class="newSend">
+                <div class="shareArea needsclick" contenteditable="true" style="height: 80px;border: 1px solid #eee;margin-bottom: 10px"></div>
+                <div class="commentOp">
+                    <i class="iconfont icon-biaoqing" data-role="open-emoji"></i>
+                    <a href="javascript:" data-role="shareComment" data-id="{$event.id}" data-query="{$query}" class="proBtn close-popup">分享</a>
+                </div>
+            </div>
+            <div class="send-bottom emoji" style="display: none;">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper emoji-list share-emoji"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="//cdn.bootcss.com/emojione/2.2.7/lib/js/emojione.min.js"></script>
+    <script src="__PUBLIC_JS__/core.js"></script>
+    <script src="__PUBLIC_JS__/public.js"></script>
+    <script src="__JS__/detail.js"></script>
+    <script>
+        $('[data-role="to-commend"]').click(function(){
+            $('[data-role="comment-top"]')[0].scrollIntoView(true) ;
+        }) ;
+        $(function () {
+            emojione.imageType = 'png';
+            emojione.ascii = true;
+            emojione.imagePathPNG = _ROOT_ + '/Public/emoji/';
+        })
+    </script>
+</block>

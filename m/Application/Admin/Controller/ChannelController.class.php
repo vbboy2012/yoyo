@@ -100,7 +100,6 @@ class ChannelController extends AdminController
             $this->meta_title = L('_NAVIGATION_MANAGEMENT_');
             $this->display();
         }
-
     }
 
 

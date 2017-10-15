@@ -96,6 +96,24 @@ class IndexController extends BaseController
             redirect(U('Ucenter/Index/safe'));
         }
     }
+    public function mProjectCallback()
+    {
+        $code = I('get.code', '', 'text');
+        $config = D('Weixin/WeixinConfig')->getWeixinConfig();
+        $wechat = new WechatAuth($config['APP_ID'], $config['APP_SECRET']);
+        /* 获取请求信息 */
+        $token = $wechat->getAccessToken('code', $code);
+        $userinfo = $wechat->getUserInfo($token);
+
+        $openid = !empty($userinfo['unionid']) ? $userinfo['unionid'] : $userinfo['openid'];
+        session('weixin_token',array('access_token'=>$token['access_token'],'openid'=>$openid,'openid_public'=>$userinfo['openid']));
+
+        $uid = is_login();
+        $res = $this->addSyncLoginData($uid);
+        if($res) {
+            redirect(U('project/Index/user'));
+        }
+    }
     
     private  function weixin($data){
         if($data['ret'] == 0){
@@ -116,7 +134,8 @@ class IndexController extends BaseController
         $ucenterModer = UCenterMember();
         $uid = $ucenterModer->addSyncData();
         D('Member')->addSyncData($uid, $user_info);
-        $ucenterModer->initRoleUser(1, $uid); //初始化角色用户
+        $role_id = modC('SYNC_REGISTER_ROLE', '1', 'USERCONFIG');
+        $ucenterModer->initRoleUser($role_id, $uid); //初始化角色用户
         // 记录数据到sync_login表中
         $this->addSyncLoginData($uid);
         $this->saveAvatar($user_info['head'], $uid);
@@ -213,6 +232,7 @@ class IndexController extends BaseController
         $aUsername = I('post.username', '', 'text');
         $aNickname = I('post.nickname', '', 'text');
         $aPassword = I('post.password', '', 'text');
+        $aRegVerify = I('post.reg_verify', 0, 'intval');
 
         if (empty($aUsername)) {
             $this->error('请输入账号');
@@ -246,6 +266,17 @@ class IndexController extends BaseController
         if (strlen($aPassword) < 6 || strlen($aPassword) > 32) {
             $this->error('密码长度在6-32位之间');
         }
+        if(modC('MOBILE_VERIFY_TYPE', 1, 'USERCONFIG')) {
+            if (modC('SMS_REGISTER_RADIO', 1, 'USERCONFIG')) {
+                if (empty($aRegVerify)) {
+                    $this->error('请输入短信验证码');
+                }
+
+                if (!D('Verify')->checkVerify($aUsername, 'mobile', $aRegVerify, 0)) {
+                    $this->error('手机短信验证失败');
+                }
+            }
+        }
 
         $token = session('weixin_token');
         $config = D('Weixin/WeixinConfig')->getWeixinConfig();
@@ -255,14 +286,18 @@ class IndexController extends BaseController
 
         $ucenterModel = UCenterMember();
         $uid = $ucenterModel->register($username, $aNickname, $aPassword, $email, $mobile, $aUnType);
+        //注册方式统计
+        register_mark($uid, 'weixin', 'sync');
         if (0 < $uid) { //注册成功
             $this->addSyncLoginData($uid);
             $this->saveAvatar($user_info['head'], $uid);
 
-            $config =  D('MAddons')->where(array('name'=>'SyncLogin'))->find();
-            $config   =   json_decode($config['config'], true);
+//            $config =  D('MAddons')->where(array('name'=>'SyncLogin'))->find();
+//            $config   =   json_decode($config['config'], true);
 
-            $ucenterModel->initRoleUser($config['role'], $uid); //初始化角色用户
+            $role_id = modC('SYNC_REGISTER_ROLE', '1', 'USERCONFIG');
+            
+            $ucenterModel->initRoleUser($role_id, $uid); //初始化角色用户
 
             $res = D('Member')->login($uid, true); //登陆
             if ($res) {
@@ -272,6 +307,7 @@ class IndexController extends BaseController
                     $this->ajaxReturn(array('status' => 1, 'info' => $res['info']));
                 }
             } else {
+                set_user_status($uid, 4);
                 $this->ajaxReturn(array('status' => 0, 'info' => '注册失败'));
             }
         } else { //注册失败，显示错误信息
@@ -292,6 +328,8 @@ class IndexController extends BaseController
 
         $user_info = $this->weixin($userinfo);
         $uid = $this->addData($user_info);
+        //新增注册方式统计
+        register_mark($uid, 'weixin', 'weixin');
         $this->saveAvatar($user_info['head'], $uid);
 
         $res = D('Member')->login($uid, true); //登陆

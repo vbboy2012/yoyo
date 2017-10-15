@@ -62,11 +62,7 @@ class UserController extends AdminController
         int_to_string($list);
         foreach($list as $key=>$v){
             $list[$key]['ext']=query_user(array('username','mobile','email'),$v['uid']);
-
-        }
-        foreach($list as $key=>$v){
-            $list[$key]['ext']=query_user(array('username','mobile','email'),$v['uid']);
-
+            $list[$key]['mark'] = M('Register')->where(array('uid' => $v['uid']))->find();
         }
 
         $this->assign('_list', $list);

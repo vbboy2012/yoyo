@@ -42,8 +42,8 @@
                     <th style="vertical-align: middle;">卖家</th>
                     <th style="vertical-align: middle;">信誉</th>
                     <th style="vertical-align: middle;">支付方式</th>
-                    <th style="vertical-align: middle;">限额</th>
                     <th style="vertical-align: middle;">价格</th>
+                    <th style="vertical-align: middle;">限额</th>
                     <th style="vertical-align: middle;"></th>
                 </tr>
                 </thead>
@@ -56,11 +56,11 @@
                             $maxPrice = number_format($vo['max_price']);
                             $price = number_format($vo['price'],2);
                         </php>
-                        <td style="vertical-align: middle;"><img src="__ROOT__/Uploads/Avatar/{$img}.jpg" class="img-circle" style="padding-right: 10px">{$vo.nickname}</td>
-                        <td style="vertical-align: middle;">交易{$vo.trade_num}</td>
+                        <td style="vertical-align: middle;"><a href="{:U('Ucenter/index/information',array('uid'=>$vo['uid']))}"><img src="__ROOT__/Uploads/Avatar/{$img}.jpg" class="img-circle" style="padding-right: 10px">{$vo.nickname}</a></td>
+                        <td style="vertical-align: middle;">{$vo.trade_count}笔交易;{$vo.trade_score}%</td>
                         <td style="vertical-align: middle">{$vo.payName}</td>
-                        <td style="vertical-align: middle">{$minPrice}-{$maxPrice} {$vo.currency}</td>
                         <td style="vertical-align: middle;color: #0C7F12"><b>{$price} {$vo.currency}</b></td>
+                        <td style="vertical-align: middle">{$minPrice}-{$maxPrice} {$vo.currency}</td>
                         <php>
                             $params = '';
                             if($vo['type'] == 1){

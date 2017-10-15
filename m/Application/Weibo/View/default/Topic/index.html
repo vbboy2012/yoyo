@@ -231,25 +231,25 @@
         <div class="content-block noEdge">
             <div class="close-popup closeBottom">X</div>
             <div class="typeWrap">
-                <a href="{:is_login()?U('Index/sendweibo',array('topid'=>$topic['id'])):"javascript:$.toast('请登录~')"}">
+                <a href="{:is_login()?U('Index/sendweibo',array('topid'=>$topic['id'])):"javascript:no_login();"}">
                 <div class="oneType">
                     <div class="iconWrap"><i class="iconfont icon-wenzi"></i></div>
                     <p>文字</p>
                 </div>
                 </a>
-                <a href="{:is_login()?U('Index/sendArticle'):"javascript:$.toast('请登录~')"}">
+                <a href="{:is_login()?U('Index/sendArticle'):"javascript:no_login();"}">
                 <div class="oneType">
                     <div class="iconWrap" style="background-color: #F06C5D"><i class="iconfont icon-wenzhang"></i></div>
                     <p>文章</p>
                 </div>
                 </a>
-                <a href="{:is_login()?U('Index/redbag'):"javascript:$.toast('请登录~')"}">
+                <a href="{:is_login()?U('Index/redbag'):"javascript:no_login();"}">
                 <div class="oneType">
                     <div class="iconWrap" style="background-color: #fb9f3c"><i class="iconfont icon-hongbao"></i></div>
                     <p>红包</p>
                 </div>
                 </a>
-                <a href="{:is_login()?U('Voice/index'):"javascript:$.toast('请登录~')"}">
+                <a href="{:is_login()?U('Voice/index'):"javascript:no_login();"}">
                 <div class="oneType">
                     <div class="iconWrap" style="background-color: #fb9f3c"><i class="iconfont icon-icon15"></i></div>
                     <p>语音动态</p>
@@ -283,11 +283,11 @@
                 if(msg.status)
                 {
                     if(status==1){
-                        $('[data-role="topic-follow"]').html('信任') ;
+                        $('[data-role="topic-follow"]').html('关注') ;
                         $('[data-role="topic-follow"]').attr('data-value',0);
                         toast.success(L('_CANCEL_')+L('_FOLLOW_')+msg.info);
                     }else{
-                        $('[data-role="topic-follow"]').html('已信任') ;
+                        $('[data-role="topic-follow"]').html('已关注') ;
                         $('[data-role="topic-follow"]').attr('data-value',1);
                         toast.success(L('_FOLLOW_')+msg.info);
                     }

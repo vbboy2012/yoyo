@@ -32,7 +32,7 @@ $(function(){
 
     $('[data-role="register"]').click(function(){
         if($('.checkbox').get(0).checked){
-            var $form = $('[data-role="form"]');
+            var $form = $('[data-role="form-register"]');
             var url = $form.attr('data-url');
             var data = $form.serialize();
             $.post(url,data,function(res){

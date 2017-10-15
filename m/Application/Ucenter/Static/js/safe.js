@@ -31,9 +31,9 @@ $(function(){
 
     var $form = $('[data-role="form"]');
     $('[data-role="bind_mobile"]').click(function(){
+        var a= UrlSearch();
         var url = $form.attr('data-url');
-        var data = $form.serialize();
-        $.post(url,data,function(res){
+        $.post(url,{account:$('#tel').val(),verify:$('#vf').val(),ifis:a},function(res){
             if (res.status == 1) {
                 $.toast('手机绑定成功');
                 window.location.href = res.url;
@@ -42,6 +42,20 @@ $(function(){
             }
         })
     });
+
+    function UrlSearch()
+    {
+        var name,value;
+        var str=location.href; //取得整个地址栏
+        var num=str.indexOf("?")
+        str=str.substr(num+1); //取得所有参数   stringvar.substr(start [, length ]
+
+        var arr=str.split("&"); //各个参数放到数组里
+        arr=arr[0].split("/");
+      
+        return arr[arr.length-1].substring(0,1);
+    }
+
 
     $('[data-role="cancel_mobile_bind"]').click(function () {
         $.confirm('您确定取消绑定吗？', function () {

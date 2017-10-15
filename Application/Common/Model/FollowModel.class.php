@@ -117,6 +117,7 @@ class FollowModel extends Model
     public function getFans($uid, $page, $fields, &$totalCount)
     {
         $map['follow_who'] = $uid;
+        $map['trust'] = 0;
         $fans = $this->where($map)->field('who_follow')->order('create_time desc')->page($page, 10)->select();
         $totalCount = $this->where($map)->field('who_follow')->order('create_time desc')->count();
         foreach ($fans as &$user) {
@@ -129,6 +130,7 @@ class FollowModel extends Model
     public function getFollowing($uid, $page, $fields, &$totalCount)
     {
         $map['who_follow'] = $uid;
+        $map['trust'] = 0;
         $fans = $this->where($map)->field('follow_who')->order('create_time desc')->page($page, 10)->select();
         $totalCount = $this->where($map)->field('follow_who')->order('create_time desc')->count();
 

@@ -4,9 +4,9 @@
 
 //加载更多刷新操作
 var loading = false;
-var maxItems = $('[data-role="Mall"]').attr('data-total');
+var maxItems = $('[data-role="News"]').attr('data-total');
 var page=0;
-var module='Mall';
+var module='News';
 
 $('[data-role="Mall"]').click(function () {
     var total=$(this).attr('data-total');
@@ -27,6 +27,7 @@ $('[data-role="News"]').click(function () {
     $(this).addClass('active')
     $('[data-role="Mall"]').removeClass('active');
     $('#tab .fBox').remove();
+    $('#tab li').remove();
     page=0;
     addItems(module,lastIndex);
 });
@@ -66,6 +67,7 @@ function addItems(module, lastIndex) {
         }
     });
 }
+addItems(module, 0);
 addItems(module, 0);
 //分页条数每页十条 对应U('Forum/index/commonForumData') 里面10条
 var lastIndex = 10;

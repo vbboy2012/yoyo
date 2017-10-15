@@ -1,15 +1,19 @@
 <nav class="bar bar-tab bottomBar">
     <php>$channel = get_channel();</php>
     <volist name="channel" id="list">
-        <if condition="$list.child eq NULL">
+        <if condition="($list.child eq NULL) AND (strtolower($list['url']) neq 'message/index/index') AND (strtolower($list['url']) neq 'ucenter/index/index')">
             <a data-transition="slide" class="tab-item external select-os-icon-block"
                 <eq name="list.out_site" value="0">href="{:U($list['url'])}#{$list.title}"<else/>href="{$list['url']}#{$list.title}"</eq>
                 <eq name="list.target" value="1">target="_blank"</eq>>
+                <if condition="$list['url'] eq 'Message/Index/index'">
+                    {:W('Ucenter/Letter/point')}
+                </if>
                 <span class="icon iconfont {$list.icon}"></span>
                 <span class="tab-label">{$list.title} </span>
+
             </a>
 
-            <else/>
+            <elseif condition="(strtolower($list['url']) neq 'message/index/index') AND (strtolower($list['url']) neq 'ucenter/index/index')"/>
 
             <li class="tab-item external select-os-icon-block open-bottom-channel open-popover" data-role="oc-channel">
                 <span class="icon iconfont {$list.icon}"></span>
@@ -26,6 +30,15 @@
             </li>
         </if>
     </volist>
+    <a data-transition="slide" class="tab-item external select-os-icon-block" href="{:U('message/index/index')}#消息">
+        {:W('Ucenter/Letter/point')}
+        <span class="icon iconfont icon-remind"></span>
+        <span class="tab-label">消息 </span>
+    </a>
+    <a data-transition="slide" class="tab-item external select-os-icon-block" href="{:U('ucenter/index/index')}#我">
+        <span class="icon iconfont icon-geren"></span>
+        <span class="tab-label">我 </span>
+    </a>
 </nav>
 
 

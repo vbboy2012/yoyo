@@ -14,16 +14,29 @@ class WeiboCrowdModel extends Model
 {
     protected $tableName = 'weibo_crowd';
 
-    public function getAllCrowd()
+    public function getAllCrowd($id=0, $page=1)
     {
-        $tag = 'all_crowd_list';
+        $tag = 'all_crowd_list'.$id.'_'.$page;
         $crowd = S($tag);
         if(empty($crowd)){
-            $crowd = $this->where(array('status' => 1))->select();
+            $param['status'] = 1 ;
+            if($id){
+                $param['type_id'] = $id ;
+            }
+            $crowd = $this->where($param)->page($page, 10)->select();
             S($tag, $crowd , 60*60*24);
         }
         return $crowd;
     }
+
+    public function getAllCrowdCount($id=0) {
+        $param['status'] = 1 ;
+        if($id){
+            $param['type_id'] = $id ;
+        }
+        return $this->where($param)->count();
+    }
+
     public function getMyCrowd($page,$uid){
         $tag='my_crowd_list_'.$uid.'_'.$page;
         $crowd = S($tag);

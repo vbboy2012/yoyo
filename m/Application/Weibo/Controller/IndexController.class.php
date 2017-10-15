@@ -9,6 +9,7 @@ namespace Weibo\Controller;
 
 use Think\Controller;
 
+require_once('./Application/Weibo/Conf/jssdk.php');
 class IndexController extends BaseController
 {
     public function _initialize()
@@ -81,6 +82,23 @@ class IndexController extends BaseController
             $crowd['check_num'] = D('WeiboCrowdMember')->where(array('crowd_id' => $crowdId, 'status' => 0))->count();
             $crowd['crowd_admin'] = query_user(array('nickname', 'avatar128', 'space_url', 'fans'), $crowd['uid']);
             $crowd['is_follow'] = D('WeiboCrowdMember')->getIsJoin(is_login(), $crowdId);
+            $shareImg = getThumbImageById($crowd['logo'], 80, 80);
+            //不存在http://
+            $not_http_remote = (strpos($shareImg, 'http://') === false);
+            //不存在https://
+            $not_https_remote = (strpos($shareImg, 'https://') === false);
+            if ($not_http_remote && $not_https_remote) {
+                //本地url
+                $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+                $a=substr($shareImg , 0 , 2);
+                if($a=='..'){
+                    $shareImg=substr( $shareImg , 2 , strlen($shareImg)-2);
+                }else{
+                    $_SERVER['HTTP_HOST']=$_SERVER['HTTP_HOST'].'/m/';
+                }
+                $shareImg =  $http_type.$_SERVER['HTTP_HOST']. $shareImg;
+            }
+            $this->assign('share_img',$shareImg);
             $this->assign('crowd_detail', $crowd);
             $this->assign('crowd_type', $crowdId);
             $this->assign('crowd_weibo_list', 1);
@@ -96,6 +114,11 @@ class IndexController extends BaseController
             }
             unset($val);
             $this->assign('can_cancel_top_crowd_feed', check_auth(null, get_crowd_admin($crowdId)));
+            $appid=modC('APP_ID','','weixin');
+            $appsecret=modC('APP_SECRET','','weixin');
+            $jssdk = new \JSSDK ($appid,$appsecret);
+            $signPackage = $jssdk->GetSignPackage();
+            $this->assign("signPackage",$signPackage);
         } else {
             if ($aType == 'concerned' && !is_login()) {
                 $aType = 'all';
@@ -174,6 +197,7 @@ class IndexController extends BaseController
             $this->display();
         }
 
+
     }
 
     private function filterWeibo($aType, $param)
@@ -213,16 +237,38 @@ class IndexController extends BaseController
         $weibo['user'] = query_user(array('space_url', 'avatar128', 'nickname', 'title'), $weibo['uid']);
         $weibo['is_follow'] = D('Common/Follow')->isFollow(is_login(), $weibo['uid']);
         $this->assign('weibo', $weibo);
+
+        //获取神回复
+        $supportList = D('WeiboComment')->getSupportComment($aId) ;
+        $this->assign('supportList', $supportList[1]) ;
+        //回复列表
         $comment = D('WeiboComment')->getCommentList($weibo['id'], 1);
         $commentCount = D('WeiboComment')->getCount($weibo['id']);
+        $shareImg = $weibo['user']['avatar128'];
+        //不存在http://
+        $not_http_remote = (strpos($shareImg, 'http://') === false);
+        //不存在https://
+        $not_https_remote = (strpos($shareImg, 'https://') === false);
+        if ($not_http_remote && $not_https_remote) {
+            //本地url
+            $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+            $a=substr($shareImg , 0 , 2);
+            if($a=='..'){
+                $shareImg=substr( $shareImg , 2 , strlen($shareImg)-2);
+            }else{
+                $_SERVER['HTTP_HOST']=$_SERVER['HTTP_HOST'].'/m/';
+            }
+            $shareImg =  $http_type.$_SERVER['HTTP_HOST']. $shareImg;
+        }
+        $this->assign('share_img',$shareImg);
         $this->setTitle(get_short_sp($weibo['content'], 30));
         $this->setKeywords(get_short_sp($weibo['content'], 30));
         $this->setDescription($weibo['content']);
 
         $qRcode = modC('SOCIAL_QRCODE', '', 'Weibo');
         $this->assign('qcode', getThumbImageById($qRcode, 80, 80));
-        $this->assign('site_name', modC('WEB_SITE_NAME', '微社区', 'Config'));
-        $this->assign('site_intro', modC('WEB_SITE_INTRO', '未填写社区简介~', 'Config'));
+        $this->assign('site_name', modC('MOB_SITE_NAME', '微社区', 'Config'));
+        $this->assign('site_intro', modC('MOB_SITE_INTRO', '未填写社区简介~', 'Config'));
 
         if (!empty($_SERVER['HTTP_REFERER'])) {
             $back = $_SERVER['HTTP_REFERER'];
@@ -231,6 +277,7 @@ class IndexController extends BaseController
         } else {
             $back = U('weibo/index/index');
         }
+
         //获取最新五个点赞人头像
         $support=D('support')->where(array('appname'=>'Weibo','table'=>'weibo','row'=>$aId))->field('uid')->limit(5)->select();
         $supportCount=D('support')->where(array('appname'=>'Weibo','table'=>'weibo','row'=>$aId))->count();
@@ -238,6 +285,11 @@ class IndexController extends BaseController
             $item['uid']=query_user(array('uid','avatar512','nickname'),$item['uid']);
         }
         unset($item);
+        $appid=modC('APP_ID','','weixin');
+        $appsecret=modC('APP_SECRET','','weixin');
+        $jssdk = new \JSSDK ($appid,$appsecret);
+        $signPackage = $jssdk->GetSignPackage();
+        $this->assign("signPackage",$signPackage);
         $this->assign('support',$support);
         $this->assign('supportCount',$supportCount);
         //获取点赞人停止结束
@@ -245,7 +297,6 @@ class IndexController extends BaseController
         $this->assign('read_count', M('weibo')->where(array('id' => $aId))->getField('read_count'));
         $this->assign('comment', $comment);
         $this->assign('comment_count', $commentCount);
-
         $this->setTitle(text($weibo['content']));
         $this->display();
     }
@@ -463,6 +514,10 @@ class IndexController extends BaseController
 
     public function repost()
     {
+        $result = check_action_limit('add_weibo', 'weibo', 0, is_login(), true);
+        if ($result && !$result['state']) {
+            $this->error($result['info']);
+        }
         if (!is_login()) {
             $this->error('请您先登录', U('Ucenter/member/login'), 1);
         }
@@ -530,6 +585,10 @@ class IndexController extends BaseController
         }
 
         if (IS_POST) {
+            $return = check_action_limit('add_weibo', 'weibo', 0, is_login(), true);
+            if ($return && !$return['state']) {
+                $this->error($return['info']);
+            }
             $aContent = I('post.content', '', 'text');
             $aCrowd = I('post.crowd_id', 0, 'intval');
             $aGoods = I('post.goods_id', 0, 'intval');
@@ -539,7 +598,6 @@ class IndexController extends BaseController
             if (empty($aContent)) {
                 $this->error('内容不能为空~');
             }
-
             $aType = 'feed';
             if ($aData['attach_ids']) {
                 $aType = 'image';
@@ -680,10 +738,10 @@ class IndexController extends BaseController
             $v = query_user(array('uid', 'avatar128', 'nickname', 'signature', 'space_mob_url'), $v);
             $res = D('Common/Follow')->isFollow(is_login(), $v['uid']);
             if ($res == 1) {
-                $v['follow_status'] = '已信任';
+                $v['follow_status'] = '已关注';
                 $v['is_follow'] = 'unfollow';
             } else {
-                $v['follow_status'] = '信任';
+                $v['follow_status'] = '关注';
                 $v['is_follow'] = 'follow';
             }
         }
@@ -694,10 +752,10 @@ class IndexController extends BaseController
             $v = query_user(array('uid', 'avatar128', 'nickname', 'signature', 'space_mob_url'), $v);
             $res = D('Common/Follow')->isFollow(is_login(), $v['uid']);
             if ($res == 1) {
-                $v['follow_status'] = '已信任';
+                $v['follow_status'] = '已关注';
                 $v['is_follow'] = 'unfollow';
             } else {
-                $v['follow_status'] = '信任';
+                $v['follow_status'] = '关注';
                 $v['is_follow'] = 'follow';
             }
         }
@@ -710,10 +768,10 @@ class IndexController extends BaseController
             $v['user'] = query_user(array('uid', 'avatar128', 'space_mob_url'), $v['uid']);
             $res = D('Common/Follow')->isFollow(is_login(), $v['uid']);
             if ($res == 1) {
-                $v['follow_status'] = '已信任';
+                $v['follow_status'] = '已关注';
                 $v['is_follow'] = 'unfollow';
             } else {
-                $v['follow_status'] = '信任';
+                $v['follow_status'] = '关注';
                 $v['is_follow'] = 'follow';
             }
             if (in_array($v['uid'], $adminList)) {
@@ -1055,5 +1113,70 @@ class IndexController extends BaseController
         }
         $result['info'] = L('_SUCCESS_SHARE_').L('_EXCLAMATION_') . cookie('score_tip');;
         $this->ajaxReturn($result);
+    }
+
+    public function doSupport()
+    {
+        if (!is_login()) {
+            exit(json_encode(array('status' => 0, 'info' => '请登陆后再点赞。')));
+        }
+        $appname = I('POST.appname');
+        $table = I('POST.table');
+        $row = I('POST.row');
+        $aJump = I('POST.jump');
+        $aWeiboId=I('post.weibo_id',0,'intval');
+
+        $message_uid = intval(I('POST.uid'));
+        $support['appname'] = $appname;
+        $support['table'] = $table;
+        $support['row'] = $row;
+        $support['uid'] = is_login();
+
+        $support_cache['appname'] = $appname;
+        $support_cache['table'] = $table;
+
+        if (D('Support')->where($support)->count()) {
+            $res = D('Support')->where($support)->delete();
+            if($aWeiboId){
+                $support_cache['row'] = $aWeiboId;
+                S('support_count_' . $appname . '_' . $table . '_' . $row, null);
+            }else{
+                $support_cache['row'] = $row;
+            }
+            D('Support')->clearCache($support_cache['appname'], $support_cache['table'], $support_cache['row']);
+            if($res) {
+                S('weibo_comment_' . $row , null);
+                D('WeiboComment')->where(array('id'=> $row))->setDec('support_down') ;
+                exit(json_encode(array('status' => 2, 'info' => '您取消了赞。')));
+            }else{
+                exit(json_encode(array('status' => 0, 'info' => '点赞失败~')));
+            }
+        } else {
+            $support['create_time'] = time();
+            if (D('Support')->where($support)->add($support)) {
+                if($aWeiboId){
+                    $support_cache['row'] = $aWeiboId;
+                    S('support_count_' . $appname . '_' . $table . '_' . $row, null);
+                }else{
+                    $support_cache['row'] = $row;
+                }
+                D('Support')->clearCache($support_cache['appname'], $support_cache['table'], $support_cache['row']);
+                $user = query_user(array('uid','nickname','space_url'),get_uid());
+                send_message($message_uid,$title = $user['nickname'] . '赞了您', '快去看看吧^……^！',  $aJump , array('id' => $row),-1,'Ucenter');
+                S('weibo_comment_' . $row , null);
+                D('WeiboComment')->where(array('id'=> $row))->setInc('support_down') ;
+                exit(json_encode(array('status' => 1, 'info' => '感谢您的支持。')));
+            } else {
+                exit(json_encode(array('status' => 0, 'info' => '写入数据库失败。')));
+            }
+        }
+    }
+
+    /**
+     * 兼容pc端详情页链接
+     */
+    public function weibodetail() {
+        $id = I('id', 0, 'intval') ;
+        $this->redirect('weibo/index/detail',array('id'=>$id)) ;
     }
 }

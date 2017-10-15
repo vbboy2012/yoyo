@@ -20,7 +20,7 @@ class PublicController extends Controller
 {
 
 
-    /**信任某人
+    /**关注某人
      * @param int $uid
      * @auth 陈一枭
      */
@@ -39,7 +39,7 @@ class PublicController extends Controller
         }
     }
 
-    /**取消对某人的信任
+    /**取消对某人的关注
      * @param int $uid
      * @auth 陈一枭
      */

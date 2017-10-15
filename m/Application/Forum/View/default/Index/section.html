@@ -21,7 +21,7 @@
                         <div class="sInfo">
                             <p class="fName-b">{$sectionInfo.title}<span>{$userInfo.title}</span></p>
                             <p class="number">
-                                <span>信任</span><b>{$followCount}</b><span>帖子</span><b>{$postCount}</b>
+                                <span>关注</span><b>{$followCount}</b><span>帖子</span><b>{$postCount}</b>
                             </p>
                         </div>
                         <a href="javascript:" class="follow" data-follow="{$isFollowed}" data-forum_id="{$sectionId}" data-role="follow">
@@ -96,7 +96,7 @@
 <block name="script">
     <script src="__JS__/section.js"></script>
     <script>
-        //实现信任板块的逻辑
+        //实现关注板块的逻辑
         $('[data-role="follow"]').click(function () {
             var $this = $(this);
             var follow=$(this).attr('data-follow')?$(this).attr('data-follow'):0;
@@ -122,5 +122,50 @@
                 })
             }
         })
+    </script>
+    <script type="text/javascript" src='http://res.wx.qq.com/open/js/jweixin-1.0.0.js'></script>
+    <script type="text/javascript">
+        wx.config({
+            debug: false,
+            appId: '{$signPackage["appId"]}',
+            timestamp: '{$signPackage["timestamp"]}',
+            nonceStr: '{$signPackage["nonceStr"]}',
+            signature: '{$signPackage["signature"]}',
+            jsApiList: [
+                // 所有要调用的 API 都要加到这个列表中
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo',
+                'onMenuShareQZone'
+            ]
+        });
+    </script>
+    <script type="text/javascript src='http://203.195.235.76/jssdk/js/zepto.min.js"></script>
+    <script type="text/javascript">
+        //完成wx.config，执行这里
+        wx.ready(function () {
+            //分享到朋友圈
+            wx.onMenuShareTimeline({
+                title: '{$sectionInfo.title}', // 分享标题
+                link:window.location.href,
+                imgUrl: "{$share_img}", // 分享图标
+            });
+
+            //分享给朋友
+            wx.onMenuShareAppMessage({
+                title: '{$sectionInfo.title}', // 分享标题
+                desc: '{$sectionInfo.title}',
+                link:window.location.href,
+                imgUrl: "{$share_img}", // 分享图标
+                trigger: function (res) {
+                    // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                },
+                fail: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+        });
     </script>
 </block>

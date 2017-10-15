@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_weibo_comment` (
   `status` int(11) NOT NULL,
   `to_comment_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 -- -----------------------------
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_weibo_crowd_member` (
   `position` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1为普通成员，2为管理员，3为创建者',
   `contribution` float NOT NULL DEFAULT '0' COMMENT '贡献',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 
 -- -----------------------------
@@ -115,6 +115,17 @@ CREATE TABLE IF NOT EXISTS `ocenter_weibo_crowd_score` (
   PRIMARY KEY (`crowd_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='圈子账户';
 
+-- -----------------------------
+-- 表结构 `ocenter_weibo_crowd_search`
+-- -----------------------------
+CREATE TABLE IF NOT EXISTS `ocenter_weibo_crowd_search` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL,
+  `historical` varchar(50) NOT NULL COMMENT '历史记录',
+  `create_time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='圈子搜索';
+
 
 -- -----------------------------
 -- 表结构 `ocenter_weibo_crowd_type`
@@ -126,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_weibo_crowd_type` (
   `sort` int(11) NOT NULL,
   `create_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='圈子的分类表';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='圈子的分类表';
 
 
 -- -----------------------------
@@ -138,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_weibo_long` (
   `long_content` text NOT NULL COMMENT '长微博内容',
   `title` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='长微博内容';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='长微博内容';
 
 
 -- -----------------------------
@@ -149,9 +160,10 @@ CREATE TABLE IF NOT EXISTS `ocenter_weibo_top` (
   `title` varchar(64) NOT NULL COMMENT '置顶标题',
   `dead_time` int(11) NOT NULL COMMENT '过期日期',
   `crowd_id` int(11) NOT NULL,
+  `type` varchar(32) NOT NULL,
   `status` tinyint(2) NOT NULL,
   `create_time` int(11) NOT NULL,
-  KEY `weibo_id` (`weibo_id`)
+  UNIQUE KEY `weibo_id` (`weibo_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='置顶微博表';
 
 

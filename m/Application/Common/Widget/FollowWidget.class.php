@@ -11,7 +11,7 @@ use Think\Controller;
 class FollowWidget extends Controller
 {
     /**
-     * follow  信任按钮
+     * follow  关注按钮
      * @param int $follow_who
      * @author:xjw129xjt(肖骏涛) xjt@ourstu.com
      */

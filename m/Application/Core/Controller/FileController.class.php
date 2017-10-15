@@ -162,7 +162,7 @@ class FileController extends Controller
             $data[$k] = '@' . realpath($v['tmp_name']) . ";type=" . $v['type'] . ";filename=" . $v['name'];
         }
         //$rs = D('Capi/Call')->callApi('/Sapi/uploadimage', $data);
-       // exit($rs);
+        // exit($rs);
 
 
         //TODO: 用户登录检测
@@ -216,7 +216,8 @@ class FileController extends Controller
         }
         /*兼容WangEditor，返回上传图片后的地址*/
         if ($editor) {
-            exit($info['file']['url']) ;
+            $url = $info['file']['url'] ? $info['file']['url'] : '..'.$info['file']['path'] ;
+            exit($url) ;
         }
         /* 返回JSON数据 */
         $this->ajaxReturn($return);

@@ -19,7 +19,7 @@ class WeixinAreplyModel extends Model{
         if(!$info){
             $info = array(
                 'type' => 1,
-                'content' => '欢迎您,感谢信任本微信公众号。',
+                'content' => '欢迎您,感谢关注本微信公众号。',
             );
         }
         return $this->getReturnInfo($info);

@@ -109,7 +109,17 @@ var bind_remove_crowd_member = function () {
 //上传封面
 $('[data-role="add_cover"]').click(function () {
     $(this).parent().css('height', '120px');
-    $('.addCover').uploadImage({limit:1});
+    $(this).css('display', 'none') ;
+    var add = $('.addCover') ;
+    if (is_weixin()&&is_android()) {
+        $('.img-list').css('display', 'inline-flex') ;
+        add.addClass('image_uploader') ;
+    }else{
+        if (add.hasClass('image_uploader') == false) {
+            add.html('') ;
+            add.uploadImage({limit:1});
+        }
+    }
 });
 //删除封面
 $('[data-role="delete_cover"]').click(function () {
@@ -219,9 +229,4 @@ $(document).on('infinite', '.infinite-scroll-bottom',function() {
     });
     //容器发生改变,如果是js滚动，需要刷新滚动
     //  $.refreshScroller();
-});
-
-$('[data-role="tab"]').click(function () {
-    var tab = $(this).attr('href');
-    $('[href="'+tab+'"]').addClass('active');
 });

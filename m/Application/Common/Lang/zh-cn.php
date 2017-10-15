@@ -3,9 +3,9 @@
 
 $common_lang = array(
     '_OPEN_SNS_' => 'OpenSNS开源社交系统',
-    '_FOLLOWERS_' => '信任',
+    '_FOLLOWERS_' => '关注',
     '_SELF_' => '自己',
-    '_FOLLOWED_' => '已信任',
+    '_FOLLOWED_' => '已关注',
     /*举报*/
     '_REPORT_' => '举报',
 
@@ -116,7 +116,7 @@ $common_lang = array(
     /*footer*/
     '_ABOUT_US_' => '关于我们',
     '_NOT_SET_NOW_' => '暂未设置',
-    '_FOLLOW_US_' => '信任我们',
+    '_FOLLOW_US_' => '关注我们',
     '_FRIENDLY_LINK_' => '友情链接',
     '_RECORD_N_' => '备案号：',
     '_LANGUAGE_'=>'语言',
@@ -343,9 +343,9 @@ $common_lang = array(
 
 //FollowModel
     '_FANS_NUMBER_INCREASED_' => '粉丝数增加',
-    '_CONCERN_YOU_WITH_PERIOD_' => ' 信任了你。',
+    '_CONCERN_YOU_WITH_PERIOD_' => ' 关注了你。',
     '_NUMBER_OF_FANS_' => '粉丝数减少',
-    '_CANCEL_YOUR_ATTENTION_WITH_PERIOD_' => ' 取消了对你的信任。',
+    '_CANCEL_YOUR_ATTENTION_WITH_PERIOD_' => ' 取消了对你的关注。',
     '_INVITED_' => '邀请者 ',
     '_YOURE_INVITING_THE_USER_' => '你邀请的用户 ',
     '_SYSTEM_RECOMMENDED_USERS_' => '系统推荐用户 ',

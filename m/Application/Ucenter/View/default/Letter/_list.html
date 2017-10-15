@@ -1,0 +1,36 @@
+<volist name="letterList" id="vo">
+    <if condition="$pUser['uid'] neq $vo['puid']">
+        <div class="letter-box">
+            <div class="letter-img">
+                <img src="{$pUser.avatar128}" />
+            </div>
+            <div class="letter-part">
+                <div class="radius-pao-l"></div>
+                <div class="radius-pao-hide-l"></div>
+                <div class="letter-content left-cont">
+                    {$vo.content}
+                </div>
+            </div>
+            <div class="letter-time left-time">{$vo.create_time|friendlyDate=###,'normal'}</div>
+        </div>
+    <else/>
+        <div class="letter-box right-box">
+            <div class="letter-part right-part">
+                <div class="radius-pao-r"></div>
+                <div class="radius-pao-hide-r"></div>
+                <div class="letter-content right-cont">
+                    {$vo.content}
+                </div>
+            </div>
+            <div class="letter-img">
+                <img src="{$user.avatar128}" />
+            </div>
+            <div class="letter-time right-time">{$vo.create_time|friendlyDate=###,'normal'}</div>
+        </div>
+    </if>
+</volist>
+<empty name="letterList">
+    <div class="no-history">
+        <span>-- 没有历史消息了 --</span>
+    </div>
+</empty>

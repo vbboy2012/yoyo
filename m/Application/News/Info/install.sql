@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS `ocenter_news` (
   `sort` int(5) NOT NULL COMMENT '排序',
   `position` int(4) NOT NULL COMMENT '定位，展示位',
   `cover` int(11) NOT NULL COMMENT '封面',
-  `view` int(10) NOT NULL COMMENT '阅读量',
+   `banner` int(11) NOT NULL COMMENT 'Banner图',
+   `view` int(10) NOT NULL COMMENT '阅读量',
   `comment` int(10) NOT NULL COMMENT '评论量',
   `collection` int(10) NOT NULL COMMENT '收藏量',
   `dead_line` int(11) NOT NULL COMMENT '有效期',
@@ -21,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_news` (
   `post_time` int(11) NOT NULL COMMENT '预发布日期',
   `update_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='资讯';
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='资讯';
 
 
 -- -----------------------------
@@ -36,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_news_category` (
   `sort` tinyint(4) NOT NULL,
   `status` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='资讯分类';
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='资讯分类';
 
 
 -- -----------------------------
@@ -49,6 +50,10 @@ CREATE TABLE IF NOT EXISTS `ocenter_news_detail` (
   PRIMARY KEY (`news_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='资讯详情';
 
+
+-- -----------------------------
+-- 表结构 `ocenter_news_reply`
+-- -----------------------------
 CREATE TABLE IF NOT EXISTS `ocenter_news_reply` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `post_id` int(11) NOT NULL,
@@ -60,17 +65,22 @@ CREATE TABLE IF NOT EXISTS `ocenter_news_reply` (
   `ctime` int(11) NOT NULL,
   `is_del` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
+
+-- -----------------------------
+-- 表结构 `ocenter_news_search`
+-- -----------------------------
 CREATE TABLE IF NOT EXISTS `ocenter_news_search` (
-   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL,
   `historical` varchar(50) NOT NULL COMMENT '历史记录',
   `create_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='资讯';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='资讯';
 
 -- -----------------------------
 -- 表内记录 `ocenter_news_category`
 -- -----------------------------
 INSERT INTO `ocenter_news_category` VALUES ('1', '默认分类', '0', '1', '1', '1', '1');
+ALTER TABLE  `ocenter_news` ADD  `banner` int(11) NOT NULL COMMENT 'Banner图';

@@ -1,0 +1,180 @@
+@import "core";
+.plan{
+  padding: 10px;
+  display: flex;
+  background-color: @comColor;
+  margin-bottom: 10px;
+  .cover{
+      width: 85px;
+      height: 85px;
+      overflow: hidden;
+      border-radius: 6px;
+  }
+  .nwInfo{
+    flex: 1px;
+    padding-left: 10px;
+    .cont{
+      color: #1a1a1a;
+      display: flex;
+      font-size: 16px;
+      margin-bottom: 25px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .text-color{
+      color: @themeColor;
+    }
+  }
+}
+
+
+.list{
+  //进度
+  .teb-content{
+    background-color:@comColor;
+    margin: 10px 10px 0px 10px;
+    padding: 20px 0;
+    position: relative;
+    .box{
+      display: flex;
+      filter: grayscale(0.4);
+      color: @minorTextColor;
+      &:first-child{
+        filter: grayscale(0);
+        color: #1a1a1a !important;
+        .lineBox{
+          position: relative;
+          &:after{
+            content: '';
+            display: block;
+            width: 1px;
+            height: 61px;
+            background-color: #fff;
+            position: absolute;
+            z-index: 10;
+          }
+        }
+      }
+      .time{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        padding: 8px;
+        margin-left: 40px;
+        .big{
+          font-size: 16px;
+        }
+        .small{
+          font-size: 14px;
+        }
+      }
+      .lineBox{
+        position: relative;
+        &:after{
+          content: '';
+          display: block;
+          width: 1px;
+          height: 181%;
+          background-color: @minorTextColor;
+          position: absolute;
+          z-index: 9;
+        }
+      }
+      .boxNum{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        margin-left: 20px;
+        max-width: 120px;
+        .Num{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          align-items: center;
+          color: @comColor;
+          background-color: @themeColor;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          z-index: 11;
+        }
+        .boxColor{
+          border: 1px solid #ff544d;
+          border-radius:5px;
+          margin-left: 3px;
+          color: #ff544d;
+        }
+        .box-Color{
+          border: 1px solid #999;
+          border-radius:5px;
+          margin-left: 3px;
+          color: #999;
+        }
+      }
+      .boxWidth{
+        max-width: 120px;
+        align-items: flex-start;
+      }
+    }
+    .btn{
+      position: absolute;
+      top: 35px;
+      right: 15px;
+    }
+  }
+  //文档
+  li{
+    padding: 10px;
+    border-bottom: 1px solid #F2F2F2;
+    background-color:@comColor;
+    display: flex;
+    justify-content: space-between;
+    .item-img{
+      width: 65px;
+      height: 65px;
+      background-color: #00c3b6;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      .iconfont{
+        font-size: 40px;
+      }
+    }
+    .img-color{
+       background-color: #f9df51;
+    }
+    .img-color-last{
+       background-color: #fa747a;
+    }
+    .text{
+      flex: 2;
+      margin-left: 20px;
+      padding: 3px;
+      .myDiv{
+        font-size: 16px;
+        color: @textTitle;
+      }
+      span{
+        color: @textColor;
+        font-size: .7rem;
+      }
+      .lastSpan{
+        margin-top: 15px;
+        display: block;
+      }
+    }
+    .download{
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 22px;
+    }
+  }
+}

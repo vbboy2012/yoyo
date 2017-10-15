@@ -11,6 +11,9 @@ $common_lang = array(
     /*举报*/
     '_REPORT_' => '举报',
 
+    /*广告*/
+    '_AD_' => '广告',
+
 
     /*签到*/
     '_NOBODY_CHECKED_' => '虚位以待，赶紧签到吧。',

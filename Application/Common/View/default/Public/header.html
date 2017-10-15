@@ -8,17 +8,31 @@
 </div>
 <![endif]-->
 <script src="__PUBLIC__/js/canvas.js"></script>
-<link rel="stylesheet" href="http://at.alicdn.com/t/font_iwj71cmtw1dobt9.css">
+<script src="__PUBLIC__/css/fa.css"></script>
+<style>
+    body {
+        color: #34495e;
+        font-family: "Open Sans", sans-serif;
+        padding: 0px !important;
+        margin: 0px !important;
+        direction: "ltr";
+        font-size: 14px; }
+    .navbar-brand{
+        font-size: 20px;
+        color: #43cb83;
+    }
+    .navbar-brand:hover{
+        color: #2a985e;
+    }
+</style>
+
 <script>
 
 </script>
 <div class="container-fluid topp-box clearfloat">
     <div class="col-xs-2 box">
-        <div class="img-wrap">
-            <php>$logo = get_cover(modC('LOGO',0,'Config'),'path');
-                $logo = $logo?$logo:'__ROOT__/Public/images/logo.png';
-            </php>
-            <a class="navbar-brand logo" href="{:U('Home/Index/index')}"><img src="{$logo}"/></a>
+        <div class="" style="">
+            <a class="navbar-brand" href="{:U('Home/Index/index')}"><i class="icon icon-compass icon-2x"></i>YOYOCOINS</a>
         </div>
     </div>
     <div class="col-xs-7 box ">
@@ -174,7 +188,7 @@
 
                     <div class="link-wrap">
                         <div class="link-box row">
-                            <a href="{$self.space_url}">
+                            <a href="{:U('Ucenter/index/information',array('uid'=>$self['uid']))}">
                                 <div class="col-xs-6 l-p0">
                                     <i class="os-icon-user"></i>
                                     个人主页

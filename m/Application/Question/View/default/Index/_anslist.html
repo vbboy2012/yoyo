@@ -15,7 +15,7 @@
                 </span>
             </div>
         </div>
-        <p style="padding: 8px 0">{$vo.content}</p>
+        <p class="quest-cont" style="padding: 8px 0">{$vo.content}</p>
         <p class="last">
             <if condition="check_auth('Question/Index/setBestAnswer',$vo['who_ask'])">
                 <span data-role="set-best" data-id="{$vo.id}" <if condition="$vo['best_answer_id'] gt 0">style="display: none"</if> ><i class="iconfont icon-qbzuocesvg01"></i>设为最佳答案</span>

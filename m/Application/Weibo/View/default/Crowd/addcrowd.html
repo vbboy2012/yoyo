@@ -1,6 +1,7 @@
 <extend name="Base/common"/>
 <block name="css">
     <link rel="stylesheet" href="__CSS__/weibo.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/ext/webuploader/webuploader.css"/>
 </block>
 <block name="body">
     <div class="page-group">
@@ -29,12 +30,18 @@
                                             <!--<a href="javascript:" class="close" data-role="delete_cover">x</a>-->
                                         </div>
                                     </if>
-
                                     <!--上传按钮  封面上传完成之后隐藏-->
                                     <div class="addBtn flexWrap" data-role="add_cover">
                                         <div>
                                             <p><i class="iconfont icon-shangchuan"></i></p>
                                             <p>添加封面</p>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="image" id="image"/>
+                                    <div class="img-list" style="display: none">
+                                        <div class="add-img-btn img-btn-sit">
+                                            <div class="iconfont icon-fabu1 text-center img-add"></div>
+                                            <input name="files" class="img-input" style="" id="choose" data-url="/bu/index.php?s=/core/file/uploadpicturebase64.html" multiple="" type="file">
                                         </div>
                                     </div>
                                 </div>
@@ -115,6 +122,10 @@
     </div>
 </block>
 <block name="script">
-
+    <script src="__PUBLIC__/js/lrz.mobile.min.js"></script>
+    <script src="__PUBLIC__/js/uploadimg.js"></script>
     <script src="__JS__/crowd.js"></script>
+    <script>
+        add_img(1);
+    </script>
 </block>

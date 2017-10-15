@@ -3,6 +3,10 @@
  */
 $(function(){
     $(document).on('click','.do-support',function(){
+        var login = no_login();
+        if(login == undefined){
+            return ;
+        }
         var $this = $(this);
         var id = $this.closest('.operate').attr('data-id');
         var uid = $this.closest('.operate').attr('data-uid');
@@ -38,6 +42,10 @@ $(function(){
     });
 
     $(document).on('click','.do-support-lzl',function(){
+        var login = no_login();
+        if(login == undefined){
+            return ;
+        }
         var $this = $(this);
         var id = $this.closest('.operate1').attr('data-id');
         var uid = $this.closest('.operate1').attr('data-uid');
@@ -56,6 +64,10 @@ $(function(){
     });
 
     $(document).on('click','.do-support-news',function(){
+        var login = no_login();
+        if(login == undefined){
+            return ;
+        }
         var $this = $(this);
         var id = $this.closest('.operate').attr('data-id');
         var uid = $this.closest('.operate').attr('data-uid');
@@ -75,6 +87,10 @@ $(function(){
     });
 
     $(document).on('click','.do-support-news-a',function(){
+        var login = no_login();
+        if(login == undefined){
+            return ;
+        }
         var $this = $(this);
         var id = $this.closest('.operate').attr('data-id');
         var uid = $this.closest('.operate').attr('data-uid');
@@ -98,7 +114,54 @@ $(function(){
         event.stopPropagation();
     });
 
+    $(document).on('click','[data-role="event-support"]',function(event){
+        var login = no_login();
+        if(login == undefined){
+            return ;
+        }
+        var $this = $(this);
+        var id = $this.attr('data-id');
+        var uid = $this.attr('data-uid');
+        var url = U('Core/Support/doSupportAll');
+        $.post(url,{appname:'Event',table:'event',row:id,uid:uid},function(res){
+            if (res.status) {
+                var loveIcon = $this.children('.icon-love_icon') ;
+                loveIcon.removeClass('icon-love_icon') ;
+                loveIcon.addClass('icon-approve_after') ;
+                loveIcon.css('color','#ec725d');
+            }
+            $.toast(res.info);
+        })
+        event.stopPropagation();
+    });
+    $(document).on('click','[data-role="event-support-c"]',function(event){
+        var login = no_login();
+        if(login == undefined){
+            return ;
+        }
+        var $this = $(this);
+        var id = $this.attr('data-id');
+        var uid = $this.attr('data-uid');
+        var url = U('Core/Support/doSupportAll');
+        $.post(url,{appname:'Event-comment',table:'local_comment',row:id,uid:uid},function(res){
+            if (res.status) {
+                $this.children('.icon-dianzan').css('color','#ec725d');
+                var number = $this.children('span') ;
+                var count = parseInt(number.text());
+                if (!isNaN(count)) {
+                    number.text(++count);
+                }
+            }
+            $.toast(res.info);
+        });
+        event.stopPropagation();
+    });
+
     $(document).on('click','.do-support-question',function(){
+        var login = no_login();
+        if(login == undefined){
+            return ;
+        }
         var $this = $(this);
         var id = $this.closest('.operate1').attr('data-id');
         var uid = $this.closest('.operate1').attr('data-uid');
@@ -144,20 +207,24 @@ $(function(){
         $.closeModal();
     });
 
-    // 信任
+    // 关注
     $(document).on('click','.do-active',function () {
+        var login = no_login();
+        if(login == undefined){
+            return ;
+        }
         var $this=$(this);
         var type=$this.attr('data-value');
         var uid=$this.attr('data-uid');
         var url=U('Ucenter/Index/follow');
         if(type=='unfollow'){
-            $.confirm('取消信任?', function () {
+            $.confirm('取消关注?', function () {
                     $.post(url,{uid:uid,type:type},function (res) {
                         if(res.status==0){
                             $.toast(res.info);
                         }else{
-                            $.toast("取消了信任");
-                            $this.html('信任');
+                            $.toast("取消了关注");
+                            $this.html('关注');
                             $this.attr('data-value','follow');
                         }
                     })
@@ -168,8 +235,8 @@ $(function(){
                 if(res.status==0){
                     $.toast(res.info);
                 }else{
-                    $.toast("信任了TA");
-                    $this.html('已信任');
+                    $.toast("关注了TA");
+                    $this.html('已关注');
                     $this.attr('data-value','unfollow');
                 }
             })
@@ -231,6 +298,12 @@ $(function(){
 });
 
 //论坛帖子评论的表情
+$('[data-role="share_button"]').click(function(){
+    $textarea = $('.shareArea');
+}) ;
+$('[data-role="answer_button"]').click(function(){
+    $textarea = $('.sendArea');
+}) ;
 var $swiper = null;
 var $textarea = $('.sendArea');
 var get_emoji = function () {

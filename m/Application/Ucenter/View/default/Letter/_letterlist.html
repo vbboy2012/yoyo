@@ -1,0 +1,22 @@
+<volist name="data" id="list">
+    <a href="{:U('Ucenter/Letter/sendLetter',array('uid'=>$list['uid']))}">
+        <li class="msgList" data-role="letter-user" data-id="{$list['uid']}">
+            <div class="msgLeft">
+                <img class="msgCover user-cover" src="{$list.user.avatar128}"/>
+                <div class="msgInfo">
+                    <p class="msgName">{$list.user.nickname}</p>
+                    <p class="msgDetail">
+                        <if condition="$list['un_read'] neq 0">[ <span style="color:red">{$list.un_read} 条未读</span> ] </if>
+                        <span class="msgNew textMore">{$list.last_content.content}</span>
+                    </p>
+                </div>
+            </div>
+            <span class="last-time">{$list.last_content.create_time|friendlyDate=###,'normal'}</span>
+        </li>
+    </a>
+</volist>
+<empty name="data">
+    <li class="noMore">
+        没有了~
+    </li>
+</empty>

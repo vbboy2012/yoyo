@@ -5,44 +5,81 @@
 }
 .moreNav{
   background-color: @comColor;
-  padding: 10px;
+  padding: 15px 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   .oneNav{
     width: 70px;
-    height: 100px;
-    margin: 10px 5px;
+    height: 60px;
     text-align: center;
-    p{
-      margin-top: 5px!important;
-    }
-    .round{
-      .osCircle(75px);
-      position: relative;
-      i{
-        font-size: 30px;
-        color: @comColor;
-      }
+    i{
+      font-size: 30px;
     }
   }
 }
 .hotTit{
   border-left: 2px solid @themeColor;
   padding-left: 10px;
-  color: @minorTextColor;
+  color: #333333;
   line-height: 1;
   a{
     color: @minorTextColor;
-    font-size: 12px;
   }
 }
 .hotType{
+  margin-top: 15px;
   background-color: @comColor;
   padding:10px 10px 0;
+  font-size: 15px !important;
 }
+/*微博列表样式 start*/
+.wbName {
+  color: #ec725d;
+}
+.info{
+  border-top: none ;
+  height: 64px;
+  .avatar{
+    width: 40px;
+    .avatar-img {
+      border-radius: 50%;
+      overflow: hidden;
+    }
+  }
+}
+.proWrap{
+  border-top: none;
+  box-shadow: none;
+}
+a.label-info {
+  font-size: .7rem;
+  white-space: nowrap;
+  vertical-align: baseline;
+  color: #ec725d;
+}
+.show-more {
+  width: 80px;
+  border-radius: 100px 100px 0 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  height: 25px;
+  line-height: 30px;
+  overflow: hidden;
+  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -40px;
+  display: none;
+}
+
+/*新闻列表样式 start*/
 .listWrap{
   background-color: @comColor;
+  box-shadow: none;
   li{
     background-color: @comColor;
     padding: 10px;
@@ -73,7 +110,6 @@
         }
         a{
           margin: 0 8px;
-          color: @themeColor;
           max-width: 100px;
         }
         .time{
@@ -94,9 +130,8 @@
         color: @minorTextColor;
         max-width: 265px;
         .type{
-          border: 1px solid @themeColor;
           color: @themeColor;
-          padding: 3px 8px;
+          padding: 3px 5px;
           display: inline-block;
           border-radius: 3px;
         }
@@ -110,3 +145,194 @@
     }
   }
 }
+/*新闻样式 end*/
+/*推荐好友样式 start*/
+.friend-box{
+  background-color: #f2f2f2;
+  padding-top: 0;
+  display: flex;
+  justify-content: space-between;
+  .refresh{
+    font-size: 12px;
+    color: #666666;
+    i{
+      margin-right: 4px;
+    }
+    .rotate{
+      transform: rotate(360deg);
+      transition: all 1s ease
+    }
+  }
+}
+.friend-list{
+  margin-bottom: 2px;
+  display: flex;
+  justify-content: center;
+  .friend-li{
+    margin: 10px 6px 0 6px;
+    padding: 10px 11px;
+    background-color: #fff;
+    text-align: center;
+    .avatar{
+      width: 45px;
+      height: 45px;
+      border-radius: 100%;
+      overflow: hidden;
+    }
+    .name{
+      font-size: 13px;
+      color:#333333;
+    }
+    .follow{
+      position: relative;
+      display: block;
+      margin: 10px 0 5px;
+      width: 70px;
+      height: 19px;
+      border: 1px solid @themeColor;
+      font-size: 11px;
+      line-height: 17px;
+      border-radius: 19px;
+      color: @themeColor;
+    }
+    .self{
+      border: 1px solid #e5e5e5;
+      color: #999999;
+    }
+  }
+}
+/*推荐好友样式 end*/
+/*论坛样式 start*/
+.list{
+  padding: 0 15px;
+  background-color: @comColor;
+  li{
+    padding: 15px 0;
+    border-bottom: 1px solid #e5e5e5;
+    position: relative;
+    .whoWhen{
+      padding-bottom: 5px;
+      color: @minorTextColor;
+      font-size: 12px;
+      display: flex;
+      a{
+        color: @themeColor;
+        margin-right: 10px;
+        font-size: 14px;
+      }
+    }
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+      overflow: hidden;
+    }
+    .wbAvatar {
+      width: 40px !important;
+      height: 40px !important;
+    }
+    .nickname{
+      color:#777;
+      font-size: .8rem !important;
+      line-height: 40px;
+    }
+    .cont{
+      padding: 5px 0;
+      font-size: 15px !important;
+    }
+    .opt{
+      padding-top: 2px;
+      color: @minorTextColor;
+      font-size: 13px;
+      .f-title{
+        margin-right: 15px;
+        color:#EF8A7A ;
+        font-weight: 500;
+      }
+      span{
+        color:#999;
+      }
+      b{
+        font-weight: normal;
+        opacity:0.85;
+      }
+      .f-time{
+        float: right;
+      }
+    }
+  }
+  .best {
+    position: absolute;
+    color: #f14040;
+    right: 20px;
+    top: 10px;
+    font-size: 50px;
+  }
+}
+/*论坛样式 end*/
+/*问答样式 start*/
+.wrapList{
+  li{
+    padding: 10px;
+    background-color: @comColor;
+    margin-bottom: 2px;
+    &:last-child{
+      margin: 0;
+    }
+    .top{
+      .avatar{
+        .osCircle(30px);
+        box-shadow: 0 0 10px rgba(0,0,0,.1);
+      }
+      .name{
+        color: @themeColor;
+        font-size: 15px;
+      }
+      .time{
+        font-size: 13px;
+        color: @minorTextColor;
+      }
+    }
+    .detail{
+      padding: 5px 0;
+      .qtTitle{
+        border-bottom: 1px dashed #eee;
+        padding-bottom: 5px;
+        max-width: 350px;
+      }
+      .more{
+        p{
+          color: @minorTextColor;
+          font-size: 13px;
+        }
+        .article{
+          word-break: break-all;
+          text-overflow: ellipsis;
+          display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+          -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+          -webkit-line-clamp: 2; /** 显示的行数 **/
+          overflow: hidden;  /** 隐藏超出的内容 **/
+        }
+      }
+    }
+    .other{
+      display: flex;
+      align-items: center;
+      .line{
+        height: 15px;
+        width: 1px;
+        background-color: #eee;
+        display: block;
+        margin: 0 10px;
+      }
+      p{
+        font-size: 12px;
+        color: @minorTextColor;
+        i{
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+/*问答样式 end*/

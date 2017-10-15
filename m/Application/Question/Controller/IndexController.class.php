@@ -3,9 +3,12 @@ namespace Question\Controller;
 
 use Think\Controller;
 
+require_once('./Application/Question/Conf/jssdk.php');
 class IndexController extends Controller
 {
-    
+    public function _initialize(){
+        $this->setTitle('问答') ;
+    }
 
 
     public function index()
@@ -281,10 +284,33 @@ class IndexController extends Controller
             $best=D('QuestionAnswer')->getAnswer($data['best_answer']);
             S('question_detail_best',$best,3600);
         }
-
+        $img=array();
+        foreach ($data['img'] as $key=>$val){
+            $img[$key]=getThumbImageById($val,50,50);
+        }
+        unset($val);
+        $question=D('question')->where(array('id'=>$id,'status'=>1))->find();
+        $head = query_user(array('avatar128'), $question['uid']);
+        //不存在http://
+        $not_http_remote = (strpos($head['avatar128'], 'http://') === false);
+        //不存在https://
+        $not_https_remote = (strpos($head['avatar128'], 'https://') === false);
+        if ($not_http_remote && $not_https_remote) {
+            //本地url
+            $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+            $a=substr($head['avatar128'] , 0 , 2);
+            if($a=='..'){
+                $head['avatar128']=substr( $head['avatar128'] , 2 , strlen($head['avatar128'])-2);
+            }else{
+                $_SERVER['HTTP_HOST']=$_SERVER['HTTP_HOST'].'/m/';
+            }
+            $head['avatar128'] =  $http_type.$_SERVER['HTTP_HOST']. $head['avatar128'];
+        }
+        $this->assign('headimg',$head['avatar128']);
         $this->assign('data',$data);
         $this->assign('best',$best);
         $this->assign('img',$data['img']);
+        $this->assign('image',$img[0]);
         //邀请回答列表
         $user=D('Follow')->where(array("who_follow"=>get_uid()))->field('follow_who')->order('create_time desc')->select();
         foreach ($user as &$item) {
@@ -292,6 +318,11 @@ class IndexController extends Controller
             $item['info']=D('question_rank')->where(array('uid'=>$item['follow_who']))->find();
         }
         unset($item);
+        $appid=modC('APP_ID','','weixin');
+        $appsecret=modC('APP_SECRET','','weixin');
+        $jssdk = new \JSSDK ($appid,$appsecret);
+        $signPackage = $jssdk->GetSignPackage();
+        $this->assign("signPackage",$signPackage);
         $this->assign('count',count($user));
         $this->assign('user',$user);
         $this->display();

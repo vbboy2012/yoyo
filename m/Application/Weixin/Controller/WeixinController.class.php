@@ -114,10 +114,10 @@ class WeixinController extends AdminController
             ->keyId()
             ->keyText('keywords', "关键词")
             ->keyText('type', "类型")
-            ->keyText('is_attention', "信任回复")
+            ->keyText('is_attention', "关注回复")
             ->keyText('content', "回复内容")
             ->keyDoActionEdit('Weixin/edit?id=###')
-            ->keyDoActionEdit('Weixin/attention?id=###', '设为信任回复')
+            ->keyDoActionEdit('Weixin/attention?id=###', '设为关注回复')
             ->buttonDelete(U('del'));
 
         $builder->data($list);

@@ -4,6 +4,7 @@ namespace  Forum\Controller;
 use Forum\Model\ForumPostReplyModel;
 use Think\Controller;
 
+require_once('./Application/Forum/Conf/jssdk.php');
 class IndexController extends Controller
 {
     public function _initialize()
@@ -52,7 +53,7 @@ class IndexController extends Controller
             }
             unset($item);
             $this->assign('result', $result);
-            //信任版块
+            //关注版块
             if ($followData===false){
                 shuffle($userAllFollowId) ;
                 $userFollowId = array_slice( $userAllFollowId, 0, 3) ;
@@ -69,7 +70,7 @@ class IndexController extends Controller
                 unset($value);
                 S('forum_attention_plate'.is_login(), $followData, 3600);
             }
-            //判断用户是否有信任版块
+            //判断用户是否有关注版块
             if(count($followData)>0){
                 $this->assign('followData', $followData);
             }
@@ -108,7 +109,7 @@ class IndexController extends Controller
             $postCount = D('ForumPost')->where(array('forum_id' => $sectionId))->count();
             S('forum_post_count'.$sectionId,$postCount,3600);
         }
-        //获取当前是否信任
+        //获取当前是否关注
         $isFollowed=D('forum_follow')->where(array('forum_id'=>$sectionId,'uid'=>is_login()))->field('id')->find();
         if ($isFollowed){
             $isFollowed=1;
@@ -117,7 +118,7 @@ class IndexController extends Controller
         }
         //当前用户信息
         $userInfo=query_user(array('avatar64','uid', 'avatar128', 'avatar32', 'avatar256', 'avatar512','title','nickname'),is_login());
-        //获取信任数
+        //获取关注数
         $followCount=S('forum_attention_count'.$sectionId);
         if ($followCount===false){
             $followCount=D('forum_follow')->where(array('forum_id'=>$sectionId))->count();
@@ -159,6 +160,27 @@ class IndexController extends Controller
             'commonPosttotal'=>$commonPosttotal,
             'height'=>$height
         ));
+        $appid=modC('APP_ID','','weixin');
+        $appsecret=modC('APP_SECRET','','weixin');
+        $jssdk = new \JSSDK ($appid,$appsecret);
+        $signPackage = $jssdk->GetSignPackage();
+        $this->assign("signPackage",$signPackage);
+        $shareImg=substr($sectionInfo['logo'],2,strlen($sectionInfo['logo'])-2);
+        $not_http_remote = (strpos($shareImg, 'http://') === false);
+        //不存在https://
+        $not_https_remote = (strpos($$shareImg, 'https://') === false);
+        if ($not_http_remote && $not_https_remote) {
+            //本地url
+            $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+            $a=substr($shareImg, 0 , 2);
+            if($a=='..'){
+                $shareImg=substr($shareImg, 2 , strlen($shareImg)-2);
+            }else{
+                $_SERVER['HTTP_HOST']=$_SERVER['SERVER_NAME'].'/m/';
+            }
+            $shareImg =  $http_type.$_SERVER['SERVER_NAME'].$shareImg;
+        }
+        $this->assign('share_img',$shareImg);
         $this->display();
     }
 
@@ -175,6 +197,10 @@ class IndexController extends Controller
         //获取版块id
         $sectionId=I('get.id','','intval');
         if(IS_POST){
+            $result = check_action_limit('forum_add_post','Forum',null,get_uid());
+            if ($result && !$result['state']) {
+                $this->error($result['info']);
+            }
             $post=D("forum_post");
             $data['file_id']=I('post.file_id',0,'intval');
             $data["uid"]=get_uid();
@@ -199,7 +225,8 @@ class IndexController extends Controller
             if($data["pay_on"]=='on'&&$data["file_id"]==0){
                 $this->error('请上传付费附件');
             }
-            $post->add($data);
+            $res=$post->add($data);
+            action_log('forum_add_post','Forum',$res,get_uid());
             $mes=array("status"=>"1","info"=>"发帖成功","id"=>I('post.sectionId','','intval'));
             $recommendedSection=D("forum");
             //更新版块里的帖子数量
@@ -225,21 +252,22 @@ class IndexController extends Controller
 
 
     /**
-     * 信任操作
+     * 关注操作
      * @auth nkx nkx@ourstu.com
      */
     public function follow(){
         $follow=I('post.follow','','intval');
         $sectionID=I('post.sectionID','','string');
-        if (!is_login()){
-            $this->error('请登录',U('ucenter/member/login'),1);
+        $result = check_action_limit('forum_follow','forum',$sectionID,get_uid());
+        if ($result && !$result['state']) {
+            $this->error($result['info']);
         }
         if ($follow==1){
             $res=D('forum_follow')->where(array('uid'=>is_login(),'forum_id'=>$sectionID))->delete();
             if ($res){
                 S('forum_attention_count'.$sectionID,false);
                 S('forum_attention_plate'.is_login(), false);
-                $this->success('取消信任成功');
+                $this->success('取消关注成功');
             }else{
                 $this->error('未知错误');
             }
@@ -250,7 +278,8 @@ class IndexController extends Controller
             if ($res){
                 S('forum_attention_count'.$sectionID,false);
                 S('forum_attention_plate'.is_login(), false);
-                $this->success('信任成功');
+                action_log('forum_follow','forum',$res,get_uid());
+                $this->success('关注成功');
             }else{
                 $this->error('未知错误');
             }
@@ -400,6 +429,28 @@ class IndexController extends Controller
             unset($vl);
             S('forum_reward_result'.$id,$myResult,3600);
         }
+        $shareImg=$data['user']['avatar128'];
+        //不存在http://
+        $not_http_remote = (strpos($shareImg, 'http://') === false);
+        //不存在https://
+        $not_https_remote = (strpos($shareImg, 'https://') === false);
+        if ($not_http_remote && $not_https_remote) {
+            //本地url
+            $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+            $a=substr($shareImg, 0 , 2);
+            if($a=='..'){
+                $shareImg=substr($shareImg, 2 , strlen($shareImg)-2);
+            }else{
+                $_SERVER['HTTP_HOST']=$_SERVER['HTTP_HOST'].'/m/';
+            }
+            $shareImg =  $http_type.$_SERVER['HTTP_HOST'].$shareImg;
+        }
+        $appid=modC('APP_ID','','weixin');
+        $appsecret=modC('APP_SECRET','','weixin');
+        $jssdk = new \JSSDK ($appid,$appsecret);
+        $signPackage = $jssdk->GetSignPackage();
+        $this->assign("signPackage",$signPackage);
+        $this->assign('share_img',$shareImg);
         $this->assign('myResult',$myResult);
         $this->assign('rewardResult',$rewardResult);
         $this->assign('count',count($rewardResult));
@@ -711,6 +762,7 @@ class IndexController extends Controller
                 $this->assign('lzl_result', $lzl_result);
                 $data['html'] .= $this->fetch("_comment");
                 $data['status'] = 1;
+                action_log('forum_lzl_reply','Forum',$lzlcomment,get_uid());
             } else {
                 $data['status'] = 0;
             }
@@ -727,9 +779,11 @@ class IndexController extends Controller
         if (!is_login()) {
             $this->error('请您先登录', U('Ucenter/member/login'), 1);
         }
-
         if (IS_POST) {
-
+            $result = check_action_limit('forum_post_reply','Forum',null,get_uid());
+            if ($result && !$result['state']) {
+                $this->error($result['info']);
+            }
             $aContent = I('post.content', '', 'op_t');              //评论内容
             $aForumId = I('post.forumId', 0, 'intval');             //要评论的帖子的ID
             $aCommentId = I('post.comment_id', 0, 'intval');
@@ -758,6 +812,7 @@ class IndexController extends Controller
                 $this->assign('comment', $comment);
                 $data['html'] .= $this->fetch("_cmtlist");
                 $data['status'] = 1;
+                action_log('forum_post_reply','Forum',$forumcomment,get_uid());
             } else {
                 $data['status'] = 0;
             }
@@ -778,6 +833,10 @@ class IndexController extends Controller
 
         if (!check_auth('Forum/Index/delPostReply', $forumreply['uid'])) {
             $this->error('您没有权限删除该评论');
+        }
+        $result = check_action_limit('forum_del_post','Forum',null,get_uid());
+        if ($result && !$result['state']) {
+            $this->error($result['info']);
         }
         $pos_id=D('forum_post_reply')->where(array('id'=>$aForumId))->getField('post_id');
         //删除评论
@@ -820,6 +879,7 @@ class IndexController extends Controller
         S('forum_section_comment'.$forum_id.'essence'.'1'.'last_reply_time',false);
         S('forum_section_comment'.$forum_id.'essence'.'1'.'create_time',false);
         if ($result) {
+            action_log('forum_del_post','Forum',$aForumId,get_uid());
             $this->success('删除成功',U('section',array('id'=>$forum_id)),3);
         } else {
             $return['status'] = 0;
@@ -851,6 +911,7 @@ class IndexController extends Controller
         S('forum_lzl_reply_'.$pid.'1',false);  //todo
         if ($result) {
             $return['status'] = 1;
+            action_log('forum_lzl_del_reply','Forum',$Id,get_uid());
         } else {
             $return['status'] = 0;
             $return['status'] = L('_ERROR_INSET_DB_');

@@ -6,7 +6,7 @@ use Think\Model;
 
 class AdvModel extends Model
 {
-    protected $tableName = 'adv';
+    protected $tableName = 'm_adv';
 
     /*  展示数据  */
     public function getAdvList($name, $path)

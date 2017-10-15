@@ -5,9 +5,18 @@
         <div class="page page-current">
             <link rel="stylesheet" href="__CSS__/index.css"/>
             <header class="bar bar-nav comHead">
-                <a external class="iconfont icon-xiangzuojiantou pull-left button button-link" href="javascript:history.go(-1);"></a>
+                <a external class="iconfont icon-xiangzuojiantou pull-left button button-link" href="{:U('Ucenter/Index/index')}"></a>
                 <a href="javascript:" class="title open-about">个人中心</a>
             </header>
+            <if condition="$friend_btn eq 1">
+                <!-- 发送消息按钮 start-->
+                <div class="bar bar-tab bottomBar">
+                    <div class="down-box">
+                        <a class="send-letter" href="{:U('letter/sendletter',array('uid'=>$uid))}">发私信</a>
+                    </div>
+                </div>
+                <!-- 发送消息按钮 end-->
+            </if>
             <div class="content" >
                 <div class="content-block noEdge">
                     <div class="myTop">
@@ -16,7 +25,7 @@
                                 <img src="{$user_info.user.avatar512}" alt="">
                             </div>
                             <a href="{:U('Ucenter/Index/fans',array('uid'=>$uid,'type'=>'fans'))}"><div class="circle fr">{$user_info.fans|default=0}<span>粉丝</span></div></a>
-                            <a href="{:U('Ucenter/Index/fans',array('uid'=>$uid,'type'=>'follow'))}"><div class="circle fl">{$user_info.user.following|default=0}<span>信任</span></div></a>
+                            <a href="{:U('Ucenter/Index/fans',array('uid'=>$uid,'type'=>'follow'))}"><div class="circle fl">{$user_info.user.following|default=0}<span>关注</span></div></a>
                         </div>
                         <div class="mName">{$user_info.nickname}</div>
                         <div class="intro textMore">{$user_info.signature|default="这个人很懒，神马都没写~"}</div>
@@ -46,6 +55,7 @@
                                             </div>
                                             <!--点击进入全部资料页，如果为本人，则可编辑资料-->
                                             <div class="item textCenter textColor"><a external href="{:U('Ucenter/Index/edit',array('uid'=>$uid))}">更多基本资料</a></div>
+                                            <div class="item textCenter textColor"><a external href="{:U('Ucenter/Index/userdata',array('uid'=>$uid))}">更多扩展资料</a></div>
                                         </div>
                                         <!--好友列表-->
                                         <div class="baseBox baseList mg20">
@@ -88,7 +98,7 @@
                                             </ul>
                                         </div>
                                         <!--我创建的圈子列表-->
-                                        <!--我信任的圈子列表-->
+                                        <!--我关注的圈子列表-->
                                         <div class="baseBox baseList mg20 circleList">
                                             <p class="fTitle"><if condition="$uid eq is_login()">我<else/>他</if>加入的</p>
                                             <ul class="list">
@@ -100,7 +110,7 @@
                                                 </empty>
                                             </ul>
                                         </div>
-                                        <!--我信任的圈子列表-->
+                                        <!--我关注的圈子列表-->
                                     </div>
                                 </div>
                             </div>

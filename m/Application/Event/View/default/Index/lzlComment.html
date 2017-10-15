@@ -1,0 +1,92 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">评论圈</a>
+            </header>
+            <div class="bar bar-tab bottomBar">
+                <div class="down-box">
+                    <div class="something open-popup" data-popup=".answer" data-role="answer_button">
+                        说点什么...
+                    </div>
+                </div>
+            </div>
+            <div class="content infinite-scroll">
+                <div class="content-block noEdge">
+                    <div class="comments">
+                        <div class="comment-box">
+                            <div class="user">
+                                <div class="user-info"><img src="{$comment.user.avatar64}" /><span>{$comment.user.nickname}</span></div>
+                                <span class="time">{$comment.create_time}</span>
+                            </div>
+                            <div class="comment">
+                                {$comment.content}
+                            </div>
+                            <div class="bottom-box">
+                                <ul>
+                                    <li data-role="event-support-c" data-id="{$comment.id}" data-uid="{$uid}"><i class="iconfont icon-dianzan" <if condition="$comment['is_support'] eq 1">style="color:#ec725d"</if>></i>(<span>{$comment.support_all_count|default=0}</span>)</li>
+                                    <li>
+                                        <a href="javascript:void(0);" style="vertical-align: middle;" class="open-popup" data-popup=".answer" data-role="answer_button">
+                                            <i class="iconfont icon-pinglun1"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="join-user">回复评论：</div>
+                    <div class="comments">
+                        <div data-list="comment-list" data-total="{$count}" data-eid="{$event.id}" data-id="{$comment.id}">
+                        </div>
+                    </div>
+                    <div class="infinite-scroll-preloader">
+                        <div class="preloader"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="other">
+    <!--我来回答-->
+    <div class="popup popup-about sendWrap answer">
+        <div class="content-block noEdge">
+            <div class="newSend">
+                <div class="sendArea needsclick" contenteditable="true" style="height: 80px;border: 1px solid #eee;margin-bottom: 10px"></div>
+                <div class="commentOp">
+                    <i class="iconfont icon-biaoqing" data-role="open-emoji"></i>
+                    <a href="javascript:" data-role="sendComment" data-eid="{$event.id}" data-id="{$comment.id}" class="proBtn close-popup">评论</a>
+                </div>
+            </div>
+
+            <div class="send-bottom emoji" style="display: none;">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper emoji-list"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="//cdn.bootcss.com/emojione/2.2.7/lib/js/emojione.min.js"></script>
+    <script src="__PUBLIC_JS__/core.js"></script>
+    <script src="__PUBLIC_JS__/public.js"></script>
+    <script src="__PUBLIC__/js/refreshData.js"></script>
+    <script src="__JS__/lzlcomment.js"></script>
+    <script>
+        var cid = $('[data-list="comment-list"]').attr('data-id');
+        var id = $('[data-list="comment-list"]').attr('data-eid');
+        var total = $('[data-list="comment-list"]').attr('data-total');
+        refreshData('Event/index/getComment',total,'[data-list="comment-list"]',{cid:cid,id:id});
+        $('.lzl-comment').click(function(){
+            $('.sendArea').html('回复 @'+$(this).attr('data-name')+' ：') ;
+        });
+    </script>
+</block>

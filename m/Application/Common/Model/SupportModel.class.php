@@ -45,7 +45,7 @@ class SupportModel extends Model
     {
         S($this->getCacheTag($appname, $table, $row), null);
         if($table=='weibo' || $table=='weibo_comment'){//点赞后清除微博html缓存
-            D('Weibo/WeiboCache')->cleanCache($row);
+            S('weibo_list_detail_html_' . $row,null);
         }
     }
 

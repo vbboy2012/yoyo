@@ -2,6 +2,7 @@
 <block name="css">
     <link rel="stylesheet" href="__CSS__/index.css"/>
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/ext/wangeditor/css/wangEditor-mobile.css">
+    <link rel="stylesheet" href="__PUBLIC__/ext/webuploader/webuploader.css"/>
 </block>
 <block name="body">
     <div class="page-group">
@@ -22,12 +23,13 @@
                                 <textarea  id="textarea1" class="editor" style="width:100%;height:100%;border: none;outline: none;resize: none"></textarea>
                             </div>
                             <div class="cDesc">
-                                <div class="addCover">
+                                <div class="cover-title"><div data-role="tip-cover">封面</div><div data-role="tip-banner">Banner图</div></div>
+                                <div class="addCover new-cover">
                                     <!--上传封面之后-->
                                     <if condition="$logo">
                                         <div class="cover">
                                             <img src="{$crowd.logo|getThumbImageById=160,160}" alt="">
-                                            <p class="fTitle">封面</p>
+                                            <p class="fTitle">图片</p>
                                             <!--<a href="javascript:" class="close" data-role="delete_cover">x</a>-->
                                         </div>
                                     </if>
@@ -36,7 +38,14 @@
                                     <div class="addBtn flexWrap" data-role="add_cover">
                                         <div>
                                             <p><i class="iconfont icon-shangchuan"></i></p>
-                                            <p>添加封面</p>
+                                            <p>添加图片</p>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="image" id="image" onpropertychange="tipChange(this)"/>
+                                    <div class="img-list" style="display: none">
+                                        <div class="add-img-btn img-btn-sit">
+                                            <div class="iconfont icon-fabu1 text-center img-add"></div>
+                                            <input name="files" class="img-input" style="" id="choose" data-url="/bu/index.php?s=/core/file/uploadpicturebase64.html" multiple="" type="file">
                                         </div>
                                     </div>
                                 </div>
@@ -53,12 +62,6 @@
                                             <div class="item-after">
                                                 <input type="text" data-role="chose_type" value="{$list.type_id.title}" placeholder="选择分类" id="picker" readonly="">
                                                 <input type="hidden" name="type_id" data-role="crowd_type" value="{$crowd.type_id}"/>
-                                                <div style="display: none">
-                                                    <volist name="type" id="data">
-                                                        <span class="crowd_by_id">{$data.id}</span>
-                                                        <span class="crowd_by_title">{$data.title}</span>
-                                                    </volist>
-                                                </div>
                                             </div>
                                         </div>
                                     </li>
@@ -86,10 +89,21 @@
     <script type="text/javascript" src="__PUBLIC__/ext/wangeditor/js/wangEditor-mobile.js"></script>
     <script src="//cdn.bootcss.com/emojione/2.2.7/lib/js/emojione.min.js"></script>
     <script src="  https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+    <script src="__PUBLIC__/js/lrz.mobile.min.js"></script>
+    <script src="__PUBLIC__/js/uploadimg.js"></script>
     <script type="text/javascript">
         emojione.imageType = 'png';
         emojione.ascii = true;
         emojione.imagePathPNG = _ROOT_ + '/Public/emoji/';
+        add_img(2);
     </script>
     <script src="__JS__/news.js"></script>
+    <script src="__PUBLIC_JS__/pickerType.js"></script>
+
+    <script>
+        $(function () {
+            var type={$type};
+            pickerType(type,'[data-role="chose_type"]','[data-role="crowd_type"]');
+        })
+    </script>
 </block>

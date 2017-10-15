@@ -73,11 +73,11 @@
                         <div class="list-block">
                             <ul>
                                 <if condition="$uid eq is_login()">
-                                    <li class="item-content item-link" data-value="mobile" data-role="chose_phone">
+                                    <li class="item-content item-link" data-value="mobile" data-role="">
                                         <div class="item-media"><i class="icon icon-f7"></i></div>
                                         <div class="item-inner">
                                             <div class="item-title">手机</div>
-                                            <div class="item-after_right mobile">{$user.user.mobile|default="不想填~"}</div>
+                                            <div class="item-after_right mobile"><a href="{:U('safe')}">{$user.user.mobile|default="不想填~"}</a></div>
                                         </div>
                                     </li>
                                 </if>

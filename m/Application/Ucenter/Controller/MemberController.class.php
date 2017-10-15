@@ -18,6 +18,8 @@ class MemberController extends Controller
             if ($result['status']) {
                 $data['status'] = 1;
                 $data['info'] = "登录成功！";
+                $data['projectUrl']=($_SESSION['projectUrl'])?($_SESSION['projectUrl']):('weibo');
+                unset($_SESSION['projectUrl']);
             } else {
                 $data['status'] = 0;
                 $data['info'] = $result['info'];
@@ -53,9 +55,9 @@ class MemberController extends Controller
                     redirect($url);
                     exit;
                 }
-
-
             }
+            $this->setTitle('微信登录') ;
+            $this->display('gowechat') ;
         }
     }
 
@@ -65,6 +67,18 @@ class MemberController extends Controller
             if(D('Common/Module')->checkInstalled('Weixin')){
                 $config = D('Weixin/WeixinConfig')->getWeixinConfig();
                 $redirect =urlencode(U('Weixin/Index/mCallback','',true,true));
+                $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$config['APP_ID']."&redirect_uri={$redirect}&response_type=code&scope=snsapi_userinfo&state=opensns#wechat_redirect";
+                redirect($url);
+                exit;
+            }
+        }
+    }
+    public function projectWeChatBind()
+    {
+        if(is_weixin()){
+            if(D('Common/Module')->checkInstalled('Weixin')){
+                $config = D('Weixin/WeixinConfig')->getWeixinConfig();
+                $redirect =urlencode(U('Weixin/Index/mProjectCallback','',true,true));
                 $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$config['APP_ID']."&redirect_uri={$redirect}&response_type=code&scope=snsapi_userinfo&state=opensns#wechat_redirect";
                 redirect($url);
                 exit;
@@ -121,8 +135,8 @@ class MemberController extends Controller
                 $email = '';
                 $type = 3;
             }
-            if(modC('MOBILE_VERIFY_TYPE', 1, 'USERCONFIG')) {
-                if (modC('SMS_REGISTER_RADIO', 1, 'USERCONFIG')) {
+            if(modC('MOBILE_VERIFY_TYPE', 0, 'USERCONFIG')) {
+                if (modC('SMS_REGISTER_RADIO', 0, 'USERCONFIG')) {
                     if (empty($aRegVerify)) {
                         $this->error('请输入短信验证码');
                     }
@@ -138,6 +152,8 @@ class MemberController extends Controller
 
             /* 注册用户 */
             $uid = UCenterMember()->register('', $aNickname, $aPassword, $email, $mobile, $aUnType);
+            //注册方式统计
+            register_mark($uid, 'wsq', 'mobile');
             if (0 < $uid) {
                 $this->_initRoleUser(1, $uid); //初始化角色用户
                 $res = D('Member')->login($uid, true); //登陆
@@ -148,6 +164,8 @@ class MemberController extends Controller
                         $this->ajaxReturn(array('status' => 1, 'info' => $res['info']));
                     }
                 } else {
+                    //注册失败状态置为4
+                    set_user_status($uid, 4);
                     $this->ajaxReturn(array('status' => 0, 'info' => '注册失败'));
                 }
 

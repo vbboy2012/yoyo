@@ -2,6 +2,7 @@
 <block name="css">
     <link rel="stylesheet" href="__CSS__/index.css"/>
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/ext/wangeditor/css/wangEditor-mobile.css">
+    <link rel="stylesheet" href="__PUBLIC__/ext/webuploader/webuploader.css"/>
 </block>
 <block name="body">
     <div class="page-group">
@@ -35,6 +36,13 @@
                                         <div>
                                             <p><i class="iconfont icon-shangchuan"></i></p>
                                             <p>添加图片<br>(最多5张)</p>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="image" id="image"/>
+                                    <div class="img-list" style="display: none">
+                                        <div class="add-img-btn img-btn-sit">
+                                            <div class="iconfont icon-fabu1 text-center img-add"></div>
+                                            <input name="files" class="img-input" style="" id="choose" data-url="/bu/index.php?s=/core/file/uploadpicturebase64.html" multiple="" type="file">
                                         </div>
                                     </div>
                                 </div>
@@ -90,6 +98,8 @@
 </block>
 <block name="script">
     <script src="__JS__/question.js"></script>
+    <script src="__PUBLIC__/js/lrz.mobile.min.js"></script>
+    <script src="__PUBLIC__/js/uploadimg.js"></script>
     <script>
         //完成提问
         function askQuestion() {

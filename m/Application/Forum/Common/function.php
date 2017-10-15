@@ -4,10 +4,8 @@ function send_forumcomment($Forum_id, $content, $comment_id = 0)
 {
     $uid = is_login();
     $result = D('ForumPostReply')->addComment($uid, $Forum_id, $content, $comment_id);
-//行为日志
-    action_log('forum_post_reply', 'forum', $result, $uid);
 
-//通知帖子作者
+    //通知帖子作者
     $user_id = D('forum_post')->where(array('id'=>$Forum_id))->getField('uid');
     send_message($user_id,'有人评论了您的帖子','有人评论了您的帖子，快去看看吧','Forum/Index/detail', array('id' => $Forum_id));
 

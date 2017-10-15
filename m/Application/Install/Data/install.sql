@@ -67,8 +67,6 @@ CREATE TABLE IF NOT EXISTS `ocenter_m_channel` (
 INSERT INTO `ocenter_m_channel` (`id`, `pid`, `title`, `url`, `sort`, `create_time`, `update_time`, `status`, `target`, `out_site`, `color`, `band_color`, `band_text`, `icon`, `image`, `remark`) VALUES
   (1, 0, '动态', 'Weibo/Index/index', 0, 0, 0, 1, 0, 0, '', '', '', 'icon-iconfontdongtai', 0, ''),
   (2, 0, '圈子', 'Weibo/Crowd/crowd', 1, 0, 0, 1, 0, 0, '', '', '', 'icon-quanzi', 0, ''),
-  (3, 0, '消息', 'Message/Index/index', 2, 0, 0, 1, 0, 0, '', '', '', 'icon-lingdang', 0, ''),
-  (4, 0, '我', 'Ucenter/Index/index', 3, 0, 0, 1, 0, 0, '', '', '', 'icon-iconfontwohover', 0, '');
   (5, 0, '广场', 'ucenter/index/square', 1, 0, 0, 1, 0, 0, '', '', '', 'icon-remen', 0, '');
 
 DROP TABLE IF EXISTS `ocenter_m_addons`;
@@ -310,6 +308,7 @@ VALUES
   (270, '商品订单列表', 268, 0, 'Order/index', 0, '', '订单列表', 0, '', 'Order'),
   (271, '充值订单列表', 268, 0, 'Order/rechargeList', 0, '', '订单列表', 0, '', 'Order'),
   (272, '提现记录表', 268, 0, 'Order/withdrawList', 0, '', '订单列表', 0, '', 'Order'),
+  (273, '短信日志', 113, 4, 'Action/smslog', 0, '', '行为管理', 0, '', ''),
 
   (10000, '网站主页', 0, 0, 'Home/config', 1, '', '', 0, 'home', 'Home'),
   (10001, '基本设置', 10000, 0, 'Home/config', 0, '', '设置', 0, '', 'Home'),
@@ -333,8 +332,8 @@ VALUES
   (10022, '设置圈子类型状态', 10019, 0, 'Weibo/setcrowdtypestatus', 1, '', '圈子管理', 0, '', ''),
   (10023, '设置圈子状态', 10021, 0, 'Weibo/setcrowdstatus', 1, '', '圈子管理', 0, '', ''),
   (10024, '圈子是否可发送动态', 10002, 0, 'Weibo/doCrowdAllowPost', 1, '', '圈子管理', 0, '', ''),
-  (10025, '执行默认信任', 10002, 0, 'Weibo/followCrowd', 1, '', '圈子管理', 0, '', ''),
-  (10026, '修复信任数脚本', 10002, 0, 'Weibo/repaircrowdfollow', 1, '', '圈子管理', 0, '', ''),
+  (10025, '执行默认关注', 10002, 0, 'Weibo/followCrowd', 1, '', '圈子管理', 0, '', ''),
+  (10026, '修复关注数脚本', 10002, 0, 'Weibo/repaircrowdfollow', 1, '', '圈子管理', 0, '', ''),
   (10038, '商城', 0, 0, 'Mall/index', 1, '', '', 0, '', 'Mall'),
   (10039, '商品列表', 10038, 0, 'Mall/index', 0, '', '商城管理', 0, '', 'Mall'),
   (10040, '设置热门商品', 10038, 0, 'Mall/setHotGoods', 1, '', '', 0, '', 'Mall'),
@@ -947,3 +946,112 @@ CREATE TABLE IF NOT EXISTS `ocenter_collect` (
   `row` int(11) NOT NULL,
   `create_time` int(11) NOT NULL COMMENT '收藏时间'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+-- 广告位表
+--
+-- 表的结构 `ocenter_advertisement`
+--
+
+CREATE TABLE IF NOT EXISTS `ocenter_m_advertisement` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `location` text NOT NULL COMMENT '广告的位置，表示在什么地方显示',
+  `status` tinyint(3) NOT NULL COMMENT '状态：1表示启用，0表示禁用，-1表示删除',
+  `imgid` text NOT NULL COMMENT '图片',
+  `link` text NOT NULL COMMENT '链接地址',
+  `create_time` int(11) NOT NULL,
+  `name` text NOT NULL COMMENT '广告名',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+
+CREATE TABLE IF NOT EXISTS `ocenter_m_adv_pos` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(50) NOT NULL,
+  `title` char(80) NOT NULL DEFAULT '' COMMENT '广告位置名称',
+  `path` varchar(100) NOT NULL COMMENT '所在路径 模块/控制器/方法',
+  `type` int(11) unsigned NOT NULL DEFAULT '1' COMMENT '广告位类型 \r\n1.单图\r\n2.多图\r\n3.文字链接\r\n4.代码',
+  `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态（0：禁用，1：正常）',
+  `data` varchar(500) NOT NULL COMMENT '额外的数据',
+  `width` char(20) NOT NULL DEFAULT '' COMMENT '广告位置宽度',
+  `height` char(20) NOT NULL DEFAULT '' COMMENT '广告位置高度',
+  `margin` varchar(50) NOT NULL COMMENT '边缘',
+  `padding` varchar(50) NOT NULL COMMENT '留白',
+  `theme` varchar(50) NOT NULL DEFAULT 'all' COMMENT '适用主题，默认为all，通用',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='广告位置表' AUTO_INCREMENT=10003 ;
+
+
+CREATE TABLE IF NOT EXISTS `ocenter_m_adv` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `title` char(80) NOT NULL DEFAULT '' COMMENT '广告名称',
+  `pos_id` int(11) NOT NULL COMMENT '广告位置',
+  `data` text NOT NULL COMMENT '图片地址',
+  `click_count` int(11) NOT NULL COMMENT '点击量',
+  `url` varchar(500) NOT NULL COMMENT '链接地址',
+  `sort` int(3) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
+  `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态（0：禁用，1：正常）',
+  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '开始时间',
+  `start_time` int(11) DEFAULT NULL,
+  `end_time` int(11) unsigned DEFAULT '0' COMMENT '结束时间',
+  `target` varchar(20) DEFAULT '_blank',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='广告表' AUTO_INCREMENT=10024 ;
+
+
+--
+-- 表的结构 `ocenter_register`
+--
+
+CREATE TABLE IF NOT EXISTS `ocenter_register` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL,
+  `from` char(50) NOT NULL COMMENT '注册终端',
+  `type` char(50) NOT NULL COMMENT '注册方式',
+  `status` int(4) NOT NULL COMMENT '注册状态',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='注册终端和方式统计' AUTO_INCREMENT=1 ;
+
+
+--
+-- 表的结构 `ocenter_send_sms_log`
+--
+
+CREATE TABLE IF NOT EXISTS `ocenter_send_sms_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mobile` varchar(15) NOT NULL,
+  `content` text NOT NULL COMMENT '发送信息',
+  `return` text NOT NULL COMMENT '接口返回数据',
+  `type` varchar(32) NOT NULL COMMENT '判别发送客户端类型',
+  `status` tinyint(3) NOT NULL DEFAULT '1',
+  `create_time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+
+#新增用户私信表
+CREATE TABLE IF NOT EXISTS `ocenter_letter` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL COMMENT '发送人',
+  `puid` int(11) NOT NULL DEFAULT '0' COMMENT '接收人',
+  `content` text NOT NULL COMMENT '内容',
+  `create_time` int(11) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(2) NOT NULL,
+  `is_read` tinyint(2) NOT NULL COMMENT '是否查看：0未查看，1已查看',
+  PRIMARY KEY (`id`),
+  KEY `uid` (`uid`),
+  KEY `uid_2` (`uid`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='私信表';
+
+
+CREATE TABLE IF NOT EXISTS `ocenter_weibo_comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL,
+  `weibo_id` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `to_comment_id` int(11) NOT NULL,
+  `support_down` int(11) NOT NULL DEFAULT '0' COMMENT '点赞数量',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

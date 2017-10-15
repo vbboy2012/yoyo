@@ -1,0 +1,60 @@
+<extend name="Base/common"/>
+<block name="body">
+
+    <div class="page-group">
+        <div class="page page-current">
+            <link rel="stylesheet" href="__CSS__/letter.css"/>
+            <header class="bar bar-nav comHead">
+                <a external class="iconfont icon-xiangzuojiantou pull-left button button-link" href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title open-about">{$pUser.nickname}</a>
+            </header>
+            <!-- 发送消息按钮 start-->
+            <div class="bar bar-tab bottomBar">
+                <div class="down-box">
+                    <input data-role="content" class="send-content" name="content" type="text" placeholder="聊点什么" />
+                    <span class="sd-button" data-role="send-letter" data-uid="{$pUser.uid}">发送</span>
+                </div>
+            </div>
+            <!-- 发送消息按钮 end-->
+            <!-- 私信区 start-->
+            <div class="content pull-to-refresh-content infinite-scroll infinite-scroll-preloader">
+                <div class="pull-to-refresh-layer">
+                    <div class="preloader"></div>
+                    <div class="pull-to-refresh-arrow"></div>
+                </div>
+                <div class="content-block noEdge noShadow">
+                    <div data-role="letter-list" data-total="{$total}">
+                        <include file="_list" />
+                    </div>
+                </div>
+            </div>
+            <!-- 私信区 end-->
+            <!-- 隐藏消息区块 -->
+            <div class="letter-box right-box" style="display: none;opacity: .2;" data-role="hide-box">
+                <div class="show-loading">
+                    <div class="infinite-scroll-preloader loading-box">
+                        <div class="preloader letter-loading"></div>
+                    </div>
+                </div>
+                <div class="letter-part right-part">
+                    <div class="radius-pao-r"></div>
+                    <div class="radius-pao-hide-r"></div>
+                    <div class="letter-content right-cont">
+                    </div>
+                </div>
+                <div class="letter-img">
+                    <img src="{$user.avatar128}" />
+                </div>
+                <div class="letter-time right-time">{:date('Y-m-d H-i')}</div>
+            </div>
+        </div>
+    </div>
+
+</block>
+<block name="script">
+    <script>
+        $('.content').scrollTop( $('.content')[0].scrollHeight );
+    </script>
+    <script src="__JS__/letter.js"></script>
+    <script src="__PUBLIC_JS__/public.js"></script>
+</block>

@@ -111,6 +111,7 @@
     border: none;
   }
   .msgList{
+    position: relative;
     display: flex;
     justify-content: space-between;
     padding: 5px 0;
@@ -118,6 +119,10 @@
     span{
       color: #999;
       font-size: 12px;
+    }
+    .last-time{
+      position: absolute;
+      right: 0;
     }
     .msgLeft{
       display: flex;
@@ -140,12 +145,36 @@
           font-size: 13px;
           margin-top: 5px!important;
           .msgNew{
-            margin-left: 8px;
             max-width: 150px;
             vertical-align: bottom;
           }
         }
+        .msgDetail:first-child{
+          margin-right: 8px;
+        }
       }
     }
   }
+}
+.end-line{
+  padding: 20px 0 10px;
+  font-size: 12px;
+  color: #999999;
+  opacity: .5;
+  text-align: center;
+}
+.no-radius{
+  border: none !important;
+  border-radius: 0 !important;
+}
+.myself{
+  position: relative;
+  z-index: 5000;
+  margin-left: -5px;
+  opacity: .6;
+}
+.user-cover{
+  width: 45px !important;
+  height: 45px !important;
+  border-radius: 100% !important;
 }

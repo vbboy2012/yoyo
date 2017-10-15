@@ -42,7 +42,7 @@ class IndexController extends Controller{
             ->join('ocenter_avatar on ocenter_avatar.uid = ocenter_member.uid')
             ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
             ->join('ocenter_pay on ocenter_tradead.pay_type = ocenter_pay.id')
-            ->field('ocenter_tradead.pay_type,ocenter_tradead.type,ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_member.nickname,ocenter_member.trade_num,ocenter_avatar.path,ocenter_country.en_name as countryEn,ocenter_pay.name as payName,ocenter_pay.en_name as payEn')
+            ->field('ocenter_tradead.pay_type,ocenter_tradead.type,ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_member.nickname,ocenter_member.trade_count,ocenter_member.trade_score,ocenter_avatar.path,ocenter_country.en_name as countryEn,ocenter_pay.name as payName,ocenter_pay.en_name as payEn')
             ->where('ocenter_tradead.status=1')->order('ocenter_tradead.id desc')->select();
         $country = D('Country')->field('id,name,code')->select();
         $currency = D('Currency')->select();

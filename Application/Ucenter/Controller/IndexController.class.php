@@ -87,7 +87,7 @@ class IndexController extends BaseController
 
     private function userInfo($uid = null)
     {
-        $user_info = query_user(array('avatar128', 'nickname', 'uid', 'space_url', 'score', 'title', 'fans', 'following', 'weibocount', 'rank_link', 'signature'), $uid);
+        $user_info = query_user(array('avatar128', 'nickname', 'uid', 'score', 'title', 'fans', 'following','trust','trusting', 'signature'), $uid);
         //获取用户封面id
         $map = getUserConfigMap('user_cover', '', $uid);
         $map['role_id'] = 0;
@@ -104,16 +104,10 @@ class IndexController extends BaseController
     {
         //调用API获取基本信息
         //TODO tox 获取省市区数据
-        $user = query_user(array('nickname', 'signature', 'email', 'mobile', 'rank_link', 'sex', 'pos_province', 'pos_city', 'pos_district', 'pos_community'), $uid);
-        if ($user['pos_province'] != 0) {
-            $user['pos_province'] = D('district')->where(array('id' => $user['pos_province']))->getField('name');
-            $user['pos_city'] = D('district')->where(array('id' => $user['pos_city']))->getField('name');
-            $user['pos_district'] = D('district')->where(array('id' => $user['pos_district']))->getField('name');
-            $user['pos_community'] = D('district')->where(array('id' => $user['pos_community']))->getField('name');
-        }
-        //显示页面
+        $user = M('member')->join('ocenter_ucenter_member on ocenter_member.uid=ocenter_ucenter_member.id')
+            ->field('email,mobile,ocenter_member.reg_time,ocenter_member.last_login_time,btc_count,eth_count,trade_count,trade_score,lang')->find($uid);
         $this->assign('user', $user);
-        $this->getExpandInfo($uid);
+
         //四处一词 seo
         $str = '{$user_info.nickname|text}';
         $this->setTitle($str . L('_INFO_TITLE_'));
@@ -809,6 +803,41 @@ class IndexController extends BaseController
         $this->display();
     }
 
+    public function ad($uid = null)
+    {
+        $tradead = M('tradead');
+        $adList = $tradead->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
+            ->join('ocenter_pay on ocenter_tradead.pay_type = ocenter_pay.id')
+            ->field('ocenter_tradead.id,ocenter_tradead.type,ocenter_tradead.coin_type,ocenter_country.name,ocenter_tradead.currency,ocenter_tradead.price,ocenter_tradead.max_price,ocenter_tradead.min_price,ocenter_pay.name as payName')
+            ->where('ocenter_tradead.uid='.$uid)->order('id desc')->select();
+        //四处一词 seo
+        $list1 = array();
+        $list2 = array();
+        $list3 = array();
+        $list4 = array();
+        foreach ($adList as $ad){
+            if ($ad['type'] == 1){
+                array_push($list1,$ad);
+            }else if($ad['type'] == 2){
+                array_push($list2,$ad);
+            }else if($ad['type'] == 3){
+                array_push($list3,$ad);
+            }else if($ad['type'] == 4){
+                array_push($list4,$ad);
+            }
+        }
+        $this->assign('list1', $list1);
+        $this->assign('list2', $list2);
+        $this->assign('list3', $list3);
+        $this->assign('list4', $list4);
+     //   var_dump($list1);
+        $str = '{$user_info.nickname|text}';
+        $this->setTitle($str . L('_INFO_TITLE_'));
+        $this->setKeywords($str . L('_INFO_KEYWORDS_'));
+        $this->setDescription($str . L('_INFO_DESC_'));
+        //四处一词 seo end
 
+        $this->display();
+    }
 
 }

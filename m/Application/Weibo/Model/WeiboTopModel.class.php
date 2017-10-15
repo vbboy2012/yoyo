@@ -11,22 +11,31 @@ use Think\Model;
 
 class WeiboTopModel extends Model
 {
-    public function addTop($weibo,$time = '',$title = '',$isCrowd = '')
+    public function addTop($weibo,$time = '',$title = '',$isCrowd = '',$type='')
     {
-        $isCrowd = $isCrowd ? $weibo['crowd_id']:0 ;
+        $top = $this->where(array('weibo_id'=>$weibo['id']))->find() ;
         $time = $time ?: 2145916800;
+        $type = $type ?: 'title' ;
         $title = $title ?: $weibo['content'];
-        $data['weibo_id'] = $weibo['id'];
-        $data['crowd_id'] = $isCrowd;
-        $data['title'] = $title;
-        $data['dead_time'] = $time;
-        $data['create_time'] = time();
-        $data['status'] = 1;
-        $data = $this->create($data);
-        S('top_list_ids_'.$weibo['crowd_id'],null);
-        if (!$data) return false;
+        if($top == false){
+            $data['weibo_id'] = $weibo['id'];
+            $data['type'] = $type;
+            $data['title'] = $title;
+            $data['dead_time'] = $time;
+            $data['create_time'] = time();
+            $data['status'] = 1;
+            $data = $this->create($data);
+            S('top_list_ids' ,null);
+            if (!$data) return false;
 
-        $res = $this->add();
+            $res = $this->add();
+        }else{
+            $save['dead_time'] = $time ;
+            $save['type'] = $type ;
+            $save['title'] = $title ;
+            $save['status'] = 1 ;
+            $res = $this->where(array('weibo_id'=>$weibo['id']))->save($save) ;
+        }
         return $res;
     }
 

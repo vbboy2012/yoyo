@@ -1,0 +1,185 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/ext/wangeditor/css/wangEditor-mobile.css">
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">{:L('_EVENT_ADD_')}</a>
+            </header>
+            <div class="content infinite-scroll">
+                <div class="content-block noEdge">
+                    <!--活动海报 start-->
+                    <div class="ad-head">
+                        <input type="file" class="img-input" name="file" data-role="upload_picture_cover" data-url="{:U('Core/File/uploadPicture')}"/>
+                        <div class="upload-cover" data-role="upload-cover-box" style="display: none">
+                            <notempty name="event['cover']">
+                                <div class="upload-pre-item"><img src="{$event.cover}"/></div>
+                            </notempty>
+                        </div>
+                        <div class="head-title" data-role="upload-title"><i class="iconfont icon-add"></i>添加活动海报</div>
+                        <div class="infinite-scroll-preloader" style="display: none">
+                            <div class="preloader"></div>
+                        </div>
+                    </div>
+                    <!--活动海报 end-->
+                    <form method="post" enctype="multipart/form-data" data-role="upload-form">
+                    <input type="hidden" name="cover_id" data-role="cover_id" value="{$event.cover_id}"/>
+                    <input type="hidden" name="id" value="{$event.id}"/>
+                    <!--活动信息 start-->
+                    <div class="bg-jamb">
+                        <div class="list-info">
+                            <div class="info-box">
+                                <div class="info-title">活动标题</div>
+                                <div class="info-inner">
+                                    <input type="text" placeholder="输入活动标题" name="title" value="{$event.title}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-info">
+                            <div class="info-box">
+                                <div class="info-title">活动地址</div>
+                                <div class="info-inner">
+                                    <input type="text" placeholder="输入活动地址" name="address" value="{$event.address}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-info">
+                            <div class="info-box">
+                                <div class="info-title">开始时间</div>
+                                <div class="info-inner">
+                                    <input type="text" data-toggle='date' name="sTime" value="{$event.sTime|change_time}"/>
+
+                                </div>
+                                <i class="iconfont icon-xiangyoujiantou arrow"></i>
+                            </div>
+                        </div>
+                        <div class="list-info">
+                            <div class="info-box">
+                                <div class="info-title">结束时间</div>
+                                <div class="info-inner">
+                                    <input type="text" data-toggle='date' name="eTime" value="{$event.eTime|change_time}"/>
+
+                                </div>
+                                <i class="iconfont icon-xiangyoujiantou arrow"></i>
+                            </div>
+                        </div>
+                        <div class="list-info">
+                            <div class="info-box">
+                                <div class="info-title">人数限制</div>
+                                <div class="info-inner">
+                                    <input type="text" placeholder="输入人数" name="limitCount" value="{$event.limitCount}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-info">
+                            <div class="info-box">
+                                <div class="info-title">报名截止</div>
+                                <div class="info-inner">
+                                    <input data-role="datetime-picker" name="deadline" <if condition="$event['deadline'] neq false">value="{$event.deadline|change_time=1}"</if>/>
+                                </div>
+                                <i class="iconfont icon-xiangyoujiantou arrow"></i>
+                            </div>
+                        </div>
+                        <div class="list-info">
+                            <div class="info-box">
+                                <div class="info-title">活动类型</div>
+                                <div class="info-inner">
+                                    <input type="text" data-role="chose_type" placeholder="选择分类" value="{$type.title}" id="picker" readonly="">
+                                    <input type="hidden" name="type_id" value="{$type.id}" data-role="event_type"/>
+                                    <div style="display: none">
+                                        <volist name="typeList" id="vo">
+                                            <span class="type_by_id">{$vo.id}</span>
+                                            <span class="type_by_title">{$vo.title}</span>
+                                        </volist>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--活动信息 end-->
+                    <!--活动介绍 start-->
+                    <div class="ad-explain bg-jamb">
+                        <div class="send-event-container needsclick">
+                            <textarea id="textarea1" class="editor" style="width:100%;height:100%;">
+                                <if condition="$event['explain'] eq false"><p class='place-info'>写下关于活动的完美介绍，一定要配上优质的图片哦！</p><else/>{$event['explain']}</if>
+                            </textarea>
+                        </div>
+                    </div>
+                    <!--活动介绍 end-->
+                    <!--参与活动 start-->
+                    <div class="bg-jamb">
+                        <div class="list-info">
+                            <div class="info-box">
+                                <div class="info-title">活动费用</div>
+                                <div class="info-inner">
+                                    <input type="text" placeholder="请输入活动费用，不填默认面议" name="price" value="{$event.price}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-info">
+                            <div class="info-box">
+                                <div class="info-title">支付方式</div>
+                                <div class="info-inner">
+                                    <input type="text" placeholder="默认线下支付" name="pay_way" value="{$event.pay_way}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-info">
+                            <div class="info-box">
+                                <div class="info-title">咨询电话</div>
+                                <div class="info-inner">
+                                    <input type="text" placeholder="请输入您的联系方式" name="phone" value="{$event.phone}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-info">
+                            <div class="info-box">
+                                <div class="info-title">自己报名</div>
+                                <div class="info-inner">
+                                    <input type="text" data-role="chose_join" id="picker1" readonly="" value="{$event.join}">
+                                    <input type="hidden" name="self_join" data-role="join_type" value="{$event.self_join}"/>
+                                    <div style="display: none">
+                                        <volist name="typeList" id="vo">
+                                            <span class="crowd_by_id">{$vo.id}</span>
+                                            <span class="crowd_by_title">{$vo.title}</span>
+                                        </volist>
+                                    </div>
+                                </div>
+                                <i class="iconfont icon-xiangyoujiantou arrow"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!--参与活动 end-->
+                    <!--提交按钮 start-->
+                    <div class="sub-button">
+                        <button data-role="send-event" type="button" data-url="{:U('Index/dopost')}" data-to-url="{:U('Index/index')}">{:L('_REGISTER_OP_')}</button>
+                    </div>
+                    <!--提交按钮 end-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <!--<script src="__PUBLIC_JS__/core.js"></script>-->
+    <!--<script src="__PUBLIC_JS__/public.js"></script>-->
+    <script src="__JS__/send.js"></script>
+    <script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/ext/wangeditor/js/lib/zepto.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/ext/wangeditor/js/wangEditor-mobile.js"></script>
+    <script>
+        window.Zepto = $;
+        $('[data-role="datetime-picker"]').datetimePicker({
+            toolbarTemplate: '<header class="bar bar-nav">\
+                <button class="button button-link pull-right close-picker">确定</button>\
+                <h1 class="title">选择期和时间</h1>\
+                </header>'
+        });
+    </script>
+</block>

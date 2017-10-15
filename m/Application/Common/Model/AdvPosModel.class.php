@@ -6,7 +6,7 @@ use Think\Model;
 
 class AdvPosModel extends Model
 {
-    protected $tableName = 'adv_pos';
+    protected $tableName = 'm_adv_pos';
 
     public function getInfo($name, $path)
     {

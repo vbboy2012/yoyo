@@ -1,6 +1,10 @@
 <extend name="Base/common"/>
 <block name="css">
     <link rel="stylesheet" href="__CSS__/square.css"/>
+    <!--<link rel="stylesheet" href="__CSS_WEIBO__/weibo.css"/>-->
+    <!--<link rel="stylesheet" href="__CSS_FORUM__/index.css"/>-->
+    <!--<link rel="stylesheet" href="__CSS_NEWS__/index.css"/>-->
+    <!--<link rel="stylesheet" href="__CSS_QUESTION__/index.css"/>-->
 </block>
 <block name="body">
     <div class="page-group">
@@ -12,35 +16,33 @@
             <div class="content">
                 <div class="content-block noEdge noShadow">
                     <!--轮播图，后台设置-->
-                    <div class="swiper-container fmSlide" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="2000">
-                        <div class="swiper-wrapper">
-                            <if condition="$count eq 0">
-                                <div class="swiper-slide"><img style="margin: 0 auto" src="__PUBLIC__/images/nobanner.png" alt=""></div>
-                                <else />
-                                <volist name="advertisement" id="vo">
-                                    <div class="swiper-slide"><a href="{$vo.link}"><img style="margin: 0 auto" src="{$vo.img}" alt=""></a></div>
-                                </volist>
-                            </if>
-                        </div>
-                    </div>
+                    {:W('Common/Adv/render',array(array('name'=>'square_adv','title'=>'广场','type'=>2,'width'=>'370px','height'=>'200px',theme=>'all')))}
                     <!--导航-->
                     <div class="moreNav">
-                        <a href="{:U('news/index/index')}" class="oneNav">
-                            <div class="round flexWrap" style="background-color: #ff6154"><i class="iconfont icon-zixun"></i></div>
-                            <p>资讯</p>
-                        </a>
-                        <a href="{:U('forum/index/index')}" class="oneNav">
-                            <div class="round flexWrap" style="background-color: #ffad40"><i class="iconfont icon-luntan"></i></div>
-                            <p>论坛</p>
-                        </a>
-                        <a href="{:U('question/index/index')}" class="oneNav">
-                            <div class="round flexWrap" style="background-color: #31dfa0"><i class="iconfont icon-wenda"></i></div>
-                            <p>问答</p>
-                        </a>
-                        <!--<a href="{:U('Mall/index/index')}" class="oneNav">
-                            <div class="round flexWrap" style="background-color: #6cb4fe"><i class="iconfont icon-cart"></i></div>
-                            <p>商城</p>
-                        </a>-->
+                        <if condition="$news_module eq 1">
+                            <a href="{:U('news/index/index')}" class="oneNav">
+                                <i class="iconfont icon-zixun3" style="color: #699CD1"></i>
+                                <p>资讯</p>
+                            </a>
+                        </if>
+                        <if condition="$forum_module eq 1">
+                            <a href="{:U('forum/index/index')}" class="oneNav">
+                                <i class="iconfont icon-luntan3" style="color: #F8D446"></i>
+                                <p>论坛</p>
+                            </a>
+                        </if>
+                        <if condition="$question_module eq 1">
+                            <a href="{:U('question/index/index')}" class="oneNav">
+                                <i class="iconfont icon-wenda1" style="color: #FE9132"></i>
+                                <p>问答</p>
+                            </a>
+                        </if>
+                        <if condition="$event_module eq 1">
+                            <a href="{:U('Event/index/index')}" class="oneNav">
+                                <i class="iconfont icon-huodong" style="color: #3EE95E"></i>
+                                <p>活动</p>
+                            </a>
+                        </if>
                     </div>
                     <!--名人堂-->
                     <div class="famous">
@@ -51,24 +53,88 @@
 
                     </div>
                 </div>
-                <div class="hotType" style="margin-top: 5px;padding-bottom: 5px">
-                    <p class="hotTit flexDiv"><span>热门资讯</span></p>
-                </div>
-                <div class="dtMargin" data-distance="100" data-ptr-distance="55" >
-                    <ul class="listWrap" data-total="{$total}">
-                        <include file="_list"/>
+                <notempty name="weiboHtml">
+                    <!-- 热门动态 start-->
+                    <div class="hotType">
+                        <p><span>热门动态</span></p>
+                    </div>
+                    <div class="proList">
+                        {$weiboHtml}
+                    </div>
+                    <!-- 热门动态 end-->
+                </notempty>
+                <notempty name="friend_list">
+                    <!-- 热门达人 start-->
+                    <div class="hotType friend-box">
+                        <p><span>好友推荐</span></p>
+                        <span data-role="change" class="refresh"><i  class="iconfont icon-shuaxin"></i>换一批</span>
+                    </div>
+                    <ul class="friend-list" data-total="{$total}">
+                        <include file="_friendbox"/>
                     </ul>
-                </div>
-                <div class="hotType" style="margin-top: 5px;padding-bottom: 5px">
-                    <p class="hotTit flexDiv"><span>热门达人</span></p>
-                </div>
-                <ul class="list" data-total="{$total}">
-                        <include file="_friend"/>
-                </ul>
+                    <!-- 热门达人 end-->
+                </notempty>
+                <notempty name="newsHtml">
+                    <!-- 热门资讯 start-->
+                    <div class="hotType">
+                        <p><span>热门资讯</span></p>
+                    </div>
+                    <div class="dtMargin">
+                        <ul class="listWrap">
+                            {$newsHtml}
+                        </ul>
+                    </div>
+                    <!-- 热门资讯 end-->
+                </notempty>
+                <notempty name="forumHtml">
+                    <!-- 热门帖子 start-->
+                    <div class="hotType">
+                        <p><span>热门帖子</span></p>
+                    </div>
+                    <div class="">
+                        <ul class="list">
+                            {$forumHtml}
+                        </ul>
+                    </div>
+                    <!-- 热门帖子 end-->
+                </notempty>
+                <notempty name="quHtml">
+                    <!-- 热门问答 start-->
+                    <div class="hotType">
+                        <p><span>热门问答</span></p>
+                    </div>
+                    <div class="tabs">
+                        <ul class="wrapList">
+                            {$quHtml}
+                        </ul>
+                    </div>
+                    <!-- 热门问答 end-->
+                </notempty>
             </div>
+        </div>
+    </div>
+</block>
+<block name="other">
+    <div class="popup popup-repost sendWrap">
+        <div class="content-block">
+            <form id="repost">
+                <input type="hidden" name="weiboId" value="">
+                <input type="hidden" name="sourceId" value="">
+                <input type="hidden" name="type" value="repost">
+                <textarea placeholder="转发动态..." class="sendArea" rows="3" name="content"></textarea>
+                <div class="commentOp">
+                    <label class="pull-left" style="margin-top: 4px">
+                        <input type="checkbox" name="becomment">
+                        <span>同时评论动态</span>
+                    </label>
+                    <a href="javascript:" data-role="repost" data-id="{$weibo.id}"
+                       class="proBtn close-popup-repost">转发</a>
+                </div>
+            </form>
         </div>
     </div>
 </block>
 <block name="script">
     <script src="__PUBLIC_JS__/public.js"></script>
+    <script src="__JS__/square.js"></script>
 </block>

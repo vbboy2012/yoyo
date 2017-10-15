@@ -1,0 +1,60 @@
+<div class="teb-content">
+    <volist name="progress" id="list" epmty="暂时还没有数据，请耐心等待">
+        <div class="box">
+            <div class="time">
+                <span class="big">{$list.create_time|date='m-d',###}</span>
+                <span class="small">{$list.create_time|date='H-i',###}</span>
+            </div>
+            <div class="boxNum lineBox">
+                <div class="Num">{:count($progress)-$key+3}</div>
+            </div>
+            <div class="boxNum boxWidth"><p>{$list.title}
+                <if condition="$list['is_check'] eq 0">
+                    <span class="boxColor">未读</span>
+                    <else />
+                    <span class="box-Color">已读</span>
+                </if>
+
+            </p></div>
+        </div>
+    </volist>
+    <div class="box">
+        <div class="time">
+            <span class="big">{$project.create_time|date='m-d',###}</span>
+            <span class="small">{$project.create_time|date='H-i',###}</span>
+        </div>
+        <div class="boxNum lineBox">
+            <div class="Num">3</div>
+        </div>
+        <div class="boxNum boxWidth">
+            <p>研发</p>
+        </div>
+    </div>
+    <div class="box">
+        <div class="time">
+            <span class="big">{$project.create_time|date='m-d',###}</span>
+            <span class="small">{$project.create_time|date='H-i',###}</span>
+        </div>
+        <div class="boxNum lineBox">
+            <div class="Num">2</div>
+        </div>
+        <div class="boxNum boxWidth">
+            <p>设计确认</p>
+        </div>
+    </div>
+    <div class="box">
+        <div class="time">
+            <span class="big">{$project.create_time|date='m-d',###}</span>
+            <span class="small">{$project.create_time|date='H-i',###}</span>
+        </div>
+        <div class="boxNum">
+            <div class="Num">1</div>
+        </div>
+        <div class="boxNum boxWidth">
+            <p>需求确认</p>
+        </div>
+    </div>
+    <if condition="$progress neq ''">
+        <a href="{:U('Project/index/detail',array('id'=>$progress[0]['id']))}" class="button btn">查看</a>
+    </if>
+</div>

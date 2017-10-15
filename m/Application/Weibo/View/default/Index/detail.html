@@ -13,7 +13,7 @@
                                 <i class="iconfont icon-xiangzuojiantou"></i>{$site_name}
                             </a>
                         </div>
-                        <a class="focusBtn" data-role="open-code">信任</a>
+                        <a class="focusBtn" data-role="open-code">关注</a>
                     </div>
                     <div class="proWrap">
                         <div class="info" style="padding-bottom: 0">
@@ -34,24 +34,26 @@
                             </div>
                             <if condition="$weibo['is_follow'] eq 1">
                                 <a href="javascript:" data-role="follow" data-value="unfollow" data-uid="{$weibo.uid}"
-                                   class="follow do-active">已信任</a>
+                                   class="follow do-active">已关注</a>
                                 <else/>
                                 <if condition="$weibo['uid'] eq is_login()">
 
                                     <else/>
                                     <a href="javascript:" data-role="follow" data-value="follow" data-uid="{$weibo.uid}"
-                                       class="follow do-active">信任</a>
+                                       class="follow do-active">关注</a>
                                 </if>
                             </if>
                         </div>
                         <div class="proContent">
                             <div>
                                 <if condition="$weibo['type'] eq 'long_weibo'">
-                                    <div class="long">
+                                    <div class="long textContent">
                                         {$weibo.long_weibo.long_content|parse_emoji|parse_br_nb}
                                     </div>
                                     <else/>
-                                    {$weibo.fetchContent}
+                                    <div class="textContent">
+                                        {$weibo.fetchContent}
+                                    </div>
                                 </if>
                             </div>
                             <notempty name="weibo['weibo_data']['location']">
@@ -74,9 +76,43 @@
                             </volist>
                         </div>
                     </div>
+                    <!--神回复-->
+                    <notempty name="supportList">
+                        <div class="commentWrap">
+                            <span class="cTitle">神评论</span>
+                            <div class="contentBox">
+                                <volist name="supportList" id="vo">
+                                    <div class="proWrap noEdge">
+                                        <a class='comment-zan' data-table="weibo_comment" data-row="{$vo.id}" data-uid="{$vo.user.uid}" data-jump="weibo/index/detail" <if condition="is_login()">data-role="comment-zan" data-weibo-id="{$vo.weibo_id}" href="javascript:void(0);"<else/>href="javascript:no_login();"</if>>
+                                        <i class="iconfont icon-dianzan <if condition="$vo['supported'] eq true">support-on</if>"></i>(<span>{$vo.support_down|default=0}</span>)
+                                        </a>
+                                        <div class="info">
+                                            <a href="">
+                                                <div class="avatar">
+                                                    <img src="{$vo.user.avatar128}" alt="">
+                                                </div>
+                                            </a>
+                                            <div class="name">
+                                                <a href="">{$vo.user.nickname}</a>
+                                                <p class="location">{$vo.create_time|friendlyDate}</p>
+                                            </div>
+                                        </div>
+                                        <div class="proContent">
+                                            <p style="display: flex;align-items: center">{$vo.content}</p>
+                                            <div class="pic preview" >
+                                                <volist name="vo.img" id="img">
+                                                    <div class="cover preview-image" data-id="{$vo.id}" data-img="{:get_cover($img, 'path')}" data-index="{$i-1}" <if condition="$img[0] eq 0">style="display: none;"</if> ><img src="{:getThumbImageById($img,50,50)}" alt=""></div>
+                                                </volist>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </volist>
+                            </div>
+                        </div>
+                    </notempty>
                     <!--评论-->
                     <div class="commentWrap">
-                        <span class="cTitle">评论<span>{$weibo.comment_count}</span></span>
+                        <span class="cTitle">评论<span>{$comment_count}</span></span>
                         <div class="contentBox commentList">
                             <notempty name="comment">
                                 <include file="_comment"/>
@@ -138,7 +174,7 @@
         <div class="content-block">
             <form id="repost">
                 <input type="hidden" name="weiboId" value="{$weibo.id}">
-                <if condition="$weibo.weibo_data.sourceId neq 0">
+                <if condition="$weibo['weibo_data']['sourceId'] neq 0">
                     <input type="hidden" name="sourceId" value="{$weibo.weibo_data.sourceId}">
                     <else/>
                     <input type="hidden" name="sourceId" value="{$weibo.id}">
@@ -185,6 +221,48 @@
             $('.send-bottom.' + type).css('background-color', '#fcfcfc');
             $this.closest('.bar-footer').animate({bottom: h + 'px'}, 100);
 
+        });
+    </script>
+    <script type="text/javascript" src='http://res.wx.qq.com/open/js/jweixin-1.0.0.js'></script>
+    <script type="text/javascript">
+        wx.config({
+            debug: false,
+            appId: '{$signPackage["appId"]}',
+            timestamp: '{$signPackage["timestamp"]}',
+            nonceStr: '{$signPackage["nonceStr"]}',
+            signature: '{$signPackage["signature"]}',
+            jsApiList: [
+                // 所有要调用的 API 都要加到这个列表中
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo',
+                'onMenuShareQZone'
+            ]
+        });
+    </script>
+    <script type="text/javascript src='http://203.195.235.76/jssdk/js/zepto.min.js"></script>
+    <script type="text/javascript">
+        //完成wx.config，执行这里
+        wx.ready(function () {
+            //分享到朋友圈
+            wx.onMenuShareTimeline({
+                title: '{$weibo.user.nickname}', // 分享标题
+                link:window.location.href,
+                imgUrl: "{$share_img}", // 分享图标
+            });
+            var content=$('.textContent').text();
+            //分享给朋友
+            wx.onMenuShareAppMessage({
+                title: '{$weibo.user.nickname}', // 分享标题
+                desc: content,
+                link:window.location.href,
+                imgUrl: "{$share_img}", // 分享图标
+                fail: function (res) {
+                    alert(JSON.stringify(res));
+                },
+            });
         });
     </script>
     <script src="__JS__/detail.js"></script>

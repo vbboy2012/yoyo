@@ -157,6 +157,7 @@ function check_step($now_step=''){
 function set_user_status($uid,$status){
     D('Member')->where(array('uid'=>$uid))->setField('status',$status);
     UCenterMember()->where(array('id'=>$uid))->setField('status',$status);
+    D('Register')->where(array('id'=>$uid))->setField('status',$status);
     return true;
 }
 
@@ -197,5 +198,13 @@ function check_and_add($args){
         $args['status'] =1;
         $Member-> add($args);
     }
+    return true;
+}
+
+
+//注册方式统计
+function register_mark($uid, $from, $type)
+{
+    D('Register')->add(array('uid' => $uid, 'from' => $from, 'type' => $type, 'status' => 1));
     return true;
 }

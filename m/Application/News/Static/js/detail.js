@@ -6,6 +6,10 @@ $(function () {
    $('.dtMargin').css('marginTop',addHeight);
 });
 $('[data-role="sendComment"]').click(function(){
+    var login = no_login();
+    if(login == undefined){
+        return ;
+    }
     var id = $(this).attr('data-id');
     var html = $('.sendArea').html();
     var text = html.replace(/\<img.*?data\-title\="(.*?)" .*?>/g, "$1");
@@ -41,7 +45,10 @@ $('[data-role="sendComment"]').click(function(){
 });
 //资讯收藏
 $('[data-role="collect"]').click(function () {
-
+    var login = no_login();
+    if(login == undefined){
+        return ;
+    }
     var url=U('Core/Collect/doCollect');
     var $this = $(this);
     var id=$this.attr('data-id');
@@ -58,6 +65,10 @@ $('[data-role="collect"]').click(function () {
 });
 //资讯分享
 $('[data-role="shareComment"]').click( function () {
+    var login = no_login();
+    if(login == undefined){
+        return ;
+    }
     var html = $('.shareArea').html();
     var query = $(this).attr('data-query');
     if (html == '') {

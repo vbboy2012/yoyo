@@ -10,7 +10,7 @@
                     <switch name="type">
                         <case value="all">全站动态</case>
                         <case value="hot">热门动态</case>
-                        <case value="concerned">我的信任</case>
+                        <case value="concerned">我的关注</case>
                         <case value="fav">我的点赞</case>
                         <default/>
                         全站动态
@@ -36,7 +36,7 @@
                                 </div>
                             </a>
                             <div class="name">
-                                <a class="textMore" external href="{:U('Weibo/Index/index', array('crowd_id'=>$crowd_detail['id']))}">{:modC('MOB_SITE_NAME','微社区','Config')}</a>
+                                <a class="textMore " external href="{:U('Weibo/Index/index', array('crowd_id'=>$crowd_detail['id']))}">{:modC('MOB_SITE_NAME','微社区','Config')}</a>
                                 <p class="location textMore">{:modC('MOB_SITE_INTRO','未填写社区简介~','Config')}</p>
                                 <a href="{:U('people')}">
                                     <p class="num">成员 {$member_count}</p>
@@ -237,25 +237,25 @@
         <div class="content-block noEdge">
             <div class="close-popup closeBottom">X</div>
             <div class="typeWrap">
-                <a href="{:is_login()?U('sendweibo'):"javascript:$.toast('请登录~')"}">
+                <a href="{:is_login()?U('sendweibo'):"javascript:no_login();"}">
                     <div class="oneType">
                         <div class="iconWrap"><i class="iconfont icon-wenzi"></i></div>
                         <p>文字</p>
                     </div>
                 </a>
-                <a href="{:is_login()?U('sendArticle'):"javascript:$.toast('请登录~')"}">
+                <a href="{:is_login()?U('sendArticle'):"javascript:no_login();"}">
                 <div class="oneType">
                     <div class="iconWrap" style="background-color: #F06C5D"><i class="iconfont icon-wenzhang"></i></div>
                     <p>文章</p>
                 </div>
                 </a>
-                <a href="{:is_login()?U('redbag'):"javascript:$.toast('请登录~')"}">
+                <a href="{:is_login()?U('redbag'):"javascript:no_login();"}">
                     <div class="oneType">
                         <div class="iconWrap" style="background-color: #fb9f3c"><i class="iconfont icon-hongbao"></i></div>
                         <p>红包</p>
                     </div>
                 </a>
-                <!--<a href="{:is_login()?U('Weibo/Voice/index'):"javascript:$.toast('请登录~')"}">-->
+                <!--<a href="{:is_login()?U('Weibo/Voice/index'):"javascript:no_login();"}">-->
                 <!--<div class="oneType">-->
                     <!--<div class="iconWrap" style="background-color: #fb9f3c"><i class="iconfont icon-icon15"></i></div>-->
                     <!--<p>语音动态</p>-->
@@ -281,6 +281,51 @@
         });
         $("[data-role='chose-type']").click(function () {
             $.popup('.proType')
+        });
+    </script>
+    <script type="text/javascript" src='http://res.wx.qq.com/open/js/jweixin-1.0.0.js'></script>
+    <script type="text/javascript">
+        wx.config({
+            debug: false,
+            appId: '{$signPackage["appId"]}',
+            timestamp: '{$signPackage["timestamp"]}',
+            nonceStr: '{$signPackage["nonceStr"]}',
+            signature: '{$signPackage["signature"]}',
+            jsApiList: [
+                // 所有要调用的 API 都要加到这个列表中
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo',
+                'onMenuShareQZone'
+            ]
+        });
+    </script>
+    <script type="text/javascript src='http://203.195.235.76/jssdk/js/zepto.min.js"></script>
+    <script type="text/javascript">
+        //完成wx.config，执行这里
+        wx.ready(function () {
+            //分享到朋友圈
+
+            wx.onMenuShareTimeline({
+                title:'{$crowd_detail.title}', // 分享标题
+                link:window.location.href,
+                imgUrl:"{$share_img}", // 分享图标
+            });
+            //分享给朋友
+            wx.onMenuShareAppMessage({
+                title:'{$crowd_detail.title}', // 分享标题
+                desc: '{$crowd_detail.intro}',
+                link:window.location.href,
+                imgUrl:"{$share_img}", // 分享图标
+                trigger: function (res) {
+                    // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                },
+                fail: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
         });
     </script>
 </block>

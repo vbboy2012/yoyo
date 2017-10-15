@@ -31,7 +31,7 @@ function send_weibo($content, $type, $feed_data = '', $from = '', $crowdType = '
         unset($val);
         D('Weibo/WeiboTopicLink')->addDatas($weiboTopicLink);
 
-        //信任话题的用户接收到话题更新通知
+        //关注话题的用户接收到话题更新通知
         $k=0;
         foreach ($weiboTopicLink as $topk){
             $topks[$k]['topk']=$topicModel->getTopicInfo($topk['topic_id']);
@@ -50,11 +50,12 @@ function send_weibo($content, $type, $feed_data = '', $from = '', $crowdType = '
                 }
                 // 未读过该话题的用户不再提醒
                 // $readUids=D('Message')->topicMessageRead($vo['topk']['name'],$vo['uid']);
-                // D('Message')->sendALotOfMessageWithoutCheckSelf($readUids,'话题通知','您信任的#'.$vo['topk']['name'].'#话题已更新。','Weibo/Topic/index',array('topk'=>$vo['topk']['id']),1,'Weibo');
+                // D('Message')->sendALotOfMessageWithoutCheckSelf($readUids,'话题通知','您关注的#'.$vo['topk']['name'].'#话题已更新。','Weibo/Topic/index',array('topk'=>$vo['topk']['id']),1,'Weibo');
             }
         }
 
     }
+    action_log('add_weibo', 'weibo', $weibo_id, $uid);
     // $to_uid = get_at_users($content);
     // send_message($to_uid, get_nickname($uid) . "@了您", $content, 'Weibo/Index/detail', array('id' => $weibo_id), is_login(), 'Weibo', 'Common_comment');
     return $weibo_id;
@@ -162,12 +163,6 @@ function get_replace_list($html, $type)
     return array_unique($list[1]);
 }
 
-function get_crowd_title($id)
-{
-    $crowd = D('Weibo/WeiboCrowd')->getCrowd($id);
-    return $crowd['title'];
-}
-
 function parse_weibo_type_title($type)
 {
     $title = '';
@@ -179,7 +174,7 @@ function parse_weibo_type_title($type)
             $title = '热门动态';
             break;
         case 'concerned':
-            $title = '我的信任';
+            $title = '我的关注';
             break;
         case 'fav':
             $title = '我的点赞';

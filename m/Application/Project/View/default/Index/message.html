@@ -1,0 +1,42 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/schedule.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a href="javascript:" class="title">我的消息</a>
+            </header>
+            <include file="./Application/Common/View/default/Base/footer.html"/>
+            <div class="content infinite-scroll">
+                <div class="content-block noEdge">
+                     <ul class="list">
+                         <volist name="message" id="list">
+                             <switch name="list.type">
+                                 <case value="Project_project">
+                                     <li>
+                                         <div class="item-img img-color"><i class="iconfont icon-xiangmu"></i></div>
+                                         <a href="{:U('Project/index/messagelist',array('type'=>$list['type']))}"class="text">
+                                             <div class="flexDiv myDiv">{$list.detail.title}<span>{$list.create_time|time_format='Y-m-d'}</span></div>
+                                             <span class="lastSpan">{$list.last_message.content}</span>
+                                         </a>
+                                     </li>
+                                 </case>
+                                 <case value="Ticket_ticket">
+                                     <li>
+                                         <div class="item-img img-color-last"><i class="iconfont icon-gongdan"></i></div>
+                                         <a href="{:U('Project/index/messagelist',array('type'=>$list['type']))}" class="text">
+                                             <div class="flexDiv myDiv">工单消息<span>2017-5-22</span></div>
+                                             <span class="lastSpan">您有1条新的工单信息，请前往pc端访问</span>
+                                         </a>
+                                     </li>
+                                 </case>
+                             </switch>
+                         </volist>
+                     </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

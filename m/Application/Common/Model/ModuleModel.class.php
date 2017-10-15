@@ -457,14 +457,14 @@ class ModuleModel extends Model
     private function cleanAuthRules($module_name)
     {
         $db_prefix = C('DB_PREFIX');
-        $sql = "DELETE FROM `{$db_prefix}auth_rule` where `module` = '" . $module_name . "'";
+        $sql = "DELETE FROM `{$db_prefix}m_auth_rule` where `module` = '" . $module_name . "'";
         D()->execute($sql);
     }
 
     private function cleanMenus($module_name)
     {
         $db_prefix = C('DB_PREFIX');
-        $sql = "DELETE FROM `{$db_prefix}menu` where `url` like '" . $module_name . "/%'";
+        $sql = "DELETE FROM `{$db_prefix}m_menu` where `url` like '" . $module_name . "/%'";
         D()->execute($sql);
     }
 

@@ -9,8 +9,8 @@
 
         <div class="info">
             <a data-role="card" data-uid="{$weibo.user.uid}" external>
-                <div class="avatar wbAvatar">
-                    <img src="{$weibo.user.avatar128}" alt="">
+                <div class="avatar wbAvatar" style="overflow: visible">
+                    {$weibo.user.avatar_html128}
                 </div>
             </a>
             <div class="name">
@@ -24,7 +24,7 @@
                 </p>
             </div>
         </div>
-        <a href="{:U('detail',array('id'=>$weibo['id']))}" external>
+        <a href="{:U('Weibo/index/detail',array('id'=>$weibo['id']))}" external>
             <div class="proContent">
                 <div class="weibo-list-content">
                     {$weibo.fetchContent}
@@ -48,13 +48,13 @@
                 <span class="support-count">{$weibo.support_count}</span>
             </div>
             <gt name="uid" value="0">
-                <a href="{:U('Index/detail',array('id'=>$weibo['id']))}" class="oneOpt flexWrap external"><i class="iconfont icon-pinglun"></i><span>{$weibo.comment_count}</span></a>
+                <a href="{:U('Weibo/Index/detail',array('id'=>$weibo['id']))}" class="oneOpt flexWrap external"><i class="iconfont icon-pinglun"></i><span>{$weibo.comment_count}</span></a>
                 <div class="oneOpt flexWrap open-repost" data-role="weibo_detail" data-sourceId="{$weibo.weibo_data.sourceId}"><i class="iconfont icon-zhuanfa"></i><span>{$weibo.repost_count}</span></div>
                 <div class="oneOpt flexWrap create-actions" data-top="{$weibo.is_top}"  data-crowd-id="{$weibo.crowd_id}"><i class="iconfont icon-gengduo"></i></div>
                 <else/>
-                <a class="oneOpt flexWrap external" onclick="$.toast('请先登录')"><i class="iconfont icon-pinglun"></i><span>{$weibo.comment_count}</span></a>
-                <div class="oneOpt flexWrap" onclick="$.toast('请先登录')" data-sourceId="{$weibo.weibo_data.sourceId}"><i class="iconfont icon-zhuanfa"></i><span>{$weibo.repost_count}</span></div>
-                <div class="oneOpt flexWrap" onclick="$.toast('请先登录')" data-crowd-id="{$weibo.crowd_id}"><i class="iconfont icon-gengduo"></i></div>
+                <a class="oneOpt flexWrap external" onclick="no_login()"><i class="iconfont icon-pinglun"></i><span>{$weibo.comment_count}</span></a>
+                <div class="oneOpt flexWrap" onclick="no_login()" data-sourceId="{$weibo.weibo_data.sourceId}"><i class="iconfont icon-zhuanfa"></i><span>{$weibo.repost_count}</span></div>
+                <div class="oneOpt flexWrap" onclick="no_login()" data-crowd-id="{$weibo.crowd_id}"><i class="iconfont icon-gengduo"></i></div>
             </gt>
         </div>
     </div>

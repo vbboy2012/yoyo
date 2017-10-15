@@ -1,0 +1,6 @@
+<volist name="historyResult" id="val">
+    <a class="history-list" href="javascript:void(0)" data-search-id="{$val.id}">
+        <span onclick="historyClick('{$val.historical}')">{$val.historical}</span>
+        <i data-id="{$val.id}" class="iconfont icon-guanbi delete" onclick="deleteOneSearchHistory({$val.id})"></i>
+    </a>
+</volist>

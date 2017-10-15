@@ -1,5 +1,8 @@
 <volist name="comment" id="vo">
     <div class="proWrap noEdge">
+        <a class='comment-zan' data-table="weibo_comment" data-row="{$vo.id}" data-uid="{$vo.user.uid}" data-jump="weibo/index/detail" <if condition="is_login()">data-role="comment-zan" data-weibo-id="{$vo.weibo_id}" href="javascript:void(0);"<else/>href="javascript:no_login();"</if>>
+            <i class="iconfont icon-dianzan <if condition="$vo['supported'] eq true">support-on</if>"></i>(<span>{$vo.support_down|default=0}</span>)
+        </a>
         <div class="info">
             <a href="">
                 <div class="avatar">

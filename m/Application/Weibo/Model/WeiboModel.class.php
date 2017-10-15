@@ -148,7 +148,7 @@ class WeiboModel extends Model
         $weibo['comment_count'] = $count['comment_count'];
         $weibo['repost_count'] = $count['repost_count'];
         $weibo['support_count'] = $count['support_count'];
-        $weibo['user'] = query_user(array('uid', 'nickname', 'avatar64', 'space_url', 'rank_link', 'title'), $weibo['uid']);
+        $weibo['user'] = query_user(array('avatar_html128','uid', 'nickname', 'avatar64', 'space_url', 'rank_link', 'title'), $weibo['uid']);
         $weibo['can_delete'] = $this->canDeleteWeibo($weibo);
         // 判断转发的原微博是否已经删除
         if ($weibo['type'] == 'repost') {

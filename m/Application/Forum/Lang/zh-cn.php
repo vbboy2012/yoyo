@@ -19,12 +19,12 @@ return array(
     '_HOT_SECTION_'=>'热门板块',
     '_RECOMMEND_SECTION_'=>'推荐版块',
     '_ACTIVE_USER_'=>'活跃用户',
-    '_FOLLOWERS_'=>'信任',
-    '_FOLLOWED_'=>'已信任',
+    '_FOLLOWERS_'=>'关注',
+    '_FOLLOWED_'=>'已关注',
     '_POST_'=>'帖子',
     '_SUBJECT_'=>'主题',
     '_C_C_'=>'换一换',
-    '_MY_FOLLOW_'=>'我的信任',
+    '_MY_FOLLOW_'=>'我的关注',
     '_PUBLISH_POST_'=>'发帖',
     '_SUBJECT_COUNT_'=>'主题总数',
     '_POST_COUNT_'=>'帖子总数',
@@ -71,8 +71,8 @@ return array(
 
 //    controller/index
     '_TITLE_FORUM_'=>'论坛 Forum',
-    '_SUCCESS_FOLLOW_'=>'信任成功',
-    '_SUCCESS_FOLLOW_CANCEL_'=>'取消信任成功',
+    '_SUCCESS_FOLLOW_'=>'关注成功',
+    '_SUCCESS_FOLLOW_CANCEL_'=>'取消关注成功',
     '_ERROR___POST___NOT_FOUND_'=>'找不到该帖子',
     '_INFO_AUTHORITY_POST_DELETE_NONE_'=>'你没有删除评论权限',
     '_SUCCESS_OPERATE_'=>'操作成功',
@@ -153,7 +153,7 @@ return array(
     '_BOARD_ADD_' => '添加板块',
 
 
-    '_EMPTY_FOLLOW'=>'暂无信任',
+    '_EMPTY_FOLLOW'=>'暂无关注',
 
 
 //    lost

@@ -1,0 +1,85 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a href="javascript:" class="title">{:L('_EVENT_HOME_PAGE_')}</a>
+            </header>
+            <include file="./Application/Common/View/default/Public/footer.html"/>
+            <div class="content infinite-scroll">
+                <div class="content-block noEdge">
+                    <!--顶部分类 start-->
+                    <div class="head-type headtop">
+                        <div class="head-box head-left headtop">
+                            <a href="{:U('Event/index/search')}"><i class="iconfont icon-weibiaoti3"></i></a>
+                        </div>
+                        <ul data-role="type-list">
+                            <li><a <if condition="$type eq 0">class="active"</if> href="javascript:void(0);" data-role="change-cate" data-value="0" data-code="200">{:L('_CATEGORY_ALL_')}</a></li>
+                            <notempty name="typeList">
+                                <volist name="typeList" id="vo">
+                                    <li><a <if condition="$type['id'] eq $vo['id']">class="active"</if> href="javascript:void(0);" data-role="change-cate" data-value="{$vo.id}" data-code="200">{$vo.title}</a></li>
+                                </volist>
+                                <else/>
+                                <li>暂无数据</li>
+                            </notempty>
+                        </ul>
+                        <div class="head-box head-right headtop">
+                            <a href="javascript:void(0);" data-role="show-type"><i class="iconfont icon-fabu1"></i></a>
+                        </div>
+                    </div>
+                    <div class="all-type" data-role="all-type" style="display: none">
+                        <ul data-list="e-type">
+                        </ul>
+                        <div class="infinite-scroll-preloader" id="head-loading">
+                            <div class="preloader"></div>
+                        </div>
+                    </div>
+                    <!--顶部分类 end-->
+                    <!-- 活动菜单 start-->
+                    <div class="head-nav">
+                        <div class="nav-list">
+                            <a href="javascript:void(0);" data-url="{:U('Index/myevent',array('lora'=>'attend'))}" data-uid="{$uid}" onclick="checkLogin(this)">
+                                <i class="iconfont icon-addevent join-event"></i>
+                                <div class="nav-title">{:L('_MY_IN_')}{:L('_EVENT_')}</div>
+                            </a>
+                        </div>
+                        <div class="nav-list">
+                            <a href="javascript:void(0);" data-url="{:U('Index/myevent',array('lora'=>'mine'))}" data-uid="{$uid}" onclick="checkLogin(this)">
+                                <i class="iconfont icon-join-event add-event"></i>
+                                <div class="nav-title">{:L('_MY_SPONSOR_')}{:L('_EVENT_')}</div>
+                            </a>
+                        </div>
+                        <div class="nav-list">
+                            <a href="javascript:void(0);" data-url="{:U('Index/add')}" data-uid="{$uid}" onclick="checkLogin(this)">
+                                <i class="iconfont icon-event-add event-add"></i>
+                                <div class="nav-title">{:L('_EVENT_SPONSOR_')}</div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 活动菜单 end-->
+                    <!-- 活动列表 start-->
+                    <div class="e-list" data-role="" >
+                        <ul data-list="event-list" class="event-list" data-total="{$total}" data-type="{$type.id}">
+                        </ul>
+                        <div class="infinite-scroll-preloader">
+                            <div class="preloader"></div>
+                        </div>
+                    </div>
+                    <!-- 活动列表 end-->
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/index.js"></script>
+    <script src="__PUBLIC__/js/public.js"></script>
+    <script src="__JS__/detail.js"></script>
+    <script>
+        var type = '{$type.id}' ;
+        liScroll(type) ;
+    </script>
+</block>
