@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 2017-09-29 08:20:35
--- 服务器版本： 5.7.14
--- PHP Version: 5.6.25
+-- Host: localhost
+-- Generation Time: 2017-10-15 02:01:11
+-- 服务器版本： 10.1.25-MariaDB
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -46,17 +48,18 @@ CREATE TABLE `ocenter_action` (
 INSERT INTO `ocenter_action` (`id`, `name`, `title`, `remark`, `rule`, `log`, `type`, `status`, `update_time`, `module`) VALUES
 (1, 'reg', '用户注册', '用户注册', '', '', 1, 1, 1426070545, ''),
 (2, 'input_password', '输入密码', '记录输入密码的次数。', '', '', 1, 1, 1426122119, ''),
-(3, 'user_login', '用户登录', '积分+10，每天一次', 'a:1:{i:0;a:5:{s:5:"table";s:6:"member";s:5:"field";s:1:"1";s:4:"rule";s:2:"10";s:5:"cycle";s:2:"24";s:3:"max";s:1:"1";}}', '[user|get_nickname]在[time|time_format]登录了账号', 1, 1, 1428397656, ''),
+(3, 'user_login', '用户登录', '积分+10，每天一次', 'a:1:{i:0;a:5:{s:5:\"table\";s:6:\"member\";s:5:\"field\";s:1:\"1\";s:4:\"rule\";s:2:\"10\";s:5:\"cycle\";s:2:\"24\";s:3:\"max\";s:1:\"1\";}}', '[user|get_nickname]在[time|time_format]登录了账号', 1, 1, 1428397656, ''),
 (4, 'update_config', '更新配置', '新增或修改或删除配置', '', '', 1, 1, 1383294988, ''),
 (7, 'update_channel', '更新导航', '新增或修改或删除导航', '', '', 1, 1, 1383296301, ''),
 (8, 'update_menu', '更新菜单', '新增或修改或删除菜单', '', '', 1, 1, 1383296392, ''),
-(10001, 'add_weibo', '发布微博', '新增微博', 'a:1:{i:0;a:5:{s:5:"table";s:6:"member";s:5:"field";s:1:"1";s:4:"rule";s:2:"+1";s:5:"cycle";s:2:"24";s:3:"max";s:2:"10";}}', '[user|get_nickname]在[time|time_format]发布了新微博：[record|intval]', 1, 1, 1437116716, 'Weibo'),
-(10002, 'add_weibo_comment', '添加微博评论', '添加微博评论', 'a:1:{i:0;a:5:{s:5:"table";s:6:"member";s:5:"field";s:1:"1";s:4:"rule";s:2:"+1";s:5:"cycle";s:2:"24";s:3:"max";s:2:"10";}}', '[user|get_nickname]在[time|time_format]添加了微博评论：[record|intval]', 1, 1, 1437116734, 'Weibo'),
+(10001, 'add_weibo', '发布微博', '新增微博', 'a:1:{i:0;a:5:{s:5:\"table\";s:6:\"member\";s:5:\"field\";s:1:\"1\";s:4:\"rule\";s:2:\"+1\";s:5:\"cycle\";s:2:\"24\";s:3:\"max\";s:2:\"10\";}}', '[user|get_nickname]在[time|time_format]发布了新微博：[record|intval]', 1, 1, 1437116716, 'Weibo'),
+(10002, 'add_weibo_comment', '添加微博评论', '添加微博评论', 'a:1:{i:0;a:5:{s:5:\"table\";s:6:\"member\";s:5:\"field\";s:1:\"1\";s:4:\"rule\";s:2:\"+1\";s:5:\"cycle\";s:2:\"24\";s:3:\"max\";s:2:\"10\";}}', '[user|get_nickname]在[time|time_format]添加了微博评论：[record|intval]', 1, 1, 1437116734, 'Weibo'),
 (10003, 'del_weibo_comment', '删除微博评论', '删除微博评论', '', '[user|get_nickname]在[time|time_format]删除了微博评论：[record|intval]', 1, 1, 1428399164, 'Weibo'),
 (10004, 'del_weibo', '删除微博', '删除微博', '', '[user|get_nickname]在[time|time_format]删除了微博：[record|intval]', 1, 1, 1428461334, 'Weibo'),
 (10005, 'set_weibo_top', '置顶微博', '置顶微博', '', '[user|get_nickname]在[time|time_format]置顶了微博：[record|intval]', 1, 1, 1428399164, 'Weibo'),
 (10006, 'set_weibo_down', '取消置顶微博', '取消置顶微博', '', '[user|get_nickname]在[time|time_format]取消置顶了微博：[record|intval]', 1, 1, 1428462983, 'Weibo'),
-(11000, 'add_news', '资讯投稿', '用户发布资讯', 'N;', '', 2, 1, 1428479582, 'News');
+(11004, 'news_post_reply', '资讯回复', '资讯回复', '', '', 2, 1, 1428479582, 'News'),
+(11003, 'add_news', '资讯投稿', '用户发布资讯', 'N;', '', 2, 1, 1428479582, 'News');
 
 -- --------------------------------------------------------
 
@@ -88,8 +91,7 @@ INSERT INTO `ocenter_action_limit` (`id`, `title`, `name`, `frequency`, `time_nu
 (1, 'reg', '注册限制', 1, 1, 'minute', 'warning', 0, '', '[reg]', 1, 0, ''),
 (2, 'input_password', '输密码', 3, 1, 'minute', 'warning', 0, '', '[input_password]', 1, 0, ''),
 (3, 'add_weibo', '新增微博', 1, 10, 'second', 'warning', 0, '', '[add_weibo]', 1, 0, 'Weibo'),
-(4, 'add_weibo_comment', '添加微博评论', 1, 10, 'second', 'warning', 0, '', '[add_weibo_comment]', 1, 0, 'Weibo'),
-(5, 'add_news', '资讯投稿', 1, 1, 'minute', 'warning', 1, '操作太频繁！', '[add_news]', 1, 0, 'News');
+(4, 'add_weibo_comment', '添加微博评论', 1, 10, 'second', 'warning', 0, '', '[add_weibo_comment]', 1, 0, 'Weibo');
 
 -- --------------------------------------------------------
 
@@ -147,7 +149,215 @@ INSERT INTO `ocenter_action_log` (`id`, `action_id`, `user_id`, `action_ip`, `mo
 (31, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-09-29 09:31登录了账号', 1, 1506648711),
 (32, 3, 1, 2130706433, 'member', 1, 'yoyoadmin在2017-09-29 12:02登录了账号', 1, 1506657723),
 (33, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-09-29 15:01登录了账号', 1, 1506668491),
-(34, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-09-29 15:07登录了账号', 1, 1506668833);
+(34, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-09-29 15:07登录了账号', 1, 1506668833),
+(35, 3, 1, 2130706433, 'member', 1, 'yoyoadmin在2017-09-30 07:56登录了账号', 1, 1506729375),
+(36, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-09-30 09:31登录了账号', 1, 1506735062),
+(37, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-09-30 11:02登录了账号', 1, 1506740540),
+(38, 1, 1, 2130706433, 'ucenter_member', 1, '操作url：/yoyo/index.php?s=/ucenter/member/register.html', 1, 1506740738),
+(39, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-09-30 11:31登录了账号', 1, 1506742273),
+(40, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-09-30 11:38登录了账号', 1, 1506742714),
+(41, 1, 1, 2130706433, 'ucenter_member', 1, '操作url：/yoyo/index.php?s=/ucenter/member/register.html', 1, 1506743207),
+(42, 1, 1, 2130706433, 'ucenter_member', 1, '操作url：/yoyo/index.php?s=/ucenter/member/register.html', 1, 1506743436),
+(43, 1, 1, 2130706433, 'ucenter_member', 1, '操作url：/yoyo/index.php?s=/ucenter/member/register.html', 1, 1506748519),
+(44, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-09-30 13:17登录了账号', 1, 1506748635),
+(45, 1, 1, 2130706433, 'ucenter_member', 1, '操作url：/yoyo/index.php?s=/ucenter/member/register.html', 1, 1506748720),
+(46, 1, 1, 2130706433, 'ucenter_member', 1, '操作url：/yoyo/index.php?s=/ucenter/member/register.html', 1, 1506748720),
+(47, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-09-30 14:38登录了账号', 1, 1506753508),
+(48, 1, 1, 2130706433, 'ucenter_member', 1, '操作url：/yoyo/index.php?s=/ucenter/member/register.html', 1, 1506753648),
+(49, 1, 1, 2130706433, 'ucenter_member', 1, '操作url：/yoyo/index.php?s=/ucenter/member/register.html', 1, 1506753733),
+(50, 1, 1, 2130706433, 'ucenter_member', 1, '操作url：/yoyo/index.php?s=/ucenter/member/register.html', 1, 1506753733),
+(51, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-09-30 15:58登录了账号', 1, 1506758280),
+(52, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-09-30 16:02登录了账号', 1, 1506758565),
+(53, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-09-30 16:16登录了账号', 1, 1506759394),
+(54, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-09-30 16:46登录了账号', 1, 1506761212),
+(55, 1, 1, 2130706433, 'ucenter_member', 1, '操作url：/yoyo/index.php?s=/ucenter/member/register.html', 1, 1506761903),
+(56, 3, 111, 2130706433, 'member', 111, 'dsdfsdf在2017-09-30 16:58登录了账号【积分：+10分】', 1, 1506761904),
+(57, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-09-30 17:05登录了账号【积分：+10分】', 1, 1506762306),
+(58, 2, 111, 2130706433, 'ucenter_member', 111, '操作url：/yoyo/index.php?s=/ucenter/member/quicklogin.html', 1, 1506775496),
+(59, 2, 111, 2130706433, 'ucenter_member', 111, '操作url：/yoyo/index.php?s=/ucenter/member/quicklogin.html', 1, 1506775499),
+(60, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-09-30 20:45登录了账号', 1, 1506775507),
+(61, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-09-30 20:47登录了账号', 1, 1506775654),
+(62, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-09-30 20:53登录了账号', 1, 1506776017),
+(63, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-01 06:05登录了账号', 1, 1506809152),
+(64, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-01 06:25登录了账号', 1, 1506810302),
+(65, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-01 06:29登录了账号', 1, 1506810555),
+(66, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-01 06:35登录了账号', 1, 1506810949),
+(67, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1506811225),
+(68, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1506811267),
+(69, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-01 08:32登录了账号', 1, 1506817964),
+(70, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/admin/public/login.html', 1, 1506818818),
+(71, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/admin/public/login.html', 1, 1506818835),
+(72, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-01 10:35登录了账号', 1, 1506825301),
+(73, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-01 10:36登录了账号', 1, 1506825375),
+(74, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-01 10:36登录了账号', 1, 1506825392),
+(75, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-01 10:37登录了账号', 1, 1506825433),
+(76, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-01 10:37登录了账号', 1, 1506825474),
+(77, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-04 07:50登录了账号【积分：+10分】', 1, 1507074648),
+(78, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-04 08:01登录了账号', 1, 1507075319),
+(79, 1, 1, 2130706433, 'ucenter_member', 1, '操作url：/yoyo/index.php?s=/ucenter/member/register.html', 1, 1507103623),
+(80, 3, 112, 2130706433, 'member', 112, 'bozai2017在2017-10-04 15:53登录了账号【积分：+10分】', 1, 1507103624),
+(81, 1, 1, 2130706433, 'ucenter_member', 1, '操作url：/yoyo/index.php?s=/ucenter/member/register.html', 1, 1507105096),
+(82, 1, 1, 2130706433, 'ucenter_member', 1, '操作url：/yoyo/index.php?s=/ucenter/member/register.html', 1, 1507105096),
+(83, 3, 114, 2130706433, 'member', 114, 'bobozaa1在2017-10-04 16:18登录了账号【积分：+10分】', 1, 1507105096),
+(84, 3, 114, 2130706433, 'member', 114, 'bobozaa1在2017-10-04 16:18登录了账号', 1, 1507105096),
+(85, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 08:15登录了账号【积分：+10分】', 1, 1507335339),
+(86, 1, 1, 2130706433, 'ucenter_member', 1, '操作url：/yoyo/index.php?s=/ucenter/member/register.html', 1, 1507336118),
+(87, 3, 115, 2130706433, 'member', 115, 'bboie在2017-10-07 08:28登录了账号【积分：+10分】', 1, 1507336118),
+(88, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 08:55登录了账号', 1, 1507337757),
+(89, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 11:15登录了账号', 1, 1507346156),
+(90, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 11:59登录了账号', 1, 1507348796),
+(91, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:00登录了账号', 1, 1507348842),
+(92, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:07登录了账号', 1, 1507349236),
+(93, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:08登录了账号', 1, 1507349309),
+(94, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:09登录了账号', 1, 1507349362),
+(95, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:10登录了账号', 1, 1507349442),
+(96, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:11登录了账号', 1, 1507349475),
+(97, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:12登录了账号', 1, 1507349524),
+(98, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:12登录了账号', 1, 1507349552),
+(99, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:13登录了账号', 1, 1507349601),
+(100, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:14登录了账号', 1, 1507349647),
+(101, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:14登录了账号', 1, 1507349679),
+(102, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:15登录了账号', 1, 1507349728),
+(103, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:17登录了账号', 1, 1507349844),
+(104, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:18登录了账号', 1, 1507349885),
+(105, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:20登录了账号', 1, 1507350010),
+(106, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:21登录了账号', 1, 1507350074),
+(107, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:22登录了账号', 1, 1507350136),
+(108, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:22登录了账号', 1, 1507350164),
+(109, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:23登录了账号', 1, 1507350186),
+(110, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:24登录了账号', 1, 1507350287),
+(111, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:25登录了账号', 1, 1507350351),
+(112, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:26登录了账号', 1, 1507350393),
+(113, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:28登录了账号', 1, 1507350521),
+(114, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 12:29登录了账号', 1, 1507350557),
+(115, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 13:11登录了账号', 1, 1507353091),
+(116, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 13:13登录了账号', 1, 1507353205),
+(117, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 13:15登录了账号', 1, 1507353303),
+(118, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 13:16登录了账号', 1, 1507353361),
+(119, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 13:17登录了账号', 1, 1507353478),
+(120, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 13:19登录了账号', 1, 1507353553),
+(121, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 13:20登录了账号', 1, 1507353624),
+(122, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 13:59登录了账号', 1, 1507355977),
+(123, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 14:00登录了账号', 1, 1507356014),
+(124, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 14:37登录了账号', 1, 1507358254),
+(125, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 14:38登录了账号', 1, 1507358282),
+(126, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 14:38登录了账号', 1, 1507358305),
+(127, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 14:38登录了账号', 1, 1507358330),
+(128, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 14:39登录了账号', 1, 1507358356),
+(129, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 14:44登录了账号', 1, 1507358695),
+(130, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 15:44登录了账号', 1, 1507362292),
+(131, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 15:45登录了账号', 1, 1507362336),
+(132, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 15:52登录了账号', 1, 1507362762),
+(133, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 15:53登录了账号', 1, 1507362811),
+(134, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 16:06登录了账号', 1, 1507363572),
+(135, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 16:53登录了账号', 1, 1507366432),
+(136, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 17:03登录了账号', 1, 1507367020),
+(137, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 17:17登录了账号', 1, 1507367842),
+(138, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 17:18登录了账号', 1, 1507367939),
+(139, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 17:19登录了账号', 1, 1507367952),
+(140, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 17:19登录了账号', 1, 1507367988),
+(141, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 17:19登录了账号', 1, 1507367989),
+(142, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507367991),
+(143, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 17:20登录了账号', 1, 1507368002),
+(144, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 17:20登录了账号', 1, 1507368026),
+(145, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 17:31登录了账号', 1, 1507368665),
+(146, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-07 18:26登录了账号', 1, 1507371973),
+(147, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-08 07:49登录了账号', 1, 1507420152),
+(148, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-08 07:49登录了账号', 1, 1507420192),
+(149, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-08 10:02登录了账号', 1, 1507428133),
+(150, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-08 17:53登录了账号', 1, 1507456437),
+(151, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-08 20:17登录了账号【积分：+10分】', 1, 1507465065),
+(152, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-08 21:20登录了账号', 1, 1507468851),
+(153, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-09 12:37登录了账号', 1, 1507523845),
+(154, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-09 12:37登录了账号', 1, 1507523851),
+(155, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-09 15:07登录了账号', 1, 1507532845),
+(156, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-09 15:27登录了账号', 1, 1507534058),
+(157, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-10 06:59登录了账号', 1, 1507589974),
+(158, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-10 09:03登录了账号', 1, 1507597399),
+(159, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-10 09:08登录了账号', 1, 1507597690),
+(160, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-10 09:23登录了账号', 1, 1507598634),
+(161, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-10 10:29登录了账号', 1, 1507602598),
+(162, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-10 10:44登录了账号', 1, 1507603463),
+(163, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-10 13:14登录了账号', 1, 1507612452),
+(164, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-10 13:14登录了账号', 1, 1507612456),
+(165, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-10 16:55登录了账号', 1, 1507625728),
+(166, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-10 16:55登录了账号', 1, 1507625749),
+(167, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-10 17:19登录了账号', 1, 1507627149),
+(168, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-10 18:36登录了账号', 1, 1507631802),
+(169, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507677398),
+(170, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507677406),
+(171, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507677410),
+(172, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507677468),
+(173, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507677503),
+(174, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507677507),
+(175, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-11 07:18登录了账号', 1, 1507677530),
+(176, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-11 07:44登录了账号', 1, 1507679052),
+(177, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507684980),
+(178, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-11 09:23登录了账号', 1, 1507684985),
+(179, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507704129),
+(180, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507704134),
+(181, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507704137),
+(182, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507704479),
+(183, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-11 14:48登录了账号', 1, 1507704482),
+(184, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-11 14:50登录了账号', 1, 1507704605),
+(185, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507705453),
+(186, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-11 16:03登录了账号', 1, 1507709024),
+(187, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-11 16:13登录了账号', 1, 1507709622),
+(188, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-11 16:29登录了账号', 1, 1507710599),
+(189, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507710817),
+(190, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507710837),
+(191, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507710875),
+(192, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-11 16:34登录了账号', 1, 1507710878),
+(193, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507711770),
+(194, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-11 16:49登录了账号', 1, 1507711772),
+(195, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507711867),
+(196, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-11 16:51登录了账号', 1, 1507711878),
+(197, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-12 10:11登录了账号【积分：+10分】', 1, 1507774292),
+(198, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507774340),
+(199, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-12 10:12登录了账号', 1, 1507774343),
+(200, 1, 1, 2130706433, 'ucenter_member', 1, '操作url：/yoyo/index.php?s=/ucenter/member/register.html', 1, 1507777470),
+(201, 3, 116, 2130706433, 'member', 116, 'soni在2017-10-12 11:04登录了账号【积分：+10分】', 1, 1507777470),
+(202, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507777580),
+(203, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-12 11:06登录了账号', 1, 1507777582),
+(204, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-12 11:30登录了账号', 1, 1507779010),
+(205, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-12 11:48登录了账号', 1, 1507780122),
+(206, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507787575),
+(207, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-12 13:52登录了账号', 1, 1507787578),
+(208, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507796922),
+(209, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-12 16:28登录了账号', 1, 1507796925),
+(210, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-12 16:30登录了账号', 1, 1507797002),
+(211, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 06:18登录了账号', 1, 1507846731),
+(212, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507847272),
+(213, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-13 06:27登录了账号', 1, 1507847275),
+(214, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 09:12登录了账号', 1, 1507857153),
+(215, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507857177),
+(216, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-13 09:13登录了账号', 1, 1507857191),
+(217, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 09:33登录了账号', 1, 1507858407),
+(218, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-13 09:34登录了账号', 1, 1507858491),
+(219, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 10:15登录了账号', 1, 1507860912),
+(220, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 11:04登录了账号', 1, 1507863888),
+(221, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 11:52登录了账号', 1, 1507866727),
+(222, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 12:02登录了账号', 1, 1507867328),
+(223, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 15:29登录了账号', 1, 1507879782),
+(224, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 15:29登录了账号', 1, 1507879786),
+(225, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 15:35登录了账号', 1, 1507880128),
+(226, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 15:35登录了账号', 1, 1507880141),
+(227, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-13 18:48登录了账号', 1, 1507891722),
+(228, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1507895932),
+(229, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-13 19:58登录了账号', 1, 1507895934),
+(230, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 20:31登录了账号', 1, 1507897872),
+(231, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 21:13登录了账号', 1, 1507900400),
+(232, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 21:26登录了账号', 1, 1507901165),
+(233, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 21:26登录了账号', 1, 1507901199),
+(234, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 21:36登录了账号', 1, 1507901767),
+(235, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 21:49登录了账号', 1, 1507902597),
+(236, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 21:51登录了账号', 1, 1507902696),
+(237, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-13 22:10登录了账号', 1, 1507903843),
+(238, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-14 08:04登录了账号', 1, 1507939497),
+(239, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-14 08:08登录了账号', 1, 1507939729),
+(240, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-14 08:09登录了账号', 1, 1507939764),
+(241, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-14 17:30登录了账号', 1, 1507973438),
+(242, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-14 17:43登录了账号', 1, 1507974183);
 
 -- --------------------------------------------------------
 
@@ -173,14 +383,15 @@ CREATE TABLE `ocenter_addons` (
 --
 
 INSERT INTO `ocenter_addons` (`id`, `name`, `title`, `description`, `status`, `config`, `author`, `version`, `create_time`, `has_adminlist`) VALUES
-(7, 'CheckIn', '签到', '签到插件', 1, '{"random":"1"}', 'xjw129xjt(肖骏涛)', '0.1', 1432791968, 0),
+(7, 'CheckIn', '签到', '签到插件', 1, '{\"random\":\"1\"}', 'xjw129xjt(肖骏涛)', '0.1', 1432791968, 0),
 (8, 'Support', '赞', '赞的功能', 1, 'null', '嘉兴想天信息科技有限公司', '0.1', 1432792013, 0),
-(9, 'SuperLinks', '合作单位', '合作单位', 1, '{"random":"1"}', '苏南 newsn.net', '0.1', 1432792019, 1),
-(10, 'Report', '举报后台', '可举报不法数据', 1, '{"meta":""}', '想天科技xuminwei', '0.1', 1432792026, 1),
-(11, 'LocalComment', '本地评论', '本地评论插件，不依赖社会化评论平台', 1, '{"can_guest_comment":"0"}', 'caipeichao', '0.1', 1432792035, 0),
+(9, 'SuperLinks', '合作单位', '合作单位', 1, '{\"random\":\"1\"}', '苏南 newsn.net', '0.1', 1432792019, 1),
+(10, 'Report', '举报后台', '可举报不法数据', 1, '{\"meta\":\"\"}', '想天科技xuminwei', '0.1', 1432792026, 1),
+(11, 'LocalComment', '本地评论', '本地评论插件，不依赖社会化评论平台', 1, '{\"can_guest_comment\":\"0\"}', 'caipeichao', '0.1', 1432792035, 0),
 (12, 'ChinaCity', '中国省市区三级联动', '每个系统都需要的一个中国省市区三级联动插件。想天-駿濤修改，将镇级地区移除', 1, 'null', 'i友街', '2.0', 1432792040, 0),
-(13, 'Recommend', '推荐信任', '可选择多种方法推荐用户', 1, '{"howToRecommend":"1","howManyRecommend":"1","recommendUser":"1"}', '嘉兴想天信息科技有限公司', '0.1', 1432792055, 1),
-(14, 'SyncLogin', '同步登陆', '同步登陆', 1, '{"type":null,"meta":"","bind":"0","QqKEY":"","QqSecret":"","SinaKEY":"","SinaSecret":"","WeixinKEY":"","WeixinSecret":""}', 'xjw129xjt', '0.1', 1432792112, 0);
+(13, 'Recommend', '推荐关注', '可选择多种方法推荐用户', 1, '{\"howToRecommend\":\"1\",\"howManyRecommend\":\"1\",\"recommendUser\":\"1\"}', '嘉兴想天信息科技有限公司', '0.1', 1432792055, 1),
+(14, 'SyncLogin', '同步登陆', '同步登陆', 1, '{\"type\":null,\"meta\":\"\",\"bind\":\"0\",\"QqKEY\":\"\",\"QqSecret\":\"\",\"SinaKEY\":\"\",\"SinaSecret\":\"\",\"WeixinKEY\":\"\",\"WeixinSecret\":\"\"}', 'xjw129xjt', '0.1', 1432792112, 0),
+(15, 'SmsBao', '短信宝', '短信宝短信插件 http://www.smsbao.com/ ', 1, '{\"switch\":\"1\"}', '駿濤', '5.0.0', 1507679257, 0);
 
 -- --------------------------------------------------------
 
@@ -202,6 +413,22 @@ CREATE TABLE `ocenter_adv` (
   `end_time` int(11) UNSIGNED DEFAULT '0' COMMENT '结束时间',
   `target` varchar(20) DEFAULT '_blank'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='广告表' ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_advertisement`
+--
+
+CREATE TABLE `ocenter_advertisement` (
+  `id` int(11) NOT NULL,
+  `location` text NOT NULL COMMENT '广告的位置，表示在什么地方显示',
+  `status` tinyint(3) NOT NULL COMMENT '状态：1表示启用，0表示禁用，-1表示删除',
+  `imgid` text NOT NULL COMMENT '图片',
+  `link` text NOT NULL COMMENT '链接地址',
+  `create_time` int(11) NOT NULL,
+  `name` text NOT NULL COMMENT '广告名'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -237,7 +464,7 @@ INSERT INTO `ocenter_adv_pos` (`id`, `name`, `title`, `path`, `type`, `status`, 
 (4, 'below_self_info', '个人资料下方', 'Weibo/Index/index', 1, 1, '', '280px', '100px', '0 0 10px 0', '', 'all'),
 (5, 'index_top', '资讯首页顶部广告', 'News/Index/index', 2, 1, '', '738px', '240px', '', '', 'all'),
 (6, 'index_bottom_top', '资讯首页右侧最底部广告', 'News/Index/index', 1, 1, '', '360px', '120px', '10px 0 0 0', '', 'all'),
-(9, 'slider', '首页轮播图', 'Home/Index/index', 2, 1, '{"style":1}', '1120px', '300px', '0 0 15px 0', '', 'all'),
+(9, 'slider', '首页轮播图', 'Home/Index/index', 2, 1, '{\"style\":1}', '1120px', '300px', '0 0 15px 0', '', 'all'),
 (7, 'index_right_top', '资讯首页右侧最顶部广告', 'News/Index/index', 1, 1, '[]', '360px', '120px', '0 0 10px 0', '', 'all'),
 (8, 'below_article_content', '资讯文章内容下方广告', 'News/Index/detail', 1, 1, '', '690px', '100px', '', '', 'all');
 
@@ -345,9 +572,9 @@ CREATE TABLE `ocenter_attest_type` (
 --
 
 INSERT INTO `ocenter_attest_type` (`id`, `name`, `title`, `logo`, `privilege`, `conditions`, `fields`, `status`, `description`, `tips`) VALUES
-(1, 'personal', '个人认证', 0, '1,2,3', 'avatar:1|phone:0|follow:0|fans:0|friends:0', 'child_type:1|child_type_option:优秀二次开发者,网红，优秀站长，主播|company_name:0|name:1|id_num:1|phone:1|image_type:1|image_type_option:身份证，驾驶证|prove_image:0|image:1|other_image:2|other_image_tip:请上传手持身份证高清正面照|info:2', 1, '<p><span style="color: rgb(255, 0, 0);line-height:30px;">请详细阅读本说明</span></p><p>1.信息必须真实</p><p>2.证件必须清晰可见</p><p>3.信息必须真实</p><p>4.信息必须真实</p><p>5.信息必须真实</p>', '真实身份，易于被辨识 更加权威，提高可信度'),
-(2, 'organization', '组织机构认证', 0, '1,2,3', 'avatar:1|phone:1|follow:30|fans:30|friends:2', 'child_type:1|child_type_option:盈利机构，公益机构|company_name:1|name:2|id_num:2|phone:1|image_type:1|image_type_option:组织机构代码证|prove_image:1|image:0|other_image:2|other_image_tip:请上传代表人的个人身份证、手持身份证高清正面照和其他证明材料|info:2', 1, '<p style="white-space: normal;"><span style="color: rgb(255, 0, 0); line-height: 30px;">请详细阅读本说明</span></p><p style="white-space: normal;">1.信息必须真实</p><p style="white-space: normal;">2.证件必须清晰可见</p><p style="white-space: normal;">3.信息必须真实</p><p style="white-space: normal;">4.信息必须真实</p><p style="white-space: normal;">5.信息必须真实</p><p><br/></p>', '真实身份，易于被辨识 更加权威，提高可信度'),
-(3, 'company', '企业认证', 0, '1,2,3', 'avatar:1|phone:1|follow:50|fans:30|friends:5', 'child_type:1|child_type_option:大型企业，中型企业，小型企业，微型企业|company_name:1|name:2|id_num:2|phone:1|image_type:1|image_type_option:组织机构代码证|prove_image:1|image:0|other_image:2|other_image_tip:请上传其他证明材料|info:2', 1, '<p style="white-space: normal;"><span style="color: rgb(255, 0, 0); line-height: 30px;">请详细阅读本说明</span></p><p style="white-space: normal;">1.信息必须真实</p><p style="white-space: normal;">2.证件必须清晰可见</p><p style="white-space: normal;">3.信息必须真实</p><p style="white-space: normal;">4.信息必须真实</p><p style="white-space: normal;">5.信息必须真实</p><p><br/></p>', '真实身份，易于被辨识 更加权威，提高可信度');
+(1, 'personal', '个人认证', 0, '1,2,3', 'avatar:1|phone:0|follow:0|fans:0|friends:0', 'child_type:1|child_type_option:优秀二次开发者,网红，优秀站长，主播|company_name:0|name:1|id_num:1|phone:1|image_type:1|image_type_option:身份证，驾驶证|prove_image:0|image:1|other_image:2|other_image_tip:请上传手持身份证高清正面照|info:2', 1, '<p><span style=\"color: rgb(255, 0, 0);line-height:30px;\">请详细阅读本说明</span></p><p>1.信息必须真实</p><p>2.证件必须清晰可见</p><p>3.信息必须真实</p><p>4.信息必须真实</p><p>5.信息必须真实</p>', '真实身份，易于被辨识 更加权威，提高可信度'),
+(2, 'organization', '组织机构认证', 0, '1,2,3', 'avatar:1|phone:1|follow:30|fans:30|friends:2', 'child_type:1|child_type_option:盈利机构，公益机构|company_name:1|name:2|id_num:2|phone:1|image_type:1|image_type_option:组织机构代码证|prove_image:1|image:0|other_image:2|other_image_tip:请上传代表人的个人身份证、手持身份证高清正面照和其他证明材料|info:2', 0, '<p style=\"white-space: normal;\"><span style=\"color: rgb(255, 0, 0); line-height: 30px;\">请详细阅读本说明</span></p><p style=\"white-space: normal;\">1.信息必须真实</p><p style=\"white-space: normal;\">2.证件必须清晰可见</p><p style=\"white-space: normal;\">3.信息必须真实</p><p style=\"white-space: normal;\">4.信息必须真实</p><p style=\"white-space: normal;\">5.信息必须真实</p><p><br/></p>', '真实身份，易于被辨识 更加权威，提高可信度'),
+(3, 'company', '企业认证', 0, '1,2,3', 'avatar:1|phone:1|follow:50|fans:30|friends:5', 'child_type:1|child_type_option:大型企业，中型企业，小型企业，微型企业|company_name:1|name:2|id_num:2|phone:1|image_type:1|image_type_option:组织机构代码证|prove_image:1|image:0|other_image:2|other_image_tip:请上传其他证明材料|info:2', 1, '<p style=\"white-space: normal;\"><span style=\"color: rgb(255, 0, 0); line-height: 30px;\">请详细阅读本说明</span></p><p style=\"white-space: normal;\">1.信息必须真实</p><p style=\"white-space: normal;\">2.证件必须清晰可见</p><p style=\"white-space: normal;\">3.信息必须真实</p><p style=\"white-space: normal;\">4.信息必须真实</p><p style=\"white-space: normal;\">5.信息必须真实</p><p><br/></p>', '真实身份，易于被辨识 更加权威，提高可信度');
 
 -- --------------------------------------------------------
 
@@ -397,8 +624,8 @@ CREATE TABLE `ocenter_auth_group` (
 --
 
 INSERT INTO `ocenter_auth_group` (`id`, `module`, `type`, `title`, `description`, `status`, `rules`, `end_time`) VALUES
-(1, 'admin', 1, '普通用户', '', 1, ',338,340,341,344', 2000000000),
-(2, 'admin', 1, 'VIP', '', 1, ',338,340,341,344', 2000000000);
+(1, 'admin', 1, '普通用户', '', 1, ',338,340,341,344,10004', 2000000000),
+(2, 'admin', 1, 'VIP', '', 1, ',338,340,341,344,10004', 2000000000);
 
 -- --------------------------------------------------------
 
@@ -418,7 +645,22 @@ CREATE TABLE `ocenter_auth_group_access` (
 INSERT INTO `ocenter_auth_group_access` (`uid`, `group_id`) VALUES
 (1, 1),
 (100, 1),
-(101, 1);
+(101, 1),
+(102, 1),
+(103, 1),
+(104, 1),
+(105, 1),
+(106, 1),
+(107, 1),
+(108, 1),
+(109, 1),
+(110, 1),
+(111, 1),
+(112, 1),
+(113, 1),
+(114, 1),
+(115, 1),
+(116, 1);
 
 -- --------------------------------------------------------
 
@@ -836,8 +1078,8 @@ INSERT INTO `ocenter_auth_rule` (`id`, `module`, `type`, `name`, `title`, `statu
 (430, 'admin', 2, 'Admin/People/config', '会员展示', 1, ''),
 (431, 'admin', 1, 'Admin/Index/index', '后台入口', 1, ''),
 (432, 'Ucenter', 1, 'Ucenter/Attest/apply', '申请认证', 1, ''),
-(10000, 'News', 1, 'News/Index/add', '资讯投稿', 1, ''),
-(10001, 'News', 1, 'News/Index/edit', '编辑资讯（管理）', 1, '');
+(10005, 'News', 1, 'News/Index/edit', '编辑资讯（管理）', 1, ''),
+(10004, 'News', 1, 'News/Index/add', '资讯投稿', 1, '');
 
 -- --------------------------------------------------------
 
@@ -893,8 +1135,9 @@ CREATE TABLE `ocenter_channel` (
 INSERT INTO `ocenter_channel` (`id`, `pid`, `title`, `url`, `sort`, `create_time`, `update_time`, `status`, `target`, `color`, `band_color`, `band_text`, `icon`, `image`, `remark`) VALUES
 (1, 0, '首页', 'Home/Index/index', 0, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, ''),
 (2, 0, '买卖中心', 'Coin/index/index', 1, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, ''),
-(3, 0, 'YOYO密圈', 'Weibo/index/index', 2, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, ''),
-(4, 0, '发布广告', '/ad/index/add', 3, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, '');
+(3, 0, '发布广告', '/ad/advertise', 2, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, ''),
+(4, 0, '密圈', 'Weibo/index/index', 3, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, ''),
+(5, 0, '资讯', 'News/index/index', 4, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, '');
 
 -- --------------------------------------------------------
 
@@ -930,6 +1173,21 @@ CREATE TABLE `ocenter_coin_addr` (
   `addr` varchar(50) NOT NULL COMMENT '钱包地址',
   `status` tinyint(2) NOT NULL COMMENT '状态：1正常，2冻结'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='钱包地址表';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_collect`
+--
+
+CREATE TABLE `ocenter_collect` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `module` varchar(32) NOT NULL COMMENT '模块名',
+  `table` varchar(32) NOT NULL COMMENT '表名',
+  `row` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL COMMENT '收藏时间'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -974,40 +1232,40 @@ INSERT INTO `ocenter_config` (`id`, `name`, `type`, `title`, `group`, `extra`, `
 (115, 'ADMIN_ALLOW_IP', 2, '后台允许访问IP', 4, '', '多个用逗号分隔，如果不配置表示不限制IP访问', 1387165454, 1387165553, 1, '', 27),
 (116, 'SHOW_PAGE_TRACE', 4, '是否显示页面Trace', 4, '0:关闭\r\n1:开启', '是否显示页面Trace信息', 1387165685, 1387165685, 1, '0', 7),
 (117, 'MAIL_TYPE', 4, '邮件类型', 5, '1:SMTP 模块发送\r\n2:mail() 函数发送', '如果您选择了采用服务器内置的 Mail 服务，您不需要填写下面的内容', 1388332882, 1388931416, 1, '1', 0),
-(118, 'MAIL_SMTP_HOST', 1, 'SMTP 服务器', 5, '', 'SMTP服务器', 1388332932, 1388332932, 1, '', 0),
-(119, 'MAIL_SMTP_PORT', 0, 'SMTP服务器端口', 5, '', '默认25', 1388332975, 1388332975, 1, '25', 0),
-(120, 'MAIL_SMTP_USER', 1, 'SMTP服务器用户名', 5, '', '填写完整用户名', 1388333010, 1388333010, 1, '', 0),
-(121, 'MAIL_SMTP_PASS', 6, 'SMTP服务器密码', 5, '', '填写您的密码', 1388333057, 1389187088, 1, '', 0),
+(118, 'MAIL_SMTP_HOST', 1, 'SMTP 服务器', 5, '', 'SMTP服务器', 1388332932, 1388332932, 1, 'smtp.exmail.qq.com', 0),
+(119, 'MAIL_SMTP_PORT', 0, 'SMTP服务器端口', 5, '', '默认25', 1388332975, 1388332975, 1, '465', 0),
+(120, 'MAIL_SMTP_USER', 1, 'SMTP服务器用户名', 5, '', '填写完整用户名', 1388333010, 1388333010, 1, 'support@yoyocoins.com', 0),
+(121, 'MAIL_SMTP_PASS', 6, 'SMTP服务器密码', 5, '', '填写您的密码', 1388333057, 1389187088, 1, 'Zz35580113', 0),
 (122, 'MAIL_USER_PASS', 5, '密码找回模板', 0, '', '支持HTML代码', 1388583989, 1388672614, 1, '密码找回111223333555111', 0),
 (123, 'PIC_FILE_PATH', 1, '图片文件保存根目录', 4, '', '图片文件保存根目录./目录/', 1388673255, 1388673255, 1, './Uploads/', 0),
 (124, 'COUNT_DAY', 0, '后台首页统计用户增长天数', 0, '', '默认统计最近半个月的用户数增长情况', 1420791945, 1420876261, 1, '7', 0),
-(125, 'MAIL_USER_REG', 5, '注册邮件模板', 3, '', '支持HTML代码', 1388337307, 1389532335, 1, '<a href="http://www.opensns.cn" target="_blank">点击进入</a><span style="color:#E53333;">当您收到这封邮件，表明您已注册成功，以上为您的用户名和密码。。。。祝您生活愉快····</span>', 55),
-(126, 'USER_NAME_BAOLIU', 1, '保留用户名和昵称', 3, '', '禁止注册用户名和昵称，包含这些即无法注册,用" , "号隔开，用户只能是英文，下划线_，数字等', 1388845937, 1388845937, 1, '管理员,测试,admin,垃圾', 0),
+(125, 'MAIL_USER_REG', 5, '注册邮件模板', 3, '', '支持HTML代码', 1388337307, 1389532335, 1, '<a href=\"http://www.opensns.cn\" target=\"_blank\">点击进入</a><span style=\"color:#E53333;\">当您收到这封邮件，表明您已注册成功，以上为您的用户名和密码。。。。祝您生活愉快····</span>', 55),
+(126, 'USER_NAME_BAOLIU', 1, '保留用户名和昵称', 3, '', '禁止注册用户名和昵称，包含这些即无法注册,用\" , \"号隔开，用户只能是英文，下划线_，数字等', 1388845937, 1388845937, 1, '管理员,测试,admin,垃圾', 0),
 (128, 'VERIFY_OPEN', 8, '验证码配置', 4, 'reg:注册显示\r\nlogin:登陆显示\r\nreset:密码重置', '验证码配置', 1388500332, 1405561711, 1, '', 0),
 (129, 'VERIFY_TYPE', 4, '验证码类型', 4, '1:中文\r\n2:英文\r\n3:数字\r\n4:英文+数字', '验证码类型', 1388500873, 1405561731, 1, '4', 0),
 (130, 'NO_BODY_TLE', 2, '空白说明', 2, '', '空白说明', 1392216444, 1392981305, 1, '呵呵，暂时没有内容哦！！', 0),
-(131, 'USER_RESPASS', 5, '密码找回模板', 3, '', '密码找回文本', 1396191234, 1396191234, 1, '<span style="color:#009900;">请点击以下链接找回密码，如无反应，请将链接地址复制到浏览器中打开(下次登录前有效)</span>', 0),
+(131, 'USER_RESPASS', 5, '密码找回模板', 3, '', '密码找回文本', 1396191234, 1396191234, 1, '<span style=\"color:#009900;\">请点击以下链接找回密码，如无反应，请将链接地址复制到浏览器中打开(下次登录前有效)</span>', 0),
 (132, 'COUNT_CODE', 2, '统计代码', 1, '', '用于统计网站访问量的第三方代码，推荐CNZZ统计', 1403058890, 1403058890, 1, '', 12),
-(134, 'URL_MODEL', 4, 'URL模式', 4, '2:REWRITE模式(开启伪静态)\r\n3:兼容模式', '选择Rewrite模式则开启伪静态，在开启伪静态之前需要先<a href="http://v2.opensns.cn/index.php?s=/news/index/detail/id/128.html" target="_blank">设置伪静态</a>或者阅读/Rewrite/readme.txt中的说明，默认建议开启兼容模式', 1421027546, 1421027676, 1, '3', 0),
+(134, 'URL_MODEL', 4, 'URL模式', 4, '2:REWRITE模式(开启伪静态)\r\n3:兼容模式', '选择Rewrite模式则开启伪静态，在开启伪静态之前需要先<a href=\"http://v2.opensns.cn/index.php?s=/news/index/detail/id/128.html\" target=\"_blank\">设置伪静态</a>或者阅读/Rewrite/readme.txt中的说明，默认建议开启兼容模式', 1421027546, 1421027676, 1, '3', 0),
 (135, 'DEFUALT_HOME_URL', 1, '登录前首页Url', 1, '', '支持形如weibo/index/index的ThinkPhp路由写法，支持普通的url写法，不填则显示默认聚合首页', 1417509438, 1427340006, 1, '', 1),
 (136, 'AUTO_UPDATE', 4, '自动更新提示', 1, '0:关闭,1:开启', '关闭后，后台将不显示更新提示', 1433731153, 1433731348, 1, '1', 2),
 (137, 'WEB_SITE_CLOSE_HINT', 2, '关站提示文字', 1, '', '站点关闭后的提示文字。', 1433731248, 1433731287, 1, '网站正在更新维护，请稍候再试。', 4),
 (138, 'SESSION_PREFIX', 1, '网站前台session前缀', 1, '', '当多个网站在同一个根域名下请保证每个网站的前缀不同', 1436923664, 1436923664, 1, 'opensns', 20),
 (139, 'COOKIE_PREFIX', 1, '网站前台cookie前缀', 1, '', '当多个网站在同一个根域名下请保证每个网站的前缀不同', 1436923664, 1436923664, 1, 'opensns_', 21),
-(140, 'MAIL_SMTP_CE', 1, '邮件发送测试', 5, '', '填写测试邮件地址', 1388334529, 1388584028, 1, '', 11),
+(140, 'MAIL_SMTP_CE', 1, '邮件发送测试', 5, '', '填写测试邮件地址', 1388334529, 1388584028, 1, 'soni@vip.qq.com', 11),
 (141, 'LOST_LONG', 0, '用户流失标准（天）', 0, '', '', 1469414315, 1469414315, 1, '30', 0),
-(142, 'MAIL_VERIFY_TYPE', 4, 'SMTP验证方式', 5, '1:无\r\n2:ssl\r\n3:tls', 'SMTP验证方式', 1388332882, 1388931416, 1, '1', 0),
-(1000, '_USERCONFIG_REG_SWITCH', 0, '', 0, '', '', 1427094903, 1427094903, 1, 'email', 0),
-(10012, '_CONFIG_WEB_SITE_NAME', 0, '', 0, '', '', 1506052812, 1506052812, 1, 'OpenSNS v5开源社群系统', 0),
-(10013, '_CONFIG_ICP', 0, '', 0, '', '', 1506052812, 1506052812, 1, '浙ICP备12042711号-5', 0),
-(10014, '_CONFIG_LOGO', 0, '', 0, '', '', 1506052812, 1506052812, 1, '', 0),
-(10016, '_CONFIG_QRCODE', 0, '', 0, '', '', 1506052812, 1506052812, 1, '', 0),
-(10030, '_CONFIG_ABOUT_US', 0, '', 0, '', '', 1506052812, 1506052812, 1, '<p>&nbsp; 嘉兴想天信息科技有限公司专注于为客户提供专业的社群方案。公司秉持简洁、高效、创新，不断为客户创造奇迹。旗下产品有OpenSNS开源社群系统和OpenCenter开源用户和后台管理系统。</p>', 0),
-(10028, '_CONFIG_SUBSCRIB_US', 0, '', 0, '', '', 1506052812, 1506052812, 1, '<p>业务QQ：276905621</p><p>联系地址：浙江省桐乡市环城南路1号电子商务中心</p><p>联系电话：0573-88037510</p>', 0),
-(10027, '_CONFIG_COPY_RIGHT', 0, '', 0, '', '', 1506052812, 1506052812, 1, '<p>Copyright ©2014-2017 <a href="http://www.ourstu.com" target="_blank">嘉兴想天信息科技有限公司</a></p>', 0),
+(142, 'MAIL_VERIFY_TYPE', 4, 'SMTP验证方式', 5, '1:无\r\n2:ssl\r\n3:tls', 'SMTP验证方式', 1388332882, 1388931416, 1, '2', 0),
+(11165, '_USERCONFIG_REG_SWITCH', 0, '', 0, '', '', 1507680018, 1507680018, 1, 'email,mobile', 0),
+(11219, '_CONFIG_WEB_SITE_NAME', 0, '', 0, '', '', 1507898783, 1507898783, 1, 'OpenSNS v5开源社群系统', 0),
+(11220, '_CONFIG_ICP', 0, '', 0, '', '', 1507898783, 1507898783, 1, '浙ICP备12042711号-5', 0),
+(11221, '_CONFIG_LOGO', 0, '', 0, '', '', 1507898783, 1507898783, 1, '', 0),
+(11223, '_CONFIG_QRCODE', 0, '', 0, '', '', 1507898783, 1507898783, 1, '', 0),
+(11237, '_CONFIG_ABOUT_US', 0, '', 0, '', '', 1507898783, 1507898783, 1, '<p>&nbsp; 嘉兴想天信息科技有限公司专注于为客户提供专业的社群方案。公司秉持简洁、高效、创新，不断为客户创造奇迹。旗下产品有OpenSNS开源社群系统和OpenCenter开源用户和后台管理系统。</p>', 0),
+(11235, '_CONFIG_SUBSCRIB_US', 0, '', 0, '', '', 1507898783, 1507898783, 1, '<p>业务QQ：276905621</p><p>联系地址：浙江省桐乡市环城南路1号电子商务中心</p><p>联系电话：0573-88037510</p>', 0),
+(11234, '_CONFIG_COPY_RIGHT', 0, '', 0, '', '', 1507898783, 1507898783, 1, '<p>Copyright ©2014-2017 <a href=\"http://www.ourstu.com\" target=\"_blank\">嘉兴想天信息科技有限公司</a></p>', 0),
 (1008, '_HOME_LOGO', 0, '', 0, '', '', 1432791820, 1432791820, 1, '', 0),
 (1009, '_HOME_ENTER_URL', 0, '', 0, '', '', 1432791820, 1432791820, 1, '', 0),
-(10002, '_HOME_BLOCK', 0, '', 0, '', '', 1506049592, 1506049592, 1, '[{"data-id":"disable","title":"\\u7981\\u7528","items":[{"data-id":"Coin","title":"\\u4e70\\u5356\\u4e2d\\u5fc3"}]},{"data-id":"enable","title":"\\u542f\\u7528","items":[{"data-id":"slider","title":"\\u8f6e\\u64ad"},{"data-id":"Weibo","title":"\\u52a8\\u6001"},{"data-id":"People","title":"\\u627e\\u4eba"}]}]', 0),
+(10002, '_HOME_BLOCK', 0, '', 0, '', '', 1506049592, 1506049592, 1, '[{\"data-id\":\"disable\",\"title\":\"\\u7981\\u7528\",\"items\":[{\"data-id\":\"Coin\",\"title\":\"\\u4e70\\u5356\\u4e2d\\u5fc3\"}]},{\"data-id\":\"enable\",\"title\":\"\\u542f\\u7528\",\"items\":[{\"data-id\":\"slider\",\"title\":\"\\u8f6e\\u64ad\"},{\"data-id\":\"Weibo\",\"title\":\"\\u52a8\\u6001\"},{\"data-id\":\"People\",\"title\":\"\\u627e\\u4eba\"}]}]', 0),
 (1011, '_HOME_PIC1', 0, '', 0, '', '', 1432791820, 1432791820, 1, '', 0),
 (1012, '_HOME_URL1', 0, '', 0, '', '', 1432791820, 1432791820, 1, '', 0),
 (1013, '_HOME_TITLE1', 0, '', 0, '', '', 1432791820, 1432791820, 1, '', 0),
@@ -1017,30 +1275,67 @@ INSERT INTO `ocenter_config` (`id`, `name`, `type`, `title`, `group`, `extra`, `
 (1017, '_HOME_PIC3', 0, '', 0, '', '', 1432791820, 1432791820, 1, '', 0),
 (1018, '_HOME_URL3', 0, '', 0, '', '', 1432791820, 1432791820, 1, '', 0),
 (1019, '_HOME_TITLE3', 0, '', 0, '', '', 1432791820, 1432791820, 1, '', 0),
-(10029, '_CONFIG_COMPANY', 0, '', 0, '', '', 1506052812, 1506052812, 1, '<p><a href="http://www.ourstu.com/joinus.html" target="_blank"><p><em class="icon icon-user"></em>加入我们</p></a></p><p><em class="icon icon-phone-sign"></em>400-0573-080</p><p><em class="icon icon-envelope-alt"></em>co@ourstu.com</p>', 0),
-(10015, '_CONFIG_QRCODE_BOTTOM', 0, '', 0, '', '', 1506052812, 1506052812, 1, '', 0),
-(1022, '_USERCONFIG_UCENTER_KANBAN', 0, '', 0, '', '', 1501048026, 1501048026, 1, '[{"data-id":"disable","title":"\\u7981\\u7528","items":[{"data-id":"Weibo","title":"\\u5fae\\u535a"}]},{"data-id":"enable","title":"\\u542f\\u7528","items":[{"data-id":"follow","title":"TA\\u7684\\u5173\\u6ce8\\/\\u7c89\\u4e1d"},{"data-id":"info","title":"\\u8d44\\u6599"},{"data-id":"rank_title","title":"\\u5934\\u8854"},{"data-id":"topic_list","title":"\\u5173\\u6ce8\\u7684\\u8bdd\\u9898"}]}]', 0),
-(10036, '_CONFIG_FIRST_USER_RUN', 0, '', 0, '', '', 1506646017, 1506646017, 1, '2017-09-29', 0),
+(11236, '_CONFIG_COMPANY', 0, '', 0, '', '', 1507898783, 1507898783, 1, '<p><a href=\"http://www.ourstu.com/joinus.html\" target=\"_blank\"></a></p><p><a href=\"http://www.ourstu.com/joinus.html\" target=\"_blank\"><em class=\"icon icon-user\"></em>加入我们</a></p><p><br/></p><p><em class=\"icon icon-phone-sign\"></em>400-0573-080</p><p><em class=\"icon icon-envelope-alt\"></em>co@ourstu.com</p>', 0),
+(11222, '_CONFIG_QRCODE_BOTTOM', 0, '', 0, '', '', 1507898783, 1507898783, 1, '', 0),
+(11187, '_USERCONFIG_UCENTER_KANBAN', 0, '', 0, '', '', 1507680018, 1507680018, 1, '[{\"data-id\":\"disable\",\"title\":\"\\u7981\\u7528\",\"items\":[{\"data-id\":\"Weibo\",\"title\":\"\\u52a8\\u6001Pro\"},{\"data-id\":\"News\",\"title\":\"\\u8d44\\u8baf\"}]},{\"data-id\":\"enable\",\"title\":\"\\u542f\\u7528\",\"items\":[{\"data-id\":\"follow\",\"title\":\"TA\\u7684\\u5173\\u6ce8\\/\\u7c89\\u4e1d\"},{\"data-id\":\"info\",\"title\":\"\\u8d44\\u6599\"},{\"data-id\":\"rank_title\",\"title\":\"\\u5934\\u8854\"},{\"data-id\":\"topic_list\",\"title\":\"\\u5173\\u6ce8\\u7684\\u8bdd\\u9898\"}]}]', 0),
+(11239, '_CONFIG_FIRST_USER_RUN', 0, '', 0, '', '', 1508025598, 1508025598, 1, '2017-10-15', 0),
 (10001, '_HOME_HOME_INDEX_TYPE', 0, '', 0, '', '', 1506049592, 1506049592, 1, 'index', 0),
-(10003, '_HOME_SEARCH', 0, '', 0, '', '', 1506049592, 1506049592, 1, '[{"data-id":"disable","title":"\\u7981\\u7528","items":[]},{"data-id":"enable","title":"\\u542f\\u7528","items":[{"data-id":"Coin","title":"\\u4e70\\u5356\\u4e2d\\u5fc3"},{"data-id":"People","title":"\\u627e\\u4eba"},{"data-id":"Weibo","title":"\\u52a8\\u6001"}]}]', 0),
-(10004, '_BCLIENT_OS_OFFICIAL_ACCOUNT', 0, '', 0, '', '', 1506049756, 1506049756, 1, 'soni@vip.qq.com', 0),
-(10005, '_BCLIENT_OS_OFFICIAL_PASSWORD', 0, '', 0, '', '', 1506049756, 1506049756, 1, 'z35580113', 0),
-(10006, '_BCLIENT_SERVER_DOMAIN', 0, '', 0, '', '', 1506049765, 1506049765, 1, '127.0.0.1', 0),
-(10007, '_BCLIENT_SERVER_IP', 0, '', 0, '', '', 1506049765, 1506049765, 1, '127.0.0.1', 0),
-(10008, '_BCLIENT_SERVER_USES', 0, '', 0, '', '', 1506049765, 1506049765, 1, 'test', 0),
-(10009, '_BCLIENT_SERVER_CONTEXT', 0, '', 0, '', '', 1506049765, 1506049765, 1, '0', 0),
-(10010, '_BCLIENT_SERVER_CERTIFICATE', 0, '', 0, '', '', 1506049765, 1506049765, 1, 'e7b94fd6e7e3c32b89a0fcac7a7874b3', 0),
-(10011, '_BCLIENT_SERVER_UNIQUE', 0, '', 0, '', '', 1506049765, 1506049765, 1, '02-00-4C-4F-4F-50', 0),
-(10017, '_CONFIG_JUMP_BACKGROUND', 0, '', 0, '', '', 1506052812, 1506052812, 1, '', 0),
-(10018, '_CONFIG_SUCCESS_WAIT_TIME', 0, '', 0, '', '', 1506052812, 1506052812, 1, '2', 0),
-(10019, '_CONFIG_ERROR_WAIT_TIME', 0, '', 0, '', '', 1506052812, 1506052812, 1, '5', 0),
-(10020, '_CONFIG_OPEN_IM', 0, '', 0, '', '', 1506052812, 1506052812, 1, '1', 0),
-(10021, '_CONFIG_GET_INFORMATION', 0, '', 0, '', '', 1506052812, 1506052812, 1, '1', 0),
-(10022, '_CONFIG_GET_INFORMATION_INTERNAL', 0, '', 0, '', '', 1506052812, 1506052812, 1, '10', 0),
-(10023, '_CONFIG_PICTURE_UPLOAD_DRIVER', 0, '', 0, '', '', 1506052812, 1506052812, 1, 'local', 0),
-(10024, '_CONFIG_DOWNLOAD_UPLOAD_DRIVER', 0, '', 0, '', '', 1506052812, 1506052812, 1, 'local', 0),
-(10025, '_CONFIG_WEBSOCKET_ADDRESS', 0, '', 0, '', '', 1506052812, 1506052812, 1, '127.0.0.1', 0),
-(10026, '_CONFIG_WEBSOCKET_PORT', 0, '', 0, '', '', 1506052812, 1506052812, 1, '8000', 0);
+(10003, '_HOME_SEARCH', 0, '', 0, '', '', 1506049592, 1506049592, 1, '[{\"data-id\":\"disable\",\"title\":\"\\u7981\\u7528\",\"items\":[]},{\"data-id\":\"enable\",\"title\":\"\\u542f\\u7528\",\"items\":[{\"data-id\":\"Coin\",\"title\":\"\\u4e70\\u5356\\u4e2d\\u5fc3\"},{\"data-id\":\"People\",\"title\":\"\\u627e\\u4eba\"},{\"data-id\":\"Weibo\",\"title\":\"\\u52a8\\u6001\"}]}]', 0),
+(11192, '_BCLIENT_OS_OFFICIAL_ACCOUNT', 0, '', 0, '', '', 1507846886, 1507846886, 1, 'soni@vip.qq.com', 0),
+(11193, '_BCLIENT_OS_OFFICIAL_PASSWORD', 0, '', 0, '', '', 1507846886, 1507846886, 1, 'z35580113', 0),
+(11194, '_BCLIENT_SERVER_DOMAIN', 0, '', 0, '', '', 1507846892, 1507846892, 1, '127.0.0.1', 0),
+(11195, '_BCLIENT_SERVER_IP', 0, '', 0, '', '', 1507846892, 1507846892, 1, '127.0.0.1', 0),
+(11196, '_BCLIENT_SERVER_USES', 0, '', 0, '', '', 1507846892, 1507846892, 1, 'test', 0),
+(11197, '_BCLIENT_SERVER_CONTEXT', 0, '', 0, '', '', 1507846892, 1507846892, 1, '0', 0),
+(11198, '_BCLIENT_SERVER_CERTIFICATE', 0, '', 0, '', '', 1507846892, 1507846892, 1, 'ef0f864bdb16f324b81fe6978eec58fc', 0),
+(11199, '_BCLIENT_SERVER_UNIQUE', 0, '', 0, '', '', 1507846892, 1507846892, 1, 'd0:a6:37:ed:7b:73', 0),
+(11224, '_CONFIG_JUMP_BACKGROUND', 0, '', 0, '', '', 1507898783, 1507898783, 1, '', 0),
+(11225, '_CONFIG_SUCCESS_WAIT_TIME', 0, '', 0, '', '', 1507898783, 1507898783, 1, '2', 0),
+(11226, '_CONFIG_ERROR_WAIT_TIME', 0, '', 0, '', '', 1507898783, 1507898783, 1, '5', 0),
+(11227, '_CONFIG_OPEN_IM', 0, '', 0, '', '', 1507898783, 1507898783, 1, '1', 0),
+(11228, '_CONFIG_GET_INFORMATION', 0, '', 0, '', '', 1507898783, 1507898783, 1, '1', 0),
+(11229, '_CONFIG_GET_INFORMATION_INTERNAL', 0, '', 0, '', '', 1507898783, 1507898783, 1, '10', 0),
+(11230, '_CONFIG_PICTURE_UPLOAD_DRIVER', 0, '', 0, '', '', 1507898783, 1507898783, 1, 'local', 0),
+(11231, '_CONFIG_DOWNLOAD_UPLOAD_DRIVER', 0, '', 0, '', '', 1507898783, 1507898783, 1, 'local', 0),
+(11232, '_CONFIG_WEBSOCKET_ADDRESS', 0, '', 0, '', '', 1507898783, 1507898783, 1, '127.0.0.1', 0),
+(11233, '_CONFIG_WEBSOCKET_PORT', 0, '', 0, '', '', 1507898783, 1507898783, 1, '8000', 0),
+(11166, '_USERCONFIG_EMAIL_VERIFY_TYPE', 0, '', 0, '', '', 1507680018, 1507680018, 1, '2', 0),
+(11167, '_USERCONFIG_MOBILE_VERIFY_TYPE', 0, '', 0, '', '', 1507680018, 1507680018, 1, '1', 0),
+(11168, '_USERCONFIG_NEW_USER_FOLLOW', 0, '', 0, '', '', 1507680018, 1507680018, 1, '', 0),
+(11169, '_USERCONFIG_NEW_USER_FANS', 0, '', 0, '', '', 1507680018, 1507680018, 1, '', 0),
+(11170, '_USERCONFIG_NEW_USER_FRIENDS', 0, '', 0, '', '', 1507680018, 1507680018, 1, '', 0),
+(11171, '_USERCONFIG_REG_STEP', 0, '', 0, '', '', 1507680018, 1507680018, 1, '[{\"data-id\":\"disable\",\"title\":\"\\u7981\\u7528\",\"items\":[{\"data-id\":\"change_avatar\",\"title\":\"\\u4fee\\u6539\\u5934\\u50cf\"},{\"data-id\":\"expand_info\",\"title\":\"\\u586b\\u5199\\u6269\\u5c55\\u8d44\\u6599\"},{\"data-id\":\"set_tag\",\"title\":\"\\u9009\\u62e9\\u4e2a\\u4eba\\u6807\\u7b7e\"}]},{\"data-id\":\"enable\",\"title\":\"\\u542f\\u7528\",\"items\":[]}]', 0),
+(11172, '_USERCONFIG_REG_CAN_SKIP', 0, '', 0, '', '', 1507680018, 1507680018, 1, '', 0),
+(11173, '_USERCONFIG_OPEN_QUICK_LOGIN', 0, '', 0, '', '', 1507680018, 1507680018, 1, '0', 0),
+(11174, '_USERCONFIG_LOGIN_SWITCH', 0, '', 0, '', '', 1507680018, 1507680018, 1, 'email,mobile', 0),
+(11175, '_USERCONFIG_SYNC_LOGIN_EMAIL_SUFFIX', 0, '', 0, '', '', 1507680018, 1507680018, 1, '@ocenter.com', 0),
+(11176, '_USERCONFIG_SMS_HOOK', 0, '', 0, '', '', 1507680018, 1507680018, 1, 'SmsBao', 0),
+(11177, '_USERCONFIG_SMS_RESEND', 0, '', 0, '', '', 1507680018, 1507680018, 1, '60', 0),
+(11178, '_USERCONFIG_SMS_UID', 0, '', 0, '', '', 1507680018, 1507680018, 1, 'vbboy2012', 0),
+(11179, '_USERCONFIG_SMS_PWD', 0, '', 0, '', '', 1507680018, 1507680018, 1, 'z35580113', 0),
+(11180, '_USERCONFIG_SMS_CONTENT', 0, '', 0, '', '', 1507680018, 1507680018, 1, '您的验证码为{$verify}验证码', 0),
+(11181, '_USERCONFIG_RANK_LIST', 0, '', 0, '', '', 1507680018, 1507680018, 1, 'fans,con_check,total_check,score', 0),
+(11182, '_USERCONFIG_LEVEL', 0, '', 0, '', '', 1507680018, 1507680018, 1, '0:Lv1 实习\r\n50:Lv2 试用\r\n100:Lv3 转正\r\n200:Lv4 助理\r\n400:Lv5 经理\r\n800:Lv6 董事\r\n1600:Lv7 董事长', 0),
+(11183, '_USERCONFIG_NICKNAME_MIN_LENGTH', 0, '', 0, '', '', 1507680018, 1507680018, 1, '2', 0),
+(11184, '_USERCONFIG_NICKNAME_MAX_LENGTH', 0, '', 0, '', '', 1507680018, 1507680018, 1, '32', 0),
+(11185, '_USERCONFIG_USERNAME_MIN_LENGTH', 0, '', 0, '', '', 1507680018, 1507680018, 1, '2', 0),
+(11186, '_USERCONFIG_USERNAME_MAX_LENGTH', 0, '', 0, '', '', 1507680018, 1507680018, 1, '32', 0),
+(11188, '_USERCONFIG_REG_EMAIL_ACTIVATE', 0, '', 0, '', '', 1507680018, 1507680018, 1, '<p>您在{$title}的激活链接为<a href=\"{$url}\" target=\"_blank\">激活</a>，或者请复制链接：{$url}到浏览器打开。</p>', 0),
+(11189, '_USERCONFIG_REG_EMAIL_VERIFY', 0, '', 0, '', '', 1507680018, 1507680018, 1, '<p>您的验证码为{$verify}验证码，账号为{$account}。</p>', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_consumption_log`
+--
+
+CREATE TABLE `ocenter_consumption_log` (
+  `id` int(11) UNSIGNED NOT NULL COMMENT '自增id',
+  `uid` varchar(255) NOT NULL DEFAULT '' COMMENT '用户id',
+  `behavior` text NOT NULL COMMENT '行为',
+  `create_time` int(11) DEFAULT NULL COMMENT '创建时间',
+  `amount` decimal(10,2) NOT NULL COMMENT '金额'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户消费记录日志';
 
 -- --------------------------------------------------------
 
@@ -1333,7 +1628,23 @@ INSERT INTO `ocenter_count_active` (`id`, `type`, `date`, `num`, `total`) VALUES
 (5, 'day', 1506268800, 1, 0),
 (6, 'day', 1506355200, 1, 0),
 (7, 'day', 1506441600, 2, 0),
-(8, 'day', 1506528000, 2, 0);
+(8, 'day', 1506528000, 2, 0),
+(9, 'day', 1506614400, 2, 0),
+(10, 'day', 1506700800, 3, 0),
+(11, 'week', 1506182407, 3, 0),
+(12, 'month', 1504195230, 3, 0),
+(13, 'day', 1506960000, 0, 0),
+(14, 'day', 1507219200, 0, 0),
+(15, 'day', 1507305600, 2, 0),
+(16, 'week', 1506787207, 4, 0),
+(17, 'day', 1507392000, 2, 0),
+(18, 'day', 1507478400, 2, 0),
+(19, 'day', 1507564800, 2, 0),
+(20, 'day', 1507651200, 2, 0),
+(21, 'day', 1507737600, 3, 0),
+(22, 'day', 1507824000, 2, 0),
+(23, 'day', 1507910400, 2, 0),
+(24, 'week', 1507392007, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -1362,7 +1673,19 @@ INSERT INTO `ocenter_count_lost` (`id`, `user_num`, `new_lost`, `date`, `lost_nu
 (4, 1, 0, 1506268800, 0, '0.0000', 1506389059),
 (5, 1, 0, 1506355200, 0, '0.0000', 1506474434),
 (6, 3, 1, 1506441600, 1, '0.3333', 1506560304),
-(7, 3, 0, 1506528000, 1, '0.3333', 1506646017);
+(7, 3, 0, 1506528000, 1, '0.3333', 1506646017),
+(8, 3, 0, 1506614400, 1, '0.3333', 1506729302),
+(9, 3, -1, 1506700800, 0, '0.0000', 1506809151),
+(10, 3, 0, 1506960000, 0, '0.0000', 1507074123),
+(11, 4, 0, 1507219200, 1, '0.2500', 1507334848),
+(12, 2, -1, 1507305600, 0, '0.0000', 1507420100),
+(13, 2, 0, 1507392000, 0, '0.0000', 1507478620),
+(14, 2, 0, 1507478400, 0, '0.0000', 1507589833),
+(15, 2, 0, 1507564800, 0, '0.0000', 1507677371),
+(16, 2, 0, 1507651200, 0, '0.0000', 1507774288),
+(17, 3, 0, 1507737600, 0, '0.0000', 1507846795),
+(18, 3, 0, 1507824000, 0, '0.0000', 1507939309),
+(19, 3, 0, 1507910400, 0, '0.0000', 1508025598);
 
 -- --------------------------------------------------------
 
@@ -1397,13 +1720,29 @@ INSERT INTO `ocenter_count_remain` (`id`, `date`, `day1_num`, `day2_num`, `day3_
 (6, 1505404800, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (7, 1505318400, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (8, 1505232000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(9, 1506009600, 0, 1, 1, 1, 1, 1, 0, 0, 1),
+(9, 1506009600, 0, 1, 1, 1, 1, 1, 1, 1, 1),
 (10, 1505923200, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (11, 1506096000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (12, 1506182400, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (13, 1506268800, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (14, 1506355200, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(15, 1506441600, 1, 0, 0, 0, 0, 0, 0, 0, 2);
+(15, 1506441600, 1, 1, 1, 0, 0, 0, 0, 0, 2),
+(16, 1506528000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(17, 1506614400, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(18, 1506873600, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(19, 1506787200, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(20, 1506700800, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+(21, 1507132800, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(22, 1507046400, 0, 0, 0, 0, 0, 0, 0, 0, 2),
+(23, 1506960000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(24, 1507219200, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(25, 1507305600, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(26, 1507392000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(27, 1507478400, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(28, 1507564800, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(29, 1507651200, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(30, 1507737600, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+(31, 1507824000, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -5229,8 +5568,8 @@ CREATE TABLE `ocenter_field_group` (
 --
 
 INSERT INTO `ocenter_field_group` (`id`, `profile_name`, `status`, `createTime`, `sort`, `visiable`) VALUES
-(1, '个人资料', 1, 1403847366, 0, 1),
-(2, '开发者资料', 1, 1423537648, 0, 0);
+(1, '身份认证', -1, 1403847366, 0, 0),
+(2, '开发者资料', -1, 1423537648, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -5296,20 +5635,21 @@ CREATE TABLE `ocenter_file` (
 
 CREATE TABLE `ocenter_follow` (
   `id` int(11) NOT NULL COMMENT 'id',
-  `follow_who` int(11) NOT NULL COMMENT '信任谁',
-  `who_follow` int(11) NOT NULL COMMENT '谁信任',
+  `follow_who` int(11) NOT NULL COMMENT '关注谁',
+  `who_follow` int(11) NOT NULL COMMENT '谁关注',
   `create_time` int(11) NOT NULL,
   `alias` varchar(40) NOT NULL COMMENT '备注',
-  `group_id` int(11) NOT NULL COMMENT '分组ID'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信任表';
+  `group_id` int(11) NOT NULL COMMENT '分组ID',
+  `trust` tinyint(1) DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='关注表';
 
 --
 -- 转存表中的数据 `ocenter_follow`
 --
 
-INSERT INTO `ocenter_follow` (`id`, `follow_who`, `who_follow`, `create_time`, `alias`, `group_id`) VALUES
-(1, 1, 100, 1506669549, '', 0),
-(2, 100, 1, 1506669615, '', 0);
+INSERT INTO `ocenter_follow` (`id`, `follow_who`, `who_follow`, `create_time`, `alias`, `group_id`, `trust`) VALUES
+(43, 100, 1, 1507780145, '', 0, 1),
+(4, 100, 116, 1507777482, '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -5359,7 +5699,7 @@ INSERT INTO `ocenter_hooks` (`id`, `name`, `description`, `type`, `update_time`,
 (65, 'report', '举报钩子', 1, 1429511732, 'Report'),
 (66, 'handleAction', '行为的额外操作', 2, 1433300260, 'CheckIn'),
 (67, 'uploadDriver', '附件图片上传引擎', 2, 1435306269, ''),
-(68, 'sms', '短信插件钩子', 2, 1437382105, ''),
+(68, 'sms', '短信插件钩子', 2, 1437382105, 'SmsBao'),
 (69, 'filterHtmlContent', '渲染富文本', 2, 1441951420, ''),
 (70, 'parseContent', '解析内容', 2, 1445828128, 'Sensitive'),
 (71, 'tool', '返回顶部，右下角工具栏', 1, 1445828128, ''),
@@ -5415,7 +5755,13 @@ CREATE TABLE `ocenter_invite` (
 
 INSERT INTO `ocenter_invite` (`id`, `invite_type`, `code`, `uid`, `can_num`, `already_num`, `end_time`, `status`, `create_time`) VALUES
 (1, 1, 'M9TR2PPaHWY', 1, 100000, 0, 1818494575, 1, 1502961774),
-(2, 1, 'tRHJpsLdZ4D', 100, 100000, 0, 1822029816, 1, 1506497016);
+(2, 1, 'tRHJpsLdZ4D', 100, 100000, 0, 1822029816, 1, 1506497016),
+(3, 1, '5inDkb6eO3J', 111, 100000, 0, 1822294704, 1, 1506761904),
+(4, 1, '6jX592wC4to', 112, 100000, 0, 1822636424, 1, 1507103624),
+(5, 1, 'KrUClYtXs9A', 114, 100000, 0, 1822637896, 1, 1507105096),
+(6, 1, 'eJUc3hjAu7D', 114, 100000, 0, 1822637896, 1, 1507105096),
+(7, 1, 'qdsYAyhNoBb', 115, 100000, 0, 1822868919, 1, 1507336118),
+(8, 1, 'qPnZreyfEOX', 116, 100000, 0, 1823310270, 1, 1507777470);
 
 -- --------------------------------------------------------
 
@@ -5466,7 +5812,7 @@ CREATE TABLE `ocenter_invite_type` (
   `pay_score_type` int(11) NOT NULL COMMENT '购买消耗积分类型',
   `income_score` int(10) NOT NULL COMMENT '每邀请成功一个用户，邀请者增加积分',
   `income_score_type` int(11) NOT NULL COMMENT '邀请成功后增加积分类型id',
-  `is_follow` tinyint(2) NOT NULL COMMENT '邀请成功后是否互相信任',
+  `is_follow` tinyint(2) NOT NULL COMMENT '邀请成功后是否互相关注',
   `status` tinyint(2) NOT NULL,
   `create_time` int(11) NOT NULL COMMENT '创建时间',
   `update_time` int(11) NOT NULL COMMENT '更新时间'
@@ -5493,6 +5839,22 @@ CREATE TABLE `ocenter_invite_user_info` (
   `already_num` int(11) NOT NULL COMMENT '已邀请名额',
   `success_num` int(11) NOT NULL COMMENT '成功邀请名额'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='邀请注册用户信息';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_letter`
+--
+
+CREATE TABLE `ocenter_letter` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL COMMENT '发送人',
+  `puid` int(11) NOT NULL DEFAULT '0' COMMENT '接收人',
+  `content` text NOT NULL COMMENT '内容',
+  `create_time` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `status` tinyint(2) NOT NULL,
+  `is_read` tinyint(2) NOT NULL COMMENT '是否查看：0未查看，1已查看'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='私信表';
 
 -- --------------------------------------------------------
 
@@ -5525,8 +5887,8 @@ CREATE TABLE `ocenter_member` (
   `uid` int(10) UNSIGNED NOT NULL COMMENT '用户ID',
   `nickname` char(32) NOT NULL DEFAULT '' COMMENT '昵称',
   `sex` tinyint(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '性别',
-  `birthday` date DEFAULT NULL COMMENT '生日',
-  `qq` char(10) NOT NULL DEFAULT '' COMMENT 'qq号',
+  `trade_count` int(10) DEFAULT '0' COMMENT '交易次数',
+  `trade_score` tinyint(1) NOT NULL COMMENT '评价得分',
   `login` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '登录次数',
   `reg_ip` bigint(20) NOT NULL DEFAULT '0' COMMENT '注册IP',
   `reg_time` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '注册时间',
@@ -5544,23 +5906,26 @@ CREATE TABLE `ocenter_member` (
   `score2` double DEFAULT '0' COMMENT 'score2',
   `score3` double DEFAULT '0' COMMENT 'score3',
   `score4` double DEFAULT '0' COMMENT 'score4',
-  `trade_num` int(11) NOT NULL DEFAULT '0',
-  `btc` decimal(10,0) NOT NULL DEFAULT '0',
-  `eth` decimal(10,0) NOT NULL DEFAULT '0',
+  `btc_count` decimal(10,4) NOT NULL DEFAULT '0.0000',
+  `eth_count` decimal(10,4) NOT NULL DEFAULT '0.0000',
+  `btc` decimal(10,8) NOT NULL DEFAULT '0.00000000',
+  `eth` decimal(10,8) NOT NULL DEFAULT '0.00000000',
   `con_check` int(11) NOT NULL DEFAULT '0',
   `total_check` int(11) NOT NULL DEFAULT '0',
   `fans` int(11) NOT NULL DEFAULT '0' COMMENT '粉丝数',
-  `session_id` varchar(225) NOT NULL
+  `trust` int(11) NOT NULL,
+  `session_id` varchar(225) NOT NULL,
+  `lang` char(5) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='会员表';
 
 --
 -- 转存表中的数据 `ocenter_member`
 --
 
-INSERT INTO `ocenter_member` (`uid`, `nickname`, `sex`, `birthday`, `qq`, `login`, `reg_ip`, `reg_time`, `last_login_ip`, `last_login_time`, `status`, `last_login_role`, `show_role`, `signature`, `pos_province`, `pos_city`, `pos_district`, `pos_community`, `score1`, `score2`, `score3`, `score4`, `trade_num`, `btc`, `eth`, `con_check`, `total_check`, `fans`, `session_id`) VALUES
-(1, 'yoyoadmin', 0, '2017-09-07', '', 17, 0, 1506049131, 2130706433, 1506657723, 1, 1, 1, '', 0, 0, 0, 0, 21, 0, 0, 0, 0, '0', '0', 0, 2, 1, 'beaos94bmksjl2iv6bsg65fru4'),
-(100, 'vbboy', 0, NULL, '', 9, 2130706433, 1506497016, 2130706433, 1506668833, 1, 1, 1, '', 0, 0, 0, 0, 11, 0, 0, 0, 0, '0', '0', 0, 0, 1, 'pefoq7vucqu5jhhr60u17vlrj7'),
-(101, 'vbboy', 0, NULL, '', 0, 2130706433, 1506497016, 0, 0, 1, 0, 1, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, '0', '0', 0, 0, 0, '');
+INSERT INTO `ocenter_member` (`uid`, `nickname`, `sex`, `trade_count`, `trade_score`, `login`, `reg_ip`, `reg_time`, `last_login_ip`, `last_login_time`, `status`, `last_login_role`, `show_role`, `signature`, `pos_province`, `pos_city`, `pos_district`, `pos_community`, `score1`, `score2`, `score3`, `score4`, `btc_count`, `eth_count`, `btc`, `eth`, `con_check`, `total_check`, `fans`, `trust`, `session_id`, `lang`) VALUES
+(1, 'yoyocoinsdd', 0, 100, 100, 140, 0, 1506049131, 2130706433, 1507974183, 1, 1, 1, '', 0, 0, 0, 0, 21, 0, 0, 0, '0.0000', '0.0000', '0.00000000', '0.00000000', 0, 2, 1, 0, '90fqs8kr976dcfdr370o8pb9u7', 'zh-cn'),
+(100, 'vbboy', 0, 11, 90, 42, 2130706433, 1506497016, 2130706433, 1507973438, 1, 1, 1, '', 0, 0, 0, 0, 31, 0, 0, 0, '0.0000', '0.0000', '0.00000000', '0.00000000', 0, 0, 1, 0, '8cgrqj7u9no82gdlg5k6ecokf6', 'zh-cn'),
+(116, 'soni', 0, NULL, 0, 1, 2130706433, 1507777470, 2130706433, 1507777470, 1, 1, 1, '', 0, 0, 0, 0, 10, 0, 0, 0, '0.0000', '0.0000', '0.00000000', '0.00000000', 0, 0, 0, 0, 'nq4sha7bu0npoit0vcqgv386k0', 'zh-cn');
 
 -- --------------------------------------------------------
 
@@ -5593,27 +5958,27 @@ INSERT INTO `ocenter_menu` (`id`, `title`, `pid`, `sort`, `url`, `hide`, `tip`, 
 (4, '积分规则', 197, 3, 'User/action', 0, '', '行为与积分', 0, '', ''),
 (5, '新增用户行为', 4, 0, 'User/addaction', 0, '', '', 0, '', ''),
 (6, '编辑用户行为', 4, 0, 'User/editaction', 0, '', '', 0, '', ''),
-(7, '保存用户行为', 4, 0, 'User/saveAction', 0, '"用户->用户行为"保存编辑和新增的用户行为', '', 0, '', ''),
-(8, '变更行为状态', 4, 0, 'User/setStatus', 0, '"用户->用户行为"中的启用,禁用和删除权限', '', 0, '', ''),
-(9, '禁用会员', 4, 0, 'User/changeStatus?method=forbidUser', 0, '"用户->用户信息"中的禁用', '', 0, '', ''),
-(10, '启用会员', 4, 0, 'User/changeStatus?method=resumeUser', 0, '"用户->用户信息"中的启用', '', 0, '', ''),
-(11, '删除会员', 4, 0, 'User/changeStatus?method=deleteUser', 0, '"用户->用户信息"中的删除', '', 0, '', ''),
+(7, '保存用户行为', 4, 0, 'User/saveAction', 0, '\"用户->用户行为\"保存编辑和新增的用户行为', '', 0, '', ''),
+(8, '变更行为状态', 4, 0, 'User/setStatus', 0, '\"用户->用户行为\"中的启用,禁用和删除权限', '', 0, '', ''),
+(9, '禁用会员', 4, 0, 'User/changeStatus?method=forbidUser', 0, '\"用户->用户信息\"中的禁用', '', 0, '', ''),
+(10, '启用会员', 4, 0, 'User/changeStatus?method=resumeUser', 0, '\"用户->用户信息\"中的启用', '', 0, '', ''),
+(11, '删除会员', 4, 0, 'User/changeStatus?method=deleteUser', 0, '\"用户->用户信息\"中的删除', '', 0, '', ''),
 (12, '权限组管理', 2, 5, 'AuthManager/index', 0, '', '用户配置', 0, '', ''),
 (13, '删除', 12, 0, 'AuthManager/changeStatus?method=deleteGroup', 0, '删除权限组', '', 1, '', ''),
 (14, '禁用', 12, 0, 'AuthManager/changeStatus?method=forbidGroup', 0, '禁用权限组', '', 1, '', ''),
 (15, '恢复', 12, 0, 'AuthManager/changeStatus?method=resumeGroup', 0, '恢复已禁用的权限组', '', 1, '', ''),
 (16, '新增', 12, 0, 'AuthManager/createGroup', 0, '创建新的权限组', '', 1, '', ''),
 (17, '编辑', 12, 0, 'AuthManager/editGroup', 0, '编辑权限组名称和描述', '', 1, '', ''),
-(18, '保存权限组', 12, 0, 'AuthManager/writeGroup', 0, '新增和编辑权限组的"保存"按钮', '', 0, '', ''),
-(19, '授权', 12, 0, 'AuthManager/group', 0, '"后台 \\ 用户 \\ 用户信息"列表页的"授权"操作按钮,用于设置用户所属权限组', '', 0, '', ''),
-(20, '访问授权', 12, 0, 'AuthManager/access', 0, '"后台 \\ 用户 \\ 权限管理"列表页的"访问授权"操作按钮', '', 0, '', ''),
-(21, '成员授权', 12, 0, 'AuthManager/user', 0, '"后台 \\ 用户 \\ 权限管理"列表页的"成员授权"操作按钮', '', 0, '', ''),
-(22, '解除授权', 12, 0, 'AuthManager/removeFromGroup', 0, '"成员授权"列表页内的解除授权操作按钮', '', 0, '', ''),
-(23, '保存成员授权', 12, 0, 'AuthManager/addToGroup', 0, '"用户信息"列表页"授权"时的"保存"按钮和"成员授权"里右上角的"添加"按钮)', '', 0, '', ''),
-(24, '分类授权', 12, 0, 'AuthManager/category', 0, '"后台 \\ 用户 \\ 权限管理"列表页的"分类授权"操作按钮', '', 0, '', ''),
-(25, '保存分类授权', 12, 0, 'AuthManager/addToCategory', 0, '"分类授权"页面的"保存"按钮', '', 0, '', ''),
-(26, '模型授权', 12, 0, 'AuthManager/modelauth', 0, '"后台 \\ 用户 \\ 权限管理"列表页的"模型授权"操作按钮', '', 0, '', ''),
-(27, '保存模型授权', 12, 0, 'AuthManager/addToModel', 0, '"分类授权"页面的"保存"按钮', '', 0, '', ''),
+(18, '保存权限组', 12, 0, 'AuthManager/writeGroup', 0, '新增和编辑权限组的\"保存\"按钮', '', 0, '', ''),
+(19, '授权', 12, 0, 'AuthManager/group', 0, '\"后台 \\ 用户 \\ 用户信息\"列表页的\"授权\"操作按钮,用于设置用户所属权限组', '', 0, '', ''),
+(20, '访问授权', 12, 0, 'AuthManager/access', 0, '\"后台 \\ 用户 \\ 权限管理\"列表页的\"访问授权\"操作按钮', '', 0, '', ''),
+(21, '成员授权', 12, 0, 'AuthManager/user', 0, '\"后台 \\ 用户 \\ 权限管理\"列表页的\"成员授权\"操作按钮', '', 0, '', ''),
+(22, '解除授权', 12, 0, 'AuthManager/removeFromGroup', 0, '\"成员授权\"列表页内的解除授权操作按钮', '', 0, '', ''),
+(23, '保存成员授权', 12, 0, 'AuthManager/addToGroup', 0, '\"用户信息\"列表页\"授权\"时的\"保存\"按钮和\"成员授权\"里右上角的\"添加\"按钮)', '', 0, '', ''),
+(24, '分类授权', 12, 0, 'AuthManager/category', 0, '\"后台 \\ 用户 \\ 权限管理\"列表页的\"分类授权\"操作按钮', '', 0, '', ''),
+(25, '保存分类授权', 12, 0, 'AuthManager/addToCategory', 0, '\"分类授权\"页面的\"保存\"按钮', '', 0, '', ''),
+(26, '模型授权', 12, 0, 'AuthManager/modelauth', 0, '\"后台 \\ 用户 \\ 权限管理\"列表页的\"模型授权\"操作按钮', '', 0, '', ''),
+(27, '保存模型授权', 12, 0, 'AuthManager/addToModel', 0, '\"分类授权\"页面的\"保存\"按钮', '', 0, '', ''),
 (28, '新增权限节点', 12, 0, 'AuthManager/addNode', 1, '', '', 1, '', ''),
 (29, '前台权限管理', 12, 0, 'AuthManager/accessUser', 1, '', '权限管理', 0, '', ''),
 (30, '删除权限节点', 12, 0, 'AuthManager/deleteNode', 1, '', '', 1, '', ''),
@@ -5867,18 +6232,9 @@ INSERT INTO `ocenter_menu` (`id`, `title`, `pid`, `sort`, `url`, `hide`, `tip`, 
 (10018, '移动版', 0, 0, 'Mob/config', 1, '', '', 0, '', 'Mob'),
 (10019, '基本设置', 10018, 0, 'Mob/config', 0, '', '设置', 0, '', 'Mob'),
 (10020, '导航管理', 10018, 0, 'mob/navigation', 0, '', '设置', 0, '', 'Mob'),
-(10021, '资讯', 0, 22, 'News/index', 1, '', '', 0, '', 'News'),
-(10022, '审核列表', 10021, 0, 'News/audit', 0, '', '资讯管理', 0, '', 'News'),
-(10023, '审核通过', 10022, 0, 'News/setNewsStatus', 1, '', '', 0, '', 'News'),
-(10024, '资讯审核失败操作', 10022, 0, 'News/doAudit', 1, '', '', 0, '', 'News'),
-(10025, '分类管理', 10021, 0, 'News/newsCategory', 0, '', '资讯配置', 0, '', 'News'),
-(10026, '编辑、添加分类', 10025, 0, 'News/add', 1, '', '', 0, '', 'News'),
-(10027, '设置分类状态', 10025, 0, 'News/setStatus', 1, '', '', 0, '', 'News'),
-(10028, '资讯列表', 10021, 0, 'News/index', 0, '', '资讯管理', 0, 'rss-sign', 'News'),
-(10029, '设为到期', 10028, 0, 'News/setDead', 1, '', '', 0, '', 'News'),
-(10030, '编辑、添加资讯', 10028, 0, 'News/editNews', 1, '', '', 0, '', 'News'),
-(10031, '基础配置', 10021, 0, 'News/config', 0, '', '资讯配置', 0, '', 'News'),
-(10032, '资讯回收站', 10021, 0, 'News/newsTrash', 0, '', '资讯管理', 0, '', 'News'),
+(13041, '资讯回收站', 13030, 0, 'News/newsTrash', 0, '', '资讯管理', 0, '', 'News'),
+(13040, '基础配置', 13030, 0, 'News/config', 0, '', '资讯配置', 0, '', 'News'),
+(13039, '编辑、添加资讯', 13037, 0, 'News/editNews', 1, '', '', 0, '', 'News'),
 (13000, '商业版客户端', 0, 0, 'admin/bclient/index', 1, '', '', 0, '', 'Bclient'),
 (13001, '授权登录', 13000, 0, 'admin/bclient/index', 1, '', '授权登录', 0, '', 'Bclient'),
 (13002, '激活过程', 13000, 0, 'admin/bclient/activate', 1, '', '激活过程', 0, '', 'Bclient'),
@@ -5895,8 +6251,17 @@ INSERT INTO `ocenter_menu` (`id`, `title`, `pid`, `sort`, `url`, `hide`, `tip`, 
 (13013, '设置圈子类型状态', 10002, 0, 'Weibo/setcrowdtypestatus', 1, '', '圈子管理', 0, '', ''),
 (13014, '设置圈子状态', 10002, 0, 'Weibo/setcrowdstatus', 1, '', '圈子管理', 0, '', ''),
 (13015, '圈子是否可发送微博', 10002, 0, 'Weibo/doCrowdAllowPost', 1, '', '圈子管理', 0, '', ''),
-(13016, '执行默认信任', 10002, 0, 'Weibo/followCrowd', 0, '', '圈子管理', 0, '', ''),
-(13017, '修复信任数脚本', 10002, 0, 'Weibo/repaircrowdfollow', 1, '', '圈子管理', 0, '', '');
+(13016, '执行默认关注', 10002, 0, 'Weibo/followCrowd', 0, '', '圈子管理', 0, '', ''),
+(13017, '修复关注数脚本', 10002, 0, 'Weibo/repaircrowdfollow', 1, '', '圈子管理', 0, '', ''),
+(13038, '设为到期', 13037, 0, 'News/setDead', 1, '', '', 0, '', 'News'),
+(13037, '资讯列表', 13030, 0, 'News/index', 0, '', '资讯管理', 0, 'rss-sign', 'News'),
+(13036, '设置分类状态', 13034, 0, 'News/setStatus', 1, '', '', 0, '', 'News'),
+(13035, '编辑、添加分类', 13034, 0, 'News/add', 1, '', '', 0, '', 'News'),
+(13034, '分类管理', 13030, 0, 'News/newsCategory', 0, '', '资讯配置', 0, '', 'News'),
+(13033, '资讯审核失败操作', 13031, 0, 'News/doAudit', 1, '', '', 0, '', 'News'),
+(13032, '审核通过', 13031, 0, 'News/setNewsStatus', 1, '', '', 0, '', 'News'),
+(13031, '审核列表', 13030, 0, 'News/audit', 0, '', '资讯管理', 0, '', 'News'),
+(13030, '资讯', 0, 22, 'News/index', 1, '', '', 0, '', 'News');
 
 -- --------------------------------------------------------
 
@@ -5923,7 +6288,159 @@ CREATE TABLE `ocenter_message` (
 
 INSERT INTO `ocenter_message` (`id`, `content_id`, `from_uid`, `to_uid`, `create_time`, `is_read`, `last_toast`, `status`, `type`, `tpl`) VALUES
 (1, 1, 100, 1, 1506669549, 1, 1506669549, 1, 'Ucenter', ''),
-(2, 2, 1, 100, 1506669615, 0, 1506669619, 1, 'Ucenter', '');
+(2, 2, 1, 100, 1506669615, 1, 1506669619, 1, 'Ucenter', ''),
+(22, 21, 116, 100, 1507777508, 1, 1507777585, 1, 'Ucenter', ''),
+(21, 20, 116, 100, 1507777482, 1, 1507777585, 1, 'Ucenter', ''),
+(20, 19, 100, 1, 1507776152, 1, 1507780124, 1, 'Ucenter', ''),
+(19, 18, 1, 100, 1507602836, 1, 1507602843, 1, 'Common_system', ''),
+(18, 18, 1, 1, 1507602836, 1, 1507603672, 1, 'Common_system', ''),
+(12, 12, 100, 1, 1507534076, 1, 1507534081, 1, 'Common_system', ''),
+(13, 13, 100, 1, 1507534970, 1, 1507534973, 1, 'Common_system', ''),
+(14, 14, 100, 1, 1507535010, 1, 1507535017, 1, 'Common_system', ''),
+(15, 15, 100, 1, 1507536193, 1, 1507536199, 1, 'Ucenter', ''),
+(16, 16, 100, 1, 1507536197, 1, 1507536199, 1, 'Ucenter', ''),
+(17, 17, 100, 1, 1507536526, 1, 1507536529, 1, 'Common_system', ''),
+(23, 22, 100, 1, 1507777703, 1, 1507780124, 1, 'Ucenter', ''),
+(24, 23, 100, 1, 1507777716, 1, 1507780124, 1, 'Ucenter', ''),
+(25, 24, 100, 1, 1507778126, 1, 1507780124, 1, 'Ucenter', ''),
+(26, 25, 100, 1, 1507778130, 1, 1507780124, 1, 'Ucenter', ''),
+(27, 26, 100, 1, 1507778134, 1, 1507780124, 1, 'Ucenter', ''),
+(28, 27, 100, 1, 1507778135, 1, 1507780124, 1, 'Ucenter', ''),
+(29, 28, 100, 1, 1507778139, 1, 1507780124, 1, 'Ucenter', ''),
+(30, 29, 100, 1, 1507778182, 1, 1507780124, 1, 'Ucenter', ''),
+(31, 30, 100, 1, 1507778183, 1, 1507780124, 1, 'Ucenter', ''),
+(32, 31, 100, 1, 1507778184, 1, 1507780124, 1, 'Ucenter', ''),
+(33, 32, 100, 1, 1507778187, 1, 1507780124, 1, 'Ucenter', ''),
+(34, 33, 100, 1, 1507778189, 1, 1507780124, 1, 'Ucenter', ''),
+(35, 34, 100, 1, 1507778190, 1, 1507780124, 1, 'Ucenter', ''),
+(36, 35, 100, 1, 1507778190, 1, 1507780124, 1, 'Ucenter', ''),
+(37, 36, 100, 1, 1507778194, 1, 1507780124, 1, 'Ucenter', ''),
+(38, 37, 100, 1, 1507778194, 1, 1507780124, 1, 'Ucenter', ''),
+(39, 38, 100, 1, 1507778195, 1, 1507780124, 1, 'Ucenter', ''),
+(40, 39, 100, 1, 1507778195, 1, 1507780124, 1, 'Ucenter', ''),
+(41, 40, 100, 1, 1507778195, 1, 1507780124, 1, 'Ucenter', ''),
+(42, 41, 100, 1, 1507778195, 1, 1507780124, 1, 'Ucenter', ''),
+(43, 42, 100, 1, 1507778196, 1, 1507780124, 1, 'Ucenter', ''),
+(44, 43, 100, 1, 1507778196, 1, 1507780124, 1, 'Ucenter', ''),
+(45, 44, 100, 1, 1507778198, 1, 1507780124, 1, 'Ucenter', ''),
+(46, 45, 100, 1, 1507778200, 1, 1507780124, 1, 'Ucenter', ''),
+(47, 46, 100, 1, 1507778201, 1, 1507780124, 1, 'Ucenter', ''),
+(48, 47, 100, 1, 1507778202, 1, 1507780124, 1, 'Ucenter', ''),
+(49, 48, 100, 1, 1507778202, 1, 1507780124, 1, 'Ucenter', ''),
+(50, 49, 100, 1, 1507778203, 1, 1507780124, 1, 'Ucenter', ''),
+(51, 50, 100, 1, 1507778203, 1, 1507780124, 1, 'Ucenter', ''),
+(52, 51, 100, 1, 1507778204, 1, 1507780124, 1, 'Ucenter', ''),
+(53, 52, 100, 1, 1507778205, 1, 1507780124, 1, 'Ucenter', ''),
+(54, 53, 100, 1, 1507778205, 1, 1507780124, 1, 'Ucenter', ''),
+(55, 54, 100, 1, 1507778206, 1, 1507780124, 1, 'Ucenter', ''),
+(56, 55, 100, 1, 1507778287, 1, 1507780124, 1, 'Ucenter', ''),
+(57, 56, 100, 1, 1507778289, 1, 1507780124, 1, 'Ucenter', ''),
+(58, 57, 100, 1, 1507778290, 1, 1507780124, 1, 'Ucenter', ''),
+(59, 58, 100, 1, 1507778291, 1, 1507780124, 1, 'Ucenter', ''),
+(60, 59, 100, 1, 1507778291, 1, 1507780124, 1, 'Ucenter', ''),
+(61, 60, 100, 1, 1507778292, 1, 1507780124, 1, 'Ucenter', ''),
+(62, 61, 100, 1, 1507778292, 1, 1507780124, 1, 'Ucenter', ''),
+(63, 62, 100, 1, 1507778292, 1, 1507780124, 1, 'Ucenter', ''),
+(64, 63, 100, 1, 1507778292, 1, 1507780124, 1, 'Ucenter', ''),
+(65, 64, 100, 1, 1507778292, 1, 1507780124, 1, 'Ucenter', ''),
+(66, 65, 100, 1, 1507778293, 1, 1507780124, 1, 'Ucenter', ''),
+(67, 66, 100, 1, 1507778293, 1, 1507780124, 1, 'Ucenter', ''),
+(68, 67, 100, 1, 1507778293, 1, 1507780124, 1, 'Ucenter', ''),
+(69, 68, 100, 1, 1507778293, 1, 1507780124, 1, 'Ucenter', ''),
+(70, 69, 100, 1, 1507778293, 1, 1507780124, 1, 'Ucenter', ''),
+(71, 70, 100, 1, 1507778332, 1, 1507780124, 1, 'Ucenter', ''),
+(72, 71, 100, 1, 1507778357, 1, 1507780124, 1, 'Ucenter', ''),
+(73, 72, 100, 1, 1507778359, 1, 1507780124, 1, 'Ucenter', ''),
+(74, 73, 100, 1, 1507778363, 1, 1507780124, 1, 'Ucenter', ''),
+(75, 74, 100, 1, 1507778435, 1, 1507780124, 1, 'Ucenter', ''),
+(76, 75, 100, 1, 1507778436, 1, 1507780124, 1, 'Ucenter', ''),
+(77, 76, 100, 1, 1507778587, 1, 1507780124, 1, 'Ucenter', ''),
+(78, 77, 100, 1, 1507778588, 1, 1507780124, 1, 'Ucenter', ''),
+(79, 78, 100, 1, 1507778590, 1, 1507780124, 1, 'Ucenter', ''),
+(80, 79, 100, 1, 1507778591, 1, 1507780124, 1, 'Ucenter', ''),
+(81, 80, 100, 1, 1507778607, 1, 1507780124, 1, 'Ucenter', ''),
+(82, 81, 100, 1, 1507778608, 1, 1507780124, 1, 'Ucenter', ''),
+(83, 82, 100, 1, 1507778613, 1, 1507780124, 1, 'Ucenter', ''),
+(84, 83, 100, 1, 1507778614, 1, 1507780124, 1, 'Ucenter', ''),
+(85, 84, 100, 1, 1507778615, 1, 1507780124, 1, 'Ucenter', ''),
+(86, 85, 100, 1, 1507778616, 1, 1507780124, 1, 'Ucenter', ''),
+(87, 86, 100, 1, 1507778653, 1, 1507780124, 1, 'Ucenter', ''),
+(88, 87, 100, 1, 1507778654, 1, 1507780124, 1, 'Ucenter', ''),
+(89, 88, 100, 1, 1507778656, 1, 1507780124, 1, 'Ucenter', ''),
+(90, 89, 100, 1, 1507778663, 1, 1507780124, 1, 'Ucenter', ''),
+(91, 90, 100, 1, 1507779086, 1, 1507780124, 1, 'Ucenter', ''),
+(92, 91, 100, 1, 1507779089, 1, 1507780124, 1, 'Ucenter', ''),
+(93, 92, 100, 1, 1507779090, 1, 1507780124, 1, 'Ucenter', ''),
+(94, 93, 100, 1, 1507779131, 1, 1507780124, 1, 'Ucenter', ''),
+(95, 94, 100, 1, 1507779132, 1, 1507780124, 1, 'Ucenter', ''),
+(96, 95, 100, 1, 1507779134, 1, 1507780124, 1, 'Ucenter', ''),
+(97, 96, 100, 1, 1507779135, 1, 1507780124, 1, 'Ucenter', ''),
+(98, 97, 100, 1, 1507779137, 1, 1507780124, 1, 'Ucenter', ''),
+(99, 98, 100, 1, 1507779884, 1, 1507780124, 1, 'Ucenter', ''),
+(100, 99, 100, 1, 1507779886, 1, 1507780124, 1, 'Ucenter', ''),
+(101, 100, 1, 100, 1507780132, 1, 1507780134, 1, 'Ucenter', ''),
+(102, 101, 1, 100, 1507780145, 1, 1507780147, 1, 'Ucenter', ''),
+(103, 102, 1, 100, 1507780179, 1, 1507780185, 1, 'Ucenter', ''),
+(104, 103, 100, 1, 1507780408, 1, 1507780408, 1, 'Ucenter', ''),
+(105, 104, 100, 1, 1507780424, 1, 1507780428, 1, 'Ucenter', ''),
+(106, 105, 100, 1, 1507780433, 1, 1507780438, 1, 'Ucenter', ''),
+(107, 106, 100, 1, 1507780559, 1, 1507780562, 1, 'Ucenter', ''),
+(108, 107, 100, 1, 1507780565, 1, 1507780572, 1, 'Ucenter', ''),
+(109, 108, 100, 1, 1507780988, 1, 1507781052, 1, 'Ucenter', ''),
+(110, 109, 100, 1, 1507781139, 1, 1507781149, 1, 'Ucenter', ''),
+(111, 110, 100, 1, 1507781212, 1, 1507781249, 1, 'Ucenter', ''),
+(112, 111, 100, 1, 1507787595, 1, 1507846764, 1, 'Ucenter', ''),
+(113, 112, 100, 1, 1507787599, 1, 1507846764, 1, 'Ucenter', ''),
+(114, 113, 100, 1, 1507787601, 1, 1507846764, 1, 'Ucenter', ''),
+(115, 114, 100, 1, 1507787602, 1, 1507846764, 1, 'Ucenter', ''),
+(116, 115, 100, 1, 1507787608, 1, 1507846764, 1, 'Ucenter', ''),
+(117, 116, 100, 1, 1507787916, 1, 1507846764, 1, 'Ucenter', ''),
+(118, 117, 100, 1, 1507787918, 1, 1507846764, 1, 'Ucenter', ''),
+(119, 118, 100, 1, 1507787923, 1, 1507846764, 1, 'Ucenter', ''),
+(120, 119, 100, 1, 1507787923, 1, 1507846764, 1, 'Ucenter', ''),
+(121, 120, 100, 1, 1507788247, 1, 1507846764, 1, 'Ucenter', ''),
+(122, 121, 100, 1, 1507788306, 1, 1507846764, 1, 'Ucenter', ''),
+(123, 122, 100, 1, 1507788349, 1, 1507846764, 1, 'Ucenter', ''),
+(124, 123, 100, 1, 1507788545, 1, 1507846764, 1, 'Ucenter', ''),
+(125, 124, 100, 1, 1507788591, 1, 1507846764, 1, 'Ucenter', ''),
+(126, 125, 100, 1, 1507788593, 1, 1507846764, 1, 'Ucenter', ''),
+(127, 126, 100, 1, 1507788595, 1, 1507846764, 1, 'Ucenter', ''),
+(128, 127, 100, 1, 1507788596, 1, 1507846764, 1, 'Ucenter', ''),
+(129, 128, 100, 1, 1507788622, 1, 1507846764, 1, 'Ucenter', ''),
+(130, 129, 100, 1, 1507788645, 1, 1507846764, 1, 'Ucenter', ''),
+(131, 130, 100, 1, 1507788646, 1, 1507846764, 1, 'Ucenter', ''),
+(132, 131, 100, 1, 1507788724, 1, 1507846764, 1, 'Ucenter', ''),
+(133, 132, 100, 1, 1507788725, 1, 1507846764, 1, 'Ucenter', ''),
+(134, 133, 100, 1, 1507788726, 1, 1507846764, 1, 'Ucenter', ''),
+(135, 134, 100, 1, 1507788727, 1, 1507846764, 1, 'Ucenter', ''),
+(136, 135, 100, 1, 1507788749, 1, 1507846764, 1, 'Ucenter', ''),
+(137, 136, 100, 1, 1507788750, 1, 1507846764, 1, 'Ucenter', ''),
+(138, 137, 100, 1, 1507788751, 1, 1507846764, 1, 'Ucenter', ''),
+(139, 138, 100, 1, 1507788752, 1, 1507846764, 1, 'Ucenter', ''),
+(140, 139, 100, 1, 1507788866, 1, 1507846764, 1, 'Ucenter', ''),
+(141, 140, 100, 1, 1507788867, 1, 1507846764, 1, 'Ucenter', ''),
+(142, 141, 100, 1, 1507788882, 1, 1507846764, 1, 'Ucenter', ''),
+(143, 142, 100, 1, 1507789636, 1, 1507846764, 1, 'Ucenter', ''),
+(144, 143, 100, 1, 1507789637, 1, 1507846764, 1, 'Ucenter', ''),
+(145, 144, 100, 1, 1507789649, 1, 1507846764, 1, 'Ucenter', ''),
+(146, 145, 100, 1, 1507789677, 1, 1507846764, 1, 'Ucenter', ''),
+(147, 146, 100, 1, 1507789678, 1, 1507846764, 1, 'Ucenter', ''),
+(148, 147, 100, 1, 1507789723, 1, 1507846764, 1, 'Ucenter', ''),
+(149, 148, 100, 1, 1507789724, 1, 1507846764, 1, 'Ucenter', ''),
+(150, 149, 100, 1, 1507796933, 1, 1507846764, 1, 'Ucenter', ''),
+(151, 150, 100, 1, 1507796973, 1, 1507846764, 1, 'Ucenter', ''),
+(152, 151, 100, 1, 1507796983, 1, 1507846764, 1, 'Ucenter', ''),
+(153, 152, 100, 1, 1507796986, 1, 1507846764, 1, 'Ucenter', ''),
+(154, 153, 100, 1, 1507796987, 1, 1507846764, 1, 'Ucenter', ''),
+(155, 154, 100, 1, 1507796988, 1, 1507846764, 1, 'Ucenter', ''),
+(156, 155, 100, 1, 1507796989, 1, 1507846764, 1, 'Ucenter', ''),
+(157, 156, 100, 1, 1507796989, 1, 1507846764, 1, 'Ucenter', ''),
+(158, 157, 100, 1, 1507796989, 1, 1507846764, 1, 'Ucenter', ''),
+(159, 158, 100, 1, 1507796989, 1, 1507846764, 1, 'Ucenter', ''),
+(160, 159, 100, 1, 1507797011, 1, 1507846764, 1, 'Ucenter', ''),
+(161, 160, 100, 1, 1507797040, 1, 1507846764, 1, 'Ucenter', ''),
+(162, 161, 100, 1, 1507797143, 1, 1507846764, 1, 'Ucenter', ''),
+(163, 162, 100, 1, 1507798365, 1, 1507846764, 1, 'Ucenter', '');
 
 -- --------------------------------------------------------
 
@@ -5948,8 +6465,168 @@ CREATE TABLE `ocenter_message_content` (
 --
 
 INSERT INTO `ocenter_message_content` (`id`, `from_id`, `title`, `content`, `url`, `args`, `type`, `create_time`, `status`) VALUES
-(1, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{"uid":"100"}', 'Ucenter', 1506669549, 1),
-(2, 1, '粉丝数增加', 'yoyoadmin 信任了你。', 'Ucenter/Index/index', '{"uid":"1"}', 'Ucenter', 1506669615, 1);
+(1, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1506669549, 1),
+(2, 1, '粉丝数增加', 'yoyoadmin 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"1\"}', 'Ucenter', 1506669615, 1),
+(3, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1506762338, 1),
+(4, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1506762359, 1),
+(5, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1507465616, 1),
+(6, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1507467227, 1),
+(7, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1507468884, 1),
+(8, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1507468915, 1),
+(9, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1507532462, 1),
+(10, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1507532490, 1),
+(11, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1507532590, 1),
+(12, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1507534076, 1),
+(13, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1507534970, 1),
+(14, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1507535010, 1),
+(15, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507536193, 1),
+(16, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507536197, 1),
+(17, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1507536526, 1),
+(18, 1, '你好', '<p>nihao k<br/></p>', 'www.baidu.com', '', 'Common_system', 1507602836, 1),
+(19, 100, 'vbboy赞了您', '快去看看吧^……^！', 'weibo/index/weibodetail', '{\"id\":\"1\"}', 'Ucenter', 1507776151, 1),
+(20, 116, '粉丝数增加', 'soni 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"116\"}', 'Ucenter', 1507777482, 1),
+(21, 116, 'soni赞了您', '快去看看吧^……^！', 'weibo/index/weibodetail', '{\"id\":\"2\"}', 'Ucenter', 1507777508, 1),
+(22, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507777703, 1),
+(23, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507777716, 1),
+(24, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778126, 1),
+(25, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778130, 1),
+(26, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778134, 1),
+(27, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778135, 1),
+(28, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778139, 1),
+(29, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778182, 1),
+(30, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778183, 1),
+(31, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778184, 1),
+(32, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778187, 1),
+(33, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778189, 1),
+(34, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778190, 1),
+(35, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778190, 1),
+(36, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778194, 1),
+(37, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778194, 1),
+(38, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778195, 1),
+(39, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778195, 1),
+(40, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778195, 1),
+(41, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778195, 1),
+(42, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778196, 1),
+(43, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778196, 1),
+(44, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778198, 1),
+(45, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778200, 1),
+(46, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778201, 1),
+(47, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778202, 1),
+(48, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778202, 1),
+(49, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778203, 1),
+(50, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778203, 1),
+(51, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778204, 1),
+(52, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778205, 1),
+(53, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778205, 1),
+(54, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778206, 1),
+(55, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778287, 1),
+(56, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778289, 1),
+(57, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778290, 1),
+(58, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778291, 1),
+(59, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778291, 1),
+(60, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778292, 1),
+(61, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778292, 1),
+(62, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778292, 1),
+(63, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778292, 1),
+(64, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778292, 1),
+(65, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778293, 1),
+(66, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778293, 1),
+(67, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778293, 1),
+(68, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778293, 1),
+(69, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778293, 1),
+(70, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778332, 1),
+(71, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778357, 1),
+(72, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778359, 1),
+(73, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778363, 1),
+(74, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778435, 1),
+(75, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778436, 1),
+(76, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778587, 1),
+(77, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778588, 1),
+(78, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778590, 1),
+(79, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778591, 1),
+(80, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778607, 1),
+(81, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778608, 1),
+(82, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778613, 1),
+(83, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778614, 1),
+(84, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778615, 1),
+(85, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778616, 1),
+(86, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778653, 1),
+(87, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778654, 1),
+(88, 100, '粉丝数增加', 'vbboy 关注了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778656, 1),
+(89, 100, '粉丝数减少', 'vbboy 取消了对你的关注。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507778663, 1),
+(90, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507779086, 1),
+(91, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507779089, 1),
+(92, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507779090, 1),
+(93, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507779131, 1),
+(94, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507779132, 1),
+(95, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507779134, 1),
+(96, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507779135, 1),
+(97, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507779137, 1),
+(98, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507779884, 1),
+(99, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507779886, 1),
+(100, 1, '粉丝数减少', 'yoyocoinsdd 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"1\"}', 'Ucenter', 1507780132, 1),
+(101, 1, '粉丝数增加', 'yoyocoinsdd 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"1\"}', 'Ucenter', 1507780145, 1),
+(102, 1, 'yoyocoinsdd赞了您', '快去看看吧^……^！', 'weibo/index/weibodetail', '{\"id\":\"2\"}', 'Ucenter', 1507780179, 1),
+(103, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507780408, 1),
+(104, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507780424, 1),
+(105, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507780433, 1),
+(106, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507780559, 1),
+(107, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507780565, 1),
+(108, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507780988, 1),
+(109, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507781139, 1),
+(110, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507781212, 1),
+(111, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507787595, 1),
+(112, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507787599, 1),
+(113, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507787601, 1),
+(114, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507787602, 1),
+(115, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507787608, 1),
+(116, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507787916, 1),
+(117, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507787918, 1),
+(118, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507787923, 1),
+(119, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507787923, 1),
+(120, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788247, 1),
+(121, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788306, 1),
+(122, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788349, 1),
+(123, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788545, 1),
+(124, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788591, 1),
+(125, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788593, 1),
+(126, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788595, 1),
+(127, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788596, 1),
+(128, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788622, 1),
+(129, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788645, 1),
+(130, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788646, 1),
+(131, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788724, 1),
+(132, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788725, 1),
+(133, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788726, 1),
+(134, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788727, 1),
+(135, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788749, 1),
+(136, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788750, 1),
+(137, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788751, 1),
+(138, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788752, 1),
+(139, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788866, 1),
+(140, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788867, 1),
+(141, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507788882, 1),
+(142, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507789636, 1),
+(143, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507789637, 1),
+(144, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507789649, 1),
+(145, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507789677, 1),
+(146, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507789678, 1),
+(147, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507789723, 1),
+(148, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507789724, 1),
+(149, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507796933, 1),
+(150, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507796973, 1),
+(151, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507796983, 1),
+(152, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507796986, 1),
+(153, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507796987, 1),
+(154, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507796988, 1),
+(155, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507796989, 1),
+(156, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507796989, 1),
+(157, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507796989, 1),
+(158, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507796989, 1),
+(159, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507797011, 1),
+(160, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507797040, 1),
+(161, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507797143, 1),
+(162, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507798365, 1);
 
 -- --------------------------------------------------------
 
@@ -5970,6 +6647,21 @@ CREATE TABLE `ocenter_message_old` (
   `tpl` varchar(100) NOT NULL COMMENT '消息模板'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='消息表';
 
+--
+-- 转存表中的数据 `ocenter_message_old`
+--
+
+INSERT INTO `ocenter_message_old` (`id`, `content_id`, `from_uid`, `to_uid`, `create_time`, `is_read`, `last_toast`, `status`, `type`, `tpl`) VALUES
+(3, 3, 100, 1, 1506762338, 1, 1506762349, 1, 'Common_system', ''),
+(4, 4, 100, 1, 1506762359, 1, 1506762369, 1, 'Common_system', ''),
+(9, 9, 100, 1, 1507532462, 1, 1507532466, 1, 'Common_system', ''),
+(8, 8, 100, 1, 1507468915, 1, 1507468917, 1, 'Common_system', ''),
+(7, 7, 100, 1, 1507468884, 1, 1507468887, 1, 'Common_system', ''),
+(6, 6, 100, 1, 1507467227, 1, 1507468853, 1, 'Common_system', ''),
+(5, 5, 100, 1, 1507465616, 1, 1507468853, 1, 'Common_system', ''),
+(10, 10, 100, 1, 1507532490, 1, 1507532499, 1, 'Common_system', ''),
+(11, 11, 100, 1, 1507532590, 1, 1507532592, 1, 'Common_system', '');
+
 -- --------------------------------------------------------
 
 --
@@ -5989,7 +6681,9 @@ CREATE TABLE `ocenter_message_type` (
 
 INSERT INTO `ocenter_message_type` (`id`, `uid`, `type`, `status`) VALUES
 (1, 1, 'Ucenter', 1),
-(2, 100, 'Ucenter', 1);
+(2, 100, 'Ucenter', 1),
+(3, 1, 'Common_system', 1),
+(4, 100, 'Common_system', 1);
 
 -- --------------------------------------------------------
 
@@ -6069,7 +6763,1144 @@ INSERT INTO `ocenter_module` (`id`, `name`, `alias`, `version`, `is_com`, `show_
 (12, 'Core', '系统公共模块', '2.1.0', 0, 0, '系统核心模块，必不可少，负责核心的处理。', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', '', 1, 0, 'globe', 0, '', 0, '', 0),
 (13, 'Mob', '移动版', '2.8.8', 1, 1, 'OpenSNS移动版', '嘉兴想天信息科技有限公司', 'http://www.opensns.cn', 'Mob/Member/index', 1, 0, 'phone', 1, 'Admin/Mob/config', 0, '', 0),
 (14, 'Coin', '买卖中心', '1.0.0', 0, 1, '买卖模块，比特币交易中心', 'sobit', 'http://www.sobit123.com', 'Coin/index/index', 1, 0, 'rss', 1, 'Admin/Coin/index', 0, '', 0),
-(15, 'Bclient', '商业版客户端', '1.0.0', 1, 0, '商业版客户端，商业客户使用', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', 'Bclient/index/index', 1, 0, 'map-marker', 1, 'Admin/Bclient/index', 0, '', 0);
+(15, 'Bclient', '商业版客户端', '1.0.0', 1, 0, '商业版客户端，商业客户使用', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', 'Bclient/index/index', 1, 0, 'map-marker', 1, 'Admin/Bclient/index', 0, '', 0),
+(16, 'Ad', '发布广告', '1.0.0', 0, 1, '买卖模块，比特币交易中心', 'sobit', 'http://www.sobit123.com', 'Coin/index/index', 1, 0, 'rss', 1, 'Admin/Coin/index', 0, '', 0),
+(17, 'News', '资讯', '2.4.1', 0, 1, '资讯模块，用户可前台投稿的CMS模块', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', 'News/index/index', 1, 0, 'rss', 1, 'Admin/News/index', 0, '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_m_addons`
+--
+
+CREATE TABLE `ocenter_m_addons` (
+  `id` int(10) UNSIGNED NOT NULL COMMENT '主键',
+  `name` varchar(40) NOT NULL COMMENT '插件名或标识',
+  `title` varchar(20) NOT NULL DEFAULT '' COMMENT '中文名',
+  `description` text COMMENT '插件描述',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态',
+  `config` text COMMENT '配置',
+  `author` varchar(40) DEFAULT '' COMMENT '作者',
+  `version` varchar(20) DEFAULT '' COMMENT '版本号',
+  `create_time` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '安装时间',
+  `has_adminlist` tinyint(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否有后台列表'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='插件表';
+
+--
+-- 转存表中的数据 `ocenter_m_addons`
+--
+
+INSERT INTO `ocenter_m_addons` (`id`, `name`, `title`, `description`, `status`, `config`, `author`, `version`, `create_time`, `has_adminlist`) VALUES
+(1, 'ChinaCity', '中国省市区三级联动', '每个系统都需要的一个中国省市区三级联动插件。想天-駿濤修改，将镇级地区移除', 1, 'null', 'i友街', '2.0', 1432792040, 0),
+(2, 'SyncLogin', '同步登陆', '同步登陆', 1, '{\"type\":null,\"meta\":\"\",\"bind\":\"0\",\"QqKEY\":\"\",\"QqSecret\":\"\",\"SinaKEY\":\"\",\"SinaSecret\":\"\",\"WeixinKEY\":\"\",\"WeixinSecret\":\"\"}', 'xjw129xjt', '0.1', 1432792112, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_m_adv`
+--
+
+CREATE TABLE `ocenter_m_adv` (
+  `id` int(11) UNSIGNED NOT NULL COMMENT '主键',
+  `title` char(80) NOT NULL DEFAULT '' COMMENT '广告名称',
+  `pos_id` int(11) NOT NULL COMMENT '广告位置',
+  `data` text NOT NULL COMMENT '图片地址',
+  `click_count` int(11) NOT NULL COMMENT '点击量',
+  `url` varchar(500) NOT NULL COMMENT '链接地址',
+  `sort` int(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '排序',
+  `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态（0：禁用，1：正常）',
+  `create_time` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '开始时间',
+  `start_time` int(11) DEFAULT NULL,
+  `end_time` int(11) UNSIGNED DEFAULT '0' COMMENT '结束时间',
+  `target` varchar(20) DEFAULT '_blank'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='广告表' ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_m_advertisement`
+--
+
+CREATE TABLE `ocenter_m_advertisement` (
+  `id` int(11) NOT NULL,
+  `location` text NOT NULL COMMENT '广告的位置，表示在什么地方显示',
+  `status` tinyint(3) NOT NULL COMMENT '状态：1表示启用，0表示禁用，-1表示删除',
+  `imgid` text NOT NULL COMMENT '图片',
+  `link` text NOT NULL COMMENT '链接地址',
+  `create_time` int(11) NOT NULL,
+  `name` text NOT NULL COMMENT '广告名'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_m_adv_pos`
+--
+
+CREATE TABLE `ocenter_m_adv_pos` (
+  `id` int(11) UNSIGNED NOT NULL COMMENT '主键',
+  `name` varchar(50) NOT NULL,
+  `title` char(80) NOT NULL DEFAULT '' COMMENT '广告位置名称',
+  `path` varchar(100) NOT NULL COMMENT '所在路径 模块/控制器/方法',
+  `type` int(11) UNSIGNED NOT NULL DEFAULT '1' COMMENT '广告位类型 \r\n1.单图\r\n2.多图\r\n3.文字链接\r\n4.代码',
+  `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态（0：禁用，1：正常）',
+  `data` varchar(500) NOT NULL COMMENT '额外的数据',
+  `width` char(20) NOT NULL DEFAULT '' COMMENT '广告位置宽度',
+  `height` char(20) NOT NULL DEFAULT '' COMMENT '广告位置高度',
+  `margin` varchar(50) NOT NULL COMMENT '边缘',
+  `padding` varchar(50) NOT NULL COMMENT '留白',
+  `theme` varchar(50) NOT NULL DEFAULT 'all' COMMENT '适用主题，默认为all，通用'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='广告位置表' ROW_FORMAT=DYNAMIC;
+
+--
+-- 转存表中的数据 `ocenter_m_adv_pos`
+--
+
+INSERT INTO `ocenter_m_adv_pos` (`id`, `name`, `title`, `path`, `type`, `status`, `data`, `width`, `height`, `margin`, `padding`, `theme`) VALUES
+(10003, 'square_adv', '广场', 'Ucenter/Index/square', 2, 1, '[]', '370px', '200px', '', '', 'all'),
+(10004, 'information_adv', '资讯', 'News/Index/index', 2, 1, '[]', '370px', '200px', '', '', 'all');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_m_auth_group`
+--
+
+CREATE TABLE `ocenter_m_auth_group` (
+  `id` mediumint(8) UNSIGNED NOT NULL COMMENT '权限组id,自增主键',
+  `module` varchar(20) NOT NULL COMMENT '权限组所属模块',
+  `type` tinyint(4) NOT NULL COMMENT '组类型',
+  `title` char(20) NOT NULL DEFAULT '' COMMENT '权限组中文名称',
+  `description` varchar(80) NOT NULL DEFAULT '' COMMENT '描述信息',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '权限组状态：为1正常，为0禁用,-1为删除',
+  `rules` text NOT NULL COMMENT '权限组拥有的规则id，多个规则 , 隔开',
+  `end_time` int(11) NOT NULL DEFAULT '2000000000' COMMENT '有效期'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `ocenter_m_auth_group`
+--
+
+INSERT INTO `ocenter_m_auth_group` (`id`, `module`, `type`, `title`, `description`, `status`, `rules`, `end_time`) VALUES
+(1, 'admin', 1, '普通用户', '', 1, ',338,340,341,344,10000', 2000000000),
+(2, 'admin', 1, 'VIP', '', 1, ',338,340,341,344,10000', 2000000000);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_m_auth_group_access`
+--
+
+CREATE TABLE `ocenter_m_auth_group_access` (
+  `uid` int(10) UNSIGNED NOT NULL COMMENT '用户id',
+  `group_id` mediumint(8) UNSIGNED NOT NULL COMMENT '权限组id'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `ocenter_m_auth_group_access`
+--
+
+INSERT INTO `ocenter_m_auth_group_access` (`uid`, `group_id`) VALUES
+(1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_m_auth_rule`
+--
+
+CREATE TABLE `ocenter_m_auth_rule` (
+  `id` mediumint(8) UNSIGNED NOT NULL COMMENT '规则id,自增主键',
+  `module` varchar(20) NOT NULL COMMENT '规则所属module',
+  `type` tinyint(2) NOT NULL DEFAULT '1' COMMENT '1-url;2-主菜单',
+  `name` char(80) NOT NULL DEFAULT '' COMMENT '规则唯一英文标识',
+  `title` char(20) NOT NULL DEFAULT '' COMMENT '规则中文描述',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效(0:无效,1:有效)',
+  `condition` varchar(300) NOT NULL DEFAULT '' COMMENT '规则附加条件'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `ocenter_m_auth_rule`
+--
+
+INSERT INTO `ocenter_m_auth_rule` (`id`, `module`, `type`, `name`, `title`, `status`, `condition`) VALUES
+(1, 'admin', 2, 'Admin/Index/index', '首页', 1, ''),
+(2, 'admin', 2, 'Admin/Article/mydocument', '资讯', -1, ''),
+(3, 'admin', 2, 'Admin/User/index', '用户', 1, ''),
+(4, 'admin', 2, 'Admin/Addons/index', '插件', -1, ''),
+(5, 'admin', 2, 'Admin/Config/group', '系统', 1, ''),
+(7, 'admin', 1, 'Admin/article/add', '新增', -1, ''),
+(8, 'admin', 1, 'Admin/article/edit', '编辑', -1, ''),
+(9, 'admin', 1, 'Admin/article/setStatus', '改变状态', -1, ''),
+(10, 'admin', 1, 'Admin/article/update', '保存', -1, ''),
+(11, 'admin', 1, 'Admin/article/autoSave', '保存草稿', -1, ''),
+(12, 'admin', 1, 'Admin/article/move', '移动', -1, ''),
+(13, 'admin', 1, 'Admin/article/copy', '复制', -1, ''),
+(14, 'admin', 1, 'Admin/article/paste', '粘贴', -1, ''),
+(15, 'admin', 1, 'Admin/article/permit', '还原', -1, ''),
+(16, 'admin', 1, 'Admin/article/clear', '清空', -1, ''),
+(17, 'admin', 1, 'Admin/article/index', '文档列表', -1, ''),
+(18, 'admin', 1, 'Admin/article/recycle', '回收站', -1, ''),
+(19, 'admin', 1, 'Admin/User/addaction', '新增用户行为', 1, ''),
+(20, 'admin', 1, 'Admin/User/editaction', '编辑用户行为', 1, ''),
+(21, 'admin', 1, 'Admin/User/saveAction', '保存用户行为', 1, ''),
+(22, 'admin', 1, 'Admin/User/setStatus', '变更行为状态', 1, ''),
+(23, 'admin', 1, 'Admin/User/changeStatus?method=forbidUser', '禁用会员', 1, ''),
+(24, 'admin', 1, 'Admin/User/changeStatus?method=resumeUser', '启用会员', 1, ''),
+(25, 'admin', 1, 'Admin/User/changeStatus?method=deleteUser', '删除会员', 1, ''),
+(26, 'admin', 1, 'Admin/User/index', '用户信息', 1, ''),
+(27, 'admin', 1, 'Admin/User/action', '用户行为', 1, ''),
+(28, 'admin', 1, 'Admin/AuthManager/changeStatus?method=deleteGroup', '删除', 1, ''),
+(29, 'admin', 1, 'Admin/AuthManager/changeStatus?method=forbidGroup', '禁用', 1, ''),
+(30, 'admin', 1, 'Admin/AuthManager/changeStatus?method=resumeGroup', '恢复', 1, ''),
+(31, 'admin', 1, 'Admin/AuthManager/createGroup', '新增', 1, ''),
+(32, 'admin', 1, 'Admin/AuthManager/editGroup', '编辑', 1, ''),
+(33, 'admin', 1, 'Admin/AuthManager/writeGroup', '保存权限组', 1, ''),
+(34, 'admin', 1, 'Admin/AuthManager/group', '授权', 1, ''),
+(35, 'admin', 1, 'Admin/AuthManager/access', '访问授权', 1, ''),
+(36, 'admin', 1, 'Admin/AuthManager/user', '成员授权', 1, ''),
+(37, 'admin', 1, 'Admin/AuthManager/removeFromGroup', '解除授权', 1, ''),
+(38, 'admin', 1, 'Admin/AuthManager/addToGroup', '保存成员授权', 1, ''),
+(39, 'admin', 1, 'Admin/AuthManager/category', '分类授权', 1, ''),
+(40, 'admin', 1, 'Admin/AuthManager/addToCategory', '保存分类授权', 1, ''),
+(41, 'admin', 1, 'Admin/AuthManager/index', '权限管理', 1, ''),
+(42, 'admin', 1, 'Admin/Addons/create', '创建', 1, ''),
+(43, 'admin', 1, 'Admin/Addons/checkForm', '检测创建', 1, ''),
+(44, 'admin', 1, 'Admin/Addons/preview', '预览', 1, ''),
+(45, 'admin', 1, 'Admin/Addons/build', '快速生成插件', 1, ''),
+(46, 'admin', 1, 'Admin/Addons/config', '设置', 1, ''),
+(47, 'admin', 1, 'Admin/Addons/disable', '禁用', 1, ''),
+(48, 'admin', 1, 'Admin/Addons/enable', '启用', 1, ''),
+(49, 'admin', 1, 'Admin/Addons/install', '安装', 1, ''),
+(50, 'admin', 1, 'Admin/Addons/uninstall', '卸载', 1, ''),
+(51, 'admin', 1, 'Admin/Addons/saveconfig', '更新配置', 1, ''),
+(52, 'admin', 1, 'Admin/Addons/adminList', '插件后台列表', 1, ''),
+(53, 'admin', 1, 'Admin/Addons/execute', 'URL方式访问插件', 1, ''),
+(54, 'admin', 1, 'Admin/Addons/index', '插件管理', 1, ''),
+(55, 'admin', 1, 'Admin/Addons/hooks', '钩子管理', 1, ''),
+(56, 'admin', 1, 'Admin/model/add', '新增', -1, ''),
+(57, 'admin', 1, 'Admin/model/edit', '编辑', -1, ''),
+(58, 'admin', 1, 'Admin/model/setStatus', '改变状态', -1, ''),
+(59, 'admin', 1, 'Admin/model/update', '保存数据', -1, ''),
+(60, 'admin', 1, 'Admin/Model/index', '模型管理', -1, ''),
+(61, 'admin', 1, 'Admin/Config/edit', '编辑', 1, ''),
+(62, 'admin', 1, 'Admin/Config/del', '删除', 1, ''),
+(63, 'admin', 1, 'Admin/Config/add', '新增', 1, ''),
+(64, 'admin', 1, 'Admin/Config/save', '保存', 1, ''),
+(65, 'admin', 1, 'Admin/Config/group', '网站设置', 1, ''),
+(67, 'admin', 1, 'Admin/Channel/add', '新增', 1, ''),
+(68, 'admin', 1, 'Admin/Channel/edit', '编辑', 1, ''),
+(69, 'admin', 1, 'Admin/Channel/del', '删除', 1, ''),
+(70, 'admin', 1, 'Admin/Channel/index', '导航管理', 1, ''),
+(71, 'admin', 1, 'Admin/Category/edit', '编辑', -1, ''),
+(72, 'admin', 1, 'Admin/Category/add', '新增', -1, ''),
+(73, 'admin', 1, 'Admin/Category/remove', '删除', -1, ''),
+(74, 'admin', 1, 'Admin/Category/index', '分类管理', -1, ''),
+(75, 'admin', 1, 'Admin/file/upload', '上传控件', -1, ''),
+(76, 'admin', 1, 'Admin/file/uploadPicture', '上传图片', -1, ''),
+(77, 'admin', 1, 'Admin/file/download', '下载', -1, ''),
+(94, 'admin', 1, 'Admin/AuthManager/modelauth', '模型授权', 1, ''),
+(79, 'admin', 1, 'Admin/article/batchOperate', '导入', -1, ''),
+(82, 'admin', 1, 'Admin/Database/export', '备份', 1, ''),
+(83, 'admin', 1, 'Admin/Database/optimize', '优化表', 1, ''),
+(84, 'admin', 1, 'Admin/Database/repair', '修复表', 1, ''),
+(86, 'admin', 1, 'Admin/Database/import', '恢复', 1, ''),
+(87, 'admin', 1, 'Admin/Database/del', '删除', 1, ''),
+(88, 'admin', 1, 'Admin/User/add', '新增用户', -1, ''),
+(89, 'admin', 1, 'Admin/Attribute/index', '属性管理', -1, ''),
+(90, 'admin', 1, 'Admin/Attribute/add', '新增', -1, ''),
+(91, 'admin', 1, 'Admin/Attribute/edit', '编辑', -1, ''),
+(92, 'admin', 1, 'Admin/Attribute/setStatus', '改变状态', -1, ''),
+(93, 'admin', 1, 'Admin/Attribute/update', '保存数据', -1, ''),
+(95, 'admin', 1, 'Admin/AuthManager/addToModel', '保存模型授权', 1, ''),
+(96, 'admin', 1, 'Admin/Category/move', '移动', -1, ''),
+(97, 'admin', 1, 'Admin/Category/merge', '合并', -1, ''),
+(98, 'admin', 1, 'Admin/Config/menu', '后台菜单管理', -1, ''),
+(99, 'admin', 1, 'Admin/Article/mydocument', '内容', -1, ''),
+(100, 'admin', 1, 'Admin/Menu/index', '菜单管理', 1, ''),
+(101, 'admin', 1, 'Admin/other', '其他', -1, ''),
+(102, 'admin', 1, 'Admin/Menu/add', '新增', 1, ''),
+(103, 'admin', 1, 'Admin/Menu/edit', '编辑', 1, ''),
+(104, 'admin', 1, 'Admin/Think/lists?model=article', '文章管理', -1, ''),
+(105, 'admin', 1, 'Admin/Think/lists?model=download', '下载管理', -1, ''),
+(106, 'admin', 1, 'Admin/Think/lists?model=config', '配置管理', -1, ''),
+(107, 'admin', 1, 'Admin/Action/actionlog', '行为日志', 1, ''),
+(108, 'admin', 1, 'Admin/User/updatePassword', '修改密码', 1, ''),
+(109, 'admin', 1, 'Admin/User/updateNickname', '修改昵称', 1, ''),
+(110, 'admin', 1, 'Admin/action/edit', '查看行为日志', 1, ''),
+(205, 'admin', 1, 'Admin/think/add', '新增数据', -1, ''),
+(111, 'admin', 2, 'Admin/article/index', '文档列表', -1, ''),
+(112, 'admin', 2, 'Admin/article/add', '新增', -1, ''),
+(113, 'admin', 2, 'Admin/article/edit', '编辑', -1, ''),
+(114, 'admin', 2, 'Admin/article/setStatus', '改变状态', -1, ''),
+(115, 'admin', 2, 'Admin/article/update', '保存', -1, ''),
+(116, 'admin', 2, 'Admin/article/autoSave', '保存草稿', -1, ''),
+(117, 'admin', 2, 'Admin/article/move', '移动', -1, ''),
+(118, 'admin', 2, 'Admin/article/copy', '复制', -1, ''),
+(119, 'admin', 2, 'Admin/article/paste', '粘贴', -1, ''),
+(120, 'admin', 2, 'Admin/article/batchOperate', '导入', -1, ''),
+(121, 'admin', 2, 'Admin/article/recycle', '回收站', -1, ''),
+(122, 'admin', 2, 'Admin/article/permit', '还原', -1, ''),
+(123, 'admin', 2, 'Admin/article/clear', '清空', -1, ''),
+(124, 'admin', 2, 'Admin/User/add', '新增用户', -1, ''),
+(125, 'admin', 2, 'Admin/User/action', '用户行为', -1, ''),
+(126, 'admin', 2, 'Admin/User/addAction', '新增用户行为', -1, ''),
+(127, 'admin', 2, 'Admin/User/editAction', '编辑用户行为', -1, ''),
+(128, 'admin', 2, 'Admin/User/saveAction', '保存用户行为', -1, ''),
+(129, 'admin', 2, 'Admin/User/setStatus', '变更行为状态', -1, ''),
+(130, 'admin', 2, 'Admin/User/changeStatus?method=forbidUser', '禁用会员', -1, ''),
+(131, 'admin', 2, 'Admin/User/changeStatus?method=resumeUser', '启用会员', -1, ''),
+(132, 'admin', 2, 'Admin/User/changeStatus?method=deleteUser', '删除会员', -1, ''),
+(133, 'admin', 2, 'Admin/AuthManager/index', '权限管理', -1, ''),
+(134, 'admin', 2, 'Admin/AuthManager/changeStatus?method=deleteGroup', '删除', -1, ''),
+(135, 'admin', 2, 'Admin/AuthManager/changeStatus?method=forbidGroup', '禁用', -1, ''),
+(136, 'admin', 2, 'Admin/AuthManager/changeStatus?method=resumeGroup', '恢复', -1, ''),
+(137, 'admin', 2, 'Admin/AuthManager/createGroup', '新增', -1, ''),
+(138, 'admin', 2, 'Admin/AuthManager/editGroup', '编辑', -1, ''),
+(139, 'admin', 2, 'Admin/AuthManager/writeGroup', '保存权限组', -1, ''),
+(140, 'admin', 2, 'Admin/AuthManager/group', '授权', -1, ''),
+(141, 'admin', 2, 'Admin/AuthManager/access', '访问授权', -1, ''),
+(142, 'admin', 2, 'Admin/AuthManager/user', '成员授权', -1, ''),
+(143, 'admin', 2, 'Admin/AuthManager/removeFromGroup', '解除授权', -1, ''),
+(144, 'admin', 2, 'Admin/AuthManager/addToGroup', '保存成员授权', -1, ''),
+(145, 'admin', 2, 'Admin/AuthManager/category', '分类授权', -1, ''),
+(146, 'admin', 2, 'Admin/AuthManager/addToCategory', '保存分类授权', -1, ''),
+(147, 'admin', 2, 'Admin/AuthManager/modelauth', '模型授权', -1, ''),
+(148, 'admin', 2, 'Admin/AuthManager/addToModel', '保存模型授权', -1, ''),
+(149, 'admin', 2, 'Admin/Addons/create', '创建', -1, ''),
+(150, 'admin', 2, 'Admin/Addons/checkForm', '检测创建', -1, ''),
+(151, 'admin', 2, 'Admin/Addons/preview', '预览', -1, ''),
+(152, 'admin', 2, 'Admin/Addons/build', '快速生成插件', -1, ''),
+(153, 'admin', 2, 'Admin/Addons/config', '设置', -1, ''),
+(154, 'admin', 2, 'Admin/Addons/disable', '禁用', -1, ''),
+(155, 'admin', 2, 'Admin/Addons/enable', '启用', -1, ''),
+(156, 'admin', 2, 'Admin/Addons/install', '安装', -1, ''),
+(157, 'admin', 2, 'Admin/Addons/uninstall', '卸载', -1, ''),
+(158, 'admin', 2, 'Admin/Addons/saveconfig', '更新配置', -1, ''),
+(159, 'admin', 2, 'Admin/Addons/adminList', '插件后台列表', -1, ''),
+(160, 'admin', 2, 'Admin/Addons/execute', 'URL方式访问插件', -1, ''),
+(161, 'admin', 2, 'Admin/Addons/hooks', '钩子管理', -1, ''),
+(162, 'admin', 2, 'Admin/Model/index', '模型管理', -1, ''),
+(163, 'admin', 2, 'Admin/model/add', '新增', -1, ''),
+(164, 'admin', 2, 'Admin/model/edit', '编辑', -1, ''),
+(165, 'admin', 2, 'Admin/model/setStatus', '改变状态', -1, ''),
+(166, 'admin', 2, 'Admin/model/update', '保存数据', -1, ''),
+(167, 'admin', 2, 'Admin/Attribute/index', '属性管理', -1, ''),
+(168, 'admin', 2, 'Admin/Attribute/add', '新增', -1, ''),
+(169, 'admin', 2, 'Admin/Attribute/edit', '编辑', -1, ''),
+(170, 'admin', 2, 'Admin/Attribute/setStatus', '改变状态', -1, ''),
+(171, 'admin', 2, 'Admin/Attribute/update', '保存数据', -1, ''),
+(173, 'admin', 2, 'Admin/Config/edit', '编辑', -1, ''),
+(174, 'admin', 2, 'Admin/Config/del', '删除', -1, ''),
+(175, 'admin', 2, 'Admin/Config/add', '新增', -1, ''),
+(176, 'admin', 2, 'Admin/Config/save', '保存', -1, ''),
+(177, 'admin', 2, 'Admin/Menu/index', '菜单管理', -1, ''),
+(178, 'admin', 2, 'Admin/Channel/index', '导航管理', -1, ''),
+(179, 'admin', 2, 'Admin/Channel/add', '新增', -1, ''),
+(180, 'admin', 2, 'Admin/Channel/edit', '编辑', -1, ''),
+(181, 'admin', 2, 'Admin/Channel/del', '删除', -1, ''),
+(182, 'admin', 2, 'Admin/Category/index', '分类管理', -1, ''),
+(183, 'admin', 2, 'Admin/Category/edit', '编辑', -1, ''),
+(184, 'admin', 2, 'Admin/Category/add', '新增', -1, ''),
+(185, 'admin', 2, 'Admin/Category/remove', '删除', -1, ''),
+(186, 'admin', 2, 'Admin/Category/move', '移动', -1, ''),
+(187, 'admin', 2, 'Admin/Category/merge', '合并', -1, ''),
+(195, 'admin', 2, 'Admin/other', '其他', -1, ''),
+(196, 'admin', 2, 'Admin/Menu/add', '新增', -1, ''),
+(197, 'admin', 2, 'Admin/Menu/edit', '编辑', -1, ''),
+(198, 'admin', 2, 'Admin/Think/lists?model=article', '应用', -1, ''),
+(199, 'admin', 2, 'Admin/Think/lists?model=download', '下载管理', -1, ''),
+(200, 'admin', 2, 'Admin/Think/lists?model=config', '应用', -1, ''),
+(201, 'admin', 2, 'Admin/Action/actionlog', '行为日志', -1, ''),
+(202, 'admin', 2, 'Admin/User/updatePassword', '修改密码', -1, ''),
+(203, 'admin', 2, 'Admin/User/updateNickname', '修改昵称', -1, ''),
+(204, 'admin', 2, 'Admin/action/edit', '查看行为日志', -1, ''),
+(206, 'admin', 1, 'Admin/think/edit', '编辑数据', -1, ''),
+(207, 'admin', 1, 'Admin/Menu/import', '导入', 1, ''),
+(208, 'admin', 1, 'Admin/Model/generate', '生成', -1, ''),
+(209, 'admin', 1, 'Admin/Addons/addHook', '新增钩子', 1, ''),
+(210, 'admin', 1, 'Admin/Addons/edithook', '编辑钩子', 1, ''),
+(211, 'admin', 1, 'Admin/Article/sort', '文档排序', -1, ''),
+(212, 'admin', 1, 'Admin/Config/sort', '排序', 1, ''),
+(213, 'admin', 1, 'Admin/Menu/sort', '排序', 1, ''),
+(214, 'admin', 1, 'Admin/Channel/sort', '排序', 1, ''),
+(215, 'admin', 1, 'Admin/Category/operate/type/move', '移动', -1, ''),
+(216, 'admin', 1, 'Admin/Category/operate/type/merge', '合并', -1, ''),
+(217, 'admin', 1, 'Admin/Forum/forum', '板块管理', -1, ''),
+(218, 'admin', 1, 'Admin/Forum/post', '帖子管理', -1, ''),
+(219, 'admin', 1, 'Admin/Forum/editForum', '编辑／发表帖子', -1, ''),
+(220, 'admin', 1, 'Admin/Forum/editPost', 'edit pots', -1, ''),
+(221, 'admin', 2, 'Admin//Admin/Forum/index', '讨论区', -1, ''),
+(222, 'admin', 2, 'Admin//Admin/Weibo/index', '动态', -1, ''),
+(223, 'admin', 1, 'Admin/Forum/sortForum', '排序', -1, ''),
+(224, 'admin', 1, 'Admin/SEO/editRule', '新增、编辑', 1, ''),
+(225, 'admin', 1, 'Admin/SEO/sortRule', '排序', 1, ''),
+(226, 'admin', 1, 'Admin/SEO/index', 'SEO规则管理', 1, ''),
+(227, 'admin', 1, 'Admin/Forum/editReply', '新增 编辑', -1, ''),
+(228, 'admin', 1, 'Admin/Weibo/editComment', '编辑回复', 1, ''),
+(229, 'admin', 1, 'Admin/Weibo/editWeibo', '编辑动态', 1, ''),
+(230, 'admin', 1, 'Admin/SEO/ruleTrash', 'SEO规则回收站', 1, ''),
+(231, 'admin', 1, 'Admin/Rank/userList', '查看用户', 1, ''),
+(232, 'admin', 1, 'Admin/Rank/userRankList', '用户头衔列表', 1, ''),
+(233, 'admin', 1, 'Admin/Rank/userAddRank', '关联新头衔', 1, ''),
+(234, 'admin', 1, 'Admin/Rank/userChangeRank', '编辑头衔关联', 1, ''),
+(235, 'admin', 1, 'Admin/Issue/add', '编辑专辑', -1, ''),
+(236, 'admin', 1, 'Admin/Issue/issue', '专辑管理', -1, ''),
+(237, 'admin', 1, 'Admin/Issue/operate', '专辑操作', -1, ''),
+(238, 'admin', 1, 'Admin/Weibo/weibo', '动态管理', 1, ''),
+(239, 'admin', 1, 'Admin/Rank/index', '头衔列表', 1, ''),
+(240, 'admin', 1, 'Admin/Forum/forumTrash', '板块回收站', -1, ''),
+(241, 'admin', 1, 'Admin/Weibo/weiboTrash', '动态回收站', 1, ''),
+(242, 'admin', 1, 'Admin/Rank/editRank', '添加头衔', 1, ''),
+(243, 'admin', 1, 'Admin/Weibo/comment', '回复管理', 1, ''),
+(244, 'admin', 1, 'Admin/Forum/postTrash', '帖子回收站', -1, ''),
+(245, 'admin', 1, 'Admin/Weibo/commentTrash', '回复回收站', 1, ''),
+(246, 'admin', 1, 'Admin/Issue/issueTrash', '专辑回收站', -1, ''),
+(247, 'admin', 1, 'Admin//Admin/Forum/reply', '回复管理', -1, ''),
+(248, 'admin', 1, 'Admin/Forum/replyTrash', '回复回收站', -1, ''),
+(249, 'admin', 2, 'Admin/Forum/index', '贴吧', -1, ''),
+(250, 'admin', 2, 'Admin/Weibo/weibo', '动态', 1, ''),
+(251, 'admin', 2, 'Admin/SEO/index', 'SEO', -1, ''),
+(252, 'admin', 2, 'Admin/Rank/index', '头衔', -1, ''),
+(253, 'admin', 2, 'Admin/Issue/issue', '专辑', -1, ''),
+(254, 'admin', 1, 'Admin/Issue/contents', '内容管理', -1, ''),
+(255, 'admin', 1, 'Admin/User/profile', '扩展资料', 1, ''),
+(256, 'admin', 1, 'Admin/User/editProfile', '添加、编辑分组', 1, ''),
+(257, 'admin', 1, 'Admin/User/sortProfile', '分组排序', 1, ''),
+(258, 'admin', 1, 'Admin/User/field', '字段列表', 1, ''),
+(259, 'admin', 1, 'Admin/User/editFieldSetting', '添加、编辑字段', 1, ''),
+(260, 'admin', 1, 'Admin/User/sortField', '字段排序', 1, ''),
+(261, 'admin', 1, 'Admin/Update/quick', '全部补丁', 1, ''),
+(262, 'admin', 1, 'Admin/Update/addpack', '新增补丁', 1, ''),
+(263, 'admin', 1, 'Admin/User/expandinfo_select', '用户扩展资料列表', 1, ''),
+(264, 'admin', 1, 'Admin/User/expandinfo_details', '扩展资料详情', 1, ''),
+(265, 'admin', 1, 'Admin/Shop/shopLog', '商城信息记录', -1, ''),
+(266, 'admin', 1, 'Admin/Shop/setStatus', '商品分类状态设置', -1, ''),
+(267, 'admin', 1, 'Admin/Shop/setGoodsStatus', '商品状态设置', -1, ''),
+(268, 'admin', 1, 'Admin/Shop/operate', '商品分类操作', -1, ''),
+(269, 'admin', 1, 'Admin/Shop/add', '商品分类添加', -1, ''),
+(270, 'admin', 1, 'Admin/Shop/goodsEdit', '添加、编辑商品', -1, ''),
+(271, 'admin', 1, 'Admin/Shop/hotSellConfig', '热销商品阀值配置', -1, ''),
+(272, 'admin', 1, 'Admin/Shop/setNew', '设置新品', -1, ''),
+(273, 'admin', 1, 'Admin/EventType/index', '活动分类管理', -1, ''),
+(274, 'admin', 1, 'Admin/Event/event', '内容管理', -1, ''),
+(275, 'admin', 1, 'Admin/EventType/eventTypeTrash', '活动分类回收站', -1, ''),
+(276, 'admin', 1, 'Admin/Event/verify', '内容审核', -1, ''),
+(277, 'admin', 1, 'Admin/Event/contentTrash', '内容回收站', -1, ''),
+(278, 'admin', 1, 'Admin/Rank/rankVerify', '待审核用户头衔', 1, ''),
+(279, 'admin', 1, 'Admin/Rank/rankVerifyFailure', '被驳回的头衔申请', 1, ''),
+(280, 'admin', 1, 'Admin/Weibo/config', '动态设置', 1, ''),
+(281, 'admin', 1, 'Admin/Issue/verify', '内容审核', -1, ''),
+(282, 'admin', 1, 'Admin/Shop/goodsList', '商品列表', -1, ''),
+(283, 'admin', 1, 'Admin/Shop/shopCategory', '商品分类配置', -1, ''),
+(284, 'admin', 1, 'Admin/Shop/categoryTrash', '商品分类回收站', -1, ''),
+(285, 'admin', 1, 'Admin/Shop/verify', '待发货交易', -1, ''),
+(286, 'admin', 1, 'Admin/Issue/contentTrash', '内容回收站', -1, ''),
+(287, 'admin', 1, 'Admin/Shop/goodsBuySuccess', '交易成功记录', -1, ''),
+(288, 'admin', 1, 'Admin/Shop/goodsTrash', '商品回收站', -1, ''),
+(289, 'admin', 1, 'Admin/Shop/toxMoneyConfig', '货币配置', -1, ''),
+(290, 'admin', 2, 'Admin/Shop/shopCategory', '商城', -1, ''),
+(291, 'admin', 2, 'Admin/EventType/index', '活动', -1, ''),
+(340, 'Weibo', 1, 'Weibo/Index/doSend', '发动态', 1, ''),
+(297, 'Home', 1, 'deleteLocalComment', '删除本地评论', 1, ''),
+(306, 'Issue', 1, 'addIssueContent', '专辑投稿权限', 1, ''),
+(307, 'Issue', 1, 'editIssueContent', '编辑专辑内容（管理）', 1, ''),
+(339, 'Weibo', 1, 'Weibo/Index/doDelWeibo', '删除动态(管理)', 1, ''),
+(338, 'Weibo', 1, 'Weibo/Index/doSendRepost', '转发动态', 1, ''),
+(313, 'admin', 1, 'Admin/module/install', '模块安装', 1, ''),
+(315, 'admin', 1, 'Admin/module/lists', '模块管理', 1, ''),
+(316, 'admin', 1, 'Admin/module/uninstall', '卸载模块', 1, ''),
+(317, 'admin', 1, 'Admin/AuthManager/addNode', '新增权限节点', 1, ''),
+(318, 'admin', 1, 'Admin/AuthManager/accessUser', '前台权限管理', 1, ''),
+(319, 'admin', 1, 'Admin/User/changeGroup', '转移权限组', 1, ''),
+(320, 'admin', 1, 'Admin/AuthManager/deleteNode', '删除权限节点', 1, ''),
+(321, 'admin', 1, 'Admin/Issue/config', '专辑设置', -1, ''),
+(322, 'admin', 2, 'Admin/module/lists', '云平台', -1, ''),
+(341, 'Weibo', 1, 'Weibo/Index/doComment', '评论动态', 1, ''),
+(342, 'Weibo', 1, 'Weibo/Index/doDelComment', '删除评论动态(管理)', 1, ''),
+(343, 'Weibo', 1, 'Weibo/Index/setTop', '动态置顶(管理)', 1, ''),
+(346, 'admin', 1, 'Admin/UserConfig/index', '用户注册配置', 1, ''),
+(347, 'admin', 1, 'Admin/User/scoreList', '积分类型列表', 1, ''),
+(348, 'admin', 1, 'Admin/user/editScoreType', '新增/编辑类型', 1, ''),
+(349, 'admin', 1, 'Admin/user/recharge', '充值积分', 1, ''),
+(350, 'admin', 1, 'Admin/Authorize/ssoSetting', '单点登录配置', 1, ''),
+(351, 'admin', 1, 'Admin/Authorize/ssolist', '应用列表', 1, ''),
+(352, 'admin', 1, 'Admin/authorize/editssoapp', '新增/编辑应用', 1, ''),
+(353, 'admin', 1, 'Admin/ActionLimit/limitList', '行为限制列表', 1, ''),
+(354, 'admin', 1, 'Admin/ActionLimit/editLimit', '新增/编辑行为限制', 1, ''),
+(355, 'admin', 1, 'Admin/Role/index', '角色列表', 1, ''),
+(356, 'admin', 1, 'Admin/Role/editRole', '编辑角色', 1, ''),
+(357, 'admin', 1, 'Admin/Role/setStatus', '启用、禁用、删除角色', 1, ''),
+(358, 'admin', 1, 'Admin/Role/sort', '角色排序', 1, ''),
+(359, 'admin', 1, 'Admin/Role/configScore', '默认积分配置', 1, ''),
+(360, 'admin', 1, 'Admin/Role/configAuth', '默认权限配置', 1, ''),
+(361, 'admin', 1, 'Admin/Role/configAvatar', '默认头像配置', 1, ''),
+(362, 'admin', 1, 'Admin/Role/configRank', '默认头衔配置', 1, ''),
+(363, 'admin', 1, 'Admin/Role/configField', '默认字段管理', 1, ''),
+(364, 'admin', 1, 'Admin/Role/group', '角色分组', 1, ''),
+(365, 'admin', 1, 'Admin/Role/editGroup', '编辑分组', 1, ''),
+(366, 'admin', 1, 'Admin/Role/deleteGroup', '删除分组', 1, ''),
+(367, 'admin', 1, 'Admin/Role/config', '角色基本信息配置', 1, ''),
+(368, 'admin', 1, 'Admin/Role/userList', '用户列表', 1, ''),
+(369, 'admin', 1, 'Admin/Role/setUserStatus', '设置用户状态', 1, ''),
+(370, 'admin', 1, 'Admin/Role/setUserAudit', '审核用户', 1, ''),
+(371, 'admin', 1, 'Admin/Role/changeRole', '迁移用户', 1, ''),
+(372, 'admin', 1, 'Admin/Role/uploadPicture', '上传默认头像', 1, ''),
+(373, 'admin', 1, 'Admin/Invite/index', '类型管理', 1, ''),
+(374, 'admin', 1, 'Admin/Invite/invite', '邀请码管理', 1, ''),
+(375, 'admin', 1, 'Admin/Invite/config', '基础配置', 1, ''),
+(376, 'admin', 1, 'Admin/Invite/buyLog', '兑换记录', 1, ''),
+(377, 'admin', 1, 'Admin/Invite/inviteLog', '邀请记录', 1, ''),
+(378, 'admin', 1, 'Admin/Invite/userInfo', '用户信息', 1, ''),
+(379, 'admin', 1, 'Admin/Invite/edit', '编辑邀请注册类型', 1, ''),
+(380, 'admin', 1, 'Admin/Invite/setStatus', '删除邀请', 1, ''),
+(381, 'admin', 1, 'Admin/Invite/delete', '删除邀请码', 1, ''),
+(382, 'admin', 1, 'Admin/Invite/createCode', '生成邀请码', 1, ''),
+(383, 'admin', 1, 'Admin/Invite/deleteTrue', '删除无用邀请码', 1, ''),
+(384, 'admin', 1, 'Admin/Invite/cvs', '导出cvs', 1, ''),
+(385, 'admin', 1, 'Admin/Invite/editUserInfo', '用户信息编辑', 1, ''),
+(386, 'admin', 1, 'Admin/Action/remove', '删除日志', 1, ''),
+(387, 'admin', 1, 'Admin/Action/clear', '清空日志', 1, ''),
+(388, 'admin', 1, 'Admin/User/setTypeStatus', '设置积分状态', 1, ''),
+(389, 'admin', 1, 'Admin/User/delType', '删除积分类型', 1, ''),
+(390, 'admin', 1, 'Admin/User/getNickname', '充值积分', 1, ''),
+(391, 'admin', 1, 'Admin/Menu/del', '删除菜单', 1, ''),
+(392, 'admin', 1, 'Admin/Menu/toogleDev', '设置开发者模式可见', 1, ''),
+(393, 'admin', 1, 'Admin/Menu/toogleHide', '设置显示隐藏', 1, ''),
+(394, 'admin', 1, 'Admin/ActionLimit/setLimitStatus', '行为限制启用、禁用、删除', 1, ''),
+(395, 'admin', 1, 'Admin/SEO/setRuleStatus', '启用、禁用、删除、回收站还原', 1, ''),
+(396, 'admin', 1, 'Admin/SEO/doClear', '回收站彻底删除', 1, ''),
+(397, 'admin', 1, 'Admin/Role/initUnhaveUser', '初始化无角色用户', 1, ''),
+(398, 'admin', 1, 'Admin/Addons/delHook', '删除钩子', 1, ''),
+(399, 'admin', 1, 'Admin/Update/usePack', '使用补丁', 1, ''),
+(400, 'admin', 1, 'Admin/Update/view', '查看补丁', 1, ''),
+(401, 'admin', 1, 'Admin/Update/delPack', '删除补丁', 1, ''),
+(402, 'admin', 1, 'Admin/UserTag/userTag', '标签列表', 1, ''),
+(403, 'admin', 1, 'Admin/UserTag/add', '添加分类、标签', 1, ''),
+(404, 'admin', 1, 'Admin/UserTag/setStatus', '设置分类、标签状态', 1, ''),
+(405, 'admin', 1, 'Admin/UserTag/tagTrash', '分类、标签回收站', 1, ''),
+(406, 'admin', 1, 'Admin/UserTag/userTagClear', '测底删除回收站内容', 1, ''),
+(407, 'admin', 1, 'Admin/role/configusertag', '可拥有标签配置', 1, ''),
+(408, 'admin', 1, 'Admin/Module/edit', '编辑模块', 1, ''),
+(409, 'admin', 1, 'Admin/Config/website', '网站信息', 1, ''),
+(410, 'admin', 1, 'Admin/Theme/setTheme', '使用主题', 1, ''),
+(411, 'admin', 1, 'Admin/Theme/lookTheme', '查看主题', 1, ''),
+(412, 'admin', 1, 'Admin/Theme/packageDownload', '主题打包下载', 1, ''),
+(413, 'admin', 1, 'Admin/Theme/delete', '卸载删除主题', 1, ''),
+(414, 'admin', 1, 'Admin/Theme/add', '上传安装主题', 1, ''),
+(415, 'admin', 2, 'Admin/Home/config', '网站主页', 1, ''),
+(416, 'admin', 1, 'Admin/Home/config', '基本设置', 1, ''),
+(418, 'admin', 1, 'Admin/Weibo/setWeiboTop', '置顶动态', 1, ''),
+(419, 'admin', 1, 'Admin/Weibo/setWeiboStatus', '设置动态状态', 1, ''),
+(420, 'admin', 1, 'Admin/Weibo/setCommentStatus', '设置动态评论状态', 1, ''),
+(423, 'admin', 1, 'Admin/People/config', '基本设置', 1, ''),
+(424, 'admin', 1, 'Admin/Cloud/index', '云市场', 1, ''),
+(425, 'admin', 2, 'Admin/authorize/ssoSetting', '授权', 1, ''),
+(426, 'admin', 2, 'Admin/Role/index', '角色', 1, ''),
+(428, 'admin', 2, 'Admin/ActionLimit/limitList', '安全', 1, ''),
+(429, 'admin', 2, 'Admin/Cloud/index', '云市场', 1, ''),
+(430, 'admin', 2, 'Admin/People/config', '会员展示', 1, ''),
+(431, 'admin', 1, 'Admin/Index/index', '后台入口', 1, ''),
+(432, 'Weibo', 1, 'Weibo/Index/editWeibo', '编辑动态(管理)', 1, ''),
+(433, 'Ucenter', 1, 'Ucenter/Attest/apply', '申请认证', 1, ''),
+(10000, 'News', 1, 'News/Index/add', '资讯投稿', 1, ''),
+(10001, 'News', 1, 'News/Index/edit', '编辑资讯（管理）', 1, '');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_m_channel`
+--
+
+CREATE TABLE `ocenter_m_channel` (
+  `id` int(10) UNSIGNED NOT NULL COMMENT '频道ID',
+  `pid` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '上级频道ID',
+  `title` char(30) NOT NULL COMMENT '频道标题',
+  `url` char(100) NOT NULL COMMENT '频道连接',
+  `sort` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '导航排序',
+  `create_time` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '状态',
+  `target` tinyint(2) UNSIGNED NOT NULL DEFAULT '0' COMMENT '新窗口打开',
+  `out_site` tinyint(2) NOT NULL DEFAULT '0' COMMENT '是否为站外链接',
+  `color` varchar(30) NOT NULL,
+  `band_color` varchar(30) NOT NULL,
+  `band_text` varchar(30) NOT NULL,
+  `icon` varchar(20) NOT NULL,
+  `image` int(11) NOT NULL,
+  `remark` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `ocenter_m_channel`
+--
+
+INSERT INTO `ocenter_m_channel` (`id`, `pid`, `title`, `url`, `sort`, `create_time`, `update_time`, `status`, `target`, `out_site`, `color`, `band_color`, `band_text`, `icon`, `image`, `remark`) VALUES
+(1, 0, '动态', 'Weibo/Index/index', 0, 0, 0, 1, 0, 0, '', '', '', 'icon-iconfontdongtai', 0, ''),
+(2, 0, '圈子', 'Weibo/Crowd/crowd', 1, 0, 0, 1, 0, 0, '', '', '', 'icon-quanzi', 0, ''),
+(5, 0, '广场', 'ucenter/index/square', 1, 0, 0, 1, 0, 0, '', '', '', 'icon-remen', 0, ''),
+(6, 0, '资讯', 'News/index/index', 100, 0, 0, 1, 0, 0, '', '', '', 'rss', 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_m_config`
+--
+
+CREATE TABLE `ocenter_m_config` (
+  `id` int(10) UNSIGNED NOT NULL COMMENT '配置ID',
+  `name` varchar(100) NOT NULL DEFAULT '' COMMENT '配置名称',
+  `type` tinyint(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '配置类型',
+  `title` varchar(50) NOT NULL DEFAULT '' COMMENT '配置说明',
+  `group` tinyint(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '配置分组',
+  `extra` varchar(255) NOT NULL DEFAULT '' COMMENT '配置值',
+  `remark` varchar(500) NOT NULL COMMENT '配置说明',
+  `create_time` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '状态',
+  `value` text NOT NULL COMMENT '配置值',
+  `sort` smallint(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '排序'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `ocenter_m_config`
+--
+
+INSERT INTO `ocenter_m_config` (`id`, `name`, `type`, `title`, `group`, `extra`, `remark`, `create_time`, `update_time`, `status`, `value`, `sort`) VALUES
+(100, 'WEB_SITE_CLOSE', 4, '关闭站点', 1, '0:关闭,1:开启', '站点关闭后其他用户不能访问，管理员可以正常访问', 1378898976, 1379235296, 1, '1', 11),
+(108, 'DATA_BACKUP_PATH', 1, '数据库备份根路径', 4, '', '路径必须以 / 结尾', 1381482411, 1381482411, 1, './Data/Backup', 16),
+(109, 'DATA_BACKUP_PART_SIZE', 0, '数据库备份卷大小', 4, '', '该值用于限制压缩后的分卷最大长度。单位：B；建议设置20M', 1381482488, 1381729564, 1, '20971520', 18),
+(124, 'COUNT_DAY', 0, '后台首页统计用户增长天数', 0, '', '默认统计最近半个月的用户数增长情况', 1420791945, 1420876261, 1, '7', 0),
+(126, 'USER_NAME_BAOLIU', 1, '保留用户名和昵称', 3, '', '禁止注册用户名和昵称，包含这些即无法注册,用\" , \"号隔开，用户只能是英文，下划线_，数字等', 1388845937, 1388845937, 1, '管理员,测试,admin,垃圾', 0),
+(129, 'VERIFY_TYPE', 4, '验证码类型', 4, '1:中文\r\n2:英文\r\n3:数字\r\n4:英文+数字', '验证码类型', 1388500873, 1405561731, 1, '4', 0),
+(134, 'URL_MODEL', 4, 'URL模式', 4, '2:REWRITE模式(开启伪静态)\r\n3:兼容模式', '选择Rewrite模式则开启伪静态，在开启伪静态之前需要先<a href=\"http://v2.opensns.cn/index.php?s=/news/index/detail/id/128.html\" target=\"_blank\">设置伪静态</a>或者阅读/Rewrite/readme.txt中的说明，默认建议开启兼容模式', 1421027546, 1421027676, 1, '3', 0),
+(137, 'WEB_SITE_CLOSE_HINT', 2, '关站提示文字', 1, '', '站点关闭后的提示文字。', 1433731248, 1433731287, 1, '网站正在更新维护，请稍候再试。', 4),
+(141, 'LOST_LONG', 0, '用户流失标准（天）', 0, '', '', 1469414315, 1469414315, 1, '30', 0),
+(142, '_USERCONFIG_REG_SWITCH', 0, '', 0, '', '', 1427094903, 1427094903, 1, 'mobile', 0),
+(143, '_CONFIG_PICTURE_UPLOAD_DRIVER', 0, '', 0, '', '', 1488937154, 1488937154, 1, 'qiniu', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_m_hooks`
+--
+
+CREATE TABLE `ocenter_m_hooks` (
+  `id` int(10) UNSIGNED NOT NULL COMMENT '主键',
+  `name` varchar(40) NOT NULL DEFAULT '' COMMENT '钩子名称',
+  `description` text NOT NULL COMMENT '描述',
+  `type` tinyint(1) UNSIGNED NOT NULL DEFAULT '1' COMMENT '类型',
+  `update_time` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `addons` varchar(255) NOT NULL DEFAULT '' COMMENT '钩子挂载的插件 ''，''分割'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `ocenter_m_hooks`
+--
+
+INSERT INTO `ocenter_m_hooks` (`id`, `name`, `description`, `type`, `update_time`, `addons`) VALUES
+(38, 'pageHeader', '页面header钩子，一般用于加载插件CSS文件和代码', 1, 0, ''),
+(39, 'pageFooter', '页面footer钩子，一般用于加载插件JS文件和JS代码', 1, 0, 'SuperLinks'),
+(40, 'adminEditor', '后台内容编辑页编辑器', 1, 1378982734, 'EditorForAdmin'),
+(41, 'AdminIndex', '首页小格子个性化显示', 1, 1382596073, 'SiteStat,SyncLogin,DevTeam,SystemInfo,LocalComment'),
+(42, 'topicComment', '评论提交方式扩展钩子。', 1, 1380163518, ''),
+(43, 'app_begin', '应用开始', 2, 1384481614, 'Iswaf'),
+(48, 'weiboType', '动态类型', 1, 1409121894, ''),
+(49, 'repost', '转发钩子', 1, 1403668286, ''),
+(50, 'syncLogin', '第三方登陆位置', 1, 1403700579, 'SyncLogin'),
+(51, 'syncMeta', '第三方登陆meta接口', 1, 1403700633, 'SyncLogin'),
+(52, 'J_China_City', '每个系统都需要的一个中国省市区三级联动插件。', 1, 1403841931, 'ChinaCity'),
+(54, 'imageSlider', '图片轮播钩子', 1, 1407144022, ''),
+(56, 'beforeSendWeibo', '在发动态之前预处理动态', 2, 1408084504, 'InsertFile'),
+(57, 'beforeSendRepost', '转发动态前的预处理钩子', 2, 1408085689, ''),
+(58, 'parseWeiboContent', '解析动态内容钩子', 2, 1409121261, ''),
+(59, 'userConfig', '用户配置页面钩子', 1, 1417137557, 'SyncLogin'),
+(60, 'weiboSide', '动态侧边钩子', 1, 1417063425, 'Retopic,Recommend'),
+(61, 'personalMenus', '顶部导航栏个人下拉菜单', 1, 1417146501, ''),
+(62, 'dealPicture', '上传图片处理', 2, 1417139975, ''),
+(63, 'ucenterSideMenu', '用户中心左侧菜单', 1, 1417161205, ''),
+(64, 'afterTop', '顶部导航之后的钩子，调用公告等', 1, 1429671392, ''),
+(65, 'report', '举报钩子', 1, 1429511732, 'Report'),
+(66, 'handleAction', '行为的额外操作', 2, 1433300260, 'CheckIn'),
+(67, 'uploadDriver', '附件图片上传引擎', 2, 1435306269, ''),
+(68, 'sms', '短信插件钩子', 2, 1437382105, ''),
+(69, 'filterHtmlContent', '渲染富文本', 2, 1441951420, ''),
+(70, 'parseContent', '解析内容', 2, 1445828128, 'Sensitive'),
+(71, 'tool', '返回顶部，右下角工具栏', 1, 1445828128, ''),
+(72, 'homeIndex', '网站首页', 2, 1445828128, '');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_m_menu`
+--
+
+CREATE TABLE `ocenter_m_menu` (
+  `id` int(10) UNSIGNED NOT NULL COMMENT '文档ID',
+  `title` varchar(50) NOT NULL DEFAULT '' COMMENT '标题',
+  `pid` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '上级分类ID',
+  `sort` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '排序（同级有效）',
+  `url` char(255) NOT NULL DEFAULT '' COMMENT '链接地址',
+  `hide` tinyint(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否隐藏',
+  `tip` varchar(255) NOT NULL DEFAULT '' COMMENT '提示',
+  `group` varchar(50) DEFAULT '' COMMENT '分组',
+  `is_dev` tinyint(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否仅开发者模式可见',
+  `icon` varchar(20) NOT NULL COMMENT '导航图标',
+  `module` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `ocenter_m_menu`
+--
+
+INSERT INTO `ocenter_m_menu` (`id`, `title`, `pid`, `sort`, `url`, `hide`, `tip`, `group`, `is_dev`, `icon`, `module`) VALUES
+(1, '首页', 0, 1, 'Index/index', 0, '', '', 0, 'home', ''),
+(2, '用户', 0, 2, 'User/index', 0, '', '', 0, 'user', ''),
+(3, '用户管理', 2, 2, 'User/index', 0, '', '用户管理', 0, '', ''),
+(4, '积分规则', 113, 3, 'User/action', 0, '', '行为管理', 0, '', ''),
+(5, '新增用户行为', 4, 0, 'User/addaction', 0, '', '', 0, '', ''),
+(6, '编辑用户行为', 4, 0, 'User/editaction', 0, '', '', 0, '', ''),
+(7, '保存用户行为', 4, 0, 'User/saveAction', 0, '\"用户->用户行为\"保存编辑和新增的用户行为', '', 0, '', ''),
+(8, '变更行为状态', 4, 0, 'User/setStatus', 0, '\"用户->用户行为\"中的启用,禁用和删除权限', '', 0, '', ''),
+(9, '禁用会员', 4, 0, 'User/changeStatus?method=forbidUser', 0, '\"用户->用户信息\"中的禁用', '', 0, '', ''),
+(10, '启用会员', 4, 0, 'User/changeStatus?method=resumeUser', 0, '\"用户->用户信息\"中的启用', '', 0, '', ''),
+(11, '删除会员', 4, 0, 'User/changeStatus?method=deleteUser', 0, '\"用户->用户信息\"中的删除', '', 0, '', ''),
+(12, '权限组管理', 2, 5, 'AuthManager/index', 0, '', '权限管理', 0, '', ''),
+(13, '删除', 12, 0, 'AuthManager/changeStatus?method=deleteGroup', 0, '删除权限组', '', 0, '', ''),
+(14, '禁用', 12, 0, 'AuthManager/changeStatus?method=forbidGroup', 0, '禁用权限组', '', 0, '', ''),
+(15, '恢复', 12, 0, 'AuthManager/changeStatus?method=resumeGroup', 0, '恢复已禁用的权限组', '', 0, '', ''),
+(16, '新增', 12, 0, 'AuthManager/createGroup', 0, '创建新的权限组', '', 0, '', ''),
+(17, '编辑', 12, 0, 'AuthManager/editGroup', 0, '编辑权限组名称和描述', '', 0, '', ''),
+(18, '保存权限组', 12, 0, 'AuthManager/writeGroup', 0, '新增和编辑权限组的\"保存\"按钮', '', 0, '', ''),
+(19, '授权', 12, 0, 'AuthManager/group', 0, '\"后台 \\ 用户 \\ 用户信息\"列表页的\"授权\"操作按钮,用于设置用户所属权限组', '', 0, '', ''),
+(20, '访问授权', 12, 0, 'AuthManager/access', 0, '\"后台 \\ 用户 \\ 权限管理\"列表页的\"访问授权\"操作按钮', '', 0, '', ''),
+(21, '成员授权', 12, 0, 'AuthManager/user', 0, '\"后台 \\ 用户 \\ 权限管理\"列表页的\"成员授权\"操作按钮', '', 0, '', ''),
+(22, '解除授权', 12, 0, 'AuthManager/removeFromGroup', 0, '\"成员授权\"列表页内的解除授权操作按钮', '', 0, '', ''),
+(23, '保存成员授权', 12, 0, 'AuthManager/addToGroup', 0, '\"用户信息\"列表页\"授权\"时的\"保存\"按钮和\"成员授权\"里右上角的\"添加\"按钮)', '', 0, '', ''),
+(24, '分类授权', 12, 0, 'AuthManager/category', 0, '\"后台 \\ 用户 \\ 权限管理\"列表页的\"分类授权\"操作按钮', '', 0, '', ''),
+(25, '保存分类授权', 12, 0, 'AuthManager/addToCategory', 0, '\"分类授权\"页面的\"保存\"按钮', '', 0, '', ''),
+(26, '模型授权', 12, 0, 'AuthManager/modelauth', 0, '\"后台 \\ 用户 \\ 权限管理\"列表页的\"模型授权\"操作按钮', '', 0, '', ''),
+(27, '保存模型授权', 12, 0, 'AuthManager/addToModel', 0, '\"分类授权\"页面的\"保存\"按钮', '', 0, '', ''),
+(28, '新增权限节点', 12, 0, 'AuthManager/addNode', 1, '', '', 1, '', ''),
+(29, '前台权限管理', 12, 0, 'AuthManager/accessUser', 1, '', '权限管理', 0, '', ''),
+(30, '删除权限节点', 12, 0, 'AuthManager/deleteNode', 1, '', '', 0, '', ''),
+(31, '行为日志', 113, 4, 'Action/actionlog', 0, '', '行为管理', 0, '', ''),
+(32, '查看行为日志', 31, 0, 'action/edit', 1, '', '', 0, '', ''),
+(33, '修改密码', 2, 3, 'User/updatePassword', 1, '', '', 0, '', ''),
+(34, '修改昵称', 2, 4, 'User/updateNickname', 1, '', '', 0, '', ''),
+(36, '用户头衔列表', 35, 0, 'Rank/userRankList', 1, '', '', 0, '', ''),
+(37, '关联新头衔', 35, 0, 'Rank/userAddRank', 1, '', '', 0, '', ''),
+(38, '编辑头衔关联', 35, 0, 'Rank/userChangeRank', 1, '', '', 0, '', ''),
+(40, '添加、编辑分组', 39, 0, 'Admin/User/editProfile', 0, '', '', 0, '', ''),
+(41, '分组排序', 39, 0, 'Admin/User/sortProfile', 0, '', '', 0, '', ''),
+(42, '字段列表', 39, 0, 'Admin/User/field', 0, '', '', 0, '', ''),
+(43, '添加、编辑字段', 39, 0, 'Admin/User/editFieldSetting', 0, '', '', 0, '', ''),
+(44, '字段排序', 39, 0, 'Admin/User/sortField', 0, '', '', 0, '', ''),
+(46, '扩展资料详情', 45, 0, 'User/expandinfo_details', 0, '', '', 0, '', ''),
+(49, '转移权限组', 2, 7, 'User/changeGroup', 1, '批量转移权限组', '', 0, '', ''),
+(50, '基础配置', 2, 1, 'UserConfig/index', 0, '', '用户配置', 0, '', ''),
+(51, '积分类型列表', 113, 1, 'User/scoreList', 0, '', '行为管理', 0, '', ''),
+(52, '新增/编辑类型', 113, 2, 'User/editScoreType', 1, '', '行为管理', 0, '', ''),
+(57, '插件管理', 105, 4, 'Addons/index', 0, '', '本地', 0, '', ''),
+(58, '钩子管理', 57, 2, 'Addons/hooks', 0, '', '本地', 0, '', ''),
+(59, '创建', 57, 0, 'Addons/create', 0, '服务器上创建插件结构向导', '', 0, '', ''),
+(60, '检测创建', 57, 0, 'Addons/checkForm', 0, '检测插件是否可以创建', '', 0, '', ''),
+(61, '预览', 57, 0, 'Addons/preview', 0, '预览插件定义类文件', '', 0, '', ''),
+(62, '快速生成插件', 57, 0, 'Addons/build', 0, '开始生成插件结构', '', 0, '', ''),
+(64, '设置', 57, 0, 'Addons/config', 0, '设置插件配置', '', 0, '', ''),
+(65, '禁用', 57, 0, 'Addons/disable', 0, '禁用插件', '', 0, '', ''),
+(66, '启用', 57, 0, 'Addons/enable', 0, '启用插件', '', 0, '', ''),
+(67, '安装', 57, 0, 'Addons/install', 0, '安装插件', '', 0, '', ''),
+(68, '卸载', 57, 0, 'Addons/uninstall', 0, '卸载插件', '', 0, '', ''),
+(69, '更新配置', 57, 0, 'Addons/saveconfig', 0, '更新插件配置处理', '', 0, '', ''),
+(70, '插件后台列表', 57, 0, 'Addons/adminList', 0, '', '', 0, '', ''),
+(71, 'URL方式访问插件', 57, 0, 'Addons/execute', 0, '控制是否有权限通过url访问插件控制器方法', '', 0, '', ''),
+(72, '新增钩子', 58, 0, 'Addons/addHook', 0, '', '', 0, '', ''),
+(73, '编辑钩子', 58, 0, 'Addons/edithook', 0, '', '', 0, '', ''),
+(74, '系统', 0, 7, 'Config/website', 0, '', '', 0, 'windows', ''),
+(75, '网站设置', 74, 1, 'Config/group', 0, '', '系统设置', 0, '', ''),
+(77, '编辑', 76, 0, 'Config/edit', 0, '新增编辑和保存配置', '', 0, '', ''),
+(78, '删除', 76, 0, 'Config/del', 0, '删除配置', '', 0, '', ''),
+(79, '新增', 76, 0, 'Config/add', 0, '新增配置', '', 0, '', ''),
+(80, '保存', 76, 0, 'Config/save', 0, '保存配置', '', 0, '', ''),
+(81, '排序', 76, 0, 'Config/sort', 1, '', '', 0, '', ''),
+(83, '新增', 82, 0, 'Menu/add', 0, '', '系统设置', 0, '', ''),
+(84, '编辑', 82, 0, 'Menu/edit', 0, '', '', 0, '', ''),
+(85, '导入', 82, 0, 'Menu/import', 0, '', '', 0, '', ''),
+(86, '排序', 82, 0, 'Menu/sort', 1, '', '', 0, '', ''),
+(87, '底部导航', 74, 3, 'Channel/index', 0, '', '导航管理', 0, '', ''),
+(88, '新增', 87, 0, 'Channel/add', 0, '', '', 0, '', ''),
+(89, '编辑', 87, 0, 'Channel/edit', 0, '', '', 0, '', ''),
+(90, '删除', 87, 0, 'Channel/del', 0, '', '', 0, '', ''),
+(91, '排序', 87, 0, 'Channel/sort', 1, '', '', 0, '', ''),
+(103, '全部补丁', 74, 16, 'Update/quick', 1, '', '升级补丁', 0, '', ''),
+(104, '新增补丁', 74, 15, 'Update/addpack', 1, '', '升级补丁', 0, '', ''),
+(105, '扩展', 0, 11, 'module/lists', 0, '', '', 0, 'cloud', ''),
+(106, '模块安装', 105, 3, 'module/install', 1, '', '本地', 0, '', ''),
+(107, '模块管理', 105, 5, 'module/lists', 0, '', '本地', 0, '', ''),
+(108, '卸载模块', 105, 7, 'module/uninstall', 1, '', '本地', 0, '', ''),
+(112, '新增/编辑应用', 109, 0, 'authorize/editssoapp', 1, '', '单点登录', 0, '', ''),
+(113, '安全', 0, 5, 'ActionLimit/limitList', 0, '', '', 0, 'shield', ''),
+(114, '行为限制列表', 113, 6, 'ActionLimit/limitList', 0, '', '行为限制', 0, '', ''),
+(115, '新增/编辑行为限制', 113, 7, 'ActionLimit/editLimit', 1, '', '行为限制', 0, '', ''),
+(121, '默认积分配置', 117, 0, 'Role/configScore', 1, '', '', 0, '', ''),
+(122, '默认权限配置', 117, 0, 'Role/configAuth', 1, '', '', 0, '', ''),
+(123, '默认头像配置', 117, 0, 'Role/configAvatar', 1, '', '', 0, '', ''),
+(124, '默认头衔配置', 117, 0, 'Role/configRank', 1, '', '', 0, '', ''),
+(125, '默认字段管理', 117, 0, 'Role/configField', 1, '', '', 0, '', ''),
+(134, '上传默认头像', 123, 0, 'Role/uploadPicture', 1, '', '', 0, '', ''),
+(147, '用户信息编辑', 140, 0, 'Invite/editUserInfo', 1, '', '', 0, '', ''),
+(148, '删除日志', 31, 0, 'Action/remove', 1, '', '', 0, '', ''),
+(149, '清空日志', 31, 0, 'Action/clear', 1, '', '', 0, '', ''),
+(150, '设置积分状态', 51, 0, 'User/setTypeStatus', 1, '', '', 0, '', ''),
+(151, '删除积分类型', 51, 0, 'User/delType', 1, '', '', 0, '', ''),
+(152, '充值积分-获取用户昵称', 53, 0, 'User/getNickname', 1, '', '', 0, '', ''),
+(153, '删除菜单', 82, 0, 'Menu/del', 1, '', '', 0, '', ''),
+(154, '设置开发者模式可见', 82, 0, 'Menu/toogleDev', 1, '', '', 0, '', ''),
+(155, '设置显示隐藏', 82, 0, 'Menu/toogleHide', 1, '', '', 0, '', ''),
+(156, '行为限制启用、禁用、删除', 114, 0, 'ActionLimit/setLimitStatus', 1, '', '', 0, '', ''),
+(157, '启用、禁用、删除、回收站还原', 99, 0, 'SEO/setRuleStatus', 1, '', '', 0, '', ''),
+(158, '回收站彻底删除', 102, 0, 'SEO/doClear', 1, '', '', 0, '', ''),
+(159, '初始化无角色用户', 130, 0, 'Role/initUnhaveUser', 1, '', '', 0, '', ''),
+(160, '删除钩子', 58, 0, 'Addons/delHook', 0, '', '', 0, '', ''),
+(161, '使用补丁', 103, 0, 'Update/usePack', 1, '', '', 0, '', ''),
+(162, '查看补丁', 103, 0, 'Update/view', 1, '', '', 0, '', ''),
+(163, '删除补丁', 103, 0, 'Update/delPack', 1, '', '', 0, '', ''),
+(165, '添加分类、标签', 164, 0, 'UserTag/add', 1, '', '', 0, '', ''),
+(166, '设置分类、标签状态', 164, 0, 'UserTag/setStatus', 1, '', '', 0, '', ''),
+(167, '分类、标签回收站', 164, 0, 'UserTag/tagTrash', 1, '', '', 0, '', ''),
+(168, '测底删除回收站内容', 164, 0, 'UserTag/userTagClear', 1, '', '', 0, '', ''),
+(169, '可拥有标签配置', 116, 14, 'role/configusertag', 1, '', '', 0, '', ''),
+(170, '编辑模块', 107, 0, 'Module/edit', 1, '', '模块管理', 0, '', ''),
+(171, '社区信息', 74, 2, 'Config/website', 0, '', '系统设置', 0, '', ''),
+(173, '使用主题', 105, 8, 'Theme/setTheme', 1, '', '本地', 0, '', ''),
+(174, '查看主题', 105, 9, 'Theme/lookTheme', 1, '', '本地', 0, '', ''),
+(175, '主题打包下载', 105, 10, 'Theme/packageDownload', 1, '', '本地', 0, '', ''),
+(176, '卸载删除主题', 105, 11, 'Theme/delete', 1, '', '本地', 0, '', ''),
+(177, '上传安装主题', 105, 12, 'Theme/add', 1, '', '本地', 0, '', ''),
+(197, '运营', 0, 4, 'Count/index', 0, '', '', 0, 'laptop', ''),
+(200, '在线安装', 178, 0, 'Cloud/install', 1, '', '', 0, '', ''),
+(201, '重置用户密码', 3, 0, 'User/initpass', 1, '', '', 0, '', ''),
+(203, '获取版本信息', 202, 0, 'Cloud/version', 1, '', '', 0, '', ''),
+(204, '获取文件列表', 202, 0, 'Cloud/getFileList', 1, '', '', 0, '', ''),
+(205, '比较本地文件', 202, 0, 'Cloud/compare', 1, '', '', 0, '', ''),
+(206, '覆盖文件', 202, 0, 'Cloud/cover', 1, '', '', 0, '', ''),
+(207, '更新数据库', 202, 0, 'Cloud/updb', 1, '', '', 0, '', ''),
+(208, '更新完成', 202, 0, 'Cloud/finish', 1, '', '', 0, '', ''),
+(218, '获取扩展升级列表', 106, 0, 'Cloud/getVersionList', 1, '', '', 0, '', ''),
+(232, '积分日志', 113, 0, 'Action/scoreLog', 0, '', '积分管理', 0, '', ''),
+(233, '仪表盘', 1, 0, 'Index/index', 0, '', '系统首页', 0, '', ''),
+(234, '数据统计', 1, 1, 'Index/stats', 0, '', '统计管理', 0, '', ''),
+(241, '刷新会话列表', 74, 0, 'Message/sessionRefresh', 1, '', '', 1, '', ''),
+(242, '刷新消息模板列表', 74, 0, 'Message/tplRefresh', 1, '', '', 1, '', ''),
+(250, '网站统计', 197, 0, 'Count/index', 0, '', '数据统计', 0, '', ''),
+(251, '流失率统计', 197, 0, 'Count/lost', 0, '', '数据统计', 0, '', ''),
+(252, '留存率统计', 197, 0, 'Count/remain', 0, '', '数据统计', 0, '', ''),
+(254, '活跃用户统计', 197, 0, 'Count/active', 0, '', '数据统计', 0, '', ''),
+(256, '在线用户列表', 197, 0, 'Count/nowUserList', 0, '', '数据统计', 0, '', ''),
+(257, '下线在线用户', 197, 0, 'Count/downUser', 1, '', '数据统计', 0, '', ''),
+(260, '添加', 233, 0, 'Index/addTo', 0, '', '', 0, '', ''),
+(261, '删除', 233, 0, 'Index/delTile', 0, '', '', 0, '', ''),
+(262, '修改', 233, 0, 'Index/setTile', 0, '', '', 0, '', ''),
+(266, '图片列表', 74, 0, 'Picture/pictureList', 0, '', '图片管理', 1, '', ''),
+(267, '设置图片状态、删除图片', 266, 0, 'Picture/setStatus', 1, '', '图片管理', 1, '', ''),
+(268, '支付系统', 0, 0, 'Order/index', 1, '', '', 0, '', 'Order'),
+(269, '配置', 268, 0, 'Order/config', 0, '', '配置管理', 0, '', 'Order'),
+(270, '商品订单列表', 268, 0, 'Order/index', 0, '', '订单列表', 0, '', 'Order'),
+(271, '充值订单列表', 268, 0, 'Order/rechargeList', 0, '', '订单列表', 0, '', 'Order'),
+(272, '提现记录表', 268, 0, 'Order/withdrawList', 0, '', '订单列表', 0, '', 'Order'),
+(273, '短信日志', 113, 4, 'Action/smslog', 0, '', '行为管理', 0, '', ''),
+(10000, '网站主页', 0, 0, 'Home/config', 1, '', '', 0, 'home', 'Home'),
+(10001, '基本设置', 10000, 0, 'Home/config', 0, '', '设置', 0, '', 'Home'),
+(10002, '动态', 0, 8, 'Weibo/weibo', 1, '', '', 0, '', 'Weibo'),
+(10003, '动态管理', 10002, 1, 'Weibo/weibo', 0, '', '动态', 0, '', 'Weibo'),
+(10004, '回复管理', 10002, 3, 'Weibo/comment', 0, '', '回复', 0, '', 'Weibo'),
+(10005, '编辑动态', 10002, 0, 'Weibo/editWeibo', 1, '', '', 0, '', 'Weibo'),
+(10006, '编辑回复', 10002, 0, 'Weibo/editComment', 1, '', '', 0, '', 'Weibo'),
+(10007, '动态回收站', 10002, 2, 'Weibo/weiboTrash', 0, '', '动态', 0, '', 'Weibo'),
+(10008, '回复回收站', 10002, 4, 'Weibo/commentTrash', 0, '', '回复', 0, '', 'Weibo'),
+(10009, '基本设置', 10002, 0, 'Weibo/config', 0, '动态的基本配置', '动态', 0, '', 'Weibo'),
+(10011, '置顶动态', 10002, 0, 'Weibo/setWeiboTop', 1, '', '', 0, '', 'Weibo'),
+(10012, '设置动态状态', 10002, 0, 'Weibo/setWeiboStatus', 1, '', '', 0, '', 'Weibo'),
+(10013, '设置动态评论状态', 10002, 0, 'Weibo/setCommentStatus', 1, '', '', 0, '', 'Weibo'),
+(10016, '会员展示', 0, 22, 'People/config', 1, '', '', 0, '', 'People'),
+(10017, '基本设置', 10016, 0, 'People/config', 0, '', '配置', 0, '', 'People'),
+(10018, '圈子配置', 10002, 0, 'Weibo/crowdConfig', 0, '', '圈子管理', 0, '', ''),
+(10019, '圈子类型', 10002, 0, 'Weibo/crowdType', 0, '', '圈子管理', 0, '', ''),
+(10020, '圈子管理', 10002, 0, 'Weibo/crowd', 0, '', '圈子管理', 0, '', ''),
+(10021, '编辑圈子', 10002, 0, 'Weibo/editCrowd', 1, '', '圈子管理', 0, '', ''),
+(10022, '设置圈子类型状态', 10019, 0, 'Weibo/setcrowdtypestatus', 1, '', '圈子管理', 0, '', ''),
+(10023, '设置圈子状态', 10021, 0, 'Weibo/setcrowdstatus', 1, '', '圈子管理', 0, '', ''),
+(10024, '圈子是否可发送动态', 10002, 0, 'Weibo/doCrowdAllowPost', 1, '', '圈子管理', 0, '', ''),
+(10025, '执行默认关注', 10002, 0, 'Weibo/followCrowd', 1, '', '圈子管理', 0, '', ''),
+(10026, '修复关注数脚本', 10002, 0, 'Weibo/repaircrowdfollow', 1, '', '圈子管理', 0, '', ''),
+(10038, '商城', 0, 0, 'Mall/index', 1, '', '', 0, '', 'Mall'),
+(10039, '商品列表', 10038, 0, 'Mall/index', 0, '', '商城管理', 0, '', 'Mall'),
+(10040, '设置热门商品', 10038, 0, 'Mall/setHotGoods', 1, '', '', 0, '', 'Mall'),
+(10041, '添加商品', 10038, 0, 'Mall/addGoods', 0, '', '商品管理', 0, '', 'Mall'),
+(10042, '设置商品状态', 10038, 0, 'Mall/setGoodsStatus', 1, '', '', 0, '', 'Mall'),
+(10043, '商品分类', 10038, 0, 'Mall/goodsCategory', 0, '', '商品管理', 0, '', 'Mall'),
+(10044, '新增分类', 10043, 0, 'Mall/addCate', 1, '', '', 0, '', 'Mall'),
+(10045, '设置分类状态', 10043, 0, 'Mall/setCateStatus', 1, '', '', 0, '', 'Mall'),
+(10046, '规格', 10038, 0, 'Mall/spec', 0, '', '规格管理', 0, '', 'Mall'),
+(10047, '编辑规格', 10046, 0, 'Mall/editSpec', 0, '', '规格管理', 0, '', 'Mall'),
+(10048, '编辑规格详情', 10046, 0, 'Mall/editSpecValue', 1, '', '规格管理', 0, '', 'Mall'),
+(10049, '规格详情状态', 10046, 0, 'Mall/setSpecValueStatus', 1, '', '规格管理', 0, '', 'Mall'),
+(10050, '规格详情', 10046, 0, 'Mall/specValue', 1, '', '规格管理', 0, '', 'Mall'),
+(10051, '设置规格状态', 10046, 0, 'Mall/setSpecStatus', 1, '', '规格管理', 0, '', 'Mall'),
+(10052, '商城设置', 10038, 0, 'Mall/config', 0, '', '商城管理', 0, '', 'Mall'),
+(10053, '广场设置', 74, 2, 'Ucenter/setsquareshow', 0, '', '系统设置', 0, '', ''),
+(10054, '资讯', 0, 22, 'News/index', 1, '', '', 0, '', 'News'),
+(10055, '审核列表', 10054, 0, 'News/audit', 0, '', '资讯管理', 0, '', 'News'),
+(10056, '审核通过', 10055, 0, 'News/setNewsStatus', 1, '', '', 0, '', 'News'),
+(10057, '资讯审核失败操作', 10055, 0, 'News/doAudit', 1, '', '', 0, '', 'News'),
+(10058, '分类管理', 10054, 0, 'News/newsCategory', 0, '', '资讯配置', 0, '', 'News'),
+(10059, '编辑、添加分类', 10058, 0, 'News/add', 1, '', '', 0, '', 'News'),
+(10060, '设置分类状态', 10058, 0, 'News/setStatus', 1, '', '', 0, '', 'News'),
+(10061, '资讯列表', 10054, 0, 'News/index', 0, '', '资讯管理', 0, 'rss-sign', 'News'),
+(10062, '设为到期', 10061, 0, 'News/setDead', 1, '', '', 0, '', 'News'),
+(10063, '编辑、添加资讯', 10061, 0, 'News/editNews', 1, '', '', 0, '', 'News'),
+(10064, '基础配置', 10054, 0, 'News/config', 0, '', '资讯配置', 0, '', 'News'),
+(10065, '资讯回收站', 10054, 0, 'News/newsTrash', 0, '', '资讯管理', 0, '', 'News');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_m_module`
+--
+
+CREATE TABLE `ocenter_m_module` (
+  `id` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL COMMENT '模块名',
+  `alias` varchar(30) NOT NULL COMMENT '中文名',
+  `version` varchar(20) NOT NULL COMMENT '版本号',
+  `is_com` tinyint(4) NOT NULL COMMENT '是否商业版',
+  `show_nav` tinyint(4) NOT NULL COMMENT '是否显示在导航栏中',
+  `summary` varchar(200) NOT NULL COMMENT '简介',
+  `developer` varchar(50) NOT NULL COMMENT '开发者',
+  `website` varchar(200) NOT NULL COMMENT '网址',
+  `entry` varchar(50) NOT NULL COMMENT '前台入口',
+  `is_setup` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否已安装',
+  `sort` int(11) NOT NULL COMMENT '模块排序',
+  `icon` varchar(20) NOT NULL,
+  `can_uninstall` tinyint(4) NOT NULL,
+  `admin_entry` varchar(50) NOT NULL,
+  `menu_hide` tinyint(4) NOT NULL DEFAULT '0' COMMENT '后台入口隐藏',
+  `auth_role` varchar(200) NOT NULL COMMENT '允许访问角色，为空表示非登录也能访问'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='模块管理表';
+
+--
+-- 转存表中的数据 `ocenter_m_module`
+--
+
+INSERT INTO `ocenter_m_module` (`id`, `name`, `alias`, `version`, `is_com`, `show_nav`, `summary`, `developer`, `website`, `entry`, `is_setup`, `sort`, `icon`, `can_uninstall`, `admin_entry`, `menu_hide`, `auth_role`) VALUES
+(2, 'Ucenter', '用户中心', '2.0.0', 0, 1, '用户中心模块，系统核心模块', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', 'Ucenter/index/index', 1, 0, 'user', 0, '', 0, ''),
+(4, 'Weibo', '动态', '2.0.0', 0, 1, '动态模块，用户可以发布动态', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', 'Weibo/index/index', 1, 0, 'quote-left', 1, 'Admin/Weibo/weibo', 0, ''),
+(5, 'Crowd', '圈子', '2.0.0', 0, 1, '圈子模块', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', 'Weibo/Crowd/crowd', 1, 0, 'quote-left', 0, 'Admin/Weibo/weibo', 0, ''),
+(13, 'Core', '系统公共模块', '2.1.0', 0, 0, '系统核心模块，必不可少，负责核心的处理。', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', '', 1, 0, 'globe', 0, '', 0, ''),
+(15, 'Message', '消息', '0.0.1', 1, 1, '消息', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', 'Message/index/index', 1, 0, 'quote-left', 0, '', 0, ''),
+(16, 'Mall', '商城', '0.0.1', 1, 1, '商城', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', 'Mall/index/index', 1, 0, 'quote-left', 1, 'Admin/Mall/index', 0, ''),
+(17, 'Event', '活动', '2.8.0', 0, 1, '活动模块，用户可以发起活动', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', 'Event/index/index', 0, 0, 'map-marker', 1, 'Admin/Event/index', 0, ''),
+(18, 'Forum', '论坛', '1.0.0', 0, 1, '论坛模块，轻便强大的论坛模块', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', 'Forum/index/index', 0, 0, 'comments', 1, 'Admin/Forum/post', 0, ''),
+(19, 'News', '资讯', '1.0.0', 0, 1, '资讯模块，用户可前台投稿的CMS模块', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', 'News/index/index', 1, 0, 'rss', 1, 'Admin/News/index', 0, ''),
+(20, 'Order', '支付系统', '1.0.0', 0, 1, '支付模块', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', 'Order/index/index', 1, 0, '', 0, 'Admin/Order/index', 0, ''),
+(21, 'Project', '项目管理', '0.0.1', 1, 1, '项目管理模块', '嘉兴想天信息科技有限公司', 'http://www.opensns.cn', 'Project/index/index', 0, 0, 'comments', 1, 'Admin/Project/index', 0, ''),
+(22, 'Question', '问答', '2.4.0', 1, 1, '问答模块，用户可前台发布、回答问题', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', 'Question/index/index', 0, 0, 'question', 1, 'Admin/Question/index', 0, ''),
+(23, 'Weixin', '微信公众平台', '2.1.0', 1, 1, '微信公众平台', '钱枪枪科技有限公司', 'http://www.zacms.com', 'Weixin/index/index', 0, 0, 'comments', 1, 'Admin/Weixin/index', 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_m_reward`
+--
+
+CREATE TABLE `ocenter_m_reward` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `uid` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `authorid` int(11) NOT NULL,
+  `Articleid` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `update_time` int(11) NOT NULL,
+  `table_name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_m_session`
+--
+
+CREATE TABLE `ocenter_m_session` (
+  `session_id` varchar(225) NOT NULL,
+  `session_expire` int(11) NOT NULL,
+  `session_data` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `ocenter_m_session`
+--
+
+INSERT INTO `ocenter_m_session` (`session_id`, `session_expire`, `session_data`) VALUES
+('2uj5isg4lj1j7g6n20app5ar11', 1507880910, 'opensns_m|a:3:{s:33:\"d2d977c58444271d9c780187e93f80e51\";a:2:{s:11:\"verify_code\";s:32:\"4d2f454a66affdc3b0c27d1a2669ee42\";s:11:\"verify_time\";i:1507880087;}s:9:\"user_auth\";a:5:{s:3:\"uid\";s:1:\"1\";s:8:\"username\";s:11:\"yoyocoinsdd\";s:15:\"last_login_time\";s:10:\"1507880128\";s:7:\"role_id\";s:1:\"1\";s:5:\"audit\";s:1:\"1\";}s:14:\"user_auth_sign\";s:40:\"f335cafd53634bd87a20db1ed6a9fd15312a3957\";}'),
+('rn2617rlgkofj33l9n5veqmtq1', 1507881296, 'opensns_m|a:1:{s:33:\"d2d977c58444271d9c780187e93f80e51\";a:2:{s:11:\"verify_code\";s:32:\"2a6a916e7225831be79a20ef92d26709\";s:11:\"verify_time\";i:1507880652;}}');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_news`
+--
+
+CREATE TABLE `ocenter_news` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL COMMENT '标题',
+  `description` varchar(200) NOT NULL COMMENT '描述',
+  `category` int(11) NOT NULL COMMENT '分类',
+  `status` tinyint(2) NOT NULL COMMENT '状态',
+  `reason` varchar(100) NOT NULL COMMENT '审核失败原因',
+  `sort` int(5) NOT NULL COMMENT '排序',
+  `position` int(4) NOT NULL COMMENT '定位，展示位',
+  `cover` int(11) NOT NULL COMMENT '封面',
+  `view` int(10) NOT NULL COMMENT '阅读量',
+  `comment` int(10) NOT NULL COMMENT '评论量',
+  `collection` int(10) NOT NULL COMMENT '收藏量',
+  `dead_line` int(11) NOT NULL COMMENT '有效期',
+  `source` varchar(200) NOT NULL COMMENT '来源url',
+  `create_time` int(11) NOT NULL,
+  `post_time` int(11) NOT NULL COMMENT '预发布日期',
+  `update_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='资讯';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_news_category`
+--
+
+CREATE TABLE `ocenter_news_category` (
+  `id` int(11) NOT NULL,
+  `title` varchar(20) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `can_post` tinyint(4) NOT NULL COMMENT '前台可投稿',
+  `need_audit` tinyint(4) NOT NULL COMMENT '前台投稿是否需要审核',
+  `sort` tinyint(4) NOT NULL,
+  `status` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='资讯分类';
+
+--
+-- 转存表中的数据 `ocenter_news_category`
+--
+
+INSERT INTO `ocenter_news_category` (`id`, `title`, `pid`, `can_post`, `need_audit`, `sort`, `status`) VALUES
+(1, '默认分类', 0, 1, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_news_detail`
+--
+
+CREATE TABLE `ocenter_news_detail` (
+  `news_id` int(11) NOT NULL,
+  `content` text NOT NULL COMMENT '内容',
+  `template` varchar(50) NOT NULL COMMENT '模板'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='资讯详情';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_news_reply`
+--
+
+CREATE TABLE `ocenter_news_reply` (
+  `id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `to_f_reply_id` int(11) NOT NULL,
+  `to_reply_id` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `uid` int(11) NOT NULL,
+  `to_uid` int(11) NOT NULL,
+  `ctime` int(11) NOT NULL,
+  `is_del` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_news_search`
+--
+
+CREATE TABLE `ocenter_news_search` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `historical` varchar(50) NOT NULL COMMENT '历史记录',
+  `create_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='资讯';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_order_goods`
+--
+
+CREATE TABLE `ocenter_order_goods` (
+  `id` bigint(20) NOT NULL COMMENT '订单号',
+  `goods_id` varchar(50) NOT NULL COMMENT '商品id',
+  `goods_type` int(11) NOT NULL COMMENT '商品类型',
+  `uid` int(11) NOT NULL COMMENT '下单用户',
+  `amount` decimal(10,2) NOT NULL COMMENT '交易金额',
+  `field` int(11) NOT NULL COMMENT '交易字段',
+  `method` varchar(50) NOT NULL COMMENT '交易方式',
+  `status` tinyint(4) NOT NULL COMMENT '订单状态',
+  `is_pay` tinyint(4) NOT NULL COMMENT '支付状态0未支付1已支付',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
+  `pay_time` int(11) NOT NULL COMMENT '支付时间',
+  `process` int(11) NOT NULL COMMENT '订单流程',
+  `wechat_order` varchar(50) NOT NULL COMMENT '微信订单号'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_order_recharge`
+--
+
+CREATE TABLE `ocenter_order_recharge` (
+  `id` bigint(20) NOT NULL COMMENT '订单号',
+  `field` int(11) NOT NULL COMMENT '充值字段',
+  `amount` decimal(10,2) NOT NULL COMMENT '充值数额',
+  `method` varchar(50) NOT NULL COMMENT '支付方式',
+  `uid` int(11) NOT NULL COMMENT '充值用户',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
+  `status` tinyint(4) NOT NULL COMMENT '状态',
+  `is_pay` tinyint(4) NOT NULL COMMENT '支付状态',
+  `pay_time` int(11) NOT NULL COMMENT '支付时间',
+  `process` int(11) NOT NULL COMMENT '订单流程',
+  `wechat_order` varchar(50) NOT NULL COMMENT '微信订单号'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_order_withdraw`
+--
+
+CREATE TABLE `ocenter_order_withdraw` (
+  `id` int(11) NOT NULL,
+  `field` int(11) NOT NULL COMMENT '提现字段',
+  `amount` decimal(10,2) NOT NULL COMMENT '提现金额',
+  `method` varchar(50) NOT NULL COMMENT '提现方式',
+  `uid` int(11) NOT NULL COMMENT '提现用户',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
+  `status` tinyint(4) NOT NULL COMMENT '状态',
+  `is_pay` tinyint(4) NOT NULL COMMENT '支付状态',
+  `pay_uid` int(11) NOT NULL COMMENT '支付者',
+  `pay_time` int(11) NOT NULL COMMENT '支付时间',
+  `freeze_amount` decimal(10,2) NOT NULL COMMENT '冻结积分',
+  `account_info` varchar(200) NOT NULL COMMENT '账户信息',
+  `process` int(11) NOT NULL COMMENT '订单流程'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -6118,6 +7949,13 @@ CREATE TABLE `ocenter_picture` (
   `height` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- 转存表中的数据 `ocenter_picture`
+--
+
+INSERT INTO `ocenter_picture` (`id`, `type`, `path`, `url`, `md5`, `sha1`, `status`, `create_time`, `width`, `height`) VALUES
+(1, 'local', '/Uploads/Picture/2017-10-13/59e0b4aa4014e.png', '', '893723b218461cb8c7e92f7dd5f3597c', '1178bbf41d62e720c5a08353189d66d64c5cf1e9', 1, 1507898538, 190, 34);
+
 -- --------------------------------------------------------
 
 --
@@ -6155,6 +7993,20 @@ CREATE TABLE `ocenter_rank_user` (
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `ocenter_register`
+--
+
+CREATE TABLE `ocenter_register` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `from` char(50) NOT NULL COMMENT '注册终端',
+  `type` char(50) NOT NULL COMMENT '注册方式',
+  `status` int(4) NOT NULL COMMENT '注册状态'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='注册终端和方式统计';
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `ocenter_report`
 --
 
@@ -6174,6 +8026,23 @@ CREATE TABLE `ocenter_report` (
   `handle_uid` int(11) NOT NULL,
   `handle_time` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_reward`
+--
+
+CREATE TABLE `ocenter_reward` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `uid` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `authorid` int(11) NOT NULL,
+  `Articleid` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `update_time` int(11) NOT NULL,
+  `table_name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -6296,7 +8165,30 @@ INSERT INTO `ocenter_score_log` (`id`, `uid`, `ip`, `type`, `action`, `value`, `
 (2, 1, 2130706433, 1, 'inc', 10, 20, 1506389062, 'yoyoadmin在2017-09-26 09:24登录了账号【积分：+10分】', 'member', 1),
 (3, 1, 2130706433, 1, 'inc', 1, 21, 1506494855, 'yoyoadmin在2017-09-27 14:47发布了新微博：1【积分：+1分】', 'weibo', 1),
 (4, 100, 2130706433, 1, 'inc', 10, 10, 1506497016, 'vbboy在2017-09-27 15:23登录了账号【积分：+10分】', 'member', 100),
-(5, 100, 2130706433, 1, 'inc', 1, 11, 1506498139, 'vbboy在2017-09-27 15:42发布了新微博：2【积分：+1分】', 'weibo', 2);
+(5, 100, 2130706433, 1, 'inc', 1, 11, 1506498139, 'vbboy在2017-09-27 15:42发布了新微博：2【积分：+1分】', 'weibo', 2),
+(6, 111, 2130706433, 1, 'inc', 10, 10, 1506761904, 'dsdfsdf在2017-09-30 16:58登录了账号【积分：+10分】', 'member', 111),
+(7, 100, 2130706433, 1, 'inc', 10, 21, 1506762306, 'vbboy在2017-09-30 17:05登录了账号【积分：+10分】', 'member', 100),
+(8, 112, 2130706433, 1, 'inc', 10, 10, 1507103624, 'bozai2017在2017-10-04 15:53登录了账号【积分：+10分】', 'member', 112),
+(9, 114, 2130706433, 1, 'inc', 10, 10, 1507105096, 'bobozaa1在2017-10-04 16:18登录了账号【积分：+10分】', 'member', 114),
+(10, 115, 2130706433, 1, 'inc', 10, 10, 1507336119, 'bboie在2017-10-07 08:28登录了账号【积分：+10分】', 'member', 115),
+(11, 100, 2130706433, 1, 'inc', 10, 31, 1507465065, 'vbboy在2017-10-08 20:17登录了账号【积分：+10分】', 'member', 100),
+(12, 116, 2130706433, 1, 'inc', 10, 10, 1507777470, 'soni在2017-10-12 11:04登录了账号【积分：+10分】', 'member', 116);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_send_sms_log`
+--
+
+CREATE TABLE `ocenter_send_sms_log` (
+  `id` int(11) NOT NULL,
+  `mobile` varchar(15) NOT NULL,
+  `content` text NOT NULL COMMENT '发送信息',
+  `return` text NOT NULL COMMENT '接口返回数据',
+  `type` varchar(32) NOT NULL COMMENT '判别发送客户端类型',
+  `status` tinyint(3) NOT NULL DEFAULT '1',
+  `create_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -6355,7 +8247,7 @@ INSERT INTO `ocenter_seo_rule` (`id`, `title`, `app`, `controller`, `action`, `s
 (1016, '全部版块', 'Forum', 'Index', 'lists', 1, '', '', '', 0, '-'),
 (1017, '资讯首页/某个分类下的文章列表', 'News', 'Index', 'index', 1, '', '', '', 0, 'now_category.title 当前分类的名称'),
 (1018, '某篇文章的内容页', 'News', 'Index', 'detail', 1, '', '', '', 0, 'now_category.title 当前分类的名称\ninfo：文章变量集\n   info.title 文章标题\n   info.description 文章摘要\n   info.source 文章来源\n   info.detail.content 文章内容\nauthor.nickname 作者昵称\nauthor.signature 作者签名\n   '),
-(1019, '微博首页', 'Weibo', 'Index', 'index', 1, '{$MODULE_ALIAS}', '{$MODULE_ALIAS}首页', '{$MODULE_ALIAS}-{$website_name}', 0, 'title：我信任的、热门微博、全站信任'),
+(1019, '微博首页', 'Weibo', 'Index', 'index', 1, '{$MODULE_ALIAS}', '{$MODULE_ALIAS}首页', '{$MODULE_ALIAS}-{$website_name}', 0, 'title：我关注的、热门微博、全站关注'),
 (1020, '某条微博的详情页', 'Weibo', 'Index', 'weibodetail', 1, '{$weibo.title|text},{$website_name},{$MODULE_ALIAS}', '{$weibo.content|text}', '{$weibo.content|text}——{$MODULE_ALIAS}', 0, 'weibo:微博变量集\n   weibo.user.nickname 发布者昵称\n   weibo.content 微博内容'),
 (1021, '微博搜索页面', 'Weibo', 'Index', 'search', 1, '', '', '', 0, 'search_keywords：搜索关键词'),
 (1022, '热门话题列表', 'Weibo', 'Topic', 'topic', 1, '', '', '', 0, '-'),
@@ -6363,7 +8255,7 @@ INSERT INTO `ocenter_seo_rule` (`id`, `title`, `app`, `controller`, `action`, `s
 (1024, '自动跳转到我的群组', 'Group', 'Index', 'index', 1, '', '', '', 0, '-'),
 (1025, '全部群组', 'Group', 'Index', 'groups', 1, '', '', '', 0, '-'),
 (1026, '我的群组-帖子列表', 'Group', 'Index', 'my', 1, '', '', '', 0, '-'),
-(1027, '我的群组-全部信任的群组列表', 'Group', 'Index', 'mygroup', 1, '', '', '', 0, '-'),
+(1027, '我的群组-全部关注的群组列表', 'Group', 'Index', 'mygroup', 1, '', '', '', 0, '-'),
 (1028, '某个群组的帖子列表页面', 'Group', 'Index', 'group', 1, '', '', '', 0, 'search_key：如果查找帖子，则是关键词\ngroup：群组变量集\n   group.title 群组标题\n   group.user.nickname 创始人昵称\n   group.member_count 群组人数'),
 (1029, '某篇帖子的内容页', 'Group', 'Index', 'detail', 1, '', '', '', 0, 'group：群组变量集\n   group.title 群组标题\n   group.user.nickname 创始人昵称\n   group.member_count 群组人数\npost：帖子变量集\n   post.title 帖子标题\n   post.content 帖子内容'),
 (1030, '创建群组', 'Group', 'Index', 'create', 1, '', '', '', 0, '-'),
@@ -6403,8 +8295,8 @@ CREATE TABLE `ocenter_session` (
 --
 
 INSERT INTO `ocenter_session` (`session_id`, `session_expire`, `session_data`) VALUES
-('pefoq7vucqu5jhhr60u17vlrj7', 1506673300, 'opensns|a:4:{s:18:"login_http_referer";s:67:"http://127.0.0.1/yoyo/index.php?s=/coin/order/2017092955555550.html";s:9:"user_auth";a:5:{s:3:"uid";s:3:"100";s:8:"username";s:0:"";s:15:"last_login_time";s:10:"1506668491";s:7:"role_id";s:1:"1";s:5:"audit";s:1:"1";}s:14:"user_auth_sign";s:40:"eb2a4b0c35fb4698067ceea8b0863aeff8caf2dc";s:15:"_AUTH_LIST_1001";a:4:{i:0;s:24:"weibo/index/dosendrepost";i:1;s:18:"weibo/index/dosend";i:2;s:21:"weibo/index/docomment";i:3;s:19:"weibo/topic/beadmin";}}'),
-('beaos94bmksjl2iv6bsg65fru4', 1506673804, 'opensns|a:3:{s:9:"user_auth";a:5:{s:3:"uid";s:1:"1";s:8:"username";s:9:"yoyoadmin";s:15:"last_login_time";s:10:"1506648666";s:7:"role_id";s:1:"1";s:5:"audit";s:1:"1";}s:14:"user_auth_sign";s:40:"26bcc98316c67bcfa6a16edad9562d440792d41d";s:33:"d2d977c58444271d9c780187e93f80e53";a:2:{s:11:"verify_code";s:32:"127a52a7c6680ec59457b6fbd14fc143";s:11:"verify_time";i:1506671056;}}');
+('8cgrqj7u9no82gdlg5k6ecokf6', 1508026207, ''),
+('3uldl1uu6ln1h7l7pdj85o5vj1', 1508026198, '');
 
 -- --------------------------------------------------------
 
@@ -6459,7 +8351,11 @@ CREATE TABLE `ocenter_support` (
 --
 
 INSERT INTO `ocenter_support` (`id`, `appname`, `row`, `uid`, `create_time`, `table`) VALUES
-(1, 'Weibo', 1, 1, 1506494893, 'weibo');
+(1, 'Weibo', 1, 1, 1506494893, 'weibo'),
+(2, 'Weibo', 2, 100, 1507776145, 'weibo'),
+(3, 'Weibo', 1, 100, 1507776151, 'weibo'),
+(4, 'Weibo', 2, 116, 1507777508, 'weibo'),
+(5, 'Weibo', 2, 1, 1507780179, 'weibo');
 
 -- --------------------------------------------------------
 
@@ -6498,9 +8394,7 @@ CREATE TABLE `ocenter_talk` (
 --
 
 INSERT INTO `ocenter_talk` (`id`, `create_time`, `uids`, `update_time`, `status`, `title`, `order_id`) VALUES
-(1, 1506657705, '[1],[100]', 1506659430, 1, 'vbboy 和 yoyoadmin的聊天', '2017092997504950'),
-(2, 1506659447, '[1],[100]', 1506659560, 1, 'vbboy 和 yoyoadmin的聊天', '2017092955505010'),
-(3, 1506659591, '[1],[100]', 1506668873, 1, 'vbboy 和 yoyoadmin的聊天', '2017092955555550');
+(1, 1507534966, '[1],[100]', 1507536526, 1, 'vbboy 和 yoyocoinsdd的聊天', '2017100954574853');
 
 -- --------------------------------------------------------
 
@@ -6521,112 +8415,11 @@ CREATE TABLE `ocenter_talk_message` (
 --
 
 INSERT INTO `ocenter_talk_message` (`id`, `content`, `uid`, `create_time`, `talk_id`) VALUES
-(1, '在吗', 1, 1506657753, 1),
-(2, '你好', 100, 1506657768, 1),
-(3, '111', 1, 1506657800, 1),
-(4, '？？？？？？？？？？？？', 100, 1506657823, 1),
-(5, '水电费', 1, 1506657869, 1),
-(6, '111', 1, 1506657881, 1),
-(7, '发啊在', 100, 1506657889, 1),
-(8, '111升水', 1, 1506657903, 1),
-(9, 'aa', 1, 1506659187, 1),
-(10, '赵总', 100, 1506659197, 1),
-(11, '纸质', 100, 1506659223, 1),
-(12, 'nn', 1, 1506659244, 1),
-(13, 'ok', 100, 1506659257, 1),
-(14, 'zzaa', 1, 1506659273, 1),
-(15, '这咋啊', 100, 1506659289, 1),
-(16, 'zad', 1, 1506659314, 1),
-(17, 'zz', 1, 1506659339, 1),
-(18, '砸', 100, 1506659369, 1),
-(19, '查杀', 100, 1506659377, 1),
-(20, 'sdffwwer', 1, 1506659383, 1),
-(21, 'sdfsdfwe', 1, 1506659394, 1),
-(22, '知道vsdf', 100, 1506659400, 1),
-(23, '你好吗', 1, 1506659411, 1),
-(24, '我很好了', 100, 1506659421, 1),
-(25, '第三方', 1, 1506659425, 1),
-(26, '住宿费', 100, 1506659430, 1),
-(27, 'hi', 1, 1506659479, 2),
-(28, '升水', 100, 1506659492, 2),
-(29, '咋', 100, 1506659525, 2),
-(30, '赵总', 1, 1506659548, 2),
-(31, '按时', 100, 1506659560, 2),
-(32, '在', 1, 1506659616, 3),
-(33, '在', 100, 1506659622, 3),
-(34, '按时', 1, 1506659633, 3),
-(35, '老吧', 100, 1506659657, 3),
-(36, '你老吧', 1, 1506659666, 3),
-(37, '恩哼', 100, 1506659680, 3),
-(38, '赵总', 1, 1506659691, 3),
-(39, '000', 1, 1506659949, 3),
-(40, '3366', 100, 1506659962, 3),
-(41, '赵总', 1, 1506662422, 3),
-(42, '在', 100, 1506662428, 3),
-(43, '睡醒了吗', 1, 1506665268, 3),
-(44, '恩', 100, 1506665277, 3),
-(45, '11', 1, 1506665301, 3),
-(46, '22', 100, 1506665306, 3),
-(47, '起啊啊', 1, 1506665527, 3),
-(48, '恩恩', 100, 1506665539, 3),
-(49, 'zz', 100, 1506665558, 3),
-(50, 'z咋', 100, 1506665560, 3),
-(51, '最亲爱', 100, 1506665562, 3),
-(52, '1', 100, 1506665595, 3),
-(53, '2', 100, 1506665596, 3),
-(54, '赵总', 100, 1506665662, 3),
-(55, '咋咋', 100, 1506665669, 3),
-(56, '是', 1, 1506665920, 3),
-(57, '赵总', 100, 1506665928, 3),
-(58, '是', 100, 1506665946, 3),
-(59, '在', 1, 1506665956, 3),
-(60, '啊', 100, 1506665961, 3),
-(61, '是', 100, 1506665995, 3),
-(62, '想', 1, 1506666008, 3),
-(63, '的', 100, 1506666019, 3),
-(64, '地点', 100, 1506666102, 3),
-(65, '分', 1, 1506666110, 3),
-(66, '安抚', 100, 1506666115, 3),
-(67, 'we', 100, 1506666116, 3),
-(68, '二', 100, 1506666118, 3),
-(69, '1', 100, 1506666135, 3),
-(70, '1', 1, 1506666149, 3),
-(71, '2', 1, 1506666151, 3),
-(72, '3', 1, 1506666152, 3),
-(73, '5', 1, 1506666153, 3),
-(74, '水电费', 100, 1506666186, 3),
-(75, '1', 100, 1506666191, 3),
-(76, '2', 100, 1506666192, 3),
-(77, '3', 100, 1506666194, 3),
-(78, '4', 100, 1506666195, 3),
-(79, '5', 100, 1506666197, 3),
-(80, '6', 100, 1506666198, 3),
-(81, '11', 1, 1506666260, 3),
-(82, '22', 100, 1506666263, 3),
-(83, '水电费', 100, 1506666355, 3),
-(84, '12', 1, 1506666476, 3),
-(85, '111', 1, 1506666483, 3),
-(86, '22', 1, 1506666488, 3),
-(87, '111', 1, 1506666789, 3),
-(88, 'sdfsdf', 1, 1506666805, 3),
-(89, 'asdfsdf', 1, 1506666808, 3),
-(90, '1212121', 1, 1506666836, 3),
-(91, 'sadf', 1, 1506666844, 3),
-(92, 'asdfdsf', 1, 1506666854, 3),
-(93, 'asdfdsfzz', 1, 1506666859, 3),
-(94, '1212', 1, 1506667238, 3),
-(95, '1212', 100, 1506667242, 3),
-(96, '你呢', 1, 1506667521, 3),
-(97, '11', 100, 1506668369, 3),
-(98, '11', 1, 1506668443, 3),
-(99, '11', 100, 1506668448, 3),
-(100, '11', 100, 1506668496, 3),
-(101, '22', 1, 1506668499, 3),
-(102, '12', 1, 1506668685, 3),
-(103, 'sdc', 100, 1506668696, 3),
-(104, '11', 100, 1506668853, 3),
-(105, '2', 1, 1506668856, 3),
-(106, '112', 1, 1506668873, 3);
+(1, '121', 100, 1507534970, 1),
+(2, '我在', 1, 1507534992, 1),
+(3, '你在哪个位置', 1, 1507535002, 1),
+(4, 'OK', 100, 1507535010, 1),
+(5, '好了', 100, 1507536526, 1);
 
 -- --------------------------------------------------------
 
@@ -6714,15 +8507,14 @@ CREATE TABLE `ocenter_tradead` (
   `country` smallint(4) NOT NULL COMMENT '国家地区',
   `currency` varchar(5) NOT NULL COMMENT '货币类型',
   `price` decimal(10,2) NOT NULL COMMENT '价格',
-  `pre_price` decimal(10,2) NOT NULL COMMENT '溢价',
+  `pre_price` tinyint(2) NOT NULL COMMENT '溢价',
   `low_price` decimal(10,2) NOT NULL COMMENT '最低价',
   `max_price` int(11) DEFAULT NULL COMMENT 'max',
   `min_price` int(11) DEFAULT NULL COMMENT 'min',
   `pay_type` smallint(4) NOT NULL COMMENT '付款方式',
   `pay_time` int(11) DEFAULT NULL,
   `pay_addr` varchar(50) DEFAULT NULL COMMENT '见面地点',
-  `pay_text1` varchar(50) DEFAULT NULL COMMENT '交易条款',
-  `pay_text2` varchar(50) DEFAULT NULL COMMENT '交易条款',
+  `pay_text` varchar(50) DEFAULT NULL COMMENT '交易条款',
   `auto_message` varchar(100) DEFAULT NULL COMMENT '自动回复消息',
   `is_safe` tinyint(2) NOT NULL DEFAULT '0' COMMENT '安全验证',
   `is_trust` tinyint(2) NOT NULL DEFAULT '0' COMMENT '信任验证',
@@ -6735,23 +8527,10 @@ CREATE TABLE `ocenter_tradead` (
 -- 转存表中的数据 `ocenter_tradead`
 --
 
-INSERT INTO `ocenter_tradead` (`id`, `uid`, `type`, `coin_type`, `country`, `currency`, `price`, `pre_price`, `low_price`, `max_price`, `min_price`, `pay_type`, `pay_time`, `pay_addr`, `pay_text1`, `pay_text2`, `auto_message`, `is_safe`, `is_trust`, `open_time`, `status`, `create_time`) VALUES
-(6, 1, 1, 1, 45, 'CNY', '24240.00', '1.00', '20000.00', 50000, 3000, 1, 60, '11', 'sdfdsf', NULL, '', 0, 0, '{"st7":"00.00","st6":"00.00","st1":"00.00","st2":"00.00","st3":"00.00","st4":"00.00","st5":"00.00","et7":"24.00","et6":"24.00","et1":"24:00","et2":"24.00","et3":"24.00","et4":"24.00","et5":"24.00"}', 1, 1506417091),
-(7, 1, 2, 1, 45, 'AFN', '24240.00', '1.00', '20000.00', 30000, 3000, 2, 30, '11', 'sdfsdsdfsdf', NULL, '', 1, 1, '{"st7":"-1","st6":"-1","st1":"5:00","st2":"00.00","st3":"00.00","st4":"00.00","st5":"9:00","et7":"-1","et6":"-1","et1":"17:00","et2":"24.00","et3":"24.00","et4":"24.00","et5":"17:00"}', 1, 1506417842);
-
--- --------------------------------------------------------
-
---
--- 表的结构 `ocenter_trade_message`
---
-
-CREATE TABLE `ocenter_trade_message` (
-  `id` int(11) NOT NULL,
-  `uid` int(11) NOT NULL,
-  `tid` int(11) NOT NULL,
-  `mesage` varchar(100) DEFAULT NULL COMMENT '消息',
-  `create_time` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='交易留言';
+INSERT INTO `ocenter_tradead` (`id`, `uid`, `type`, `coin_type`, `country`, `currency`, `price`, `pre_price`, `low_price`, `max_price`, `min_price`, `pay_type`, `pay_time`, `pay_addr`, `pay_text`, `auto_message`, `is_safe`, `is_trust`, `open_time`, `status`, `create_time`) VALUES
+(4010, 1, 1, 1, 45, 'CNY', '24240.00', 1, '23000.00', 20000, 2000, 2, 60, '长沙', '你好', '', 1, 0, '{\"st7\":\"-1\",\"st6\":\"07:00\",\"st1\":\"10:00\",\"st2\":\"13:00\",\"st3\":\"03:00\",\"st4\":\"23:00\",\"st5\":\"17:00\",\"et7\":\"-1\",\"et6\":\"1\",\"et1\":\"19:00\",\"et2\":\"03:00\",\"et3\":\"22:00\",\"et4\":\"15:00\",\"et5\":\"19:00\"}', 1, 1507383726),
+(4013, 1, 3, 2, 45, 'CNY', '24480.00', 2, '25000.00', 100000, 5000, 3, 50, 'sdf', 'sdfsdfsdf', '', 1, 1, '{\"st7\":\"-1\",\"st6\":\"1\",\"st1\":\"12:00\",\"st2\":\"1\",\"st3\":\"1\",\"st4\":\"1\",\"st5\":\"1\",\"et7\":\"-1\",\"et6\":\"1\",\"et1\":\"19:00\",\"et2\":\"1\",\"et3\":\"1\",\"et4\":\"1\",\"et5\":\"1\"}', 1, 1507384415),
+(4014, 1, 4, 1, 45, 'CNY', '24240.00', 1, '23000.00', 20000, 2000, 2, 60, '长沙', '你好', '', 1, 1, '{\"st7\":\"-1\",\"st6\":\"07:00\",\"st1\":\"10:00\",\"st2\":\"13:00\",\"st3\":\"03:00\",\"st4\":\"23:00\",\"st5\":\"17:00\",\"et7\":\"-1\",\"et6\":\"13:00\",\"et1\":\"19:00\",\"et2\":\"03:00\",\"et3\":\"22:00\",\"et4\":\"15:00\",\"et5\":\"19:00\"}', 1, 1507384582);
 
 -- --------------------------------------------------------
 
@@ -6762,14 +8541,16 @@ CREATE TABLE `ocenter_trade_message` (
 CREATE TABLE `ocenter_trade_order` (
   `id` int(11) NOT NULL,
   `ad_id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `buy_uid` int(11) NOT NULL,
-  `sell_uid` int(11) NOT NULL,
+  `order_id` varchar(20) NOT NULL,
+  `ad_uid` int(11) NOT NULL,
+  `get_uid` int(11) NOT NULL,
   `type` tinyint(2) NOT NULL COMMENT '广告类型：1在线sell，2在线buy，3本地sell，4本地buy',
   `coin_type` tinyint(2) NOT NULL COMMENT '币种',
   `coin_num` decimal(10,8) NOT NULL COMMENT '交易数量',
   `price` decimal(10,4) NOT NULL COMMENT '交易价格',
-  `fee` decimal(10,4) NOT NULL COMMENT '手续费',
+  `fee` decimal(10,8) NOT NULL COMMENT '手续费',
+  `currency` varchar(5) NOT NULL COMMENT '货币类型',
+  `pay_text` varchar(50) DEFAULT NULL COMMENT '交易条款',
   `status` tinyint(2) NOT NULL COMMENT '状态：1等待付款，2付款完毕，3确认完成，4，申诉，0取消',
   `create_time` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='交易表';
@@ -6778,41 +8559,8 @@ CREATE TABLE `ocenter_trade_order` (
 -- 转存表中的数据 `ocenter_trade_order`
 --
 
-INSERT INTO `ocenter_trade_order` (`id`, `ad_id`, `order_id`, `buy_uid`, `sell_uid`, `type`, `coin_type`, `coin_num`, `price`, `fee`, `status`, `create_time`) VALUES
-(8, 6, 2023, 100, 1, 1, 1, '0.28000000', '7000.0000', '1.0000', 1, 1506650110),
-(7, 6, 2023, 100, 1, 1, 1, '0.24000000', '6000.0000', '1.0000', 1, 1506650065),
-(6, 6, 2023, 100, 1, 1, 1, '0.20000000', '5000.0000', '1.0000', 1, 1506649973),
-(5, 6, 2023, 100, 1, 1, 1, '0.12000000', '3000.0000', '1.0000', 1, 1506647949),
-(9, 6, 2023, 100, 1, 1, 1, '0.28000000', '7000.0000', '1.0000', 1, 1506650122),
-(10, 6, 2023, 100, 1, 1, 1, '0.32000000', '8000.0000', '1.0000', 1, 1506650130),
-(11, 6, 2023, 100, 1, 1, 1, '0.32000000', '8000.0000', '1.0000', 1, 1506650142),
-(12, 6, 2023, 100, 1, 1, 1, '0.28000000', '7000.0000', '1.0000', 1, 1506650184),
-(13, 6, 2023, 100, 1, 1, 1, '0.28000000', '7000.0000', '1.0000', 1, 1506650204),
-(14, 6, 2023, 100, 1, 1, 1, '0.28000000', '7000.0000', '1.0000', 1, 1506650237),
-(15, 6, 2023, 100, 1, 1, 1, '0.28004000', '7001.0000', '1.0000', 1, 1506650300),
-(16, 6, 2023, 100, 1, 1, 1, '0.28004000', '7001.0000', '1.0000', 1, 1506650485),
-(17, 6, 2023, 100, 1, 1, 1, '0.28004000', '7001.0000', '1.0000', 1, 1506650505),
-(18, 6, 2023, 100, 1, 1, 1, '0.28004000', '7001.0000', '1.0000', 1, 1506650558),
-(19, 6, 2023, 100, 1, 1, 1, '0.28004000', '7001.0000', '1.0000', 1, 1506650670),
-(20, 6, 2023, 100, 1, 1, 1, '0.28004000', '7001.0000', '1.0000', 1, 1506650693),
-(21, 6, 2023, 100, 1, 1, 1, '0.28004000', '7001.0000', '1.0000', 1, 1506650709),
-(22, 6, 2023, 100, 1, 1, 1, '0.28004000', '7001.0000', '1.0000', 1, 1506650731),
-(23, 6, 2023, 100, 1, 1, 1, '0.40000000', '10000.0000', '1.0000', 1, 1506650993),
-(24, 6, 2023, 100, 1, 1, 1, '0.40000000', '10000.0000', '1.0000', 1, 1506653061),
-(25, 6, 2147483647, 100, 1, 1, 1, '0.40000000', '10000.0000', '1.0000', 1, 1506657108);
-
--- --------------------------------------------------------
-
---
--- 表的结构 `ocenter_trade_trust`
---
-
-CREATE TABLE `ocenter_trade_trust` (
-  `id` int(11) NOT NULL,
-  `recv_uid` int(11) NOT NULL,
-  `click_uid` int(11) NOT NULL,
-  `trust` tinyint(2) NOT NULL COMMENT '信任：0未信任，1信任，2屏蔽'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户信任表';
+INSERT INTO `ocenter_trade_order` (`id`, `ad_id`, `order_id`, `ad_uid`, `get_uid`, `type`, `coin_type`, `coin_num`, `price`, `fee`, `currency`, `pay_text`, `status`, `create_time`) VALUES
+(1, 4014, '2017100954574853', 1, 100, 4, 1, '0.44444000', '11111.0000', '0.00222220', 'CNY', 'sdfsadfasdsad', 1, 1507534966);
 
 -- --------------------------------------------------------
 
@@ -6836,6 +8584,7 @@ CREATE TABLE `ocenter_ucenter_member` (
   `id` int(10) UNSIGNED NOT NULL COMMENT '用户ID',
   `username` char(32) NOT NULL COMMENT '用户名',
   `password` char(32) NOT NULL COMMENT '密码',
+  `safe_pw` char(32) NOT NULL,
   `email` char(32) NOT NULL COMMENT '用户邮箱',
   `mobile` char(15) NOT NULL COMMENT '用户手机',
   `reg_time` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '注册时间',
@@ -6844,17 +8593,18 @@ CREATE TABLE `ocenter_ucenter_member` (
   `last_login_ip` bigint(20) NOT NULL DEFAULT '0' COMMENT '最后登录IP',
   `update_time` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '更新时间',
   `status` tinyint(4) DEFAULT '0' COMMENT '用户状态',
-  `type` tinyint(4) NOT NULL COMMENT '1为用户名注册，2为邮箱注册，3为手机注册'
+  `type` tinyint(4) NOT NULL COMMENT '1为用户名注册，2为邮箱注册，3为手机注册',
+  `google_ver` char(20) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 --
 -- 转存表中的数据 `ocenter_ucenter_member`
 --
 
-INSERT INTO `ocenter_ucenter_member` (`id`, `username`, `password`, `email`, `mobile`, `reg_time`, `reg_ip`, `last_login_time`, `last_login_ip`, `update_time`, `status`, `type`) VALUES
-(1, 'yoyoadmin', '1ad5cc9a96fcb8a42881f0b875dbbe69', 'admin@admin.com', '', 1506049131, 2130706433, 1506648666, 2130706433, 1506049131, 1, 1),
-(100, '', 'f7ed6b6544fa8f15d8b4173204b95f15', 'vbboy2015@163.com', '', 1506497016, 2130706433, 1506668833, 2130706433, 1506497016, 1, 2),
-(101, '', 'f7ed6b6544fa8f15d8b4173204b95f15', 'vbboy2015@163.com', '', 1506497016, 2130706433, 0, 0, 1506497016, 1, 2);
+INSERT INTO `ocenter_ucenter_member` (`id`, `username`, `password`, `safe_pw`, `email`, `mobile`, `reg_time`, `reg_ip`, `last_login_time`, `last_login_ip`, `update_time`, `status`, `type`, `google_ver`) VALUES
+(1, 'yoyoadmin', '1ad5cc9a96fcb8a42881f0b875dbbe69', '', 'admin@admin.com', '', 1506049131, 2130706433, 1507974183, 2130706433, 1506049131, 1, 1, '0'),
+(100, '', '1ad5cc9a96fcb8a42881f0b875dbbe69', 'qqwwee', 'vbboy2015@163.com', '18507358828', 1507711542, 2130706433, 1507973438, 2130706433, 1507711542, 1, 2, 'F2WXMDXO5NBMMHA7'),
+(116, '', 'f7ed6b6544fa8f15d8b4173204b95f15', '', 'soni@vip.qq.com', '', 1507777470, 2130706433, 1507777470, 2130706433, 1507777470, 1, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -6985,11 +8735,11 @@ CREATE TABLE `ocenter_user_nav` (
 --
 
 INSERT INTO `ocenter_user_nav` (`id`, `title`, `url`, `sort`, `create_time`, `update_time`, `status`, `target`, `color`, `band_color`, `band_text`, `icon`) VALUES
-(1, '个人主页', 'ucenter/Index/index', 0, 0, 0, 1, 0, '', '', '', ''),
-(2, '消息中心', 'ucenter/message/message', 0, 0, 0, 1, 0, '', '', '', ''),
-(3, '我的收藏', 'ucenter/Collection/index', 0, 0, 0, 1, 0, '', '', '', ''),
-(4, '我的头衔', 'ucenter/Index/rank', 0, 0, 0, 1, 0, '', '', '', ''),
-(5, '申请认证', 'ucenter/attest/process/go_index/1', 0, 0, 0, 1, 0, '', '', '', '');
+(1, '我的广告', '/ucenter/myad', 0, 0, 0, 1, 0, '#000000', '#000000', '', '-'),
+(2, '我的订单', '/ucenter/myorder', 1, 0, 0, 1, 0, '#000000', '#000000', '', '-'),
+(3, '消息中心', 'ucenter/message/message', 2, 0, 0, 1, 0, '#000000', '#000000', '', '-'),
+(4, '我的收藏', 'ucenter/Collection/index', 3, 0, 0, 1, 0, '#000000', '#000000', '', '-'),
+(5, '申请认证', 'ucenter/attest/process/go_index/1', 4, 0, 0, 1, 0, '#000000', '#000000', '', '-');
 
 -- --------------------------------------------------------
 
@@ -7013,7 +8763,22 @@ CREATE TABLE `ocenter_user_role` (
 INSERT INTO `ocenter_user_role` (`id`, `uid`, `role_id`, `status`, `step`, `init`) VALUES
 (1, 1, 1, 1, 'finish', 1),
 (2, 100, 1, 1, 'finish', 1),
-(3, 101, 1, 1, 'start', 1);
+(3, 101, 1, 1, 'start', 1),
+(4, 102, 1, 1, 'start', 1),
+(5, 103, 1, 1, 'start', 1),
+(6, 104, 1, 1, 'start', 1),
+(7, 105, 1, 1, 'start', 1),
+(8, 107, 1, 1, 'start', 1),
+(9, 106, 1, 1, 'start', 1),
+(10, 108, 1, 1, 'start', 1),
+(11, 109, 1, 1, 'start', 1),
+(12, 110, 1, 1, 'start', 1),
+(13, 111, 1, 1, 'finish', 1),
+(14, 112, 1, 1, 'finish', 1),
+(15, 114, 1, 1, 'finish', 1),
+(16, 113, 1, 1, 'start', 1),
+(17, 115, 1, 1, 'finish', 1),
+(18, 116, 1, 1, 'finish', 1);
 
 -- --------------------------------------------------------
 
@@ -7075,7 +8840,7 @@ CREATE TABLE `ocenter_user_token` (
 --
 
 INSERT INTO `ocenter_user_token` (`id`, `uid`, `token`, `time`) VALUES
-(2, 100, 'C15qlB2QiZhHJkgWEVsImSbRtNzYKeor6v49wfAP', 1506498085);
+(4, 1, 'vmzQ2tEjBXplaNCVYnUwJL1gh7c36RWOoA5sGuZI', 1507346157);
 
 -- --------------------------------------------------------
 
@@ -7091,6 +8856,13 @@ CREATE TABLE `ocenter_verify` (
   `verify` varchar(50) NOT NULL,
   `create_time` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `ocenter_verify`
+--
+
+INSERT INTO `ocenter_verify` (`id`, `uid`, `account`, `type`, `verify`, `create_time`) VALUES
+(30, 0, 'vbboy2012@163.com', 'email', '399213', 1506777821);
 
 -- --------------------------------------------------------
 
@@ -7161,8 +8933,10 @@ CREATE TABLE `ocenter_weibo_cache` (
 --
 
 INSERT INTO `ocenter_weibo_cache` (`id`, `weibo_id`, `groups`, `cache_html`, `create_time`) VALUES
-(11, 2, '1', '<div style="max-width: 680px;" data-role="id_weibo" id="weibo_2" class="">\r\n    <div class="all-wrap">\r\n                    <div class="new-user-first-weibo"></div>                <div class="weibo-content">\r\n            <div class="content-head">\r\n                <div class="avat-box pull-left">\r\n                    <a href="/yoyo/index.php?s=/ucenter/index/index/uid/100.html" ucard="100">\r\n                        <span style="position: relative;display: inline-block;">\r\n                                    <img src="/yoyo/Public/images/default_avatar_128_128.jpg" class="avatar-img">\r\n                                  </span>                    </a>\r\n                    <div class="show-follow pull-right">\r\n                        <div class="follow-btn" style="display: none;">\r\n                            [follow:100]\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class="op-box pull-right">\r\n                    <div class="op-tb op-top">\r\n                        <a ucard="100" href="/yoyo/index.php?s=/ucenter/index/index/uid/100.html" class="user_name">\r\n                            [nickname:100]\r\n                        </a>\r\n                        <small class="font_grey">Lv1 实习</small>                        &nbsp;\r\n                        <!--隐藏操作列表-->\r\n                        <div class="pull-right show-operate-wrap">\r\n                            <a href="javascript:" class="show-operate pull-right icon-angle-down"></a>\r\n                            <div class="operate-box" >\r\n                                <li data-weibo-id="2" title="设置置顶" data-role="weibo_set_top">\r\n                                            置顶\r\n                                        </li>\r\n                                                                                                        <li data-weibo-id="2" title="删除" data-role="del_weibo">\r\n                                        删除\r\n                                    </li>                                                                <li><a data-type="ajax" data-url="/yoyo/index.php?s=/home/addons/_addons/report/_controller/report/_action/eject/param/type%3D%25E5%258A%25A8%25E6%2580%2581Pro%252F%25E5%258A%25A8%25E6%2580%2581Pro%26url%3DWeibo%252FIndex%252FweiboDetail%253Fid%253D2%26data%255Bweibo-id%255D%3D2.html" data-title="举报"  data-toggle="modal" >举报</a></li>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <div class="op-tb op-bottom">\r\n                        <a data-hover="查看详情" class="wb-time" href="/yoyo/index.php?s=/weibo/index/weibodetail/id/2.html">\r\n                            [time:1506498138]\r\n                                                    </a>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="content-info row">\r\n                <div class="long-weibo-list-content">\r\n    <a class="article-link" href="/yoyo/index.php?s=/weibo/index/weibodetail/id/2.html">\r\n        <div class="long-block">\r\n            <h1 style="width: 100%;" class="text-more">123教程| 如何从btc123提TV到ebtcbank</h1>\r\n            <p class="word-wrap">\r\n                1、登陆https://ebtcbank.com/，未注册用户请点击蓝色注册按钮。<br/> \n<br/> \n<br/> \n2、按要求填写注册信息，设置交易密码，进行实名认证，注册成功即可点击去交易。<br/> \n<br/> \n<br/> \n<br/> \n<br/> \n3、在财务中心，点击转入虚拟币，下拉菜单选择并点击钛值（TV）。<br/> \n<br/> \n<br/> \n4、出现钛值（TV）地址，进行复制。<br/> \n<br/> \n5、登陆www.btc123.com,在资产管理中选择TV资产，点击提现TV。<br/> \n<br/> \n<br/> \n6、发送至            </p>\r\n            <div class="position-block"><div class="read-long-weibo-logo"><i class="logo"></i></div>阅读全文</div>\r\n        </div>\r\n    </a>\r\n</div>                 <div class="form-where">\r\n                    <div class="where w-left">\r\n                        <!--<span>来自 <b> 全站动态</b></span>-->\r\n                                                    <span></span>\r\n                    </div>\r\n                    <div class="where w-right  bottom-operate" data-weibo-id="2">\r\n                                                <div class="col-xs-3 operate-color">\r\n     <a title="喜欢"\r\n     class="support_btn" table="weibo" row="2" uid="100" jump="weibo/index/weibodetail">\r\n\r\n            <i id="ico_like" class="icon-heart-empty"></i>\r\n\r\n    <span id="support_Weibo_weibo_2_pos"><span id="support_Weibo_weibo_2">0</span> </span>\r\n</a>\r\n<script>\r\n    bind_support();\r\n</script></div>\r\n<div class=" col-xs-3 operate-color" data-role="weibo_comment_btn"  data-weibo-id="2">\r\n   <i class="os-icon-bubbles"></i> 0</div>\r\n<div class="col-xs-3 operate-color">\r\n        <a title="转发"  data-role="send_repost"  href="/yoyo/index.php?s=/weibo/index/sendrepost/sourceId/2/weiboId/2.html"><i class="os-icon-share-alt"></i> 0</a>\r\n</div>\r\n<div class="share_button col-xs-3  operate-color" style="padding: 0px;position: relative;">\r\n    <span class="cpointer weibo_share_btn_2" data-weibo-id="2">\r\n        <a data-role="weibo_share_btn" class="share-btn" title="分享"><i class="os-icon-share"></i><!--<span class="share_count" title="累计分享0次" style="margin-left: 5px;">0</span>--></a>\r\n    </span>\r\n    <div class="share_block" data-url="http://127.0.0.1/yoyo/index.php?s=/weibo/index/weibodetail/id/2.html" data-text="1、登陆https://ebtcbank.com/，未注册用户请点击蓝色注册按钮。 \n \n \n2、按要求填写注册信息，设置交易密码，进行实名认证，注册成功即可点击去交易。 \n \n \n \n \n3、在财务中心，点击转入虚拟币，下拉菜单选择并点击钛值（TV）。 \n \n \n4、出现钛值（TV）地址，进行复制。 \n \n5、登陆www.btc123.com,在资产管理中选择TV资产，点击提现TV。 \n \n \n6、发送至" data-dec="分享微博" style="display: none;">\r\n        <div class="bdsharebuttonbox" data-tag="share_feedlist">\r\n            <a class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" data-id="2">QQ空间</a>\r\n            <a class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" data-id="2">新浪微博</a>\r\n            <a class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" data-id="2">腾讯微博</a>\r\n            <a class="bds_weixin" data-cmd="weixin" title="分享到微信" data-id="2">微信</a>\r\n            <a class="bds_sqq" data-cmd="sqq" title="分享到QQ好友" data-id="2">QQ好友</a>\r\n            <!--<a class="bds_count" data-cmd="count" style="display: none;"></a>-->\r\n        </div>\r\n        <div style="position: relative;">\r\n            <div class="tip"></div>\r\n            <div class="tip-xs"></div>\r\n        </div>\r\n    </div>\r\n    <script src="/yoyo/Application/Weibo/Static/js/bdshare.js"></script>\r\n</div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        </div>\r\n    <div class="weibo-comment-list row" style="display: block;margin:0;"  data-weibo-id="2">\r\n    <div class=" weibo-comment-block">\r\n            <div class="weibo-comment-container">\r\n                <div class="weibo_post_box">\r\n            <p class="comment-area">\r\n                <input type="hidden"  name="reply_id" value="0"/>\r\n\r\n                <input type="text" placeholder="评论（Ctrl+Enter）" id="text_2" rows="2" data-weibo-id="2"\r\n                       class="comment-input  weibo-comment-content comment_text_inputor">\r\n                <a style="margin-right: 10px"  class=""                  onclick="insertFace($(this))"><i style="color: #999;" class="os-icon-emoticon-smile"></i> </a>\r\n                <a  data-role="do_comment" id="btn_2" data-weibo-id="2">\r\n                    <i class="os-icon-paper-plane"></i> </a>\r\n            </p>\r\n\r\n    <div id="emot_content" class="emot_content" style="position: absolute;    right: 425px;\r\n    top: 45px;"></div>\r\n    <!--评论列表-->\r\n</div>\r\n<div id="show_comment_2" class="weibo_comment_list" data-comment-count="0">\r\n    <div class="pager" style="display: none!important;">\r\n    </div>\r\n</div>\r\n\r\n\r\n<script>\r\n    $(function () {\r\n        var weiboid = \'2\';\r\n        $(\'#text_\' + weiboid + \'\').keypress(function (e) {\r\n            if (e.ctrlKey && e.which == 13 || e.which == 10) {\r\n                $(\'#btn_\' + weiboid + \'\').click();\r\n            }\r\n        });\r\n    });\r\n</script>            </div>\r\n        </div>    </div>\r\n    </div>\r\n</if>\r\n<style>\r\n    .suofang {MARGIN: auto;WIDTH: 200px;}\r\n    .suofang img{MAX-WIDTH: 100%!important;HEIGHT: auto!important;width:expression(this.width > 300 ? "300px" :this.width)!important;}\r\n</style>', 1506672260),
-(12, 1, '1', '<div style="max-width: 680px;" data-role="id_weibo" id="weibo_1" class="">\r\n    <div class="all-wrap">\r\n                    <div class="new-user-first-weibo"></div>                <div class="weibo-content">\r\n            <div class="content-head">\r\n                <div class="avat-box pull-left">\r\n                    <a href="http://127.0.0.1/yoyo/u/jzbk" ucard="1">\r\n                        <span style="position: relative;display: inline-block;">\r\n                                    <img src="/yoyo/Uploads/Avatar/1/59c9fe662f4d9_128_128.jpg" class="avatar-img">\r\n                                  </span>                    </a>\r\n                    <div class="show-follow pull-right">\r\n                        <div class="follow-btn" style="display: none;">\r\n                            [follow:1]\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class="op-box pull-right">\r\n                    <div class="op-tb op-top">\r\n                        <a ucard="1" href="http://127.0.0.1/yoyo/u/jzbk" class="user_name">\r\n                            [nickname:1]\r\n                        </a>\r\n                        <small class="font_grey">Lv1 实习</small>                        &nbsp;\r\n                        <!--隐藏操作列表-->\r\n                        <div class="pull-right show-operate-wrap">\r\n                            <a href="javascript:" class="show-operate pull-right icon-angle-down"></a>\r\n                            <div class="operate-box" >\r\n                                <li data-weibo-id="1" title="设置置顶" data-role="weibo_set_top">\r\n                                            置顶\r\n                                        </li>\r\n                                                                                                        <li data-weibo-id="1" title="删除" data-role="del_weibo">\r\n                                        删除\r\n                                    </li>                                                                <li><a data-type="ajax" data-url="/yoyo/index.php?s=/home/addons/_addons/report/_controller/report/_action/eject/param/type%3D%25E5%258A%25A8%25E6%2580%2581Pro%252F%25E5%258A%25A8%25E6%2580%2581Pro%26url%3DWeibo%252FIndex%252FweiboDetail%253Fid%253D1%26data%255Bweibo-id%255D%3D1.html" data-title="举报"  data-toggle="modal" >举报</a></li>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <div class="op-tb op-bottom">\r\n                        <a data-hover="查看详情" class="wb-time" href="/yoyo/index.php?s=/weibo/index/weibodetail/id/1.html">\r\n                            [time:1506494855]\r\n                                                    </a>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="content-info row">\r\n                <div class="long-weibo-list-content">\r\n    <a class="article-link" href="/yoyo/index.php?s=/weibo/index/weibodetail/id/1.html">\r\n        <div class="long-block">\r\n            <h1 style="width: 100%;" class="text-more">SEC创建新的机构对ICO违规进行监管</h1>\r\n            <p class="word-wrap">\r\n                <br/> \n<br/> \n美国证券交易委员会（SEC）今天发布了一项有关新建专门的“网络单位（Cyber&nbsp;Unit）”的新闻公告。值得注意的是，这一新机构将执行一些对象为数字货币的监管。<br/> \n<br/> \n广阔的监管范围<br/> \n<br/> \nSEC指出：<br/> \n<br/> \n“网络单位”将聚焦网络违规操作，如：<br/> \n<br/> \n重磅：SEC宣布创建新的机构&nbsp;对ICO和分布式账本违规进行监管<br/> \n<br/> \n如果上述行为全部被纳入这个新的“网络            </p>\r\n            <div class="position-block"><div class="read-long-weibo-logo"><i class="logo"></i></div>阅读全文</div>\r\n        </div>\r\n    </a>\r\n</div>                 <div class="form-where">\r\n                    <div class="where w-left">\r\n                        <!--<span>来自 <b> 全站动态</b></span>-->\r\n                                                    <span></span>\r\n                    </div>\r\n                    <div class="where w-right  bottom-operate" data-weibo-id="1">\r\n                                                <div class="col-xs-3 operate-color">\r\n     <a title="喜欢"\r\n     class="support_btn" table="weibo" row="1" uid="1" jump="weibo/index/weibodetail">\r\n\r\n    <i id="ico_like" class="icon-heart"></i>\r\n        \r\n\r\n    <span id="support_Weibo_weibo_1_pos"><span id="support_Weibo_weibo_1">1</span> </span>\r\n</a>\r\n<script>\r\n    bind_support();\r\n</script></div>\r\n<div class=" col-xs-3 operate-color" data-role="weibo_comment_btn"  data-weibo-id="1">\r\n   <i class="os-icon-bubbles"></i> 0</div>\r\n<div class="col-xs-3 operate-color">\r\n        <a title="转发"  data-role="send_repost"  href="/yoyo/index.php?s=/weibo/index/sendrepost/sourceId/1/weiboId/1.html"><i class="os-icon-share-alt"></i> 0</a>\r\n</div>\r\n<div class="share_button col-xs-3  operate-color" style="padding: 0px;position: relative;">\r\n    <span class="cpointer weibo_share_btn_1" data-weibo-id="1">\r\n        <a data-role="weibo_share_btn" class="share-btn" title="分享"><i class="os-icon-share"></i><!--<span class="share_count" title="累计分享0次" style="margin-left: 5px;">0</span>--></a>\r\n    </span>\r\n    <div class="share_block" data-url="http://127.0.0.1/yoyo/index.php?s=/weibo/index/weibodetail/id/1.html" data-text="美国证券交易委员会（SEC）今天发布了一项有关新建专门的“网络单位（Cyber&nbsp;Unit）”的新闻公告。值得注意的是，这一新机构将执行一些对象为数字货币的监管。 \n \n广阔的监管范围 \n \nSEC指出： \n \n“网络单位”将聚焦网络违规操作，如： \n \n重磅：SEC宣布创建新的机构&nbsp;对ICO和分布式账本违规进行监管 \n \n如果上述行为全部被纳入这个新的“网络" data-dec="分享微博" style="display: none;">\r\n        <div class="bdsharebuttonbox" data-tag="share_feedlist">\r\n            <a class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" data-id="1">QQ空间</a>\r\n            <a class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" data-id="1">新浪微博</a>\r\n            <a class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" data-id="1">腾讯微博</a>\r\n            <a class="bds_weixin" data-cmd="weixin" title="分享到微信" data-id="1">微信</a>\r\n            <a class="bds_sqq" data-cmd="sqq" title="分享到QQ好友" data-id="1">QQ好友</a>\r\n            <!--<a class="bds_count" data-cmd="count" style="display: none;"></a>-->\r\n        </div>\r\n        <div style="position: relative;">\r\n            <div class="tip"></div>\r\n            <div class="tip-xs"></div>\r\n        </div>\r\n    </div>\r\n    <script src="/yoyo/Application/Weibo/Static/js/bdshare.js"></script>\r\n</div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        </div>\r\n    <div class="weibo-comment-list row" style="display: block;margin:0;"  data-weibo-id="1">\r\n    <div class=" weibo-comment-block">\r\n            <div class="weibo-comment-container">\r\n                <div class="weibo_post_box">\r\n            <p class="comment-area">\r\n                <input type="hidden"  name="reply_id" value="0"/>\r\n\r\n                <input type="text" placeholder="评论（Ctrl+Enter）" id="text_1" rows="2" data-weibo-id="1"\r\n                       class="comment-input  weibo-comment-content comment_text_inputor">\r\n                <a style="margin-right: 10px"  class=""                  onclick="insertFace($(this))"><i style="color: #999;" class="os-icon-emoticon-smile"></i> </a>\r\n                <a  data-role="do_comment" id="btn_1" data-weibo-id="1">\r\n                    <i class="os-icon-paper-plane"></i> </a>\r\n            </p>\r\n\r\n    <div id="emot_content" class="emot_content" style="position: absolute;    right: 425px;\r\n    top: 45px;"></div>\r\n    <!--评论列表-->\r\n</div>\r\n<div id="show_comment_1" class="weibo_comment_list" data-comment-count="0">\r\n    <div class="pager" style="display: none!important;">\r\n    </div>\r\n</div>\r\n\r\n\r\n<script>\r\n    $(function () {\r\n        var weiboid = \'1\';\r\n        $(\'#text_\' + weiboid + \'\').keypress(function (e) {\r\n            if (e.ctrlKey && e.which == 13 || e.which == 10) {\r\n                $(\'#btn_\' + weiboid + \'\').click();\r\n            }\r\n        });\r\n    });\r\n</script>            </div>\r\n        </div>    </div>\r\n    </div>\r\n</if>\r\n<style>\r\n    .suofang {MARGIN: auto;WIDTH: 200px;}\r\n    .suofang img{MAX-WIDTH: 100%!important;HEIGHT: auto!important;width:expression(this.width > 300 ? "300px" :this.width)!important;}\r\n</style>', 1506672260);
+(70, 1, '1', '<div style=\"max-width: 680px;\" data-role=\"id_weibo\" id=\"weibo_1\" class=\"\">\n    <div class=\"all-wrap\">\n                    <div class=\"new-user-first-weibo\"></div>                <div class=\"weibo-content\">\n            <div class=\"content-head\">\n                <div class=\"avat-box pull-left\">\n                    <a href=\"http://127.0.0.1/yoyo/u/jzbk\" ucard=\"1\">\n                        <span style=\"position: relative;display: inline-block;\">\n                                    <img src=\"/yoyo/Uploads/Avatar/1/59c9fe662f4d9_128_128.jpg\" class=\"avatar-img\">\n                                  </span>                    </a>\n                    <div class=\"show-follow pull-right\">\n                        <div class=\"follow-btn\" style=\"display: none;\">\n                            [follow:1]\n                        </div>\n                    </div>\n                </div>\n                <div class=\"op-box pull-right\">\n                    <div class=\"op-tb op-top\">\n                        <a ucard=\"1\" href=\"http://127.0.0.1/yoyo/u/jzbk\" class=\"user_name\">\n                            [nickname:1]\n                        </a>\n                        <small class=\"font_grey\">Lv1 实习</small>                        &nbsp;\n                        <!--隐藏操作列表-->\n                        <div class=\"pull-right show-operate-wrap\">\n                            <a href=\"javascript:\" class=\"show-operate pull-right icon-angle-down\"></a>\n                            <div class=\"operate-box\" >\n                                                                                                                                                                <li><a data-type=\"ajax\" data-url=\"/yoyo/index.php?s=/home/addons/_addons/report/_controller/report/_action/eject/param/type%3D%25E5%258A%25A8%25E6%2580%2581Pro%252F%25E5%258A%25A8%25E6%2580%2581Pro%26url%3DWeibo%252FIndex%252FweiboDetail%253Fid%253D1%26data%255Bweibo-id%255D%3D1.html\" data-title=\"举报\"  data-toggle=\"modal\" >举报</a></li>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"op-tb op-bottom\">\n                        <a data-hover=\"查看详情\" class=\"wb-time\" href=\"/yoyo/index.php?s=/weibo/index/weibodetail/id/1.html\">\n                            [time:1506494855]\n                                                    </a>\n                    </div>\n                </div>\n            </div>\n            <div class=\"content-info row\">\n                <div class=\"long-weibo-list-content\">\n    <a class=\"article-link\" href=\"/yoyo/index.php?s=/weibo/index/weibodetail/id/1.html\">\n        <div class=\"long-block\">\n            <h1 style=\"width: 100%;\" class=\"text-more\">SEC创建新的机构对ICO违规进行监管</h1>\n            <p class=\"word-wrap\">\n                <br/> \n<br/> \n美国证券交易委员会（SEC）今天发布了一项有关新建专门的“网络单位（Cyber&nbsp;Unit）”的新闻公告。值得注意的是，这一新机构将执行一些对象为数字货币的监管。<br/> \n<br/> \n广阔的监管范围<br/> \n<br/> \nSEC指出：<br/> \n<br/> \n“网络单位”将聚焦网络违规操作，如：<br/> \n<br/> \n重磅：SEC宣布创建新的机构&nbsp;对ICO和分布式账本违规进行监管<br/> \n<br/> \n如果上述行为全部被纳入这个新的“网络            </p>\n            <div class=\"position-block\"><div class=\"read-long-weibo-logo\"><i class=\"logo\"></i></div>阅读全文</div>\n        </div>\n    </a>\n</div>                 <div class=\"form-where\">\n                    <div class=\"where w-left\">\n                        <!--<span>来自 <b> 全站动态</b></span>-->\n                                                    <span></span>\n                    </div>\n                    <div class=\"where w-right  bottom-operate\" data-weibo-id=\"1\">\n                                                <div class=\"col-xs-3 operate-color\">\n     <a title=\"喜欢\"\n     class=\"support_btn\" table=\"weibo\" row=\"1\" uid=\"1\" jump=\"weibo/index/weibodetail\">\n\n    <i id=\"ico_like\" class=\"icon-heart\"></i>\n        \n\n    <span id=\"support_Weibo_weibo_1_pos\"><span id=\"support_Weibo_weibo_1\">2</span> </span>\n</a>\n<script>\n    bind_support();\n</script></div>\n<div class=\" col-xs-3 operate-color\" data-role=\"weibo_comment_btn\"  data-weibo-id=\"1\">\n   <i class=\"os-icon-bubbles\"></i> 0</div>\n<div class=\"col-xs-3 operate-color\">\n        <a title=\"转发\"  data-role=\"send_repost\"  href=\"/yoyo/index.php?s=/weibo/index/sendrepost/sourceId/1/weiboId/1.html\"><i class=\"os-icon-share-alt\"></i> 0</a>\n</div>\n<div class=\"share_button col-xs-3  operate-color\" style=\"padding: 0px;position: relative;\">\n    <span class=\"cpointer weibo_share_btn_1\" data-weibo-id=\"1\">\n        <a data-role=\"weibo_share_btn\" class=\"share-btn\" title=\"分享\"><i class=\"os-icon-share\"></i><!--<span class=\"share_count\" title=\"累计分享0次\" style=\"margin-left: 5px;\">0</span>--></a>\n    </span>\n    <div class=\"share_block\" data-url=\"http://127.0.0.1/yoyo/index.php?s=/weibo/index/weibodetail/id/1.html\" data-text=\"美国证券交易委员会（SEC）今天发布了一项有关新建专门的“网络单位（Cyber&nbsp;Unit）”的新闻公告。值得注意的是，这一新机构将执行一些对象为数字货币的监管。 \n \n广阔的监管范围 \n \nSEC指出： \n \n“网络单位”将聚焦网络违规操作，如： \n \n重磅：SEC宣布创建新的机构&nbsp;对ICO和分布式账本违规进行监管 \n \n如果上述行为全部被纳入这个新的“网络\" data-dec=\"分享微博\" style=\"display: none;\">\n        <div class=\"bdsharebuttonbox\" data-tag=\"share_feedlist\">\n            <a class=\"bds_qzone\" data-cmd=\"qzone\" title=\"分享到QQ空间\" data-id=\"1\">QQ空间</a>\n            <a class=\"bds_tsina\" data-cmd=\"tsina\" title=\"分享到新浪微博\" data-id=\"1\">新浪微博</a>\n            <a class=\"bds_tqq\" data-cmd=\"tqq\" title=\"分享到腾讯微博\" data-id=\"1\">腾讯微博</a>\n            <a class=\"bds_weixin\" data-cmd=\"weixin\" title=\"分享到微信\" data-id=\"1\">微信</a>\n            <a class=\"bds_sqq\" data-cmd=\"sqq\" title=\"分享到QQ好友\" data-id=\"1\">QQ好友</a>\n            <!--<a class=\"bds_count\" data-cmd=\"count\" style=\"display: none;\"></a>-->\n        </div>\n        <div style=\"position: relative;\">\n            <div class=\"tip\"></div>\n            <div class=\"tip-xs\"></div>\n        </div>\n    </div>\n    <script src=\"/yoyo/Application/Weibo/Static/js/bdshare.js\"></script>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        </div>\n    <div class=\"weibo-comment-list row\" style=\"display: block;margin:0;\"  data-weibo-id=\"1\">\n    <div class=\" weibo-comment-block\">\n            <div class=\"weibo-comment-container\">\n                <div class=\"weibo_post_box\">\n            <p class=\"comment-area\">\n                <input type=\"hidden\"  name=\"reply_id\" value=\"0\"/>\n\n                <input type=\"text\" placeholder=\"评论（Ctrl+Enter）\" id=\"text_1\" rows=\"2\" data-weibo-id=\"1\"\n                       class=\"comment-input  weibo-comment-content comment_text_inputor\">\n                <a style=\"margin-right: 10px\"  class=\"\"                  onclick=\"insertFace($(this))\"><i style=\"color: #999;\" class=\"os-icon-emoticon-smile\"></i> </a>\n                <a  data-role=\"do_comment\" id=\"btn_1\" data-weibo-id=\"1\">\n                    <i class=\"os-icon-paper-plane\"></i> </a>\n            </p>\n\n    <div id=\"emot_content\" class=\"emot_content\" style=\"position: absolute;    right: 425px;\n    top: 45px;\"></div>\n    <!--评论列表-->\n</div>\n<div id=\"show_comment_1\" class=\"weibo_comment_list\" data-comment-count=\"0\">\n    <div class=\"pager\" style=\"display: none!important;\">\n    </div>\n</div>\n\n\n<script>\n    $(function () {\n        var weiboid = \'1\';\n        $(\'#text_\' + weiboid + \'\').keypress(function (e) {\n            if (e.ctrlKey && e.which == 13 || e.which == 10) {\n                $(\'#btn_\' + weiboid + \'\').click();\n            }\n        });\n    });\n</script>            </div>\n        </div>    </div>\n    </div>\n</if>\n<style>\n    .suofang {MARGIN: auto;WIDTH: 200px;}\n    .suofang img{MAX-WIDTH: 100%!important;HEIGHT: auto!important;width:expression(this.width > 300 ? \"300px\" :this.width)!important;}\n</style>', 1507973441),
+(67, 2, '', '<div style=\"max-width: 680px;\" data-role=\"id_weibo\" id=\"weibo_2\" class=\"\">\n    <div class=\"all-wrap\">\n                    <div class=\"new-user-first-weibo\"></div>                <div class=\"weibo-content\">\n            <div class=\"content-head\">\n                <div class=\"avat-box pull-left\">\n                    <a href=\"/yoyo/index.php?s=/ucenter/index/index/uid/100.html\" ucard=\"100\">\n                        <span style=\"position: relative;display: inline-block;\">\n                                    <img src=\"/yoyo/Public/images/default_avatar_128_128.jpg\" class=\"avatar-img\">\n                                  </span>                    </a>\n                    <div class=\"show-follow pull-right\">\n                        <div class=\"follow-btn\" style=\"display: none;\">\n                            [follow:100]\n                        </div>\n                    </div>\n                </div>\n                <div class=\"op-box pull-right\">\n                    <div class=\"op-tb op-top\">\n                        <a ucard=\"100\" href=\"/yoyo/index.php?s=/ucenter/index/index/uid/100.html\" class=\"user_name\">\n                            [nickname:100]\n                        </a>\n                        <small class=\"font_grey\">Lv1 实习</small>                        &nbsp;\n                        <!--隐藏操作列表-->\n                        <div class=\"pull-right show-operate-wrap\">\n                            <a href=\"javascript:\" class=\"show-operate pull-right icon-angle-down\"></a>\n                            <div class=\"operate-box\" >\n                                                                                                                                                                <li><a data-type=\"ajax\" data-url=\"/yoyo/index.php?s=/home/addons/_addons/report/_controller/report/_action/eject/param/type%3D%25E5%258A%25A8%25E6%2580%2581Pro%252F%25E5%258A%25A8%25E6%2580%2581Pro%26url%3DWeibo%252FIndex%252FweiboDetail%253Fid%253D2%26data%255Bweibo-id%255D%3D2.html\" data-title=\"举报\"  data-toggle=\"modal\" >举报</a></li>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"op-tb op-bottom\">\n                        <a data-hover=\"查看详情\" class=\"wb-time\" href=\"/yoyo/index.php?s=/weibo/index/weibodetail/id/2.html\">\n                            [time:1506498138]\n                                                    </a>\n                    </div>\n                </div>\n            </div>\n            <div class=\"content-info row\">\n                <div class=\"long-weibo-list-content\">\n    <a class=\"article-link\" href=\"/yoyo/index.php?s=/weibo/index/weibodetail/id/2.html\">\n        <div class=\"long-block\">\n            <h1 style=\"width: 100%;\" class=\"text-more\">123教程| 如何从btc123提TV到ebtcbank</h1>\n            <p class=\"word-wrap\">\n                1、登陆https://ebtcbank.com/，未注册用户请点击蓝色注册按钮。<br/> \n<br/> \n<br/> \n2、按要求填写注册信息，设置交易密码，进行实名认证，注册成功即可点击去交易。<br/> \n<br/> \n<br/> \n<br/> \n<br/> \n3、在财务中心，点击转入虚拟币，下拉菜单选择并点击钛值（TV）。<br/> \n<br/> \n<br/> \n4、出现钛值（TV）地址，进行复制。<br/> \n<br/> \n5、登陆www.btc123.com,在资产管理中选择TV资产，点击提现TV。<br/> \n<br/> \n<br/> \n6、发送至            </p>\n            <div class=\"position-block\"><div class=\"read-long-weibo-logo\"><i class=\"logo\"></i></div>阅读全文</div>\n        </div>\n    </a>\n</div>                 <div class=\"form-where\">\n                    <div class=\"where w-left\">\n                        <!--<span>来自 <b> 全站动态</b></span>-->\n                                                    <span></span>\n                    </div>\n                    <div class=\"where w-right  bottom-operate\" data-weibo-id=\"2\">\n                                                <div class=\"col-xs-3 operate-color\">\n     <a title=\"喜欢\"\n     class=\"support_btn\" table=\"weibo\" row=\"2\" uid=\"100\" jump=\"weibo/index/weibodetail\">\n\n            <i id=\"ico_like\" class=\"icon-heart-empty\"></i>\n\n    <span id=\"support_Weibo_weibo_2_pos\"><span id=\"support_Weibo_weibo_2\">3</span> </span>\n</a>\n<script>\n    bind_support();\n</script></div>\n<div class=\" col-xs-3 operate-color\" data-role=\"weibo_comment_btn\"  data-weibo-id=\"2\">\n   <i class=\"os-icon-bubbles\"></i> 0</div>\n<div class=\"col-xs-3 operate-color\">\n        <a title=\"转发\"  data-role=\"send_repost\"  href=\"/yoyo/index.php?s=/weibo/index/sendrepost/sourceId/2/weiboId/2.html\"><i class=\"os-icon-share-alt\"></i> 0</a>\n</div>\n<div class=\"share_button col-xs-3  operate-color\" style=\"padding: 0px;position: relative;\">\n    <span class=\"cpointer weibo_share_btn_2\" data-weibo-id=\"2\">\n        <a data-role=\"weibo_share_btn\" class=\"share-btn\" title=\"分享\"><i class=\"os-icon-share\"></i><!--<span class=\"share_count\" title=\"累计分享0次\" style=\"margin-left: 5px;\">0</span>--></a>\n    </span>\n    <div class=\"share_block\" data-url=\"http://127.0.0.1/yoyo/index.php?s=/weibo/index/weibodetail/id/2.html\" data-text=\"1、登陆https://ebtcbank.com/，未注册用户请点击蓝色注册按钮。 \n \n \n2、按要求填写注册信息，设置交易密码，进行实名认证，注册成功即可点击去交易。 \n \n \n \n \n3、在财务中心，点击转入虚拟币，下拉菜单选择并点击钛值（TV）。 \n \n \n4、出现钛值（TV）地址，进行复制。 \n \n5、登陆www.btc123.com,在资产管理中选择TV资产，点击提现TV。 \n \n \n6、发送至\" data-dec=\"分享微博\" style=\"display: none;\">\n        <div class=\"bdsharebuttonbox\" data-tag=\"share_feedlist\">\n            <a class=\"bds_qzone\" data-cmd=\"qzone\" title=\"分享到QQ空间\" data-id=\"2\">QQ空间</a>\n            <a class=\"bds_tsina\" data-cmd=\"tsina\" title=\"分享到新浪微博\" data-id=\"2\">新浪微博</a>\n            <a class=\"bds_tqq\" data-cmd=\"tqq\" title=\"分享到腾讯微博\" data-id=\"2\">腾讯微博</a>\n            <a class=\"bds_weixin\" data-cmd=\"weixin\" title=\"分享到微信\" data-id=\"2\">微信</a>\n            <a class=\"bds_sqq\" data-cmd=\"sqq\" title=\"分享到QQ好友\" data-id=\"2\">QQ好友</a>\n            <!--<a class=\"bds_count\" data-cmd=\"count\" style=\"display: none;\"></a>-->\n        </div>\n        <div style=\"position: relative;\">\n            <div class=\"tip\"></div>\n            <div class=\"tip-xs\"></div>\n        </div>\n    </div>\n    <script src=\"/yoyo/Application/Weibo/Static/js/bdshare.js\"></script>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        </div>\n    <div class=\"weibo-comment-list row\" style=\"display: block;margin:0;\"  data-weibo-id=\"2\">\n    <div class=\" weibo-comment-block\">\n            <div class=\"weibo-comment-container\">\n                <div class=\"weibo_post_box\">\n            <p class=\"comment-area\">\n                <input type=\"hidden\"  name=\"reply_id\" value=\"0\"/>\n\n                <input type=\"text\" placeholder=\"评论（Ctrl+Enter）\" id=\"text_2\" rows=\"2\" data-weibo-id=\"2\"\n                       class=\"comment-input  weibo-comment-content comment_text_inputor\">\n                <a style=\"margin-right: 10px\"  class=\"\"  href=\"javascript:toast.error(\'请先登入！\');\"\n                ><i style=\"color: #999;\" class=\"os-icon-emoticon-smile\"></i> </a>\n                <a  data-role=\"do_comment\" id=\"btn_2\" data-weibo-id=\"2\">\n                    <i class=\"os-icon-paper-plane\"></i> </a>\n            </p>\n\n    <div id=\"emot_content\" class=\"emot_content\" style=\"position: absolute;    right: 425px;\n    top: 45px;\"></div>\n    <!--评论列表-->\n</div>\n<div id=\"show_comment_2\" class=\"weibo_comment_list\" data-comment-count=\"0\">\n    <div class=\"pager\" style=\"display: none!important;\">\n    </div>\n</div>\n\n\n<script>\n    $(function () {\n        var weiboid = \'2\';\n        $(\'#text_\' + weiboid + \'\').keypress(function (e) {\n            if (e.ctrlKey && e.which == 13 || e.which == 10) {\n                $(\'#btn_\' + weiboid + \'\').click();\n            }\n        });\n    });\n</script>            </div>\n        </div>    </div>\n    </div>\n</if>\n<style>\n    .suofang {MARGIN: auto;WIDTH: 200px;}\n    .suofang img{MAX-WIDTH: 100%!important;HEIGHT: auto!important;width:expression(this.width > 300 ? \"300px\" :this.width)!important;}\n</style>', 1507973408),
+(69, 2, '1', '<div style=\"max-width: 680px;\" data-role=\"id_weibo\" id=\"weibo_2\" class=\"\">\n    <div class=\"all-wrap\">\n                    <div class=\"new-user-first-weibo\"></div>                <div class=\"weibo-content\">\n            <div class=\"content-head\">\n                <div class=\"avat-box pull-left\">\n                    <a href=\"/yoyo/index.php?s=/ucenter/index/index/uid/100.html\" ucard=\"100\">\n                        <span style=\"position: relative;display: inline-block;\">\n                                    <img src=\"/yoyo/Public/images/default_avatar_128_128.jpg\" class=\"avatar-img\">\n                                  </span>                    </a>\n                    <div class=\"show-follow pull-right\">\n                        <div class=\"follow-btn\" style=\"display: none;\">\n                            [follow:100]\n                        </div>\n                    </div>\n                </div>\n                <div class=\"op-box pull-right\">\n                    <div class=\"op-tb op-top\">\n                        <a ucard=\"100\" href=\"/yoyo/index.php?s=/ucenter/index/index/uid/100.html\" class=\"user_name\">\n                            [nickname:100]\n                        </a>\n                        <small class=\"font_grey\">Lv1 实习</small>                        &nbsp;\n                        <!--隐藏操作列表-->\n                        <div class=\"pull-right show-operate-wrap\">\n                            <a href=\"javascript:\" class=\"show-operate pull-right icon-angle-down\"></a>\n                            <div class=\"operate-box\" >\n                                                                                                <li data-weibo-id=\"2\" title=\"删除\" data-role=\"del_weibo\">\n                                        删除\n                                    </li>                                                                <li><a data-type=\"ajax\" data-url=\"/yoyo/index.php?s=/home/addons/_addons/report/_controller/report/_action/eject/param/type%3D%25E5%258A%25A8%25E6%2580%2581Pro%252F%25E5%258A%25A8%25E6%2580%2581Pro%26url%3DWeibo%252FIndex%252FweiboDetail%253Fid%253D2%26data%255Bweibo-id%255D%3D2.html\" data-title=\"举报\"  data-toggle=\"modal\" >举报</a></li>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"op-tb op-bottom\">\n                        <a data-hover=\"查看详情\" class=\"wb-time\" href=\"/yoyo/index.php?s=/weibo/index/weibodetail/id/2.html\">\n                            [time:1506498138]\n                                                    </a>\n                    </div>\n                </div>\n            </div>\n            <div class=\"content-info row\">\n                <div class=\"long-weibo-list-content\">\n    <a class=\"article-link\" href=\"/yoyo/index.php?s=/weibo/index/weibodetail/id/2.html\">\n        <div class=\"long-block\">\n            <h1 style=\"width: 100%;\" class=\"text-more\">123教程| 如何从btc123提TV到ebtcbank</h1>\n            <p class=\"word-wrap\">\n                1、登陆https://ebtcbank.com/，未注册用户请点击蓝色注册按钮。<br/> \n<br/> \n<br/> \n2、按要求填写注册信息，设置交易密码，进行实名认证，注册成功即可点击去交易。<br/> \n<br/> \n<br/> \n<br/> \n<br/> \n3、在财务中心，点击转入虚拟币，下拉菜单选择并点击钛值（TV）。<br/> \n<br/> \n<br/> \n4、出现钛值（TV）地址，进行复制。<br/> \n<br/> \n5、登陆www.btc123.com,在资产管理中选择TV资产，点击提现TV。<br/> \n<br/> \n<br/> \n6、发送至            </p>\n            <div class=\"position-block\"><div class=\"read-long-weibo-logo\"><i class=\"logo\"></i></div>阅读全文</div>\n        </div>\n    </a>\n</div>                 <div class=\"form-where\">\n                    <div class=\"where w-left\">\n                        <!--<span>来自 <b> 全站动态</b></span>-->\n                                                    <span></span>\n                    </div>\n                    <div class=\"where w-right  bottom-operate\" data-weibo-id=\"2\">\n                                                <div class=\"col-xs-3 operate-color\">\n     <a title=\"喜欢\"\n     class=\"support_btn\" table=\"weibo\" row=\"2\" uid=\"100\" jump=\"weibo/index/weibodetail\">\n\n    <i id=\"ico_like\" class=\"icon-heart\"></i>\n        \n\n    <span id=\"support_Weibo_weibo_2_pos\"><span id=\"support_Weibo_weibo_2\">3</span> </span>\n</a>\n<script>\n    bind_support();\n</script></div>\n<div class=\" col-xs-3 operate-color\" data-role=\"weibo_comment_btn\"  data-weibo-id=\"2\">\n   <i class=\"os-icon-bubbles\"></i> 0</div>\n<div class=\"col-xs-3 operate-color\">\n        <a title=\"转发\"  data-role=\"send_repost\"  href=\"/yoyo/index.php?s=/weibo/index/sendrepost/sourceId/2/weiboId/2.html\"><i class=\"os-icon-share-alt\"></i> 0</a>\n</div>\n<div class=\"share_button col-xs-3  operate-color\" style=\"padding: 0px;position: relative;\">\n    <span class=\"cpointer weibo_share_btn_2\" data-weibo-id=\"2\">\n        <a data-role=\"weibo_share_btn\" class=\"share-btn\" title=\"分享\"><i class=\"os-icon-share\"></i><!--<span class=\"share_count\" title=\"累计分享0次\" style=\"margin-left: 5px;\">0</span>--></a>\n    </span>\n    <div class=\"share_block\" data-url=\"http://127.0.0.1/yoyo/index.php?s=/weibo/index/weibodetail/id/2.html\" data-text=\"1、登陆https://ebtcbank.com/，未注册用户请点击蓝色注册按钮。 \n \n \n2、按要求填写注册信息，设置交易密码，进行实名认证，注册成功即可点击去交易。 \n \n \n \n \n3、在财务中心，点击转入虚拟币，下拉菜单选择并点击钛值（TV）。 \n \n \n4、出现钛值（TV）地址，进行复制。 \n \n5、登陆www.btc123.com,在资产管理中选择TV资产，点击提现TV。 \n \n \n6、发送至\" data-dec=\"分享微博\" style=\"display: none;\">\n        <div class=\"bdsharebuttonbox\" data-tag=\"share_feedlist\">\n            <a class=\"bds_qzone\" data-cmd=\"qzone\" title=\"分享到QQ空间\" data-id=\"2\">QQ空间</a>\n            <a class=\"bds_tsina\" data-cmd=\"tsina\" title=\"分享到新浪微博\" data-id=\"2\">新浪微博</a>\n            <a class=\"bds_tqq\" data-cmd=\"tqq\" title=\"分享到腾讯微博\" data-id=\"2\">腾讯微博</a>\n            <a class=\"bds_weixin\" data-cmd=\"weixin\" title=\"分享到微信\" data-id=\"2\">微信</a>\n            <a class=\"bds_sqq\" data-cmd=\"sqq\" title=\"分享到QQ好友\" data-id=\"2\">QQ好友</a>\n            <!--<a class=\"bds_count\" data-cmd=\"count\" style=\"display: none;\"></a>-->\n        </div>\n        <div style=\"position: relative;\">\n            <div class=\"tip\"></div>\n            <div class=\"tip-xs\"></div>\n        </div>\n    </div>\n    <script src=\"/yoyo/Application/Weibo/Static/js/bdshare.js\"></script>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        </div>\n    <div class=\"weibo-comment-list row\" style=\"display: block;margin:0;\"  data-weibo-id=\"2\">\n    <div class=\" weibo-comment-block\">\n            <div class=\"weibo-comment-container\">\n                <div class=\"weibo_post_box\">\n            <p class=\"comment-area\">\n                <input type=\"hidden\"  name=\"reply_id\" value=\"0\"/>\n\n                <input type=\"text\" placeholder=\"评论（Ctrl+Enter）\" id=\"text_2\" rows=\"2\" data-weibo-id=\"2\"\n                       class=\"comment-input  weibo-comment-content comment_text_inputor\">\n                <a style=\"margin-right: 10px\"  class=\"\"                  onclick=\"insertFace($(this))\"><i style=\"color: #999;\" class=\"os-icon-emoticon-smile\"></i> </a>\n                <a  data-role=\"do_comment\" id=\"btn_2\" data-weibo-id=\"2\">\n                    <i class=\"os-icon-paper-plane\"></i> </a>\n            </p>\n\n    <div id=\"emot_content\" class=\"emot_content\" style=\"position: absolute;    right: 425px;\n    top: 45px;\"></div>\n    <!--评论列表-->\n</div>\n<div id=\"show_comment_2\" class=\"weibo_comment_list\" data-comment-count=\"0\">\n    <div class=\"pager\" style=\"display: none!important;\">\n    </div>\n</div>\n\n\n<script>\n    $(function () {\n        var weiboid = \'2\';\n        $(\'#text_\' + weiboid + \'\').keypress(function (e) {\n            if (e.ctrlKey && e.which == 13 || e.which == 10) {\n                $(\'#btn_\' + weiboid + \'\').click();\n            }\n        });\n    });\n</script>            </div>\n        </div>    </div>\n    </div>\n</if>\n<style>\n    .suofang {MARGIN: auto;WIDTH: 200px;}\n    .suofang img{MAX-WIDTH: 100%!important;HEIGHT: auto!important;width:expression(this.width > 300 ? \"300px\" :this.width)!important;}\n</style>', 1507973441),
+(68, 1, '', '<div style=\"max-width: 680px;\" data-role=\"id_weibo\" id=\"weibo_1\" class=\"\">\n    <div class=\"all-wrap\">\n                    <div class=\"new-user-first-weibo\"></div>                <div class=\"weibo-content\">\n            <div class=\"content-head\">\n                <div class=\"avat-box pull-left\">\n                    <a href=\"http://127.0.0.1/yoyo/u/jzbk\" ucard=\"1\">\n                        <span style=\"position: relative;display: inline-block;\">\n                                    <img src=\"/yoyo/Uploads/Avatar/1/59c9fe662f4d9_128_128.jpg\" class=\"avatar-img\">\n                                  </span>                    </a>\n                    <div class=\"show-follow pull-right\">\n                        <div class=\"follow-btn\" style=\"display: none;\">\n                            [follow:1]\n                        </div>\n                    </div>\n                </div>\n                <div class=\"op-box pull-right\">\n                    <div class=\"op-tb op-top\">\n                        <a ucard=\"1\" href=\"http://127.0.0.1/yoyo/u/jzbk\" class=\"user_name\">\n                            [nickname:1]\n                        </a>\n                        <small class=\"font_grey\">Lv1 实习</small>                        &nbsp;\n                        <!--隐藏操作列表-->\n                        <div class=\"pull-right show-operate-wrap\">\n                            <a href=\"javascript:\" class=\"show-operate pull-right icon-angle-down\"></a>\n                            <div class=\"operate-box\" >\n                                                                                                                                                                <li><a data-type=\"ajax\" data-url=\"/yoyo/index.php?s=/home/addons/_addons/report/_controller/report/_action/eject/param/type%3D%25E5%258A%25A8%25E6%2580%2581Pro%252F%25E5%258A%25A8%25E6%2580%2581Pro%26url%3DWeibo%252FIndex%252FweiboDetail%253Fid%253D1%26data%255Bweibo-id%255D%3D1.html\" data-title=\"举报\"  data-toggle=\"modal\" >举报</a></li>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"op-tb op-bottom\">\n                        <a data-hover=\"查看详情\" class=\"wb-time\" href=\"/yoyo/index.php?s=/weibo/index/weibodetail/id/1.html\">\n                            [time:1506494855]\n                                                    </a>\n                    </div>\n                </div>\n            </div>\n            <div class=\"content-info row\">\n                <div class=\"long-weibo-list-content\">\n    <a class=\"article-link\" href=\"/yoyo/index.php?s=/weibo/index/weibodetail/id/1.html\">\n        <div class=\"long-block\">\n            <h1 style=\"width: 100%;\" class=\"text-more\">SEC创建新的机构对ICO违规进行监管</h1>\n            <p class=\"word-wrap\">\n                <br/> \n<br/> \n美国证券交易委员会（SEC）今天发布了一项有关新建专门的“网络单位（Cyber&nbsp;Unit）”的新闻公告。值得注意的是，这一新机构将执行一些对象为数字货币的监管。<br/> \n<br/> \n广阔的监管范围<br/> \n<br/> \nSEC指出：<br/> \n<br/> \n“网络单位”将聚焦网络违规操作，如：<br/> \n<br/> \n重磅：SEC宣布创建新的机构&nbsp;对ICO和分布式账本违规进行监管<br/> \n<br/> \n如果上述行为全部被纳入这个新的“网络            </p>\n            <div class=\"position-block\"><div class=\"read-long-weibo-logo\"><i class=\"logo\"></i></div>阅读全文</div>\n        </div>\n    </a>\n</div>                 <div class=\"form-where\">\n                    <div class=\"where w-left\">\n                        <!--<span>来自 <b> 全站动态</b></span>-->\n                                                    <span></span>\n                    </div>\n                    <div class=\"where w-right  bottom-operate\" data-weibo-id=\"1\">\n                                                <div class=\"col-xs-3 operate-color\">\n     <a title=\"喜欢\"\n     class=\"support_btn\" table=\"weibo\" row=\"1\" uid=\"1\" jump=\"weibo/index/weibodetail\">\n\n            <i id=\"ico_like\" class=\"icon-heart-empty\"></i>\n\n    <span id=\"support_Weibo_weibo_1_pos\"><span id=\"support_Weibo_weibo_1\">2</span> </span>\n</a>\n<script>\n    bind_support();\n</script></div>\n<div class=\" col-xs-3 operate-color\" data-role=\"weibo_comment_btn\"  data-weibo-id=\"1\">\n   <i class=\"os-icon-bubbles\"></i> 0</div>\n<div class=\"col-xs-3 operate-color\">\n        <a title=\"转发\"  data-role=\"send_repost\"  href=\"/yoyo/index.php?s=/weibo/index/sendrepost/sourceId/1/weiboId/1.html\"><i class=\"os-icon-share-alt\"></i> 0</a>\n</div>\n<div class=\"share_button col-xs-3  operate-color\" style=\"padding: 0px;position: relative;\">\n    <span class=\"cpointer weibo_share_btn_1\" data-weibo-id=\"1\">\n        <a data-role=\"weibo_share_btn\" class=\"share-btn\" title=\"分享\"><i class=\"os-icon-share\"></i><!--<span class=\"share_count\" title=\"累计分享0次\" style=\"margin-left: 5px;\">0</span>--></a>\n    </span>\n    <div class=\"share_block\" data-url=\"http://127.0.0.1/yoyo/index.php?s=/weibo/index/weibodetail/id/1.html\" data-text=\"美国证券交易委员会（SEC）今天发布了一项有关新建专门的“网络单位（Cyber&nbsp;Unit）”的新闻公告。值得注意的是，这一新机构将执行一些对象为数字货币的监管。 \n \n广阔的监管范围 \n \nSEC指出： \n \n“网络单位”将聚焦网络违规操作，如： \n \n重磅：SEC宣布创建新的机构&nbsp;对ICO和分布式账本违规进行监管 \n \n如果上述行为全部被纳入这个新的“网络\" data-dec=\"分享微博\" style=\"display: none;\">\n        <div class=\"bdsharebuttonbox\" data-tag=\"share_feedlist\">\n            <a class=\"bds_qzone\" data-cmd=\"qzone\" title=\"分享到QQ空间\" data-id=\"1\">QQ空间</a>\n            <a class=\"bds_tsina\" data-cmd=\"tsina\" title=\"分享到新浪微博\" data-id=\"1\">新浪微博</a>\n            <a class=\"bds_tqq\" data-cmd=\"tqq\" title=\"分享到腾讯微博\" data-id=\"1\">腾讯微博</a>\n            <a class=\"bds_weixin\" data-cmd=\"weixin\" title=\"分享到微信\" data-id=\"1\">微信</a>\n            <a class=\"bds_sqq\" data-cmd=\"sqq\" title=\"分享到QQ好友\" data-id=\"1\">QQ好友</a>\n            <!--<a class=\"bds_count\" data-cmd=\"count\" style=\"display: none;\"></a>-->\n        </div>\n        <div style=\"position: relative;\">\n            <div class=\"tip\"></div>\n            <div class=\"tip-xs\"></div>\n        </div>\n    </div>\n    <script src=\"/yoyo/Application/Weibo/Static/js/bdshare.js\"></script>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        </div>\n    <div class=\"weibo-comment-list row\" style=\"display: block;margin:0;\"  data-weibo-id=\"1\">\n    <div class=\" weibo-comment-block\">\n            <div class=\"weibo-comment-container\">\n                <div class=\"weibo_post_box\">\n            <p class=\"comment-area\">\n                <input type=\"hidden\"  name=\"reply_id\" value=\"0\"/>\n\n                <input type=\"text\" placeholder=\"评论（Ctrl+Enter）\" id=\"text_1\" rows=\"2\" data-weibo-id=\"1\"\n                       class=\"comment-input  weibo-comment-content comment_text_inputor\">\n                <a style=\"margin-right: 10px\"  class=\"\"  href=\"javascript:toast.error(\'请先登入！\');\"\n                ><i style=\"color: #999;\" class=\"os-icon-emoticon-smile\"></i> </a>\n                <a  data-role=\"do_comment\" id=\"btn_1\" data-weibo-id=\"1\">\n                    <i class=\"os-icon-paper-plane\"></i> </a>\n            </p>\n\n    <div id=\"emot_content\" class=\"emot_content\" style=\"position: absolute;    right: 425px;\n    top: 45px;\"></div>\n    <!--评论列表-->\n</div>\n<div id=\"show_comment_1\" class=\"weibo_comment_list\" data-comment-count=\"0\">\n    <div class=\"pager\" style=\"display: none!important;\">\n    </div>\n</div>\n\n\n<script>\n    $(function () {\n        var weiboid = \'1\';\n        $(\'#text_\' + weiboid + \'\').keypress(function (e) {\n            if (e.ctrlKey && e.which == 13 || e.which == 10) {\n                $(\'#btn_\' + weiboid + \'\').click();\n            }\n        });\n    });\n</script>            </div>\n        </div>    </div>\n    </div>\n</if>\n<style>\n    .suofang {MARGIN: auto;WIDTH: 200px;}\n    .suofang img{MAX-WIDTH: 100%!important;HEIGHT: auto!important;width:expression(this.width > 300 ? \"300px\" :this.width)!important;}\n</style>', 1507973408);
 
 -- --------------------------------------------------------
 
@@ -7276,8 +9050,8 @@ CREATE TABLE `ocenter_weibo_long` (
 --
 
 INSERT INTO `ocenter_weibo_long` (`id`, `weibo_id`, `long_content`, `title`) VALUES
-(1, 1, '<p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><img src="http://www.btc38.com/ueditor/php/upload/image/20170927/1506481571382849.png" title="1506481571382849.png" alt="SEC_看图王.png" style="border: none; max-width: 850px;"/></p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><br/></p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">美国证券交易委员会（SEC）今天发布了一项有关新建专门的“网络单位（Cyber Unit）”的新闻公告。值得注意的是，这一新机构将执行一些对象为数字货币的监管。</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">&nbsp;</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><span style="font-size: 18px; color: rgb(54, 96, 146);"><strong style="font-weight: bold;">广阔的监管范围</strong></span></p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">&nbsp;</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">SEC指出：</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">&nbsp;</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">“网络单位”将聚焦网络违规操作，如：</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">&nbsp;</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">重磅：SEC宣布创建新的机构 对ICO和分布式账本违规进行监管</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">&nbsp;</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">如果上述行为全部被纳入这个新的“网络单位”的监管范围，那它无疑将变得非常重要。</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">&nbsp;</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">第三个要点和加密货币市场的关联性最大。SEC官方正在对ICO和“分布式账本技术”行业进行管制。</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">&nbsp;</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">单把“分布式账本技术”的执法权力给自己似乎范围过大。根据SEC（或者和法院）定义这个术语的方式，其可能有广泛的调查加密货币用户的权利。</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">&nbsp;</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><span style="font-size: 18px; color: rgb(54, 96, 146);"><strong style="font-weight: bold;">ICO被纳入监管并不令人意外</strong></span></p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">&nbsp;</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">在今年夏季将以太坊的“The DAO”项目判定为一种证券发行后，我们并不意外SEC会采用这样一个相当主动的方式来监管ICO。</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">&nbsp;</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">ICO之潮是史无前例的，仅在2017年就筹集了15亿美元。而许多的ICO项目要么完全是诈骗，要么是一群未来企业家脑中的一些模糊的概念。</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">&nbsp;</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">有网友在红迪网的/r/BitcoinMarkets上写道， SEC明显在计划对ICO采取强硬措施，对此我表示高兴。</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">&nbsp;</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><span style="font-size: 18px; color: rgb(54, 96, 146);"><strong style="font-weight: bold;">其他领域</strong></span></p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">&nbsp;</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">第1个要点“通过网络和社交媒体传播虚假信息的市场操控行为”也相当值得信任，SEC将会对通过“网络和社交媒体”进行的哄抬股价 高时卖出市场操控手段进行处理。此外，对于那些在暗网中干着非法勾当的数字货币用户，要点4应该是给你们的。</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">&nbsp;</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><span style="font-size: 18px; color: rgb(54, 96, 146);"><strong style="font-weight: bold;">平衡方式</strong></span></p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">&nbsp;</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">总而言之，SEC似乎对数字货币采取了一个平衡的方式。鉴于许多ICO承诺的代币听起来十分像“股份”，我们一点也不意外，SEC会对这一领域可能的证券违规感兴趣。</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">&nbsp;</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">认真的监管将使散户投资者免于被割的风险，同时又不完全扼杀这个刚长毛（羽翼未丰）的ICO市场。同样地，对于“分布式账本技术”违规的监管可能会给SEC带来更多的权利以追踪和指控像Josh Garza这样的诈骗者。</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">&nbsp;</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">文章来源：bitcoin86.com</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">编译：Chase</p><p style="margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">免责声明：本文为转载，仅为传播消息之用，不代表比特时代观点，不构成比特时代投资建议！</p><p><br/></p>', 'SEC创建新的机构对ICO违规进行监管'),
-(2, 2, '<p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">1、登陆https://ebtcbank.com/，未注册用户请点击蓝色注册按钮。</p><p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);"><br style="margin: 0px; padding: 0px; box-sizing: content-box;"/></p><p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);"><img src="https://img1.btc123.com/up/29/313A313A3239_7222.png" alt="" style="margin: 0px auto 20px; padding: 0px; box-sizing: content-box; border: 0px; vertical-align: top; display: block; max-width: 780px; height: auto; text-align: center;"/><br style="margin: 0px; padding: 0px; box-sizing: content-box;"/></p><p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">2、按要求填写注册信息，设置交易密码，进行实名认证，注册成功即可点击去交易。</p><p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);"><br style="margin: 0px; padding: 0px; box-sizing: content-box;"/></p><p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);"><img src="https://img1.btc123.com/up/29/313A313A3239_7223.png" alt="" style="margin: 0px auto 20px; padding: 0px; box-sizing: content-box; border: 0px; vertical-align: top; display: block; max-width: 780px; height: auto; text-align: center;"/><br style="margin: 0px; padding: 0px; box-sizing: content-box;"/></p><p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);"><img src="https://img1.btc123.com/up/29/313A313A3239_7224.png" alt="" style="margin: 0px auto 20px; padding: 0px; box-sizing: content-box; border: 0px; vertical-align: top; display: block; max-width: 780px; height: auto; text-align: center;"/><br style="margin: 0px; padding: 0px; box-sizing: content-box;"/></p><p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);"><img src="https://img1.btc123.com/up/29/313A313A3239_7225.png" alt="" style="margin: 0px auto 20px; padding: 0px; box-sizing: content-box; border: 0px; vertical-align: top; display: block; max-width: 780px; height: auto; text-align: center;"/><br style="margin: 0px; padding: 0px; box-sizing: content-box;"/></p><p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">3、在财务中心，点击转入虚拟币，下拉菜单选择并点击钛值（TV）。</p><p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);"><br style="margin: 0px; padding: 0px; box-sizing: content-box;"/></p><p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);"><img src="https://img1.btc123.com/up/29/313A313A3239_7226.png" alt="" style="margin: 0px auto 20px; padding: 0px; box-sizing: content-box; border: 0px; vertical-align: top; display: block; max-width: 780px; height: auto; text-align: center;"/><br style="margin: 0px; padding: 0px; box-sizing: content-box;"/></p><p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">4、出现钛值（TV）地址，进行复制。</p><p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);"><img src="https://img1.btc123.com/up/29/313A313A3239_7227.png" alt="" style="margin: 0px auto 20px; padding: 0px; box-sizing: content-box; border: 0px; vertical-align: top; display: block; max-width: 780px; height: auto; text-align: center;"/><br style="margin: 0px; padding: 0px; box-sizing: content-box;"/></p><p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">5、登陆www.btc123.com,在资产管理中选择TV资产，点击提现TV。</p><p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);"><br style="margin: 0px; padding: 0px; box-sizing: content-box;"/></p><p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);"><img src="https://img1.btc123.com/up/29/313A313A3239_7228.png" alt="" style="margin: 0px auto 20px; padding: 0px; box-sizing: content-box; border: 0px; vertical-align: top; display: block; max-width: 780px; height: auto; text-align: center;"/><br style="margin: 0px; padding: 0px; box-sizing: content-box;"/></p><p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">6、发送至第4步复制的TV地址，输入转账金额和安全密码，点击发送。即可等待TV到账。</p><p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);"><br style="margin: 0px; padding: 0px; box-sizing: content-box;"/></p><p style="margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);"><img src="https://img1.btc123.com/up/29/313A313A3239_7229.png" alt="" style="margin: 0px auto 20px; padding: 0px; box-sizing: content-box; border: 0px; vertical-align: top; display: block; max-width: 780px; height: auto; text-align: center;"/></p><p><br class="Apple-interchange-newline"/></p><p><br/></p>', '123教程| 如何从btc123提TV到ebtcbank');
+(1, 1, '<p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\"><img src=\"http://www.btc38.com/ueditor/php/upload/image/20170927/1506481571382849.png\" title=\"1506481571382849.png\" alt=\"SEC_看图王.png\" style=\"border: none; max-width: 850px;\"/></p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\"><br/></p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">美国证券交易委员会（SEC）今天发布了一项有关新建专门的“网络单位（Cyber Unit）”的新闻公告。值得注意的是，这一新机构将执行一些对象为数字货币的监管。</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">&nbsp;</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\"><span style=\"font-size: 18px; color: rgb(54, 96, 146);\"><strong style=\"font-weight: bold;\">广阔的监管范围</strong></span></p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">&nbsp;</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">SEC指出：</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">&nbsp;</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">“网络单位”将聚焦网络违规操作，如：</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">&nbsp;</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">重磅：SEC宣布创建新的机构 对ICO和分布式账本违规进行监管</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">&nbsp;</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">如果上述行为全部被纳入这个新的“网络单位”的监管范围，那它无疑将变得非常重要。</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">&nbsp;</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">第三个要点和加密货币市场的关联性最大。SEC官方正在对ICO和“分布式账本技术”行业进行管制。</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">&nbsp;</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">单把“分布式账本技术”的执法权力给自己似乎范围过大。根据SEC（或者和法院）定义这个术语的方式，其可能有广泛的调查加密货币用户的权利。</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">&nbsp;</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\"><span style=\"font-size: 18px; color: rgb(54, 96, 146);\"><strong style=\"font-weight: bold;\">ICO被纳入监管并不令人意外</strong></span></p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">&nbsp;</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">在今年夏季将以太坊的“The DAO”项目判定为一种证券发行后，我们并不意外SEC会采用这样一个相当主动的方式来监管ICO。</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">&nbsp;</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">ICO之潮是史无前例的，仅在2017年就筹集了15亿美元。而许多的ICO项目要么完全是诈骗，要么是一群未来企业家脑中的一些模糊的概念。</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">&nbsp;</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">有网友在红迪网的/r/BitcoinMarkets上写道， SEC明显在计划对ICO采取强硬措施，对此我表示高兴。</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">&nbsp;</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\"><span style=\"font-size: 18px; color: rgb(54, 96, 146);\"><strong style=\"font-weight: bold;\">其他领域</strong></span></p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">&nbsp;</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">第1个要点“通过网络和社交媒体传播虚假信息的市场操控行为”也相当值得关注，SEC将会对通过“网络和社交媒体”进行的哄抬股价 高时卖出市场操控手段进行处理。此外，对于那些在暗网中干着非法勾当的数字货币用户，要点4应该是给你们的。</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">&nbsp;</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\"><span style=\"font-size: 18px; color: rgb(54, 96, 146);\"><strong style=\"font-weight: bold;\">平衡方式</strong></span></p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">&nbsp;</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">总而言之，SEC似乎对数字货币采取了一个平衡的方式。鉴于许多ICO承诺的代币听起来十分像“股份”，我们一点也不意外，SEC会对这一领域可能的证券违规感兴趣。</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">&nbsp;</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">认真的监管将使散户投资者免于被割的风险，同时又不完全扼杀这个刚长毛（羽翼未丰）的ICO市场。同样地，对于“分布式账本技术”违规的监管可能会给SEC带来更多的权利以追踪和指控像Josh Garza这样的诈骗者。</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">&nbsp;</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">文章来源：bitcoin86.com</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">编译：Chase</p><p style=\"margin: 0px; padding: 0px; cursor: default; color: rgb(51, 51, 51); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;\">免责声明：本文为转载，仅为传播消息之用，不代表比特时代观点，不构成比特时代投资建议！</p><p><br/></p>', 'SEC创建新的机构对ICO违规进行监管'),
+(2, 2, '<p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\">1、登陆https://ebtcbank.com/，未注册用户请点击蓝色注册按钮。</p><p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\"><br style=\"margin: 0px; padding: 0px; box-sizing: content-box;\"/></p><p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\"><img src=\"https://img1.btc123.com/up/29/313A313A3239_7222.png\" alt=\"\" style=\"margin: 0px auto 20px; padding: 0px; box-sizing: content-box; border: 0px; vertical-align: top; display: block; max-width: 780px; height: auto; text-align: center;\"/><br style=\"margin: 0px; padding: 0px; box-sizing: content-box;\"/></p><p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\">2、按要求填写注册信息，设置交易密码，进行实名认证，注册成功即可点击去交易。</p><p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\"><br style=\"margin: 0px; padding: 0px; box-sizing: content-box;\"/></p><p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\"><img src=\"https://img1.btc123.com/up/29/313A313A3239_7223.png\" alt=\"\" style=\"margin: 0px auto 20px; padding: 0px; box-sizing: content-box; border: 0px; vertical-align: top; display: block; max-width: 780px; height: auto; text-align: center;\"/><br style=\"margin: 0px; padding: 0px; box-sizing: content-box;\"/></p><p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\"><img src=\"https://img1.btc123.com/up/29/313A313A3239_7224.png\" alt=\"\" style=\"margin: 0px auto 20px; padding: 0px; box-sizing: content-box; border: 0px; vertical-align: top; display: block; max-width: 780px; height: auto; text-align: center;\"/><br style=\"margin: 0px; padding: 0px; box-sizing: content-box;\"/></p><p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\"><img src=\"https://img1.btc123.com/up/29/313A313A3239_7225.png\" alt=\"\" style=\"margin: 0px auto 20px; padding: 0px; box-sizing: content-box; border: 0px; vertical-align: top; display: block; max-width: 780px; height: auto; text-align: center;\"/><br style=\"margin: 0px; padding: 0px; box-sizing: content-box;\"/></p><p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\">3、在财务中心，点击转入虚拟币，下拉菜单选择并点击钛值（TV）。</p><p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\"><br style=\"margin: 0px; padding: 0px; box-sizing: content-box;\"/></p><p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\"><img src=\"https://img1.btc123.com/up/29/313A313A3239_7226.png\" alt=\"\" style=\"margin: 0px auto 20px; padding: 0px; box-sizing: content-box; border: 0px; vertical-align: top; display: block; max-width: 780px; height: auto; text-align: center;\"/><br style=\"margin: 0px; padding: 0px; box-sizing: content-box;\"/></p><p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\">4、出现钛值（TV）地址，进行复制。</p><p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\"><img src=\"https://img1.btc123.com/up/29/313A313A3239_7227.png\" alt=\"\" style=\"margin: 0px auto 20px; padding: 0px; box-sizing: content-box; border: 0px; vertical-align: top; display: block; max-width: 780px; height: auto; text-align: center;\"/><br style=\"margin: 0px; padding: 0px; box-sizing: content-box;\"/></p><p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\">5、登陆www.btc123.com,在资产管理中选择TV资产，点击提现TV。</p><p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\"><br style=\"margin: 0px; padding: 0px; box-sizing: content-box;\"/></p><p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\"><img src=\"https://img1.btc123.com/up/29/313A313A3239_7228.png\" alt=\"\" style=\"margin: 0px auto 20px; padding: 0px; box-sizing: content-box; border: 0px; vertical-align: top; display: block; max-width: 780px; height: auto; text-align: center;\"/><br style=\"margin: 0px; padding: 0px; box-sizing: content-box;\"/></p><p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\">6、发送至第4步复制的TV地址，输入转账金额和安全密码，点击发送。即可等待TV到账。</p><p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\"><br style=\"margin: 0px; padding: 0px; box-sizing: content-box;\"/></p><p style=\"margin: 0px 0px 20px; padding: 0px; box-sizing: content-box; word-break: normal; color: rgb(92, 95, 97); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimSun, 宋体; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);\"><img src=\"https://img1.btc123.com/up/29/313A313A3239_7229.png\" alt=\"\" style=\"margin: 0px auto 20px; padding: 0px; box-sizing: content-box; border: 0px; vertical-align: top; display: block; max-width: 780px; height: auto; text-align: center;\"/></p><p><br class=\"Apple-interchange-newline\"/></p><p><br/></p>', '123教程| 如何从btc123提TV到ebtcbank');
 
 -- --------------------------------------------------------
 
@@ -7373,6 +9147,12 @@ ALTER TABLE `ocenter_addons`
 -- Indexes for table `ocenter_adv`
 --
 ALTER TABLE `ocenter_adv`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_advertisement`
+--
+ALTER TABLE `ocenter_advertisement`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -7474,6 +9254,12 @@ ALTER TABLE `ocenter_config`
   ADD UNIQUE KEY `uk_name` (`name`),
   ADD KEY `type` (`type`),
   ADD KEY `group` (`group`);
+
+--
+-- Indexes for table `ocenter_consumption_log`
+--
+ALTER TABLE `ocenter_consumption_log`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `ocenter_country`
@@ -7609,6 +9395,14 @@ ALTER TABLE `ocenter_invite_user_info`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `ocenter_letter`
+--
+ALTER TABLE `ocenter_letter`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uid` (`uid`),
+  ADD KEY `uid_2` (`uid`);
+
+--
 -- Indexes for table `ocenter_local_comment`
 --
 ALTER TABLE `ocenter_local_comment`
@@ -7669,6 +9463,149 @@ ALTER TABLE `ocenter_module`
   ADD KEY `name_2` (`name`);
 
 --
+-- Indexes for table `ocenter_m_addons`
+--
+ALTER TABLE `ocenter_m_addons`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_m_adv`
+--
+ALTER TABLE `ocenter_m_adv`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_m_advertisement`
+--
+ALTER TABLE `ocenter_m_advertisement`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_m_adv_pos`
+--
+ALTER TABLE `ocenter_m_adv_pos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_m_auth_group`
+--
+ALTER TABLE `ocenter_m_auth_group`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_m_auth_group_access`
+--
+ALTER TABLE `ocenter_m_auth_group_access`
+  ADD UNIQUE KEY `uid_group_id` (`uid`,`group_id`),
+  ADD KEY `uid` (`uid`),
+  ADD KEY `group_id` (`group_id`);
+
+--
+-- Indexes for table `ocenter_m_auth_rule`
+--
+ALTER TABLE `ocenter_m_auth_rule`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `module` (`module`,`status`,`type`);
+
+--
+-- Indexes for table `ocenter_m_channel`
+--
+ALTER TABLE `ocenter_m_channel`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pid` (`pid`);
+
+--
+-- Indexes for table `ocenter_m_config`
+--
+ALTER TABLE `ocenter_m_config`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uk_name` (`name`),
+  ADD KEY `type` (`type`),
+  ADD KEY `group` (`group`);
+
+--
+-- Indexes for table `ocenter_m_hooks`
+--
+ALTER TABLE `ocenter_m_hooks`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `ocenter_m_menu`
+--
+ALTER TABLE `ocenter_m_menu`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pid` (`pid`);
+
+--
+-- Indexes for table `ocenter_m_module`
+--
+ALTER TABLE `ocenter_m_module`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`),
+  ADD KEY `name_2` (`name`);
+
+--
+-- Indexes for table `ocenter_m_reward`
+--
+ALTER TABLE `ocenter_m_reward`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_m_session`
+--
+ALTER TABLE `ocenter_m_session`
+  ADD UNIQUE KEY `session_id` (`session_id`);
+
+--
+-- Indexes for table `ocenter_news`
+--
+ALTER TABLE `ocenter_news`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_news_category`
+--
+ALTER TABLE `ocenter_news_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_news_detail`
+--
+ALTER TABLE `ocenter_news_detail`
+  ADD PRIMARY KEY (`news_id`);
+
+--
+-- Indexes for table `ocenter_news_reply`
+--
+ALTER TABLE `ocenter_news_reply`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_news_search`
+--
+ALTER TABLE `ocenter_news_search`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_order_goods`
+--
+ALTER TABLE `ocenter_order_goods`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_order_recharge`
+--
+ALTER TABLE `ocenter_order_recharge`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_order_withdraw`
+--
+ALTER TABLE `ocenter_order_withdraw`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `ocenter_pay`
 --
 ALTER TABLE `ocenter_pay`
@@ -7694,9 +9631,21 @@ ALTER TABLE `ocenter_rank_user`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `ocenter_register`
+--
+ALTER TABLE `ocenter_register`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `ocenter_report`
 --
 ALTER TABLE `ocenter_report`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_reward`
+--
+ALTER TABLE `ocenter_reward`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -7727,6 +9676,12 @@ ALTER TABLE `ocenter_schedule`
 -- Indexes for table `ocenter_score_log`
 --
 ALTER TABLE `ocenter_score_log`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_send_sms_log`
+--
+ALTER TABLE `ocenter_send_sms_log`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -7814,21 +9769,9 @@ ALTER TABLE `ocenter_tradead`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ocenter_trade_message`
---
-ALTER TABLE `ocenter_trade_message`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `ocenter_trade_order`
 --
 ALTER TABLE `ocenter_trade_order`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `ocenter_trade_trust`
---
-ALTER TABLE `ocenter_trade_trust`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -8007,27 +9950,32 @@ ALTER TABLE `ocenter_weibo_topic_link`
 -- 使用表AUTO_INCREMENT `ocenter_action`
 --
 ALTER TABLE `ocenter_action`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=11001;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=11005;
 --
 -- 使用表AUTO_INCREMENT `ocenter_action_limit`
 --
 ALTER TABLE `ocenter_action_limit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- 使用表AUTO_INCREMENT `ocenter_action_log`
 --
 ALTER TABLE `ocenter_action_log`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=35;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=243;
 --
 -- 使用表AUTO_INCREMENT `ocenter_addons`
 --
 ALTER TABLE `ocenter_addons`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=16;
 --
 -- 使用表AUTO_INCREMENT `ocenter_adv`
 --
 ALTER TABLE `ocenter_adv`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=10000;
+--
+-- 使用表AUTO_INCREMENT `ocenter_advertisement`
+--
+ALTER TABLE `ocenter_advertisement`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- 使用表AUTO_INCREMENT `ocenter_adv_pos`
 --
@@ -8067,7 +10015,7 @@ ALTER TABLE `ocenter_auth_group`
 -- 使用表AUTO_INCREMENT `ocenter_auth_rule`
 --
 ALTER TABLE `ocenter_auth_rule`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '规则id,自增主键', AUTO_INCREMENT=10002;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '规则id,自增主键', AUTO_INCREMENT=10006;
 --
 -- 使用表AUTO_INCREMENT `ocenter_avatar`
 --
@@ -8077,7 +10025,7 @@ ALTER TABLE `ocenter_avatar`
 -- 使用表AUTO_INCREMENT `ocenter_channel`
 --
 ALTER TABLE `ocenter_channel`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '频道ID', AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '频道ID', AUTO_INCREMENT=6;
 --
 -- 使用表AUTO_INCREMENT `ocenter_checkin`
 --
@@ -8092,7 +10040,12 @@ ALTER TABLE `ocenter_coin_addr`
 -- 使用表AUTO_INCREMENT `ocenter_config`
 --
 ALTER TABLE `ocenter_config`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '配置ID', AUTO_INCREMENT=10037;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '配置ID', AUTO_INCREMENT=11240;
+--
+-- 使用表AUTO_INCREMENT `ocenter_consumption_log`
+--
+ALTER TABLE `ocenter_consumption_log`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增id', AUTO_INCREMENT=75;
 --
 -- 使用表AUTO_INCREMENT `ocenter_country`
 --
@@ -8102,17 +10055,17 @@ ALTER TABLE `ocenter_country`
 -- 使用表AUTO_INCREMENT `ocenter_count_active`
 --
 ALTER TABLE `ocenter_count_active`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- 使用表AUTO_INCREMENT `ocenter_count_lost`
 --
 ALTER TABLE `ocenter_count_lost`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- 使用表AUTO_INCREMENT `ocenter_count_remain`
 --
 ALTER TABLE `ocenter_count_remain`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- 使用表AUTO_INCREMENT `ocenter_currency`
 --
@@ -8157,7 +10110,7 @@ ALTER TABLE `ocenter_file`
 -- 使用表AUTO_INCREMENT `ocenter_follow`
 --
 ALTER TABLE `ocenter_follow`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=186;
 --
 -- 使用表AUTO_INCREMENT `ocenter_hooks`
 --
@@ -8177,7 +10130,7 @@ ALTER TABLE `ocenter_iexpression_link`
 -- 使用表AUTO_INCREMENT `ocenter_invite`
 --
 ALTER TABLE `ocenter_invite`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PRIMARY_KEY', AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PRIMARY_KEY', AUTO_INCREMENT=9;
 --
 -- 使用表AUTO_INCREMENT `ocenter_invite_buy_log`
 --
@@ -8199,6 +10152,11 @@ ALTER TABLE `ocenter_invite_type`
 ALTER TABLE `ocenter_invite_user_info`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PRIMARY_KEY';
 --
+-- 使用表AUTO_INCREMENT `ocenter_letter`
+--
+ALTER TABLE `ocenter_letter`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- 使用表AUTO_INCREMENT `ocenter_local_comment`
 --
 ALTER TABLE `ocenter_local_comment`
@@ -8207,27 +10165,27 @@ ALTER TABLE `ocenter_local_comment`
 -- 使用表AUTO_INCREMENT `ocenter_member`
 --
 ALTER TABLE `ocenter_member`
-  MODIFY `uid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户ID', AUTO_INCREMENT=102;
+  MODIFY `uid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户ID', AUTO_INCREMENT=117;
 --
 -- 使用表AUTO_INCREMENT `ocenter_menu`
 --
 ALTER TABLE `ocenter_menu`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '文档ID', AUTO_INCREMENT=13018;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '文档ID', AUTO_INCREMENT=13042;
 --
 -- 使用表AUTO_INCREMENT `ocenter_message`
 --
 ALTER TABLE `ocenter_message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
 --
 -- 使用表AUTO_INCREMENT `ocenter_message_content`
 --
 ALTER TABLE `ocenter_message_content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
 --
 -- 使用表AUTO_INCREMENT `ocenter_message_type`
 --
 ALTER TABLE `ocenter_message_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- 使用表AUTO_INCREMENT `ocenter_mob_channel`
 --
@@ -8237,7 +10195,102 @@ ALTER TABLE `ocenter_mob_channel`
 -- 使用表AUTO_INCREMENT `ocenter_module`
 --
 ALTER TABLE `ocenter_module`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+--
+-- 使用表AUTO_INCREMENT `ocenter_m_addons`
+--
+ALTER TABLE `ocenter_m_addons`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=15;
+--
+-- 使用表AUTO_INCREMENT `ocenter_m_adv`
+--
+ALTER TABLE `ocenter_m_adv`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=10024;
+--
+-- 使用表AUTO_INCREMENT `ocenter_m_advertisement`
+--
+ALTER TABLE `ocenter_m_advertisement`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- 使用表AUTO_INCREMENT `ocenter_m_adv_pos`
+--
+ALTER TABLE `ocenter_m_adv_pos`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=10005;
+--
+-- 使用表AUTO_INCREMENT `ocenter_m_auth_group`
+--
+ALTER TABLE `ocenter_m_auth_group`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '权限组id,自增主键', AUTO_INCREMENT=3;
+--
+-- 使用表AUTO_INCREMENT `ocenter_m_auth_rule`
+--
+ALTER TABLE `ocenter_m_auth_rule`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '规则id,自增主键', AUTO_INCREMENT=10002;
+--
+-- 使用表AUTO_INCREMENT `ocenter_m_channel`
+--
+ALTER TABLE `ocenter_m_channel`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '频道ID', AUTO_INCREMENT=7;
+--
+-- 使用表AUTO_INCREMENT `ocenter_m_config`
+--
+ALTER TABLE `ocenter_m_config`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '配置ID', AUTO_INCREMENT=10000;
+--
+-- 使用表AUTO_INCREMENT `ocenter_m_hooks`
+--
+ALTER TABLE `ocenter_m_hooks`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=10000;
+--
+-- 使用表AUTO_INCREMENT `ocenter_m_menu`
+--
+ALTER TABLE `ocenter_m_menu`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '文档ID', AUTO_INCREMENT=10066;
+--
+-- 使用表AUTO_INCREMENT `ocenter_m_module`
+--
+ALTER TABLE `ocenter_m_module`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+--
+-- 使用表AUTO_INCREMENT `ocenter_m_reward`
+--
+ALTER TABLE `ocenter_m_reward`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- 使用表AUTO_INCREMENT `ocenter_news`
+--
+ALTER TABLE `ocenter_news`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- 使用表AUTO_INCREMENT `ocenter_news_category`
+--
+ALTER TABLE `ocenter_news_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- 使用表AUTO_INCREMENT `ocenter_news_reply`
+--
+ALTER TABLE `ocenter_news_reply`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- 使用表AUTO_INCREMENT `ocenter_news_search`
+--
+ALTER TABLE `ocenter_news_search`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- 使用表AUTO_INCREMENT `ocenter_order_goods`
+--
+ALTER TABLE `ocenter_order_goods`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '订单号', AUTO_INCREMENT=15002536577403;
+--
+-- 使用表AUTO_INCREMENT `ocenter_order_recharge`
+--
+ALTER TABLE `ocenter_order_recharge`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '订单号', AUTO_INCREMENT=15000975081936;
+--
+-- 使用表AUTO_INCREMENT `ocenter_order_withdraw`
+--
+ALTER TABLE `ocenter_order_withdraw`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- 使用表AUTO_INCREMENT `ocenter_pay`
 --
@@ -8247,7 +10300,7 @@ ALTER TABLE `ocenter_pay`
 -- 使用表AUTO_INCREMENT `ocenter_picture`
 --
 ALTER TABLE `ocenter_picture`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键id自增';
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键id自增', AUTO_INCREMENT=2;
 --
 -- 使用表AUTO_INCREMENT `ocenter_rank`
 --
@@ -8259,10 +10312,20 @@ ALTER TABLE `ocenter_rank`
 ALTER TABLE `ocenter_rank_user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- 使用表AUTO_INCREMENT `ocenter_register`
+--
+ALTER TABLE `ocenter_register`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- 使用表AUTO_INCREMENT `ocenter_report`
 --
 ALTER TABLE `ocenter_report`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- 使用表AUTO_INCREMENT `ocenter_reward`
+--
+ALTER TABLE `ocenter_reward`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- 使用表AUTO_INCREMENT `ocenter_role`
 --
@@ -8287,7 +10350,12 @@ ALTER TABLE `ocenter_schedule`
 -- 使用表AUTO_INCREMENT `ocenter_score_log`
 --
 ALTER TABLE `ocenter_score_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- 使用表AUTO_INCREMENT `ocenter_send_sms_log`
+--
+ALTER TABLE `ocenter_send_sms_log`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- 使用表AUTO_INCREMENT `ocenter_sensitive`
 --
@@ -8312,7 +10380,7 @@ ALTER TABLE `ocenter_super_links`
 -- 使用表AUTO_INCREMENT `ocenter_support`
 --
 ALTER TABLE `ocenter_support`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- 使用表AUTO_INCREMENT `ocenter_sync_login`
 --
@@ -8322,22 +10390,22 @@ ALTER TABLE `ocenter_sync_login`
 -- 使用表AUTO_INCREMENT `ocenter_talk`
 --
 ALTER TABLE `ocenter_talk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- 使用表AUTO_INCREMENT `ocenter_talk_message`
 --
 ALTER TABLE `ocenter_talk_message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- 使用表AUTO_INCREMENT `ocenter_talk_message_push`
 --
 ALTER TABLE `ocenter_talk_message_push`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=296;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=306;
 --
 -- 使用表AUTO_INCREMENT `ocenter_talk_push`
 --
 ALTER TABLE `ocenter_talk_push`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- 使用表AUTO_INCREMENT `ocenter_ticket`
 --
@@ -8352,22 +10420,12 @@ ALTER TABLE `ocenter_tile`
 -- 使用表AUTO_INCREMENT `ocenter_tradead`
 --
 ALTER TABLE `ocenter_tradead`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- 使用表AUTO_INCREMENT `ocenter_trade_message`
---
-ALTER TABLE `ocenter_trade_message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4018;
 --
 -- 使用表AUTO_INCREMENT `ocenter_trade_order`
 --
 ALTER TABLE `ocenter_trade_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
---
--- 使用表AUTO_INCREMENT `ocenter_trade_trust`
---
-ALTER TABLE `ocenter_trade_trust`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- 使用表AUTO_INCREMENT `ocenter_ucenter_admin`
 --
@@ -8377,7 +10435,7 @@ ALTER TABLE `ocenter_ucenter_admin`
 -- 使用表AUTO_INCREMENT `ocenter_ucenter_member`
 --
 ALTER TABLE `ocenter_ucenter_member`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户ID', AUTO_INCREMENT=102;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户ID', AUTO_INCREMENT=117;
 --
 -- 使用表AUTO_INCREMENT `ocenter_ucenter_score_type`
 --
@@ -8412,12 +10470,12 @@ ALTER TABLE `ocenter_user_config`
 -- 使用表AUTO_INCREMENT `ocenter_user_nav`
 --
 ALTER TABLE `ocenter_user_nav`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '频道ID', AUTO_INCREMENT=1000;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '频道ID', AUTO_INCREMENT=6;
 --
 -- 使用表AUTO_INCREMENT `ocenter_user_role`
 --
 ALTER TABLE `ocenter_user_role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- 使用表AUTO_INCREMENT `ocenter_user_tag`
 --
@@ -8432,12 +10490,12 @@ ALTER TABLE `ocenter_user_tag_link`
 -- 使用表AUTO_INCREMENT `ocenter_user_token`
 --
 ALTER TABLE `ocenter_user_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- 使用表AUTO_INCREMENT `ocenter_verify`
 --
 ALTER TABLE `ocenter_verify`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 --
 -- 使用表AUTO_INCREMENT `ocenter_weibo`
 --
@@ -8447,7 +10505,7 @@ ALTER TABLE `ocenter_weibo`
 -- 使用表AUTO_INCREMENT `ocenter_weibo_cache`
 --
 ALTER TABLE `ocenter_weibo_cache`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 --
 -- 使用表AUTO_INCREMENT `ocenter_weibo_comment`
 --
@@ -8492,7 +10550,8 @@ ALTER TABLE `ocenter_weibo_topic_follow`
 -- 使用表AUTO_INCREMENT `ocenter_weibo_topic_link`
 --
 ALTER TABLE `ocenter_weibo_topic_link`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
