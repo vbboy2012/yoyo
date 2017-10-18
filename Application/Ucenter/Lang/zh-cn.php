@@ -386,7 +386,7 @@ return array(
     '_ERROR_PHONE_FORMAT_2_' => '手机格式不正确',
     '_ERROR_FORBIDDEN_' => '手机被禁止注册',
     '_ERROR_PHONE_USED_' => '手机号被占用',
-    '_ERROR_USERNAME_FORM_' => '用户名只能由数字、字母和"_"组成',
+    '_ERROR_USERNAME_FORM_' => '用户名只能以字母开头由字母、数字组成',
     '_ERROR_NICKNAME_USED_' => '昵称被占用',
     '_ERROR_NICKNAME_FORBIDDEN_2_' => '昵称被禁止注册',
     '_ERROR_NICKNAME_FORM_' => '昵称只能由数字、字母、汉字和"_"组成',

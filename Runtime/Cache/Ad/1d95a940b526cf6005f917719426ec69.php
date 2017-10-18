@@ -118,7 +118,6 @@
 </div>
 <![endif]-->
 <script src="/yoyo/Public/js/canvas.js"></script>
-<script src="/yoyo/Public/css/fa.css"></script>
 <style>
     body {
         color: #34495e;
@@ -141,7 +140,7 @@
 </script>
 <div class="container-fluid topp-box clearfloat">
     <div class="col-xs-2 box">
-        <div class="" style="">
+        <div class="">
             <a class="navbar-brand" href="<?php echo U('Home/Index/index');?>"><i class="icon icon-compass icon-2x"></i>YOYOCOINS</a>
         </div>
     </div>
@@ -390,6 +389,7 @@
             
     <div class="white-popup1 boxShadowBorder col-xs-12" style="">
         <h2><?php echo L('_AD_TITLE_');?></h2>
+        <?php if(!is_login()): ?><div class="alert alert-danger with-icon" style="margin-top: 10px"><i class="icon-warning-sign"></i><div class="content">在创建广告前，请<a class="alert-link" href="<?php echo U('ucenter/member/login');?>">登录</a>或<a class="alert-link" href="<?php echo U('ucenter/member/register');?>">注册</a>。</div></div><?php endif; ?>
         <p><?php echo L('_AD_TIPS1_');?></p>
         <p><?php echo L('_AD_TIPS2_');?></p>
         <p><?php echo L('_AD_TIPS3_');?></p>
@@ -397,7 +397,7 @@
         <p><?php echo L('_AD_TIPS5_');?></p>
         <p><?php echo L('_AD_TIPS6_');?></p>
 
-        <h2 style="margin-top: 30px">基础选项</h2>
+        <h2 style="margin-top: 30px;color: #1798F2">基础选项</h2>
         <div class="aline" style="margin-bottom: 35px"></div>
         <div>
             <div class="row">
@@ -409,8 +409,8 @@
                                 <label class="required"><?php echo L('_AD_COIN_TYPE_LABEL_');?></label>
                             </div>
                             <div class="col-xs-10">
-                                <label> <input name="coin_type" value="1" type="radio" <?php if($ad['coin_type'] == 1): ?>checked<?php endif; ?>/>BTC</label>
-                                <label class="ad_magrain40"> <input name="coin_type" value="2" type="radio" <?php if($ad['coin_type'] == 2): ?>checked<?php endif; ?>/>ETH</label>
+                                <label> <input name="coin_type" value="1" type="radio" <?php if($isNew): ?>checked<?php elseif($ad['coin_type'] == 1): ?>checked<?php endif; ?> /> BTC</label>
+                                <label class="ad_magrain40"> <input name="coin_type" value="2" type="radio" <?php if($ad['coin_type'] == 2): ?>checked<?php endif; ?>/> ETH</label>
                                 <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;此广告的币种（BTC或ETH）。</div>
                             </div>
                         </div>
@@ -420,10 +420,10 @@
                                 <label class="required"><?php echo L('_AD_TYPE_LABEL_');?></label>
                             </div>
                             <div class="col-xs-10">
-                                <label> <input name="type" value="1" type="radio" <?php if($ad['type'] == 1): ?>checked<?php endif; ?>/><?php echo L('_AD_ONLINE_SELL_');?></label>
-                                <label class="ad_magrain40"> <input name="type" value="2" type="radio" <?php if($ad['type'] == 2): ?>checked<?php endif; ?>/><?php echo L('_AD_ONLINE_BUY_');?></label>
-                                <label class="ad_magrain40"> <input name="type" value="3" type="radio" <?php if($ad['type'] == 3): ?>checked<?php endif; ?>/><?php echo L('_AD_LOCAL_SELL_');?></label>
-                                <label class="ad_magrain40"> <input name="type" value="4" type="radio" <?php if($ad['type'] == 4): ?>checked<?php endif; ?>/><?php echo L('_AD_LOCAL_BUY_');?></label>
+                                <label> <input name="type" value="1" type="radio" <?php if($isNew): ?>checked<?php elseif($ad['type'] == 1): ?>checked<?php endif; ?>/> <?php echo L('_AD_ONLINE_SELL_');?></label>
+                                <label class="ad_magrain40"> <input name="type" value="2" type="radio" <?php if($ad['type'] == 2): ?>checked<?php endif; ?>/> <?php echo L('_AD_ONLINE_BUY_');?></label>
+                                <label class="ad_magrain40"> <input name="type" value="3" type="radio" <?php if($ad['type'] == 3): ?>checked<?php endif; ?>/> <?php echo L('_AD_LOCAL_SELL_');?></label>
+                                <label class="ad_magrain40"> <input name="type" value="4" type="radio" <?php if($ad['type'] == 4): ?>checked<?php endif; ?>/> <?php echo L('_AD_LOCAL_BUY_');?></label>
                                 <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;您想要创建什么样的交易广告？</div>
                             </div>
                         </div>
@@ -434,7 +434,7 @@
                             </div>
                             <div class="col-xs-6">
                                 <select name="country" class="select2" style="width: 100%">
-                                    <?php if(is_array($country)): $i = 0; $__LIST__ = $country;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($ad['country'] == $top['id']): ?>selected<?php endif; ?>>
+                                    <?php if(is_array($country)): $i = 0; $__LIST__ = $country;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($isNew && $defaultCountry == $top['id']): ?>selected<?php elseif($ad['country'] == $top['id']): ?>selected<?php endif; ?>>
                                             <?php echo ($top["code"]); ?> <?php echo ($top["name"]); ?>
                                         </option><?php endforeach; endif; else: echo "" ;endif; ?>
                                 </select>
@@ -448,7 +448,7 @@
                             </div>
                             <div class="col-xs-6">
                                 <select name="currency" class="select2" style="width: 100%">
-                                    <?php if(is_array($currency)): $i = 0; $__LIST__ = $currency;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["code"]); ?>" <?php if($ad['currency'] == $top['code']): ?>selected<?php endif; ?>>
+                                    <?php if(is_array($currency)): $i = 0; $__LIST__ = $currency;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["code"]); ?>" <?php if($isNew && $defaultCurrency == $top['code']): ?>selected<?php elseif($ad['currency'] == $top['code']): ?>selected<?php endif; ?>>
                                             <?php echo ($top["code"]); ?>
                                         </option><?php endforeach; endif; else: echo "" ;endif; ?>
                                 </select>
@@ -475,13 +475,13 @@
                             <div class="col-xs-6">
                                 <div class="input-group input-group-lg">
                                     <input type="text" class="form-control" value="<?php echo ($ad['price']); ?>" name="price" onfocus=this.blur()>
-                                    <span class="input-group-addon">CNY</span>
+                                    <span class="input-group-addon label-currency"><?php echo ($defaultCurrency); ?></span>
                                 </div>
                                 <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;根据溢价比例得出的报价，10分钟更新一次。</div>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group pay_addr" style="display: none">
                             <div class="col-xs-2" style="margin-top: 10px">
                                 <label class="required"><?php echo L('_AD_PAY_ADDRESS_LABEL_');?></label>
                             </div>
@@ -500,7 +500,7 @@
                             <div class="col-xs-6">
                                 <div class="input-group input-group-lg">
                                     <input type="text" class="form-control form_check" value="<?php echo ($ad['low_price']); ?>" name="low_price" check-type="IntNum" can-empty="1">
-                                    <span class="input-group-addon">CNY</span>
+                                    <span class="input-group-addon label-currency"><?php echo ($defaultCurrency); ?></span>
                                 </div>
                                 <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;广告最低可成交的价格，可帮您在价格剧烈波动的时候保持稳定的盈利，比如最低价格22000，市场价格低于22000以下时，您的广告依旧以22000价格展示出来。</div>
                             </div>
@@ -513,7 +513,7 @@
                             <div class="col-xs-6">
                                 <div class="input-group input-group-lg">
                                     <input type="text" class="form-control form_check" value="<?php echo ($ad['min_price']); ?>" name="min_price" check-type="IntNum">
-                                    <span class="input-group-addon">CNY</span>
+                                    <span class="input-group-addon label-currency"><?php echo ($defaultCurrency); ?></span>
                                 </div>
                                 <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;每笔交易的最低限额。</div>
                             </div>
@@ -526,22 +526,22 @@
                             <div class="col-xs-6">
                                 <div class="input-group input-group-lg">
                                     <input type="text" class="form-control form_check" value="<?php echo ($ad['max_price']); ?>" name="max_price" check-type="IntNum">
-                                    <span class="input-group-addon">CNY</span>
+                                    <span class="input-group-addon label-currency"><?php echo ($defaultCurrency); ?></span>
                                 </div>
                                 <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;每笔交易的最大限额，必须大于最小限额，您的钱包余额会影响最大额度的设置。</div>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group pay_time">
                             <div class="col-xs-2" style="margin-top: 10px">
                                 <label class="required"><?php echo L('_AD_PAY_TIME_LABEL_');?></label>
                             </div>
                             <div class="col-xs-6">
                                 <div class="input-group input-group-lg">
-                                    <input type="text" class="form-control form_check" value="<?php if($ad['pay_time'] > 0): echo ($ad['pay_time']); else: ?>90<?php endif; ?>" name="pay_time" check-type="IntNum">
+                                    <input type="text" class="form-control form_check" value="<?php if($ad['pay_time'] > 0): echo ($ad['pay_time']); else: ?>180<?php endif; ?>" name="pay_time" check-type="IntNum">
                                     <span class="input-group-addon">分钟</span>
                                 </div>
-                                <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;您承诺在多少分钟内进行付款。</div>
+                                <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;设置广告付款时间期限。</div>
                             </div>
                         </div>
 
@@ -550,9 +550,9 @@
                                 <label class="required"><?php echo L('_AD_PAY_TYPE_LABEL_');?></label>
                             </div>
                             <div class="col-xs-6">
-                                <select name="pay_type" class="chosen-select select2" style="width: 100%">
-                                    <option value="" disabled selected><?php echo L('_AD_PAY_TIPS_');?></option>
-                                    <?php if(is_array($payType)): $i = 0; $__LIST__ = $payType;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($ad['pay_type'] == $top['id']): ?>selected<?php endif; ?>>
+                                <?php $typeArray = explode(',',$ad['pay_type']); ?>
+                                <select name="pay_type[]" class="chosen-select select2" multiple="multiple" style="width: 100%">
+                                    <?php if(is_array($payType)): $i = 0; $__LIST__ = $payType;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if(in_array($top['id'],$typeArray)): ?>selected<?php endif; ?>>
                                             <?php echo ($top["name"]); ?>
                                         </option><?php endforeach; endif; else: echo "" ;endif; ?>
                                 </select>
@@ -586,8 +586,8 @@
                                     <label><?php echo L('_AD_SAFE_LABEL_');?></label>
                                 </div>
                                 <div class="col-xs-10">
-                                    <label> <input name="is_safe" value="1" type="radio" <?php if($ad['is_safe'] == 1): ?>checked<?php endif; ?>/><?php echo L('_AD_OPEN_');?></label>&nbsp;&nbsp;&nbsp;
-                                    <label class=""> <input name="is_safe" value="0" type="radio" <?php if($ad['is_safe'] == 0): ?>checked<?php endif; ?>/><?php echo L('_AD_CLOSE_');?></label>
+                                    <label> <input name="is_safe" value="1" type="radio" <?php if($ad['is_safe'] == 1): ?>checked<?php endif; ?>/> <?php echo L('_AD_OPEN_');?></label>&nbsp;&nbsp;&nbsp;
+                                    <label class=""> <input name="is_safe" value="0" type="radio" <?php if($ad['is_safe'] == 0): ?>checked<?php endif; ?>/> <?php echo L('_AD_CLOSE_');?></label>
                                     <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;启用后，仅限于已验证身份证和通过短信验证的用户与本广告交易。</div>
                                 </div>
                             </div>
@@ -597,8 +597,8 @@
                                     <label><?php echo L('_AD_TRUST_LABEL_');?></label>
                                 </div>
                                 <div class="col-xs-10">
-                                    <label> <input name="is_trust" value="1" type="radio" <?php if($ad['is_trust'] == 1): ?>checked<?php endif; ?>/><?php echo L('_AD_OPEN_');?></label>&nbsp;&nbsp;&nbsp;
-                                    <label class=""> <input name="is_trust" value="0" type="radio" <?php if($ad['is_trust'] == 0): ?>checked<?php endif; ?>/><?php echo L('_AD_CLOSE_');?></label>
+                                    <label> <input name="is_trust" value="1" type="radio" <?php if($ad['is_trust'] == 1): ?>checked<?php endif; ?>/> <?php echo L('_AD_OPEN_');?></label>&nbsp;&nbsp;&nbsp;
+                                    <label class=""> <input name="is_trust" value="0" type="radio" <?php if($ad['is_trust'] == 0): ?>checked<?php endif; ?>/> <?php echo L('_AD_CLOSE_');?></label>
                                     <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;启用后，仅限于自己信任的用户与本广告交易。</div>
                                 </div>
                             </div>
@@ -612,260 +612,262 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <!--星期日-->
-                                <div class="col-xs-2">
-                                    <label><?php echo L('_AD_SUNDAY_LABEL_');?></label>
-                                </div>
-                                <div class="col-xs-3">
-                                    <div class="input-group input-group-lg">
-                                        <select name="start_time7" class="form-control ">
-                                            <option value="1" <?php if($openTime->st7 == 1): ?>selected<?php endif; ?>>
+                            <div class="opentime">
+                                <div class="form-group">
+                                    <!--星期日-->
+                                    <div class="col-xs-2">
+                                        <label><?php echo L('_AD_SUNDAY_LABEL_');?></label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="input-group input-group-lg">
+                                            <select name="start0" class="form-control ">
+                                                <option value="-2" <?php if($ad[start0] == -2): ?>selected<?php endif; ?>>
                                                 <?php echo L('_START_TIME_');?>
-                                            </option>
-                                            <option value="-1" <?php if($openTime->st7 == -1): ?>selected<?php endif; ?>>
+                                                </option>
+                                                <option value="-1" <?php if($ad[start0] == -1): ?>selected<?php endif; ?>>
                                                 <?php echo L('_CLOSE_TIME_');?>
-                                            </option>
-                                            <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["time"]); ?>" <?php if($openTime->st7 == $top['time']): ?>selected<?php endif; ?>>
+                                                </option>
+                                                <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if(($ad[start0] == $top['id']) and !$isNew): ?>selected<?php endif; ?>>
                                                     <?php echo ($top["time"]); ?>
-                                                </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                        </select>
+                                                    </option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-3">
-                                    <div class="input-group input-group-lg">
-                                        <select name="end_time7" class="form-control ">
-                                            <option value="1" <?php if($openTime->et7 == 1): ?>selected<?php endif; ?>>
+                                    <div class="col-xs-3">
+                                        <div class="input-group input-group-lg">
+                                            <select name="end0" class="form-control ">
+                                                <option value="25" <?php if($ad[end0] == 25): ?>selected<?php endif; ?>>
                                                 <?php echo L('_END_TIME_');?>
-                                            </option>
-                                            <option value="-1" <?php if($openTime->et7 == -1): ?>selected<?php endif; ?>>
+                                                </option>
+                                                <option value="-1" <?php if($ad[end0] == -1): ?>selected<?php endif; ?>>
                                                 <?php echo L('_CLOSE_TIME_');?>
-                                            </option>
-                                            <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["time"]); ?>" <?php if($openTime->et7 == $top['time']): ?>selected<?php endif; ?>>
+                                                </option>
+                                                <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($ad[end0] == $top['id'] and !$isNew): ?>selected<?php endif; ?>>
                                                     <?php echo ($top["time"]); ?>
-                                                </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                        </select>
+                                                    </option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <!--星期一-->
-                                <div class="col-xs-2">
-                                    <label><?php echo L('_AD_MONDAY_LABEL_');?></label>
-                                </div>
-                                <div class="col-xs-3">
-                                    <div class="input-group input-group-lg">
-                                        <select name="start_time1" class="form-control ">
-                                            <option value="1" <?php if($openTime->st1 == 1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_START_TIME_');?>
-                                            </option>
-                                            <option value="-1" <?php if($openTime->st1 == -1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_CLOSE_TIME_');?>
-                                            </option>
-                                            <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["time"]); ?>" <?php if($openTime->st1 == $top['time']): ?>selected<?php endif; ?>>
-                                                <?php echo ($top["time"]); ?>
-                                                </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                        </select>
+                                <div class="form-group">
+                                    <!--星期一-->
+                                    <div class="col-xs-2">
+                                        <label><?php echo L('_AD_MONDAY_LABEL_');?></label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="input-group input-group-lg">
+                                            <select name="start1" class="form-control ">
+                                                <option value="-2" <?php if($ad[start1] == -2): ?>selected<?php endif; ?>>
+                                                <?php echo L('_START_TIME_');?>
+                                                </option>
+                                                <option value="-1" <?php if($ad[start1] == -1): ?>selected<?php endif; ?>>
+                                                <?php echo L('_CLOSE_TIME_');?>
+                                                </option>
+                                                <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($ad[start1] == $top['id'] and !$isNew): ?>selected<?php endif; ?>>
+                                                    <?php echo ($top["time"]); ?>
+                                                    </option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="input-group input-group-lg">
+                                            <select name="end1" class="form-control ">
+                                                <option value="25" <?php if($ad[end1] == 25): ?>selected<?php endif; ?>>
+                                                <?php echo L('_END_TIME_');?>
+                                                </option>
+                                                <option value="-1" <?php if($ad[end1] == -1): ?>selected<?php endif; ?>>
+                                                <?php echo L('_CLOSE_TIME_');?>
+                                                </option>
+                                                <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($ad[end1] == $top['id'] and !$isNew): ?>selected<?php endif; ?>>
+                                                    <?php echo ($top["time"]); ?>
+                                                    </option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-3">
-                                    <div class="input-group input-group-lg">
-                                        <select name="end_time1" class="form-control ">
-                                            <option value="1" <?php if($openTime->et1 == 1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_END_TIME_');?>
-                                            </option>
-                                            <option value="-1" <?php if($openTime->et1 == -1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_CLOSE_TIME_');?>
-                                            </option>
-                                            <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["time"]); ?>" <?php if($openTime->et1 == $top['time']): ?>selected<?php endif; ?>>
-                                                <?php echo ($top["time"]); ?>
-                                                </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <!--星期二-->
-                                <div class="col-xs-2">
-                                    <label><?php echo L('_AD_TUESDAY_LABEL_');?></label>
-                                </div>
-                                <div class="col-xs-3">
-                                    <div class="input-group input-group-lg">
-                                        <select name="start_time2" class="form-control ">
-                                            <option value="1" <?php if($openTime->st2 == 1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_START_TIME_');?>
-                                            </option>
-                                            <option value="-1" <?php if($openTime->st2 == -1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_CLOSE_TIME_');?>
-                                            </option>
-                                            <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["time"]); ?>" <?php if($openTime->st2 == $top['time']): ?>selected<?php endif; ?>>
-                                                <?php echo ($top["time"]); ?>
-                                                </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                        </select>
+                                <div class="form-group">
+                                    <!--星期二-->
+                                    <div class="col-xs-2">
+                                        <label><?php echo L('_AD_TUESDAY_LABEL_');?></label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="input-group input-group-lg">
+                                            <select name="start2" class="form-control ">
+                                                <option value="-2" <?php if($ad[start2] == -2): ?>selected<?php endif; ?>>
+                                                <?php echo L('_START_TIME_');?>
+                                                </option>
+                                                <option value="-1" <?php if($ad[start2] == -1): ?>selected<?php endif; ?>>
+                                                <?php echo L('_CLOSE_TIME_');?>
+                                                </option>
+                                                <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($ad[start2] == $top['id'] and !$isNew): ?>selected<?php endif; ?>>
+                                                    <?php echo ($top["time"]); ?>
+                                                    </option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="input-group input-group-lg">
+                                            <select name="end2" class="form-control ">
+                                                <option value="25" <?php if($ad[end2] == 25): ?>selected<?php endif; ?>>
+                                                <?php echo L('_END_TIME_');?>
+                                                </option>
+                                                <option value="-1" <?php if($ad[end2] == -1): ?>selected<?php endif; ?>>
+                                                <?php echo L('_CLOSE_TIME_');?>
+                                                </option>
+                                                <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($ad[end2] == $top['id'] and !$isNew): ?>selected<?php endif; ?>>
+                                                    <?php echo ($top["time"]); ?>
+                                                    </option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-3">
-                                    <div class="input-group input-group-lg">
-                                        <select name="end_time2" class="form-control ">
-                                            <option value="1" <?php if($openTime->et2 == 1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_END_TIME_');?>
-                                            </option>
-                                            <option value="-1" <?php if($openTime->et2 == -1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_CLOSE_TIME_');?>
-                                            </option>
-                                            <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["time"]); ?>" <?php if($openTime->et2 == $top['time']): ?>selected<?php endif; ?>>
-                                                <?php echo ($top["time"]); ?>
-                                                </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <!--星期三-->
-                                <div class="col-xs-2">
-                                    <label><?php echo L('_AD_WEDNESDAY_LABEL_');?></label>
-                                </div>
-                                <div class="col-xs-3">
-                                    <div class="input-group input-group-lg">
-                                        <select name="start_time3" class="form-control ">
-                                            <option value="1" <?php if($openTime->st3 == 1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_START_TIME_');?>
-                                            </option>
-                                            <option value="-1" <?php if($openTime->st3 == -1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_CLOSE_TIME_');?>
-                                            </option>
-                                            <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["time"]); ?>" <?php if($openTime->st3 == $top['time']): ?>selected<?php endif; ?>>
-                                                <?php echo ($top["time"]); ?>
-                                                </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                        </select>
+                                <div class="form-group">
+                                    <!--星期三-->
+                                    <div class="col-xs-2">
+                                        <label><?php echo L('_AD_WEDNESDAY_LABEL_');?></label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="input-group input-group-lg">
+                                            <select name="start3" class="form-control ">
+                                                <option value="-2" <?php if($ad[start3] == -2): ?>selected<?php endif; ?>>
+                                                <?php echo L('_START_TIME_');?>
+                                                </option>
+                                                <option value="-1" <?php if($ad[start3] == -1): ?>selected<?php endif; ?>>
+                                                <?php echo L('_CLOSE_TIME_');?>
+                                                </option>
+                                                <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($ad[start3] == $top['id'] and !$isNew): ?>selected<?php endif; ?>>
+                                                    <?php echo ($top["time"]); ?>
+                                                    </option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="input-group input-group-lg">
+                                            <select name="end3" class="form-control ">
+                                                <option value="25" <?php if($ad[end3] == 25): ?>selected<?php endif; ?>>
+                                                <?php echo L('_END_TIME_');?>
+                                                </option>
+                                                <option value="-1" <?php if($ad[end3] == -1): ?>selected<?php endif; ?>>
+                                                <?php echo L('_CLOSE_TIME_');?>
+                                                </option>
+                                                <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($ad[end3] == $top['id'] and !$isNew): ?>selected<?php endif; ?>>
+                                                    <?php echo ($top["time"]); ?>
+                                                    </option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-3">
-                                    <div class="input-group input-group-lg">
-                                        <select name="end_time3" class="form-control ">
-                                            <option value="1" <?php if($openTime->et3 == 1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_END_TIME_');?>
-                                            </option>
-                                            <option value="-1" <?php if($openTime->et3 == -1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_CLOSE_TIME_');?>
-                                            </option>
-                                            <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["time"]); ?>" <?php if($openTime->et3 == $top['time']): ?>selected<?php endif; ?>>
-                                                <?php echo ($top["time"]); ?>
-                                                </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <!--星期四-->
-                                <div class="col-xs-2">
-                                    <label><?php echo L('_AD_THURSDAY_LABEL_');?></label>
-                                </div>
-                                <div class="col-xs-3">
-                                    <div class="input-group input-group-lg">
-                                        <select name="start_time4" class="form-control ">
-                                            <option value="1" <?php if($openTime->st4 == 1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_START_TIME_');?>
-                                            </option>
-                                            <option value="-1" <?php if($openTime->st4 == -1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_CLOSE_TIME_');?>
-                                            </option>
-                                            <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["time"]); ?>" <?php if($openTime->st4 == $top['time']): ?>selected<?php endif; ?>>
-                                                <?php echo ($top["time"]); ?>
-                                                </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                        </select>
+                                <div class="form-group">
+                                    <!--星期四-->
+                                    <div class="col-xs-2">
+                                        <label><?php echo L('_AD_THURSDAY_LABEL_');?></label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="input-group input-group-lg">
+                                            <select name="start4" class="form-control ">
+                                                <option value="-2" <?php if($ad[start4] == -2): ?>selected<?php endif; ?>>
+                                                <?php echo L('_START_TIME_');?>
+                                                </option>
+                                                <option value="-1" <?php if($ad[start4] == -1): ?>selected<?php endif; ?>>
+                                                <?php echo L('_CLOSE_TIME_');?>
+                                                </option>
+                                                <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($ad[start4] == $top['id'] and !$isNew): ?>selected<?php endif; ?>>
+                                                    <?php echo ($top["time"]); ?>
+                                                    </option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="input-group input-group-lg">
+                                            <select name="end4" class="form-control ">
+                                                <option value="25" <?php if($ad[end4] == 25): ?>selected<?php endif; ?>>
+                                                <?php echo L('_END_TIME_');?>
+                                                </option>
+                                                <option value="-1" <?php if($ad[end4] == -1): ?>selected<?php endif; ?>>
+                                                <?php echo L('_CLOSE_TIME_');?>
+                                                </option>
+                                                <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($ad[end4] == $top['id'] and !$isNew): ?>selected<?php endif; ?>>
+                                                    <?php echo ($top["time"]); ?>
+                                                    </option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-3">
-                                    <div class="input-group input-group-lg">
-                                        <select name="end_time4" class="form-control ">
-                                            <option value="1" <?php if($openTime->et4 == 1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_END_TIME_');?>
-                                            </option>
-                                            <option value="-1" <?php if($openTime->et4 == -1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_CLOSE_TIME_');?>
-                                            </option>
-                                            <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["time"]); ?>" <?php if($openTime->et4 == $top['time']): ?>selected<?php endif; ?>>
-                                                <?php echo ($top["time"]); ?>
-                                                </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <!--星期五-->
-                                <div class="col-xs-2">
-                                    <label><?php echo L('_AD_FRIDAY_LABEL_');?></label>
-                                </div>
-                                <div class="col-xs-3">
-                                    <div class="input-group input-group-lg">
-                                        <select name="start_time5" class="form-control ">
-                                            <option value="1" <?php if($openTime->st5 == 1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_START_TIME_');?>
-                                            </option>
-                                            <option value="-1" <?php if($openTime->st5 == -1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_CLOSE_TIME_');?>
-                                            </option>
-                                            <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["time"]); ?>" <?php if($openTime->st5 == $top['time']): ?>selected<?php endif; ?>>
-                                                <?php echo ($top["time"]); ?>
-                                                </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                        </select>
+                                <div class="form-group">
+                                    <!--星期五-->
+                                    <div class="col-xs-2">
+                                        <label><?php echo L('_AD_FRIDAY_LABEL_');?></label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="input-group input-group-lg">
+                                            <select name="start5" class="form-control ">
+                                                <option value="-2" <?php if($ad[start5] == -2): ?>selected<?php endif; ?>>
+                                                <?php echo L('_START_TIME_');?>
+                                                </option>
+                                                <option value="-1" <?php if($ad[start5] == -1): ?>selected<?php endif; ?>>
+                                                <?php echo L('_CLOSE_TIME_');?>
+                                                </option>
+                                                <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($ad[start5] == $top['id'] and !$isNew): ?>selected<?php endif; ?>>
+                                                    <?php echo ($top["time"]); ?>
+                                                    </option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="input-group input-group-lg">
+                                            <select name="end5" class="form-control ">
+                                                <option value="25" <?php if($ad[end5] == 25): ?>selected<?php endif; ?>>
+                                                <?php echo L('_END_TIME_');?>
+                                                </option>
+                                                <option value="-1" <?php if($ad[end5] == -1): ?>selected<?php endif; ?>>
+                                                <?php echo L('_CLOSE_TIME_');?>
+                                                </option>
+                                                <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($ad[end5] == $top['id'] and !$isNew): ?>selected<?php endif; ?>>
+                                                    <?php echo ($top["time"]); ?>
+                                                    </option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-3">
-                                    <div class="input-group input-group-lg">
-                                        <select name="end_time5" class="form-control ">
-                                            <option value="1" <?php if($openTime->et5 == 1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_END_TIME_');?>
-                                            </option>
-                                            <option value="-1" <?php if($openTime->et5 == -1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_CLOSE_TIME_');?>
-                                            </option>
-                                            <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["time"]); ?>" <?php if($openTime->et5 == $top['time']): ?>selected<?php endif; ?>>
-                                                <?php echo ($top["time"]); ?>
-                                                </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <!--星期六-->
-                                <div class="col-xs-2">
-                                    <label><?php echo L('_AD_SATURDAY_LABEL_');?></label>
-                                </div>
-                                <div class="col-xs-3">
-                                    <div class="input-group input-group-lg">
-                                        <select name="start_time6" class="form-control ">
-                                            <option value="1" <?php if($openTime->st6 == 1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_START_TIME_');?>
-                                            </option>
-                                            <option value="-1" <?php if($openTime->st6 == -1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_CLOSE_TIME_');?>
-                                            </option>
-                                            <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["time"]); ?>" <?php if($openTime->st6 == $top['time']): ?>selected<?php endif; ?>>
-                                                <?php echo ($top["time"]); ?>
-                                                </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                        </select>
+                                <div class="form-group">
+                                    <!--星期六-->
+                                    <div class="col-xs-2">
+                                        <label><?php echo L('_AD_SATURDAY_LABEL_');?></label>
                                     </div>
-                                </div>
-                                <div class="col-xs-3">
-                                    <div class="input-group input-group-lg">
-                                        <select name="end_time6" class="form-control ">
-                                            <option value="1" <?php if($openTime->et6 == 1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_END_TIME_');?>
-                                            </option>
-                                            <option value="-1" <?php if($openTime->et6 == -1): ?>selected<?php endif; ?>>
-                                            <?php echo L('_CLOSE_TIME_');?>
-                                            </option>
-                                            <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["time"]); ?>" <?php if($openTime->et6 == $top['time']): ?>selected<?php endif; ?>>
-                                                <?php echo ($top["time"]); ?>
-                                                </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                        </select>
+                                    <div class="col-xs-3">
+                                        <div class="input-group input-group-lg">
+                                            <select name="start6" class="form-control ">
+                                                <option value="-2" <?php if($ad[start6] == -2): ?>selected<?php endif; ?>>
+                                                <?php echo L('_START_TIME_');?>
+                                                </option>
+                                                <option value="-1" <?php if($ad[start6] == -1): ?>selected<?php endif; ?>>
+                                                <?php echo L('_CLOSE_TIME_');?>
+                                                </option>
+                                                <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($ad[start6] == $top['id'] and !$isNew): ?>selected<?php endif; ?>>
+                                                    <?php echo ($top["time"]); ?>
+                                                    </option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="input-group input-group-lg">
+                                            <select name="end6" class="form-control ">
+                                                <option value="25" <?php if($ad[end6] == 25): ?>selected<?php endif; ?>>
+                                                <?php echo L('_END_TIME_');?>
+                                                </option>
+                                                <option value="-1" <?php if($ad[end6] == -1): ?>selected<?php endif; ?>>
+                                                <?php echo L('_CLOSE_TIME_');?>
+                                                </option>
+                                                <?php if(is_array($time)): $i = 0; $__LIST__ = $time;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($ad[end6] == $top['id'] and !$isNew): ?>selected<?php endif; ?>>
+                                                    <?php echo ($top["time"]); ?>
+                                                    </option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -890,6 +892,20 @@
     <script src="/yoyo/Application/Ad/Static/js/select2.js"></script>
     <link rel="stylesheet" href="/yoyo/Application/Ad/Static/css/components.css">
     <script>
+        $("input[name='type']").click(function () {
+            var type = $(this).val();
+            if(type == 1){
+                $(".pay_addr").css('display','none');
+            }else if(type == 2){
+                $(".pay_addr").css('display','none');
+            }else if(type == 3){
+                $(".pay_addr").css('display','block');
+                $(".pay_time").css('display','none');
+            }else if(type == 4){
+                $(".pay_addr").css('display','block');
+                $(".pay_time").css('display','none');
+            }
+        });
         $("input[name='pre_price']").blur(function () {
             var prePrice = $(this).val();
             if(prePrice == null || prePrice.length == 0){
@@ -902,6 +918,139 @@
         $(function(){
             $(".select2").select2();
         })
+
+        $("select[name='currency']").change(function () {
+           var currency = $(this).val();
+            $(".label-currency").text(currency);
+        });
+
+        $(".btn-lg").click(function () {
+            var start0 = Number($("select[name='start0']").val());
+            var end0 = Number($("select[name='end0']").val());
+            if(start0 >= 0 && end0 == 25){
+                timeError();
+                return false;
+            }else if(start0 == -2 && (end0 <25 && end0>=0)){
+                timeError();
+                return false;
+            }else if(start0 >= end0 && start0 >=0){
+                timeError();
+                return false;
+            }
+            var start1 = Number($("select[name='start1']").val());
+            var end1 = Number($("select[name='end1']").val());
+            if(start1 >= 0 && end1 == 25){
+                timeError();
+                return false;
+            }else if(start1 == -2 && (end1 <25 && end1>=0)){
+                timeError();
+                return false;
+            }else if(start1 >= end1 && start1 >=0){
+                timeError();
+                return false;
+            }
+            var start2 = Number($("select[name='start2']").val());
+            var end2 = Number($("select[name='end2']").val());
+            if(start2 >= 0 && end2 == 25){
+                timeError();
+                return false;
+            }else if(start2 == -2 && (end2 <25 && end2>=0)){
+                timeError();
+                return false;
+            }else if(start2 >= end2 && start2 >=0){
+                timeError();
+                return false;
+            }
+            var start3 = Number($("select[name='start3']").val());
+            var end3 = Number($("select[name='end3']").val());
+            if(start3 >= 0 && end3 == 25){
+                timeError();
+                return false;
+            }else if(start3 == -2 && (end3 <25 && end3>=0)){
+                timeError();
+                return false;
+            }else if(start3 >= end3 && start3 >=0){
+                timeError();
+                return false;
+            }
+            var start4 = Number($("select[name='start4']").val());
+            var end4 = Number($("select[name='end4']").val());
+            if(start4 >= 0 && end4 == 25){
+                timeError();
+                return false;
+            }else if(start4 == -2 && (end4 <25 && end4>=0)){
+                timeError();
+                return false;
+            }else if(start4 >= end4 && start4 >=0){
+                timeError();
+                return false;
+            }
+            var start5 = Number($("select[name='start5']").val());
+            var end5 = Number($("select[name='end5']").val());
+            if(start5 >= 0 && end5 == 25){
+                timeError();
+                return false;
+            }else if(start5 == -2 && (end5 <25 && end5>=0)){
+                timeError();
+                return false;
+            }else if(start5 >= end5 && start5 >=0){
+                timeError();
+                return false;
+            }
+            var start6 = Number($("select[name='start6']").val());
+            var end6 = Number($("select[name='end6']").val());
+            if(start6 >= 0 && end6 == 25){
+                timeError();
+                return false;
+            }else if(start6 == -2 && (end6 <25 && end6>=0)){
+                timeError();
+                return false;
+            }else if(start6 >= end6 && start6 >=0){
+                timeError();
+                return false;
+            }
+        });
+
+        function timeError() {
+            toast.error("请选择正确的广告开放时间");
+        }
+
+        $(".opentime select").change(function () {
+           var time = Number($(this).val());
+           if(time == -1){
+               var name = $(this).attr('name');
+               if(name == 'start0'){
+                    $("select[name='end0']").val('-1');
+               }else if(name == 'end0'){
+                   $("select[name='start0']").val('-1');
+               }else if(name == 'start1'){
+                   $("select[name='end1']").val('-1');
+               }else if(name == 'end1'){
+                   $("select[name='start1']").val('-1');
+               }else if(name == 'start2'){
+                   $("select[name='end2']").val('-1');
+               }else if(name == 'end2'){
+                   $("select[name='start2']").val('-1');
+               }else if(name == 'start3'){
+                   $("select[name='end3']").val('-1');
+               }else if(name == 'end3'){
+                   $("select[name='start3']").val('-1');
+               }else if(name == 'start4'){
+                   $("select[name='end4']").val('-1');
+               }else if(name == 'end4'){
+                   $("select[name='start4']").val('-1');
+               }else if(name == 'start5'){
+                   $("select[name='end5']").val('-1');
+               }else if(name == 'end5'){
+                   $("select[name='start5']").val('-1');
+               }else if(name == 'start6'){
+                   $("select[name='end6']").val('-1');
+               }else if(name == 'end6'){
+                   $("select[name='start6']").val('-1');
+               }
+           }
+        });
+
     </script>
 
         </div>

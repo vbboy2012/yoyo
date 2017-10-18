@@ -38,14 +38,27 @@ CREATE TABLE IF NOT EXISTS `ocenter_tradead` (
   `low_price` decimal(10,2) NOT NULL COMMENT '最低价',
   `max_price` int(11) NULL COMMENT 'max',
   `min_price` int(11) NULL COMMENT 'min',
-  `pay_type` smallint(4) NOT NULL COMMENT '付款方式',
+  `pay_type` CHAR (50) NOT NULL COMMENT '付款方式',
   `pay_time` int(11) NULL,
   `pay_addr` varchar(50) NULL COMMENT '见面地点',
   `pay_text` varchar(50) NULL COMMENT '交易条款',
   `auto_message` varchar(100) NULL COMMENT '自动回复消息',
   `is_safe` tinyint(2) NOT NULL DEFAULT '0' COMMENT '安全验证',
   `is_trust` tinyint(2) NOT NULL DEFAULT '0'  COMMENT '信任验证',
-  `open_time` varchar(200) NULL,
+  `start0` tinyint(1) NULL,
+  `end0` tinyint(1) NULL,
+  `start1` tinyint(1) NULL,
+  `end1` tinyint(1) NULL,
+  `start2` tinyint(1) NULL,
+  `end2` tinyint(1) NULL,
+  `start3` tinyint(1) NULL,
+  `end3` tinyint(1) NULL,
+  `start4` tinyint(1) NULL,
+  `end4` tinyint(1) NULL,
+  `start5` tinyint(1) NULL,
+  `end5` tinyint(1) NULL,
+  `start6` tinyint(1) NULL,
+  `end6` tinyint(1) NULL,
   `status` tinyint(2) NOT NULL COMMENT '状态：1开放，0关闭',
   `create_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
@@ -86,6 +99,20 @@ CREATE TABLE IF NOT EXISTS `ocenter_ticket` (
   `create_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='支持工单';
+
+CREATE TABLE IF NOT EXISTS `ocenter_market` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `market` CHAR(20) NOT NULL,
+  `high` decimal(10,2) NOT NULL,
+  `low` decimal(10,2) NOT NULL,
+  `bid` decimal(10,2) NOT NULL,
+  `ask` decimal(10,2) NOT NULL,
+  `close` decimal(10,2) NOT NULL,
+  `avg` decimal(10,2) NOT NULL,
+  `create_time` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `market` (`market`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='BTC市场价格表';
 
 -- ----------------------------
 -- Table structure for `ocenter_country`

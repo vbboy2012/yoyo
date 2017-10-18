@@ -99,7 +99,7 @@ class UcenterMemberModel extends Model
         if (strpos($username, ' ') !== false) {
             return false;
         }
-        preg_match("/^[a-zA-Z0-9_]{0,64}$/", $username, $result);
+        preg_match("/^[a-zA-Z][a-zA-Z0-9]{0,64}$/", $username, $result);
 
         if (!$result) {
             return false;

@@ -1,9 +1,14 @@
 <div class="common_block_border event_right">
     <div class="common_block_title_right" style="text-align: center;">
         <php>
-            $img = substr($tradead['path'],0,strlen($tradead['path'])-4);$img.='_64_64';
+            $avatar = query_avatar($vo['uid']);
+            if($avatar){
+            $img = substr($avatar['path'],0,strlen($avatar['path'])-4);$img.='_64_64.jpg';
+            }else{
+            $img = 'default_64_64.jpg';
+            }
         </php>
-        <div><a href=""><img src="__ROOT__/Uploads/Avatar/{$img}.jpg" class="img-circle" style="padding-right: 10px"></a></div>
+        <div><a href=""><img src="__ROOT__/Uploads/Avatar/{$img}" class="img-circle" style="padding-right: 10px"></a></div>
         <div><label><a href="" style="color: cornflowerblue">{$tradead.nickname}</a></label></div>
         <div style="margin-top: 20px;color: cornflowerblue">
             <span><i class="icon icon-envelope icon-2x pad10"></i></span><span><i class="icon icon-phone icon-2x pad10"></i></span><span><i class="icon icon-user icon-2x pad10"></i></span>

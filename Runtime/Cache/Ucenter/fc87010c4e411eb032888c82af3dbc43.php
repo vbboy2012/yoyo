@@ -119,7 +119,6 @@
 </div>
 <![endif]-->
 <script src="/yoyo/Public/js/canvas.js"></script>
-<script src="/yoyo/Public/css/fa.css"></script>
 <style>
     body {
         color: #34495e;
@@ -142,7 +141,7 @@
 </script>
 <div class="container-fluid topp-box clearfloat">
     <div class="col-xs-2 box">
-        <div class="" style="">
+        <div class="">
             <a class="navbar-brand" href="<?php echo U('Home/Index/index');?>"><i class="icon icon-compass icon-2x"></i>YOYOCOINS</a>
         </div>
     </div>

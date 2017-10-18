@@ -50,10 +50,10 @@ class MemberController extends Controller
                 set_user_status($uid, 3);
                 $verify = D('Verify')->addVerify($email, 'email', $uid, 0);
                 $this->sendActivateEmail($email, $verify, $uid); //发送激活邮件
-                $this->success('注册成功，请登录邮箱进行激活',U('ucenter/member/activate'));
-//                $uid = $ucenterMemberModel->login($username, $aPassword, 1); //通过账号密码取到uid
+ //               $this->success('注册成功，请登录邮箱进行激活',U('ucenter/member/activate'));
+                $uid = $ucenterMemberModel->login($username, $aPassword, 1); //通过账号密码取到uid
 //                send_message($uid, '注册成功提醒', '欢迎你注册本系统', 'Ucenter/Index/index', array(), 1);
-//                D('Member')->login($uid, false, $aRole); //登陆
+                D('Member')->login($uid, false, $aRole); //登陆
 //                $this->success('注册成功，请登录邮箱进行激活', U('Home/Index/index'));
             } else { //注册失败，显示错误信息
                 $this->error($this->showRegError($uid));

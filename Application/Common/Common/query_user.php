@@ -27,6 +27,19 @@ function query_user($fields = null, $uid = null)
     return $info;
 }
 
+function query_avatar($uid = null)
+{
+    $uid = $uid == null ? is_login():$uid;
+    $avatar = M('avatar')->where('uid='.$uid)->field('path')->find();
+    return $avatar;
+}
+
+function query_pay($idArray = null)
+{
+    $pay = M('pay')->where("id in (".$idArray.")")->select();
+    return $pay;
+}
+
 function read_query_user_cache($uid, $field)
 {
 

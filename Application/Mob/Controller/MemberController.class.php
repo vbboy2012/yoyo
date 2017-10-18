@@ -540,7 +540,7 @@ class MemberController extends BaseController
                 $error = '手机号被占用！';
                 break;
             case -20:
-                $error = '用户名只能由数字、字母和"_"组成！';
+                $error = '用户名只能由数字、字母组成！';
                 break;
             case -30:
                 $error = '昵称被占用！';

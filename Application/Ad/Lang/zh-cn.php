@@ -73,7 +73,7 @@ return array(
     '_START_TIME_' => '开始时间',
     '_END_TIME_' => '结束时间',
     '_CLOSE_TIME_' => '关闭',
-    '_AD_PAY_TIPS_' => '请选择支付方式',
+
 
 
 );

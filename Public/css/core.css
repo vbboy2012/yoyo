@@ -910,6 +910,7 @@ a:focus {
   outline: none;
 }
 .nav_bar .sat-nav .first-ul {
+  text-align: left;
   list-style: none;
   margin: 0;
   padding: 0;

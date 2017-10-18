@@ -119,7 +119,6 @@
 </div>
 <![endif]-->
 <script src="/yoyo/Public/js/canvas.js"></script>
-<script src="/yoyo/Public/css/fa.css"></script>
 <style>
     body {
         color: #34495e;
@@ -142,7 +141,7 @@
 </script>
 <div class="container-fluid topp-box clearfloat">
     <div class="col-xs-2 box">
-        <div class="" style="">
+        <div class="">
             <a class="navbar-brand" href="<?php echo U('Home/Index/index');?>"><i class="icon icon-compass icon-2x"></i>YOYOCOINS</a>
         </div>
     </div>
@@ -405,7 +404,7 @@
                     <input type="password" placeholder="<?php echo L('_PASSWORD_');?>" name="password">
                 </div>
                 <div class="input-box" id="password_block">
-                    <input type="password" placeholder="<?php echo L('_PASSWORD_TWO_');?>" name="password2">
+                    <input type="password" placeholder="<?php echo L('_PASSWORD_TWO_');?>" name="repassword">
                 </div>
                 <div class="clearfix form-group">
                     <div class="col-xs-6" style="padding-left: 0">
@@ -499,43 +498,20 @@
 
 
     <script type="text/javascript">
-        var quickLogin = "<?php echo ($login_type); ?>";
-        $(document)
-            .ajaxStart(function () {
-                $("button:submit").addClass("log-in").attr("disabled", true);
-            })
-            .ajaxStop(function () {
-                $("button:submit").removeClass("log-in").attr("disabled", false);
+        $(function () {
+            $(".login-btn").click(function () {
+                var username  = $("input[name='username']").val();
+                var email  = $("input[name='email']").val();
+                var password  = $("input[name='password']").val();
+                var repassword  = $("input[name='repassword']").val();
+                if(username != '' && email != '' ){
+                    if (password != repassword){
+                        toast.error('两次密码不一致!');
+                        return false;
+                    }
+                }
             });
-
-        $("input[name='username']").blur(function () {
-            var username = $(this).val();
-            if(username.length > 6){
-                $.post("<?php echo U('ucenter/member/checkGooglever');?>", {username:username}, function (res) {
-                    if(res == 1){
-                        $("#verify").css('display','block');
-                    }
-                    else if(res == 0){
-                        $("#verify").css('display','none');
-                    }
-                })
-            }
-        })
-
-        function change_show(obj) {
-            if ($(obj).hasClass('icon-eye-open')) {
-                var value = $('#inputPassword').val().trim();
-                var html = '<input type="text" value="' + value + '" id="inputPassword"  placeholder="'+"<?php echo L('_NEW_PW_INPUT_');?>"+'" errormsg="'+"<?php echo L('_PW_ERROR_');?>"+'" nullmsg="'+"<?php echo L('_PW_INPUT_ERROR_');?>"+'" datatype="*6-30" name="password">' +
-                    '<i onclick="change_show(this)" class="icon-eye-close open-close">';
-                $('#password_block').html(html);
-            } else {
-                var value = $('#inputPassword').val().trim();
-                var html = '<input type="password" value="' + value + '" id="inputPassword"  placeholder="'+"<?php echo L('_NEW_PW_INPUT_');?>"+'" errormsg="'+"<?php echo L('_PW_ERROR_');?>"+'" nullmsg="'+"<?php echo L('_PW_INPUT_ERROR_');?>"+'" datatype="*6-30" name="password">' +
-                    '<i onclick="change_show(this)" class="icon-eye-open open-close">';
-                $('#password_block').html(html);
-            }
-        }
-
+        });
         $(function () {
             $("form").submit(function () {
                 toast.showLoading();
@@ -544,7 +520,7 @@
                 return false;
                 function success(data) {
                     if (data.status) {
-                        toast.success(data.info);
+                        toast.success('注册成功，请登录邮箱进行激活');
                         setTimeout(function () {
                             window.location.href = data.url;
                         }, 1500);
@@ -552,20 +528,9 @@
                         $("#verify").css('display','block');
                     }
                     else {
-                        toast.error(data.info, "<?php echo L('_TIP_GENTLE_');?>");
-                        //self.find(".Validform_checktip").text(data.info);
-                        //刷新验证码
-                        $(".reloadverify").click();
+                        toast.success(data.info);
                     }
                     toast.hideLoading();
-                }
-            });
-            var verifyimg = $(".verifyimg").attr("src");
-            $(".reloadverify").click(function () {
-                if (verifyimg.indexOf('?') > 0) {
-                    $(".verifyimg").attr("src", verifyimg + '&random=' + Math.random());
-                } else {
-                    $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/, '') + '?' + Math.random());
                 }
             });
         });

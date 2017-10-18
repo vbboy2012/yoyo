@@ -118,7 +118,6 @@
 </div>
 <![endif]-->
 <script src="/yoyo/Public/js/canvas.js"></script>
-<script src="/yoyo/Public/css/fa.css"></script>
 <style>
     body {
         color: #34495e;
@@ -141,7 +140,7 @@
 </script>
 <div class="container-fluid topp-box clearfloat">
     <div class="col-xs-2 box">
-        <div class="" style="">
+        <div class="">
             <a class="navbar-brand" href="<?php echo U('Home/Index/index');?>"><i class="icon icon-compass icon-2x"></i>YOYOCOINS</a>
         </div>
     </div>
@@ -393,26 +392,47 @@
             
     <div class="forum_module" style="min-height: 800px;background: none;">
         <div class="col-xs-12">
-            <div class="input-group input-group-lg" style="margin-left: 145px">
-                <span class="input-group-addon">搜广告</span>
-                <div style="float: left;">
-                    <select name="country" class="select2" style="width: 200px">
-                        <?php if(is_array($country)): $i = 0; $__LIST__ = $country;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" >
+            <div class="input-group input-group-lg" style="margin-left: 65px">
+                <form id="search" action="new" method="get">
+                    <div style="float: left;">
+                        <select name="type" class="select2" style="width: 200px">
+                            <option value="0" <?php if($type == 0): ?>selected<?php endif; ?>>
+                                所以交易类型
+                            </option>
+                            <option value="1" <?php if($type == 1): ?>selected<?php endif; ?>>
+                                在线出售
+                            </option>
+                            <option value="2" <?php if($type == 2): ?>selected<?php endif; ?>>
+                                在线购买
+                            </option>
+                            <option value="3" <?php if($type == 3): ?>selected<?php endif; ?>>
+                                本地出售
+                            </option>
+                            <option value="4" <?php if($type == 4): ?>selected<?php endif; ?>>
+                                本地购买
+                            </option>
+                        </select>
+                        <select name="country" class="select2" style="width: 200px">
+                            <?php if(is_array($country)): $i = 0; $__LIST__ = $country;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($defaultCountry == $top['id']): ?>selected<?php endif; ?>>
                                 <?php echo ($top["code"]); ?> <?php echo ($top["name"]); ?>
-                            </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                    </select>
-                    <select name="currency" class="select2" style="width: 200px">
-                        <?php if(is_array($currency)): $i = 0; $__LIST__ = $currency;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" >
-                                <?php echo ($top["code"]); ?> <?php echo ($top["name"]); ?>
-                            </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                    </select>
-                    <select name="pay_type" class="select2" style="width: 200px">
-                        <?php if(is_array($payType)): $i = 0; $__LIST__ = $payType;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" >
-                                <?php echo ($top["code"]); ?> <?php echo ($top["name"]); ?>
-                            </option><?php endforeach; endif; else: echo "" ;endif; ?>
-                    </select>
-                </div>
-                <a href="javascript:;" class="btn-search" style="float: left;text-align: center"><span><i class="icon icon-search icon-1x"></i>搜索</span></a>
+                                </option><?php endforeach; endif; else: echo "" ;endif; ?>
+                        </select>
+                        <select name="currency" class="select2" style="width: 200px">
+                            <?php if(is_array($currency)): $i = 0; $__LIST__ = $currency;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["code"]); ?>" <?php if($defaultCurrency == $top['code']): ?>selected<?php endif; ?>>
+                                <?php echo ($top["code"]); ?>
+                                </option><?php endforeach; endif; else: echo "" ;endif; ?>
+                        </select>
+                        <select name="pay_type" class="select2" style="width: 200px">
+                            <option value="0">
+                                所有付款方式
+                            </option>
+                            <?php if(is_array($payType)): $i = 0; $__LIST__ = $payType;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($pay_type == $top['id']): ?>selected<?php endif; ?>>
+                                    <?php echo ($top["name"]); ?>
+                                </option><?php endforeach; endif; else: echo "" ;endif; ?>
+                        </select>
+                    </div>
+                    <a href="javascript:void(0)" class="btn-search" style="float: left;text-align: center" onclick="document.getElementById('search').submit();"><span><i class="icon icon-search"></i>搜索</span></a>
+                </form>
             </div>
             <table class="table table-striped table-hover">
                 <thead style="text-align: center;">
@@ -427,13 +447,13 @@
                 </thead>
                 <tbody>
                 <?php if(is_array($adList)): $i = 0; $__LIST__ = $adList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-                        <?php $img = substr($vo['path'],0,strlen($vo['path'])-4);$img.='_64_64'; $minPrice = number_format($vo['min_price']); $maxPrice = number_format($vo['max_price']); $price = number_format($vo['price'],2); ?>
-                        <td style="vertical-align: middle;"><a href="<?php echo U('Ucenter/index/information',array('uid'=>$vo['uid']));?>"><img src="/yoyo/Uploads/Avatar/<?php echo ($img); ?>.jpg" class="img-circle" style="padding-right: 10px"><?php echo ($vo["nickname"]); ?></a></td>
+                        <?php $avatar = query_avatar($vo['uid']); if($avatar){ $img = substr($avatar['path'],0,strlen($avatar['path'])-4);$img.='_64_64.jpg'; }else{ $img = 'default_64_64.jpg'; } $minPrice = number_format($vo['min_price']); $maxPrice = number_format($vo['max_price']); $price = number_format($vo['price'],2); $pay = query_pay($vo['pay_type']); $payName = ''; foreach ($pay as $item){ $payName .= $item['name'].','; } $payName = substr($payName,0,strlen($payName)-1); ?>
+                        <td style="vertical-align: middle;"><a href="<?php echo U('Ucenter/index/information',array('uid'=>$vo['uid']));?>"><img src="/yoyo/Uploads/Avatar/<?php echo ($img); ?>" class="img-circle" style="padding-right: 10px"><?php echo ($vo["nickname"]); ?></a></td>
                         <td style="vertical-align: middle;"><?php echo ($vo["trade_count"]); ?>笔交易;<?php echo ($vo["trade_score"]); ?>%</td>
-                        <td style="vertical-align: middle"><?php echo ($vo["payName"]); ?></td>
+                        <td style="vertical-align: middle"><?php echo ($payName); ?></td>
                         <td style="vertical-align: middle;color: #0C7F12"><b><?php echo ($price); ?> <?php echo ($vo["currency"]); ?></b></td>
                         <td style="vertical-align: middle"><?php echo ($minPrice); ?>-<?php echo ($maxPrice); ?> <?php echo ($vo["currency"]); ?></td>
-                        <?php $params = ''; if($vo['type'] == 1){ $title = "购买"; $params = 'sellonline-'; }else if($vo['type'] == 2){ $title = "出售"; $params = 'buyonline-'; }else if($vo['type'] == 3){ $title = "购买"; $params = 'selllocal-'; }else if($vo['type'] == 4){ $title = "出售"; $params = 'buylocal-'; } $params.=$vo['payEn']."-".$vo['countryEn']; ?>
+                        <?php $params = ''; if($vo['type'] == 1){ $title = "购买"; $params = 'sellonline-'; }else if($vo['type'] == 2){ $title = "出售"; $params = 'buyonline-'; }else if($vo['type'] == 3){ $title = "购买"; $params = 'selllocal-'; }else if($vo['type'] == 4){ $title = "出售"; $params = 'buylocal-'; } $params.=$pay[0]['en_name']."-".$vo['countryEn']; ?>
                         <td style="vertical-align: middle"><a class="btn btn-primary" href="tradead/<?php echo ($vo["id"]); ?>/<?php echo ($params); ?>" target="_blank"><?php echo ($title); ?></a></td>
                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                 </tbody>
@@ -441,9 +461,6 @@
         </div>
     </div>
     <div>
-        <div class="pull-right">
-
-        </div>
     </div>
     <link rel="stylesheet" href="/yoyo/Application/Coin/Static/css/select2.css">
     <script src="/yoyo/Application/Coin/Static/js/select2.js"></script>
