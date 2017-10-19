@@ -36,6 +36,7 @@ class IndexController extends Controller{
         $country = D('Country')->field('id,name,code')->select();
         $currency = D('Currency')->select();
         $payType = D('Pay')->select();
+        $market = D('market')->field('market')->select();
         $time = array(
             array('id'=>0,'time' => '00:00'), array('id'=>1,'time' => '01:00'), array('id'=>2,'time' => '02:00'),
             array('id'=>3,'time' => '03:00'), array('id'=>4,'time' => '04:00'), array('id'=>4,'time' => '05:00'),
@@ -50,6 +51,7 @@ class IndexController extends Controller{
         $ratePrice = 24000;
         $this->assign('defaultCurrency', $defaultCurrency);
         $this->assign('defaultCountry', $defaultCountry);
+        $this->assign('market', $market);
         $this->assign('country', $country);
         $this->assign('currency', $currency);
         $this->assign('payType', $payType);
@@ -141,5 +143,60 @@ class IndexController extends Controller{
         $this->success(L('_SUCCESS_POST_'), U('ucenter/index/myad'));
     }
 
+
+    /**
+     * 根据CURRENCY MARKET 得出公式
+     */
+    public function getFormula()
+    {
+        if (IS_POST) {
+            $currency = I('post.currency','','op_t');
+            $market = I('post.market','','op_t');
+            if ($currency == '' || $market == ''){
+                return;
+            }
+            $len = strlen($market);
+            $mktCurcy = substr($market,$len-3,$len);
+            $Formula = '';
+            if ($mktCurcy == 'USD'){
+                $Formula = $market . "*" ."USD_in_".$currency;
+            }
+            else{
+                $Formula = $market . "/USD_in_".$mktCurcy."*USD_in_".$currency;
+            }
+            echo $Formula;
+        }
+    }
+
+    /**
+     * 根据公式获取市场价格
+     */
+    public function getMarketPrice()
+    {
+        if (IS_POST){
+
+        }
+    }
+
+    public function queryRate($from='USD',$to='CNY')
+    {
+        $host = "http://jisuhuilv.market.alicloudapi.com";
+        $path = "/exchange/convert";
+        $method = "GET";
+        $appcode = "a545ecbc95a241c0abf51609af3a0115";
+        $headers = array();
+        array_push($headers, "Authorization:APPCODE " . $appcode);
+        $querys = "amount=1&from=". $from ."&to=". $to;
+        $url = $host . $path . "?" . $querys;
+
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, CURLOPT_FAILONERROR, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        var_dump(curl_exec($curl));
+    }
 
 } 

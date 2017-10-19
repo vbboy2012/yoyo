@@ -457,6 +457,19 @@
 
                         <div class="form-group">
                             <div class="col-xs-2" style="margin-top: 10px">
+                                <label class="required"><?php echo L('_AD_MARKET_LABEL_');?></label>
+                            </div>
+                            <div class="col-xs-6">
+                                <select name="market" class="select2" style="width: 100%">
+                                    <?php if(is_array($market)): $i = 0; $__LIST__ = $market;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["market"]); ?>" <?php if($ad['market'] == $top['market']): ?>selected<?php endif; ?>>
+                                        <?php echo ($top["market"]); ?>
+                                        </option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-2" style="margin-top: 10px">
                                 <label class="required"><?php echo L('_AD_PRE_PRICE_LABEL_');?></label>
                             </div>
                             <div class="col-xs-6">
@@ -470,14 +483,13 @@
 
                         <div class="form-group">
                             <div class="col-xs-2" style="margin-top: 10px">
-                                <label class="required"><?php echo L('_AD_PRICE_LABEL_');?></label>
+                                <label class="required"><?php echo L('_AD_FORMULA_LABEL_');?></label>
                             </div>
                             <div class="col-xs-6">
-                                <div class="input-group input-group-lg">
-                                    <input type="text" class="form-control" value="<?php echo ($ad['price']); ?>" name="price" onfocus=this.blur()>
-                                    <span class="input-group-addon label-currency"><?php echo ($defaultCurrency); ?></span>
+                                <div class="input-group input-group-lg" style="width: 100%">
+                                    <input type="text" class="form-control" value="<?php echo ($ad['formula']); ?>" name="formula">
                                 </div>
-                                <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;根据溢价比例得出的报价，10分钟更新一次。</div>
+                                <div style="color: #B9C5CF;margin-top: 10px"><i class="icon icon-question-sign"></i>&nbsp;交易价格：<span class="marketPrice" style="color: red">30000</span>&nbsp;根据溢价比例得出的报价，10分钟更新一次。</div>
                             </div>
                         </div>
 
@@ -920,8 +932,31 @@
         })
 
         $("select[name='currency']").change(function () {
-           var currency = $(this).val();
+            var currency = $(this).val();
             $(".label-currency").text(currency);
+            var market = $("select[name='market']").val();
+            var prePrice = $("input[name='pre_price']").val();
+            $.post('<?php echo U("ad/index/getFormula");?>', {market:market,currency:currency}, success);
+            return false;
+            function success(data) {
+                prePrice /= 100;
+                prePrice += 1;
+                $("input[name='formula']").val(data+"*"+prePrice);
+            }
+        });
+
+        $("select[name='market']").change(function () {
+            var market = $(this).val();
+            var currency = $("select[name='currency']").val();
+            var prePrice = Number($("input[name='pre_price']").val());
+            $.post('<?php echo U("ad/index/getFormula");?>', {market:market,currency:currency}, success);
+            return false;
+            function success(data) {
+                prePrice /= 100;
+                prePrice += 1;
+                prePrice = parseFloat(prePrice.toFixed(2));
+                $("input[name='formula']").val(data+"*"+prePrice);
+            }
         });
 
         $(".btn-lg").click(function () {
