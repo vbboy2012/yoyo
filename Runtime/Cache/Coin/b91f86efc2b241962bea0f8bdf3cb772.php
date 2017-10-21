@@ -392,32 +392,40 @@
             
     <div class="forum_module" style="min-height: 800px;background: none;">
         <div class="col-xs-12">
-            <div class="input-group input-group-lg" style="margin-left: 65px">
-                <form id="search" action="new" method="get">
+            <div class="input-group input-group-lg" style="margin-left: 110px">
+                <form id="search" action="quick" method="get">
                     <div style="float: left;">
-                        <select name="type" class="select2" style="width: 200px">
-                            <option value="0" <?php if($type == 0): ?>selected<?php endif; ?>>
-                                所以交易类型
+                        <select name="coin_type" class="select2" style="width: 100px">
+                            <option value="1" <?php if($type == 0): ?>selected<?php endif; ?>>
+                            BTC交易
                             </option>
-                            <option value="1" <?php if($type == 1): ?>selected<?php endif; ?>>
-                                在线出售
-                            </option>
-                            <option value="2" <?php if($type == 2): ?>selected<?php endif; ?>>
-                                在线购买
-                            </option>
-                            <option value="3" <?php if($type == 3): ?>selected<?php endif; ?>>
-                                本地出售
-                            </option>
-                            <option value="4" <?php if($type == 4): ?>selected<?php endif; ?>>
-                                本地购买
+                            <option value="2" <?php if($type == 1): ?>selected<?php endif; ?>>
+                            ETH交易
                             </option>
                         </select>
-                        <select name="country" class="select2" style="width: 200px">
+                        <select name="country" class="select2" style="width: 150px">
                             <?php if(is_array($country)): $i = 0; $__LIST__ = $country;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($defaultCountry == $top['id']): ?>selected<?php endif; ?>>
                                 <?php echo ($top["code"]); ?> <?php echo ($top["name"]); ?>
                                 </option><?php endforeach; endif; else: echo "" ;endif; ?>
                         </select>
-                        <select name="currency" class="select2" style="width: 200px">
+                        <select name="type" class="select2" style="width: 150px">
+                            <option value="0" <?php if($type == 0): ?>selected<?php endif; ?>>
+                            所有交易类型
+                            </option>
+                            <option value="1" <?php if($type == 1): ?>selected<?php endif; ?>>
+                            在线出售
+                            </option>
+                            <option value="2" <?php if($type == 2): ?>selected<?php endif; ?>>
+                            在线购买
+                            </option>
+                            <option value="3" <?php if($type == 3): ?>selected<?php endif; ?>>
+                            本地出售
+                            </option>
+                            <option value="4" <?php if($type == 4): ?>selected<?php endif; ?>>
+                            本地购买
+                            </option>
+                        </select>
+                        <select name="currency" class="select2" style="width: 100px">
                             <?php if(is_array($currency)): $i = 0; $__LIST__ = $currency;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["code"]); ?>" <?php if($defaultCurrency == $top['code']): ?>selected<?php endif; ?>>
                                 <?php echo ($top["code"]); ?>
                                 </option><?php endforeach; endif; else: echo "" ;endif; ?>
@@ -427,7 +435,7 @@
                                 所有付款方式
                             </option>
                             <?php if(is_array($payType)): $i = 0; $__LIST__ = $payType;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$top): $mod = ($i % 2 );++$i;?><option value="<?php echo ($top["id"]); ?>" <?php if($pay_type == $top['id']): ?>selected<?php endif; ?>>
-                                    <?php echo ($top["name"]); ?>
+                                <?php echo ($top["name"]); ?>
                                 </option><?php endforeach; endif; else: echo "" ;endif; ?>
                         </select>
                     </div>

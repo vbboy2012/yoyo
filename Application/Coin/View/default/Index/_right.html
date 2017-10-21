@@ -19,65 +19,15 @@
             <p>交易次数：{$tradead.trade_count}</p>
             <p>平均放行：10分钟</p>
         </div>
+        <div class="bt-group">
+            {:W('Common/Follow/follow',array('follow_who'=>$user_info['uid']))}
+            {:W('Common/Follow/trust',array('follow_who'=>$user_info['uid']))}
+        </div>
     </div>
 </div>
 
 <div class="common_block_border event_right">
     <div class="common_block_title_right" style="text-align: center;">
-        <div><label>开放时间</label></div>
-        <php>
-            $openTime = json_decode($tradead['open_time']);
-        </php>
-        <div style="margin-top: 20px;text-align: left">
-            <p>星期日：
-                <php>if($openTime->st7 == '-1'){
-                        echo '关闭';
-                    }else{
-                        echo $openTime->st7." - ".$openTime->et7;
-                    }
-                </php></p>
-            <p>星期一：<php>
-                if($openTime->st5 == '-1'){
-                echo '关闭';
-                }else{
-                echo $openTime->st5." - ".$openTime->et5;
-                }
-            </php></p>
-            <p>星期二：<php>
-                if($openTime->st4 == '-1'){
-                echo '关闭';
-                }else{
-                echo $openTime->st4." - ".$openTime->et4;
-                }
-            </php></p>
-            <p>星期三：<php>
-                if($openTime->st3 == '-1'){
-                echo '关闭';
-                }else{
-                echo $openTime->st3." - ".$openTime->et3;
-                }
-            </php></p>
-            <p>星期四：<php>
-                if($openTime->st2 == '-1'){
-                echo '关闭';
-                }else{
-                echo $openTime->st2." - ".$openTime->et2;
-                }
-            </php></p>
-            <p>星期五：<php>
-                if($openTime->st1 == '-1'){
-                echo '关闭';
-                }else{
-                echo $openTime->st1." - ".$openTime->et1;
-                }
-            </php></p>
-            <p>星期六：<php>
-                if($openTime->st6 == '-1'){
-                echo '关闭';
-                }else{
-                echo $openTime->st6." - ".$openTime->et6;
-                }
-            </php></p>
-        </div>
+
     </div>
 </div>

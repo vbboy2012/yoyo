@@ -508,6 +508,36 @@ hr {
   filter: alpha(opacity=100);
 }
 
+.bt-group .btn {
+  font-size: 12px;
+  padding: 2px 12px;
+}
+.bt-group .btn-default,
+.bt-group .btn-primary {
+  background-color: #0082df;
+  color: #ffffff;
+  text-shadow: none;
+  border-radius: 4px;
+  border: 2px solid #ffffff;
+  line-height: 30px;
+  width: 75px !important;
+  padding: 0 !important;
+}
+.bt-group .btn-default:hover,
+.bt-group .btn-primary:hover {
+  background-color: #0079d0;
+}
+.bt-group .btn-default:last-child,
+.bt-group .btn-primary:last-child {
+  background-color: rgba(0, 0, 0, 0.45);
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  margin-left: 15px;
+}
+.bt-group .btn-default:last-child:hover,
+.bt-group .btn-primary:last-child:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
 .ad_magrain40{
   margin-left: 40px;
 }

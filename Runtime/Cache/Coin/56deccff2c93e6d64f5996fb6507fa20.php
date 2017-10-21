@@ -390,9 +390,11 @@
     <!--导航-->
     <div class="col-xs-9">
         <div class="forum_module" style="min-height: 800px">
+            <?php $price = number_format($tradead['price'],2); $coinType = $tradead['coin_type'] == 1 ? 'BTC':'ETH'; if($tradead['coin_type'] == 1 && ($tradead['type'] == 1 || $tradead['type'] == 3)){ $buttonTxt = L('_AD_BUY_BTC_COINS_'); $action = L('_WISHES_').L('_SELL_').$coinType.L('_GIVE_YOU_'); }else if($tradead['coin_type'] == 1 && ($tradead['type'] == 2 || $tradead['type'] == 4)){ $buttonTxt = L('_AD_SELL_BTC_COINS_'); $action = L('_WISHES_').L('_BUY_FROM_').$coinType; }else if($tradead['coin_type'] == 2 && ($tradead['type'] == 1 || $tradead['type'] == 3)){ $buttonTxt = L('_AD_SELL_ETH_COINS_'); $action = L('_WISHES_').L('_SELL_').$coinType.L('_GIVE_YOU_'); }else if($tradead['coin_type'] == 2 && ($tradead['type'] == 2 || $tradead['type'] == 4)){ $buttonTxt = L('_AD_SELL_ETH_COINS_'); $action = L('_WISHES_').L('_BUY_FROM_').$coinType; } ?>
+
             <div class="ad-title">
-                <div class="no-event">使用 支付宝 以 Chinese Yuan (CNY) 购买比特币</div>
-                <P>YoYoCoins.com 用户 <?php echo ($tradead["nickname"]); ?> 希望出售比特币给您 </P>
+                <div class="no-event">在 <?php echo ($tradead['country']); ?> 以 (<?php echo ($tradead['currency']); ?>) 购买 <?php echo ($coinType); ?></div>
+                <P>YOYOCOINS.com <?php echo L('_USER_');?> <?php echo ($tradead["nickname"]); ?> <?php echo ($action); ?> </P>
             </div>
             <div class="aline" style="margin-bottom: 35px"></div>
             <div class="ad-form">
@@ -403,45 +405,44 @@
                     <input type="hidden" name="coin_type" value="<?php echo ($tradead["coin_type"]); ?>">
                     <input type="hidden" name="currency" value="<?php echo ($tradead["currency"]); ?>">
                     <div class="form-group tradeorder">
-                        <div class="col-xs-2">
+                        <div class="col-xs-3">
                             <label>价格：</label>
                         </div>
-                        <div class="col-xs-10">
-                            <?php $price = number_format($tradead['price'],2); $coinType = $tradead['coin_type'] == 1 ? 'BTC':'ETH'; ?>
-                            <p> <?php echo ($price); ?> / <?php echo ($coinType); ?></p>
+                        <div class="col-xs-9">
+                            <label style="color: #0C7F12"> <?php echo ($price); ?> <?php echo ($tradead['currency']); ?>/<?php echo ($coinType); ?></label>
                         </div>
                     </div>
                     <div class="form-group tradeorder">
-                        <div class="col-xs-2">
+                        <div class="col-xs-3">
                             <label>付款方式：</label>
                         </div>
-                        <div class="col-xs-10">
+                        <div class="col-xs-9">
                             <p> <?php echo ($payName); ?></p>
                         </div>
                     </div>
                     <div class="form-group tradeorder">
-                        <div class="col-xs-2">
+                        <div class="col-xs-3">
                             <label>交易限额：</label>
                         </div>
-                        <div class="col-xs-10">
+                        <div class="col-xs-9">
                             <?php $minPrice = number_format($tradead['min_price']); $maxPrice = number_format($tradead['max_price']); ?>
                             <p> <?php echo ($minPrice); ?>-<?php echo ($maxPrice); ?> <?php echo ($tradead['currency']); ?></p>
                         </div>
                     </div>
                     <div class="form-group tradeorder">
-                        <div class="col-xs-2">
+                        <div class="col-xs-3">
                             <label>所在地：</label>
                         </div>
-                        <div class="col-xs-10">
+                        <div class="col-xs-9">
                             <p> <?php echo ($tradead['country']); ?></p>
                         </div>
                     </div>
                     <div class="form-group tradeorder">
-                        <div class="col-xs-2">
+                        <div class="col-xs-3">
                             <label>付款期限：</label>
                         </div>
-                        <div class="col-xs-10">
-                            <p> <?php echo ($tradead['pay_time']); ?> 分钟</p>
+                        <div class="col-xs-9">
+                            <p> <?php echo ($tradead['pay_time']); ?> 分钟 <a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" title="<?php echo L('_TIME_TIPS_');?>"><i class="icon icon-question-sign"></i></a></p>
                         </div>
                     </div>
                     <div class="form-group tradeorder">
@@ -451,12 +452,7 @@
                     </div>
                     <?php if($tradead['uid'] == get_uid()): ?><div class="alert alert-warning" style="margin-top: 10px">您无法向自己的交易广告发出交易请求。</div>
                         <?php else: ?>
-                        <div class="form-group tradeorder">
-                            <div class="col-xs-12">
-                                <label>您想买多少？</label>
-                            </div>
-                        </div>
-                        <div class="form-group tradeorder">
+                        <div class="form-group tradeorder" style="margin-top: 20px">
                             <div class="col-xs-5">
                                 <div class="input-group input-group-lg">
                                     <input type="text" class="form-control" id="price" name="price" placeholder="输入想买入的金额">
@@ -486,7 +482,7 @@
                         <div class="form-group">
                             <div class="col-xs-6 col-md-offset-3" style="text-align: center">
                                 <button type="submit" class="btn btn-success btn-block btn-lg" href="<?php echo U('Coin/Index/ad');?>" style="outline: none">
-                                    <?php if($tradead['coin_type'] == 1 && ($tradead['type'] == 1 || $tradead['type'] == 3)){ echo L('_AD_BUY_BTC_COINS_'); }else if($tradead['coin_type'] == 1 && ($tradead['type'] == 2 || $tradead['type'] == 4)){ echo L('_AD_SELL_BTC_COINS_'); }else if($tradead['coin_type'] == 2 && ($tradead['type'] == 1 || $tradead['type'] == 3)){ echo L('_AD_SELL_ETH_COINS_'); }else if($tradead['coin_type'] == 2 && ($tradead['type'] == 2 || $tradead['type'] == 4)){ echo L('_AD_SELL_ETH_COINS_'); } ?>
+                                    <?php echo ($buttonTxt); ?>
                                 </button>
                             </div>
                         </div><?php endif; ?>
@@ -535,23 +531,16 @@
             <p>交易次数：<?php echo ($tradead["trade_count"]); ?></p>
             <p>平均放行：10分钟</p>
         </div>
+        <div class="bt-group">
+            <?php echo W('Common/Follow/follow',array('follow_who'=>$user_info['uid']));?>
+            <?php echo W('Common/Follow/trust',array('follow_who'=>$user_info['uid']));?>
+        </div>
     </div>
 </div>
 
 <div class="common_block_border event_right">
     <div class="common_block_title_right" style="text-align: center;">
-        <div><label>开放时间</label></div>
-        <?php $openTime = json_decode($tradead['open_time']); ?>
-        <div style="margin-top: 20px;text-align: left">
-            <p>星期日：
-                <?php if($openTime->st7 == '-1'){ echo '关闭'; }else{ echo $openTime->st7." - ".$openTime->et7; } ?></p>
-            <p>星期一：<?php if($openTime->st5 == '-1'){ echo '关闭'; }else{ echo $openTime->st5." - ".$openTime->et5; } ?></p>
-            <p>星期二：<?php if($openTime->st4 == '-1'){ echo '关闭'; }else{ echo $openTime->st4." - ".$openTime->et4; } ?></p>
-            <p>星期三：<?php if($openTime->st3 == '-1'){ echo '关闭'; }else{ echo $openTime->st3." - ".$openTime->et3; } ?></p>
-            <p>星期四：<?php if($openTime->st2 == '-1'){ echo '关闭'; }else{ echo $openTime->st2." - ".$openTime->et2; } ?></p>
-            <p>星期五：<?php if($openTime->st1 == '-1'){ echo '关闭'; }else{ echo $openTime->st1." - ".$openTime->et1; } ?></p>
-            <p>星期六：<?php if($openTime->st6 == '-1'){ echo '关闭'; }else{ echo $openTime->st6." - ".$openTime->et6; } ?></p>
-        </div>
+
     </div>
 </div>
     </div>
@@ -677,7 +666,11 @@
 
 <script src="/yoyo/Public/js/socket.io.js"></script>
 
-<!-- 用于加载js代码 -->
+
+    <script>
+        $('[data-toggle="tooltip"]').tooltip();
+    </script>
+
 <!-- 页面footer钩子，一般用于加载插件JS文件和JS代码 -->
 <?php echo hook('pageFooter', 'widget');?>
 <!-- 调用全站公告部件-->

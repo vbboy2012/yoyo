@@ -9,34 +9,42 @@
 <block name="body">
     <div class="forum_module" style="min-height: 800px;background: none;">
         <div class="col-xs-12">
-            <div class="input-group input-group-lg" style="margin-left: 65px">
-                <form id="search" action="new" method="get">
+            <div class="input-group input-group-lg" style="margin-left: 110px">
+                <form id="search" action="quick" method="get">
                     <div style="float: left;">
-                        <select name="type" class="select2" style="width: 200px">
-                            <option value="0" <if condition="$type eq 0">selected</if>>
-                                所以交易类型
+                        <select name="coin_type" class="select2" style="width: 100px">
+                            <option value="1" <if condition="$type eq 0">selected</if>>
+                            BTC交易
                             </option>
-                            <option value="1" <if condition="$type eq 1">selected</if>>
-                                在线出售
-                            </option>
-                            <option value="2" <if condition="$type eq 2">selected</if>>
-                                在线购买
-                            </option>
-                            <option value="3" <if condition="$type eq 3">selected</if>>
-                                本地出售
-                            </option>
-                            <option value="4" <if condition="$type eq 4">selected</if>>
-                                本地购买
+                            <option value="2" <if condition="$type eq 1">selected</if>>
+                            ETH交易
                             </option>
                         </select>
-                        <select name="country" class="select2" style="width: 200px">
+                        <select name="country" class="select2" style="width: 150px">
                             <volist name="country" id="top">
                                 <option value="{$top.id}" <if condition="$defaultCountry eq $top['id']">selected</if>>
                                 {$top.code} {$top.name}
                                 </option>
                             </volist>
                         </select>
-                        <select name="currency" class="select2" style="width: 200px">
+                        <select name="type" class="select2" style="width: 150px">
+                            <option value="0" <if condition="$type eq 0">selected</if>>
+                            所有交易类型
+                            </option>
+                            <option value="1" <if condition="$type eq 1">selected</if>>
+                            在线出售
+                            </option>
+                            <option value="2" <if condition="$type eq 2">selected</if>>
+                            在线购买
+                            </option>
+                            <option value="3" <if condition="$type eq 3">selected</if>>
+                            本地出售
+                            </option>
+                            <option value="4" <if condition="$type eq 4">selected</if>>
+                            本地购买
+                            </option>
+                        </select>
+                        <select name="currency" class="select2" style="width: 100px">
                             <volist name="currency" id="top">
                                 <option value="{$top.code}" <if condition="$defaultCurrency eq $top['code']">selected</if>>
                                 {$top.code}
@@ -49,7 +57,7 @@
                             </option>
                             <volist name="payType" id="top">
                                 <option value="{$top.id}" <if condition="$pay_type eq $top['id']">selected</if>>
-                                    {$top.name}
+                                {$top.name}
                                 </option>
                             </volist>
                         </select>
@@ -96,17 +104,17 @@
                         <php>
                             $params = '';
                             if($vo['type'] == 1){
-                                $title = "购买";
-                                $params = 'sellonline-';
+                            $title = "购买";
+                            $params = 'sellonline-';
                             }else if($vo['type'] == 2){
-                                $title = "出售";
-                                $params = 'buyonline-';
+                            $title = "出售";
+                            $params = 'buyonline-';
                             }else if($vo['type'] == 3){
-                                $title = "购买";
-                                $params = 'selllocal-';
+                            $title = "购买";
+                            $params = 'selllocal-';
                             }else if($vo['type'] == 4){
-                                $title = "出售";
-                                $params = 'buylocal-';
+                            $title = "出售";
+                            $params = 'buylocal-';
                             }
                             $params.=$pay[0]['en_name']."-".$vo['countryEn'];
                         </php>
@@ -129,14 +137,3 @@
         })
     </script>
 </block>
-
-
-
-
-
-
-
-
-
-
-

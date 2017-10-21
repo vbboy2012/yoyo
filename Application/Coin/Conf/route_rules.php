@@ -12,7 +12,7 @@ return array(
     'route_rules' => array(
         'tradead/:id/:info'    => 'coin/index/tradead',
         'order/:orderId'    => 'coin/index/order',
-        'new'    => 'coin/index/index',
+        'quick'    => 'coin/index/index',
         'buybtc'    => 'coin/index/buybtc',
         'sellbtc'    => 'coin/index/sellbtc',
         'buyeth'    => 'coin/index/buyeth',

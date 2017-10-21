@@ -37,7 +37,6 @@ CREATE TABLE IF NOT EXISTS `ocenter_tradead` (
   `formula` CHAR(50) NULL COMMENT '计价公式',
   `price` decimal(10,2) NOT NULL COMMENT '价格',
   `pre_price` tinyint(2) NOT NULL COMMENT '溢价',
-  `low_price` decimal(10,2) NOT NULL COMMENT '最低价',
   `max_price` int(11) NULL COMMENT 'max',
   `min_price` int(11) NULL COMMENT 'min',
   `pay_type` CHAR (50) NOT NULL COMMENT '付款方式',
@@ -148,6 +147,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_pay` (
 CREATE TABLE IF NOT EXISTS `ocenter_currency` (
   `id` smallint(4) NOT NULL AUTO_INCREMENT,
   `code` varchar(5) NOT NULL,
+  `rate` decimal(10,4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `code` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8;

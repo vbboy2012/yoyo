@@ -97,8 +97,8 @@ class IndexController extends Controller{
             $this->error(L('_ERROR_ADDR_'));
         }
         $payType = '';
-        foreach ($pay_type as $type){
-            $payType .= $type.',';
+        foreach ($pay_type as $item){
+            $payType .= $item.',';
         }
         $payType = substr($payType,0,strlen($payType)-1);
         $content = D('Tradead')->create();
@@ -114,7 +114,7 @@ class IndexController extends Controller{
         $content['pay_type'] = $payType;
         $content['pay_time'] = $pay_time;
         $content['pay_addr'] = $pay_addr;
-        $content['pay_text'] = $pay_text;
+        $content['pay_text'] = str_replace("\n","<br>",$pay_text);
         $content['auto_message'] = $auto_message;
         $content['is_safe'] = $is_safe;
         $content['is_trust'] = $is_trust;
@@ -158,7 +158,13 @@ class IndexController extends Controller{
             $len = strlen($market);
             $mktCurcy = substr($market,$len-3,$len);
             $Formula = '';
-            if ($mktCurcy == 'USD'){
+            if ($currency == $mktCurcy){
+                $Formula = $market;
+            }
+            else if($currency == 'USD' && $mktCurcy != 'USD'){
+                $Formula = $market . "/USD_in_".$mktCurcy;
+            }
+            else if ($mktCurcy == 'USD'){
                 $Formula = $market . "*" ."USD_in_".$currency;
             }
             else{
@@ -174,29 +180,207 @@ class IndexController extends Controller{
     public function getMarketPrice()
     {
         if (IS_POST){
-
+            $formula = I('post.formula','','op_t');
+            if ($formula == ''){
+                return;
+            }
+            $formulaArray = explode('*',$formula);
+            if (count($formulaArray) == 2){
+                if (strpos($formulaArray[0],'/')){  //OkCoinCNY/USD_in_CNY*1.02
+                    $market = explode('/',$formulaArray[0]);
+                    $prePrice = $formulaArray[1];
+                    $avg = M('market')->field('avg')->where("market='".$market[0]."'")->find();
+                    $currency = explode('_',$market[1]);
+                    $rate = $this->queryRate($currency[2]);
+                    if ($rate == 0){
+                        echo $rate;
+                        return;
+                    }
+                    echo round($avg['avg'] / $rate * $prePrice,2);
+                }else{  //BitFinexUSD*1.02
+                    $market = $formulaArray[0];
+                    $prePrice = $formulaArray[1];
+                    $avg = M('market')->field('avg')->where("market='".$market."'")->find();
+                    echo round($avg['avg'] * $prePrice,2);
+                }
+            }else{
+                if (strpos($formulaArray[0],'/')){//KraKenEUR/USD_in_EUR*USD_in_CNY*1.02
+                    $market = explode('/',$formulaArray[0]);
+                    $currency = $formulaArray[1];
+                    $prePrice = $formulaArray[2];
+                    $avg = M('market')->field('avg')->where("market='".$market[0]."'")->find();
+                    $currency2 = explode('_',$market[1]);
+                    $rate1 = $this->queryRate($currency2[2]);
+                    if ($rate1 == 0){
+                        echo $rate1;
+                        return;
+                    }
+                    $currency = explode('_',$currency);
+                    $rate2 = $this->queryRate($currency[2]);
+                    if ($rate2 == 0){
+                        echo $rate2;
+                        return;
+                    }
+                    echo round($avg['avg'] / $rate1 * $rate2 * $prePrice,2);
+                }else{  //BitFinexUSD*USD_in_CNY*1.02
+                    $market = $formulaArray[0];
+                    $currency = $formulaArray[1];
+                    $prePrice = $formulaArray[2];
+                    $avg = M('market')->field('avg')->where("market='".$market."'")->find();
+                    $currency = explode('_',$currency);
+                    $rate = $this->queryRate($currency[2]);
+                    if ($rate == 0){
+                        echo $rate;
+                        return;
+                    }
+                    echo round($avg['avg'] * $rate * $prePrice,2);
+                }
+            }
         }
     }
 
-    public function queryRate($from='USD',$to='CNY')
+    public function queryRate($to='')
     {
-        $host = "http://jisuhuilv.market.alicloudapi.com";
-        $path = "/exchange/convert";
-        $method = "GET";
-        $appcode = "a545ecbc95a241c0abf51609af3a0115";
-        $headers = array();
-        array_push($headers, "Authorization:APPCODE " . $appcode);
-        $querys = "amount=1&from=". $from ."&to=". $to;
-        $url = $host . $path . "?" . $querys;
+        $currency = M('currency')->field('rate')->where("code='".$to."'")->find();
+        if ($currency){
+            return $currency['rate'];
+        }else{
+            return 0;
+        }
+    }
 
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($curl, CURLOPT_FAILONERROR, false);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        var_dump(curl_exec($curl));
+    public function updateRate()
+    {
+        $currency = M('currency')->field('id,code')->select();
+        foreach ($currency as $item){
+            $url = "http://download.finance.yahoo.com/d/quotes.csv?e=.csv&f=sl1d1t1&s=USD".$item['code']."=x";
+            $result = $this->request($url);
+            $result = explode(',',$result);
+            M('currency')->where('id='.$item['id'])->save(array('rate'=>$result[1]));
+        }
+    }
+
+    public function requestMarket()
+    {
+        $bitfinexUrl = 'https://api.bitfinex.com/v2/ticker/tBTCUSD';
+        $bitstampUrl = 'https://www.bitstamp.net/api/ticker/';
+        $coincheckUrl = 'https://coincheck.com/api/ticker';
+        $btcboxUrl = 'https://www.btcbox.co.jp/api/v1/ticker/';
+        $korbitUrl = 'https://api.korbit.co.kr/v1/ticker/detailed';
+        $hitbtcUrl = 'https://api.hitbtc.com/api/1/public/BTCUSD/ticker';
+        $krakenUrl = 'https://api.kraken.com/0/public/Ticker?pair=XBTEUR';
+        $okcoinUrl = 'https://www.okex.com/api/v1/ticker.do?symbol=btc_usdt';
+        //OkcoinUSD
+        $output = $this->request($okcoinUrl);
+        $json = json_decode($output);
+        $data = array();
+        $data['market'] = 'OkcoinUSD';
+        $data['high'] = $json->ticker->high;
+        $data['low'] = $json->ticker->low;
+        $data['bid'] = $json->ticker->buy;
+        $data['ask'] = $json->ticker->sell;
+        $data['close'] = $json->ticker->last;
+        $data['avg'] = ($json->ticker->high+$json->ticker->low)/2;
+        $data['create_time'] = time();
+        M('market')->where("market='OkcoinUSD'")->save($data);
+        //KrakenEUR
+        $output = $this->request($krakenUrl);
+        $json = json_decode($output);
+        unset($data);
+        $data['high'] = $json->result->XXBTZEUR->h[1];
+        $data['low'] = $json->result->XXBTZEUR->l[1];
+        $data['bid'] = $json->result->XXBTZEUR->b[0];
+        $data['ask'] = $json->result->XXBTZEUR->a[0];
+        $data['close'] = $json->result->XXBTZEUR->c[0];
+        $data['avg'] = $json->result->XXBTZEUR->p[1];
+        $data['create_time'] = time();
+        M('market')->where("market='KrakenEUR'")->save($data);
+        //HitbtcUSD
+        $output = $this->request($hitbtcUrl);
+        $json = json_decode($output);
+        unset($data);
+        $data['high'] = $json->high;
+        $data['low'] = $json->low;
+        $data['bid'] = $json->bid;
+        $data['ask'] = $json->ask;
+        $data['close'] = $json->last;
+        $data['avg'] = ($json->high+$json->low)/2;
+        $data['create_time'] = time();
+        M('market')->where("market='HitbtcUSD'")->save($data);
+        //KorbitKRW
+        $output = $this->request($korbitUrl);
+        $json = json_decode($output);
+        unset($data);
+        $data['high'] = $json->high;
+        $data['low'] = $json->low;
+        $data['bid'] = $json->bid;
+        $data['ask'] = $json->ask;
+        $data['close'] = $json->last;
+        $data['avg'] = ($json->high+$json->low)/2;
+        $data['create_time'] = time();
+        M('market')->where("market='KorbitKRW'")->save($data);
+        //BtcboxJPY
+        $output = $this->request($btcboxUrl);
+        $json = json_decode($output);
+        unset($data);
+        $data['high'] = $json->high;
+        $data['low'] = $json->low;
+        $data['bid'] = $json->buy;
+        $data['ask'] = $json->sell;
+        $data['close'] = $json->last;
+        $data['avg'] = ($json->high+$json->low)/2;
+        $data['create_time'] = time();
+        M('market')->where("market='BtcboxJPY'")->save($data);
+        //CoincheckJPY
+        $output = $this->request($coincheckUrl);
+        $json = json_decode($output);
+        unset($data);
+        $data['high'] = $json->high;
+        $data['low'] = $json->low;
+        $data['bid'] = $json->bid;
+        $data['ask'] = $json->ask;
+        $data['close'] = $json->last;
+        $data['avg'] = ($json->high+$json->low)/2;
+        $data['create_time'] = time();
+        M('market')->where("market='CoincheckJPY'")->save($data);
+        //BitstampUSD
+        $output = $this->request($bitstampUrl);
+        $json = json_decode($output);
+        unset($data);
+        $data['high'] = $json->high;
+        $data['low'] = $json->low;
+        $data['bid'] = $json->bid;
+        $data['ask'] = $json->ask;
+        $data['close'] = $json->last;
+        $data['avg'] = $json->vwap;
+        $data['create_time'] = time();
+        M('market')->where("market='BitstampUSD'")->save($data);
+        //BitfinexUSD
+        $output = $this->request($bitfinexUrl);
+        $json = json_decode($output);
+        unset($data);
+        $data['high'] = $json[8];
+        $data['low'] = $json[9];
+        $data['bid'] = $json[0];
+        $data['ask'] = $json[2];
+        $data['close'] = $json[6];
+        $data['avg'] = ($json[8]+$json[9])/2;
+        $data['create_time'] = time();
+        M('market')->where("market='BitfinexUSD'")->save($data);
+    }
+
+    private function request($url)
+    {
+        $ch = curl_init();
+        $method = "GET";
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+        curl_setopt($ch, CURLOPT_URL,$url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $output = curl_exec($ch);
+        curl_close($ch);
+        return $output;
     }
 
 } 
