@@ -196,7 +196,7 @@ var checkEmail = function () {
         var res = {status: 1, info: ''}
     }
     else{
-        var res = {status: 0, info: '请输入正确qq号！'}
+        var res = {status: 0, info: '请输入正确Email！'}
     }
     return res;
 }

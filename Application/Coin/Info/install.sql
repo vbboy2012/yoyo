@@ -1,15 +1,4 @@
 -- -----------------------------
--- 表结构 `ocenter_user_coin`
--- -----------------------------
-CREATE TABLE IF NOT EXISTS `ocenter_user_info` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) NOT NULL,
-  `btc` decimal(10,8) NOT NULL COMMENT 'btc数量',
-  `eth` decimal(10,8) NOT NULL COMMENT 'eth数量',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户币种';
-
--- -----------------------------
 -- 表结构 `ocenter_coin_addr`
 -- -----------------------------
 CREATE TABLE IF NOT EXISTS `ocenter_coin_addr` (
@@ -77,13 +66,17 @@ CREATE TABLE IF NOT EXISTS `ocenter_trade_order` (
   `get_uid` int(11) NOT NULL,
   `type` tinyint(2) NOT NULL COMMENT '广告类型：1在线sell，2在线buy，3本地sell，4本地buy',
   `coin_type` tinyint(2) NOT NULL COMMENT '币种',
-  `coin_num` decimal(10,8) NOT NULL COMMENT '交易数量',
-  `price` decimal(10,4) NOT NULL COMMENT '交易价格',
-  `fee` decimal(10,8) NOT NULL COMMENT '手续费',
+  `coin_num` decimal(10,6) NOT NULL COMMENT '交易数量',
+  `price` decimal(10,2) NOT NULL COMMENT '交易价格',
+  `fee` decimal(10,6) NOT NULL COMMENT '手续费',
+  `country` smallint(4) NOT NULL COMMENT '国家地区',
   `currency` varchar(5) NOT NULL COMMENT '货币类型',
+  `pay_type` CHAR (50) NOT NULL COMMENT '付款方式',
+  `pay_time` int(11) NOT NULL,
   `pay_text` varchar(50) NULL COMMENT '交易条款',
   `status` tinyint(2) NOT NULL COMMENT '状态：1等待付款，2付款完毕，3确认完成，4，申诉，0取消',
   `create_time` int(11) NOT NULL,
+  `update_time` int(11) NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='交易表';
 
@@ -92,13 +85,14 @@ CREATE TABLE IF NOT EXISTS `ocenter_trade_order` (
 -- -----------------------------
 CREATE TABLE IF NOT EXISTS `ocenter_ticket` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) NOT NULL,
-  `type` varchar(10) NULL COMMENT '类型',
-  `child_type` varchar(20) NULL COMMENT '子类型',
-  `order_id` int(11) NOT NULL,
-  `content` varchar(200) NULL COMMENT '内容',
-  `images` varchar(200) NOT NULL COMMENT '图片',
+  `uid` int(11) NULL,
+  `type` tinyint(1) NOT NULL COMMENT '类型',
+  `question_id` varchar(50) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `content` varchar(200) NOT NULL COMMENT '内容',
+  `images` varchar(50) NOT NULL COMMENT '图片',
   `create_time` int(11) NOT NULL,
+  `update_time` int(11) NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='支持工单';
 

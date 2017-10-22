@@ -8,8 +8,24 @@
     <div class="col-xs-12">
         <div class="forum_module" style="background: none">
             <div class="ad-title">
-                <div class="no-event">订单#{$orderId}：以 3000 CNY 购买 0.115393 BTC</div>
-                <P>duzili 的交易广告# bu1npcl7，价格 25998 CNY/BTC </P>
+                <php>
+                    $type = $order['coin_type'] == 1?'BTC':'ETH';
+                    $coinNum = floatval($order['coin_num']);
+                    $price = number_format($order['price'],2);
+                    $params = '';
+                    if($order['type'] == 1){
+                    $params = 'sellonline-';
+                    }else if($order['type'] == 2){
+                    $params = 'buyonline-';
+                    }else if($order['type'] == 3){
+                    $params = 'selllocal-';
+                    }else if($order['type'] == 4){
+                    $params = 'buylocal-';
+                    }
+                    $params.=$order['payType']."-".$order['countryEn'];
+                </php>
+                <div class="no-event">订单#{$order['order_id']}：以 {$price} CNY 购买 {$coinNum} {$type}</div>
+                <P>{$order['nickname']} 的交易广告# <a href="tradead/{$order['ad_id']}/{$params}">{$order['ad_id']}</a>，价格 25998 CNY/BTC </P>
             </div>
 
         </div>

@@ -10,8 +10,8 @@
 
 return array(
     'route_rules' => array(
-        'ad/advertise/:id'    => 'ad/index/add',
-        'ad/advertise'    => 'ad/index/add',
+        'support/request'    => 'help/index/request',
+        'support'    => 'help/index/support',
     ),
 
 

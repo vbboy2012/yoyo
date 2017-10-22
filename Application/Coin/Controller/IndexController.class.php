@@ -268,6 +268,7 @@ class IndexController extends Controller{
             $coinNum = I('post.coin_num');
             $price = I('post.price');
             $payText = I('post.pay_text');
+            $payTime = I('post.pay_time');
             $currency = I('post.currency');
             $content = D('trade_order')->create();
             $content['ad_id'] = $adId;
@@ -281,6 +282,7 @@ class IndexController extends Controller{
             $content['price'] = $price;
             $content['fee'] = $coinNum * 0.005;
             $content['currency'] = $currency;
+            $content['pay_time'] = $payTime;
             $content['pay_text'] = $payText;
             $content['status'] = 1;
             $content['create_time'] = time();
@@ -288,13 +290,13 @@ class IndexController extends Controller{
             //创建交易聊天
             $memebers = array($adUid);
             D('Common/Talk')->createTradeTalk($memebers,$orderId);
-            $this->success(L('_SUCCESS_POST_'), U('/order/'.$orderId));
+            $this->success(L('_SUBMIT_SUCCESS_'), U('/order/'.$orderId));
         }else{
             $ratePrice = 25000;
             $id = I('get.id');
             $tradead = M('tradead')->join('ocenter_member on ocenter_tradead.uid = ocenter_member.uid')
                 ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
-                ->field('ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.pay_text,ocenter_tradead.type,ocenter_tradead.pay_type,ocenter_tradead.coin_type,ocenter_tradead.pay_time,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_country.name as country,ocenter_member.nickname,ocenter_member.trade_count,ocenter_member.trade_score,ocenter_member.fans,ocenter_tradead.start0,ocenter_tradead.start1,ocenter_tradead.start2,ocenter_tradead.start3,ocenter_tradead.start4,ocenter_tradead.start5,ocenter_tradead.start6,ocenter_tradead.end0,ocenter_tradead.end1,ocenter_tradead.end2,ocenter_tradead.end3,ocenter_tradead.end4,ocenter_tradead.end5,ocenter_tradead.end6')
+                ->field('ocenter_tradead.country as countryId,ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.pay_text,ocenter_tradead.type,ocenter_tradead.pay_type,ocenter_tradead.coin_type,ocenter_tradead.pay_time,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_country.name as country,ocenter_member.nickname,ocenter_member.trade_count,ocenter_member.trade_score,ocenter_member.fans')
                 ->where('ocenter_tradead.id='.$id)->find();
             $payType = query_pay($tradead['pay_type']);
             $payName = '';
@@ -313,9 +315,14 @@ class IndexController extends Controller{
 
     public function order()
     {
-      //  $order = M('trade_order')->where('order_id='.$orderId)->find();
         $orderId = I('get.orderId');
-        $this->assign('orderId', $orderId);
+        $uid = is_login();
+        $order = M('trade_order')->join('ocenter_member on ocenter_trade_order.ad_uid = ocenter_member.uid')
+            ->join('ocenter_country on ocenter_trade_order.country = ocenter_country.id')
+            ->join('ocenter_pay on ocenter_trade_order.pay_type = ocenter_pay.id')
+            ->field('ocenter_pay.en_name as payType,ocenter_country.en_name as countryEn,ocenter_trade_order.ad_id,ocenter_trade_order.type,ocenter_trade_order.order_id,ocenter_trade_order.ad_uid,ocenter_trade_order.price,ocenter_trade_order.currency,ocenter_trade_order.coin_type,ocenter_trade_order.coin_num,ocenter_trade_order.status,ocenter_trade_order.pay_time,ocenter_trade_order.create_time,ocenter_trade_order.update_time,ocenter_member.nickname')
+            ->where("ocenter_trade_order.order_id='".$orderId."'")->find();
+        $this->assign('order', $order);
         $this->display();
     }
 

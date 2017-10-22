@@ -1,0 +1,57 @@
+<extend name="Base/common"/>
+
+<block name="style">
+    <link href="__CSS__/event.css" rel="stylesheet" type="text/css"/>
+</block>
+<block name="header">
+    <include file="_nav"/>
+</block>
+<block name="body">
+    <div class="white-popup1 boxShadowBorder col-xs-12" style="">
+        <php>
+            $email = session('ticket_send');
+            if($email){
+            $text = $email.L('_SEND_TICKET_TIPS_');
+            }
+        </php>
+        <if condition="is_login()">
+            <php>if($text){</php>
+                <div class="alert alert-success" style="margin-top: 0px">{$text}</div>
+            <php>}</php>
+            <table class="table table-striped table-hover">
+                <thead style="text-align: center;">
+                <tr>
+                    <th style="vertical-align: middle;">工单编号</th>
+                    <th style="vertical-align: middle;">类型</th>
+                    <th style="vertical-align: middle;">内容</th>
+                    <th style="vertical-align: middle;">创建时间</th>
+                    <th style="vertical-align: middle;">最后修改时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <volist name="ticket" id="vo">
+                    <tr>
+                        <php>
+                            $typeText = L('_TICKET_QUESTION'.$vo['type'].'_');
+                            $time = date('Y-m-d H:i:s', $vo['create_time']);
+                            if($vo['update_time']){
+                            $update = date('Y-m-d H:i:s', $vo['update_time']);
+                            }
+                        </php>
+                        <td style="vertical-align: middle;">{$vo['id']|md5}</td>
+                        <td style="vertical-align: middle;">{$typeText}</td>
+                        <td style="vertical-align: middle">{$vo['content']}</td>
+                        <td style="vertical-align: middle">{$time}</td>
+                        <td style="vertical-align: middle;color: #0C7F12">{$update}</td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+            <else/>
+            <div class="alert alert-success" style="margin-top: 0px">{$text}</div>
+        </if>
+    </div>
+</block>
+
+
+

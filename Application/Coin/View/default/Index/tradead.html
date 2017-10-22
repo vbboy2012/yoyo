@@ -36,8 +36,11 @@
                     <input type="hidden" name="adId" value="{$tradead.id}">
                     <input type="hidden" name="adUid" value="{$tradead.uid}">
                     <input type="hidden" name="type" value="{$tradead.type}">
+                    <input type="hidden" name="pay_time" value="{$tradead['pay_time']}">
                     <input type="hidden" name="coin_type" value="{$tradead.coin_type}">
                     <input type="hidden" name="currency" value="{$tradead.currency}">
+                    <input type="hidden" name="country" value="{$tradead.countryId}">
+                    <input type="hidden" name="pay_type" value="{$tradead.pay_type}">
                     <div class="form-group tradeorder">
                         <div class="col-xs-3">
                             <label>价格：</label>
@@ -84,7 +87,7 @@
                     </div>
                     <div class="form-group tradeorder">
                         <div class="col-xs-12">
-                            <i class="icon icon-flag"></i><a href="{:U('help/index/index')}">举报这条交易广告？</a>
+                            <i class="icon icon-flag"></i><a href="{:U('/support/request')}">举报这条交易广告？</a>
                         </div>
                     </div>
                     <if condition="$tradead['uid'] eq get_uid()">

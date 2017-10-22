@@ -40,7 +40,7 @@
     <script type="text/javascript">
         var ThinkPHP = window.Think = {
             "ROOT": "/yoyo", //当前网站地址
-            "APP": "/yoyo/index.php?s=", //当前项目地址
+            "APP": "/yoyo/admin.php?s=", //当前项目地址
             "PUBLIC": "/yoyo/Public", //项目公共目录地址
             "DEEP": "<?php echo C('URL_PATHINFO_DEPR');?>", //PATHINF<?php echo L("_O_SEGMENTATION_");?>
             "MODEL": ["<?php echo C('URL_MODEL');?>", "<?php echo C('URL_CASE_INSENSITIVE');?>", "<?php echo C('URL_HTML_SUFFIX');?>"],
@@ -912,7 +912,7 @@
     (function () {
         var ThinkPHP = window.Think = {
             "ROOT": "/yoyo", //当前网站地址
-            "APP": "/yoyo/index.php?s=", //当前项目地址
+            "APP": "/yoyo/admin.php?s=", //当前项目地址
             "PUBLIC": "/yoyo/Public", //项目公共目录地址
             "DEEP": "<?php echo C('URL_PATHINFO_DEPR');?>", //PATHINFO分割符
             "MODEL": ["<?php echo C('URL_MODEL');?>", "<?php echo C('URL_CASE_INSENSITIVE');?>", "<?php echo C('URL_HTML_SUFFIX');?>"],
@@ -1761,7 +1761,7 @@
         });
 
         $('[data-role=saveCountSetting]').click(function () {
-            $.post("/yoyo/index.php?s=/admin/index/index.html", {count_day: $('[name=count_day]').val()}, function (msg) {
+            $.post("/yoyo/admin.php?s=/index/index.html", {count_day: $('[name=count_day]').val()}, function (msg) {
                 handleAjax(msg);
             });
         });

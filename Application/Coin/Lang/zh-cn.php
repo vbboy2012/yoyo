@@ -60,6 +60,7 @@ return array(
     '_ERROR_TEXT_' => '请输入广告留言',
     '_ERROR_ADDR_' => '请输入见面地点',
     '_SUCCESS_POST_' => '发布成功',
+    '_SUBMIT_SUCCESS_' => '提交成功',
 
     '_PAY_CASH_' => '现金支付',
     '_PAY_ALIPAY_' => '支付宝',
