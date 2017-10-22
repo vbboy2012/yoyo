@@ -2,10 +2,7 @@
 return array(
     '_ERROR_START_AFTER_LOGIN_' => "'请登陆后再发布。'",
     '_TIP_TENDER_' => "'温馨提示'",
-    '_BUY_BTC_' => '购买BTC',
-    '_SELL_BTC_' => '出售BTC',
-    '_BUY_ETH_' => '购买ETH',
-    '_SELL_ETH_' => '出售ETH',
+
     '_NEW_AD_' => '最新发布',
     '_AD_POST_' => '免费发布广告',
     '_AD_TITLE_' => '免费发布一个交易广告',
@@ -83,7 +80,7 @@ return array(
     '_SELL_' => '出售',
     '_BUY_FROM_' => '从您这里购买',
     '_GIVE_YOU_' => '给您',
-    '_TIME_TIPS_' => '在发出交易请求后，您有多少时间来标记"付款已完成"，如超时未标记，交易自动取消!',
+    '_TIME_TIPS_' => '在发出交易请求后，您有多少时间来标记付款已完成，如超时未标记，交易自动取消!',
 
 
 );
