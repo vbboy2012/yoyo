@@ -185,9 +185,21 @@
                             </div>
                         </div>
 
+                <div class="form-group">
+                    <div class="col-xs-2">
+                        <label>{:L('_AD_PAY_REMARK_LABEL_')}</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <php>
+                            $pay_remark = str_replace("<br>","\n",$ad['pay_remark'])
+                        </php>
+                        <textarea name="pay_remark" class="text form-control" placeholder="{:L('_AD_PAY_REMARK_TIPS_LABEL_')}" style="height: 8em;height: 100px">{$pay_remark}</textarea>
+                    </div>
+                </div>
+
                         <div class="form-group">
                             <div class="col-xs-2">
-                                <label class="required">{:L('_AD_PAY_TEXT_LABEL_')}</label>
+                                <label>{:L('_AD_PAY_TEXT_LABEL_')}</label>
                             </div>
                             <div class="col-xs-6">
                                 <php>

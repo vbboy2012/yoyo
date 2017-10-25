@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 2017-10-22 02:11:02
+-- Generation Time: 2017-10-25 14:47:43
 -- 服务器版本： 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -59,7 +59,20 @@ INSERT INTO `ocenter_action` (`id`, `name`, `title`, `remark`, `rule`, `log`, `t
 (10005, 'set_weibo_top', '置顶微博', '置顶微博', '', '[user|get_nickname]在[time|time_format]置顶了微博：[record|intval]', 1, 1, 1428399164, 'Weibo'),
 (10006, 'set_weibo_down', '取消置顶微博', '取消置顶微博', '', '[user|get_nickname]在[time|time_format]取消置顶了微博：[record|intval]', 1, 1, 1428462983, 'Weibo'),
 (11004, 'news_post_reply', '资讯回复', '资讯回复', '', '', 2, 1, 1428479582, 'News'),
-(11003, 'add_news', '资讯投稿', '用户发布资讯', 'N;', '', 2, 1, 1428479582, 'News');
+(11003, 'add_news', '资讯投稿', '用户发布资讯', 'N;', '', 2, 1, 1428479582, 'News'),
+(11005, 'forum_follow', '论坛板块关注', '用户关注或取消关注论坛板块', '', '用户关注或取消关注论坛板块', 2, 1, 1433382253, 'Forum'),
+(11006, 'forum_edit_post', '编辑帖子', '论坛编辑帖子', '', '论坛编辑帖子', 2, 1, 1433385562, 'Forum'),
+(11007, 'forum_add_post', '添加贴子', '论坛添加贴子', '', '论坛添加贴子', 2, 1, 1433385630, 'Forum'),
+(11008, 'forum_post_reply', '论坛帖子回复', '用户回复贴子', '', '用户回复贴子', 2, 1, 1433386806, 'Forum'),
+(11009, 'forum_lzl_reply', '论坛楼中楼回复', '楼中楼回复记录', '', '[user|get_nickname]在[time|time_formate]时进行了论坛楼中楼回复', 2, 1, 1433469762, 'Forum'),
+(11010, 'forum_lzl_del_reply', '论坛楼中楼删除回复', '论坛删除楼中楼回复记录', '', '', 2, 1, 1433469820, 'Forum'),
+(11011, 'forum_del_post', '论坛删除贴子', '论坛删除贴子记录', '', '', 2, 1, 1433484800, 'Forum'),
+(11012, 'edit_answer', '编辑回答', '用户编辑答案', 'N;', '', 2, 1, 1428479582, 'Question'),
+(11013, 'support_answer', '支持、反对回答', '用户支持、反对答案', 'N;', '', 2, 1, 1428479582, 'Question'),
+(11014, 'add_answer', '回答', '用户发布答案', 'N;', '', 2, 1, 1428479582, 'Question'),
+(11015, 'edit_question', '编辑问题', '用户编辑问题', 'N;', '', 2, 1, 1428479582, 'Question'),
+(11016, 'add_question', '提问', '用户提出问题', 'N;', '', 2, 1, 1428479582, 'Question'),
+(11017, 'add_news', '资讯投稿', '用户发布资讯', 'N;', '', 2, 1, 1428479582, 'News');
 
 -- --------------------------------------------------------
 
@@ -91,7 +104,16 @@ INSERT INTO `ocenter_action_limit` (`id`, `title`, `name`, `frequency`, `time_nu
 (1, 'reg', '注册限制', 1, 1, 'minute', 'warning', 0, '', '[reg]', 1, 0, ''),
 (2, 'input_password', '输密码', 3, 1, 'minute', 'warning', 0, '', '[input_password]', 1, 0, ''),
 (3, 'add_weibo', '新增微博', 1, 10, 'second', 'warning', 0, '', '[add_weibo]', 1, 0, 'Weibo'),
-(4, 'add_weibo_comment', '添加微博评论', 1, 10, 'second', 'warning', 0, '', '[add_weibo_comment]', 1, 0, 'Weibo');
+(4, 'add_weibo_comment', '添加微博评论', 1, 10, 'second', 'warning', 0, '', '[add_weibo_comment]', 1, 0, 'Weibo'),
+(8, 'forum_follow', '论坛板块关注', 1, 2, 'second', 'warning', 1, '操作太频繁！2秒后再试~', '[forum_follow]', 1, 0, 'Forum'),
+(9, 'forum_add_post', '论坛添加贴子', 1, 1, 'minute', 'warning', 1, '操作太频繁！1分钟后再试~', '[forum_add_post]', 1, 0, 'Forum'),
+(10, 'forum_edit_post', '编辑帖子', 1, 1, 'minute', 'warning', 1, '论坛编辑帖子', '[forum_edit_post]', 1, 0, 'Forum'),
+(11, 'forum_post_reply', '论坛评论贴子', 1, 1, 'minute', 'warning', 1, '操作太频繁！1分钟后再试~', '[forum_post_reply]', 1, 0, 'Forum'),
+(12, 'forum_del_post', '论坛删除贴子', 1, 1, 'minute', 'warning', 1, '操作太频繁！1分钟后再试~', '[forum_del_post]', 1, 0, 'Forum'),
+(13, 'forum_lzl_reply', '论坛楼中楼回复', 1, 1, 'minute', 'warning', 1, '操作太频繁！1分钟后再试~', '[forum_lzl_reply]', 1, 0, 'Forum'),
+(14, 'forum_lzl_del_reply', '论坛删除楼中楼回复', 1, 10, 'second', 'warning', 1, '操作太频繁！10秒后再试~', '[forum_lzl_del_reply]', 1, 0, 'Forum'),
+(15, 'support_answer', '支持、反对回答', 1, 1, 'minute', 'warning', 1, '操作太频繁！', '[support_answer]', 1, 0, 'Question'),
+(16, 'add_news', '资讯投稿', 1, 1, 'minute', 'warning', 1, '操作太频繁！', '[add_news]', 1, 0, 'News');
 
 -- --------------------------------------------------------
 
@@ -430,7 +452,40 @@ INSERT INTO `ocenter_action_log` (`id`, `action_id`, `user_id`, `action_ip`, `mo
 (312, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-21 15:35登录了账号', 1, 1508571312),
 (313, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-21 16:18登录了账号', 1, 1508573887),
 (314, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-21 16:33登录了账号', 1, 1508574787),
-(315, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-21 16:54登录了账号', 1, 1508576069);
+(315, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-21 16:54登录了账号', 1, 1508576069),
+(316, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1508724924),
+(317, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-23 10:15登录了账号【积分：+10分】', 1, 1508724928),
+(318, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-23 10:39登录了账号【积分：+10分】', 1, 1508726362),
+(319, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-23 11:51登录了账号', 1, 1508730686),
+(320, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1508731821),
+(321, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-23 12:10登录了账号', 1, 1508731824),
+(322, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1508746451),
+(323, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-23 16:14登录了账号', 1, 1508746453),
+(324, 2, 100, 2130706433, 'ucenter_member', 100, '操作url：/yoyo/index.php?s=/ucenter/member/login.html', 1, 1508768643),
+(325, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-23 22:24登录了账号', 1, 1508768646),
+(326, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-24 12:24登录了账号', 1, 1508819077),
+(327, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-24 14:40登录了账号【积分：+10分】', 1, 1508827225),
+(328, 3, 146, 2130706433, 'member', 146, 'sonia在2017-10-24 14:47登录了账号【积分：+10分】', 1, 1508827634),
+(329, 3, 146, 2130706433, 'member', 146, 'sonia在2017-10-24 14:48登录了账号', 1, 1508827692),
+(330, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-24 18:12登录了账号', 1, 1508839925),
+(331, 3, 146, 2130706433, 'member', 146, 'sonia在2017-10-24 18:12登录了账号', 1, 1508839958),
+(332, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-24 18:33登录了账号', 1, 1508841225),
+(333, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-25 08:24登录了账号', 1, 1508891091),
+(334, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-25 08:29登录了账号', 1, 1508891397),
+(335, 3, 146, 2130706433, 'member', 146, 'sonia在2017-10-25 09:33登录了账号', 1, 1508895213),
+(336, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-25 10:35登录了账号', 1, 1508898924),
+(337, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-25 10:36登录了账号', 1, 1508898993),
+(338, 3, 146, 2130706433, 'member', 146, 'sonia在2017-10-25 11:00登录了账号', 1, 1508900410),
+(339, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-25 11:00登录了账号', 1, 1508900438),
+(340, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-25 14:37登录了账号', 1, 1508913428),
+(341, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-25 15:28登录了账号', 1, 1508916511),
+(342, 3, 146, 2130706433, 'member', 146, 'sonia在2017-10-25 16:36登录了账号', 1, 1508920577),
+(343, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-25 16:36登录了账号', 1, 1508920610),
+(344, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-25 17:38登录了账号', 1, 1508924289),
+(345, 3, 100, 2130706433, 'member', 100, 'vbboy在2017-10-25 17:42登录了账号', 1, 1508924523),
+(346, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-25 19:55登录了账号', 1, 1508932516),
+(347, 3, 1, 2130706433, 'member', 1, 'yoyocoinsdd在2017-10-25 20:20登录了账号', 1, 1508934032),
+(348, 3, 146, 2130706433, 'member', 146, 'sonia在2017-10-25 20:30登录了账号', 1, 1508934611);
 
 -- --------------------------------------------------------
 
@@ -539,7 +594,10 @@ INSERT INTO `ocenter_adv_pos` (`id`, `name`, `title`, `path`, `type`, `status`, 
 (6, 'index_bottom_top', '资讯首页右侧最底部广告', 'News/Index/index', 1, 1, '', '360px', '120px', '10px 0 0 0', '', 'all'),
 (9, 'slider', '首页轮播图', 'Home/Index/index', 2, 1, '{\"style\":1}', '1120px', '300px', '0 0 15px 0', '', 'all'),
 (7, 'index_right_top', '资讯首页右侧最顶部广告', 'News/Index/index', 1, 1, '[]', '360px', '120px', '0 0 10px 0', '', 'all'),
-(8, 'below_article_content', '资讯文章内容下方广告', 'News/Index/detail', 1, 1, '', '690px', '100px', '', '', 'all');
+(8, 'below_article_content', '资讯文章内容下方广告', 'News/Index/detail', 1, 1, '', '690px', '100px', '', '', 'all'),
+(10000, 'up_forum', '论坛首页', 'Forum/Index/index', 1, 1, '[]', '780px', '200px', '', '', 'all'),
+(10001, 'right_bottom_forum', '论坛右侧', 'Forum/Index/index', 1, 1, '[]', '280px', '200px', '', '', 'all'),
+(10002, 'over_forum_list', '版块列表头部', 'Forum/Index/lists', 1, 1, '[]', '1120px', '100px', '0 0 10px 0', '', 'all');
 
 -- --------------------------------------------------------
 
@@ -708,8 +766,8 @@ CREATE TABLE `ocenter_auth_group` (
 --
 
 INSERT INTO `ocenter_auth_group` (`id`, `module`, `type`, `title`, `description`, `status`, `rules`, `end_time`) VALUES
-(1, 'admin', 1, '普通用户', '', 1, ',338,340,341,344,10004', 2000000000),
-(2, 'admin', 1, 'VIP', '', 1, ',338,340,341,344,10004', 2000000000);
+(1, 'admin', 1, '普通用户', '', 1, ',338,340,341,344,10004,10007,10008,10010,10015,10016', 2000000000),
+(2, 'admin', 1, 'VIP', '', 1, ',338,340,341,344,10004,10007,10008,10010,10015,10016', 2000000000);
 
 -- --------------------------------------------------------
 
@@ -1164,7 +1222,22 @@ INSERT INTO `ocenter_auth_rule` (`id`, `module`, `type`, `name`, `title`, `statu
 (431, 'admin', 1, 'Admin/Index/index', '后台入口', 1, ''),
 (432, 'Ucenter', 1, 'Ucenter/Attest/apply', '申请认证', 1, ''),
 (10005, 'News', 1, 'News/Index/edit', '编辑资讯（管理）', 1, ''),
-(10004, 'News', 1, 'News/Index/add', '资讯投稿', 1, '');
+(10004, 'News', 1, 'News/Index/add', '资讯投稿', 1, ''),
+(10006, 'Forum', 1, 'Forum/Index/editPost', '论坛编辑帖子（编辑）', 1, ''),
+(10007, 'Forum', 1, 'Forum/Index/addPost', '论坛添加贴子', 1, ''),
+(10008, 'Forum', 1, 'Forum/Index/doReply', '论坛帖子评论', 1, ''),
+(10009, 'Forum', 1, 'Forum/Lzl/delLZLReply', '论坛删除楼中楼回复（管理）', 1, ''),
+(10010, 'Forum', 1, 'Forum/Lzl/doSendLZLReply', '论坛回复评论权限', 1, ''),
+(10011, 'Forum', 1, 'Forum/Index/doReplyEdit', '论坛编辑评论（管理）', 1, ''),
+(10012, 'Forum', 1, 'Forum/Index/delPostReply', '论坛删除评论（管理）', 1, ''),
+(10013, 'Forum', 1, 'Forum/Index/delPost', '论坛删除贴子（编辑）', 1, ''),
+(10014, 'Question', 1, 'Question/Answer/setBest', '设为最佳答案（管理）', 1, ''),
+(10015, 'Question', 1, 'Question/Answer/add', '回答', 1, ''),
+(10016, 'Question', 1, 'Question/Index/add', '提问', 1, ''),
+(10017, 'Question', 1, 'Question/Index/edit', '编辑问题（管理）', 1, ''),
+(10018, 'Question', 1, 'Question/Answer/edit', '编辑答案（管理）', 1, ''),
+(10019, 'News', 1, 'News/Index/add', '资讯投稿', 1, ''),
+(10020, 'News', 1, 'News/Index/edit', '编辑资讯（管理）', 1, '');
 
 -- --------------------------------------------------------
 
@@ -1222,7 +1295,15 @@ INSERT INTO `ocenter_channel` (`id`, `pid`, `title`, `url`, `sort`, `create_time
 (1, 0, '首页', 'Home/Index/index', 0, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, ''),
 (2, 0, '买卖中心', 'Coin/index/index', 1, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, ''),
 (3, 0, '发布广告', '/ad/advertise', 2, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, ''),
-(4, 0, '资讯', 'News/index/index', 4, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, '');
+(4, 0, '资讯', 'News/index/index', 3, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, ''),
+(5, 0, '论坛', 'Forum/index/index', 4, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, ''),
+(6, 0, '帮助', 'Coin/index/index', 5, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, ''),
+(7, 6, '问答', 'Question/index/index', 0, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, '0'),
+(8, 6, '如何购买比特币', '/help/about', 1, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, '0'),
+(9, 6, '常见问题', '/help/about', 2, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, '0'),
+(10, 6, '联系客服', '/support/request', 3, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, '0'),
+(11, 6, '费用', '/help/about', 4, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, '0'),
+(12, 6, '关于我们', '/help/about', 5, 0, 0, 1, 0, '#000000', '#000000', '', '-', 0, '0');
 
 -- --------------------------------------------------------
 
@@ -1363,7 +1444,7 @@ INSERT INTO `ocenter_config` (`id`, `name`, `type`, `title`, `group`, `extra`, `
 (11236, '_CONFIG_COMPANY', 0, '', 0, '', '', 1507898783, 1507898783, 1, '<p><a href=\"http://www.ourstu.com/joinus.html\" target=\"_blank\"></a></p><p><a href=\"http://www.ourstu.com/joinus.html\" target=\"_blank\"><em class=\"icon icon-user\"></em>加入我们</a></p><p><br/></p><p><em class=\"icon icon-phone-sign\"></em>400-0573-080</p><p><em class=\"icon icon-envelope-alt\"></em>co@ourstu.com</p>', 0),
 (11222, '_CONFIG_QRCODE_BOTTOM', 0, '', 0, '', '', 1507898783, 1507898783, 1, '', 0),
 (11187, '_USERCONFIG_UCENTER_KANBAN', 0, '', 0, '', '', 1507680018, 1507680018, 1, '[{\"data-id\":\"disable\",\"title\":\"\\u7981\\u7528\",\"items\":[{\"data-id\":\"Weibo\",\"title\":\"\\u52a8\\u6001Pro\"},{\"data-id\":\"News\",\"title\":\"\\u8d44\\u8baf\"}]},{\"data-id\":\"enable\",\"title\":\"\\u542f\\u7528\",\"items\":[{\"data-id\":\"follow\",\"title\":\"TA\\u7684\\u5173\\u6ce8\\/\\u7c89\\u4e1d\"},{\"data-id\":\"info\",\"title\":\"\\u8d44\\u6599\"},{\"data-id\":\"rank_title\",\"title\":\"\\u5934\\u8854\"},{\"data-id\":\"topic_list\",\"title\":\"\\u5173\\u6ce8\\u7684\\u8bdd\\u9898\"}]}]', 0),
-(11740, '_CONFIG_FIRST_USER_RUN', 0, '', 0, '', '', 1508630988, 1508630988, 1, '2017-10-22', 0),
+(11744, '_CONFIG_FIRST_USER_RUN', 0, '', 0, '', '', 1508891042, 1508891042, 1, '2017-10-25', 0),
 (10001, '_HOME_HOME_INDEX_TYPE', 0, '', 0, '', '', 1506049592, 1506049592, 1, 'index', 0),
 (10003, '_HOME_SEARCH', 0, '', 0, '', '', 1506049592, 1506049592, 1, '[{\"data-id\":\"disable\",\"title\":\"\\u7981\\u7528\",\"items\":[]},{\"data-id\":\"enable\",\"title\":\"\\u542f\\u7528\",\"items\":[{\"data-id\":\"Coin\",\"title\":\"\\u4e70\\u5356\\u4e2d\\u5fc3\"},{\"data-id\":\"People\",\"title\":\"\\u627e\\u4eba\"},{\"data-id\":\"Weibo\",\"title\":\"\\u52a8\\u6001\"}]}]', 0),
 (11192, '_BCLIENT_OS_OFFICIAL_ACCOUNT', 0, '', 0, '', '', 1507846886, 1507846886, 1, 'soni@vip.qq.com', 0),
@@ -1737,7 +1818,10 @@ INSERT INTO `ocenter_count_active` (`id`, `type`, `date`, `num`, `total`) VALUES
 (29, 'day', 1508342400, 0, 0),
 (30, 'day', 1508428800, 2, 0),
 (31, 'day', 1508515200, 1, 0),
-(32, 'week', 1507996807, 9, 0);
+(32, 'week', 1507996807, 9, 0),
+(33, 'day', 1508601600, 0, 0),
+(34, 'day', 1508688000, 2, 0),
+(35, 'day', 1508774400, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -1785,7 +1869,10 @@ INSERT INTO `ocenter_count_lost` (`id`, `user_num`, `new_lost`, `date`, `lost_nu
 (23, 4, 0, 1508256000, 0, '0.0000', 1508380056),
 (24, 4, 0, 1508342400, 0, '0.0000', 1508457145),
 (25, 4, 0, 1508428800, 0, '0.0000', 1508545852),
-(26, 4, 0, 1508515200, 0, '0.0000', 1508630988);
+(26, 4, 0, 1508515200, 0, '0.0000', 1508630988),
+(27, 4, 0, 1508601600, 0, '0.0000', 1508726367),
+(28, 4, 0, 1508688000, 0, '0.0000', 1508774403),
+(29, 4, 0, 1508774400, 0, '0.0000', 1508891042);
 
 -- --------------------------------------------------------
 
@@ -1845,11 +1932,14 @@ INSERT INTO `ocenter_count_remain` (`id`, `date`, `day1_num`, `day2_num`, `day3_
 (31, 1507824000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (32, 1507910400, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (33, 1507996800, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(34, 1508083200, 1, 1, 0, 1, 0, 0, 0, 0, 2),
+(34, 1508083200, 1, 1, 0, 1, 0, 0, 0, 1, 2),
 (35, 1508169600, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (36, 1508256000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (37, 1508342400, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(38, 1508428800, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(38, 1508428800, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(39, 1508515200, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(40, 1508601600, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(41, 1508688000, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -5762,6 +5852,158 @@ INSERT INTO `ocenter_follow` (`id`, `follow_who`, `who_follow`, `create_time`, `
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `ocenter_forum`
+--
+
+CREATE TABLE `ocenter_forum` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `post_count` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `allow_user_group` text NOT NULL,
+  `sort` int(11) NOT NULL,
+  `logo` int(11) NOT NULL,
+  `background` int(11) NOT NULL,
+  `description` varchar(5000) NOT NULL,
+  `admin` varchar(100) NOT NULL,
+  `type_id` int(11) NOT NULL,
+  `last_reply_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `ocenter_forum`
+--
+
+INSERT INTO `ocenter_forum` (`id`, `title`, `create_time`, `post_count`, `status`, `allow_user_group`, `sort`, `logo`, `background`, `description`, `admin`, `type_id`, `last_reply_time`) VALUES
+(1, '默认版块', 1407114174, 0, 1, '1', 0, 133, 123, '浑身发抖活动方式  发的撒健康福简单覆盖给艰苦奋斗是就是的撒伐', '[1],[2]', 1, 0),
+(2, '官方公告', 1417424922, 2, 1, '1', 0, 134, 117, '官方公告发布区', '', 2, 1433468728);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_forum_bookmark`
+--
+
+CREATE TABLE `ocenter_forum_bookmark` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_forum_follow`
+--
+
+CREATE TABLE `ocenter_forum_follow` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `forum_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='版块关注';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_forum_lzl_reply`
+--
+
+CREATE TABLE `ocenter_forum_lzl_reply` (
+  `id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `to_f_reply_id` int(11) NOT NULL,
+  `to_reply_id` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `uid` int(11) NOT NULL,
+  `to_uid` int(11) NOT NULL,
+  `ctime` int(11) NOT NULL,
+  `is_del` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_forum_pay`
+--
+
+CREATE TABLE `ocenter_forum_pay` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `forum_post_id` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_forum_post`
+--
+
+CREATE TABLE `ocenter_forum_post` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `forum_id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `parse` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `update_time` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `last_reply_time` int(11) NOT NULL,
+  `view_count` int(11) NOT NULL,
+  `reply_count` int(11) NOT NULL,
+  `is_top` tinyint(4) NOT NULL COMMENT '是否置顶',
+  `hide` int(11) NOT NULL COMMENT '是否回复可见',
+  `file_id` int(11) NOT NULL COMMENT '文件id',
+  `pay_on` int(11) NOT NULL COMMENT '是否付费下载',
+  `pay_type` int(11) NOT NULL COMMENT '付费类型',
+  `pay_num` int(11) NOT NULL COMMENT '付费数量'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_forum_post_reply`
+--
+
+CREATE TABLE `ocenter_forum_post_reply` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `parse` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `update_time` int(11) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_forum_type`
+--
+
+CREATE TABLE `ocenter_forum_type` (
+  `id` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL COMMENT '标题',
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `sort` int(11) NOT NULL,
+  `pid` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='论坛分类表';
+
+--
+-- 转存表中的数据 `ocenter_forum_type`
+--
+
+INSERT INTO `ocenter_forum_type` (`id`, `title`, `status`, `sort`, `pid`) VALUES
+(1, '默认分类', 1, 0, 0),
+(2, '官方板块', 1, 1, 0);
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `ocenter_hooks`
 --
 
@@ -6071,10 +6313,10 @@ CREATE TABLE `ocenter_member` (
 --
 
 INSERT INTO `ocenter_member` (`uid`, `nickname`, `sex`, `trade_count`, `trade_score`, `login`, `reg_ip`, `reg_time`, `last_login_ip`, `last_login_time`, `status`, `last_login_role`, `show_role`, `signature`, `pos_province`, `pos_city`, `pos_district`, `pos_community`, `score1`, `score2`, `score3`, `score4`, `btc_count`, `eth_count`, `btc`, `eth`, `con_check`, `total_check`, `fans`, `trust`, `session_id`, `lang`) VALUES
-(1, 'yoyocoinsdd', 0, 100, 100, 162, 0, 1506049131, 2130706433, 1508576069, 1, 1, 1, '', 0, 0, 0, 0, 21, 0, 0, 0, '0.0000', '0.0000', '0.00000000', '0.00000000', 0, 2, 1, 0, 'kvmbfpuu2k0kphjp7tedjafd55', 'zh-cn'),
-(100, 'vbboy', 0, 11, 90, 44, 2130706433, 1506497016, 2130706433, 1508037773, 1, 1, 1, '', 0, 0, 0, 0, 31, 0, 0, 0, '0.0000', '0.0000', '0.00000000', '0.00000000', 0, 0, 1, 0, '3gg6o22cp54uicff8f8a0qoht1', 'zh-cn'),
+(1, 'yoyocoinsdd', 0, 100, 100, 174, 0, 1506049131, 2130706433, 1508934032, 1, 1, 1, '', 0, 0, 0, 0, 21, 0, 0, 0, '0.0000', '0.0000', '0.00000000', '0.00000000', 0, 2, 1, 0, '4vag5n03p2p447v5blujv1kcq6', 'zh-cn'),
+(100, 'vbboy', 0, 11, 90, 54, 2130706433, 1506497016, 2130706433, 1508924523, 1, 1, 1, '', 0, 0, 0, 0, 41, 0, 0, 0, '0.0000', '0.0000', '0.00000000', '0.00000000', 0, 0, 1, 0, 'a7siun3h1n8c06ooopsqpd3vc4', 'zh-cn'),
 (147, 'vbboy2015', 0, 0, 0, 1, 2130706433, 1508127984, 2130706433, 1508128102, 1, 0, 0, '', 0, 0, 0, 0, 10, 0, 0, 0, '0.0000', '0.0000', '0.00000000', '0.00000000', 0, 0, 0, 0, 'p1peklh4au69n8cdmeor0sbt76', ''),
-(146, 'sonia', 0, 0, 0, 10, 2130706433, 1508127913, 2130706433, 1508504956, 1, 0, 0, '', 0, 0, 0, 0, 20, 0, 0, 0, '0.0000', '0.0000', '0.00000000', '0.00000000', 0, 0, 0, 0, 'dn4uab1qmbh2db25j49bndkt06', ''),
+(146, 'sonia', 0, 0, 0, 17, 2130706433, 1508127913, 2130706433, 1508934611, 1, 0, 0, '', 0, 0, 0, 0, 30, 0, 0, 0, '0.0000', '0.0000', '0.00000000', '0.00000000', 0, 0, 0, 0, '4vag5n03p2p447v5blujv1kcq6', ''),
 (145, 'bobo', 0, 0, 0, 0, 2130706433, 1508127436, 0, 0, 3, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, 0, '0.0000', '0.0000', '0.00000000', '0.00000000', 0, 0, 0, 0, '', '');
 
 -- --------------------------------------------------------
@@ -6411,7 +6653,52 @@ INSERT INTO `ocenter_menu` (`id`, `title`, `pid`, `sort`, `url`, `hide`, `tip`, 
 (13033, '资讯审核失败操作', 13031, 0, 'News/doAudit', 1, '', '', 0, '', 'News'),
 (13032, '审核通过', 13031, 0, 'News/setNewsStatus', 1, '', '', 0, '', 'News'),
 (13031, '审核列表', 13030, 0, 'News/audit', 0, '', '资讯管理', 0, '', 'News'),
-(13030, '资讯', 0, 22, 'News/index', 1, '', '', 0, '', 'News');
+(13030, '资讯', 0, 22, 'News/index', 1, '', '', 0, '', 'News'),
+(13042, '论坛', 0, 22, 'Forum/index', 1, '', '', 0, '', 'Forum'),
+(13043, '板块管理', 13042, 1, 'Forum/forum', 0, '', '板块', 0, '', 'Forum'),
+(13044, '编辑／创建板块', 13043, 0, 'Forum/editForum', 1, '', '', 0, '', 'Forum'),
+(13045, '排序', 13043, 0, 'Forum/sortForum', 1, '', '板块', 0, '', 'Forum'),
+(13046, '设置版块状态', 13043, 0, 'Forum/setForumStatus', 1, '', '', 0, '', 'Forum'),
+(13047, '设置版块排序', 13043, 0, 'Forum/doSortForum', 1, '', '', 0, '', 'Forum'),
+(13048, '帖子管理', 13042, 3, 'Forum/post', 0, '', '帖子', 0, '', 'Forum'),
+(13049, '编辑帖子', 13048, 0, 'Forum/editPost', 1, '', '', 0, '', 'Forum'),
+(13050, '设置帖子状态', 13048, 0, 'Forum/setPostStatus', 1, '', '', 0, '', 'Forum'),
+(13051, '板块回收站', 13042, 2, 'Forum/forumTrash', 0, '', '板块', 0, '', 'Forum'),
+(13052, '帖子回收站', 13042, 4, 'Forum/postTrash', 0, '', '帖子', 0, '', 'Forum'),
+(13053, '回复回收站', 13042, 6, 'Forum/replyTrash', 0, '', '回复', 0, '', 'Forum'),
+(13054, '回复管理', 13042, 6, 'Forum/replyManager', 0, '', '回复', 0, '', 'Forum'),
+(13055, '新增/编辑回复', 13054, 0, 'Forum/editReply', 1, '', '', 0, '', 'Forum'),
+(13056, '设置回复状态', 13054, 0, 'Forum/setReplyStatus', 1, '', '', 0, '', 'Forum'),
+(13057, '论坛设置', 13042, 10, 'Forum/config', 0, '', '设置', 0, '', 'Forum'),
+(13058, '分类管理', 13042, 0, 'Forum/type', 0, '分类管理', '分类管理', 0, '', 'Forum'),
+(13059, '新增/编辑分类', 13058, 0, 'Forum/addType', 1, '', '', 0, '', 'Forum'),
+(13060, '设置分类状态', 13058, 0, 'Forum/setTypeStatus', 1, '', '', 0, '', 'Forum'),
+(13061, '问答', 0, 22, 'Question/index', 1, '', '', 0, 'question', 'Question'),
+(13062, '编辑话题', 13061, 0, 'Question/editQuestionTopic', 1, '', '话题设置', 0, '', 'Question'),
+(13063, '话题设置', 13061, 0, 'Question/topicSetting', 0, '', '问答管理', 0, '', 'Question'),
+(13064, '问题预设', 13061, 0, 'Question/presetQuestion', 0, '', '问答管理', 0, '', 'Question'),
+(13065, '回答列表', 13061, 0, 'Question/answer', 0, '', '问答管理', 0, '', 'Question'),
+(13066, '设置回答状态（启用、禁用、删除）', 13065, 0, 'Question/setAnswerStatus', 1, '', '', 0, '', 'Question'),
+(13067, '话题回收站', 13061, 0, 'Question/topictrash', 0, '', '问答管理', 0, '', 'Question'),
+(13068, '问题列表', 13061, 0, 'Question/index', 0, '', '问答管理', 0, '', 'Question'),
+(13069, '设置问题状态（审核、启用、禁用、删除）', 13068, 0, 'Question/setQuestionStatus', 1, '', '', 0, '', 'Question'),
+(13070, '推荐设置', 13068, 0, 'Question/recommend', 1, '', '', 0, '', 'Question'),
+(13071, '基础配置', 13061, 0, 'Question/config', 0, '', '配置管理', 0, '', 'Question'),
+(13072, '分类管理', 13061, 0, 'Question/category', 0, '', '配置管理', 0, '', 'Question'),
+(13073, '编辑、添加分类', 13072, 0, 'Question/add', 1, '', '', 0, '', 'Question'),
+(13074, '设置分类状态', 13072, 0, 'Question/setStatus', 1, '', '', 0, '', 'Question'),
+(13075, '资讯', 0, 22, 'News/index', 1, '', '', 0, '', 'News'),
+(13076, '审核列表', 13075, 0, 'News/audit', 0, '', '资讯管理', 0, '', 'News'),
+(13077, '审核通过', 13076, 0, 'News/setNewsStatus', 1, '', '', 0, '', 'News'),
+(13078, '资讯审核失败操作', 13076, 0, 'News/doAudit', 1, '', '', 0, '', 'News'),
+(13079, '分类管理', 13075, 0, 'News/newsCategory', 0, '', '资讯配置', 0, '', 'News'),
+(13080, '编辑、添加分类', 13079, 0, 'News/add', 1, '', '', 0, '', 'News'),
+(13081, '设置分类状态', 13079, 0, 'News/setStatus', 1, '', '', 0, '', 'News'),
+(13082, '资讯列表', 13075, 0, 'News/index', 0, '', '资讯管理', 0, 'rss-sign', 'News'),
+(13083, '设为到期', 13082, 0, 'News/setDead', 1, '', '', 0, '', 'News'),
+(13084, '编辑、添加资讯', 13082, 0, 'News/editNews', 1, '', '', 0, '', 'News'),
+(13085, '基础配置', 13075, 0, 'News/config', 0, '', '资讯配置', 0, '', 'News'),
+(13086, '资讯回收站', 13075, 0, 'News/newsTrash', 0, '', '资讯管理', 0, '', 'News');
 
 -- --------------------------------------------------------
 
@@ -6443,12 +6730,9 @@ INSERT INTO `ocenter_message` (`id`, `content_id`, `from_uid`, `to_uid`, `create
 (21, 20, 116, 100, 1507777482, 1, 1507777585, 1, 'Ucenter', ''),
 (20, 19, 100, 1, 1507776152, 1, 1507780124, 1, 'Ucenter', ''),
 (19, 18, 1, 100, 1507602836, 1, 1507602843, 1, 'Common_system', ''),
-(18, 18, 1, 1, 1507602836, 1, 1507603672, 1, 'Common_system', ''),
-(13, 13, 100, 1, 1507534970, 1, 1507534973, 1, 'Common_system', ''),
-(14, 14, 100, 1, 1507535010, 1, 1507535017, 1, 'Common_system', ''),
+(212, 211, 100, 1, 1508900457, 1, 1508900467, 1, 'Common_system', ''),
 (15, 15, 100, 1, 1507536193, 1, 1507536199, 1, 'Ucenter', ''),
 (16, 16, 100, 1, 1507536197, 1, 1507536199, 1, 'Ucenter', ''),
-(17, 17, 100, 1, 1507536526, 1, 1507536529, 1, 'Common_system', ''),
 (23, 22, 100, 1, 1507777703, 1, 1507780124, 1, 'Ucenter', ''),
 (24, 23, 100, 1, 1507777716, 1, 1507780124, 1, 'Ucenter', ''),
 (25, 24, 100, 1, 1507778126, 1, 1507780124, 1, 'Ucenter', ''),
@@ -6590,8 +6874,12 @@ INSERT INTO `ocenter_message` (`id`, `content_id`, `from_uid`, `to_uid`, `create
 (161, 160, 100, 1, 1507797040, 1, 1507846764, 1, 'Ucenter', ''),
 (162, 161, 100, 1, 1507797143, 1, 1507846764, 1, 'Ucenter', ''),
 (163, 162, 100, 1, 1507798365, 1, 1507846764, 1, 'Ucenter', ''),
-(164, 163, 100, 1, 1508031840, 1, 1508031875, 1, 'Common_system', ''),
-(165, 164, 100, 1, 1508031945, 1, 1508031946, 1, 'Common_system', '');
+(207, 206, 146, 1, 1508895265, 1, 1508898946, 1, 'Common_system', ''),
+(208, 207, 100, 1, 1508895279, 1, 1508898946, 1, 'Common_system', ''),
+(209, 208, 146, 1, 1508895304, 1, 1508898946, 1, 'Common_system', ''),
+(210, 209, 100, 1, 1508895323, 1, 1508898946, 1, 'Common_system', ''),
+(211, 210, 146, 1, 1508895328, 1, 1508898946, 1, 'Common_system', ''),
+(213, 212, 100, 1, 1508900483, 1, 1508900487, 1, 'Common_system', '');
 
 -- --------------------------------------------------------
 
@@ -6779,7 +7067,55 @@ INSERT INTO `ocenter_message_content` (`id`, `from_id`, `title`, `content`, `url
 (161, 100, '粉丝数减少', 'vbboy 取消了对你的信任。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507797143, 1),
 (162, 100, '粉丝数增加', 'vbboy 信任了你。', 'Ucenter/Index/index', '{\"uid\":\"100\"}', 'Ucenter', 1507798365, 1),
 (163, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508031840, 1),
-(164, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508031945, 1);
+(164, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508031945, 1),
+(165, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508725649, 1),
+(166, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508725865, 1),
+(167, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508725991, 1),
+(168, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508726199, 1),
+(169, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508727458, 1),
+(170, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508819897, 1),
+(171, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508820130, 1),
+(172, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508820176, 1),
+(173, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508820895, 1),
+(174, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508821341, 1),
+(175, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508821378, 1),
+(176, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508821390, 1),
+(177, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508822682, 1),
+(178, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508822692, 1),
+(179, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508826385, 1),
+(180, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508826913, 1),
+(181, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827019, 1),
+(182, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827104, 1),
+(183, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827168, 1),
+(184, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827191, 1),
+(185, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827204, 1),
+(186, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827249, 1),
+(187, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827329, 1),
+(188, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827333, 1),
+(189, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827369, 1),
+(190, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827377, 1),
+(191, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827443, 1),
+(192, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827491, 1),
+(193, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827499, 1),
+(194, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827587, 1),
+(195, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827594, 1),
+(196, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827660, 1),
+(197, 146, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827675, 1),
+(198, 146, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827702, 1),
+(199, 146, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827712, 1),
+(200, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827716, 1),
+(201, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827733, 1),
+(202, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827758, 1),
+(203, 146, '您收到了一条新消息！', '', '', '', 'Common_system', 1508827770, 1),
+(204, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508840157, 1),
+(205, 146, '您收到了一条新消息！', '', '', '', 'Common_system', 1508840186, 1),
+(206, 146, '您收到了一条新消息！', '', '', '', 'Common_system', 1508895265, 1),
+(207, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508895279, 1),
+(208, 146, '您收到了一条新消息！', '', '', '', 'Common_system', 1508895304, 1),
+(209, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508895323, 1),
+(210, 146, '您收到了一条新消息！', '', '', '', 'Common_system', 1508895328, 1),
+(211, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508900457, 1),
+(212, 100, '您收到了一条新消息！', '', '', '', 'Common_system', 1508900483, 1);
 
 -- --------------------------------------------------------
 
@@ -6814,7 +7150,54 @@ INSERT INTO `ocenter_message_old` (`id`, `content_id`, `from_uid`, `to_uid`, `cr
 (5, 5, 100, 1, 1507465616, 1, 1507468853, 1, 'Common_system', ''),
 (10, 10, 100, 1, 1507532490, 1, 1507532499, 1, 'Common_system', ''),
 (11, 11, 100, 1, 1507532590, 1, 1507532592, 1, 'Common_system', ''),
-(12, 12, 100, 1, 1507534076, 1, 1507534081, 1, 'Common_system', '');
+(12, 12, 100, 1, 1507534076, 1, 1507534081, 1, 'Common_system', ''),
+(13, 13, 100, 1, 1507534970, 1, 1507534973, 1, 'Common_system', ''),
+(206, 205, 146, 1, 1508840186, 1, 1508841227, 1, 'Common_system', ''),
+(205, 204, 100, 1, 1508840157, 1, 1508841227, 1, 'Common_system', ''),
+(204, 203, 146, 1, 1508827770, 1, 1508841227, 1, 'Common_system', ''),
+(203, 202, 100, 1, 1508827758, 1, 1508841227, 1, 'Common_system', ''),
+(202, 201, 100, 1, 1508827733, 1, 1508841227, 1, 'Common_system', ''),
+(201, 200, 100, 1, 1508827716, 1, 1508841227, 1, 'Common_system', ''),
+(200, 199, 146, 1, 1508827712, 1, 1508841227, 1, 'Common_system', ''),
+(199, 198, 146, 1, 1508827702, 1, 1508841227, 1, 'Common_system', ''),
+(198, 197, 146, 1, 1508827675, 1, 1508841227, 1, 'Common_system', ''),
+(197, 196, 100, 1, 1508827660, 1, 1508841227, 1, 'Common_system', ''),
+(196, 195, 100, 1, 1508827594, 1, 1508827623, 1, 'Common_system', ''),
+(195, 194, 100, 1, 1508827587, 1, 1508827623, 1, 'Common_system', ''),
+(194, 193, 100, 1, 1508827499, 1, 1508827623, 1, 'Common_system', ''),
+(193, 192, 100, 1, 1508827491, 1, 1508827623, 1, 'Common_system', ''),
+(192, 191, 100, 1, 1508827443, 1, 1508827623, 1, 'Common_system', ''),
+(191, 190, 100, 1, 1508827377, 1, 1508827623, 1, 'Common_system', ''),
+(190, 189, 100, 1, 1508827369, 1, 1508827623, 1, 'Common_system', ''),
+(189, 188, 100, 1, 1508827334, 1, 1508827623, 1, 'Common_system', ''),
+(188, 187, 100, 1, 1508827329, 1, 1508827623, 1, 'Common_system', ''),
+(187, 186, 100, 1, 1508827250, 1, 1508827623, 1, 'Common_system', ''),
+(186, 185, 100, 1, 1508827204, 1, 1508827623, 1, 'Common_system', ''),
+(185, 184, 100, 1, 1508827191, 1, 1508827623, 1, 'Common_system', ''),
+(184, 183, 100, 1, 1508827168, 1, 1508827623, 1, 'Common_system', ''),
+(183, 182, 100, 1, 1508827104, 1, 1508827623, 1, 'Common_system', ''),
+(182, 181, 100, 1, 1508827019, 1, 1508827623, 1, 'Common_system', ''),
+(181, 180, 100, 1, 1508826913, 1, 1508827623, 1, 'Common_system', ''),
+(180, 179, 100, 1, 1508826385, 1, 1508827623, 1, 'Common_system', ''),
+(179, 178, 100, 1, 1508822692, 1, 1508827623, 1, 'Common_system', ''),
+(178, 177, 100, 1, 1508822682, 1, 1508827623, 1, 'Common_system', ''),
+(177, 176, 100, 1, 1508821390, 1, 1508827623, 1, 'Common_system', ''),
+(176, 175, 100, 1, 1508821378, 1, 1508827623, 1, 'Common_system', ''),
+(175, 174, 100, 1, 1508821341, 1, 1508827623, 1, 'Common_system', ''),
+(174, 173, 100, 1, 1508820895, 1, 1508827623, 1, 'Common_system', ''),
+(173, 172, 100, 1, 1508820176, 1, 1508827623, 1, 'Common_system', ''),
+(172, 171, 100, 1, 1508820130, 1, 1508827623, 1, 'Common_system', ''),
+(171, 170, 100, 1, 1508819897, 1, 1508827623, 1, 'Common_system', ''),
+(170, 169, 100, 1, 1508727458, 1, 1508730851, 1, 'Common_system', ''),
+(169, 168, 100, 1, 1508726199, 1, 1508730851, 1, 'Common_system', ''),
+(168, 167, 100, 1, 1508725991, 1, 1508730851, 1, 'Common_system', ''),
+(167, 166, 100, 1, 1508725865, 1, 1508730851, 1, 'Common_system', ''),
+(166, 165, 100, 1, 1508725649, 1, 1508730851, 1, 'Common_system', ''),
+(165, 164, 100, 1, 1508031945, 1, 1508031946, 1, 'Common_system', ''),
+(164, 163, 100, 1, 1508031840, 1, 1508031875, 1, 'Common_system', ''),
+(18, 18, 1, 1, 1507602836, 1, 1507603672, 1, 'Common_system', ''),
+(17, 17, 100, 1, 1507536526, 1, 1507536529, 1, 'Common_system', ''),
+(14, 14, 100, 1, 1507535010, 1, 1507535017, 1, 'Common_system', '');
 
 -- --------------------------------------------------------
 
@@ -6919,7 +7302,10 @@ INSERT INTO `ocenter_module` (`id`, `name`, `alias`, `version`, `is_com`, `show_
 (14, 'Coin', '买卖中心', '1.0.0', 0, 1, '买卖模块，比特币交易中心', 'sobit', 'http://www.sobit123.com', 'Coin/index/index', 1, 0, 'rss', 1, 'Admin/Coin/index', 0, '', 0),
 (15, 'Bclient', '商业版客户端', '1.0.0', 1, 0, '商业版客户端，商业客户使用', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', 'Bclient/index/index', 1, 0, 'map-marker', 1, 'Admin/Bclient/index', 0, '', 0),
 (16, 'Ad', '发布广告', '1.0.0', 0, 1, '买卖模块，比特币交易中心', 'sobit', 'http://www.sobit123.com', 'Coin/index/index', 1, 0, 'rss', 1, 'Admin/Coin/index', 0, '', 0),
-(17, 'News', '资讯', '2.4.1', 0, 1, '资讯模块，用户可前台投稿的CMS模块', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', 'News/index/index', 1, 0, 'rss', 1, 'Admin/News/index', 0, '', 0);
+(17, 'News', '资讯', '2.4.1', 0, 1, '资讯模块，用户可前台投稿的CMS模块', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', 'News/index/index', 1, 0, 'rss', 1, 'Admin/News/index', 0, '', 0),
+(18, 'Forum', '论坛Pro', '5.0.0', 0, 1, '论坛模块，轻便强大的论坛模块', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', 'Forum/index/index', 1, 0, 'comments', 1, 'Admin/Forum/post', 0, '', 0),
+(19, 'Help', '帮助', '1.0.0', 0, 1, '帮助信息', 'sobit', 'http://www.sobit123.com', 'Coin/index/index', 1, 0, 'rss', 1, 'Admin/Coin/index', 0, '', 0),
+(20, 'Question', '问答', '5.0.0', 1, 1, '问答模块，用户可前台发布、回答问题', '嘉兴想天信息科技有限公司', 'http://www.ourstu.com', 'Question/index/index', 1, 0, 'question', 1, 'Admin/Question/index', 0, '', 0);
 
 -- --------------------------------------------------------
 
@@ -8103,6 +8489,158 @@ CREATE TABLE `ocenter_picture` (
   `height` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- 转存表中的数据 `ocenter_picture`
+--
+
+INSERT INTO `ocenter_picture` (`id`, `type`, `path`, `url`, `md5`, `sha1`, `status`, `create_time`, `width`, `height`) VALUES
+(24, 'local', '/Uploads/Picture/2017-10-23/59ee04aa81cf7.png', '', '6cf31ea856a0bfdef4f943efe94434ae', 'bb210077a2da75c6cb4cf4b1dd32804e7fd5d137', 1, 1508770986, 64, 64),
+(25, 'local', '/Uploads/Picture/2017-10-24/59eec27f31a1c.png', '', 'f3de2f6380be74262205c1656772f1b8', '91052030b8a27a38ccb25a0a0c0dc660ba316d0c', 1, 1508819583, 64, 64),
+(26, 'local', '/Uploads/Picture/2017-10-24/59eec308ace28.png', '', 'a9fc668850338f25decb74db686c1335', '86375d491f81c7eee441618bce9c8a4dcb18de79', 1, 1508819720, 64, 64),
+(27, 'local', '/Uploads/Picture/2017-10-24/59eec32ccb489.png', '', 'c89980156130df62f18369007ddd0590', '4a4a323c4617d4dfbda3c39ed98987a07561876e', 1, 1508819756, 64, 64),
+(28, 'local', '/Uploads/Picture/2017-10-24/59eec339a0094.png', '', 'cd0b0dc80c3b31b0d3b8c30b57fccec7', 'dfd71c96149e3675266b773351cb27cc104f41ed', 1, 1508819769, 64, 64),
+(29, 'local', '/Uploads/Picture/2017-10-24/59eec339a570d.png', '', '539bcdaaaac3e26dc4c5c9a121fef51d', 'be76906252b0a96d2cd4fa92291321889ae4440c', 1, 1508819769, 64, 64),
+(30, 'local', '/Uploads/Picture/2017-10-24/59eecea48ac39.png', '', 'a9fde2f741b9425dd789046161c92203', '9014754aba339f2315e8300cc6f190eea767f83e', 1, 1508822692, 64, 64),
+(31, 'local', '/Uploads/Picture/2017-10-24/59eedd1123363.png', '', 'a7ab9c1c7c82cf41b1a0d87579ed2749', 'edea9cd9a684431fec863d8c0683b0d618f30b8a', 1, 1508826385, 64, 64),
+(32, 'local', '/Uploads/Picture/2017-10-24/59eedf2136eec.jpeg', '', 'b2d624ad60449c0d2d48abef94470499', '60c0235d5c06be917a8776f34d875ed52d7537e6', 1, 1508826913, 1522, 850);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_question`
+--
+
+CREATE TABLE `ocenter_question` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `category` int(11) NOT NULL COMMENT '问题分类',
+  `topic_id` varchar(200) NOT NULL,
+  `title` varchar(200) NOT NULL COMMENT '问题标题',
+  `description` text NOT NULL COMMENT '问题描述',
+  `answer_num` int(10) NOT NULL DEFAULT '0' COMMENT '回答数',
+  `best_answer` int(11) NOT NULL COMMENT '最佳答案id',
+  `good_question` int(10) NOT NULL DEFAULT '0' COMMENT '好问题（用于好问题排序：数值=支持-反对）',
+  `status` tinyint(4) NOT NULL,
+  `is_recommend` tinyint(2) NOT NULL DEFAULT '0' COMMENT '是否被推荐',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
+  `update_time` int(11) NOT NULL COMMENT '更新时间',
+  `leixing` text CHARACTER SET utf8mb4 NOT NULL COMMENT '类型',
+  `score_num` int(11) NOT NULL COMMENT '数额',
+  `img_id` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='问题表';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_question_answer`
+--
+
+CREATE TABLE `ocenter_question_answer` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `reply_id` int(11) NOT NULL,
+  `topic_id` varchar(200) NOT NULL,
+  `content` text NOT NULL COMMENT '回答内容',
+  `support` int(10) NOT NULL DEFAULT '0' COMMENT '支持数',
+  `oppose` int(10) NOT NULL DEFAULT '0' COMMENT '反对数',
+  `status` tinyint(4) NOT NULL,
+  `update_time` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='问题回答表';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_question_category`
+--
+
+CREATE TABLE `ocenter_question_category` (
+  `id` int(11) NOT NULL,
+  `title` varchar(25) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `sort` int(11) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='问题分类表';
+
+--
+-- 转存表中的数据 `ocenter_question_category`
+--
+
+INSERT INTO `ocenter_question_category` (`id`, `title`, `pid`, `sort`, `status`) VALUES
+(1, '默认分类', 0, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_question_rank`
+--
+
+CREATE TABLE `ocenter_question_rank` (
+  `uid` int(11) NOT NULL,
+  `support_count` int(11) NOT NULL COMMENT '回答总被点赞数',
+  `answer_count` int(11) NOT NULL COMMENT '回答数',
+  `best_answer_count` int(11) NOT NULL COMMENT '总最佳回答数'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='问答达人表';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_question_reward_record`
+--
+
+CREATE TABLE `ocenter_question_reward_record` (
+  `id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `to_uid` int(11) NOT NULL,
+  `type` tinyint(4) NOT NULL COMMENT '打赏类型',
+  `num` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `create_time` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='问答打赏记录表';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_question_search`
+--
+
+CREATE TABLE `ocenter_question_search` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `historical` varchar(50) NOT NULL COMMENT '历史记录',
+  `create_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='问答';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_question_support`
+--
+
+CREATE TABLE `ocenter_question_support` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `tablename` varchar(25) NOT NULL COMMENT '表名：question；question_answer',
+  `row` int(11) NOT NULL COMMENT '行号',
+  `type` int(11) NOT NULL COMMENT '类型：0：反对，1：支持'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='问题支持反对表';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ocenter_question_topic`
+--
+
+CREATE TABLE `ocenter_question_topic` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL COMMENT '话题名称',
+  `logo` int(11) NOT NULL COMMENT '话题图标',
+  `num` int(11) NOT NULL COMMENT '话题问答数',
+  `create_time` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- --------------------------------------------------------
 
 --
@@ -8327,7 +8865,9 @@ INSERT INTO `ocenter_score_log` (`id`, `uid`, `ip`, `type`, `action`, `value`, `
 (17, 123, 2130706433, 1, 'inc', 10, 10, 1508050730, 'xcvxcv在2017-10-15 14:58登录了账号【积分：+10分】', 'member', 123),
 (18, 147, 2130706433, 1, 'inc', 10, 10, 1508128102, 'vbboy2015在2017-10-16 12:28登录了账号【积分：+10分】', 'member', 147),
 (19, 146, 2130706433, 1, 'inc', 10, 10, 1508142183, 'sonia在2017-10-16 16:23登录了账号【积分：+10分】', 'member', 146),
-(20, 146, 2130706433, 1, 'inc', 10, 20, 1508486412, 'sonia在2017-10-20 16:00登录了账号【积分：+10分】', 'member', 146);
+(20, 146, 2130706433, 1, 'inc', 10, 20, 1508486412, 'sonia在2017-10-20 16:00登录了账号【积分：+10分】', 'member', 146),
+(21, 100, 2130706433, 1, 'inc', 10, 41, 1508724928, 'vbboy在2017-10-23 10:15登录了账号【积分：+10分】', 'member', 100),
+(22, 146, 2130706433, 1, 'inc', 10, 30, 1508827634, 'sonia在2017-10-24 14:47登录了账号【积分：+10分】', 'member', 146);
 
 -- --------------------------------------------------------
 
@@ -8450,9 +8990,8 @@ CREATE TABLE `ocenter_session` (
 --
 
 INSERT INTO `ocenter_session` (`session_id`, `session_expire`, `session_data`) VALUES
-('r2n3v6tvfbmeb5am3s54crt8b5', 1508631589, ''),
-('ho09jclbgubtin28vk8siofvt0', 1508631589, ''),
-('kvmbfpuu2k0kphjp7tedjafd55', 1508631651, '');
+('a7siun3h1n8c06ooopsqpd3vc4', 1508936242, 'opensns|a:4:{s:18:\"login_http_referer\";s:56:\"http://127.0.0.1/yoyo/index.php?s=/coin/index/index.html\";s:9:\"user_auth\";a:5:{s:3:\"uid\";s:3:\"100\";s:8:\"username\";s:0:\"\";s:15:\"last_login_time\";s:10:\"1508920610\";s:7:\"role_id\";s:1:\"1\";s:5:\"audit\";s:1:\"1\";}s:14:\"user_auth_sign\";s:40:\"0499cd21009b7a9bed3069674b8d9557b3e85a36\";s:15:\"_AUTH_LIST_1001\";a:10:{i:0;s:24:\"weibo/index/dosendrepost\";i:1;s:18:\"weibo/index/dosend\";i:2;s:21:\"weibo/index/docomment\";i:3;s:19:\"weibo/topic/beadmin\";i:4;s:14:\"news/index/add\";i:5;s:19:\"forum/index/addpost\";i:6;s:19:\"forum/index/doreply\";i:7;s:24:\"forum/lzl/dosendlzlreply\";i:8;s:19:\"question/answer/add\";i:9;s:18:\"question/index/add\";}}'),
+('4vag5n03p2p447v5blujv1kcq6', 1508936190, 'opensns|a:3:{s:18:\"login_http_referer\";s:56:\"http://127.0.0.1/yoyo/index.php?s=/home/index/index.html\";s:9:\"user_auth\";a:5:{s:3:\"uid\";s:3:\"146\";s:8:\"username\";s:5:\"sonia\";s:15:\"last_login_time\";s:10:\"1508920577\";s:7:\"role_id\";s:1:\"0\";s:5:\"audit\";s:1:\"1\";}s:14:\"user_auth_sign\";s:40:\"6e271d54d25b14e4807825ae639cb5cbf86e0431\";}');
 
 -- --------------------------------------------------------
 
@@ -8550,8 +9089,9 @@ CREATE TABLE `ocenter_talk` (
 --
 
 INSERT INTO `ocenter_talk` (`id`, `create_time`, `uids`, `update_time`, `status`, `title`, `order_id`) VALUES
-(1, 1507534966, '[1],[100]', 1507536526, 1, 'vbboy 和 yoyocoinsdd的聊天', '2017100954574853'),
-(2, 1508031829, '[1],[100]', 1508031945, 1, 'vbboy 和 yoyocoinsdd的聊天', '2017101553975555');
+(1, 1508900365, '[100],[1]', 1508900524, 1, 'yoyocoinsdd 和 vbboy的聊天', '2017102510097509'),
+(2, 1508924573, '[1],[100]', 1508924573, 1, 'vbboy 和 yoyocoinsdd的聊天', '2017102510098485'),
+(3, 1508924904, '[1],[100]', 1508924904, 1, 'vbboy 和 yoyocoinsdd的聊天', '2017102556971015');
 
 -- --------------------------------------------------------
 
@@ -8564,23 +9104,22 @@ CREATE TABLE `ocenter_talk_message` (
   `content` varchar(500) NOT NULL,
   `uid` int(11) NOT NULL,
   `create_time` int(11) NOT NULL,
-  `talk_id` int(11) NOT NULL
+  `talk_id` int(11) NOT NULL,
+  `type` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='聊天消息表';
 
 --
 -- 转存表中的数据 `ocenter_talk_message`
 --
 
-INSERT INTO `ocenter_talk_message` (`id`, `content`, `uid`, `create_time`, `talk_id`) VALUES
-(1, '121', 100, 1507534970, 1),
-(2, '我在', 1, 1507534992, 1),
-(3, '你在哪个位置', 1, 1507535002, 1),
-(4, 'OK', 100, 1507535010, 1),
-(5, '好了', 100, 1507536526, 1),
-(6, '111', 100, 1508031840, 2),
-(7, '11', 1, 1508031921, 2),
-(8, 'dasf', 1, 1508031939, 2),
-(9, 'asd', 100, 1508031945, 2);
+INSERT INTO `ocenter_talk_message` (`id`, `content`, `uid`, `create_time`, `talk_id`, `type`) VALUES
+(1, '111', 1, 1508900450, 1, 1),
+(2, '2', 100, 1508900457, 1, 1),
+(3, '12', 1, 1508900475, 1, 1),
+(4, '21', 1, 1508900479, 1, 1),
+(5, '1122', 100, 1508900483, 1, 1),
+(6, '112233', 1, 1508900508, 1, 1),
+(7, '223344', 1, 1508900524, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -8628,6 +9167,14 @@ CREATE TABLE `ocenter_ticket` (
   `create_time` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='支持工单';
 
+--
+-- 转存表中的数据 `ocenter_ticket`
+--
+
+INSERT INTO `ocenter_ticket` (`id`, `uid`, `type`, `child_type`, `order_id`, `content`, `images`, `create_time`) VALUES
+(1, 100, '1', NULL, 0, 'fsdf', '', 1508770128),
+(2, 100, '4', NULL, 0, 'sdfsdf', '24,', 1508770988);
+
 -- --------------------------------------------------------
 
 --
@@ -8671,14 +9218,14 @@ CREATE TABLE `ocenter_tradead` (
   `formula` char(50) DEFAULT NULL COMMENT '计价公式',
   `price` decimal(10,2) NOT NULL COMMENT '价格',
   `pre_price` tinyint(2) NOT NULL COMMENT '溢价',
-  `low_price` decimal(10,2) NOT NULL COMMENT '最低价',
   `max_price` int(11) DEFAULT NULL COMMENT 'max',
   `min_price` int(11) DEFAULT NULL COMMENT 'min',
   `pay_type` char(50) NOT NULL COMMENT '付款方式',
+  `pay_remark` varchar(200) DEFAULT NULL COMMENT '付款方式备注',
   `pay_time` int(11) DEFAULT NULL,
   `pay_addr` varchar(50) DEFAULT NULL COMMENT '见面地点',
-  `pay_text` text COMMENT '交易条款',
-  `auto_message` varchar(100) DEFAULT NULL COMMENT '自动回复消息',
+  `pay_text` varchar(200) DEFAULT NULL COMMENT '交易条款',
+  `auto_message` varchar(200) DEFAULT NULL COMMENT '自动回复消息',
   `is_safe` tinyint(2) NOT NULL DEFAULT '0' COMMENT '安全验证',
   `is_trust` tinyint(2) NOT NULL DEFAULT '0' COMMENT '信任验证',
   `is_price` tinyint(2) NOT NULL DEFAULT '0' COMMENT '固定价格',
@@ -8704,11 +9251,10 @@ CREATE TABLE `ocenter_tradead` (
 -- 转存表中的数据 `ocenter_tradead`
 --
 
-INSERT INTO `ocenter_tradead` (`id`, `uid`, `type`, `coin_type`, `country`, `currency`, `market`, `formula`, `price`, `pre_price`, `low_price`, `max_price`, `min_price`, `pay_type`, `pay_time`, `pay_addr`, `pay_text`, `auto_message`, `is_safe`, `is_trust`, `is_price`, `start0`, `end0`, `start1`, `end1`, `start2`, `end2`, `start3`, `end3`, `start4`, `end4`, `start5`, `end5`, `start6`, `end6`, `status`, `create_time`) VALUES
-(4003, 146, 3, 1, 45, 'CNY', 'BitfinexUSD', 'BitfinexUSD*USD_in_CNY*1.05', '39338.13', 5, '0.00', 50000, 5000, '2,3', 180, 'sdfsdf', '请先确认您能够在半小时内完成现金付款再发出交易。\r\n一旦上线核实支付后会马上释放，所以请尽管安心下单', '', 0, 0, 0, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, 0, 1508486627),
-(4004, 146, 4, 1, 45, 'CNY', 'BitfinexUSD', 'BitfinexUSD*USD_in_CNY*1.04', '38963.48', 4, '0.00', 50000, 5000, '2,4', 180, '123123', '请先确认您能够在半小时内完成现金付款再发出交易。\r\n一旦上线核实支付后会马上释放，所以请尽管安心下单', '', 0, 0, 0, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, 0, 1508487203),
-(4005, 146, 1, 1, 45, 'CNY', 'BitfinexUSD', 'BitfinexUSD*USD_in_CNY*1.04', '38963.48', 4, '0.00', 50000, 5000, '6,8', 180, '卑微', '能看到此广告，就表示在线。\r<br>\r<br>3年老帐号，100%能信任。\r<br>\r<br>English OK! \r<br>中文 \r<br>', '', 0, 0, 0, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, 1, 1508487246),
-(4006, 146, 2, 1, 45, 'CNY', 'BitfinexUSD', 'BitfinexUSD*USD_in_CNY*1.03', '38588.83', 3, '0.00', 100000, 6000, '3', 180, '', '请先确认您能够在半小时内完成现金付款再发出交易。\r\n一旦上线核实支付后会马上释放，所以请尽管安心下单并支付。', '', 0, 0, 0, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, 0, 1508488723);
+INSERT INTO `ocenter_tradead` (`id`, `uid`, `type`, `coin_type`, `country`, `currency`, `market`, `formula`, `price`, `pre_price`, `max_price`, `min_price`, `pay_type`, `pay_remark`, `pay_time`, `pay_addr`, `pay_text`, `auto_message`, `is_safe`, `is_trust`, `is_price`, `start0`, `end0`, `start1`, `end1`, `start2`, `end2`, `start3`, `end3`, `start4`, `end4`, `start5`, `end5`, `start6`, `end6`, `status`, `create_time`) VALUES
+(4003, 100, 1, 1, 45, 'CNY', 'BitfinexUSD', 'BitfinexUSD*USD_in_CNY*1.02', '38214.19', 2, 100000, 50000, '2,3', '支付宝：18507358828，蒋志波\r<br>微信：18507358828，蒋志波', 60, '', '请尽快付款谢谢', '', 0, 0, 0, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, 1, 1508895188),
+(4004, 1, 1, 1, 45, 'CNY', 'BitfinexUSD', 'BitfinexUSD*USD_in_CNY*1.02', '38214.19', 2, 100000, 5000, '3,4', '微信：18888888888 小罗艳\r<br>银行卡：6222021911004922636', 180, '', '请尽快付款', '', 0, 0, 0, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, 1, 1508924449),
+(4005, 1, 2, 1, 45, 'CNY', 'BitfinexUSD', 'BitfinexUSD*USD_in_CNY*1.02', '38214.19', 2, 50000, 10000, '1,2,3', '支付宝：18888888888 小艳艳', 180, '', '请留下您的收款方式', '', 0, 0, 0, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, -2, 25, 1, 1508924509);
 
 -- --------------------------------------------------------
 
@@ -8722,24 +9268,24 @@ CREATE TABLE `ocenter_trade_order` (
   `order_id` varchar(20) NOT NULL,
   `ad_uid` int(11) NOT NULL,
   `get_uid` int(11) NOT NULL,
-  `type` tinyint(2) NOT NULL COMMENT '广告类型：1在线sell，2在线buy，3本地sell，4本地buy',
-  `coin_type` tinyint(2) NOT NULL COMMENT '币种',
-  `coin_num` decimal(10,8) NOT NULL COMMENT '交易数量',
-  `price` decimal(10,4) NOT NULL COMMENT '交易价格',
-  `fee` decimal(10,8) NOT NULL COMMENT '手续费',
-  `currency` varchar(5) NOT NULL COMMENT '货币类型',
-  `pay_text` varchar(50) DEFAULT NULL COMMENT '交易条款',
+  `coin_num` decimal(10,6) NOT NULL COMMENT '交易数量',
+  `trade_price` decimal(10,2) NOT NULL COMMENT '交易金额',
+  `fee` decimal(10,6) NOT NULL COMMENT '手续费',
+  `pay_code` char(7) NOT NULL COMMENT '付款参考编码',
+  `pay_text` varchar(200) DEFAULT NULL COMMENT '交易条款',
   `status` tinyint(2) NOT NULL COMMENT '状态：1等待付款，2付款完毕，3确认完成，4，申诉，0取消',
-  `create_time` int(11) NOT NULL
+  `create_time` int(11) NOT NULL,
+  `update_time` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='交易表';
 
 --
 -- 转存表中的数据 `ocenter_trade_order`
 --
 
-INSERT INTO `ocenter_trade_order` (`id`, `ad_id`, `order_id`, `ad_uid`, `get_uid`, `type`, `coin_type`, `coin_num`, `price`, `fee`, `currency`, `pay_text`, `status`, `create_time`) VALUES
-(1, 4014, '2017100954574853', 1, 100, 4, 1, '0.44444000', '11111.0000', '0.00222220', 'CNY', 'sdfsadfasdsad', 1, 1507534966),
-(2, 4013, '2017101553975555', 1, 100, 3, 2, '0.44444000', '11111.0000', '0.00222220', 'CNY', 'sdfsdf', 1, 1508031829);
+INSERT INTO `ocenter_trade_order` (`id`, `ad_id`, `order_id`, `ad_uid`, `get_uid`, `coin_num`, `trade_price`, `fee`, `pay_code`, `pay_text`, `status`, `create_time`, `update_time`) VALUES
+(1, 4003, '2017102510097509', 100, 1, '1.308414', '50000.00', '0.006542', 'DLn82ke', '请尽快放行比特币，谢谢', 0, 1508900365, NULL),
+(2, 4004, '2017102510098485', 1, 100, '0.130841', '5000.00', '0.000654', '5hTAGir', '能在10分钟内交易完吗？', 0, 1508924573, NULL),
+(3, 4005, '2017102556971015', 1, 100, '0.261683', '10000.00', '0.001308', 'xlDlpeP', '', 0, 1508924904, NULL);
 
 -- --------------------------------------------------------
 
@@ -8781,10 +9327,10 @@ CREATE TABLE `ocenter_ucenter_member` (
 --
 
 INSERT INTO `ocenter_ucenter_member` (`id`, `username`, `password`, `safe_pw`, `email`, `mobile`, `reg_time`, `reg_ip`, `last_login_time`, `last_login_ip`, `update_time`, `status`, `type`, `google_ver`) VALUES
-(1, 'yoyoadmin', '1ad5cc9a96fcb8a42881f0b875dbbe69', '', 'admin@admin.com', '', 1506049131, 2130706433, 1508576069, 2130706433, 1506049131, 1, 1, '0'),
-(100, '', '1ad5cc9a96fcb8a42881f0b875dbbe69', 'qqwwee', 'vbboy2015@163.com', '18507358828', 1507711542, 2130706433, 1508037773, 2130706433, 1507711542, 1, 2, 'F2WXMDXO5NBMMHA7'),
+(1, 'yoyoadmin', '1ad5cc9a96fcb8a42881f0b875dbbe69', '', 'admin@admin.com', '', 1506049131, 2130706433, 1508934032, 2130706433, 1506049131, 1, 1, '0'),
+(100, '', '1ad5cc9a96fcb8a42881f0b875dbbe69', 'qqwwee', 'vbboy2015@163.com', '18507358828', 1507711542, 2130706433, 1508924523, 2130706433, 1507711542, 1, 2, ''),
 (147, 'vbboy2015', '1ad5cc9a96fcb8a42881f0b875dbbe69', '', 'vbboy2012@163.com', '', 1508127984, 2130706433, 1508128099, 2130706433, 1508127984, 1, 1, NULL),
-(146, 'sonia', '1ad5cc9a96fcb8a42881f0b875dbbe69', '', 'soni@vip.qq.com', '', 1508127913, 2130706433, 1508504956, 2130706433, 1508127913, 1, 1, NULL),
+(146, 'sonia', '1ad5cc9a96fcb8a42881f0b875dbbe69', '', 'soni@vip.qq.com', '', 1508127913, 2130706433, 1508934611, 2130706433, 1508127913, 1, 1, NULL),
 (145, 'bobo', '1ad5cc9a96fcb8a42881f0b875dbbe69', '', '362395084@qq.com', '', 1508127436, 2130706433, 1508127863, 2130706433, 1508127436, 3, 1, NULL);
 
 -- --------------------------------------------------------
@@ -8917,7 +9463,7 @@ CREATE TABLE `ocenter_user_nav` (
 
 INSERT INTO `ocenter_user_nav` (`id`, `title`, `url`, `sort`, `create_time`, `update_time`, `status`, `target`, `color`, `band_color`, `band_text`, `icon`) VALUES
 (1, '我的广告', '/ucenter/myad', 0, 0, 0, 1, 0, '#000000', '#000000', '', '-'),
-(2, '我的订单', '/ucenter/myorder', 1, 0, 0, 1, 0, '#000000', '#000000', '', '-'),
+(2, '我的交易', '/ucenter/myorder', 1, 0, 0, 1, 0, '#000000', '#000000', '', '-'),
 (3, '消息中心', 'ucenter/message/message', 2, 0, 0, 1, 0, '#000000', '#000000', '', '-'),
 (4, '我的收藏', 'ucenter/Collection/index', 3, 0, 0, 1, 0, '#000000', '#000000', '', '-'),
 (5, '申请认证', 'ucenter/attest/process/go_index/1', 4, 0, 0, 1, 0, '#000000', '#000000', '', '-');
@@ -9142,8 +9688,8 @@ CREATE TABLE `ocenter_weibo` (
 --
 
 INSERT INTO `ocenter_weibo` (`id`, `uid`, `content`, `create_time`, `comment_count`, `status`, `is_top`, `type`, `data`, `repost_count`, `from`, `crowd_id`, `pos`, `reply_time`, `is_crowd_top`, `geolocation_id`) VALUES
-(1, 1, '/br \n/br \n美国证券交易委员会（SEC）今天发布了一项有关新建专门的“网络单位（Cyber/nbUnit）”的新闻公告。值得注意的是，这一新机构将执行一些对象为数字货币的监管。/br \n/br \n广阔的监管范围/br \n/br \nSEC指出：/br \n/br \n“网络单位”将聚焦网络违规操作，如：/br \n/br \n重磅：SEC宣布创建新的机构/nb对ICO和分布式账本违规进行监管/br \n/br \n如果上述行为全部被纳入这个新的“网络', 1506494855, 0, 1, 0, 'long_weibo', '', 0, '', 0, '', 0, 0, 0),
-(2, 100, '1、登陆https://ebtcbank.com/，未注册用户请点击蓝色注册按钮。/br \n/br \n/br \n2、按要求填写注册信息，设置交易密码，进行实名认证，注册成功即可点击去交易。/br \n/br \n/br \n/br \n/br \n3、在财务中心，点击转入虚拟币，下拉菜单选择并点击钛值（TV）。/br \n/br \n/br \n4、出现钛值（TV）地址，进行复制。/br \n/br \n5、登陆www.btc123.com,在资产管理中选择TV资产，点击提现TV。/br \n/br \n/br \n6、发送至', 1506498138, 0, 1, 0, 'long_weibo', '', 0, '', 0, '', 0, 0, 0);
+(1, 1, '/br \n/br \n美国证券交易委员会（SEC）今天发布了一项有关新建专门的“网络单位（Cyber/nbUnit）”的新闻公告。值得注意的是，这一新机构将执行一些对象为数字货币的监管。/br \n/br \n广阔的监管范围/br \n/br \nSEC指出：/br \n/br \n“网络单位”将聚焦网络违规操作，如：/br \n/br \n重磅：SEC宣布创建新的机构/nb对ICO和分布式账本违规进行监管/br \n/br \n如果上述行为全部被纳入这个新的“网络', 1506494855, 0, -1, 0, 'long_weibo', '', 0, '', 0, '', 0, 0, 0),
+(2, 100, '1、登陆https://ebtcbank.com/，未注册用户请点击蓝色注册按钮。/br \n/br \n/br \n2、按要求填写注册信息，设置交易密码，进行实名认证，注册成功即可点击去交易。/br \n/br \n/br \n/br \n/br \n3、在财务中心，点击转入虚拟币，下拉菜单选择并点击钛值（TV）。/br \n/br \n/br \n4、出现钛值（TV）地址，进行复制。/br \n/br \n5、登陆www.btc123.com,在资产管理中选择TV资产，点击提现TV。/br \n/br \n/br \n6、发送至', 1506498138, 0, -1, 0, 'long_weibo', '', 0, '', 0, '', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -9575,6 +10121,55 @@ ALTER TABLE `ocenter_follow`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `ocenter_forum`
+--
+ALTER TABLE `ocenter_forum`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_forum_bookmark`
+--
+ALTER TABLE `ocenter_forum_bookmark`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_forum_follow`
+--
+ALTER TABLE `ocenter_forum_follow`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_forum_lzl_reply`
+--
+ALTER TABLE `ocenter_forum_lzl_reply`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_forum_pay`
+--
+ALTER TABLE `ocenter_forum_pay`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_forum_post`
+--
+ALTER TABLE `ocenter_forum_post`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_forum_post_reply`
+--
+ALTER TABLE `ocenter_forum_post_reply`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_forum_type`
+--
+ALTER TABLE `ocenter_forum_type`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
 -- Indexes for table `ocenter_hooks`
 --
 ALTER TABLE `ocenter_hooks`
@@ -9852,6 +10447,49 @@ ALTER TABLE `ocenter_pay`
 -- Indexes for table `ocenter_picture`
 --
 ALTER TABLE `ocenter_picture`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_question`
+--
+ALTER TABLE `ocenter_question`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `topic_id` (`topic_id`);
+
+--
+-- Indexes for table `ocenter_question_answer`
+--
+ALTER TABLE `ocenter_question_answer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_question_category`
+--
+ALTER TABLE `ocenter_question_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_question_reward_record`
+--
+ALTER TABLE `ocenter_question_reward_record`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_question_search`
+--
+ALTER TABLE `ocenter_question_search`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_question_support`
+--
+ALTER TABLE `ocenter_question_support`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ocenter_question_topic`
+--
+ALTER TABLE `ocenter_question_topic`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -10186,17 +10824,17 @@ ALTER TABLE `ocenter_weibo_topic_link`
 -- 使用表AUTO_INCREMENT `ocenter_action`
 --
 ALTER TABLE `ocenter_action`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=11005;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=11018;
 --
 -- 使用表AUTO_INCREMENT `ocenter_action_limit`
 --
 ALTER TABLE `ocenter_action_limit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- 使用表AUTO_INCREMENT `ocenter_action_log`
 --
 ALTER TABLE `ocenter_action_log`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=316;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=349;
 --
 -- 使用表AUTO_INCREMENT `ocenter_addons`
 --
@@ -10216,7 +10854,7 @@ ALTER TABLE `ocenter_advertisement`
 -- 使用表AUTO_INCREMENT `ocenter_adv_pos`
 --
 ALTER TABLE `ocenter_adv_pos`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=10000;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=10003;
 --
 -- 使用表AUTO_INCREMENT `ocenter_announce`
 --
@@ -10251,7 +10889,7 @@ ALTER TABLE `ocenter_auth_group`
 -- 使用表AUTO_INCREMENT `ocenter_auth_rule`
 --
 ALTER TABLE `ocenter_auth_rule`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '规则id,自增主键', AUTO_INCREMENT=10006;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '规则id,自增主键', AUTO_INCREMENT=10021;
 --
 -- 使用表AUTO_INCREMENT `ocenter_avatar`
 --
@@ -10261,7 +10899,7 @@ ALTER TABLE `ocenter_avatar`
 -- 使用表AUTO_INCREMENT `ocenter_channel`
 --
 ALTER TABLE `ocenter_channel`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '频道ID', AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '频道ID', AUTO_INCREMENT=13;
 --
 -- 使用表AUTO_INCREMENT `ocenter_checkin`
 --
@@ -10276,7 +10914,7 @@ ALTER TABLE `ocenter_coin_addr`
 -- 使用表AUTO_INCREMENT `ocenter_config`
 --
 ALTER TABLE `ocenter_config`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '配置ID', AUTO_INCREMENT=11741;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '配置ID', AUTO_INCREMENT=11745;
 --
 -- 使用表AUTO_INCREMENT `ocenter_consumption_log`
 --
@@ -10291,17 +10929,17 @@ ALTER TABLE `ocenter_country`
 -- 使用表AUTO_INCREMENT `ocenter_count_active`
 --
 ALTER TABLE `ocenter_count_active`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- 使用表AUTO_INCREMENT `ocenter_count_lost`
 --
 ALTER TABLE `ocenter_count_lost`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- 使用表AUTO_INCREMENT `ocenter_count_remain`
 --
 ALTER TABLE `ocenter_count_remain`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- 使用表AUTO_INCREMENT `ocenter_currency`
 --
@@ -10347,6 +10985,46 @@ ALTER TABLE `ocenter_file`
 --
 ALTER TABLE `ocenter_follow`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=207;
+--
+-- 使用表AUTO_INCREMENT `ocenter_forum`
+--
+ALTER TABLE `ocenter_forum`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- 使用表AUTO_INCREMENT `ocenter_forum_bookmark`
+--
+ALTER TABLE `ocenter_forum_bookmark`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- 使用表AUTO_INCREMENT `ocenter_forum_follow`
+--
+ALTER TABLE `ocenter_forum_follow`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+--
+-- 使用表AUTO_INCREMENT `ocenter_forum_lzl_reply`
+--
+ALTER TABLE `ocenter_forum_lzl_reply`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+--
+-- 使用表AUTO_INCREMENT `ocenter_forum_pay`
+--
+ALTER TABLE `ocenter_forum_pay`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- 使用表AUTO_INCREMENT `ocenter_forum_post`
+--
+ALTER TABLE `ocenter_forum_post`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+--
+-- 使用表AUTO_INCREMENT `ocenter_forum_post_reply`
+--
+ALTER TABLE `ocenter_forum_post_reply`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- 使用表AUTO_INCREMENT `ocenter_forum_type`
+--
+ALTER TABLE `ocenter_forum_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- 使用表AUTO_INCREMENT `ocenter_hooks`
 --
@@ -10411,17 +11089,17 @@ ALTER TABLE `ocenter_member`
 -- 使用表AUTO_INCREMENT `ocenter_menu`
 --
 ALTER TABLE `ocenter_menu`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '文档ID', AUTO_INCREMENT=13042;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '文档ID', AUTO_INCREMENT=13087;
 --
 -- 使用表AUTO_INCREMENT `ocenter_message`
 --
 ALTER TABLE `ocenter_message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=214;
 --
 -- 使用表AUTO_INCREMENT `ocenter_message_content`
 --
 ALTER TABLE `ocenter_message_content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
 --
 -- 使用表AUTO_INCREMENT `ocenter_message_type`
 --
@@ -10436,7 +11114,7 @@ ALTER TABLE `ocenter_mob_channel`
 -- 使用表AUTO_INCREMENT `ocenter_module`
 --
 ALTER TABLE `ocenter_module`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- 使用表AUTO_INCREMENT `ocenter_m_addons`
 --
@@ -10541,7 +11219,42 @@ ALTER TABLE `ocenter_pay`
 -- 使用表AUTO_INCREMENT `ocenter_picture`
 --
 ALTER TABLE `ocenter_picture`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键id自增', AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键id自增', AUTO_INCREMENT=33;
+--
+-- 使用表AUTO_INCREMENT `ocenter_question`
+--
+ALTER TABLE `ocenter_question`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1358;
+--
+-- 使用表AUTO_INCREMENT `ocenter_question_answer`
+--
+ALTER TABLE `ocenter_question_answer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+--
+-- 使用表AUTO_INCREMENT `ocenter_question_category`
+--
+ALTER TABLE `ocenter_question_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- 使用表AUTO_INCREMENT `ocenter_question_reward_record`
+--
+ALTER TABLE `ocenter_question_reward_record`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- 使用表AUTO_INCREMENT `ocenter_question_search`
+--
+ALTER TABLE `ocenter_question_search`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- 使用表AUTO_INCREMENT `ocenter_question_support`
+--
+ALTER TABLE `ocenter_question_support`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- 使用表AUTO_INCREMENT `ocenter_question_topic`
+--
+ALTER TABLE `ocenter_question_topic`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- 使用表AUTO_INCREMENT `ocenter_rank`
 --
@@ -10591,7 +11304,7 @@ ALTER TABLE `ocenter_schedule`
 -- 使用表AUTO_INCREMENT `ocenter_score_log`
 --
 ALTER TABLE `ocenter_score_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- 使用表AUTO_INCREMENT `ocenter_send_sms_log`
 --
@@ -10631,27 +11344,27 @@ ALTER TABLE `ocenter_sync_login`
 -- 使用表AUTO_INCREMENT `ocenter_talk`
 --
 ALTER TABLE `ocenter_talk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- 使用表AUTO_INCREMENT `ocenter_talk_message`
 --
 ALTER TABLE `ocenter_talk_message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- 使用表AUTO_INCREMENT `ocenter_talk_message_push`
 --
 ALTER TABLE `ocenter_talk_message_push`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=310;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- 使用表AUTO_INCREMENT `ocenter_talk_push`
 --
 ALTER TABLE `ocenter_talk_push`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- 使用表AUTO_INCREMENT `ocenter_ticket`
 --
 ALTER TABLE `ocenter_ticket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- 使用表AUTO_INCREMENT `ocenter_tile`
 --
@@ -10661,12 +11374,12 @@ ALTER TABLE `ocenter_tile`
 -- 使用表AUTO_INCREMENT `ocenter_tradead`
 --
 ALTER TABLE `ocenter_tradead`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4007;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4006;
 --
 -- 使用表AUTO_INCREMENT `ocenter_trade_order`
 --
 ALTER TABLE `ocenter_trade_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- 使用表AUTO_INCREMENT `ocenter_ucenter_admin`
 --

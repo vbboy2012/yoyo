@@ -61,7 +61,7 @@ class IndexController extends Controller{
         $this->display();
     }
 
-    public function doPost($id=0,$coin_type = 0,$type = 0,$country=0,$currency='',$pre_price=0,$price=0,$pay_time=0,$pay_addr='',$low_price=0,$min_price=0,$max_price=0,$pay_type=0,$pay_text='',$auto_message='',$is_safe=0,$is_trust=0,$start0=0,$end0=0,$start1=0,$end1=0,$start2=0,$end2=0,$start3=0,$end3=0,$start4=0,$end4=0,$start5=0,$end5=0,$start6=0,$end6=0)
+    public function doPost($id=0,$coin_type = 0,$type = 0,$country=0,$currency='',$pre_price=0,$price=0,$pay_time=0,$pay_addr='',$low_price=0,$min_price=0,$max_price=0,$pay_type=0,$pay_text='',$pay_remark='',$auto_message='',$is_safe=0,$is_trust=0,$start0=0,$end0=0,$start1=0,$end1=0,$start2=0,$end2=0,$start3=0,$end3=0,$start4=0,$end4=0,$start5=0,$end5=0,$start6=0,$end6=0)
     {
         if (!is_login()) {
             $this->error(L('_ERROR_LOGIN_'));
@@ -90,9 +90,6 @@ class IndexController extends Controller{
         if ($pay_type == 0){
             $this->error(L('_ERROR_PAY_'));
         }
-        if ($pay_text == ''){
-            $this->error(L('_ERROR_TEXT_'));
-        }
         if (($type == 3 || $type == 4) && $pay_addr == ''){
             $this->error(L('_ERROR_ADDR_'));
         }
@@ -114,6 +111,7 @@ class IndexController extends Controller{
         $content['pay_type'] = $payType;
         $content['pay_time'] = $pay_time;
         $content['pay_addr'] = $pay_addr;
+        $content['pay_remark'] = str_replace("\n","<br>",$pay_remark);
         $content['pay_text'] = str_replace("\n","<br>",$pay_text);
         $content['auto_message'] = $auto_message;
         $content['is_safe'] = $is_safe;

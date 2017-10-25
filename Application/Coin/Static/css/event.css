@@ -555,3 +555,38 @@ hr {
 .tradeorder i{
   color: #337ab7;
 }
+
+.ad-title a{
+  color: #0082df;
+}
+.
+
+.webuploader-container {
+  position: relative;
+}
+.webuploader-element-invisible {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px,1px,1px,1px);
+}
+
+.ardor {
+  background-color: #ffffff;
+}
+.qtHead {
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 0 10px;
+  margin-bottom: 0;
+}
+.qtHead label{
+  color: #0082df;
+}
+
+.alert h4,p{
+  text-align: center;
+}
+

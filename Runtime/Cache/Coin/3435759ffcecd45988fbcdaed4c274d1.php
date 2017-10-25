@@ -391,15 +391,15 @@
     <div class="col-xs-12">
         <div class="forum_module" style="background: none">
             <div class="ad-title">
-                <?php $type = $order['coin_type'] == 1?'BTC':'ETH'; $coinNum = floatval($order['coin_num']); $price = number_format($order['price'],2); $params = ''; if($order['type'] == 1){ $params = 'sellonline-'; }else if($order['type'] == 2){ $params = 'buyonline-'; }else if($order['type'] == 3){ $params = 'selllocal-'; }else if($order['type'] == 4){ $params = 'buylocal-'; } $params.=$order['payType']."-".$order['countryEn']; ?>
-                <div class="no-event">订单#<?php echo ($order['order_id']); ?>：以 <?php echo ($price); ?> CNY 购买 <?php echo ($coinNum); ?> <?php echo ($type); ?></div>
-                <P><?php echo ($order['nickname']); ?> 的交易广告# <a href="tradead/<?php echo ($order['ad_id']); ?>/<?php echo ($params); ?>"><?php echo ($order['ad_id']); ?></a>，价格 25998 CNY/BTC </P>
+                <?php $type = $order['coin_type'] == 1?'BTC':'ETH'; $coinNum = floatval($order['coin_num']); $price = number_format($order['price'],2); $params = ''; if($order['type'] == 1){ $params = 'sellonline-'; }else if($order['type'] == 2){ $params = 'buyonline-'; }else if($order['type'] == 3){ $params = 'selllocal-'; }else if($order['type'] == 4){ $params = 'buylocal-'; } $params.=$order['payType']."-".$order['countryEn']; $pay_time = $order['pay_time'] * 60; $timer = (time()-$order['create_time']); $remainTime = ceil(($pay_time-$timer)/60); if($order['status'] ==1){ $statusText = L('_TRADE_STATUS1_'); }else if($order['status'] == 2){ $statusText = L('_TRADE_STATUS2_'); }else if($order['status'] == 3){ $statusText = L('_TRADE_STATUS3_'); }else if($order['status'] == 4){ $statusText = L('_TRADE_STATUS4_'); }else if($order['status'] == 0){ $statusText = L('_TRADE_STATUS0_'); } ?>
+                <div class="no-event">订单#<?php echo ($order['order_id']); ?>：以 <?php echo ($order["trade_price"]); ?> CNY 购买 <?php echo ($coinNum); ?> <?php echo ($type); ?></div>
+                <div><a href="<?php echo U('Ucenter/index/information',array('uid'=>$order['ad_uid']));?>"><?php echo ($order['nickname']); ?></a> 的交易广告# <a href="tradead/<?php echo ($order['ad_id']); ?>/<?php echo ($params); ?>"><?php echo ($order['ad_id']); ?></a>，价格 <?php echo ($order["price"]); ?> <?php echo ($order["currency"]); ?>/<?php echo ($type); ?> </div>
             </div>
 
         </div>
     </div>
     <div class="col-xs-9">
-        <div class="panel panel-success" style="min-height: 800px">
+        <div class="panel panel-info" style="min-height: 800px">
             <div class="panel-heading">
                 <div id="search">
                     <div id="searchForm">
@@ -409,12 +409,12 @@
                             var myhead = "<?php echo ($talk_self["avatar128"]); ?>";
                         </script>
                         <input type="text" class="form-control input-lg" id="chat_content"/>
-                        <i class="icon icon-search"></i>
-                        <button id="searchHelpBtn" type="button" class="btn btn-link" onclick="talker.post_message()"><img src="/yoyo/Application/Coin/Static/images/send.png"></i></button>
+                        <span id="web_uploader_wrapper_gallary_image"><i class="icon icon-paper-clip icon-2x"></i></span>
+                        <button id="searchHelpBtn" type="button" class="btn btn-link" onclick="talker.post_message()"><img src="/yoyo/Application/Coin/Static/images/send.png" /></button>
                     </div>
                 </div>
             </div>
-            <?php $currentSession=D('Common/Talk')->getCurrentOrderSessions($orderId); D('Common/TalkPush')->clearAll(); ?>
+            <?php $currentSession=D('Common/Talk')->getCurrentOrderSessions($order['order_id']); D('Common/TalkPush')->clearAll(); ?>
             <?php if(count($currentSession) != 0): ?><script>
                     $(function () {
                         talker.open("<?php echo ($currentSession["0"]["id"]); ?>");
@@ -435,35 +435,225 @@
 
     <div class="col-xs-3" style="z-index: 99">
         <div class="common_block_border event_right">
-    <div class="common_block_title_right" style="text-align: center;">
-        <?php $avatar = query_avatar($vo['uid']); if($avatar){ $img = substr($avatar['path'],0,strlen($avatar['path'])-4);$img.='_64_64.jpg'; }else{ $img = 'default_64_64.jpg'; } ?>
-        <div><a href=""><img src="/yoyo/Uploads/Avatar/<?php echo ($img); ?>" class="img-circle" style="padding-right: 10px"></a></div>
-        <div><label><a href="" style="color: cornflowerblue"><?php echo ($tradead["nickname"]); ?></a></label></div>
-        <div style="margin-top: 20px;color: cornflowerblue">
-            <span><i class="icon icon-envelope icon-2x pad10"></i></span><span><i class="icon icon-phone icon-2x pad10"></i></span><span><i class="icon icon-user icon-2x pad10"></i></span>
-        </div>
-        <div style="margin-top: 20px">
-            <p>信任人数：<?php echo ($tradead["fans"]); ?></p>
-            <p>好评：<?php echo ($tradead["trade_score"]); ?>%</p>
-            <p>交易次数：<?php echo ($tradead["trade_count"]); ?></p>
-            <p>平均放行：10分钟</p>
-        </div>
-        <div class="bt-group">
-            <?php echo W('Common/Follow/follow',array('follow_who'=>$user_info['uid']));?>
-            <?php echo W('Common/Follow/trust',array('follow_who'=>$user_info['uid']));?>
-        </div>
-    </div>
-</div>
-
-<div class="common_block_border event_right">
-    <div class="common_block_title_right" style="text-align: center;">
-
+    <div class="ardor">
+        <?php if(($order['type'] == 1 or $order['type'] == 3) and $order['get_uid'] == get_uid()): ?><p class="qtHead"><label><?php echo L('_TRADE_OPER_');?></label><label><?php echo L('_TRADE_TIME_');?> <span id="timer"></span> <?php echo L('_TIME_MINUTE_');?></label></p>
+            <div class="alert alert-info" style="margin-top: 0px">
+                <h4>交易信息</h4>
+                <hr>
+                <p>现在对方的数字货币已被托管锁定，您需要在<?php echo ($order["pay_time"]); ?>分钟内完成付款并点击 "付款已完成" 按钮，转账时请在留言中附上交易参考号。</p>
+                <hr>
+                <h4 style="text-align: center">付款信息</h4>
+                <hr>
+                <p>付款详细信息：<label><?php echo ($order["pay_remark"]); ?></label></p>
+                <p>金额：<label><?php echo ($order["trade_price"]); ?> <?php echo ($order["currency"]); ?></label></p>
+                <p>付款参考码：<label><?php echo ($order["pay_code"]); ?></label></p>
+            </div>
+            <div class="alert alert-warning" style="margin-top: 0px;">
+                <h4>交易状态</h4>
+                <hr>
+                <p><?php echo ($statusText); ?></p>
+                <hr>
+                <?php if($order['status'] == 1){ ?>
+                <a href="javascript:void(0)" class="btn btn-info" name="pay-ok">付款已完成</a>
+                <a href="javascript:void(0)" class="btn btn-danger" id="cancel-trade" style="float: right">取消交易</a>
+                <?php }else if($order['status'] == 1 || $order['status'] == 2){ ?>
+                <a href="javascript:void(0)" class="btn btn-danger" id="cancel-trade">取消交易</a>
+                <?php } ?>
+            </div>
+            <div class="alert alert-info" style="margin-top: 0px">
+                <p>当托管启用时，只有买家和YOYOCOINS工作人员可以取消这笔交易。<a href="">了解托管策略</a></p>
+                <p>如果交易过程中遇到问题，请查找帮助中心文档，或者联系客服<a href="">提交问题</a></p>
+            </div>
+            <?php elseif(($order['type'] == 1 or $order['type'] == 3) and $order['ad_uid'] == get_uid()): ?>
+            <p class="qtHead"><label><?php echo L('_TRADE_OPER_');?></label></p>
+            <div class="alert alert-info" style="margin-top: 0px">
+                <h4 style="text-align: center">交易信息</h4>
+                <hr>
+                <p>买家：<?php echo ($getUser["getName"]); ?>(<?php echo ($getUser["tradeCount"]); ?>;<?php echo ($getUser["tradeScore"]); ?>%)</p>
+                <p>已注资金额：<?php echo ($coinNum); ?> <?php echo ($type); ?></p>
+                <p>向买家显示的付款详细信息:</p>
+                <p>金额：<label><?php echo ($order["trade_price"]); ?> <?php echo ($order["currency"]); ?></label></p>
+                <p>付款参考码：<label><?php echo ($order["pay_code"]); ?></label></p>
+            </div>
+            <div class="alert alert-warning" style="margin-top: 0px">
+                <h4>交易状态</h4>
+                <hr>
+                <p><?php echo ($statusText); ?></p>
+                <hr>
+                <?php if($order['status'] == 2): ?><p>放行比特币之前，请确认您已收到相应的交易金额！</p>
+                    <div style="margin-top: 10px">
+                        <a href="" class="btn btn-info" name="send-coin">放行比特币</a>
+                    </div><?php endif; ?>
+            </div>
+            <?php elseif(($order['type'] == 2 or $order['type'] == 4) and $order['get_uid'] == get_uid()): ?>
+            <p class="qtHead"><label><?php echo L('_TRADE_OPER_');?></label></p>
+            <div class="alert alert-info" style="margin-top: 0px">
+                <h4>交易信息</h4>
+                <hr>
+                <p>买家：<?php echo ($order["nickname"]); ?>(<?php echo ($order["trade_count"]); ?>;<?php echo ($order["trade_score"]); ?>%)</p>
+                <p>已注资金额：<?php echo ($coinNum); ?> <?php echo ($type); ?></p>
+                <p>向买家显示的付款详细信息:</p>
+                <p>金额：<label><?php echo ($order["trade_price"]); ?> <?php echo ($order["currency"]); ?></label></p>
+                <p>付款参考码：<label><?php echo ($order["pay_code"]); ?></label></p>
+            </div>
+            <div class="alert alert-warning" style="margin-top: 0px">
+                <h4>交易状态</h4>
+                <hr>
+                <p><?php echo ($statusText); ?></p>
+                <hr>
+                <?php if($order['status'] == 2): ?><p>放行比特币之前，请确认您已收到相应的交易金额！</p>
+                    <div style="margin-top: 10px">
+                        <a href="" class="btn btn-info" name="send-coin">放行比特币</a>
+                    </div><?php endif; ?>
+            </div>
+            <?php elseif(($order['type'] == 2 or $order['type'] == 4) and $order['ad_uid'] == get_uid()): ?>
+            <p class="qtHead"><label><?php echo L('_TRADE_OPER_');?></label><label><?php echo L('_TRADE_TIME_');?> <span id="timer"></span> <?php echo L('_TIME_MINUTE_');?></label></p>
+            <div class="alert alert-info" style="margin-top: 0px">
+                <h4>交易信息</h4>
+                <hr>
+                <p>现在对方的数字货币已被托管锁定，您需要在<?php echo ($order["pay_time"]); ?>分钟内完成付款并点击 "付款已完成" 按钮，转账时请在留言中附上交易参考号。</p>
+                <hr>
+                <h4 style="text-align: center">付款信息</h4>
+                <hr>
+                <p>付款详细信息：<label><?php echo ($order["pay_remark"]); ?></label></p>
+                <p>金额：<label><?php echo ($order["trade_price"]); ?> <?php echo ($order["currency"]); ?></label></p>
+                <p>付款参考码：<label><?php echo ($order["pay_code"]); ?></label></p>
+            </div>
+            <div class="alert alert-warning" style="margin-top: 0px">
+                <h4>交易状态</h4>
+                <hr>
+                <p><?php echo ($statusText); ?></p>
+                <hr>
+                <?php if($order['status'] == 1){ ?>
+                <a href="javascript:void(0)" class="btn btn-info" name="pay-ok">付款已完成</a>
+                <a href="javascript:void(0)" class="btn btn-danger" id="cancel-trade" style="float: right">取消交易</a>
+                <?php }else if($order['status'] != 0){ ?>
+                <a href="javascript:void(0)" class="btn btn-danger" id="cancel-trade">取消交易</a>
+                <?php } ?>
+            </div>
+            <div class="alert alert-info" style="margin-top: 0px">
+                <p>当托管启用时，只有买家和YOYOCOINS工作人员可以取消这笔交易。<a href="">了解托管策略</a></p>
+                <p>如果交易过程中遇到问题，请查找帮助中心文档，或者联系客服<a href="">提交问题</a></p>
+            </div><?php endif; ?>
     </div>
 </div>
     </div>
     <link rel="stylesheet" href="/yoyo/Application/Coin/Static/css/style.css">
+    <script type="text/javascript" charset="utf-8" src="/yoyo/Public/static/ueditor/third-party/webuploader/webuploader.js"></script>
+    <script type="text/javascript" src="/yoyo/Public/static/uploadify/jquery.uploadify.min.js"></script>
     <script>
+        var gallary_num_image="<?php echo count($info['image']) ?>";
+        $(function () {
 
+            //image start
+            var id_image = "#web_uploader_wrapper_gallary_image";
+            if($(id_image).length>0) {
+                var uploader_gallary_image = WebUploader.create({
+                    // swf文件路径
+                    swf: 'Uploader.swf',
+                    // 文件接收服务端。
+                    server: "<?php echo U('Core/File/uploadPicture',array('session_id'=>session_id()));?>",
+                    fileNumLimit: 9,
+                    // 选择文件的按钮。可选。
+                    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                    pick: {'id': id_image, 'multi': true}
+                });
+                uploader_gallary_image.on('beforeFileQueued', function (file) {
+                    if (gallary_num_image >= 9) {
+                        toast.error('图片不能超过9张');
+                        return false;
+                    }
+                });
+                uploader_gallary_image.on('fileQueued', function (file) {
+                    gallary_num_image = parseInt(gallary_num_image) + 1;
+
+                    uploader_gallary_image.upload();
+                    $("#web_uploader_file_name_gallary_image").text('正在上传...');
+                });
+
+                /*上传成功*/
+                uploader_gallary_image.on('uploadSuccess', function (file, ret) {
+                    if (ret.status == 0) {
+                        $("#web_uploader_file_name_gallary_image").text(ret.info);
+                    } else {
+                        talker.post_message(2,ret.data.file.path);
+                        $('#web_uploader_input_gallary_image').focus();
+                        $('#web_uploader_input_gallary_image').val(ret.data.file.id);
+                        $('#web_uploader_input_gallary_image').blur();
+                        $("#web_uploader_picture_list_gallary_image").append('<img class="gallary_thumb" onclick="remove_file(this,' + "'image'" + ')" src="' + ret.data.file.path + '"/><input type="hidden" name="image[]" value="' + ret.data.file.id + '"/>');
+                    }
+                });
+            }
+            //image end
+
+        })
+
+        $("a[name='pay-ok']").click(function () {
+            if (confirm("确定要标记付款已完成吗？")){
+                $.post("<?php echo U('/order');?>", {orderId:"<?php echo $order['order_id']; ?>",type:1}, success, "json");
+                return false;
+                function success(data) {
+                    if (data.status) {
+                        toast.success(data.status);
+                        window.location.reload();
+                    }
+                }
+            }else{
+                return false;
+            }
+        });
+        $("a[name='send-coin']").click(function () {
+            if (confirm("确定要放行比特币吗？")){
+                $.post("<?php echo U('/order');?>", {orderId:"<?php echo $order['order_id']; ?>",type:1}, success, "json");
+                return false;
+                function success(data) {
+                    if (data.status) {
+                        toast.success(data.status);
+                        window.location.reload();
+                    }
+                }
+            }else{
+                return false;
+            }
+        });
+        $("#cancel-trade").click(function () {
+            if (confirm("确定要取消交易吗？")){
+                $.post("<?php echo U('/order');?>", {orderId:"<?php echo $order['order_id']; ?>",type:2}, success, "json");
+                return false;
+                function success(data) {
+                    if (data.status) {
+                        toast.success(data.status);
+                        window.location.reload();
+                    }
+                }
+            }else{
+                return false;
+            }
+        });
+        $(function () {
+            var status = <?php echo ($order["status"]); ?>;
+            var code;
+            if(status == 1){
+                var remainTime = <?php echo ($remainTime); ?>;
+                if(remainTime > 0){
+                    $("#timer").text(remainTime);
+                    code = setInterval(GetRTime,60*1000);
+                }else{
+                    $.post("<?php echo U('/timeOver');?>", {orderId:"<?php echo $order['order_id']; ?>"}, success, "json");
+                    return false;
+                    function success(data) {
+                        if (data.status) {
+                            window.location.reload();
+                            window.clearInterval(code);
+                        }
+                    }
+                }
+            }
+            function GetRTime(){
+                remainTime-=1;
+                $("#timer").text(remainTime);
+            }
+        })
     </script>
 
         </div>

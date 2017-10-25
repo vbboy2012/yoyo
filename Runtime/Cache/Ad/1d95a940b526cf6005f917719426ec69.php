@@ -40,7 +40,7 @@
 <script type="text/javascript">
     var ThinkPHP = window.Think = {
         "ROOT": "/yoyo", //当前网站地址
-        "APP": "/yoyo//index.php?s=", //当前项目地址
+        "APP": "/yoyo/index.php?s=", //当前项目地址
         "PUBLIC": "/yoyo/Public", //项目公共目录地址
         "DEEP": "<?php echo C('URL_PATHINFO_DEPR');?>", //PATHINFO分割符
         "MODEL": ["<?php echo C('URL_MODEL');?>", "<?php echo C('URL_CASE_INSENSITIVE');?>", "<?php echo C('URL_HTML_SUFFIX');?>"],
@@ -559,9 +559,19 @@
                             </div>
                         </div>
 
+                <div class="form-group">
+                    <div class="col-xs-2">
+                        <label><?php echo L('_AD_PAY_REMARK_LABEL_');?></label>
+                    </div>
+                    <div class="col-xs-6">
+                        <?php $pay_remark = str_replace("<br>","\n",$ad['pay_remark']) ?>
+                        <textarea name="pay_remark" class="text form-control" placeholder="<?php echo L('_AD_PAY_REMARK_TIPS_LABEL_');?>" style="height: 8em;height: 100px"><?php echo ($pay_remark); ?></textarea>
+                    </div>
+                </div>
+
                         <div class="form-group">
                             <div class="col-xs-2">
-                                <label class="required"><?php echo L('_AD_PAY_TEXT_LABEL_');?></label>
+                                <label><?php echo L('_AD_PAY_TEXT_LABEL_');?></label>
                             </div>
                             <div class="col-xs-6">
                                 <?php $pay_text = str_replace("<br>","\n",$ad['pay_text']) ?>

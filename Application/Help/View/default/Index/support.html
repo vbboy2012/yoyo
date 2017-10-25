@@ -48,6 +48,11 @@
                 </tbody>
             </table>
             <else/>
+            <php>
+                if(!$text){
+                $text = L('_SEND_TICKET_TIPS2_');
+                }
+            </php>
             <div class="alert alert-success" style="margin-top: 0px">{$text}</div>
         </if>
     </div>

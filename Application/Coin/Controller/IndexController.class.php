@@ -263,27 +263,20 @@ class IndexController extends Controller{
             if ($uid == $adUid){
                 $this->error(L('_AD_TRADE_ERROR_'));
             }
-            $type = I('post.type');
-            $coin_type = I('post.coin_type');
             $coinNum = I('post.coin_num');
-            $price = I('post.price');
-            $payText = I('post.pay_text');
-            $payTime = I('post.pay_time');
-            $currency = I('post.currency');
+            $tradePrice = I('post.trade_price');
+            $pay_text = I('post.pay_text');
             $content = D('trade_order')->create();
             $content['ad_id'] = $adId;
             $orderId = date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
             $content['order_id'] = $orderId;      //需改
             $content['get_uid'] = $uid;
             $content['ad_uid'] = $adUid;
-            $content['type'] = $type;
-            $content['coin_type'] = $coin_type;
             $content['coin_num'] = $coinNum;
-            $content['price'] = $price;
+            $content['trade_price'] = $tradePrice;
+            $content['pay_code'] = generate_paycode(7);
+            $content['pay_text'] = $pay_text;
             $content['fee'] = $coinNum * 0.005;
-            $content['currency'] = $currency;
-            $content['pay_time'] = $payTime;
-            $content['pay_text'] = $payText;
             $content['status'] = 1;
             $content['create_time'] = time();
             D('trade_order')->add($content);
@@ -292,7 +285,6 @@ class IndexController extends Controller{
             D('Common/Talk')->createTradeTalk($memebers,$orderId);
             $this->success(L('_SUBMIT_SUCCESS_'), U('/order/'.$orderId));
         }else{
-            $ratePrice = 25000;
             $id = I('get.id');
             $tradead = M('tradead')->join('ocenter_member on ocenter_tradead.uid = ocenter_member.uid')
                 ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
@@ -308,22 +300,86 @@ class IndexController extends Controller{
             $this->assign('avatar', $avatar);
             $this->assign('payName', $payName);
             $this->assign('tradead', $tradead);
-            $this->assign('ratePrice', $ratePrice);
             $this->display();
         }
     }
 
     public function order()
     {
-        $orderId = I('get.orderId');
         $uid = is_login();
-        $order = M('trade_order')->join('ocenter_member on ocenter_trade_order.ad_uid = ocenter_member.uid')
-            ->join('ocenter_country on ocenter_trade_order.country = ocenter_country.id')
-            ->join('ocenter_pay on ocenter_trade_order.pay_type = ocenter_pay.id')
-            ->field('ocenter_pay.en_name as payType,ocenter_country.en_name as countryEn,ocenter_trade_order.ad_id,ocenter_trade_order.type,ocenter_trade_order.order_id,ocenter_trade_order.ad_uid,ocenter_trade_order.price,ocenter_trade_order.currency,ocenter_trade_order.coin_type,ocenter_trade_order.coin_num,ocenter_trade_order.status,ocenter_trade_order.pay_time,ocenter_trade_order.create_time,ocenter_trade_order.update_time,ocenter_member.nickname')
-            ->where("ocenter_trade_order.order_id='".$orderId."'")->find();
-        $this->assign('order', $order);
-        $this->display();
+        if(!$uid){
+            $this->error(L('_ERROR_LOGIN_'));
+        }
+        if (IS_POST){
+            $data['status'] = 1;
+            $orderId = I('post.orderId');
+            $type = intval(I('post.type'));
+            $order = M('trade_order')->where("order_id='".$orderId."'")->find();
+            if (!$order){
+                return false;
+            }
+            $tradead = M('tradead')->where('id='.$order['ad_id'])->find();
+            if(!$tradead){
+                return false;
+            }
+            if($tradead['type'] ==1 || $tradead['type'] == 3){
+                if ($order['ad_uid'] == $uid && $order['status'] == 2){  //时广告主出售 放行货币
+                    M('trade_order')->where('id='.$order['id'])->save(array('status'=>3));
+                }else if($order['get_uid'] == $uid && ($order['status'] == 1 || $order['status'] == 2)){//用户购买，已完成付款
+                    if ($type == 1){
+                        M('trade_order')->where('id='.$order['id'])->save(array('status'=>2));
+                    }else if($type == 2){
+                        M('trade_order')->where('id='.$order['id'])->save(array('status'=>0));
+                    }
+                }
+            }else if($tradead['type'] ==2 || $tradead['type'] == 4){
+                if ($order['ad_uid'] == $uid && ($order['status'] == 1 || $order['status'] == 2)){ //广告主在线购买，已完成付款
+                    if ($type == 1){
+                        M('trade_order')->where('id='.$order['id'])->save(array('status'=>2));
+                    }else if($type == 2){
+                        M('trade_order')->where('id='.$order['id'])->save(array('status'=>0));
+                    }
+                }else if($order['get_uid'] == $uid && $order['status'] == 2){//用户卖出货币，放行货币
+                    M('trade_order')->where('id='.$order['id'])->save(array('status'=>3));
+                }
+            }
+            echo json_encode($data);
+        }else{
+            $orderId = I('get.orderId');
+            $order = M('trade_order')->join('ocenter_member on ocenter_trade_order.ad_uid = ocenter_member.uid')
+                ->join('ocenter_tradead on ocenter_trade_order.ad_id = ocenter_tradead.id')
+                ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
+                ->join('ocenter_pay on ocenter_tradead.pay_type = ocenter_pay.id')
+                ->field('ocenter_tradead.pay_remark,ocenter_pay.en_name as payType,ocenter_country.en_name as countryEn,ocenter_trade_order.ad_id,ocenter_tradead.type,ocenter_trade_order.order_id,ocenter_trade_order.pay_code,ocenter_trade_order.ad_uid,ocenter_trade_order.get_uid,ocenter_tradead.price,ocenter_trade_order.trade_price,ocenter_tradead.currency,ocenter_tradead.coin_type,ocenter_trade_order.coin_num,ocenter_trade_order.status,ocenter_tradead.pay_time,ocenter_trade_order.create_time,ocenter_trade_order.update_time,ocenter_member.nickname,ocenter_member.trade_count,ocenter_member.trade_score')
+                ->where("ocenter_trade_order.order_id='".$orderId."' and (ocenter_trade_order.ad_uid=".$uid." or ocenter_trade_order.get_uid=".$uid.")")->find();
+            if (!$order){
+                $this->error(L('_INEXISTENT_404_'));
+            }
+            $getUser = M('member')->field('nickname as getName,trade_count as tradeCount,trade_score as tradeScore')->where('uid='.$order['get_uid'])->find();
+            $this->assign('order', $order);
+            $this->assign('getUser', $getUser);
+            $this->display();
+        }
+    }
+
+    public function timeOver()
+    {
+        if (IS_POST){
+            $uid = is_login();
+            if(!$uid){
+                $this->error(L('_ERROR_LOGIN_'));
+            }
+            $data['status'] = 1;
+            $orderId = I('post.orderId');
+            $order = M('trade_order')->field('id,status')->where("order_id='".$orderId."' and (ad_uid=".$uid." or get_uid=".$uid.")")->find();
+            if (!$order){
+                return false;
+            }
+            if ($order['status'] == 1){// 买家没有响应才关闭交易
+                M('trade_order')->where('id='.$order['id'])->save(array('status'=>0));
+            }
+            echo json_encode($data);
+        }
     }
 
 } 

@@ -12,11 +12,13 @@ return array(
     'route_rules' => array(
         'tradead/:id/:info'    => 'coin/index/tradead',
         'order/:orderId'    => 'coin/index/order',
+        'order'    => 'coin/index/order',
         'quick'    => 'coin/index/index',
         'buybtc'    => 'coin/index/buybtc',
         'sellbtc'    => 'coin/index/sellbtc',
         'buyeth'    => 'coin/index/buyeth',
         'selleth'    => 'coin/index/selleth',
+        'timeOver'    => 'coin/index/timeOver',
     ),
 
 

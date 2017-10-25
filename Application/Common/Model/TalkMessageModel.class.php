@@ -26,11 +26,12 @@ class TalkMessageModel extends Model
      * @return bool|mixed
      * @auth 陈一枭
      */
-    public function addMessage($content, $uid, $talk_id)
+    public function addMessage($content, $uid, $talk_id, $type = 1)
     {
         $message['content'] = op_t($content);
         $message['uid'] = $uid;
         $message['talk_id'] = $talk_id;
+        $message['type'] = $type;
         $message = $this->create($message);
         D('Talk')->where(array('id'=>intval($talk_id)))->setField('update_time',time());
         $talk=D('Talk')->find($talk_id);

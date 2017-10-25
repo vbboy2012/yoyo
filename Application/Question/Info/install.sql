@@ -1,0 +1,125 @@
+-- -----------------------------
+-- 表结构 `ocenter_question`
+-- -----------------------------
+CREATE TABLE IF NOT EXISTS `ocenter_question` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL,
+  `category` int(11) NOT NULL COMMENT '问题分类',
+  `topic_id` varchar(200) NOT NULL,
+  `title` varchar(200) NOT NULL COMMENT '问题标题',
+  `description` text NOT NULL COMMENT '问题描述',
+  `answer_num` int(10) NOT NULL DEFAULT '0' COMMENT '回答数',
+  `best_answer` int(11) NOT NULL COMMENT '最佳答案id',
+  `good_question` int(10) NOT NULL DEFAULT '0' COMMENT '好问题（用于好问题排序：数值=支持-反对）',
+  `status` tinyint(4) NOT NULL,
+  `is_recommend` tinyint(2) NOT NULL DEFAULT '0' COMMENT '是否被推荐',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
+  `update_time` int(11) NOT NULL COMMENT '更新时间',
+  `leixing` text CHARACTER SET utf8mb4 NOT NULL COMMENT '类型',
+  `score_num` int(11) NOT NULL COMMENT '数额',
+  `img_id` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `topic_id` (`topic_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1358 DEFAULT CHARSET=utf8 COMMENT='问题表';
+
+
+-- -----------------------------
+-- 表结构 `ocenter_question_answer`
+-- -----------------------------
+CREATE TABLE IF NOT EXISTS `ocenter_question_answer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `reply_id` int(11) NOT NULL,
+  `topic_id` varchar(200) NOT NULL,
+  `content` text NOT NULL COMMENT '回答内容',
+  `support` int(10) NOT NULL DEFAULT '0' COMMENT '支持数',
+  `oppose` int(10) NOT NULL DEFAULT '0' COMMENT '反对数',
+  `status` tinyint(4) NOT NULL,
+  `update_time` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 COMMENT='问题回答表';
+
+
+-- -----------------------------
+-- 表结构 `ocenter_question_category`
+-- -----------------------------
+CREATE TABLE IF NOT EXISTS `ocenter_question_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(25) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `sort` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='问题分类表';
+
+
+-- -----------------------------
+-- 表结构 `ocenter_question_rank`
+-- -----------------------------
+CREATE TABLE IF NOT EXISTS `ocenter_question_rank` (
+  `uid` int(11) NOT NULL,
+  `support_count` int(11) NOT NULL COMMENT '回答总被点赞数',
+  `answer_count` int(11) NOT NULL COMMENT '回答数',
+  `best_answer_count` int(11) NOT NULL COMMENT '总最佳回答数'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='问答达人表';
+
+
+-- -----------------------------
+-- 表结构 `ocenter_question_reward_record`
+-- -----------------------------
+CREATE TABLE IF NOT EXISTS `ocenter_question_reward_record` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `question_id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `to_uid` int(11) NOT NULL,
+  `type` tinyint(4) NOT NULL COMMENT '打赏类型',
+  `num` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `create_time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='问答打赏记录表';
+
+
+-- -----------------------------
+-- 表结构 `ocenter_question_search`
+-- -----------------------------
+CREATE TABLE IF NOT EXISTS `ocenter_question_search` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL,
+  `historical` varchar(50) NOT NULL COMMENT '历史记录',
+  `create_time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='问答';
+
+
+-- -----------------------------
+-- 表结构 `ocenter_question_support`
+-- -----------------------------
+CREATE TABLE IF NOT EXISTS `ocenter_question_support` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL,
+  `tablename` varchar(25) NOT NULL COMMENT '表名：question；question_answer',
+  `row` int(11) NOT NULL COMMENT '行号',
+  `type` int(11) NOT NULL COMMENT '类型：0：反对，1：支持',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='问题支持反对表';
+
+
+-- -----------------------------
+-- 表结构 `ocenter_question_topic`
+-- -----------------------------
+CREATE TABLE IF NOT EXISTS `ocenter_question_topic` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` text NOT NULL COMMENT '话题名称',
+  `logo` int(11) NOT NULL COMMENT '话题图标',
+  `num` int(11) NOT NULL COMMENT '话题问答数',
+  `create_time` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+
+-- -----------------------------
+-- 表内记录 `ocenter_question_category`
+-- -----------------------------
+INSERT INTO `ocenter_question_category` VALUES ('1', '默认分类', '0', '1', '1');

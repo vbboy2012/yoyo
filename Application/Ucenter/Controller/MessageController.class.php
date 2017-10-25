@@ -118,7 +118,7 @@ class MessageController extends BaseController
      * @param $content 内容文本
      * @param $talk_id 聊天ID
      */
-    public function postMessage($content, $talk_id)
+    public function postMessage($content, $talk_id,$type=1)
     {
         $content = op_t($content);
         //空的内容不能发送
@@ -126,7 +126,7 @@ class MessageController extends BaseController
             $this->error(L('_ERROR_CHAT_CONTENT_EMPTY_'));
         }
 
-        D('TalkMessage')->addMessage($content, is_login(), $talk_id);
+        D('TalkMessage')->addMessage($content, is_login(), $talk_id,$type);
         $talk = D('Talk')->find($talk_id);
         $message = D('Message')->find($talk['message_id']);
         //新加入

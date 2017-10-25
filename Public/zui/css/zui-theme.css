@@ -390,3 +390,18 @@ table.tablesorter thead tr .headerSortDown:after {
 }
 
 /*# sourceMappingURL=zui-theme.css.map */
+.app-btn {
+  width: 140px;
+  height: 40px;
+  display: inline-block;
+  border-radius: 3px;
+  text-align: center;
+  line-height: 40px;
+  color: #ffffff;
+  background-color: #0082df;
+  margin-top: 20px;
+}
+.app-btn:hover {
+  color: #ffffff;
+  background-color: #0079d0;
+}

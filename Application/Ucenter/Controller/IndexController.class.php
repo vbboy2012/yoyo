@@ -791,10 +791,18 @@ class IndexController extends BaseController
 //        $status = I('get.status');
 //        $status = $status == null ? 1: $status;
         $tradeOrder = M('trade_order');
-        $orderList1 = $tradeOrder->where('(ocenter_trade_order.get_uid='.$uid.' or ocenter_trade_order.ad_uid='.$uid.') and (status=1 or status=2)')->select();
-        $orderList3 = $tradeOrder->where('(ocenter_trade_order.get_uid='.$uid.' or ocenter_trade_order.ad_uid='.$uid.') and status=3')->select();
-        $orderList0 = $tradeOrder->where('(ocenter_trade_order.get_uid='.$uid.' or ocenter_trade_order.ad_uid='.$uid.') and status=0')->select();
-        $orderList4 = $tradeOrder->where('(ocenter_trade_order.get_uid='.$uid.' or ocenter_trade_order.ad_uid='.$uid.') and status=4')->select();
+        $orderList1 = $tradeOrder->join('ocenter_tradead on ocenter_trade_order.ad_id = ocenter_tradead.id')
+            ->field('ocenter_tradead.currency,ocenter_tradead.type,ocenter_tradead.coin_type,ocenter_trade_order.order_id,ocenter_trade_order.create_time,ocenter_trade_order.ad_uid,ocenter_trade_order.get_uid,ocenter_trade_order.coin_num,ocenter_trade_order.trade_price,ocenter_trade_order.fee,ocenter_trade_order.status')
+            ->where('(ocenter_trade_order.get_uid='.$uid.' or ocenter_trade_order.ad_uid='.$uid.') and (ocenter_trade_order.status=1 or ocenter_trade_order.status=2)')->select();
+        $orderList3 = $tradeOrder->join('ocenter_tradead on ocenter_trade_order.ad_id = ocenter_tradead.id')
+            ->field('ocenter_tradead.currency,ocenter_tradead.type,ocenter_tradead.coin_type,ocenter_trade_order.order_id,ocenter_trade_order.create_time,ocenter_trade_order.ad_uid,ocenter_trade_order.get_uid,ocenter_trade_order.coin_num,ocenter_trade_order.trade_price,ocenter_trade_order.fee,ocenter_trade_order.status')
+            ->where('(ocenter_trade_order.get_uid='.$uid.' or ocenter_trade_order.ad_uid='.$uid.') and ocenter_trade_order.status=3')->select();
+        $orderList0 = $tradeOrder->join('ocenter_tradead on ocenter_trade_order.ad_id = ocenter_tradead.id')
+            ->field('ocenter_tradead.currency,ocenter_tradead.type,ocenter_tradead.coin_type,ocenter_trade_order.order_id,ocenter_trade_order.create_time,ocenter_trade_order.ad_uid,ocenter_trade_order.get_uid,ocenter_trade_order.coin_num,ocenter_trade_order.trade_price,ocenter_trade_order.fee,ocenter_trade_order.status')
+            ->where('(ocenter_trade_order.get_uid='.$uid.' or ocenter_trade_order.ad_uid='.$uid.') and ocenter_trade_order.status=0')->select();
+        $orderList4 = $tradeOrder->join('ocenter_tradead on ocenter_trade_order.ad_id = ocenter_tradead.id')
+            ->field('ocenter_tradead.currency,ocenter_tradead.type,ocenter_tradead.coin_type,ocenter_trade_order.order_id,ocenter_trade_order.create_time,ocenter_trade_order.ad_uid,ocenter_trade_order.get_uid,ocenter_trade_order.coin_num,ocenter_trade_order.trade_price,ocenter_trade_order.fee,ocenter_trade_order.status')
+            ->where('(ocenter_trade_order.get_uid='.$uid.' or ocenter_trade_order.ad_uid='.$uid.') and ocenter_trade_order.status=4')->select();
   //      $this->assign('tab', $status);
         $this->assign('orderList1', $orderList1);
         $this->assign('orderList3', $orderList3);

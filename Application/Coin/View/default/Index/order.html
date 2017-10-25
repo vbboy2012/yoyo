@@ -23,15 +23,29 @@
                     $params = 'buylocal-';
                     }
                     $params.=$order['payType']."-".$order['countryEn'];
+                    $pay_time = $order['pay_time'] * 60;
+                    $timer = (time()-$order['create_time']);
+                    $remainTime = ceil(($pay_time-$timer)/60);
+                    if($order['status'] ==1){
+                    $statusText = L('_TRADE_STATUS1_');
+                    }else if($order['status'] == 2){
+                    $statusText = L('_TRADE_STATUS2_');
+                    }else if($order['status'] == 3){
+                    $statusText = L('_TRADE_STATUS3_');
+                    }else if($order['status'] == 4){
+                    $statusText = L('_TRADE_STATUS4_');
+                    }else if($order['status'] == 0){
+                    $statusText = L('_TRADE_STATUS0_');
+                    }
                 </php>
-                <div class="no-event">订单#{$order['order_id']}：以 {$price} CNY 购买 {$coinNum} {$type}</div>
-                <P>{$order['nickname']} 的交易广告# <a href="tradead/{$order['ad_id']}/{$params}">{$order['ad_id']}</a>，价格 25998 CNY/BTC </P>
+                <div class="no-event">订单#{$order['order_id']}：以 {$order.trade_price} CNY 购买 {$coinNum} {$type}</div>
+                <div><a href="{:U('Ucenter/index/information',array('uid'=>$order['ad_uid']))}">{$order['nickname']}</a> 的交易广告# <a href="tradead/{$order['ad_id']}/{$params}">{$order['ad_id']}</a>，价格 {$order.price} {$order.currency}/{$type} </div>
             </div>
 
         </div>
     </div>
     <div class="col-xs-9">
-        <div class="panel panel-success" style="min-height: 800px">
+        <div class="panel panel-info" style="min-height: 800px">
             <div class="panel-heading">
                 <div id="search">
                     <div id="searchForm">
@@ -41,13 +55,13 @@
                             var myhead = "{$talk_self.avatar128}";
                         </script>
                         <input type="text" class="form-control input-lg" id="chat_content"/>
-                        <i class="icon icon-search"></i>
-                        <button id="searchHelpBtn" type="button" class="btn btn-link" onclick="talker.post_message()"><img src="__IMG__/send.png"></i></button>
+                        <span id="web_uploader_wrapper_gallary_image"><i class="icon icon-paper-clip icon-2x"></i></span>
+                        <button id="searchHelpBtn" type="button" class="btn btn-link" onclick="talker.post_message()"><img src="__IMG__/send.png" /></button>
                     </div>
                 </div>
             </div>
             <php>
-                $currentSession=D('Common/Talk')->getCurrentOrderSessions($orderId);
+                $currentSession=D('Common/Talk')->getCurrentOrderSessions($order['order_id']);
                 D('Common/TalkPush')->clearAll();
             </php>
             <if condition="count($currentSession) neq 0">
@@ -71,11 +85,124 @@
     </div>
 
     <div class="col-xs-3" style="z-index: 99">
-        <include file="_right"/>
+        <include file="_right2"/>
     </div>
     <link rel="stylesheet" href="__CSS__/style.css">
+    <script type="text/javascript" charset="utf-8" src="__STATIC__/ueditor/third-party/webuploader/webuploader.js"></script>
+    <script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
     <script>
+        var gallary_num_image="<php>echo count($info['image'])</php>";
+        $(function () {
 
+            //image start
+            var id_image = "#web_uploader_wrapper_gallary_image";
+            if($(id_image).length>0) {
+                var uploader_gallary_image = WebUploader.create({
+                    // swf文件路径
+                    swf: 'Uploader.swf',
+                    // 文件接收服务端。
+                    server: "{:U('Core/File/uploadPicture',array('session_id'=>session_id()))}",
+                    fileNumLimit: 9,
+                    // 选择文件的按钮。可选。
+                    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                    pick: {'id': id_image, 'multi': true}
+                });
+                uploader_gallary_image.on('beforeFileQueued', function (file) {
+                    if (gallary_num_image >= 9) {
+                        toast.error('图片不能超过9张');
+                        return false;
+                    }
+                });
+                uploader_gallary_image.on('fileQueued', function (file) {
+                    gallary_num_image = parseInt(gallary_num_image) + 1;
+
+                    uploader_gallary_image.upload();
+                    $("#web_uploader_file_name_gallary_image").text('正在上传...');
+                });
+
+                /*上传成功*/
+                uploader_gallary_image.on('uploadSuccess', function (file, ret) {
+                    if (ret.status == 0) {
+                        $("#web_uploader_file_name_gallary_image").text(ret.info);
+                    } else {
+                        talker.post_message(2,ret.data.file.path);
+                        $('#web_uploader_input_gallary_image').focus();
+                        $('#web_uploader_input_gallary_image').val(ret.data.file.id);
+                        $('#web_uploader_input_gallary_image').blur();
+                        $("#web_uploader_picture_list_gallary_image").append('<img class="gallary_thumb" onclick="remove_file(this,' + "'image'" + ')" src="' + ret.data.file.path + '"/><input type="hidden" name="image[]" value="' + ret.data.file.id + '"/>');
+                    }
+                });
+            }
+            //image end
+
+        })
+
+        $("a[name='pay-ok']").click(function () {
+            if (confirm("确定要标记付款已完成吗？")){
+                $.post("{:U('/order')}", {orderId:"<php>echo $order['order_id'];</php>",type:1}, success, "json");
+                return false;
+                function success(data) {
+                    if (data.status) {
+                        toast.success(data.status);
+                        window.location.reload();
+                    }
+                }
+            }else{
+                return false;
+            }
+        });
+        $("a[name='send-coin']").click(function () {
+            if (confirm("确定要放行比特币吗？")){
+                $.post("{:U('/order')}", {orderId:"<php>echo $order['order_id'];</php>",type:1}, success, "json");
+                return false;
+                function success(data) {
+                    if (data.status) {
+                        toast.success(data.status);
+                        window.location.reload();
+                    }
+                }
+            }else{
+                return false;
+            }
+        });
+        $("#cancel-trade").click(function () {
+            if (confirm("确定要取消交易吗？")){
+                $.post("{:U('/order')}", {orderId:"<php>echo $order['order_id'];</php>",type:2}, success, "json");
+                return false;
+                function success(data) {
+                    if (data.status) {
+                        toast.success(data.status);
+                        window.location.reload();
+                    }
+                }
+            }else{
+                return false;
+            }
+        });
+        $(function () {
+            var status = {$order.status};
+            var code;
+            if(status == 1){
+                var remainTime = {$remainTime};
+                if(remainTime > 0){
+                    $("#timer").text(remainTime);
+                    code = setInterval(GetRTime,60*1000);
+                }else{
+                    $.post("{:U('/timeOver')}", {orderId:"<php>echo $order['order_id'];</php>"}, success, "json");
+                    return false;
+                    function success(data) {
+                        if (data.status) {
+                            window.location.reload();
+                            window.clearInterval(code);
+                        }
+                    }
+                }
+            }
+            function GetRTime(){
+                remainTime-=1;
+                $("#timer").text(remainTime);
+            }
+        })
     </script>
 </block>
 

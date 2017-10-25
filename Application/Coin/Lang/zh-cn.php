@@ -83,5 +83,12 @@ return array(
     '_GIVE_YOU_' => '给您',
     '_TIME_TIPS_' => '在发出交易请求后，您有多少时间来标记付款已完成，如超时未标记，交易自动取消!',
 
+    '_TRADE_OPER_' => '交易操作',
+    '_TRADE_TIME_' => '还剩',
+    '_TRADE_STATUS1_' => '待付款',
+    '_TRADE_STATUS2_' => '已付款',
+    '_TRADE_STATUS3_' => '已完成',
+    '_TRADE_STATUS4_' => '申诉中',
+    '_TRADE_STATUS0_' => '已取消',
 
 );

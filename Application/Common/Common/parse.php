@@ -302,3 +302,14 @@ function str_rand($length = 8, $char = '0123456789abcdefghijklmnopqrstuvwxyzABCD
 
     return $string;
 }
+
+function generate_paycode( $length = 7 ) {
+    // 密码字符集，可任意添加你需要的字符
+    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    $code = '';
+    for ( $i = 0; $i < $length; $i++ )
+    {
+        $code .= $chars[ mt_rand(0, strlen($chars) - 1) ];
+    }
+    return $code;
+}

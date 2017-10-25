@@ -76,12 +76,18 @@ var talker = {
      * @returns {string}
      */
     fetch_message_tpl: function (message, mid) {
+        var content = '';
+        if(message.type == 2){
+            content = '<img src="'+message.content+'">';
+        }else{
+            content = message.content;
+        }
         var tpl_right = '<div class="row talk_right">' +
             '<div class="time"><span class="timespan">{ctime}</span></div>' +
             '<div class="row">' +
             '<div class="col-md-10 bubble_outter">' +
             '<h3>&nbsp;</h3><i class="bubble_sharp"></i>' +
-            '<div class="talk_bubble">{content}' +
+            '<div class="talk_bubble">'+content +
             '</div>' +
             '</div>' +
             ' <div class="col-md-2" style="text-align: center;"><img ucard="{uid}" class="avatar-img talk-avatar"' +
@@ -95,7 +101,7 @@ var talker = {
             'src="{avatar64}"/>' +
             '</div><div class="col-md-10 bubble_outter chat_bubble">' +
             '<h3>&nbsp;</h3><i class="bubble_sharp"></i>' +
-            '<div class="talk_bubble">{content}' +
+            '<div class="talk_bubble">'+content +
             '</div></div></div></div>';
         var tpl = message.uid == mid ? tpl_right : tpl_left;
         $.each(message, function (index, value) {
@@ -140,11 +146,18 @@ var talker = {
     /**
      * 聊天框发送消息
      */
-    post_message: function () {
+    post_message: function (type=1,img='') {
         var myDate = new Date();
+        var content;
+        if(type == 1){
+            content = $('#chat_content').val();
+        }else{
+            content = img;
+        }
         $.post(U('Ucenter/Message/postMessage'), {
             talk_id: $('#chat_id').val(),
-            content: $('#chat_content').val()
+            content: content,
+            type:type,
         }, function (msg) {
             if (!msg.status) {
                 toast.error(msg.info);
@@ -152,6 +165,7 @@ var talker = {
                 talker.append_message(op_fetchMessageTpl({
                     uid: MID, content: msg.content,
                     avatar128: myhead,
+                    type:type,
                     ctime: myDate.toLocaleTimeString()
                 }, MID));
                 $('#chat_content').val('');

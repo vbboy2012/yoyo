@@ -338,13 +338,19 @@ function op_appendMessage(html) {
  * @returns {string}
  */
 function op_fetchMessageTpl(message, mid) {
+    var content = '';
+    if(message.type == 2){
+        content = '<img src="'+message.content+'">';
+    }else{
+        content = message.content;
+    }
     var tpl_right = '<div class="row talk_right">' +
         '<div class="time"><span class="timespan">{ctime}</span></div>' +
         '<div class="row">' +
         '<div class="col-md-10 bubble_outter">' +
         '<h3>我</h3>' +
         '<i class="bubble_sharp"></i>' +
-        '<div class="talk_bubble">{content}' +
+        '<div class="talk_bubble">'+content +
         '</div>' +
         '</div>' +
         ' <div class="col-md-2" style="text-align: center;"><img ucard="{uid}" class="avatar-img talk-avatar"' +
@@ -359,7 +365,7 @@ function op_fetchMessageTpl(message, mid) {
         '</div><div class="col-md-10 bubble_outter">' +
         '<h3>{nickname}</h3>' +
         '<i class="bubble_sharp"></i>' +
-        '<div class="talk_bubble">{content}' +
+        '<div class="talk_bubble">'+content +
         '</div></div></div></div>';
     var tpl = message.uid == mid ? tpl_right : tpl_left;
     $.each(message, function (index, value) {

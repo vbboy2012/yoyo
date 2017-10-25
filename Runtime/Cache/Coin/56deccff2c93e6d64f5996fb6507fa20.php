@@ -398,15 +398,9 @@
             </div>
             <div class="aline" style="margin-bottom: 35px"></div>
             <div class="ad-form">
-                <form class="form-horizontal ajax-form" action="<?php echo U('Coin/Index/tradead');?>" method="post">
+                <form class="form-horizontal ajax-form" id="trade-form" method="post">
                     <input type="hidden" name="adId" value="<?php echo ($tradead["id"]); ?>">
                     <input type="hidden" name="adUid" value="<?php echo ($tradead["uid"]); ?>">
-                    <input type="hidden" name="type" value="<?php echo ($tradead["type"]); ?>">
-                    <input type="hidden" name="pay_time" value="<?php echo ($tradead['pay_time']); ?>">
-                    <input type="hidden" name="coin_type" value="<?php echo ($tradead["coin_type"]); ?>">
-                    <input type="hidden" name="currency" value="<?php echo ($tradead["currency"]); ?>">
-                    <input type="hidden" name="country" value="<?php echo ($tradead["countryId"]); ?>">
-                    <input type="hidden" name="pay_type" value="<?php echo ($tradead["pay_type"]); ?>">
                     <div class="form-group tradeorder">
                         <div class="col-xs-3">
                             <label>价格：</label>
@@ -450,7 +444,7 @@
                     </div>
                     <div class="form-group tradeorder">
                         <div class="col-xs-12">
-                            <i class="icon icon-flag"></i><a href="<?php echo U('/support/request');?>">举报这条交易广告？</a>
+                            <i class="icon icon-flag"></i><a href="<?php echo U('/support/request/'.$tradead['id']);?>">举报这条交易广告？</a>
                         </div>
                     </div>
                     <?php if($tradead['uid'] == get_uid()): ?><div class="alert alert-warning" style="margin-top: 10px">您无法向自己的交易广告发出交易请求。</div>
@@ -458,7 +452,7 @@
                         <div class="form-group tradeorder" style="margin-top: 20px">
                             <div class="col-xs-5">
                                 <div class="input-group input-group-lg">
-                                    <input type="text" class="form-control" id="price" name="price" placeholder="输入想买入的金额">
+                                    <input type="text" class="form-control" id="trade_price" name="trade_price" placeholder="输入想买入的金额">
                                     <span class="input-group-addon">CNY</span>
                                 </div>
                             </div>
@@ -484,9 +478,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-xs-6 col-md-offset-3" style="text-align: center">
-                                <button type="submit" class="btn btn-success btn-block btn-lg" href="<?php echo U('Coin/Index/ad');?>" style="outline: none">
-                                    <?php echo ($buttonTxt); ?>
-                                </button>
+                                <a href="javascript:void(0);" data-role="submit" class="app-btn"><?php echo ($buttonTxt); ?></a>
                             </div>
                         </div><?php endif; ?>
                 </form>
@@ -548,26 +540,43 @@
 </div>
     </div>
     <script>
+        $(function () {
+            $('[data-role="submit"]').click(function () {
+                var $tag=$(this);
+                if($tag.attr('disabled')=='disabled'){
+                    return false;
+                }
+                $tag.attr('disabled','disabled');
+                var param=$('#trade-form').serialize();
+                var url=U('Coin/Index/tradead');
+                $.post(url,param,function (msg) {
+                    if(msg.status == 0){
+                        $tag.removeAttr('disabled');
+                    }
+                    handleAjax(msg);
+                })
+            })
+        })
         var minPrice = <?php echo ($tradead['min_price']); ?>;
         var maxPrice = <?php echo ($tradead['max_price']); ?>;
-        var ratePrice = <?php echo ($ratePrice); ?>;
-        $("#price").bind('input propertychange',function(){
+        var ratePrice = <?php echo ($tradead['price']); ?>;
+        $("#trade_price").bind('input propertychange',function(){
             $(this).val($(this).val().replace(/[^\d.]/g,""));
             $(this).val($(this).val().replace(/^\./g,""));
             $(this).val($(this).val().replace(/\.{2,}/g,"."));
             $(this).val($(this).val().replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'));
             var price = $(this).val();
             if(price < minPrice){
-                $("#show-max").css('display','none')
+                $("#show-max").css('display','none');
                 $("#show-min").css('display','block');
                 $("#status").val('0');
             }
             else if(price > maxPrice){
-                $("#show-max").css('display','block')
+                $("#show-max").css('display','block');
                 $("#show-min").css('display','none');
                 $("#status").val('0');
             }else{
-                $("#show-max").css('display','none')
+                $("#show-max").css('display','none');
                 $("#show-min").css('display','none');
                 $("#status").val('1');
             }
@@ -582,18 +591,18 @@
             $(this).val($(this).val().replace(/^(\-)*(\d+)\.(\d\d\d\d).*$/,'$1$2.$3'));
             var num = $(this).val();
             var price = num*ratePrice;
-            $("#price").val(price);
+            $("#trade_price").val(price);
             if(price < minPrice){
-                $("#show-max").css('display','none')
+                $("#show-max").css('display','none');
                 $("#show-min").css('display','block');
                 $("#status").val('0');
             }
             else if(price > maxPrice){
-                $("#show-max").css('display','block')
+                $("#show-max").css('display','block');
                 $("#show-min").css('display','none');
                 $("#status").val('0');
             }else{
-                $("#show-max").css('display','none')
+                $("#show-max").css('display','none');
                 $("#show-min").css('display','none');
                 $("#status").val('1');
             }
