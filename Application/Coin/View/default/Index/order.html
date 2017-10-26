@@ -12,15 +12,27 @@
                     $type = $order['coin_type'] == 1?'BTC':'ETH';
                     $coinNum = floatval($order['coin_num']);
                     $price = number_format($order['price'],2);
+                    $updateTime = date('Y-m-d H:i:s', $order['update_time']);
                     $params = '';
+                    $buyer = '';
+                    $seller = '';
+                    $uid = is_login();
                     if($order['type'] == 1){
                     $params = 'sellonline-';
+                    $seller = $order['nickname'];
+                    $buyer = $getUser['getName'];
                     }else if($order['type'] == 2){
                     $params = 'buyonline-';
+                    $buyer = $order['nickname'];
+                    $seller = $getUser['getName'];
                     }else if($order['type'] == 3){
                     $params = 'selllocal-';
+                    $seller = $order['nickname'];
+                    $buyer = $getUser['getName'];
                     }else if($order['type'] == 4){
                     $params = 'buylocal-';
+                    $buyer = $order['nickname'];
+                    $seller = $getUser['getName'];
                     }
                     $params.=$order['payType']."-".$order['countryEn'];
                     $pay_time = $order['pay_time'] * 60;
@@ -28,15 +40,29 @@
                     $remainTime = ceil(($pay_time-$timer)/60);
                     if($order['status'] ==1){
                     $statusText = L('_TRADE_STATUS1_');
+                    if($order['type'] == 1 || $order['type'] == 3){
+                    $sellInfo = L('_TRADE_SELL_INFO1_',array('buyer'=>$getUser['getName'],'tradeCount'=>$getUser['tradeCount'],'tradeScore'=>$getUser['tradeScore'],'coinNum'=>$coinNum,'type'=>$type,'trade_price'=>$order['trade_price'],'currency'=>$order['currency'],'pay_code'=>$order['pay_code']));
+                    }else if($order['type'] == 2 || $order['type'] ==4){
+                    $sellInfo = L('_TRADE_SELL_INFO1_',array('buyer'=>$order['nickname'],'tradeCount'=>$order['trade_count'],'tradeScore'=>$order['trade_score'],'coinNum'=>$coinNum,'type'=>$type,'trade_price'=>$order['trade_price'],'currency'=>$order['currency'],'pay_code'=>$order['pay_code']));
+                    }
+                    $buyInfo = L('_TRADE_BUY_INFO1_',array('time'=>$order['pay_time']));
                     }else if($order['status'] == 2){
                     $statusText = L('_TRADE_STATUS2_');
+                    $buyInfo = L('_TRADE_BUY_INFO2_',array('updateTime'=>$updateTime,'seller'=>$seller));
+                    if($order['type'] == 1 || $order['type'] == 3){
+                    $sellInfo = L('_TRADE_SELL_INFO1_',array('buyer'=>$getUser['getName'],'tradeCount'=>$getUser['tradeCount'],'tradeScore'=>$getUser['tradeScore'],'coinNum'=>$coinNum,'type'=>$type,'trade_price'=>$order['trade_price'],'currency'=>$order['currency'],'pay_code'=>$order['pay_code']));
+                    }else if($order['type'] == 2 || $order['type'] ==4){
+                    $sellInfo = L('_TRADE_SELL_INFO1_',array('buyer'=>$order['nickname'],'tradeCount'=>$order['trade_count'],'tradeScore'=>$order['trade_score'],'coinNum'=>$coinNum,'type'=>$type,'trade_price'=>$order['trade_price'],'currency'=>$order['currency'],'pay_code'=>$order['pay_code']));
+                    }
                     }else if($order['status'] == 3){
                     $statusText = L('_TRADE_STATUS3_');
                     }else if($order['status'] == 4){
                     $statusText = L('_TRADE_STATUS4_');
                     }else if($order['status'] == 0){
                     $statusText = L('_TRADE_STATUS0_');
+                    $buyInfo = $sellInfo = L('_TRADE_BUY_INFO0_',array('buyer'=>$buyer,'updateTime'=>$updateTime));
                     }
+
                 </php>
                 <div class="no-event">订单#{$order['order_id']}：以 {$order.trade_price} CNY 购买 {$coinNum} {$type}</div>
                 <div><a href="{:U('Ucenter/index/information',array('uid'=>$order['ad_uid']))}">{$order['nickname']}</a> 的交易广告# <a href="tradead/{$order['ad_id']}/{$params}">{$order['ad_id']}</a>，价格 {$order.price} {$order.currency}/{$type} </div>
@@ -185,7 +211,7 @@
             if(status == 1){
                 var remainTime = {$remainTime};
                 if(remainTime > 0){
-                    $("#timer").text(remainTime);
+                    $("#timer").text("<php>echo L('_TRADE_TIME_');</php>"+remainTime+"<php>echo L('_TIME_MINUTE_');</php>");
                     code = setInterval(GetRTime,60*1000);
                 }else{
                     $.post("{:U('/timeOver')}", {orderId:"<php>echo $order['order_id'];</php>"}, success, "json");
@@ -200,7 +226,7 @@
             }
             function GetRTime(){
                 remainTime-=1;
-                $("#timer").text(remainTime);
+                $("#timer").text("<php>echo L('_TRADE_TIME_');</php>"+remainTime+"<php>echo L('_TIME_MINUTE_');</php>");
             }
         })
     </script>

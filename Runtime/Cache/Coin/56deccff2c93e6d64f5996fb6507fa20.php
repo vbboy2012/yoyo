@@ -394,7 +394,7 @@
 
             <div class="ad-title">
                 <div class="no-event">在 <?php echo ($tradead['country']); ?> 以 (<?php echo ($tradead['currency']); ?>) 购买 <?php echo ($coinType); ?></div>
-                <P>YOYOCOINS.com <?php echo L('_USER_');?> <?php echo ($tradead["nickname"]); ?> <?php echo ($action); ?> </P>
+                <div>YOYOCOINS.com <?php echo L('_USER_');?> <?php echo ($tradead["nickname"]); ?> <?php echo ($action); ?></div>
             </div>
             <div class="aline" style="margin-bottom: 35px"></div>
             <div class="ad-form">
@@ -414,7 +414,7 @@
                             <label>付款方式：</label>
                         </div>
                         <div class="col-xs-9">
-                            <p> <?php echo ($payName); ?></p>
+                            <?php echo ($payName); ?>
                         </div>
                     </div>
                     <div class="form-group tradeorder">
@@ -423,7 +423,7 @@
                         </div>
                         <div class="col-xs-9">
                             <?php $minPrice = number_format($tradead['min_price']); $maxPrice = number_format($tradead['max_price']); ?>
-                            <p> <?php echo ($minPrice); ?>-<?php echo ($maxPrice); ?> <?php echo ($tradead['currency']); ?></p>
+                            <?php echo ($minPrice); ?>-<?php echo ($maxPrice); ?> <?php echo ($tradead['currency']); ?>
                         </div>
                     </div>
                     <div class="form-group tradeorder">
@@ -431,7 +431,7 @@
                             <label>所在地：</label>
                         </div>
                         <div class="col-xs-9">
-                            <p> <?php echo ($tradead['country']); ?></p>
+                            <?php echo ($tradead['country']); ?>
                         </div>
                     </div>
                     <div class="form-group tradeorder">
@@ -439,12 +439,12 @@
                             <label>付款期限：</label>
                         </div>
                         <div class="col-xs-9">
-                            <p> <?php echo ($tradead['pay_time']); ?> 分钟 <a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" data-tip-class="tooltip-info" title="<?php echo L('_TIME_TIPS_');?>"><i class="icon icon-question-sign"></i></a></p>
+                            <?php echo ($tradead['pay_time']); ?> 分钟 <a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" data-tip-class="tooltip-info" title="<?php echo L('_TIME_TIPS_');?>"><i class="icon icon-question-sign"></i></a>
                         </div>
                     </div>
                     <div class="form-group tradeorder">
                         <div class="col-xs-12">
-                            <i class="icon icon-flag"></i><a href="<?php echo U('/support/request/'.$tradead['id']);?>">举报这条交易广告？</a>
+                            <i class="icon icon-flag"></i><a href="<?php echo U('/support/request/5/'.$tradead['id']);?>">举报这条交易广告？</a>
                         </div>
                     </div>
                     <?php if($tradead['uid'] == get_uid()): ?><div class="alert alert-warning" style="margin-top: 10px">您无法向自己的交易广告发出交易请求。</div>

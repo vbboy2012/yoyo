@@ -324,23 +324,23 @@ class IndexController extends Controller{
             }
             if($tradead['type'] ==1 || $tradead['type'] == 3){
                 if ($order['ad_uid'] == $uid && $order['status'] == 2){  //时广告主出售 放行货币
-                    M('trade_order')->where('id='.$order['id'])->save(array('status'=>3));
+                    M('trade_order')->where('id='.$order['id'])->save(array('status'=>3,'update_time'=>time()));
                 }else if($order['get_uid'] == $uid && ($order['status'] == 1 || $order['status'] == 2)){//用户购买，已完成付款
                     if ($type == 1){
-                        M('trade_order')->where('id='.$order['id'])->save(array('status'=>2));
+                        M('trade_order')->where('id='.$order['id'])->save(array('status'=>2,'update_time'=>time()));
                     }else if($type == 2){
-                        M('trade_order')->where('id='.$order['id'])->save(array('status'=>0));
+                        M('trade_order')->where('id='.$order['id'])->save(array('status'=>0,'update_time'=>time()));
                     }
                 }
             }else if($tradead['type'] ==2 || $tradead['type'] == 4){
                 if ($order['ad_uid'] == $uid && ($order['status'] == 1 || $order['status'] == 2)){ //广告主在线购买，已完成付款
                     if ($type == 1){
-                        M('trade_order')->where('id='.$order['id'])->save(array('status'=>2));
+                        M('trade_order')->where('id='.$order['id'])->save(array('status'=>2,'update_time'=>time()));
                     }else if($type == 2){
-                        M('trade_order')->where('id='.$order['id'])->save(array('status'=>0));
+                        M('trade_order')->where('id='.$order['id'])->save(array('status'=>0,'update_time'=>time()));
                     }
                 }else if($order['get_uid'] == $uid && $order['status'] == 2){//用户卖出货币，放行货币
-                    M('trade_order')->where('id='.$order['id'])->save(array('status'=>3));
+                    M('trade_order')->where('id='.$order['id'])->save(array('status'=>3,'update_time'=>time()));
                 }
             }
             echo json_encode($data);
@@ -376,7 +376,7 @@ class IndexController extends Controller{
                 return false;
             }
             if ($order['status'] == 1){// 买家没有响应才关闭交易
-                M('trade_order')->where('id='.$order['id'])->save(array('status'=>0));
+                M('trade_order')->where('id='.$order['id'])->save(array('status'=>0,'update_time'=>time()));
             }
             echo json_encode($data);
         }

@@ -82,6 +82,12 @@ return array(
     '_BUY_FROM_' => '从您这里购买',
     '_GIVE_YOU_' => '给您',
     '_TIME_TIPS_' => '在发出交易请求后，您有多少时间来标记付款已完成，如超时未标记，交易自动取消!',
+    '_TRADE_BUY_INFO1_' => '现在对方的数字货币已被托管锁定，您需要在{$time}分钟内完成付款并点击 "付款已完成" 按钮，转账时请在留言中附上交易参考号。',
+    '_TRADE_BUY_INFO2_' => '您已在<label>{$updateTime}</label>标记付款已完成。卖家<label>{$seller}</label>在收到付款后将放行数字货币给您。您可以留言给卖家。',
+    '_TRADE_BUY_INFO3_' => '如果买家没有反应，不付款或者就交易条款发生纠纷，您可以申诉此交易。申诉期内，数字货币将由YOYOCOINS托管。',
+    '_TRADE_BUY_INFO0_' => '{$buyer}在{$updateTime} 已取消交易',
+    '_TRADE_SELL_INFO1_' => '买家：{$buyer}({$tradeCount};{$tradeScore}%)<br>已注资金额：{$coinNum} {$type}<br>向买家显示的付款详细信息:<br>金额：<label>{$trade_price} {$currency}</label><br>付款参考码：<label>{$pay_code}</label>',
+
 
     '_TRADE_OPER_' => '交易操作',
     '_TRADE_TIME_' => '还剩',

@@ -10,7 +10,7 @@
 
 return array(
     'route_rules' => array(
-        'support/request/:adId'    => 'help/index/request',
+        'support/request/:type/:adId'    => 'help/index/request',
         'support/request'    => 'help/index/request',
         'support'    => 'help/index/support',
     ),

@@ -1,53 +1,57 @@
 <div class="common_block_border event_right">
     <div class="ardor">
         <if condition="($order['type'] eq 1 or $order['type'] eq 3) and $order['get_uid'] eq get_uid()">
-            <p class="qtHead"><label>{:L('_TRADE_OPER_')}</label><label>{:L('_TRADE_TIME_')} <span id="timer"></span> {:L('_TIME_MINUTE_')}</label></p>
+            <p class="qtHead"><label>{:L('_TRADE_OPER_')}</label><label><span id="timer"></span></label></p>
             <div class="alert alert-info" style="margin-top: 0px">
                 <h4>交易信息</h4>
                 <hr>
-                <p>现在对方的数字货币已被托管锁定，您需要在{$order.pay_time}分钟内完成付款并点击 "付款已完成" 按钮，转账时请在留言中附上交易参考号。</p>
-                <hr>
-                <h4 style="text-align: center">付款信息</h4>
-                <hr>
-                <p>付款详细信息：<label>{$order.pay_remark}</label></p>
-                <p>金额：<label>{$order.trade_price} {$order.currency}</label></p>
-                <p>付款参考码：<label>{$order.pay_code}</label></p>
+                <p>{$buyInfo}</p>
+                <if condition="$order['status']">
+                    <hr>
+                    <h4 style="text-align: center">付款信息</h4>
+                    <hr>
+                    <p>付款详细信息：<label>{$order.pay_remark}</label></p>
+                    <p>金额：<label>{$order.trade_price} {$order.currency}</label></p>
+                    <p>付款参考码：<label>{$order.pay_code}</label></p>
+                </if>
             </div>
             <div class="alert alert-warning" style="margin-top: 0px;">
                 <h4>交易状态</h4>
                 <hr>
-                <p>{$statusText}</p>
+                <h4>{$statusText}</h4>
                 <hr>
                 <php>if($order['status'] == 1){</php>
                 <a href="javascript:void(0)" class="btn btn-info" name="pay-ok">付款已完成</a>
                 <a href="javascript:void(0)" class="btn btn-danger" id="cancel-trade" style="float: right">取消交易</a>
                 <php>}else if($order['status'] == 1 || $order['status'] == 2){</php>
-                <a href="javascript:void(0)" class="btn btn-danger" id="cancel-trade">取消交易</a>
+                <div style="text-align: center">
+                    <a href="javascript:void(0)" class="btn btn-default" id="cancel-trade">取消交易</a>
+                    <p style="margin-top: 20px">{:L('_TRADE_BUY_INFO3_')}</p>
+                    <a href="{:U('/support/request/3/'.$order['order_id'])}" target="_blank" class="btn btn-danger" id="cancel-trade">申&nbsp;诉</a>
+                </div>
                 <php>}</php>
             </div>
-            <div class="alert alert-info" style="margin-top: 0px">
-                <p>当托管启用时，只有买家和YOYOCOINS工作人员可以取消这笔交易。<a href="">了解托管策略</a></p>
-                <p>如果交易过程中遇到问题，请查找帮助中心文档，或者联系客服<a href="">提交问题</a></p>
-            </div>
+            <if condition="$order['status']">
+                <div class="alert alert-info" style="margin-top: 0px">
+                    <p>当托管启用时，只有买家和YOYOCOINS工作人员可以取消这笔交易。<a href="">了解托管策略</a></p>
+                    <p>如果交易过程中遇到问题，请查找帮助中心文档，或者联系客服<a href="">提交问题</a></p>
+                </div>
+            </if>
             <elseif condition="($order['type'] eq 1 or $order['type'] eq 3) and $order['ad_uid'] eq get_uid()"/>
             <p class="qtHead"><label>{:L('_TRADE_OPER_')}</label></p>
             <div class="alert alert-info" style="margin-top: 0px">
                 <h4 style="text-align: center">交易信息</h4>
                 <hr>
-                <p>买家：{$getUser.getName}({$getUser.tradeCount};{$getUser.tradeScore}%)</p>
-                <p>已注资金额：{$coinNum} {$type}</p>
-                <p>向买家显示的付款详细信息:</p>
-                <p>金额：<label>{$order.trade_price} {$order.currency}</label></p>
-                <p>付款参考码：<label>{$order.pay_code}</label></p>
+                <p>{$sellInfo}</p>
             </div>
             <div class="alert alert-warning" style="margin-top: 0px">
                 <h4>交易状态</h4>
                 <hr>
-                <p>{$statusText}</p>
+                <h4>{$statusText}</h4>
                 <hr>
                 <if condition="$order['status'] == 2">
                     <p>放行比特币之前，请确认您已收到相应的交易金额！</p>
-                    <div style="margin-top: 10px">
+                    <div style="margin-top: 10px;text-align: center">
                         <a href="" class="btn btn-info" name="send-coin">放行比特币</a>
                     </div>
                 </if>
@@ -55,55 +59,59 @@
             <elseif condition="($order['type'] eq 2 or $order['type'] eq 4) and $order['get_uid'] eq get_uid()"/>
             <p class="qtHead"><label>{:L('_TRADE_OPER_')}</label></p>
             <div class="alert alert-info" style="margin-top: 0px">
-                <h4>交易信息</h4>
+                <h4 style="text-align: center">交易信息</h4>
                 <hr>
-                <p>买家：{$order.nickname}({$order.trade_count};{$order.trade_score}%)</p>
-                <p>已注资金额：{$coinNum} {$type}</p>
-                <p>向买家显示的付款详细信息:</p>
-                <p>金额：<label>{$order.trade_price} {$order.currency}</label></p>
-                <p>付款参考码：<label>{$order.pay_code}</label></p>
+                <p>{$sellInfo}</p>
             </div>
             <div class="alert alert-warning" style="margin-top: 0px">
                 <h4>交易状态</h4>
                 <hr>
-                <p>{$statusText}</p>
+                <h4>{$statusText}</h4>
                 <hr>
                 <if condition="$order['status'] == 2">
                     <p>放行比特币之前，请确认您已收到相应的交易金额！</p>
-                    <div style="margin-top: 10px">
+                    <div style="margin-top: 10px;text-align: center">
                         <a href="" class="btn btn-info" name="send-coin">放行比特币</a>
                     </div>
                 </if>
             </div>
             <elseif condition="($order['type'] eq 2 or $order['type'] eq 4) and $order['ad_uid'] eq get_uid()"/>
-            <p class="qtHead"><label>{:L('_TRADE_OPER_')}</label><label>{:L('_TRADE_TIME_')} <span id="timer"></span> {:L('_TIME_MINUTE_')}</label></p>
+            <p class="qtHead"><label>{:L('_TRADE_OPER_')}</label><label><span id="timer"></span></label></p>
             <div class="alert alert-info" style="margin-top: 0px">
                 <h4>交易信息</h4>
                 <hr>
-                <p>现在对方的数字货币已被托管锁定，您需要在{$order.pay_time}分钟内完成付款并点击 "付款已完成" 按钮，转账时请在留言中附上交易参考号。</p>
-                <hr>
-                <h4 style="text-align: center">付款信息</h4>
-                <hr>
-                <p>付款详细信息：<label>{$order.pay_remark}</label></p>
-                <p>金额：<label>{$order.trade_price} {$order.currency}</label></p>
-                <p>付款参考码：<label>{$order.pay_code}</label></p>
+                <p>{$buyInfo}</p>
+                <if condition="$order['status']">
+                    <hr>
+                    <h4 style="text-align: center">付款信息</h4>
+                    <hr>
+                    <p>付款详细信息：<label>{$order.pay_remark}</label></p>
+                    <p>金额：<label>{$order.trade_price} {$order.currency}</label></p>
+                    <p>付款参考码：<label>{$order.pay_code}</label></p>
+                </if>
             </div>
-            <div class="alert alert-warning" style="margin-top: 0px">
+            <div class="alert alert-warning" style="margin-top: 0px;">
                 <h4>交易状态</h4>
                 <hr>
-                <p>{$statusText}</p>
+                <h4>{$statusText}</h4>
                 <hr>
                 <php>if($order['status'] == 1){</php>
                 <a href="javascript:void(0)" class="btn btn-info" name="pay-ok">付款已完成</a>
                 <a href="javascript:void(0)" class="btn btn-danger" id="cancel-trade" style="float: right">取消交易</a>
-                <php>}else if($order['status'] != 0){</php>
-                <a href="javascript:void(0)" class="btn btn-danger" id="cancel-trade">取消交易</a>
+                <php>}else if($order['status'] == 1 || $order['status'] == 2){</php>
+                <div style="text-align: center">
+                    <a href="javascript:void(0)" class="btn btn-default" id="cancel-trade">取消交易</a>
+                    <p style="margin-top: 20px">{:L('_TRADE_BUY_INFO3_')}</p>
+                    <a href="{:U('/support/request/3/'.$order['order_id'])}" target="_blank" class="btn btn-danger" id="cancel-trade">申&nbsp;诉</a>
+                </div>
                 <php>}</php>
             </div>
-            <div class="alert alert-info" style="margin-top: 0px">
-                <p>当托管启用时，只有买家和YOYOCOINS工作人员可以取消这笔交易。<a href="">了解托管策略</a></p>
-                <p>如果交易过程中遇到问题，请查找帮助中心文档，或者联系客服<a href="">提交问题</a></p>
-            </div>
+            <if condition="$order['status']">
+                <div class="alert alert-info" style="margin-top: 0px">
+                    <p>当托管启用时，只有买家和YOYOCOINS工作人员可以取消这笔交易。<a href="">了解托管策略</a></p>
+                    <p>如果交易过程中遇到问题，请查找帮助中心文档，或者联系客服<a href="">提交问题</a></p>
+                </div>
+            </if>
         </if>
     </div>
 </div>

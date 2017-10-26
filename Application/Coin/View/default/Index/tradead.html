@@ -28,7 +28,7 @@
 
             <div class="ad-title">
                 <div class="no-event">在 {$tradead['country']} 以 ({$tradead['currency']}) 购买 {$coinType}</div>
-                <P>YOYOCOINS.com {:L('_USER_')} {$tradead.nickname} {$action} </P>
+                <div>YOYOCOINS.com {:L('_USER_')} {$tradead.nickname} {$action}</div>
             </div>
             <div class="aline" style="margin-bottom: 35px"></div>
             <div class="ad-form">
@@ -48,7 +48,7 @@
                             <label>付款方式：</label>
                         </div>
                         <div class="col-xs-9">
-                            <p> {$payName}</p>
+                            {$payName}
                         </div>
                     </div>
                     <div class="form-group tradeorder">
@@ -60,7 +60,7 @@
                                 $minPrice = number_format($tradead['min_price']);
                                 $maxPrice = number_format($tradead['max_price']);
                             </php>
-                            <p> {$minPrice}-{$maxPrice} {$tradead['currency']}</p>
+                            {$minPrice}-{$maxPrice} {$tradead['currency']}
                         </div>
                     </div>
                     <div class="form-group tradeorder">
@@ -68,7 +68,7 @@
                             <label>所在地：</label>
                         </div>
                         <div class="col-xs-9">
-                            <p> {$tradead['country']}</p>
+                            {$tradead['country']}
                         </div>
                     </div>
                     <div class="form-group tradeorder">
@@ -76,12 +76,12 @@
                             <label>付款期限：</label>
                         </div>
                         <div class="col-xs-9">
-                            <p> {$tradead['pay_time']} 分钟 <a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" data-tip-class="tooltip-info" title="{:L('_TIME_TIPS_')}"><i class="icon icon-question-sign"></i></a></p>
+                            {$tradead['pay_time']} 分钟 <a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" data-tip-class="tooltip-info" title="{:L('_TIME_TIPS_')}"><i class="icon icon-question-sign"></i></a>
                         </div>
                     </div>
                     <div class="form-group tradeorder">
                         <div class="col-xs-12">
-                            <i class="icon icon-flag"></i><a href="{:U('/support/request/'.$tradead['id'])}">举报这条交易广告？</a>
+                            <i class="icon icon-flag"></i><a href="{:U('/support/request/5/'.$tradead['id'])}">举报这条交易广告？</a>
                         </div>
                     </div>
                     <if condition="$tradead['uid'] eq get_uid()">

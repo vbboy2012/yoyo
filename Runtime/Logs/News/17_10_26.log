@@ -1,0 +1,236 @@
+[ 2017-10-26T09:12:38+08:00 ] 127.0.0.1 /yoyo/index.php?s=/news/index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004000s ]
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+NOTIC: [8] Undefined index: router F:\wamp64\www\yoyo\Application\Common\Common\function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.001000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.021000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.023000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.002000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: res F:\wamp64\www\yoyo\Application\Common\Common\role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] unserialize(): Error at offset 0 of 6 bytes F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_MOB_JUMP_MOB' LIMIT 1   [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: keywords F:\wamp64\www\yoyo\Application\News\Controller\IndexController.class.php 第 33 行.
+SQL: SHOW COLUMNS FROM `ocenter_news` [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `ocenter_news_detail` [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `ocenter_news_category` [ RunTime:0.000000s ]
+SQL: SELECT `id`,`title`,`pid`,`can_post`,`need_audit`,`sort`,`status` FROM `ocenter_news_category` WHERE `status` = 1 ORDER BY sort  [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: _ F:\wamp64\www\yoyo\Application\News\Controller\IndexController.class.php 第 44 行.
+NOTIC: [8] unserialize(): Error at offset 0 of 10 bytes F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_news_category` WHERE `can_post` = 1 AND `status` = 1 LIMIT 1   [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: keywords F:\wamp64\www\yoyo\Application\News\Controller\IndexController.class.php 第 76 行.
+NOTIC: [8] unserialize(): Error at offset 0 of 21 bytes F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_NEWS_NEWS_ORDER_FIELD' LIMIT 1   [ RunTime:0.000000s ]
+NOTIC: [8] unserialize(): Error at offset 0 of 13 bytes F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_NEWS_NEWS_ORDER_TYPE' LIMIT 1   [ RunTime:0.000000s ]
+NOTIC: [8] unserialize(): Error at offset 0 of 7 bytes F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_NEWS_NEWS_PAGE_NUM' LIMIT 1   [ RunTime:0.000000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_news` WHERE `dead_line` > 1508980358 AND `post_time` < 1508980358 AND `status` = 1 LIMIT 1   [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: list F:\wamp64\www\yoyo\Application\News\Model\NewsModel.class.php 第 47 行.
+NOTIC: [2] Invalid argument supplied for foreach() F:\wamp64\www\yoyo\Application\News\Controller\IndexController.class.php 第 110 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ syncMeta ] --START--
+INFO: Run Addons\SyncLogin\SyncLoginAddon [ RunTime:0.003000s ]
+INFO: [ syncMeta ] --END-- [ RunTime:0.003000s ]
+NOTIC: [8] Undefined variable: seo F:\wamp64\www\yoyo\Runtime\Cache\News\252de710a813c65aa32677b1ada1383f.php 第 9 行.
+SQL: SHOW COLUMNS FROM `ocenter_seo_rule` [ RunTime:0.001000s ]
+NOTIC: [8] unserialize(): Error at offset 0 of 75 bytes F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+NOTIC: [8192] mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. F:\wamp64\www\yoyo\Application\Common\Model\SeoRuleModel.class.php 第 78 行.
+NOTIC: [8192] mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. F:\wamp64\www\yoyo\Application\Common\Model\SeoRuleModel.class.php 第 79 行.
+NOTIC: [8192] mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. F:\wamp64\www\yoyo\Application\Common\Model\SeoRuleModel.class.php 第 80 行.
+SQL: SELECT * FROM `ocenter_seo_rule` WHERE ( (app='' or app='News') and (controller='' or controller='Index') and (action='' or action='index') and status=1 ) ORDER BY sort asc  [ RunTime:0.000000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `ocenter_pushing` [ RunTime:0.001000s ]
+ERR: 1146:Table 'yoyobit.ocenter_pushing' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `ocenter_pushing`
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.001000s ]
+NOTIC: [8] Undefined offset: 1 F:\wamp64\www\yoyo\Application\Common\Model\MemberModel.class.php 第 267 行.
+SQL: SHOW COLUMNS FROM `ocenter_user_token` [ RunTime:0.001000s ]
+SQL: SELECT * FROM `ocenter_user_token` WHERE `uid` = null LIMIT 1   [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `ocenter_channel` [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: _ F:\wamp64\www\yoyo\Runtime\Cache\News\252de710a813c65aa32677b1ada1383f.php 第 149 行.
+NOTIC: [8] Undefined index: _ F:\wamp64\www\yoyo\Runtime\Cache\News\252de710a813c65aa32677b1ada1383f.php 第 149 行.
+NOTIC: [8] Undefined index: _ F:\wamp64\www\yoyo\Runtime\Cache\News\252de710a813c65aa32677b1ada1383f.php 第 149 行.
+NOTIC: [8] Undefined index: _ F:\wamp64\www\yoyo\Runtime\Cache\News\252de710a813c65aa32677b1ada1383f.php 第 149 行.
+NOTIC: [8] Undefined index: _ F:\wamp64\www\yoyo\Runtime\Cache\News\252de710a813c65aa32677b1ada1383f.php 第 149 行.
+SQL: SHOW COLUMNS FROM `ocenter_auth_rule` [ RunTime:0.000000s ]
+SQL: SELECT * FROM `ocenter_auth_rule` WHERE `name` = 'Core/Admin/View' AND `status` = 1 LIMIT 1   [ RunTime:0.001000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: res F:\wamp64\www\yoyo\Application\Common\Common\role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.153000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.092000s ]
+NOTIC: [8] Undefined index: children F:\wamp64\www\yoyo\Runtime\Cache\News\7ac86ee1d16e058d630e77679d9f3d59.php 第 15 行.
+NOTIC: [8] Undefined index: li_class F:\wamp64\www\yoyo\Runtime\Cache\News\7ac86ee1d16e058d630e77679d9f3d59.php 第 31 行.
+NOTIC: [8] Undefined index: a_class F:\wamp64\www\yoyo\Runtime\Cache\News\7ac86ee1d16e058d630e77679d9f3d59.php 第 32 行.
+NOTIC: [8] Undefined index: icon F:\wamp64\www\yoyo\Runtime\Cache\News\7ac86ee1d16e058d630e77679d9f3d59.php 第 33 行.
+NOTIC: [8] Undefined index: children F:\wamp64\www\yoyo\Runtime\Cache\News\7ac86ee1d16e058d630e77679d9f3d59.php 第 15 行.
+NOTIC: [8] Undefined index: li_class F:\wamp64\www\yoyo\Runtime\Cache\News\7ac86ee1d16e058d630e77679d9f3d59.php 第 31 行.
+NOTIC: [8] Undefined index: a_class F:\wamp64\www\yoyo\Runtime\Cache\News\7ac86ee1d16e058d630e77679d9f3d59.php 第 32 行.
+NOTIC: [8] Undefined index: icon F:\wamp64\www\yoyo\Runtime\Cache\News\7ac86ee1d16e058d630e77679d9f3d59.php 第 33 行.
+NOTIC: [8] Undefined index: type F:\wamp64\www\yoyo\Runtime\Cache\News\7ac86ee1d16e058d630e77679d9f3d59.php 第 38 行.
+NOTIC: [8] Undefined index: children F:\wamp64\www\yoyo\Runtime\Cache\News\7ac86ee1d16e058d630e77679d9f3d59.php 第 50 行.
+NOTIC: [8] Undefined index: li_class F:\wamp64\www\yoyo\Runtime\Cache\News\7ac86ee1d16e058d630e77679d9f3d59.php 第 66 行.
+NOTIC: [8] Undefined index: a_class F:\wamp64\www\yoyo\Runtime\Cache\News\7ac86ee1d16e058d630e77679d9f3d59.php 第 67 行.
+NOTIC: [8] Undefined index: icon F:\wamp64\www\yoyo\Runtime\Cache\News\7ac86ee1d16e058d630e77679d9f3d59.php 第 68 行.
+NOTIC: [8] Undefined index: tab F:\wamp64\www\yoyo\Runtime\Cache\News\7ac86ee1d16e058d630e77679d9f3d59.php 第 37 行.
+NOTIC: [8] Undefined variable: search_keywords F:\wamp64\www\yoyo\Runtime\Cache\News\7ac86ee1d16e058d630e77679d9f3d59.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.032000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.033000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: res F:\wamp64\www\yoyo\Application\Common\Common\role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.199000s ]
+SQL: SHOW COLUMNS FROM `ocenter_adv_pos` [ RunTime:0.001000s ]
+NOTIC: [8] unserialize(): Error at offset 0 of 302 bytes F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+SQL: SELECT * FROM `ocenter_adv_pos` WHERE `name` = 'index_top' AND `path` = 'News/Index/index' AND `status` = 1 LIMIT 1   [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `ocenter_adv` [ RunTime:0.000000s ]
+NOTIC: [8] unserialize(): Error at offset 0 of 6 bytes F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+SQL: SELECT * FROM `ocenter_adv` WHERE `pos_id` = 5 AND `status` = 1 AND `start_time` < 1508980358 AND `end_time` > 1508980358 ORDER BY sort asc  [ RunTime:0.000000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\wamp64\www\yoyo\Application\Common\Model\AdvModel.class.php 第 31 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.133000s ]
+SQL: SELECT * FROM `ocenter_auth_rule` WHERE `name` = 'Admin/Adv/adv' AND `status` = 1 LIMIT 1   [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.023000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.033000s ]
+NOTIC: [8] unserialize(): Error at offset 0 of 331 bytes F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+SQL: SELECT * FROM `ocenter_adv_pos` WHERE `name` = 'index_right_top' AND `path` = 'News/Index/index' AND `status` = 1 LIMIT 1   [ RunTime:0.000000s ]
+NOTIC: [8] unserialize(): Error at offset 0 of 6 bytes F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+SQL: SELECT * FROM `ocenter_adv` WHERE `pos_id` = 7 AND `status` = 1 AND `start_time` < 1508980358 AND `end_time` > 1508980358 ORDER BY sort asc  [ RunTime:0.000000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\wamp64\www\yoyo\Application\Common\Model\AdvModel.class.php 第 31 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.154000s ]
+SQL: SELECT * FROM `ocenter_auth_rule` WHERE `name` = 'Admin/Adv/adv' AND `status` = 1 LIMIT 1   [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.046000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.054000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: res F:\wamp64\www\yoyo\Application\Common\Common\role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.252000s ]
+NOTIC: [2] Missing argument 2 for News\Widget\PositionWidget::lists() F:\wamp64\www\yoyo\Application\News\Widget\PositionWidget.class.php 第 14 行.
+NOTIC: [2] Missing argument 4 for News\Widget\PositionWidget::lists() F:\wamp64\www\yoyo\Application\News\Widget\PositionWidget.class.php 第 14 行.
+NOTIC: [8] Undefined variable: category F:\wamp64\www\yoyo\Application\News\Widget\PositionWidget.class.php 第 23 行.
+NOTIC: [8] Undefined variable: filed F:\wamp64\www\yoyo\Application\News\Widget\PositionWidget.class.php 第 23 行.
+SQL: SELECT * FROM `ocenter_news` WHERE `status` = 1 AND `dead_line` > 1508980358 AND ( position & 2 = 2 ) ORDER BY sort desc,view desc LIMIT 5   [ RunTime:0.000000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\wamp64\www\yoyo\Application\News\Widget\PositionWidget.class.php 第 24 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.178000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.066000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.078000s ]
+NOTIC: [8] Undefined variable: now_category F:\wamp64\www\yoyo\Runtime\Cache\News\252de710a813c65aa32677b1ada1383f.php 第 466 行.
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: res F:\wamp64\www\yoyo\Application\Common\Common\role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.275000s ]
+SQL: SELECT * FROM `ocenter_news` WHERE `status` = 1 AND `dead_line` > 1508980358 AND `post_time` < 1508980358 AND `update_time` > 1508375558 ORDER BY view desc LIMIT 5   [ RunTime:0.001000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\wamp64\www\yoyo\Application\News\Widget\HotWidget.class.php 第 29 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.201000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.089000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.101000s ]
+NOTIC: [8] unserialize(): Error at offset 0 of 330 bytes F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+SQL: SELECT * FROM `ocenter_adv_pos` WHERE `name` = 'index_bottom_top' AND `path` = 'News/Index/index' AND `status` = 1 LIMIT 1   [ RunTime:0.000000s ]
+NOTIC: [8] unserialize(): Error at offset 0 of 6 bytes F:\wamp64\www\yoyo\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+SQL: SELECT * FROM `ocenter_adv` WHERE `pos_id` = 6 AND `status` = 1 AND `start_time` < 1508980358 AND `end_time` > 1508980358 ORDER BY sort asc  [ RunTime:0.001000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\wamp64\www\yoyo\Application\Common\Model\AdvModel.class.php 第 31 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.220000s ]
+SQL: SELECT * FROM `ocenter_auth_rule` WHERE `name` = 'Admin/Adv/adv' AND `status` = 1 LIMIT 1   [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.112000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.120000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: res F:\wamp64\www\yoyo\Application\Common\Common\role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.317000s ]
+NOTIC: [2] Missing argument 1 for Common\Widget\SuperLinksWidget::superLinks() F:\wamp64\www\yoyo\Application\Common\Widget\SuperLinksWidget.class.php 第 15 行.
+SQL: SHOW COLUMNS FROM `ocenter_super_links` [ RunTime:0.001000s ]
+SQL: SELECT * FROM `ocenter_super_links` WHERE ( status = 1 ) ORDER BY level desc,id asc  [ RunTime:0.000000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\wamp64\www\yoyo\Application\Common\Model\SuperLinksModel.class.php 第 37 行.
+NOTIC: [8] Undefined variable: data F:\wamp64\www\yoyo\Application\Common\Model\SuperLinksModel.class.php 第 48 行.
+NOTIC: [8] Undefined variable: param F:\wamp64\www\yoyo\Application\Common\Widget\SuperLinksWidget.class.php 第 19 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.244000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.132000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.143000s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_CONFIG_QRCODE_BOTTOM' LIMIT 1   [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: site F:\wamp64\www\yoyo\Runtime\Cache\News\252de710a813c65aa32677b1ada1383f.php 第 535 行.
+INFO: [ pageFooter ] --START--
+INFO: Run Addons\SuperLinks\SuperLinksAddon [ RunTime:0.000000s ]
+INFO: [ pageFooter ] --END-- [ RunTime:0.001000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: res F:\wamp64\www\yoyo\Application\Common\Common\role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.343000s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: res F:\wamp64\www\yoyo\Application\Common\Common\role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.350000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.029000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.132000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.160000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+

@@ -32,9 +32,7 @@
 
 
 
-
-    <link href="/yoyo/Application/Help/Static/css/event.css" rel="stylesheet" type="text/css"/>
-
+<!--Style-->
 <!--合并前的js-->
 <?php $config = api('Config/lists'); C($config); $count_code=C('COUNT_CODE'); ?>
 <script type="text/javascript">
@@ -148,7 +146,8 @@
         <div id="nav_bar" class="nav_bar">
             <div class=" sat-nav">
                 <ul class="first-ul">
-                    <?php $__NAV__ = D('Channel')->lists(true);$__NAV__ = list_to_tree($__NAV__, "id", "pid", "_"); if(is_array($__NAV__)): $i = 0; $__LIST__ = $__NAV__;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$nav): $mod = ($i % 2 );++$i; if(($nav['_']) != ""): ?><li class="dropdown show-hide-ul">
+                    <think:nav name="nav" tree="true">
+                        <?php if(($nav['_']) != ""): ?><li class="dropdown show-hide-ul">
                                 <a title="<?php echo ($nav["title"]); ?>" class=" nav_item first-a"
                                    href="<?php echo U($nav['url']);?>">
                                     <i class="os-icon-<?php echo ($nav["icon"]); ?> app-icon"></i>
@@ -184,7 +183,8 @@
                                     <span ><?php echo ($nav["title"]); ?></span>
                                     <span class="label label-badge rank-label" title="<?php echo ($nav["band_text"]); ?>" style="background: <?php echo ($nav["band_color"]); ?> !important;color:white !important;"><?php echo ($nav["band_text"]); ?></span>
                                 </a>
-                            </li><?php endif; endforeach; endif; else: echo "" ;endif; ?>
+                            </li><?php endif; ?>
+                    </think:nav>
                 </ul>
             </div>
         </div>
@@ -207,10 +207,10 @@
                     <div class="bg-wrap">
                         <?php if($self['cover_id']): ?><img class="cover uc_top_img_bg_weibo" src="<?php echo ($self['cover_path']); ?>">
                             <?php else: ?>
-                            <img class="cover uc_top_img_bg_weibo" src="/yoyo/Application/Core/Static/images/bg.jpg"><?php endif; ?>
+                            <img class="cover uc_top_img_bg_weibo" src="__CORE_IMAGE__/bg.jpg"><?php endif; ?>
                         <?php if(is_login() && $self['uid'] == is_login()): ?><div class="change_cover"><a data-type="ajax" data-url="<?php echo U('Ucenter/Public/changeCover');?>"
                                                          data-toggle="modal" data-title="<?php echo L('_UPLOAD_COVER_');?>" style="color: white;"><img
-                                    class="img-responsive" src="/yoyo/Application/Core/Static/images/fractional.png" style="width: 25px;"></a>
+                                    class="img-responsive" src="__CORE_IMAGE__/fractional.png" style="width: 25px;"></a>
                             </div><?php endif; ?>
                     </div>
 
@@ -381,213 +381,76 @@
 	<!-- 主体 -->
 	<div class="main-wrapper">
     
-    <?php echo W('Common/SubMenu/render',array($ticketMenu,$current,array('icon'=>'map-marker'),''));?>
-
-
     <!--顶部导航之后的钩子，调用公告等-->
 <!--<?php echo hook('afterTop');?>-->
 <!--顶部导航之后的钩子，调用公告等 end-->
     <div id="main-container" class="container">
         <div class="row">
             
-    <div class="white-popup1 boxShadowBorder col-xs-12" style="">
-        <div class="alert alert-info" style="margin-top: 0px"><?php echo L('_TICKET_TIPS_');?></div>
-        <h2 style="margin-top: 30px;color: #1798F2"><?php echo L('_ADD_TICKET_');?></h2>
-        <div class="aline" style="margin-bottom: 35px"></div>
-        <div>
-            <div class="row">
-                <div style="padding: 0 10px;width: 100%;float: left;">
-                    <form class="form-horizontal ajax-form" id="ticket-form" method="post">
+    <style>
+        .font{
+            font-size: 25px;;
+        }
+    </style>
 
-                        <div class="form-group">
-                            <div class="col-xs-2" style="margin-top: 10px">
-                                <label class="required"><?php echo L('_TICKET_TYPE_LABEL_');?></label>
-                            </div>
-                            <div class="col-xs-6">
-                                <select name="type" class="select2" style="width: 100%">
-                                    <option value="">
-                                    <?php echo L('_PLEASE_SELECT_');?>
-                                    </option>
-                                    <option value="1" <?php if($type == 1): ?>selected<?php endif; ?>>
-                                    <?php echo L('_TICKET_QUESTION1_');?>
-                                    </option>
-                                    <option value="2" <?php if($type == 2): ?>selected<?php endif; ?>>
-                                    <?php echo L('_TICKET_QUESTION2_');?>
-                                    </option>
-                                    <option value="3" <?php if($type == 3): ?>selected<?php endif; ?>>
-                                    <?php echo L('_TICKET_QUESTION3_');?>
-                                    </option>
-                                    <option value="4" <?php if($type == 4): ?>selected<?php endif; ?>>
-                                    <?php echo L('_TICKET_QUESTION4_');?>
-                                    </option>
-                                    <option value="5" <?php if($type == 5): ?>selected<?php endif; ?>>
-                                    <?php echo L('_TICKET_QUESTION5_');?>
-                                    </option>
-                                    <option value="6" <?php if($type == 6): ?>selected<?php endif; ?>>
-                                    <?php echo L('_TICKET_QUESTION6_');?>
-                                    </option>
-                                    <option value="7" <?php if($type == 7): ?>selected<?php endif; ?>>
-                                    <?php echo L('_TICKET_QUESTION7_');?>
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
+    <?php
+ $img_id = modC('JUMP_BACKGROUND','','config'); if($img_id){ $background =get_cover($img_id,'path'); }else{ $background = '/yoyo/Public/images/jump_background.jpg'; } ?>
 
-                        <div class="form-group">
-                            <div class="col-xs-2" style="margin-top: 10px">
-                                <label class="required"><?php echo L('_TICKET_ID_LABEL_');?></label>
-                            </div>
-                            <div class="col-xs-6">
-                                <div class="input-group input-group-lg" style="width: 100%">
-                                    <input type="text" class="form-control" placeholder="<?php echo L('_TICKET_ID_TEXT_');?>" value="<?php echo ($adId); ?>" name="question_id">
-                                </div>
-                            </div>
-                        </div>
+    <div class="" style="padding:300px 100px 0 100px;height: 650px; background: url(<?php echo($background); ?>)">
 
-                        <div class="form-group">
-                            <div class="col-xs-2" style="margin-top: 10px">
-                                <label class="required"><?php echo L('_TICKET_EMAIL_LABEL_');?></label>
-                            </div>
-                            <div class="col-xs-6">
-                                <div class="input-group input-group-lg" style="width: 100%">
-                                    <input type="text" class="form-control form_check" check-type="Email" placeholder="<?php echo L('_TICKET_EMAIL_TEXT_');?>" value="<?php echo ($ad['formula']); ?>" name="email">
-                                </div>
-                            </div>
-                        </div>
+<div class="text-center " style="margin: 0 auto; ">
+
+<?php if(isset($success_message)) {?>
+
+<div class="alert alert-success with-icon">
+        <i class="icon-ok-sign"></i>
+        <div class="content">
+
+<p class="font"><?php echo($success_message); ?></p>
 
 
-                        <div class="form-group">
-                            <div class="col-xs-2">
-                                <label class="required"><?php echo L('_TICKET_CONTENT_LABEL');?></label>
-                            </div>
-                            <div class="col-xs-6">
-                                <?php $pay_text = str_replace("<br>","\n",$ad['pay_text']) ?>
-                                <textarea name="content" class="text form-control" placeholder="<?php echo L('_TICKET_CONTENT_TEXT_');?>" style="height: 8em;height: 160px"><?php echo ($pay_text); ?></textarea>
-                            </div>
-                        </div>
+</div>
 
-                        <div class="form-group">
-                            <div class="col-xs-2">
-                                <label><?php echo L('_TICKET_FILE');?></label>
-                            </div>
-                            <div class="col-xs-6">
-                                <span id="web_uploader_wrapper_gallary_image">上传</span>
+</div>
 
-                                <input id="web_uploader_input_gallary_image" type="hidden" value=""  event-node="uploadinput">
+<?php }else{?>
 
-                                <div id="web_uploader_picture_list_gallary_image" class="web_uploader_picture_list">
-                                    <?php if(is_array($attest["image"])): $i = 0; $__LIST__ = $attest["image"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$i): $mod = ($i % 2 );++$i;?><img class="gallary_thumb" onclick="remove_file(this,'image')" src="<?php echo (get_cover($i,'path')); ?>">
-                                        <input type="hidden" name="image[]" value="<?php echo ($i); ?>"/><?php endforeach; endif; else: echo "" ;endif; ?>
-                                </div>
-                                <span class="help-block">*点击小图删除，删除后不能再上传</span>
-                            </div>
-                        </div>
+<div class="alert alert-danger with-icon">
+    <i class="icon-remove-sign"></i>
+    <div class="content">
 
-                        <div class="form-group">
-                            <div class="col-xs-2 col-md-offset-2">
-                                <a href="javascript:void(0);" data-role="submit" class="app-btn"><?php echo L('_TICKET_SEND');?></a>
-                            </div>
-                        </div>
-                </form>
-            </div>
-        </div>
+        <p class="font"> <?php echo($error_message); ?></p>
+
+
+</div>
+</div>
+
+<?php }?>
+
+
+    <p class="jump">
+        页面自动 <a id="href" style="color: green" href="<?php echo($jumpUrl); ?>">跳转</a> 等待时间： <b id="wait"><?php echo($waitSecond); ?></b>。
+
+        或 <a href="http://<?php echo ($_SERVER['HTTP_HOST']); ?>/yoyo" style="color: green">返回首页</a>
+    </p>
+
 
     </div>
-    <link href="/yoyo/Application/Help/Static/css/form_check.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="/yoyo/Application/Help/Static/js/form_check.js"></script>
-    <link rel="stylesheet" href="/yoyo/Application/Help/Static/css/select2.css">
-    <script src="/yoyo/Application/Help/Static/js/select2.js"></script>
-    <link rel="stylesheet" href="/yoyo/Application/Help/Static/css/components.css">
-        <script type="text/javascript" charset="utf-8" src="/yoyo/Public/static/ueditor/third-party/webuploader/webuploader.js"></script>
-        <link href="/yoyo/Public/static/ueditor/third-party/webuploader/webuploader.css" type="text/css" rel="stylesheet">
-        <script type="text/javascript" src="/yoyo/Public/static/uploadify/jquery.uploadify.min.js"></script>
-        <script>
-            $(function () {
-                $('[data-role="submit"]').click(function () {
-                    var $tag=$(this);
-                    if($tag.attr('disabled')=='disabled'){
-                        return false;
-                    }
-                    $tag.attr('disabled','disabled');
-                    var param=$('#ticket-form').serialize();
-                    var url=U('Help/index/doPost');
-                    $.post(url,param,function (msg) {
-                        if(msg.status==0){
-                            $tag.removeAttr('disabled');
-                        }
-                        handleAjax(msg);
-                    })
-                })
-            })
 
+    </div>
+<script type="text/javascript">
+    (function(){
+        var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+        var interval = setInterval(function(){
+            var time = --wait.innerHTML;
+            if(time <= 0) {
+                location.href = href;
+                clearInterval(interval);
+            };
+        }, 1000);
+    })();
+</script>
 
-            var gallary_num_image="<?php echo count($info['image']) ?>";
-            $(function () {
-
-
-                //image start
-                var id_image = "#web_uploader_wrapper_gallary_image";
-                if($(id_image).length>0) {
-                    var uploader_gallary_image = WebUploader.create({
-                        // swf文件路径
-                        swf: 'Uploader.swf',
-                        // 文件接收服务端。
-                        server: "<?php echo U('Core/File/uploadPicture',array('session_id'=>session_id()));?>",
-                        fileNumLimit: 9,
-                        // 选择文件的按钮。可选。
-                        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-                        pick: {'id': id_image, 'multi': true}
-                    });
-                    uploader_gallary_image.on('beforeFileQueued', function (file) {
-                        if (gallary_num_image >= 9) {
-                            toast.error('图片不能超过9张');
-                            return false;
-                        }
-                    });
-                    uploader_gallary_image.on('fileQueued', function (file) {
-                        gallary_num_image = parseInt(gallary_num_image) + 1;
-
-                        uploader_gallary_image.upload();
-                        $("#web_uploader_file_name_gallary_image").text('正在上传...');
-                    });
-
-                    /*上传成功*/
-                    uploader_gallary_image.on('uploadSuccess', function (file, ret) {
-                        if (ret.status == 0) {
-                            $("#web_uploader_file_name_gallary_image").text(ret.info);
-                        } else {
-                            $('#web_uploader_input_gallary_image').focus();
-                            $('#web_uploader_input_gallary_image').val(ret.data.file.id);
-                            $('#web_uploader_input_gallary_image').blur();
-                            $("#web_uploader_picture_list_gallary_image").append('<img class="gallary_thumb" onclick="remove_file(this,' + "'image'" + ')" src="' + ret.data.file.path + '"/><input type="hidden" name="image[]" value="' + ret.data.file.id + '"/>');
-                        }
-                    });
-                }
-                //image end
-
-            })
-            function remove_file(obj,str) {
-                $(obj).next().remove();
-                $(obj).remove();
-                switch (str){
-                    case 'prove_image':
-                        gallary_num_prove_image = gallary_num_prove_image - 1;
-                        break;
-                    case 'image':
-                        gallary_num_image = gallary_num_image - 1;
-                        break;
-                    case 'other_image':
-                        gallary_num_other_image = gallary_num_other_image - 1;
-                        break;
-                    default:;
-                }
-            }
-        </script>
-    <script>
-        $(function(){
-            $(".select2").select2();
-        })
-    </script>
 
         </div>
     </div>

@@ -42,7 +42,9 @@ class IndexController extends Controller{
     public function request()
     {
         $adId = I('get.adId');
+        $type = I('get.type');
         $this->assign('adId', $adId);
+        $this->assign('type', $type);
         $this->assign('current', 'request');
         $this->display();
     }

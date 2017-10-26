@@ -25,25 +25,25 @@
                                     <option value="">
                                     {:L('_PLEASE_SELECT_')}
                                     </option>
-                                    <option value="1">
+                                    <option value="1" <if condition="$type eq 1">selected</if>>
                                     {:L('_TICKET_QUESTION1_')}
                                     </option>
-                                    <option value="2">
+                                    <option value="2" <if condition="$type eq 2">selected</if>>
                                     {:L('_TICKET_QUESTION2_')}
                                     </option>
-                                    <option value="3">
+                                    <option value="3" <if condition="$type eq 3">selected</if>>
                                     {:L('_TICKET_QUESTION3_')}
                                     </option>
-                                    <option value="4">
+                                    <option value="4" <if condition="$type eq 4">selected</if>>
                                     {:L('_TICKET_QUESTION4_')}
                                     </option>
-                                    <option value="5" <if condition="$adId">selected</if>>
+                                    <option value="5" <if condition="$type eq 5">selected</if>>
                                     {:L('_TICKET_QUESTION5_')}
                                     </option>
-                                    <option value="6">
+                                    <option value="6" <if condition="$type eq 6">selected</if>>
                                     {:L('_TICKET_QUESTION6_')}
                                     </option>
-                                    <option value="7">
+                                    <option value="7" <if condition="$type eq 7">selected</if>>
                                     {:L('_TICKET_QUESTION7_')}
                                     </option>
                                 </select>
