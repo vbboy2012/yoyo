@@ -8,22 +8,18 @@
                 <p>{$buyInfo}</p>
                 <if condition="$order['status']">
                     <hr>
-                    <h4 style="text-align: center">付款信息</h4>
+                    <h4 style="text-align: center">付款详细信息</h4>
                     <hr>
-                    <p>付款详细信息：<label>{$order.pay_remark}</label></p>
+                    <p><label>{$order.pay_remark}</label></p>
                     <p>金额：<label>{$order.trade_price} {$order.currency}</label></p>
                     <p>付款参考码：<label>{$order.pay_code}</label></p>
                 </if>
             </div>
             <div class="alert alert-warning" style="margin-top: 0px;">
-                <h4>交易状态</h4>
-                <hr>
-                <h4>{$statusText}</h4>
-                <hr>
                 <php>if($order['status'] == 1){</php>
                 <a href="javascript:void(0)" class="btn btn-info" name="pay-ok">付款已完成</a>
                 <a href="javascript:void(0)" class="btn btn-danger" id="cancel-trade" style="float: right">取消交易</a>
-                <php>}else if($order['status'] == 1 || $order['status'] == 2){</php>
+                <php>}else if($order['status'] == 2){</php>
                 <div style="text-align: center">
                     <a href="javascript:void(0)" class="btn btn-default" id="cancel-trade">取消交易</a>
                     <p style="margin-top: 20px">{:L('_TRADE_BUY_INFO3_')}</p>

@@ -389,16 +389,16 @@
             
     <!--导航-->
     <div class="col-xs-12">
-        <div class="forum_module" style="background: none">
-            <div class="ad-title">
+        <div style="background: none">
+            <div>
                 <?php $type = $order['coin_type'] == 1?'BTC':'ETH'; $coinNum = floatval($order['coin_num']); $price = number_format($order['price'],2); $updateTime = date('Y-m-d H:i:s', $order['update_time']); $params = ''; $buyer = ''; $seller = ''; $uid = is_login(); if($order['type'] == 1){ $params = 'sellonline-'; $seller = $order['nickname']; $buyer = $getUser['getName']; }else if($order['type'] == 2){ $params = 'buyonline-'; $buyer = $order['nickname']; $seller = $getUser['getName']; }else if($order['type'] == 3){ $params = 'selllocal-'; $seller = $order['nickname']; $buyer = $getUser['getName']; }else if($order['type'] == 4){ $params = 'buylocal-'; $buyer = $order['nickname']; $seller = $getUser['getName']; } $params.=$order['payType']."-".$order['countryEn']; $pay_time = $order['pay_time'] * 60; $timer = (time()-$order['create_time']); $remainTime = ceil(($pay_time-$timer)/60); if($order['status'] ==1){ $statusText = L('_TRADE_STATUS1_'); if($order['type'] == 1 || $order['type'] == 3){ $sellInfo = L('_TRADE_SELL_INFO1_',array('buyer'=>$getUser['getName'],'tradeCount'=>$getUser['tradeCount'],'tradeScore'=>$getUser['tradeScore'],'coinNum'=>$coinNum,'type'=>$type,'trade_price'=>$order['trade_price'],'currency'=>$order['currency'],'pay_code'=>$order['pay_code'])); }else if($order['type'] == 2 || $order['type'] ==4){ $sellInfo = L('_TRADE_SELL_INFO1_',array('buyer'=>$order['nickname'],'tradeCount'=>$order['trade_count'],'tradeScore'=>$order['trade_score'],'coinNum'=>$coinNum,'type'=>$type,'trade_price'=>$order['trade_price'],'currency'=>$order['currency'],'pay_code'=>$order['pay_code'])); } $buyInfo = L('_TRADE_BUY_INFO1_',array('time'=>$order['pay_time'])); }else if($order['status'] == 2){ $statusText = L('_TRADE_STATUS2_'); $buyInfo = L('_TRADE_BUY_INFO2_',array('updateTime'=>$updateTime,'seller'=>$seller)); if($order['type'] == 1 || $order['type'] == 3){ $sellInfo = L('_TRADE_SELL_INFO1_',array('buyer'=>$getUser['getName'],'tradeCount'=>$getUser['tradeCount'],'tradeScore'=>$getUser['tradeScore'],'coinNum'=>$coinNum,'type'=>$type,'trade_price'=>$order['trade_price'],'currency'=>$order['currency'],'pay_code'=>$order['pay_code'])); }else if($order['type'] == 2 || $order['type'] ==4){ $sellInfo = L('_TRADE_SELL_INFO1_',array('buyer'=>$order['nickname'],'tradeCount'=>$order['trade_count'],'tradeScore'=>$order['trade_score'],'coinNum'=>$coinNum,'type'=>$type,'trade_price'=>$order['trade_price'],'currency'=>$order['currency'],'pay_code'=>$order['pay_code'])); } }else if($order['status'] == 3){ $statusText = L('_TRADE_STATUS3_'); }else if($order['status'] == 4){ $statusText = L('_TRADE_STATUS4_'); }else if($order['status'] == 0){ $statusText = L('_TRADE_STATUS0_'); $buyInfo = $sellInfo = L('_TRADE_BUY_INFO0_',array('buyer'=>$buyer,'updateTime'=>$updateTime)); } ?>
                 <div class="no-event">订单#<?php echo ($order['order_id']); ?>：以 <?php echo ($order["trade_price"]); ?> CNY 购买 <?php echo ($coinNum); ?> <?php echo ($type); ?></div>
-                <div><a href="<?php echo U('Ucenter/index/information',array('uid'=>$order['ad_uid']));?>"><?php echo ($order['nickname']); ?></a> 的交易广告# <a href="tradead/<?php echo ($order['ad_id']); ?>/<?php echo ($params); ?>"><?php echo ($order['ad_id']); ?></a>，价格 <?php echo ($order["price"]); ?> <?php echo ($order["currency"]); ?>/<?php echo ($type); ?> </div>
+                <div><a href="<?php echo U('Ucenter/index/information',array('uid'=>$order['ad_uid']));?>"><?php echo ($order['nickname']); ?></a> 的交易广告# <a href="tradead/<?php echo ($order['ad_id']); ?>/<?php echo ($params); ?>"><?php echo ($order['ad_id']); ?></a>，汇率 <?php echo ($order["price"]); ?> <?php echo ($order["currency"]); ?>/<?php echo ($type); ?> </div>
             </div>
-
+            <div class="alert alert-success" style="margin-top: 10px;margin-bottom: 10px">交易状态：<label><?php echo ($statusText); ?></label></div>
         </div>
     </div>
-    <div class="col-xs-9">
+    <div class="col-xs-8">
         <div class="panel panel-info" style="min-height: 800px">
             <div class="panel-heading">
                 <div id="search">
@@ -433,7 +433,7 @@
         </div>
     </div>
 
-    <div class="col-xs-3" style="z-index: 99">
+    <div class="col-xs-4" style="z-index: 99">
         <div class="common_block_border event_right">
     <div class="ardor">
         <?php if(($order['type'] == 1 or $order['type'] == 3) and $order['get_uid'] == get_uid()): ?><p class="qtHead"><label><?php echo L('_TRADE_OPER_');?></label><label><span id="timer"></span></label></p>
@@ -442,21 +442,17 @@
                 <hr>
                 <p><?php echo ($buyInfo); ?></p>
                 <?php if($order['status']): ?><hr>
-                    <h4 style="text-align: center">付款信息</h4>
+                    <h4 style="text-align: center">付款详细信息</h4>
                     <hr>
-                    <p>付款详细信息：<label><?php echo ($order["pay_remark"]); ?></label></p>
+                    <p><label><?php echo ($order["pay_remark"]); ?></label></p>
                     <p>金额：<label><?php echo ($order["trade_price"]); ?> <?php echo ($order["currency"]); ?></label></p>
                     <p>付款参考码：<label><?php echo ($order["pay_code"]); ?></label></p><?php endif; ?>
             </div>
             <div class="alert alert-warning" style="margin-top: 0px;">
-                <h4>交易状态</h4>
-                <hr>
-                <h4><?php echo ($statusText); ?></h4>
-                <hr>
                 <?php if($order['status'] == 1){ ?>
                 <a href="javascript:void(0)" class="btn btn-info" name="pay-ok">付款已完成</a>
                 <a href="javascript:void(0)" class="btn btn-danger" id="cancel-trade" style="float: right">取消交易</a>
-                <?php }else if($order['status'] == 1 || $order['status'] == 2){ ?>
+                <?php }else if($order['status'] == 2){ ?>
                 <div style="text-align: center">
                     <a href="javascript:void(0)" class="btn btn-default" id="cancel-trade">取消交易</a>
                     <p style="margin-top: 20px"><?php echo L('_TRADE_BUY_INFO3_');?></p>
