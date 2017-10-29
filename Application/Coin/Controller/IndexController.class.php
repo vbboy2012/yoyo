@@ -346,12 +346,20 @@ class IndexController extends Controller{
             echo json_encode($data);
         }else{
             $orderId = I('get.orderId');
+            $id = I('get.id',0,'intval');
+            $where = array();
+            if($id > 0){
+                $where['ocenter_trade_order.id'] = $id;
+            }else{
+                $where['ocenter_trade_order.order_id'] = $orderId;
+            }
+            $where['_string'] = "(ocenter_trade_order.ad_uid=".$uid." or ocenter_trade_order.get_uid=".$uid.")";
             $order = M('trade_order')->join('ocenter_member on ocenter_trade_order.ad_uid = ocenter_member.uid')
                 ->join('ocenter_tradead on ocenter_trade_order.ad_id = ocenter_tradead.id')
                 ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
                 ->join('ocenter_pay on ocenter_tradead.pay_type = ocenter_pay.id')
                 ->field('ocenter_tradead.pay_remark,ocenter_pay.en_name as payType,ocenter_country.en_name as countryEn,ocenter_trade_order.ad_id,ocenter_tradead.type,ocenter_trade_order.order_id,ocenter_trade_order.pay_code,ocenter_trade_order.ad_uid,ocenter_trade_order.get_uid,ocenter_tradead.price,ocenter_trade_order.trade_price,ocenter_tradead.currency,ocenter_tradead.coin_type,ocenter_trade_order.coin_num,ocenter_trade_order.status,ocenter_tradead.pay_time,ocenter_trade_order.create_time,ocenter_trade_order.update_time,ocenter_member.nickname,ocenter_member.trade_count,ocenter_member.trade_score')
-                ->where("ocenter_trade_order.order_id='".$orderId."' and (ocenter_trade_order.ad_uid=".$uid." or ocenter_trade_order.get_uid=".$uid.")")->find();
+                ->where($where)->find();
             if (!$order){
                 $this->error(L('_INEXISTENT_404_'));
             }

@@ -1,0 +1,19 @@
+[ 2017-10-29T21:56:06+08:00 ] 127.0.0.1 /yoyo/help/feiyong.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000699s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000756s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.004565s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000396s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000282s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.011610s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.011961s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+

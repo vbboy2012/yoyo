@@ -32,7 +32,7 @@ class CoinController extends AdminController{
             ->setSelectPostUrl(U('Admin/Coin/trade'))
             ->select('','status','select','','','',array(array('id'=>0,'value'=>'全部'),array('id'=>1,'value'=>'待付款'),array('id'=>2,'value'=>'已付款'),array('id'=>3,'value'=>'已完成'),array('id'=>4,'value'=>'申诉中'),array('id'=>5,'value'=>'已取消')))
             ->keyId()->keyText('ad_id','广告ID')->keyUid('ad_uid','广告主')->keyUid('get_uid','下单主')
-            ->keyLink('order_id','编号','order/?id=###')->keyText('coin_num','数量')->keyText('trade_price','金额')->keyText('fee','手续费')->keyText('currency','货币')->keyText('pay_code','参考码')
+            ->keyLink('order_id','编号','/orderid/###')->keyText('coin_num','数量')->keyText('trade_price','金额')->keyText('fee','手续费')->keyText('currency','货币')->keyText('pay_code','参考码')
             ->keyStatus()->keyCreateTime();
 
         $builder->pagination($totalCount,$r)
