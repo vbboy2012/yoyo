@@ -18,7 +18,7 @@ return array(
     //是否商业模块,1是，0，否
     'is_com' => 0,
     //是否显示在导航栏内？  1是，0否
-    'show_nav' => 1,
+    'show_nav' => 0,
     //模块描述
     'summary' => '买卖模块，比特币交易中心',
     //开发者
@@ -30,7 +30,7 @@ return array(
 
     'admin_entry' => 'Admin/Coin/index',
 
-    'icon' => 'rss',
+    'icon' => '',
 
     'can_uninstall' => 1
 

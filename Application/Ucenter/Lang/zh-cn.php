@@ -138,7 +138,7 @@ return array(
     '_INFO_PEOPLE_' => '个人信息',
     '_INFO_DESC_' => '的个人资料页',
     '_DATA_BASIC_' => '基本资料',
-    '_NICKNAME_' => '昵称',
+    '_NICKNAME_' => '用户名',
     '_SEX_' => '性别',
     '_MAN_' => '男',
     '_WOMAN_' => '女',

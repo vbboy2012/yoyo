@@ -1,0 +1,1 @@
+<?php if (!defined('THINK_PATH')) exit();?>Help/setStatus?ids=1

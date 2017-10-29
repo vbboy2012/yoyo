@@ -26,11 +26,11 @@ return array(
     //开发者网站
     'website' => 'http://www.sobit123.com',
     //前台入口，可用U函数
-    'entry' => 'Coin/index/index',
+    'entry' => 'Help/index/index',
 
-    'admin_entry' => 'Admin/Coin/index',
+    'admin_entry' => 'Admin/Help/index',
 
-    'icon' => 'rss',
+    'icon' => '',
 
     'can_uninstall' => 1
 

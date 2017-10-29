@@ -297,11 +297,10 @@ class ConfigController extends BaseController
 
     public function index()
     {
-        $aUid = I('get.uid', is_login(), 'intval');
+      //  $aUid = I('get.uid', is_login(), 'intval');
+        $aUid = is_login();
         $aTab = I('get.tab', '', 'op_t');
-        $aNickname = I('post.nickname', '', 'op_t');
         $aSex = I('post.sex', 0, 'intval');
-        $aEmail = I('post.email', '', 'op_t');
         $aSignature = I('post.signature', '', 'op_t');
         $aCommunity = I('post.community', 0, 'intval');
         $aDistrict = I('post.district', 0, 'intval');
@@ -309,7 +308,6 @@ class ConfigController extends BaseController
         $aProvince = I('post.province', 0, 'intval');
 
         if (IS_POST) {
-            $this->checkNickname($aNickname);
             $this->checkSex($aSex);
             $this->checkSignature($aSignature);
 
@@ -318,8 +316,6 @@ class ConfigController extends BaseController
             $user['pos_city'] = $aCity;
             $user['pos_district'] = $aDistrict;
             $user['pos_community'] = $aCommunity;
-
-            $user['nickname'] = $aNickname;
             $user['sex'] = $aSex;
             $user['signature'] = $aSignature;
             $user['uid'] = get_uid();

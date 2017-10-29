@@ -89,6 +89,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_ticket` (
   `images` varchar(50) NOT NULL COMMENT '图片',
   `create_time` int(11) NOT NULL,
   `update_time` int(11) NULL,
+  `status` tinyint(2) NOT NULL DEFAULT '0' COMMENT '状态：1已处理0未处理',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='支持工单';
 

@@ -19,6 +19,7 @@
     .navbar-brand{
         font-size: 20px;
         color: #43cb83;
+        margin-top: 6px;
     }
     .navbar-brand:hover{
         color: #2a985e;
@@ -28,10 +29,10 @@
 <script>
 
 </script>
-<div class="container-fluid topp-box clearfloat">
+<div class="container-fluid topp-box">
     <div class="col-xs-2 box">
         <div class="">
-            <a class="navbar-brand" href="{:U('Home/Index/index')}"><i class="icon icon-compass icon-2x"></i>YOYOCOINS</a>
+            <a class="navbar-brand" href="{:U('Home/Index/index')}">YOYOCOINS</a>
         </div>
     </div>
     <div class="col-xs-7 box ">
@@ -101,7 +102,7 @@
                     $uid = is_login();
                     $reg_time = D('member')->where(array('uid' => $uid))->getField('reg_time');
                     $reg_date = date('Y-m-d', $reg_time);
-                    $self = query_user(array('title', 'avatar128', 'nickname', 'uid', 'space_url', 'score', 'title', 'fans', 'following', 'weibocount', 'rank_link'));
+                    $self = query_user(array('title', 'avatar128', 'nickname', 'uid', 'title', 'fans', 'following','trusting'));
                     //获取用户封面id
                     $map = getUserConfigMap('user_cover');
                     $map['role_id'] = 0;
@@ -140,22 +141,22 @@
                     </span>
 
                         <div class="bg-numb row ">
-                            <a href="{:U('Ucenter/index/applist',array('uid'=>$self['uid'],'type'=>'Weibo'))}">
-                                <div class="col-xs-4 num">
-                                    <span>微博</span>
-                                    <span>{$self.weibocount}</span>
-                                </div>
-                            </a>
-                            <a href="{:U('Ucenter/index/fans',array('uid'=>$self['uid']))}" title="{:L('_FANS_COUNT_')}">
-                                <div class="col-xs-4 num">
-                                    <span>{:L('_FANS_')}</span>
-                                    <span>{$self.fans}</span>
-                                </div>
-                            </a>
                             <a href="{:U('Ucenter/index/following',array('uid'=>$self['uid']))}" title="{:L('_FOLLOW_COUNT_')}">
                                 <div class="col-xs-4 num" style="border: none">
                                     <span>{:L('_FOLLOW_')}</span>
                                     <span>{$self.following}</span>
+                                </div>
+                            </a>
+                            <a href="{:U('Ucenter/index/fans',array('uid'=>$self['uid']))}" title="{:L('_FANS_COUNT_')}">
+                                <div class="col-xs-4 num">
+                                    <span>{:L('_BEI_')}{:L('_FOLLOW_')}</span>
+                                    <span>{$self.fans}</span>
+                                </div>
+                            </a>
+                            <a href="{:U('Ucenter/index/applist',array('uid'=>$self['uid'],'type'=>'Weibo'))}">
+                                <div class="col-xs-4 num">
+                                    <span>{:L('_TRUST_')}</span>
+                                    <span>{$self.trusting}</span>
                                 </div>
                             </a>
                         </div>

@@ -1,0 +1,1384 @@
+[ 2017-10-28T16:53:05+08:00 ] 127.0.0.1 /yoyo/index.php?s=/ad/advertise.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000722s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000781s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.003642s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000566s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000494s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.014339s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.014975s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.002457s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000352s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000143s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000178s ]
+SQL: SHOW COLUMNS FROM `ocenter_country` [ RunTime:0.002728s ]
+SQL: SELECT `id`,`name`,`code` FROM `ocenter_country`  [ RunTime:0.000581s ]
+SQL: SHOW COLUMNS FROM `ocenter_currency` [ RunTime:0.002073s ]
+SQL: SELECT * FROM `ocenter_currency`  [ RunTime:0.000422s ]
+SQL: SHOW COLUMNS FROM `ocenter_pay` [ RunTime:0.002164s ]
+SQL: SELECT * FROM `ocenter_pay`  [ RunTime:0.000238s ]
+SQL: SHOW COLUMNS FROM `ocenter_market` [ RunTime:0.003141s ]
+SQL: SELECT `market` FROM `ocenter_market`  [ RunTime:0.000231s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000993s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001091s ]
+INFO: [ syncMeta ] --START--
+INFO: Run Addons\SyncLogin\SyncLoginAddon [ RunTime:0.000653s ]
+INFO: [ syncMeta ] --END-- [ RunTime:0.000713s ]
+NOTIC: [8] Undefined variable: seo /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 9 行.
+SQL: SHOW COLUMNS FROM `ocenter_seo_rule` [ RunTime:0.002194s ]
+NOTIC: [8192] mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/SeoRuleModel.class.php 第 78 行.
+NOTIC: [8192] mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/SeoRuleModel.class.php 第 79 行.
+NOTIC: [8192] mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/SeoRuleModel.class.php 第 80 行.
+SQL: SELECT * FROM `ocenter_seo_rule` WHERE ( (app='' or app='Ad') and (controller='' or controller='Index') and (action='' or action='add') and status=1 ) ORDER BY sort asc  [ RunTime:0.001899s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000426s ]
+SQL: SHOW COLUMNS FROM `ocenter_pushing` [ RunTime:0.002242s ]
+ERR: 1146:Table 'yoyobit.ocenter_pushing' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `ocenter_pushing`
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.001454s ]
+SQL: SHOW COLUMNS FROM `ocenter_channel` [ RunTime:0.002154s ]
+NOTIC: [8] Undefined index: _ /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 152 行.
+NOTIC: [8] Undefined index: _ /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 152 行.
+NOTIC: [8] Undefined index: _ /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 152 行.
+NOTIC: [8] Undefined index: _ /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 152 行.
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.003295s ]
+SQL: SELECT `reg_time` FROM `ocenter_member` WHERE `uid` = 1 LIMIT 1   [ RunTime:0.000306s ]
+SQL: SHOW COLUMNS FROM `ocenter_user_config` [ RunTime:0.002137s ]
+SQL: SELECT * FROM `ocenter_user_config` WHERE `uid` = 1 AND `name` = 'user_cover' AND `role_id` = 0 AND `model` = '' LIMIT 1   [ RunTime:0.000243s ]
+SQL: SHOW COLUMNS FROM `ocenter_picture` [ RunTime:0.002090s ]
+SQL: SELECT * FROM `ocenter_picture` WHERE `status` = 1 AND `id` = null LIMIT 1   [ RunTime:0.000258s ]
+NOTIC: [2] unlink(./Runtime/Temp/945c180f3240ad0e35d9eb8beb06401b.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/deec309cb1249b5b7776ac8c8f45123b.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [8] Undefined index: space_url /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 225 行.
+NOTIC: [8] Undefined index: score /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 257 行.
+NOTIC: [8] Undefined index: score /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 269 行.
+NOTIC: [8] Undefined variable: id /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 407 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 414 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 425 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 426 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 427 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 438 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 452 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 465 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 465 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 465 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 465 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 465 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 465 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 465 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 465 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 491 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 498 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 498 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 498 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 504 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 516 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 529 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 542 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 554 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 568 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 578 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 591 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 601 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 602 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 612 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 613 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 636 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 636 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 639 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 639 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant start0 - assumed 'start0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 642 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 651 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 651 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 654 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 654 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant end0 - assumed 'end0' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 657 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 672 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 672 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 675 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 675 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant start1 - assumed 'start1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 678 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 687 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 687 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 690 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 690 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant end1 - assumed 'end1' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 693 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 709 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 709 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 712 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 712 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant start2 - assumed 'start2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 715 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 724 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 724 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 727 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 727 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant end2 - assumed 'end2' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 730 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 746 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 746 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 749 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 749 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant start3 - assumed 'start3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 752 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 761 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 761 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 764 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 764 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant end3 - assumed 'end3' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 767 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 783 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 783 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 786 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 786 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant start4 - assumed 'start4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 789 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 798 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 798 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 801 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 801 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant end4 - assumed 'end4' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 804 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 820 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 820 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 823 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 823 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant start5 - assumed 'start5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 826 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 835 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 835 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 838 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 838 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant end5 - assumed 'end5' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 841 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 857 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 857 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 860 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 860 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant start6 - assumed 'start6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 863 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 872 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 872 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 875 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 875 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Use of undefined constant end6 - assumed 'end6' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+NOTIC: [8] Undefined variable: ad /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 878 行.
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000388s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000006s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.110132s ]
+NOTIC: [2] Missing argument 1 for Common\Widget\SuperLinksWidget::superLinks() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Widget/SuperLinksWidget.class.php 第 15 行.
+SQL: SHOW COLUMNS FROM `ocenter_super_links` [ RunTime:0.002170s ]
+SQL: SELECT * FROM `ocenter_super_links` WHERE ( status = 1 ) ORDER BY level desc,id asc  [ RunTime:0.000228s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/SuperLinksModel.class.php 第 37 行.
+NOTIC: [8] Undefined variable: data /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/SuperLinksModel.class.php 第 48 行.
+NOTIC: [8] Undefined variable: param /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Widget/SuperLinksWidget.class.php 第 19 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000029s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.056287s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002219s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002250s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000092s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000112s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_CONFIG_QRCODE_BOTTOM' LIMIT 1   [ RunTime:0.000270s ]
+NOTIC: [8] Undefined variable: site /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Ad/1d95a940b526cf6005f917719426ec69.php 第 1192 行.
+INFO: [ pageFooter ] --START--
+INFO: Run Addons\SuperLinks\SuperLinksAddon [ RunTime:0.000307s ]
+INFO: [ pageFooter ] --END-- [ RunTime:0.000335s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000370s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000006s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.118005s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000351s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000006s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.119398s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000030s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.061724s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001217s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.004008s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000008s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.005152s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001488s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.004008s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000011s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.005462s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000569s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000662s ]
+
+[ 2017-10-28T16:53:05+08:00 ] 127.0.0.1 /yoyo/index.php?s=/ad/index/getformula.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.001247s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001361s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.002636s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000523s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001003s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.032095s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.033272s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.003297s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000763s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000191s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000244s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000477s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000534s ]
+
+[ 2017-10-28T16:53:05+08:00 ] 127.0.0.1 /yoyo/index.php?s=/ad/index/getmarketprice.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.001055s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001151s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.002044s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000354s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000292s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.011335s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.011686s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.002236s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000351s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000210s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000241s ]
+SQL: SHOW COLUMNS FROM `ocenter_market` [ RunTime:0.002306s ]
+SQL: SELECT `avg` FROM `ocenter_market` WHERE ( market='BitfinexUSD' ) LIMIT 1   [ RunTime:0.001519s ]
+SQL: SHOW COLUMNS FROM `ocenter_currency` [ RunTime:0.002142s ]
+SQL: SELECT `rate` FROM `ocenter_currency` WHERE ( code='CNY' ) LIMIT 1   [ RunTime:0.000339s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000397s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000431s ]
+

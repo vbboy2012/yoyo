@@ -129,6 +129,7 @@
     .navbar-brand{
         font-size: 20px;
         color: #43cb83;
+        margin-top: 6px;
     }
     .navbar-brand:hover{
         color: #2a985e;
@@ -138,10 +139,10 @@
 <script>
 
 </script>
-<div class="container-fluid topp-box clearfloat">
+<div class="container-fluid topp-box">
     <div class="col-xs-2 box">
         <div class="">
-            <a class="navbar-brand" href="<?php echo U('Home/Index/index');?>"><i class="icon icon-compass icon-2x"></i>YOYOCOINS</a>
+            <a class="navbar-brand" href="<?php echo U('Home/Index/index');?>">YOYOCOINS</a>
         </div>
     </div>
     <div class="col-xs-7 box ">
@@ -198,7 +199,7 @@
                 </a>
             </li>
             <li class="dropdown li-hover self-info">
-                <?php $uid = is_login(); $reg_time = D('member')->where(array('uid' => $uid))->getField('reg_time'); $reg_date = date('Y-m-d', $reg_time); $self = query_user(array('title', 'avatar128', 'nickname', 'uid', 'space_url', 'score', 'title', 'fans', 'following', 'weibocount', 'rank_link')); $map = getUserConfigMap('user_cover'); $map['role_id'] = 0; $model = D('Ucenter/UserConfig'); $cover = $model->findData($map); $self['cover_id'] = $cover['value']; $self['cover_path'] = getThumbImageById($cover['value'], 273, 80); ?>
+                <?php $uid = is_login(); $reg_time = D('member')->where(array('uid' => $uid))->getField('reg_time'); $reg_date = date('Y-m-d', $reg_time); $self = query_user(array('title', 'avatar128', 'nickname', 'uid', 'title', 'fans', 'following','trusting')); $map = getUserConfigMap('user_cover'); $map['role_id'] = 0; $model = D('Ucenter/UserConfig'); $cover = $model->findData($map); $self['cover_id'] = $cover['value']; $self['cover_path'] = getThumbImageById($cover['value'], 273, 80); ?>
                 <a role="button" class="dropdown-toggle dropdown-toggle-avatar" data-toggle="dropdown">
                     <span><img src="<?php echo ($self["avatar32"]); ?>" class="avatar-img nav-img"></span>
                     <span class="user-name"><?php echo ($self["nickname"]); ?></span>
@@ -225,22 +226,22 @@
                     </span>
 
                         <div class="bg-numb row ">
-                            <a href="<?php echo U('Ucenter/index/applist',array('uid'=>$self['uid'],'type'=>'Weibo'));?>">
-                                <div class="col-xs-4 num">
-                                    <span>微博</span>
-                                    <span><?php echo ($self["weibocount"]); ?></span>
-                                </div>
-                            </a>
-                            <a href="<?php echo U('Ucenter/index/fans',array('uid'=>$self['uid']));?>" title="<?php echo L('_FANS_COUNT_');?>">
-                                <div class="col-xs-4 num">
-                                    <span><?php echo L('_FANS_');?></span>
-                                    <span><?php echo ($self["fans"]); ?></span>
-                                </div>
-                            </a>
                             <a href="<?php echo U('Ucenter/index/following',array('uid'=>$self['uid']));?>" title="<?php echo L('_FOLLOW_COUNT_');?>">
                                 <div class="col-xs-4 num" style="border: none">
                                     <span><?php echo L('_FOLLOW_');?></span>
                                     <span><?php echo ($self["following"]); ?></span>
+                                </div>
+                            </a>
+                            <a href="<?php echo U('Ucenter/index/fans',array('uid'=>$self['uid']));?>" title="<?php echo L('_FANS_COUNT_');?>">
+                                <div class="col-xs-4 num">
+                                    <span><?php echo L('_BEI_'); echo L('_FOLLOW_');?></span>
+                                    <span><?php echo ($self["fans"]); ?></span>
+                                </div>
+                            </a>
+                            <a href="<?php echo U('Ucenter/index/applist',array('uid'=>$self['uid'],'type'=>'Weibo'));?>">
+                                <div class="col-xs-4 num">
+                                    <span><?php echo L('_TRUST_');?></span>
+                                    <span><?php echo ($self["trusting"]); ?></span>
                                 </div>
                             </a>
                         </div>

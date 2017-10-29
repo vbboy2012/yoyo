@@ -2,56 +2,63 @@
     <div class="ardor">
         <if condition="($order['type'] eq 1 or $order['type'] eq 3) and $order['get_uid'] eq get_uid()">
             <p class="qtHead"><label>{:L('_TRADE_OPER_')}</label><label><span id="timer"></span></label></p>
-            <div class="alert alert-info" style="margin-top: 0px">
-                <h4>交易信息</h4>
-                <hr>
-                <p>{$buyInfo}</p>
-                <if condition="$order['status']">
+            <div class="alert alert-primary" style="margin-top: 0px">
+                <if condition="$order['status'] == 1">
+                    <h4>{:L('_TRADE_STEP1_')}</h4>
                     <hr>
-                    <h4 style="text-align: center">付款详细信息</h4>
+                    <p>{:L('_TRADE_STEP1_INFO_',array('seller'=>$seller))}</p>
+                    <else/>
+                    <h4>{:L('_TRADE_STEP3_')}</h4>
                     <hr>
-                    <p><label>{$order.pay_remark}</label></p>
-                    <p>金额：<label>{$order.trade_price} {$order.currency}</label></p>
-                    <p>付款参考码：<label>{$order.pay_code}</label></p>
+                    <p>{:L('_TRADE_STEP3_INFO_',array('updateTime'=>$updateTime,'seller'=>$seller))}</p>
                 </if>
-            </div>
-            <div class="alert alert-warning" style="margin-top: 0px;">
+                <hr>
+                <p><label>{$order.pay_remark}</label></p>
+                <p>金额：<label>{$order.trade_price} {$order.currency}</label></p>
+                <p>付款参考码：<label>{$order.pay_code}</label></p>
+                <if condition="$order['status'] == 1">
+                    <hr>
+                    <h4>{:L('_TRADE_STEP2_')}</h4>
+                    <hr>
+                    <p>{:L('_TRADE_STEP2_INFO_',array('time'=>$order['pay_time'],''))}</p>
+                </if>
+                <hr>
                 <php>if($order['status'] == 1){</php>
-                <a href="javascript:void(0)" class="btn btn-info" name="pay-ok">付款已完成</a>
-                <a href="javascript:void(0)" class="btn btn-danger" id="cancel-trade" style="float: right">取消交易</a>
+                <a href="javascript:void(0)" class="btn btn-info" name="pay-ok">我已付款</a>
+                <a href="javascript:void(0)" class="btn btn-default" id="cancel-trade" style="float: right">取消交易</a>
                 <php>}else if($order['status'] == 2){</php>
-                <div style="text-align: center">
-                    <a href="javascript:void(0)" class="btn btn-default" id="cancel-trade">取消交易</a>
-                    <p style="margin-top: 20px">{:L('_TRADE_BUY_INFO3_')}</p>
-                    <a href="{:U('/support/request/3/'.$order['order_id'])}" target="_blank" class="btn btn-danger" id="cancel-trade">申&nbsp;诉</a>
-                </div>
+                <p style="margin-top: 20px">1，{:L('_TRADE_BUY_INFO1_')}<br>2，{:L('_TRADE_BUY_INFO3_')}</p>
+                <hr>
+                <a href="{:U('/support/request/3/'.$order['order_id'])}" target="_blank" class="btn btn-danger">申&nbsp;诉</a>
+                <a href="javascript:void(0)" class="btn btn-default" id="cancel-trade" style="float: right">取消交易</a>
                 <php>}</php>
             </div>
-            <if condition="$order['status']">
+            <if condition="$order['status'] ==1 or $order['status'] ==2">
                 <div class="alert alert-info" style="margin-top: 0px">
-                    <p>当托管启用时，只有买家和YOYOCOINS工作人员可以取消这笔交易。<a href="">了解托管策略</a></p>
-                    <p>如果交易过程中遇到问题，请查找帮助中心文档，或者联系客服<a href="">提交问题</a></p>
+                    <p>{:L('_TRADE_TIPS1_')}</p>
+                    <p>{:L('_TRADE_TIPS2_')}</p>
                 </div>
             </if>
             <elseif condition="($order['type'] eq 1 or $order['type'] eq 3) and $order['ad_uid'] eq get_uid()"/>
             <p class="qtHead"><label>{:L('_TRADE_OPER_')}</label></p>
-            <div class="alert alert-info" style="margin-top: 0px">
-                <h4 style="text-align: center">交易信息</h4>
+            <div class="alert alert-primary" style="margin-top: 0px">
+                <h4>交易信息</h4>
                 <hr>
                 <p>{$sellInfo}</p>
-            </div>
-            <div class="alert alert-warning" style="margin-top: 0px">
-                <h4>交易状态</h4>
-                <hr>
-                <h4>{$statusText}</h4>
-                <hr>
                 <if condition="$order['status'] == 2">
-                    <p>放行比特币之前，请确认您已收到相应的交易金额！</p>
-                    <div style="margin-top: 10px;text-align: center">
-                        <a href="" class="btn btn-info" name="send-coin">放行比特币</a>
-                    </div>
+                    <hr>
+                    <p>1，{:L('_TRADE_STEP4_')}<br>2，{:L('_TRADE_BUY_INFO3_')}</p>
+                    <hr>
+                    <a href="{:U('/support/request/3/'.$order['order_id'])}" target="_blank" class="btn btn-danger">申&nbsp;诉</a>
+                    <a href="javascript:void(0)" class="btn btn-info" name="send-coin" style="float: right">放行比特币</a>
                 </if>
             </div>
+            <if condition="$order['status'] ==1 or $order['status'] ==2">
+                <div class="alert alert-info" style="margin-top: 0px">
+                    <p>{:L('_TRADE_TIPS1_')}</p>
+                    <p>{:L('_TRADE_TIPS2_')}</p>
+                </div>
+            </if>
             <elseif condition="($order['type'] eq 2 or $order['type'] eq 4) and $order['get_uid'] eq get_uid()"/>
             <p class="qtHead"><label>{:L('_TRADE_OPER_')}</label></p>
             <div class="alert alert-info" style="margin-top: 0px">
@@ -73,7 +80,7 @@
             </div>
             <elseif condition="($order['type'] eq 2 or $order['type'] eq 4) and $order['ad_uid'] eq get_uid()"/>
             <p class="qtHead"><label>{:L('_TRADE_OPER_')}</label><label><span id="timer"></span></label></p>
-            <div class="alert alert-info" style="margin-top: 0px">
+            <div class="alert alert-primary" style="margin-top: 0px">
                 <h4>交易信息</h4>
                 <hr>
                 <p>{$buyInfo}</p>

@@ -136,7 +136,7 @@ return array(
     '_INFO_KEYWORDS_' => '，个人资料',
     '_INFO_DESC_' => '的个人资料页',
     '_DATA_BASIC_' => '基本资料',
-    '_NICKNAME_' => '昵称',
+    '_NICKNAME_' => '用户名',
     '_SEX_' => '性别',
     '_MAN_' => '男',
     '_WOMAN_' => '女',

@@ -30,6 +30,10 @@ class FollowModel extends Model
             //禁止信任和被信任都为同一个人的情况。
             return 0;
         }
+        clean_query_user_cache($uid, 'fans');
+        clean_query_user_cache(is_login(), 'following');
+        clean_query_user_cache($uid, 'trust');
+        clean_query_user_cache(is_login(), 'trusting');
         if ($this->where($follow)->count() > 0) {
             if ($type == 2){
                 $data['trust'] = 1;
@@ -49,8 +53,6 @@ class FollowModel extends Model
         }unset($a);
         $this->S($follow['who_follow'], $follow['follow_who'], null);
 
-        clean_query_user_cache($uid, 'fans');
-        clean_query_user_cache(is_login(), 'following');
         S('atUsersJson_' . is_login(), null);
         if ($type == 2){
             $follow['trust'] = 1;
@@ -78,6 +80,8 @@ class FollowModel extends Model
         }unset($a);
         clean_query_user_cache($uid, 'fans');
         clean_query_user_cache(is_login(), 'following');
+        clean_query_user_cache($uid, 'trust');
+        clean_query_user_cache(is_login(), 'trusting');
         S('atUsersJson_' . is_login(), null);
 //        $user = query_user(array('id', 'nickname', 'space_url'));
 //
