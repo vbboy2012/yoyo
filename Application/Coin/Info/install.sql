@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_trade_order` (
   `fee` decimal(10,6) NOT NULL COMMENT '手续费',
   `pay_code` CHAR (7) NOT NULL COMMENT '付款参考编码',
   `pay_text` varchar(200) NULL COMMENT '交易条款',
-  `status` tinyint(2) NOT NULL COMMENT '状态：1等待付款，2付款完毕，3确认完成，4，申诉，0取消',
+  `status` tinyint(2) NOT NULL COMMENT '状态：1等待付款，2付款完毕，3确认完成，4，申诉，5取消',
   `create_time` int(11) NOT NULL,
   `update_time` int(11) NULL,
   PRIMARY KEY (`id`)
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_ticket` (
   `images` varchar(50) NOT NULL COMMENT '图片',
   `create_time` int(11) NOT NULL,
   `update_time` int(11) NULL,
-  `status` tinyint(2) NOT NULL DEFAULT '0' COMMENT '状态：1已处理0未处理',
+  `status` tinyint(2) NOT NULL DEFAULT '2' COMMENT '状态：1已处理2未处理',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='支持工单';
 

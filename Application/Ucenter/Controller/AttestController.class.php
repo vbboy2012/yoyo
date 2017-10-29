@@ -27,8 +27,8 @@ class AttestController extends BaseController
         $this->assign('attest_type',$attestType);
         $this->_checkAttestStatus();
 
-        $celebrity=$this->attestModel->getListLimit();
-        $this->assign('celebrity',$celebrity);
+//        $celebrity=$this->attestModel->getListLimit();
+//        $this->assign('celebrity',$celebrity);
         //dump($celebrity);exit;
 
         $this->display();

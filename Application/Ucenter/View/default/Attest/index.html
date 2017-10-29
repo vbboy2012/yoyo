@@ -34,27 +34,6 @@
                 </div>
             </volist>
         </div>
-        <div class="v-famous">
-            <div class="row c-title">名人堂</div>
-            <volist name="celebrity" id="one_celebrity">
-                <div class="col-xs-3 f-box">
-                    <div class="col-xs-4 box">
-                        <a href="{$one_celebrity['user']['space_url']}" ucard="{$one_celebrity['uid']}" target="_blank">
-                            {$one_celebrity['user']['avatar_html128']}
-                        </a>
-                    </div>
-                    <div class="col-xs-8 box">
-                        <div class="info">
-                            <p>
-                                <a href="{$one_celebrity['user']['space_url']}" ucard="{$one_celebrity['uid']}" target="_blank">
-                                    {$one_celebrity['user']['nickname']}
-                                </a>
-                            </p>
-                            <p style="color: #666">{$one_celebrity['user']['signature']|default='还没想好O(∩_∩)O'}</p>
-                        </div>
-                    </div>
-                </div>
-            </volist>
-        </div>
+
     </div>
 </block>

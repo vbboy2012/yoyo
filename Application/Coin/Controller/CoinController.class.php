@@ -19,7 +19,7 @@ class CoinController extends AdminController{
     public function trade()
     {
         $status = I('status',0,'intval');
-        if ($status <=8){
+        if ($status > 0){
             $map = array('a.status'=>$status);
         }
         $tradead = M('trade_order');
@@ -30,9 +30,9 @@ class CoinController extends AdminController{
         $builder->title('交易列表')
             ->data($list)
             ->setSelectPostUrl(U('Admin/Coin/trade'))
-            ->select('','status','select','','','',array(array('id'=>9,'value'=>'全部'),array('id'=>1,'value'=>'待付款'),array('id'=>2,'value'=>'已付款'),array('id'=>3,'value'=>'已完成'),array('id'=>4,'value'=>'申诉中'),array('id'=>0,'value'=>'已取消')))
-            ->keyId()->keyText('ad_id','广告ID')->keyText('ad_uid','广告主')->keyText('get_uid','下单主')
-            ->keyText('order_id','编号')->keyText('coin_num','数量')->keyText('trade_price','金额')->keyText('fee','手续费')->keyText('currency','货币')->keyText('pay_code','参考码')
+            ->select('','status','select','','','',array(array('id'=>0,'value'=>'全部'),array('id'=>1,'value'=>'待付款'),array('id'=>2,'value'=>'已付款'),array('id'=>3,'value'=>'已完成'),array('id'=>4,'value'=>'申诉中'),array('id'=>5,'value'=>'已取消')))
+            ->keyId()->keyText('ad_id','广告ID')->keyUid('ad_uid','广告主')->keyUid('get_uid','下单主')
+            ->keyLink('order_id','编号','order/?id=###')->keyText('coin_num','数量')->keyText('trade_price','金额')->keyText('fee','手续费')->keyText('currency','货币')->keyText('pay_code','参考码')
             ->keyStatus()->keyCreateTime();
 
         $builder->pagination($totalCount,$r)
@@ -42,7 +42,7 @@ class CoinController extends AdminController{
     public function ad()
     {
         $status = I('status',0,'intval');
-        if ($status <=1){
+        if ($status > 0){
             $map = array('status'=>$status);
         }
         $tradead = M('tradead');
@@ -53,11 +53,7 @@ class CoinController extends AdminController{
         $builder->title('广告列表')
             ->data($list)
             ->setSelectPostUrl(U('Admin/Coin/ad'))
-           // ->select('','cate','select','','','',array_merge(array(array('id'=>0,'value'=>L('_EVERYTHING_'))),$optCategory))
-            ->select('','status','select','','','',array(array('id'=>3,'value'=>'全部'),array('id'=>1,'value'=>'激活'),array('id'=>0,'value'=>'未激活')))
-          //  ->select(L('_RECOMMENDATIONS_'),'pos','select','','','',array_merge(array(array('id'=>0,'value'=>L('_ALL_DEFECTIVE_'))),$positions))
-           // ->buttonNew(U('News/editNews'))
-         //  ->buttonDelete(U('News/setNewsStatus'))
+            ->select('','status','select','','','',array(array('id'=>0,'value'=>'全部'),array('id'=>1,'value'=>'激活'),array('id'=>2,'value'=>'未激活')))
             ->keyId()->keyUid()->keyText('coin_type','币种')->keyText('name','国家')->keyText('currency','货币')->keyText('market','市场源')
             ->keyText('price','价格')->keyText('min_price','最小额')->keyText('max_price','最大额')
             ->keyText('pay_type','支付方式')

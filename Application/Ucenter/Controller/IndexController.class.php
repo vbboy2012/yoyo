@@ -766,7 +766,7 @@ class IndexController extends BaseController
         if (isset($_GET['active'])){
             $status =  I('get.status');
             $id = I('get.active');
-            M('tradead')->where('id='.$id)->save(array('status'=>$status==1?0:1));
+            M('tradead')->where('id='.$id)->save(array('status'=>$status==1?2:1));
         }
         if (isset($_GET['delete'])){
             $id = I('get.delete');

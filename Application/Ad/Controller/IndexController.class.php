@@ -130,7 +130,7 @@ class IndexController extends Controller{
         $content['end5'] = $end5;
         $content['start6'] = $start6;
         $content['end6'] = $end6;
-        $content['status'] = 0;     //发布广告默认为下架状态
+        $content['status'] = 2;     //发布广告默认为下架状态
         if ($id > 0){
             D('Tradead')->where('id='.$id)->save($content);
         }else{

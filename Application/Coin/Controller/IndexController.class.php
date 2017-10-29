@@ -329,7 +329,7 @@ class IndexController extends Controller{
                     if ($type == 1){
                         M('trade_order')->where('id='.$order['id'])->save(array('status'=>2,'update_time'=>time()));
                     }else if($type == 2){
-                        M('trade_order')->where('id='.$order['id'])->save(array('status'=>0,'update_time'=>time()));
+                        M('trade_order')->where('id='.$order['id'])->save(array('status'=>5,'update_time'=>time()));
                     }
                 }
             }else if($tradead['type'] ==2 || $tradead['type'] == 4){
@@ -337,7 +337,7 @@ class IndexController extends Controller{
                     if ($type == 1){
                         M('trade_order')->where('id='.$order['id'])->save(array('status'=>2,'update_time'=>time()));
                     }else if($type == 2){
-                        M('trade_order')->where('id='.$order['id'])->save(array('status'=>0,'update_time'=>time()));
+                        M('trade_order')->where('id='.$order['id'])->save(array('status'=>5,'update_time'=>time()));
                     }
                 }else if($order['get_uid'] == $uid && $order['status'] == 2){//用户卖出货币，放行货币
                     M('trade_order')->where('id='.$order['id'])->save(array('status'=>3,'update_time'=>time()));
@@ -376,7 +376,7 @@ class IndexController extends Controller{
                 return false;
             }
             if ($order['status'] == 1){// 买家没有响应才关闭交易
-                M('trade_order')->where('id='.$order['id'])->save(array('status'=>0,'update_time'=>time()));
+                M('trade_order')->where('id='.$order['id'])->save(array('status'=>5,'update_time'=>time()));
             }
             echo json_encode($data);
         }
