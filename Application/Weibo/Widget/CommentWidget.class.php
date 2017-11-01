@@ -27,16 +27,28 @@ class CommentWidget extends Controller
         $this->show($html);
     }
 
-    public function comment_html($comment_id)
+    public function comment_html($comment_id,$position='')
     {
         $comment = D('Weibo/WeiboComment')->getComment($comment_id);
         $this->assign('comment', $comment);
-        $html = $this->fetch(T('Weibo@default/Widget/comment/comment'));
+        if($position=='weibo-list'){
+            $map_support['appname'] = 'Weibo';
+            $map_support['table'] = 'weibo_comment';
+            $this->assign($map_support);
+            $supportModel=D('Support');
+            $map_support['row'] = $comment_id;
+            $val['count'] = $supportModel->where($map_support)->count();
+            $map_supported['row'] = $comment_id;
+            $val['supported'] = $supportModel->where($map_supported)->count();
+            $html = $this->fetch(T('Weibo@default/Widget/comment/_comment'));
+        }else{
+            $html = $this->fetch(T('Weibo@default/Widget/comment/comment'));
+        }
         $html = replace_weibo_html($html);
         return $html;
     }
 
-    public function someComment($weibo_id,$un_prase_comment=0)
+    public function detailComment($weibo_id,$un_prase_comment=0)
     {
 
         $comments = D('Weibo/WeiboComment')->getCommentList($weibo_id, 1);
@@ -48,14 +60,30 @@ class CommentWidget extends Controller
         $this->assign('weiboId', $weibo_id);
         $this->assign('un_prase_comment',$un_prase_comment);
         $this->assign('page', 1);
-        $this->display(T('Weibo@default/Widget/comment/somecomment'));
+        $this->display(T('Weibo@default/Widget/comment/detailcomment'));
     }
 
     public function someCommentHtml($weibo_id)
     {
 
         $comments = D('Weibo/WeiboComment')->getCommentList($weibo_id, 1);
+        //点赞相关
+        $map_support['appname'] = 'Weibo';
+        $map_support['table'] = 'weibo_comment';
+        $this->assign($map_support);
+        $map_supported = array_merge($map_support, array('uid' => is_login()));
+        $supportModel=D('Support');
+        foreach ($comments as &$val){
+            $map_support['row'] = $val['id'];
+            $val['count'] = $supportModel->getSupportCount($map_support['appname'],$map_support['table'],$map_support['row']);
+            $map_supported['row'] = $val['id'];
+            $val['supported'] = $supportModel->where($map_supported)->count();
+        }
+        unset($val);
+        //点赞相关
+
         $weibo = D('Weibo/Weibo')->getWeiboDetail($weibo_id);
+
         $this->assign('weiboCommentTotalCount', $weibo['comment_count']);
         $this->assign('comments', $comments);
         $this->assign('weiboId', $weibo_id);
@@ -63,5 +91,29 @@ class CommentWidget extends Controller
         return $this->fetch(T('Weibo@default/Widget/comment/somecomment'));
     }
 
+    public function someComment($weibo_id){
+        $comments = D('Weibo/WeiboComment')->getCommentList($weibo_id, 1);
+        //点赞相关
+        $map_support['appname'] = 'Weibo';
+        $map_support['table'] = 'weibo_comment';
+        $this->assign($map_support);
+        $map_supported = array_merge($map_support, array('uid' => is_login()));
+        $supportModel=D('Support');
+        foreach ($comments as &$val){
+            $map_support['row'] = $val['id'];
+            $val['count'] = $supportModel->where($map_support)->count();
+            $map_supported['row'] = $val['id'];
+            $val['supported'] = $supportModel->where($map_supported)->count();
+        }
+        unset($val);
+        //点赞相关
 
+        $weibo = D('Weibo/Weibo')->getWeiboDetail($weibo_id);
+
+        $this->assign('weiboCommentTotalCount', $weibo['comment_count']);
+        $this->assign('comments', $comments);
+        $this->assign('weiboId', $weibo_id);
+        $this->assign('page', 1);
+        $this->display(T('Weibo@default/Widget/comment/somecomment'));
+    }
 }

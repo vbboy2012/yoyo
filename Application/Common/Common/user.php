@@ -199,3 +199,17 @@ function check_and_add($args){
     }
     return true;
 }
+
+function create_user_avatar($username)
+{
+    $str = strtoupper(substr($username,0,2));
+    $im = imagecreatetruecolor(64, 64);
+    $white = imagecolorallocate($im, 255, 255, 255);
+    $grey = imagecolorallocate($im, 128, 128, 128);
+    $black = imagecolorallocate($im, 0, 0, 0);
+    $blue = imagecolorallocate($im, 66, 181, 239);
+    imagefilledrectangle($im, 0, 0, 64, 64, $blue);
+    imagestring($im, 3, 28, 28, $str, $white);
+    imagepng($im,'1.png');
+    imagedestroy($im);
+}

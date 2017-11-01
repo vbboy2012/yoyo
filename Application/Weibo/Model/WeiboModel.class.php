@@ -3,6 +3,7 @@ namespace Weibo\Model;
 
 use Think\Model;
 use Think\Hook;
+use Think\Page;
 
 require_once('./Application/Weibo/Common/function.php');
 
@@ -144,6 +145,9 @@ class WeiboModel extends Model
                 $crowd = D('Weibo/WeiboCrowd')->getCrowd($weibo['crowd_id']);
             }
 
+            $stamp = M('stamp_weibo')->where(array('weibo_id'=>$id,'status'=>1))->find();
+            $stampDetail = D('Weibo/WeiboStamp')->getStamp($stamp['stamp_id']);
+
             if($weibo['type'] !== 'feed' && $weibo['type'] == '' &&!$class_exists){
                 $switch_i='';
             }else{
@@ -171,6 +175,9 @@ class WeiboModel extends Model
                     break;
                 case 'long_weibo':
                     $fetchContent = A('Weibo/Type')->fetchLongWeibo($weibo);
+                    break;
+                case 'question' :
+                    $fetchContent = A('Weibo/Type')->fetchQuestion($weibo);
                     break;
                 default:
                     $fetchContent = Hook::exec('Addons\\Insert' . ucfirst($weibo['type']) . '\\Insert' . ucfirst($weibo['type']) . 'Addon', 'fetch' . ucfirst($weibo['type']), $weibo);
@@ -201,7 +208,9 @@ class WeiboModel extends Model
                 'user' => query_user(array('uid', 'avatar64', 'space_url', 'rank_link', 'title', 'nickname' ,'avatar_html64'), $weibo['uid']),
                 'is_first' => $weibo['is_first'],
                 'status' => $weibo['status'],
-                'is_hot'=> $is_hot?1:0
+                'is_hot'=> $is_hot?1:0,
+                'stamp_id'=> $stampDetail['id'],
+                'stamp_img'=> $stampDetail['stamp_img']
             );
             if($weibo['type']==='long_weibo'){
                 $weibo['long_weibo']=$long_weibo;
@@ -332,5 +341,21 @@ class WeiboModel extends Model
 
         //返回，不能删除动态
         return false;
+    }
+
+    /**修改微博圈子
+     * @param $weibo_id
+     * @param $crowd_id
+     * @return bool
+     * @author:zzl(郑钟良) zzl@ourstu.com
+     */
+    public function changeWeiboCrowd($weibo_id, $crowd_id)
+    {
+        $res = $this->where(array('id' => $weibo_id))->setField('crowd_id', $crowd_id);
+        if ($res) {
+            S('weibo_' . $weibo_id, null);
+            clean_weibo_html_cache($weibo_id);
+        }
+        return $res;
     }
 }

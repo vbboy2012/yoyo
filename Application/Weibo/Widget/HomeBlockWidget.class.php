@@ -36,6 +36,11 @@ class HomeBlockWidget extends Controller
             $param['limit'] = $num;
             $param['order'] = $field . ' ' . $order;
             $param['where'] = array('status' => 1);
+            $invisibleList = D('Weibo/WeiboCrowd')->getInvisible();
+            if (!empty($invisibleList)) {
+                $invisible = array_column($invisibleList,'id');
+                $param['where']['crowd_id'] = array('not in',$invisible);
+            }
             require_once(APP_PATH . 'Weibo/Common/function.php');
             $weiboModel = D('Weibo/Weibo');
             $data = $weiboModel->getWeiboList($param);

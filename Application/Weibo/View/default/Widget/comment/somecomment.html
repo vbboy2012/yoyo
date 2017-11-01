@@ -1,7 +1,7 @@
 <php>$uid=is_login();</php>
 <div class="weibo_post_box">
-            <p class="comment-area">
-                <input type="hidden"  name="reply_id" value="0"/>
+    <p class="comment-area">
+        <input type="hidden"  name="reply_id" value="0"/>
 
                 <input type="text" placeholder="评论（Ctrl+Enter）" id="text_{$weiboId}" rows="2" data-weibo-id="{$weiboId}"
                        class="comment-input  weibo-comment-content comment_text_inputor">
@@ -9,7 +9,7 @@
                 <else/>
                 onclick="insertFace($(this))"
             </if>><i style="color: #999;" class="os-icon-emoticon-smile"></i> </a>
-                <a  data-role="do_comment" id="btn_{$weiboId}" data-weibo-id="{$weiboId}">
+                <a  data-role="do_comment" id="btn_{$weiboId}" data-type="weibo-list" data-weibo-id="{$weiboId}">
                     <i class="os-icon-paper-plane"></i> </a>
             </p>
 
@@ -17,22 +17,22 @@
     top: 45px;"></div>
     <!--评论列表-->
 </div>
-<div id="show_comment_{$weiboId}" class="weibo_comment_list" data-comment-count="{$weiboCommentTotalCount}">
+<div id="show_comment_{$weiboId}" class="weibo_comment_list" data-comment-count="{$weiboCommentTotalCount}" style="border-bottom: none;">
     <volist name="comments" id="comment">
         <div <php>if($i>5){</php> style="display: none"  <php>}</php> >
-        {:W('Weibo/Comment/detail',array('comment_id'=>$comment['id'],'un_prase_comment'=>$un_prase_comment))}
-        </div>
+            <include file="./Application/Weibo/View/default/Widget/comment/_comment.html"/>
+</div>
 </volist>
 <php>
     $pageCount = ceil($weiboCommentTotalCount / 10);
 </php>
-<div class="pager" style="display: none!important;">
-    {:getPageHtml('weibo_page',$pageCount,array('weibo_id'=>$weiboId),$page)}
+<div class="pager" style="display: none!important;margin: 11px 20px 0;">
+    {:getPageHtml('weibo_page',$pageCount,array('weibo_id'=>$weiboId,'position'=>'weibo-list'),$page)}
 </div>
 </div>
 <php>if(count($comments)>5){</php>
-<div style="width: 100%;height: 40px;text-align: center;line-height: 40px;">
-    <a id="show_all_comment_{$weiboId}" href="javascript:" onclick="show_comment('{$weiboId}');">{:L('_REPLY_VIEW_MORE_')}{:L('_GREATER_')}{:L('_GREATER_')}</a>
+<div style="width: 100%;height: 24px;text-align: center;line-height: 16px;">
+    <a id="show_all_comment_{$weiboId}" href="javascript:" onclick="show_comment('{$weiboId}');" style="width: 100%;display: block;"><i class="iconfont icon-xiangxia"></i></a>
 </div>
 <php>}</php>
 

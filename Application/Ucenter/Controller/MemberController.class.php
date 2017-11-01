@@ -29,7 +29,7 @@ class MemberController extends Controller
         $aUsername = $username = I('post.username', '', 'op_t');
         $email = I('post.email', '', 'op_t');
         $aPassword = I('post.password', '', 'op_t');
-        $aRole = 0;
+        $aRole = 1;
 
         if (IS_POST) {
             if ($aUsername == null) {
@@ -45,6 +45,7 @@ class MemberController extends Controller
             $ucenterMemberModel = UCenterMember();
             $uid = $ucenterMemberModel->register($aUsername, $aPassword, $email);
             if (0 < $uid) { //注册成功
+                create_user_avatar($aUsername);
                 $this->initInviteUser($uid, '', $aRole);
                 $ucenterMemberModel->initRoleUser($aRole, $uid); //初始化角色用户
                 set_user_status($uid, 3);

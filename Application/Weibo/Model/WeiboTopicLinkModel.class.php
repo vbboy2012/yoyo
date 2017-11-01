@@ -14,7 +14,7 @@ class WeiboTopicLinkModel extends Model
 {
 
     /**
-     * 批量添加微博话题链接
+     * 批量添加动态话题链接
      * @param $list
      * @return bool|string
      */
@@ -27,7 +27,7 @@ class WeiboTopicLinkModel extends Model
     }
 
     /**
-     * 根据map获取分页微博话题链接
+     * 根据map获取分页动态话题链接
      * @param $map
      * @param $page
      * @param $r
@@ -57,7 +57,7 @@ class WeiboTopicLinkModel extends Model
     }
 
     /**
-     * 设置微博话题链接标记微博置顶
+     * 设置动态话题链接标记动态置顶
      * @param $weibo_id
      * @param int $top
      * @return bool

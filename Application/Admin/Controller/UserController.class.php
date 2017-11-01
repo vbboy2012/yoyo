@@ -253,71 +253,58 @@ class UserController extends AdminController
                 $this->error(L('_ERROR_INFO_CHANGE_NONE_').L('_EXCLAMATION_'));
             }
 
-            $data = null;
-            foreach ($field_setting_list as $key => $val) {
-                $data[$key]['uid'] = $uid;
-                $data[$key]['field_id'] = $val['id'];
-                switch ($val['field_name']) {
-                    case 'qq':
-                        $val['value'] = op_t($_POST['qq']);
-                        if (!$val['value'] || $val['value'] == '') {
-                            if ($val['required'] == 1) {
-                                $this->error($val['field_name'] . L('_ERROR_CONTENT_NONE_').L('_EXCLAMATION_'));
-                            }
-                        } else {
-                            if ($val['submit'] != null && $val['submit']['succ'] == 0) {
-                                $this->error($val['submit']['msg']);
-                            }
-                        }
-                        $data[$key]['field_data'] = $val['value'];
-                        break;
-                    case '生日':
-                        $val['value'] = op_t($_POST['生日']);
-                        $data[$key]['field_data'] = $val['value'];
-                        break;
-                    case '擅长语言':
-                        $val['value'] = op_t($_POST['擅长语言']);
-                        $data[$key]['field_data'] = $val['value'];
-                        break;
-                    case '承接项目':
-                        $val['value'] = op_t($_POST['承接项目']);
-                        $data[$key]['field_data'] = $val['value'];
-                        break;
-                    case '简介':
-                        $val['value'] = op_t($_POST['简介']);
-                        if (!$val['value'] || $val['value'] == '') {
-                            if ($val['required'] == 1) {
-                                $this->error($val['field_name'] . L('_ERROR_CONTENT_NONE_').L('_EXCLAMATION_'));
-                            }
-                        } else {
-                            if ($val['submit'] != null && $val['submit']['succ'] == 0) {
-                                $this->error($val['submit']['msg']);
-                            }
-                        }
-                        if ($val['submit'] != null && $val['submit']['succ'] == 0) {
-                            $this->error($val['submit']['msg']);
-                        }
-                        $data[$key]['field_data'] = $val['value'];
-                        break;
-                    case '其他技能':
-                        $val['value'] = op_t($_POST['其他技能']);
-                        $data[$key]['field_data'] = $val['value'];
-                        break;
-                    case '昵称':
-                        $val['value'] = op_t($_POST['昵称']);
-                        if (!$val['value'] || $val['value'] == '') {
-                            if ($val['required'] == 1) {
-                                $this->error($val['field_name'] . L('_ERROR_CONTENT_NONE_').L('_EXCLAMATION_'));
-                            }
-                        } else {
-                            if ($val['submit'] != null && $val['submit']['succ'] == 0) {
-                                $this->error($val['submit']['msg']);
-                            }
-                        }
-                        $data[$key]['field_data'] = $val['value'];
-                        break;
-                }
-            }
+//            $data = null;
+//            foreach ($field_setting_list as $key => $val) {
+//                $data[$key]['uid'] = $uid;
+//                $data[$key]['field_id'] = $val['id'];
+//                switch ($val['field_name']) {
+//                    case '生日':
+//                        $val['value'] = op_t($_POST['生日']);
+//                        $data[$key]['field_data'] = $val['value'];
+//                        break;
+//                    case '擅长语言':
+//                        $val['value'] = op_t($_POST['擅长语言']);
+//                        $data[$key]['field_data'] = $val['value'];
+//                        break;
+//                    case '承接项目':
+//                        $val['value'] = op_t($_POST['承接项目']);
+//                        $data[$key]['field_data'] = $val['value'];
+//                        break;
+//                    case '简介':
+//                        $val['value'] = op_t($_POST['简介']);
+//                        if (!$val['value'] || $val['value'] == '') {
+//                            if ($val['required'] == 1) {
+//                                $this->error($val['field_name'] . L('_ERROR_CONTENT_NONE_').L('_EXCLAMATION_'));
+//                            }
+//                        } else {
+//                            if ($val['submit'] != null && $val['submit']['succ'] == 0) {
+//                                $this->error($val['submit']['msg']);
+//                            }
+//                        }
+//                        if ($val['submit'] != null && $val['submit']['succ'] == 0) {
+//                            $this->error($val['submit']['msg']);
+//                        }
+//                        $data[$key]['field_data'] = $val['value'];
+//                        break;
+//                    case '其他技能':
+//                        $val['value'] = op_t($_POST['其他技能']);
+//                        $data[$key]['field_data'] = $val['value'];
+//                        break;
+//                    case '昵称':
+//                        $val['value'] = op_t($_POST['昵称']);
+//                        if (!$val['value'] || $val['value'] == '') {
+//                            if ($val['required'] == 1) {
+//                                $this->error($val['field_name'] . L('_ERROR_CONTENT_NONE_').L('_EXCLAMATION_'));
+//                            }
+//                        } else {
+//                            if ($val['submit'] != null && $val['submit']['succ'] == 0) {
+//                                $this->error($val['submit']['msg']);
+//                            }
+//                        }
+//                        $data[$key]['field_data'] = $val['value'];
+//                        break;
+//                }
+//            }
             $map['uid'] = $uid;
             $aNickname = I('post.nickname', '', 'text');
             $this->checkNickname($aNickname, $uid);

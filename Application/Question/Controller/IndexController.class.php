@@ -31,10 +31,12 @@ class IndexController extends BaseController
 
         $map['uid'] = is_login();
         $map['status'] = array('egt',0);
-        $myHelps = M('QuestionAnswer')->where($map)->count();
-        $myAsk = M('Question')->where($map)->count();
+        $myHelps = count(M('QuestionAnswer')->where($map)->group('question_id')->select());
+        $myAsk = M('Question')->where(array('uid'=>is_login(),'status'=>1))->count();
+        $myAnswer = D('QuestionRank')->where(array('uid'=>is_login()))->find();
         $this->assign('my_help',$myHelps);
         $this->assign('my_ask',$myAsk);
+        $this->assign('my_answer',$myAnswer['answer_count']);
 
         //问答达人
         $questionRank = D('QuestionRank')->order('answer_count desc')->limit(10)->select();
@@ -202,7 +204,7 @@ class IndexController extends BaseController
         $aCategory = I('get.category', 0, 'intval');
 
         if($aCategory) {
-            $map_cate = $this->questionCategoryModel->getCategoryList(array('pid' => $aCategory));
+            $map_cate = $this->questionCategoryModel->getCategoryList(array('id' => $aCategory));
             $map_cate = array_column($map_cate, 'id');
             $map['category'] = array('in', array_merge(array($aCategory), $map_cate));
         } else {
@@ -348,7 +350,8 @@ class IndexController extends BaseController
         $this->assign('relevant_question',$relevant_question);
 
         //右侧自己的问答数
-        $my['answer'] = M('QuestionAnswer')->where(array('uid'=>is_login(),'status'=>1))->count();
+        $myAnswer = D('QuestionRank')->where(array('uid'=>is_login()))->find();
+        $my['answer'] = $myAnswer['answer_count'] ;
         $my['ask'] = M('Question')->where(array('uid'=>is_login(),'status'=>1))->count();
         $my['user'] = query_user(array('uid','nickname','space_url','avatar128'),is_login());
         $this->assign('my',$my);

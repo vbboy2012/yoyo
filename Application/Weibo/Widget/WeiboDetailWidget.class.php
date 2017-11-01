@@ -19,45 +19,39 @@ class WeiboDetailWidget extends Controller
 {
 
     /* 显示指定分类的同级分类或子分类列表 */
-    public function detail($weibo_id,$can_hide=0)
+    public function detail($weibo_id, $can_hide = 0, $crowdId = 0)
     {
-        if(!$can_hide){
-            $weiboCacheModel=D('Weibo/WeiboCache');
-            $html=$weiboCacheModel->getCacheHtml($weibo_id);//获取weibo html缓存
-            if($html===null){
-                $weibo = D('Weibo/Weibo')->getWeiboDetail($weibo_id);
-                $this->assign('weibo', $weibo);
-                $this->_initAssign($can_hide);
-                $this->assign('un_prase_comment', 1);
-                $html=$this->fetch(T('Weibo@Widget/detail'));
-                $weiboCacheModel->setCacheHtml($weibo_id,$html);//设置weibo html缓存
-            }
-            $html=replace_weibo_html($html,$weibo_id);
-            $this->show($html);
-        }else{
-            $weiboCacheModel=D('Weibo/WeiboCache');
-            $html=$weiboCacheModel->getTopCacheHtml($weibo_id);//获取weibo html缓存
+        $weiboCacheModel = D('Weibo/WeiboCache');
+        $html = $weiboCacheModel->getCacheHtml($weibo_id);//获取weibo html缓存
+        if ($html === false) {
             $weibo = D('Weibo/Weibo')->getWeiboDetail($weibo_id);
-            if($html===null){
-                $this->assign('weibo', $weibo);
-                $this->_initAssign($can_hide);
-                $this->assign('un_prase_comment', 1);
-                $html=$this->fetch(T('Weibo@Widget/detail'));
-                $weiboCacheModel->setTopCacheHtml($weibo_id,$html);//设置weibo html缓存
-            }
-            $html=replace_weibo_html($html,$weibo_id);
-
+            $weibo['is_top'] = D('Weibo/WeiboTop')->isTop($weibo_id, $crowdId) ;
+            $this->assign('weibo', $weibo);
+            $this->assign('crowdId', $crowdId) ;
+            $this->_initAssign($can_hide);
+            $this->assign('un_prase_comment', 1);
+            //新增点赞者列表获取
+            $supportModel=D('Support');
+            $supportedUserList=$supportModel->getSupported('Weibo','weibo',$weibo_id,array('uid','space_url'),5);
+            $this->assign('supportedUserList',$supportedUserList);
+            $support_count=$supportModel->getSupportCount('Weibo','weibo',$weibo_id);
+            $this->assign('support_count',$support_count);
+            $html = $this->fetch(T('Weibo@Widget/detail'));
+            $weiboCacheModel->setCacheHtml($weibo_id,$html);//设置weibo html缓存
+        }
+        $html = replace_weibo_html($html, $weibo_id);
+        if ($can_hide) {
             //替换置顶微博独有按钮start
 
             //置顶动态隐藏显示
-            $hide_ids=cookie('Weibo_index_top_hide_ids');
-            $hide_ids=explode(',',$hide_ids);
-            $top_hide=in_array($weibo_id,$hide_ids);
-            if($top_hide){
+            $hide_ids = cookie('Weibo_index_top_hide_ids');
+            $hide_ids = explode(',', $hide_ids);
+            $top_hide = in_array($weibo_id, $hide_ids);
+            if ($top_hide) {
                 $html = str_replace('[top_hide]', 'display:none;', $html);
             }
-            $this->show($html);
         }
+        $this->show($html);
     }
 
     public function weibo_html($weibo_id)
@@ -65,10 +59,10 @@ class WeiboDetailWidget extends Controller
         $weibo = D('Weibo/Weibo')->getWeiboDetail($weibo_id);
         $this->assign('weibo', $weibo);
         $this->_initAssign(false);
-        $html=$this->fetch(T('Application://Weibo@Widget/detail'));
-        $weiboCacheModel=D('Weibo/WeiboCache');
-        $weiboCacheModel->setCacheHtml($weibo_id,$html);//设置weibo html缓存
-        $html=replace_weibo_html($html,$weibo_id);
+        $html = $this->fetch(T('Application://Weibo@Widget/detail'));
+        $weiboCacheModel = D('Weibo/WeiboCache');
+        $weiboCacheModel->setCacheHtml($weibo_id, $html);//设置weibo html缓存
+        $html = replace_weibo_html($html, $weibo_id);
         return $html;
     }
 
@@ -78,6 +72,6 @@ class WeiboDetailWidget extends Controller
      */
     private function _initAssign($can_hide)
     {
-        $this->assign('can_hide',$can_hide);
+        $this->assign('can_hide', $can_hide);
     }
 }

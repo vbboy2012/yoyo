@@ -14,8 +14,8 @@ use Think\Model;
 class WeiboCacheModel extends Model
 {
 
-    private $cacheLong=1200;//微博html缓存有效时长
-
+    private $cacheLong=1200;//微博html缓存有效时长，弃用
+    private $tag='weibo_list_detail_html_';
     /**
      * 获取微博html缓存
      * @param $weibo_id
@@ -23,8 +23,10 @@ class WeiboCacheModel extends Model
      * @return mixed
      * @author:zzl(郑钟良) zzl@ourstu.com
      */
-    public function getCacheHtml($weibo_id, $uid = 0)
+    public function getCacheHtml($weibo_id)
     {
+        return S($this->tag.$weibo_id);
+        //下面弃用
         $this->_deleteOld();
         !$uid && $uid = is_login();
         $map['groups'] = $this->_getAuthGroup($uid);
@@ -42,8 +44,11 @@ class WeiboCacheModel extends Model
      * @return mixed
      * @author:zzl(郑钟良) zzl@ourstu.com
      */
-    public function setCacheHtml($weibo_id, $html, $uid = 0)
+    public function setCacheHtml($weibo_id, $html)
     {
+        S($this->tag.$weibo_id,$html);
+        return true;
+        //下面弃用
         !$uid && $uid = is_login();
         $data['groups'] = $this->_getAuthGroup($uid);
         $data['weibo_id'] = $weibo_id;
@@ -53,7 +58,28 @@ class WeiboCacheModel extends Model
     }
 
     /**
-     * 获取置顶微博html缓存
+     * 清除weibo html缓存
+     * @param int $weibo_id 为空则清除所有，不为空则清除该weibo的缓存（全部）
+     * @return bool
+     */
+    public function cleanCache($weibo_id = 0)
+    {
+        S($this->tag.$weibo_id,null);
+        return true;
+        //下面弃用
+        if ($weibo_id) {
+            $this->_deleteOld();
+            $map['weibo_id'] = $weibo_id;
+            $this->where($map)->delete();
+        } else {
+            $this->where(1)->delete();
+        }
+        return true;
+    }
+
+    /************************************************************下面弃用***********************************************/
+    /**
+     * 获取置顶微博html缓存（弃用）
      * @param $weibo_id
      * @param int $uid
      * @return mixed
@@ -72,7 +98,7 @@ class WeiboCacheModel extends Model
     }
 
     /**
-     * 设置置顶微博html缓存
+     * 设置置顶微博html缓存（弃用）
      * @param $weibo_id
      * @param $html
      * @param int $uid
@@ -88,23 +114,6 @@ class WeiboCacheModel extends Model
         $data['cache_html'] = $html;
         $data['create_time'] = time();
         return $this->add($data);
-    }
-
-    /**
-     * 清除weibo html缓存
-     * @param int $weibo_id 为空则清除所有，不为空则清除该weibo的缓存（全部）
-     * @return bool
-     */
-    public function cleanCache($weibo_id = 0)
-    {
-        if ($weibo_id) {
-            $this->_deleteOld();
-            $map['weibo_id'] = $weibo_id;
-            $this->where($map)->delete();
-        } else {
-            $this->where(1)->delete();
-        }
-        return true;
     }
 
     private function _deleteOld()

@@ -14,6 +14,18 @@ use Think\Controller;
 class BaseController extends  Controller{
 
     public function _initialize(){
+        if(D('Common/Module')->isInstalled('Mob')) {
+            $sign = modC('JUMP_MOB', 0, 'mob');
+            if(is_mobile() && ($sign == 0)) {
+                if(ACTION_NAME!="weibodetail") {
+                    redirect(U('Mob/Weibo/index'));
+                }else{
+                    $id = I('id','0','intval') ;
+                    redirect(U('Mob/Weibo/weibodetail',array('id'=>$id)));
+                }
+            }
+        }
+        
         $sub_menu =
             array(
                 'left' =>

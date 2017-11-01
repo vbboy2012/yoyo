@@ -11,30 +11,29 @@
     <script type="text/javascript" src="__PUBLIC__/js/ajaxfileupload.js"></script>
     <link href="__CSS__/weibo.css" type="text/css" rel="stylesheet"/>
     <link href="__CSS__/circle.css" type="text/css" rel="stylesheet"/>
-    <link href="//at.alicdn.com/t/font_lnovro4c22ihpvi.css" type="text/css" rel="stylesheet"/>
-   <link rel="stylesheet" href="{:getRootUrl()}Addons/InsertXiami/_static/css/xiami.css">
+    <link rel="stylesheet" href="{:getRootUrl()}Addons/InsertXiami/_static/css/xiami.css">
     <!--微博内容列表部分-->
     <div class="weibo_middle pull-left">
         <include file="_quickweibo"/>
         <!--  筛选部分-->
-        <div class="black-filter row">
-            <div class="s-wb-box" data-role="show-sendBox">
-                <div class="s-wb-icon">
-                    <i class="iconfont icon-fabu"></i>
-                </div>
-                <p>发文字</p>
-            </div>
-            <div class="s-wb-box" data-role="show-long-sendBox">
-                <div class="s-wb-icon" style="background-color: #66CDCC">
-                    <i class="iconfont icon-dongtaidongtai"></i>
-                </div>
-                <p>发文章</p>
-            </div>
-        </div>
+        <!--<div class="black-filter row">-->
+            <!--<div class="s-wb-box" data-role="show-sendBox">-->
+                <!--<div class="s-wb-icon">-->
+                    <!--<i class="iconfont icon-fabu"></i>-->
+                <!--</div>-->
+                <!--<p>发文字</p>-->
+            <!--</div>-->
+            <!--<div class="s-wb-box" data-role="show-long-sendBox">-->
+                <!--<div class="s-wb-icon" style="background-color: #66CDCC">-->
+                    <!--<i class="iconfont icon-dongtaidongtai"></i>-->
+                <!--</div>-->
+                <!--<p>发文章</p>-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="weibo-filter-wrap">
-            <div class="add-weibo" data-role="switch_sendBox">
-                <span>{:modC('WEIBO_INFO',L('_TIP_SOMETHING_TO_SAY_'))}</span><i class="send-icon"></i>
-            </div>
+            <!--<div class="add-weibo" data-role="switch_sendBox">-->
+                <!--<span>{:modC('WEIBO_INFO',L('_TIP_SOMETHING_TO_SAY_'))}</span><i class="send-icon"></i>-->
+            <!--</div>-->
             <php>if(!is_login()) $style='margin-top:0'</php>
             <div id="weibo_filter">
                 <div class="weibo_icon">
@@ -98,7 +97,7 @@
                 <!--圈子触发按钮-->
                 <div class="show-circle" data-role="show-circle"></div>
                 <!--圈子触发按钮-->
-                <!--我信任的圈子列表stat-->
+                <!--我关注的圈子列表stat-->
                 <div class="my-follow-circle" data-role="close-circle">
                     <div class="follow-left">
                         <div class="l-circle">
@@ -107,8 +106,8 @@
                         <div class="m-circle">
                             <a href={:U('Weibo/Index/index',array('type'=>concerned))}>
                                 <div class="my-circle">
-                                    <img class="m-cover" src="__IMG__/follow.png" alt="" title="我的信任">
-                                    <p class="text-more" style="display: block" title="我的信任">我的信任</p>
+                                    <img class="m-cover" src="__IMG__/follow.png" alt="" title="我的关注">
+                                    <p class="text-more" style="display: block" title="我的关注">我的关注</p>
                                 </div>
                             </a>
                             <volist name="follow_crowd_list" id="data">
@@ -127,7 +126,7 @@
                         </div>
                     </a>
                 </div>
-                <!--我信任的圈子列表end-->
+                <!--我关注的圈子列表end-->
             </div>
             <script>
                 $('#weibo_filter #{$filter_tab}').addClass('active');
@@ -142,38 +141,21 @@
                 })
             </script>
         </div>
-        <notempty name="recom_topic.last_weibo.content">
-            <div class="hot-topic clearfix">
-                <div class="new-hot-topic row">
-                    <!--正在热议角标-->
-                    <div class="now-hot">热议</div>
-                    <div class="new-wb">
-                        <div class="col-md-2" style="max-width: 85px">
-                            <a href="{$recom_topic.last_weibo.user.space_url}"><img class="avatar-img" src="{$recom_topic.last_weibo.user.avatar64}" style="width: 64px;"/></a>
-                        </div>
-                        <div class="col-md-10">
-                            <p><a href="{$recom_topic.last_weibo.user.space_url}">{$recom_topic.last_weibo.user.nickname.nickname}</a></p>
-                            <p class="text-muted text-ellipsis last-weibo-content" style="max-width: 335px">{$recom_topic.last_weibo.content|text}</p>
-                            <p class="text-muted" style="font-size: 12px">{$recom_topic.last_weibo.create_time|friendlyDate}</p>
-                        </div>
-                    </div>
-                    <div class="topic-wrap row">
-                        <div class="cover-wrap">
-                            <a href="{:U('Topic/index',array('topk'=>$recom_topic['id']))}">
-                                <img class="cover" src="<if condition='$recom_topic.logo neq 0'>{$recom_topic.logo|thumb=250,250}<else/>__IMG__/topicavatar.png</if>"/>
-                            </a>
-                        </div>
-                        <a href="{:U('Topic/index',array('topk'=>$recom_topic['id']))}">
-                            <div class="info-wrap">
-                                <p class="text-more">#{$recom_topic['name']}#</p>
-                                <p class="text-more">{$recom_topic['intro']}</p>
-                                <p class="text-more read-num">{$recom_topic['read_count']} 阅读 </p>
-                            </div>
-                        </a>
-                    </div>
+        <div class="top-weibo clearfix">
+            <volist name="top_list" id="top">
+                <div class="top-list">
+                    <a href="{:U('Weibo/Index/weibodetail',array('id'=>$top['weibo_id']))}">
+                        <eq name="top.crowd_id" value="0">
+                            <span class="lable">全站</span>
+                            <else/>
+                            <span class="lable">圈内</span>
+                        </eq>
+                        {$top.title}
+                    </a>
+                    <a href="{$top.weibo.user.space_url}">{$top.weibo.user.nickname}</a>
                 </div>
-            </div>
-        </notempty>
+            </volist>
+        </div>
         <input type="hidden" value="{$smallnav}" id="smallnav">
         <div class="small-nav" >
             <li class="list-type select" data-role="select-li">
@@ -215,21 +197,13 @@
             </li>
         </div>
         <!--筛选部分结束-->
-        <php>G('a');</php>
-        <div id="top_list">
-            <volist name="top_list" id="top">
-                {:W('WeiboDetail/detail',array('weibo_id'=>$top,'can_hide'=>1))}
+        <!--全文置顶 start-->
+        <div id='top_list'>
+            <volist name="top_lists" id="top">
+                {:W('WeiboDetail/detail',array('weibo_id'=>$top,'can_hide'=>1, 'crowdId'=>$crowd_type))}
             </volist>
         </div>
-        <php>G('b');</php>
-        <div style="display: none;"><php>echo(G('a','b'));</php></div>
-        <if condition="!empty($crowd_detail)">
-            <div id="crowd_top_list">
-                <volist name="crowd_top_list" id="top">
-                    {:W('WeiboDetail/detail',array('weibo_id'=>$top,'can_hide'=>1))}
-                </volist>
-            </div>
-        </if>
+        <!--全文置顶 end-->
         <div id="weibo_list">
             <php>
                 if($page != 1){
@@ -310,23 +284,27 @@
             }
         });
         $(document).ready(function () {
+            $("#send_box").show();
+            $(".dynamic-edit-box").hide();
             $('#weibo_filter li:last-child .a-wrap-a').css('border','none');
-            $('[data-role="switch_sendBox"]').click(function () {
-                if (is_login()) {
-                    var wb_cookie = $.cookie("wb_type");
-                    $(".add-weibo").hide();
-                    if (wb_cookie == 'tp_value'){
-                        $("#send_box").show();
-                    }
-                    else if(wb_cookie == 'tp_long_weibo') {
-                        $('[data-role="show-long-sendBox"]').click();
-                    }else{
-                        $(".black-filter").slideToggle();
-                    }
-                } else {
-                    toast.error('请先登录！');
-                }
-            });
+//            $('[data-role="switch_sendBox"]').click(function () {
+//                if (is_login()) {
+//                    var wb_cookie = $.cookie("wb_type");
+//                    $(".add-weibo").hide();
+////                    $("#send_box").show();
+//
+//                    if (wb_cookie == 'tp_value'){
+//                        $("#send_box").show();
+//                    }
+//                    else if(wb_cookie == 'tp_long_weibo') {
+//                        $('[data-role="show-long-sendBox"]').click();
+//                    }else{
+//                        $(".black-filter").slideToggle();
+//                    }
+//                } else {
+//                    toast.error('请先登录！');
+//                }
+//            });
             $('[data-role="show-sendBox"]').click(function () {
                 $("#send_box").show();
                 $("#weibo_content").focus();

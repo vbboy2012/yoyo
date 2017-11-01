@@ -2,7 +2,7 @@
     {:W('Weibo/WeiboDetail/detail',array('weibo_id'=>$weibo))}
     <php>if($weibo == $weibo_num-$rand){</php>
     <notempty name="suggested_follows">
-        <div class="all-wrap main_visual" style="max-width: 680px;margin-bottom: 10px;height: 160px">
+        <div class="all-wrap main_visual" style="max-width: 680px;margin:10px 0;height: 160px">
             <h2>推荐用户</h2>
             <if condition="$suggested_count gt 3">
                 <div class="pager" style="float: left;margin-top: 20px">
@@ -134,4 +134,3 @@
         weibo.lastId = '{$lastId}';
     </script>
 </if>
-

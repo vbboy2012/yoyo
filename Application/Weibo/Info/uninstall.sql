@@ -8,6 +8,8 @@ DROP TABLE IF EXISTS `ocenter_weibo_crowd`;
 DROP TABLE IF EXISTS `ocenter_weibo_crowd_member`;
 DROP TABLE IF EXISTS `ocenter_weibo_crowd_type`;
 DROP TABLE IF EXISTS `ocenter_weibo_long`;
+DROP TABLE IF EXISTS `ocenter_stamp`;
+DROP TABLE IF EXISTS `ocenter_stamp_weibo`;
 
 
 /*删除menu相关数据*/

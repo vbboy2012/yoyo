@@ -81,7 +81,7 @@ class WeiboController extends AdminController
             ->keyText('RECOMMEND_TOPIC','推荐话题','出现在置顶微博上方，用户可以关闭')
             ->keyRadio('COMMENT_ORDER', L('_WEIBO_COMMENTS_LIST_ORDER_'), '', array(0 => L('_TIME_COUNTER_'), 1 => L('_TIME_DIRECT_')))
             ->keyRadio('SHOW_COMMENT', L('_WEIBO_COMMENTS_LIST_DEFAULT_SHOW_HIDE_'), '', array(0 => L('_HIDE_'), 1 => L('_SHOW_')))
-            //->keySelect('WEIBO_DEFAULT_TAB', '动态默认显示标签', '', array('all'=>'全站动态','concerned'=>'我的信任','hot'=>'热门动态'))
+            //->keySelect('WEIBO_DEFAULT_TAB', '动态默认显示标签', '', array('all'=>'全站动态','concerned'=>'我的关注','hot'=>'热门动态'))
             ->keyKanban('WEIBO_DEFAULT_TAB', L('_WEIBO_SIGN_DEFAULT_'))
             ->keySwitch('ACTIVE_USER', L('_ACTIVE_USER_SWITCH_'))
             ->keySelect('ACTIVE_USER_ORDER', L('_ACTIVE_USER_SORT_'), '', $types)
@@ -89,7 +89,7 @@ class WeiboController extends AdminController
             ->keyText('USE_TOPIC', L('_TOPIC_USUAL_'), L('_SHOW_IN_BUTTON_LEFT_'))
             ->keySwitch('NEWEST_USER', L('_USER_SWITCH_NEWEST_'))
             ->keyText('NEWEST_USER_COUNT', L('_USER_SHOW_NUMBER_NEWEST_'), '')
-            ->keyText('HOT_WEIBO_COMMENT_NUM','热门微博标记阀值', '评论数超过该值时，会出现热门微博标记')->keyDefault('HOT_WEIBO_COMMENT_NUM', 10)
+            ->keyText('HOT_WEIBO_COMMENT_NUM','热门动态标记阀值', '评论数超过该值时，会出现热门动态标记')->keyDefault('HOT_WEIBO_COMMENT_NUM', 10)
             ->keyDefault('WEIBO_BR', 0)
             ->keyText('SUGGESTED_RAND', '动态第一页出现推荐用户概率', '单位%，默认80，即第一页出现推荐用户的概率为80%，后面几页出现的概率为20%')->keyDefault('SUGGESTED_RAND', 80)
             ->keyText('SUGGESTED_VALUE', '推荐用户粉丝阈值', '粉丝数大于该值即会成为推荐用户，默认大于0')->keyDefault('SUGGESTED_VALUE', 0)
@@ -120,7 +120,7 @@ class WeiboController extends AdminController
         $r = 20;
         $aTopicId=I('topic_id',0,'intval');
         $model = M('Weibo');
-        if($aTopicId){//话题找微博
+        if($aTopicId){//话题找动态
             $map['topic_id']=$aTopicId;
             $map['status']=1;
             list($list,$totalCount)=D('Weibo/WeiboTopicLink')->getListPageByMap($map,$aPage,$r);
@@ -130,7 +130,7 @@ class WeiboController extends AdminController
                 $val=$model->where($mapWibo)->find();
             }
             unset($val);
-        }else{//微博内容找微博
+        }else{//动态内容找动态
             $aContent = I('content', '', 'op_t');
 
             $map = array('status' => array('EGT', 0));
@@ -151,7 +151,7 @@ class WeiboController extends AdminController
         $attr0['url'] = $builder->addUrlParam(U('setWeiboTop'), array('top' => 0));
 
         $builder->title(L('_WEIBO_MANAGER_'))
-            ->setStatusUrl(U('setWeiboStatus'))->buttonEnable()->buttonDisable()->buttonDelete()->button(L('_STICK_'), $attr1)->button(L('_STICK_CANCEL_'), $attr0)->ajaxButton(U('Weibo/cleanWeiboHtmlCache'),null,'清除微博html-cache',array('hide-data' => 'true'))
+            ->setStatusUrl(U('setWeiboStatus'))->buttonEnable()->buttonDisable()->buttonDelete()->button(L('_STICK_'), $attr1)->button(L('_STICK_CANCEL_'), $attr0)->ajaxButton(U('Weibo/cleanWeiboHtmlCache'),null,'清除动态html-cache',array('hide-data' => 'true'))
             ->keyId()->keyLink('content', L('_CONTENT_'), 'comment?weibo_id=###')->keyUid()->keyCreateTime()->keyStatus()
             ->keyDoActionEdit('editWeibo?id=###')->keyMap('is_top', L('_STICK_'), array(0 => L('_STICK_NOT_'), 1 => L('_STICK_')))
             ->search(L('_CONTENT_'), 'content')
@@ -418,17 +418,17 @@ class WeiboController extends AdminController
                 $weibo_list=$weiboModel->where(array('content'=>array('like','%#'.$val['name'].'#%'),'status'=>1))->select();
                 $weibo_num=$val['weibo_num']+count($weibo_list);
                 $weibo_total_num+=count($weibo_list);
-                //修改微博数
+                //修改动态数
                 $weiboTopicModel->where('id='.$val['id'])->setField('weibo_num',$weibo_num);
                 foreach($weibo_list as $one_weibo){
                     //增加链接
                     $weibo_topic_link=array('weibo_id'=>$one_weibo['id'],'topic_id'=>$val['id'],'create_time'=>$one_weibo['create_time'],'status'=>1,'is_top'=>$one_weibo['is_top']);
                     $weiboTopicLinkModel->add($weibo_topic_link);
 
-                    //修改微博内容
+                    //修改动态内容
                     $one_weibo['content']=str_replace('#'.$val['name'].'#','[topic:'.$val['id'].']',$one_weibo['content']);
                     $weiboModel->where('id='.$one_weibo['id'])->setField('content',$one_weibo['content']);
-                    $this->flashMessage('&nbsp;&nbsp;&nbsp;&nbsp;转移话题微博：【'.$one_weibo['id'].'】 成功！');
+                    $this->flashMessage('&nbsp;&nbsp;&nbsp;&nbsp;转移话题动态：【'.$one_weibo['id'].'】 成功！');
                 }
                 $this->flashMessage('转移话题：#'.$val['name'].'# 成功！');
                 sleep(1);
@@ -439,8 +439,8 @@ class WeiboController extends AdminController
         $this->flashMessage('执行成功！');
         $this->flashMessage('总耗时:'.G('s','e',6));
         $this->flashMessage("修改话题：".count($topicList).' 条');
-        $this->flashMessage("修改微博：".$weibo_total_num.' 次');
-        $this->flashMessage("新增微博话题链接：".$weibo_total_num.' 条');
+        $this->flashMessage("修改动态：".$weibo_total_num.' 次');
+        $this->flashMessage("新增动态话题链接：".$weibo_total_num.' 条');
         $this->flashMessage("执行数据库查询：".(count($topicList)+1).' 次');
         $this->flashMessage("执行数据库修改：".(count($topicList)+$weibo_total_num).' 次');
         if($totalCount<$aPage*5){
@@ -477,7 +477,7 @@ class WeiboController extends AdminController
         $builder->display();
     }
 
-    //执行默认信任脚本
+    //执行默认关注脚本
     public function followCrowd()
     {
         $step = I('get.step', '0', 'intval');
@@ -631,7 +631,7 @@ class WeiboController extends AdminController
             ->title('圈子')
             ->buttonNew(U('Weibo/editCrowd'))
             ->select('', 'status', 'select', '', '', '', array(array('id' => '3', 'value' => '全部'), array('id' => '2', 'value' => '待审核'),array('id' => '-1', 'value' => '已删除'),array('id' => '0', 'value' => '已禁用')))
-            ->setStatusUrl(U('setCrowdStatus'))->buttonEnable()->buttonDelete()->button('允许发动态', array_merge($attr, array('url' => U('doCrowdAllowPost',array('type'=>'allow')))))->button('不允许发动态', array_merge($attr, array('url' => U('doCrowdAllowPost',array('type'=>'no')))))->ajaxButton(U('repairCrowdFollow'),null,'修正信任数',array('hide-data' => 'true'))->ajaxButton(U('repaireCrowdFans'),null,'修正圈子成员数',array('hide-data' => 'true'))->ajaxButton(U('followCrowd',array('step'=>1)),null,'执行默认信任（耗时请等待）',array('hide-data' => 'true'))
+            ->setStatusUrl(U('setCrowdStatus'))->buttonEnable()->buttonDelete()->button('允许发动态', array_merge($attr, array('url' => U('doCrowdAllowPost',array('type'=>'allow')))))->button('不允许发动态', array_merge($attr, array('url' => U('doCrowdAllowPost',array('type'=>'no')))))->ajaxButton(U('repairCrowdFollow'),null,'修正关注数',array('hide-data' => 'true'))->ajaxButton(U('repaireCrowdFans'),null,'修正圈子成员数',array('hide-data' => 'true'))->ajaxButton(U('followCrowd',array('step'=>1)),null,'执行默认关注（耗时请等待）',array('hide-data' => 'true'))
             ->keyId()->keyLink('title', L('_TITLE_'), 'Weibo/Index/index/crowd/###')
             ->keyText('allow_post','允许发动态')
             ->keyCreateTime()->keyText('member_count', '成员数')->keyStatus()->keyDoActionEdit('editCrowd?id=###')
@@ -778,7 +778,7 @@ class WeiboController extends AdminController
     }
 
     /**
-     * 执行修复信任数脚本
+     * 执行修复关注数脚本
      */
     public function repairCrowdFollow()
     {
@@ -801,4 +801,96 @@ class WeiboController extends AdminController
     }
     /**=======================================end===================================
     ==========================================圈子=================================**/
+
+
+
+    /**======================================start===================================
+    ========================================图章管理=================================**/
+
+    public function stampList()
+    {
+        $param['order'] = 'create_time desc';
+        $param['where']['status'] = 1;
+        $param['field'] = 'id';
+        $list = D('Weibo/WeiboStamp')->getList();
+        foreach ($list as &$v) {
+            $v = D('Weibo/WeiboStamp')->getStamp($v);
+        }
+        unset($v);
+        $builder = new AdminListBuilder();
+        $builder
+            ->title('图章')
+            ->buttonNew(U('Weibo/editStamp'))
+            ->setStatusUrl(U('setStampStatus'))->buttonEnable()->buttonDelete()
+            ->keyId()->keyText('title', L('_TITLE_'))->keyImage('stamp_img','图章')
+            ->keyCreateTime()->keyStatus()->keyDoActionEdit('editStamp?id=###')
+            ->data($list)
+            ->display();
+    }
+
+    public function setStampStatus($ids, $status)
+    {
+        $id = array_unique((array)$ids);
+        $rs = D('Weibo/WeiboStamp')->setStatus($id,$status);
+        if ($rs === false) {
+            $this->error(L('_ERROR_SETTING_') . L('_PERIOD_'));
+        }
+        foreach ($id as $v) {
+            S('stamp_by_'.$v,null);
+        }
+        $this->success(L('_SUCCESS_SETTING_'), $_SERVER['HTTP_REFERER']);
+    }
+
+    public function editStamp()
+    {
+        if (IS_POST) {
+            $aId = I('post.id', 0, 'intval');
+            $aTitle = I('post.title', '', 'text');
+            $aCreateTime = I('post.create_time', 0, 'intval');
+            $aStatus = I('post.status', 0, 'intval');
+            $pic = I('post.pic', 0, 'intval');
+
+            $isEdit = $aId ? true : false;
+            //生成数据
+            $data = array('title' => $aTitle, 'create_time' => $aCreateTime, 'status' => $aStatus, 'pic' => $pic);
+            //写入数据库
+            $model = D('Weibo/WeiboStamp');
+            if ($isEdit) {
+                S('stamp_by_'.$aId,null);
+                $data = $model->create($data);
+                $result = $model->editStamp($aId,$data);
+            } else {
+                $data = $model->create($data);
+                $result = $model->addStamp($data);
+                if (!$result) {
+                    $this->error(L('_ERROR_CREATE_FAIL_'));
+                }
+            }
+            //返回成功信息
+            $this->success($isEdit ? L('_SUCCESS_EDIT_') : L('_SUCCESS_SAVE_'));
+        } else {
+            $aId = I('get.id', 0, 'intval');
+            //判断是否为编辑模式
+            $isEdit = $aId ? true : false;
+            //如果是编辑模式，读取群组的属性
+            if ($isEdit) {
+                $stamp = D('Weibo/WeiboStamp')->getStamp($aId);
+            } else {
+                $stamp = array('create_time' => time(), 'status' => 1);
+            }
+            //显示页面
+            $builder = new AdminConfigBuilder();
+            $builder
+                ->title($isEdit ? '编辑图章':'新增图章' )
+                ->keyId()->keyTitle()
+                ->keyStatus()
+                ->keySingleImage('pic', '图章', '图章的logo')->keyCreateTime()
+                ->data($stamp)
+                ->buttonSubmit(U('editStamp'))->buttonBack()
+                ->display();
+        }
+    }
+
+    /**======================================end===================================
+    ========================================图章管理=================================**/
 }

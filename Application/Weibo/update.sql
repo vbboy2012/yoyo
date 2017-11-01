@@ -94,12 +94,28 @@ ALTER TABLE  `ocenter_weibo` ADD INDEX ( `crowd_id` );
 set @pid=0;
 select @pid:= id from `ocenter_menu` where title = '微博';
 INSERT INTO `ocenter_menu` (`title`, `pid`, `sort`, `url`, `hide`, `tip`, `group`, `is_dev`, `icon`, `module`) VALUES
-( '圈子配置',@pid,'0','Weibo/crowdConfig','0','','圈子管理','0','',''),
-( '圈子类型',@pid,'0','Weibo/crowdType','0','','圈子管理','0','',''),
-( '圈子列表',@pid,'0','Weibo/crowd','0','','圈子管理','0','',''),
-( '编辑圈子',@pid,'0','Weibo/editCrowd','0','','圈子管理','0','',''),
-( '设置圈子类型状态',@pid,'0','Weibo/setcrowdtypestatus','1','','圈子管理','0','',''),
-( '设置圈子状态',@pid,'0','Weibo/setcrowdstatus','1','','圈子管理','0','',''),
-( '圈子是否可发送微博',@pid,'0','Weibo/doCrowdAllowPost','1','','圈子管理','0','',''),
-( '执行默认信任',@pid,'0','Weibo/followCrowd','0','','圈子管理','0','',''),
-( '修复信任数脚本',@pid,'0','Weibo/repaircrowdfollow','1','','圈子管理','0','','');
+( '圈子配置',@pid,'0','Weibo/crowdConfig','0','','圈子管理','0','','Weibo'),
+( '圈子类型',@pid,'0','Weibo/crowdType','0','','圈子管理','0','','Weibo'),
+( '圈子列表',@pid,'0','Weibo/crowd','0','','圈子管理','0','','Weibo'),
+( '编辑圈子',@pid,'0','Weibo/editCrowd','0','','圈子管理','0','','Weibo'),
+( '设置圈子类型状态',@pid,'0','Weibo/setcrowdtypestatus','1','','圈子管理','0','','Weibo'),
+( '设置圈子状态',@pid,'0','Weibo/setcrowdstatus','1','','圈子管理','0','','Weibo'),
+( '圈子是否可发送微博',@pid,'0','Weibo/doCrowdAllowPost','1','','圈子管理','0','','Weibo'),
+( '执行默认关注',@pid,'0','Weibo/followCrowd','0','','圈子管理','0','','Weibo'),
+( '修复关注数脚本',@pid,'0','Weibo/repaircrowdfollow','1','','圈子管理','0','','Weibo');
+
+INSERT INTO `ocenter_auth_rule` (`module`, `type`, `name`, `title`, `status`, `condition`) VALUES
+('Weibo', 1, 'Weibo/Index/editWeibo', '编辑微博(管理)', 1, ''),
+('Weibo', 1, 'Weibo/Index/transferCrowd', '编辑微博(管理)', 1, '');
+
+DROP TABLE IF EXISTS `ocenter_weibo_top`;
+
+CREATE TABLE IF NOT EXISTS `ocenter_weibo_top` (
+  `weibo_id` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(64) NOT NULL COMMENT '置顶标题',
+  `dead_time` int(11) NOT NULL COMMENT '过期日期',
+  `crowd_id` int(11) NOT NULL,
+  `status` tinyint(2) NOT NULL,
+  `create_time` int(11) NOT NULL,
+  KEY `weibo_id` (`weibo_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='置顶微博表';

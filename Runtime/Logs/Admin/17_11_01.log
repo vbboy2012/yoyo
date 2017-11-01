@@ -1,0 +1,1283 @@
+[ 2017-11-01T19:58:20+08:00 ] 127.0.0.1 /yoyo/index.php?s=/admin/index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+SQL: SHOW COLUMNS FROM `ocenter_hooks` [ RunTime:0.006588s ]
+SQL: SELECT `name`,`addons` FROM `ocenter_hooks`  [ RunTime:0.001822s ]
+SQL: SHOW COLUMNS FROM `ocenter_addons` [ RunTime:0.008253s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('SuperLinks')  [ RunTime:0.002739s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('EditorForAdmin')  [ RunTime:0.001254s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('SiteStat','SyncLogin','DevTeam','SystemInfo','LocalComment')  [ RunTime:0.000462s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('Iswaf')  [ RunTime:0.000709s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('CheckIn')  [ RunTime:0.001198s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('Support')  [ RunTime:0.001193s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('LocalComment')  [ RunTime:0.001078s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('SyncLogin')  [ RunTime:0.000862s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('SyncLogin')  [ RunTime:0.000888s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('ChinaCity')  [ RunTime:0.000890s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('SuperLinks')  [ RunTime:0.000786s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('InsertFile')  [ RunTime:0.000355s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('SyncLogin')  [ RunTime:0.000354s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('Retopic','Recommend')  [ RunTime:0.000357s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('Report')  [ RunTime:0.000478s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('CheckIn')  [ RunTime:0.000393s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('QiNiu')  [ RunTime:0.000361s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('SmsBao')  [ RunTime:0.000364s ]
+SQL: SELECT `id`,`name` FROM `ocenter_addons` WHERE `status` = 1 AND `name` IN ('Sensitive')  [ RunTime:0.000382s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.050813s ]
+INFO: [ app_init ] --END-- [ RunTime:0.050951s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.003067s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_THEME_NOW_THEME' LIMIT 1   [ RunTime:0.000336s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.001204s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000909s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.022794s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.023943s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.005450s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000374s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000253s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000167s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000204s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_CONFIG_FIRST_USER_RUN' LIMIT 1   [ RunTime:0.000253s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000433s ]
+SQL: SHOW COLUMNS FROM `ocenter_menu` [ RunTime:0.003499s ]
+SQL: SELECT * FROM `ocenter_menu` WHERE `pid` = 0 ORDER BY sort asc  [ RunTime:0.003163s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 10000 ) ORDER BY sort asc  [ RunTime:0.002197s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 10000 AND `hide` = 0  [ RunTime:0.000617s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '设置' AND `pid` = 10000 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000475s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 10018 ) ORDER BY sort asc  [ RunTime:0.000331s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 10018 AND `hide` = 0  [ RunTime:0.000299s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '设置' AND `pid` = 10018 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000334s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 13000 ) ORDER BY sort asc  [ RunTime:0.000301s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 13000 AND `hide` = 0  [ RunTime:0.000261s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '授权登录' AND `pid` = 13000 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000233s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '客户中心' AND `pid` = 13000 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000280s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '激活过程' AND `pid` = 13000 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000309s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 13100 ) ORDER BY sort asc  [ RunTime:0.000294s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 13100 AND `hide` = 0  [ RunTime:0.000744s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '交易' AND `pid` = 13100 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000409s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '广告' AND `pid` = 13100 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000330s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 13098 ) ORDER BY sort asc  [ RunTime:0.000364s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 13098 AND `hide` = 0  [ RunTime:0.000416s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '工单' AND `pid` = 13098 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000367s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 1 ) ORDER BY sort asc  [ RunTime:0.001689s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 1 AND `hide` = 0  [ RunTime:0.000306s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '模块权限' AND `pid` = 1 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000255s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '系统首页' AND `pid` = 1 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000412s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '数据统计' AND `pid` = 1 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.001510s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 2 ) ORDER BY sort asc  [ RunTime:0.000746s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 2 AND `hide` = 0  [ RunTime:0.000806s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '认证管理' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000365s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '头衔管理' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000364s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '身份管理' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000385s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '用户配置' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000303s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000302s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '标签与资料' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000269s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 197 ) ORDER BY sort asc  [ RunTime:0.000352s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 197 AND `hide` = 0  [ RunTime:0.000333s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '图片管理' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000431s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '友链与公告' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000595s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '敏感词' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000461s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '广告配置' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000485s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '行为与积分' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000590s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '表情管理' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000556s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '群发消息' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000445s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000350s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = 'SEO管理' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000363s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '邀请注册管理' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000342s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 109 ) ORDER BY sort asc  [ RunTime:0.000292s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 109 AND `hide` = 0  [ RunTime:0.000547s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '单点登录' AND `pid` = 109 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000501s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 74 ) ORDER BY sort asc  [ RunTime:0.001175s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 74 AND `hide` = 0  [ RunTime:0.000608s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '消息管理' AND `pid` = 74 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000771s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '网站设置' AND `pid` = 74 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000399s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '导航管理' AND `pid` = 74 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000413s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '网站数据管理' AND `pid` = 74 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000316s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '升级补丁' AND `pid` = 74 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000268s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '群发消息' AND `pid` = 74 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000313s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '计划任务' AND `pid` = 74 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000310s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 10002 ) ORDER BY sort asc  [ RunTime:0.000310s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 10002 AND `hide` = 0  [ RunTime:0.000292s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '圈子管理' AND `pid` = 10002 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000349s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '' AND `pid` = 10002 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000598s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '话题管理' AND `pid` = 10002 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000380s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '设置' AND `pid` = 10002 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000338s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '微博' AND `pid` = 10002 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000473s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '回复' AND `pid` = 10002 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000388s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 105 ) ORDER BY sort asc  [ RunTime:0.000367s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 105 AND `hide` = 0  [ RunTime:0.000312s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '云市场' AND `pid` = 105 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000342s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '本地' AND `pid` = 105 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000293s ]
+SQL: SHOW COLUMNS FROM `ocenter_addons` [ RunTime:0.004743s ]
+SQL: SELECT `title`,`name` FROM `ocenter_addons` WHERE ( status=1 AND has_adminlist=1 )  [ RunTime:0.000275s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 10016 ) ORDER BY sort asc  [ RunTime:0.000341s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 10016 AND `hide` = 0  [ RunTime:0.000236s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '配置' AND `pid` = 10016 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000271s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 13030 ) ORDER BY sort asc  [ RunTime:0.000241s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 13030 AND `hide` = 0  [ RunTime:0.000243s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '资讯管理' AND `pid` = 13030 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000244s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '资讯配置' AND `pid` = 13030 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000235s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 13042 ) ORDER BY sort asc  [ RunTime:0.000320s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 13042 AND `hide` = 0  [ RunTime:0.000291s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '分类管理' AND `pid` = 13042 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000404s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '板块' AND `pid` = 13042 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000629s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '帖子' AND `pid` = 13042 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000440s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '回复' AND `pid` = 13042 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000774s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '设置' AND `pid` = 13042 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000450s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 13061 ) ORDER BY sort asc  [ RunTime:0.000397s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 13061 AND `hide` = 0  [ RunTime:0.000365s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '话题设置' AND `pid` = 13061 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000504s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '配置管理' AND `pid` = 13061 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000380s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '问答管理' AND `pid` = 13061 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.001497s ]
+SQL: SELECT `id` FROM `ocenter_menu` WHERE ( url like 'Index/index%' OR url like '%/Index/index%'   ) LIMIT 1   [ RunTime:0.000473s ]
+SQL: SHOW COLUMNS FROM `ocenter_menu` [ RunTime:0.002045s ]
+SQL: SELECT `id`,`pid`,`title`,`url` FROM `ocenter_menu` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.000256s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 1 ) ORDER BY sort asc  [ RunTime:0.000272s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 1 AND `hide` = 0  [ RunTime:0.000231s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip`,`module` FROM `ocenter_menu` WHERE `group` = '模块权限' AND `pid` = 1 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000250s ]
+NOTIC: [8] Undefined index: module /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/AdminController.class.php 第 477 行.
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip`,`module` FROM `ocenter_menu` WHERE `group` = '系统首页' AND `pid` = 1 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000327s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip`,`module` FROM `ocenter_menu` WHERE `group` = '数据统计' AND `pid` = 1 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000341s ]
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.001728s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Ad' LIMIT 1   [ RunTime:0.001880s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Bclient' LIMIT 1   [ RunTime:0.000414s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Coin' LIMIT 1   [ RunTime:0.001178s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Core' LIMIT 1   [ RunTime:0.000753s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Forum' LIMIT 1   [ RunTime:0.000290s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Help' LIMIT 1   [ RunTime:0.000283s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Home' LIMIT 1   [ RunTime:0.000298s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Mob' LIMIT 1   [ RunTime:0.000286s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'News' LIMIT 1   [ RunTime:0.000285s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'People' LIMIT 1   [ RunTime:0.000635s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Question' LIMIT 1   [ RunTime:0.000971s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Ucenter' LIMIT 1   [ RunTime:0.000365s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Weibo' LIMIT 1   [ RunTime:0.000809s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+SQL: SELECT * FROM `ocenter_menu` WHERE `module` = 'Ad' AND `pid` = 0 LIMIT 1   [ RunTime:0.000339s ]
+SQL: SELECT * FROM `ocenter_menu` WHERE `module` = 'Bclient' AND `pid` = 0 LIMIT 1   [ RunTime:0.000213s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 13000 ) ORDER BY sort asc  [ RunTime:0.000228s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 13000 AND `hide` = 0  [ RunTime:0.000183s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '授权登录' AND `pid` = 13000 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000279s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '客户中心' AND `pid` = 13000 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000385s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '激活过程' AND `pid` = 13000 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000293s ]
+SQL: SELECT * FROM `ocenter_menu` WHERE `module` = 'Coin' AND `pid` = 0 LIMIT 1   [ RunTime:0.000253s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 13100 ) ORDER BY sort asc  [ RunTime:0.000254s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 13100 AND `hide` = 0  [ RunTime:0.000269s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '交易' AND `pid` = 13100 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000382s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '广告' AND `pid` = 13100 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000527s ]
+SQL: SELECT * FROM `ocenter_menu` WHERE `module` = 'Forum' AND `pid` = 0 LIMIT 1   [ RunTime:0.000440s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 13042 ) ORDER BY sort asc  [ RunTime:0.000758s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 13042 AND `hide` = 0  [ RunTime:0.000850s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '分类管理' AND `pid` = 13042 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000795s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '板块' AND `pid` = 13042 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000528s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '帖子' AND `pid` = 13042 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000406s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '回复' AND `pid` = 13042 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000582s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '设置' AND `pid` = 13042 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000558s ]
+SQL: SELECT * FROM `ocenter_menu` WHERE `module` = 'Help' AND `pid` = 0 LIMIT 1   [ RunTime:0.001005s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 13098 ) ORDER BY sort asc  [ RunTime:0.000721s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 13098 AND `hide` = 0  [ RunTime:0.000678s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '工单' AND `pid` = 13098 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000296s ]
+SQL: SELECT * FROM `ocenter_menu` WHERE `module` = 'Home' AND `pid` = 0 LIMIT 1   [ RunTime:0.000272s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 10000 ) ORDER BY sort asc  [ RunTime:0.000310s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 10000 AND `hide` = 0  [ RunTime:0.000289s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '设置' AND `pid` = 10000 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000336s ]
+SQL: SELECT * FROM `ocenter_menu` WHERE `module` = 'Mob' AND `pid` = 0 LIMIT 1   [ RunTime:0.000314s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 10018 ) ORDER BY sort asc  [ RunTime:0.000369s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 10018 AND `hide` = 0  [ RunTime:0.000240s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '设置' AND `pid` = 10018 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000275s ]
+SQL: SELECT * FROM `ocenter_menu` WHERE `module` = 'News' AND `pid` = 0 LIMIT 1   [ RunTime:0.000314s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 13030 ) ORDER BY sort asc  [ RunTime:0.000302s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 13030 AND `hide` = 0  [ RunTime:0.000405s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '资讯管理' AND `pid` = 13030 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000486s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '资讯配置' AND `pid` = 13030 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000525s ]
+SQL: SELECT * FROM `ocenter_menu` WHERE `module` = 'People' AND `pid` = 0 LIMIT 1   [ RunTime:0.000409s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 10016 ) ORDER BY sort asc  [ RunTime:0.000357s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 10016 AND `hide` = 0  [ RunTime:0.000372s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '配置' AND `pid` = 10016 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000405s ]
+SQL: SELECT * FROM `ocenter_menu` WHERE `module` = 'Question' AND `pid` = 0 LIMIT 1   [ RunTime:0.000408s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 13061 ) ORDER BY sort asc  [ RunTime:0.000289s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 13061 AND `hide` = 0  [ RunTime:0.000291s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '话题设置' AND `pid` = 13061 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.001355s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '配置管理' AND `pid` = 13061 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000758s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '问答管理' AND `pid` = 13061 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000474s ]
+SQL: SELECT * FROM `ocenter_menu` WHERE `module` = 'Ucenter' AND `pid` = 0 LIMIT 1   [ RunTime:0.000391s ]
+SQL: SELECT * FROM `ocenter_menu` WHERE `module` = 'Weibo' AND `pid` = 0 LIMIT 1   [ RunTime:0.000275s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 10002 ) ORDER BY sort asc  [ RunTime:0.000279s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 10002 AND `hide` = 0  [ RunTime:0.000229s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '圈子管理' AND `pid` = 10002 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000315s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '' AND `pid` = 10002 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000254s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '话题管理' AND `pid` = 10002 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000257s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '设置' AND `pid` = 10002 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000294s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '微博' AND `pid` = 10002 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000268s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '回复' AND `pid` = 10002 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000279s ]
+SQL: SHOW COLUMNS FROM `ocenter_addons` [ RunTime:0.001481s ]
+SQL: SHOW COLUMNS FROM `ocenter_version` [ RunTime:0.002969s ]
+SQL: SELECT * FROM `ocenter_version` ORDER BY number asc  [ RunTime:0.000340s ]
+SQL: SELECT * FROM `ocenter_version` WHERE `name` = '5.1.0' LIMIT 1   [ RunTime:0.000316s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/VersionModel.class.php 第 91 行.
+SQL: SHOW COLUMNS FROM `ocenter_tile` [ RunTime:0.001472s ]
+SQL: SELECT * FROM `ocenter_tile` WHERE `status` = 1 ORDER BY sort asc  [ RunTime:0.001586s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000542s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000587s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_CONFIG_LOGO' LIMIT 1   [ RunTime:0.000385s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000451s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000662s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000015s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.229586s ]
+SQL: SHOW COLUMNS FROM `ocenter_avatar` [ RunTime:0.002682s ]
+SQL: SELECT * FROM `ocenter_avatar` WHERE `uid` = 1 AND `status` = 1 AND `is_temp` = 0 LIMIT 1   [ RunTime:0.001538s ]
+SQL: SELECT * FROM `ocenter_avatar` WHERE `uid` = 1 AND `status` = 1 AND `is_temp` = 0 LIMIT 1   [ RunTime:0.000320s ]
+SQL: SELECT * FROM `ocenter_avatar` WHERE `uid` = 1 AND `status` = 1 AND `is_temp` = 0 LIMIT 1   [ RunTime:0.000304s ]
+SQL: SELECT * FROM `ocenter_avatar` WHERE `uid` = 1 AND `status` = 1 AND `is_temp` = 0 LIMIT 1   [ RunTime:0.000434s ]
+SQL: SELECT * FROM `ocenter_avatar` WHERE `uid` = 1 AND `status` = 1 AND `is_temp` = 0 LIMIT 1   [ RunTime:0.001014s ]
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/085b574956cdc611cfedaace62cf4e64.php 第 188 行.
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/085b574956cdc611cfedaace62cf4e64.php 第 188 行.
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/085b574956cdc611cfedaace62cf4e64.php 第 188 行.
+SQL: select version() as v; [ RunTime:0.000234s ]
+NOTIC: [8] Undefined variable: addons_config /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/085b574956cdc611cfedaace62cf4e64.php 第 541 行.
+NOTIC: [8] Undefined variable: count /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/085b574956cdc611cfedaace62cf4e64.php 第 580 行.
+NOTIC: [8] Undefined variable: count /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/085b574956cdc611cfedaace62cf4e64.php 第 584 行.
+NOTIC: [8] Undefined variable: count /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/085b574956cdc611cfedaace62cf4e64.php 第 601 行.
+NOTIC: [8] Undefined variable: report /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/085b574956cdc611cfedaace62cf4e64.php 第 818 行.
+NOTIC: [8] Undefined variable: count /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/085b574956cdc611cfedaace62cf4e64.php 第 1029 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.084332s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.084389s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001439s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001479s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001692s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001740s ]
+
+[ 2017-11-01T19:58:27+08:00 ] 127.0.0.1 /yoyo/index.php?s=/admin/user/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000755s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000822s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.002661s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000414s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000331s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.014180s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.014592s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.002334s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000393s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000315s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000213s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000258s ]
+SQL: SHOW COLUMNS FROM `ocenter_menu` [ RunTime:0.002093s ]
+SQL: SELECT * FROM `ocenter_menu` WHERE `pid` = 0 ORDER BY sort asc  [ RunTime:0.000430s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 10000 ) ORDER BY sort asc  [ RunTime:0.000351s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 10000 AND `hide` = 0  [ RunTime:0.000255s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '设置' AND `pid` = 10000 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000301s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 10018 ) ORDER BY sort asc  [ RunTime:0.000298s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 10018 AND `hide` = 0  [ RunTime:0.000241s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '设置' AND `pid` = 10018 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000262s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 13000 ) ORDER BY sort asc  [ RunTime:0.000341s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 13000 AND `hide` = 0  [ RunTime:0.000583s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '授权登录' AND `pid` = 13000 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000445s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '客户中心' AND `pid` = 13000 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000371s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '激活过程' AND `pid` = 13000 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000317s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 13100 ) ORDER BY sort asc  [ RunTime:0.000325s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 13100 AND `hide` = 0  [ RunTime:0.000238s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '交易' AND `pid` = 13100 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000261s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '广告' AND `pid` = 13100 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000259s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 13098 ) ORDER BY sort asc  [ RunTime:0.000246s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 13098 AND `hide` = 0  [ RunTime:0.000220s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '工单' AND `pid` = 13098 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000247s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 1 ) ORDER BY sort asc  [ RunTime:0.000270s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 1 AND `hide` = 0  [ RunTime:0.000396s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '模块权限' AND `pid` = 1 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000331s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '系统首页' AND `pid` = 1 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000452s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '数据统计' AND `pid` = 1 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000881s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 2 ) ORDER BY sort asc  [ RunTime:0.001255s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 2 AND `hide` = 0  [ RunTime:0.001338s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '认证管理' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.001299s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '头衔管理' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.001180s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '身份管理' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.001016s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '用户配置' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000555s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000508s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '标签与资料' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000491s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 197 ) ORDER BY sort asc  [ RunTime:0.000594s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 197 AND `hide` = 0  [ RunTime:0.000551s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '图片管理' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.001008s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '友链与公告' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.001148s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '敏感词' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000899s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '广告配置' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.001100s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '行为与积分' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000609s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '表情管理' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000536s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '群发消息' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000639s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000532s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = 'SEO管理' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000448s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '邀请注册管理' AND `pid` = 197 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000514s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 109 ) ORDER BY sort asc  [ RunTime:0.000437s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 109 AND `hide` = 0  [ RunTime:0.000464s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '单点登录' AND `pid` = 109 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000464s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 74 ) ORDER BY sort asc  [ RunTime:0.000532s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 74 AND `hide` = 0  [ RunTime:0.000436s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '消息管理' AND `pid` = 74 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000575s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '网站设置' AND `pid` = 74 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000707s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '导航管理' AND `pid` = 74 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000532s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '网站数据管理' AND `pid` = 74 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000538s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '升级补丁' AND `pid` = 74 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000489s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '群发消息' AND `pid` = 74 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000491s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '计划任务' AND `pid` = 74 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000519s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 10002 ) ORDER BY sort asc  [ RunTime:0.000598s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 10002 AND `hide` = 0  [ RunTime:0.000522s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '圈子管理' AND `pid` = 10002 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000592s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '' AND `pid` = 10002 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000958s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '话题管理' AND `pid` = 10002 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.001151s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '设置' AND `pid` = 10002 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.001094s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '微博' AND `pid` = 10002 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000542s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '回复' AND `pid` = 10002 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000500s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 105 ) ORDER BY sort asc  [ RunTime:0.000472s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 105 AND `hide` = 0  [ RunTime:0.000458s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '云市场' AND `pid` = 105 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000498s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '本地' AND `pid` = 105 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000585s ]
+SQL: SHOW COLUMNS FROM `ocenter_addons` [ RunTime:0.005466s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 10016 ) ORDER BY sort asc  [ RunTime:0.000499s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 10016 AND `hide` = 0  [ RunTime:0.000403s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '配置' AND `pid` = 10016 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000376s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 13030 ) ORDER BY sort asc  [ RunTime:0.000421s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 13030 AND `hide` = 0  [ RunTime:0.000369s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '资讯管理' AND `pid` = 13030 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000428s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '资讯配置' AND `pid` = 13030 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000460s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 13042 ) ORDER BY sort asc  [ RunTime:0.000865s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 13042 AND `hide` = 0  [ RunTime:0.000426s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '分类管理' AND `pid` = 13042 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000417s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '板块' AND `pid` = 13042 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000428s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '帖子' AND `pid` = 13042 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000441s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '回复' AND `pid` = 13042 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000524s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '设置' AND `pid` = 13042 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000437s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 13061 ) ORDER BY sort asc  [ RunTime:0.000526s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 13061 AND `hide` = 0  [ RunTime:0.000445s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '话题设置' AND `pid` = 13061 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000498s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '配置管理' AND `pid` = 13061 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000476s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ocenter_menu` WHERE `group` = '问答管理' AND `pid` = 13061 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000565s ]
+SQL: SELECT `id` FROM `ocenter_menu` WHERE ( url like 'User/index%' OR url like '%/User/index%'   ) LIMIT 1   [ RunTime:0.000410s ]
+SQL: SHOW COLUMNS FROM `ocenter_menu` [ RunTime:0.004096s ]
+SQL: SELECT `id`,`pid`,`title`,`url` FROM `ocenter_menu` WHERE ( id=2 ) LIMIT 1   [ RunTime:0.000580s ]
+SQL: SELECT DISTINCT  `group` FROM `ocenter_menu` WHERE ( pid = 2 ) ORDER BY sort asc  [ RunTime:0.000433s ]
+SQL: SELECT `id`,`url` FROM `ocenter_menu` WHERE `pid` = 2 AND `hide` = 0  [ RunTime:0.000429s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip`,`module` FROM `ocenter_menu` WHERE `group` = '认证管理' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000523s ]
+NOTIC: [8] Undefined index: module /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/AdminController.class.php 第 477 行.
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip`,`module` FROM `ocenter_menu` WHERE `group` = '头衔管理' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000527s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip`,`module` FROM `ocenter_menu` WHERE `group` = '身份管理' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000469s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip`,`module` FROM `ocenter_menu` WHERE `group` = '用户配置' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000538s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip`,`module` FROM `ocenter_menu` WHERE `group` = '' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.000811s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip`,`module` FROM `ocenter_menu` WHERE `group` = '标签与资料' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.001055s ]
+SQL: SHOW COLUMNS FROM `ocenter_version` [ RunTime:0.004788s ]
+NOTIC: [8] Undefined variable: map /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 64 行.
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.002174s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_member` WHERE `status` >= 0 LIMIT 1   [ RunTime:0.000294s ]
+SQL: SELECT `uid`,`nickname`,`sex`,`trade_count`,`trade_score`,`login`,`reg_ip`,`reg_time`,`last_login_ip`,`last_login_time`,`status`,`last_login_role`,`show_role`,`signature`,`pos_province`,`pos_city`,`pos_district`,`pos_community`,`score1`,`score2`,`score3`,`score4`,`btc_count`,`eth_count`,`btc`,`eth`,`con_check`,`total_check`,`fans`,`trust`,`session_id`,`lang` FROM `ocenter_member` WHERE `status` >= 0 ORDER BY uid desc LIMIT 0,10   [ RunTime:0.000411s ]
+SQL: select username,email,mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=148 limit 1 [ RunTime:0.000667s ]
+SQL: select username,email,mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=147 limit 1 [ RunTime:0.000590s ]
+SQL: select username,email,mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=146 limit 1 [ RunTime:0.000644s ]
+SQL: select username,email,mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=145 limit 1 [ RunTime:0.000726s ]
+SQL: select username,email,mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=100 limit 1 [ RunTime:0.000718s ]
+SQL: select username,email,mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=1 limit 1 [ RunTime:0.000288s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=148 limit 1 [ RunTime:0.000445s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=147 limit 1 [ RunTime:0.000308s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=146 limit 1 [ RunTime:0.000228s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=145 limit 1 [ RunTime:0.000200s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=1 limit 1 [ RunTime:0.000223s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000297s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000339s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_CONFIG_LOGO' LIMIT 1   [ RunTime:0.000292s ]
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/26aaa567eb9acdbcb9e2554cd2626e00.php 第 188 行.
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/26aaa567eb9acdbcb9e2554cd2626e00.php 第 188 行.
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/26aaa567eb9acdbcb9e2554cd2626e00.php 第 188 行.
+SQL: SELECT `id` FROM `ocenter_menu` WHERE ( url like '%User/index' AND pid > 0 ) LIMIT 1   [ RunTime:0.000665s ]
+NOTIC: [8] Array to string conversion /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/26aaa567eb9acdbcb9e2554cd2626e00.php 第 265 行.
+NOTIC: [8] Undefined variable: report /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/26aaa567eb9acdbcb9e2554cd2626e00.php 第 613 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.037138s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.037169s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000222s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000249s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000904s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000955s ]
+
+[ 2017-11-01T19:58:33+08:00 ] 127.0.0.1 /yoyo/index.php?s=/admin/user/expandinfo_details/uid/147.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.001838s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002059s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.003868s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000660s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000484s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.028711s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.029329s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.003719s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.001366s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000669s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000514s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000592s ]
+SQL: SHOW COLUMNS FROM `ocenter_version` [ RunTime:0.003941s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.004571s ]
+SQL: SELECT * FROM `ocenter_member` WHERE `uid` = 147 AND `status` >= 0 LIMIT 1   [ RunTime:0.001800s ]
+SQL: SHOW COLUMNS FROM `ocenter_ucenter_member` [ RunTime:0.004355s ]
+SQL: SELECT `username`,`email`,`mobile` FROM `ocenter_ucenter_member` WHERE `id` = 147 LIMIT 1   [ RunTime:0.000286s ]
+SQL: SHOW COLUMNS FROM `ocenter_field_group` [ RunTime:0.002143s ]
+SQL: SELECT * FROM `ocenter_field_group` WHERE `status` = 1  [ RunTime:0.001346s ]
+NOTIC: [2] array_column() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 381 行.
+SQL: SHOW COLUMNS FROM `ocenter_field_setting` [ RunTime:0.007280s ]
+NOTIC: [2] implode(): Invalid arguments passed /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Db.class.php 第 497 行.
+SQL: SELECT `id`,`field_name`,`form_type` FROM `ocenter_field_setting` WHERE `status` = 1 AND `profile_group_id` IN ()  [ RunTime:0.000432s ]
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1
+ [ SQL语句 ] : SELECT `id`,`field_name`,`form_type` FROM `ocenter_field_setting` WHERE `status` = 1 AND `profile_group_id` IN () 
+NOTIC: [2] array_column() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 384 行.
+NOTIC: [2] array_combine() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 384 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 386 行.
+NOTIC: [2048] Declaration of Admin\Builder\AdminConfigBuilder::display() should be compatible with Admin\Builder\AdminBuilder::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 12 行.
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000557s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000969s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000015s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.043520s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 401 行.
+SQL: SHOW COLUMNS FROM `ocenter_ucenter_score_type` [ RunTime:0.002680s ]
+SQL: SHOW COLUMNS FROM `ocenter_score` [ RunTime:0.003252s ]
+ERR: 1146:Table 'yoyobit.ocenter_score' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `ocenter_score`
+SQL: SELECT * FROM `ocenter_ucenter_score_type` WHERE `status` = 1 ORDER BY id asc  [ RunTime:0.000578s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.002318s ]
+SQL: SELECT `score1`,`score2`,`score3`,`score4` FROM `ocenter_member` WHERE `uid` = 147 LIMIT 1   [ RunTime:0.000283s ]
+SQL: SHOW COLUMNS FROM `ocenter_user_role` [ RunTime:0.001911s ]
+SQL: SELECT `role_id` FROM `ocenter_user_role` WHERE `uid` = 147 AND `status` = 1  [ RunTime:0.000755s ]
+SQL: SHOW COLUMNS FROM `ocenter_role` [ RunTime:0.003377s ]
+SQL: SELECT * FROM `ocenter_role` WHERE `group_id` = 0 AND `status` = 1  [ RunTime:0.000303s ]
+NOTIC: [8] Undefined index: role /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 657 行.
+SQL: SHOW COLUMNS FROM `ocenter_role_group` [ RunTime:0.004894s ]
+SQL: SELECT * FROM `ocenter_role_group`  [ RunTime:0.000201s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 437 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001008s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001128s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_CONFIG_LOGO' LIMIT 1   [ RunTime:0.000312s ]
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 188 行.
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 188 行.
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 188 行.
+SQL: SHOW COLUMNS FROM `ocenter_menu` [ RunTime:0.002030s ]
+SQL: SELECT `id` FROM `ocenter_menu` WHERE ( url like '%User/expandinfo_details' AND pid > 0 ) LIMIT 1   [ RunTime:0.000426s ]
+NOTIC: [8] Array to string conversion /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 265 行.
+NOTIC: [8] Undefined variable: report /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 1198 行.
+NOTIC: [8] Undefined variable: chosen_select2 /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 1387 行.
+NOTIC: [8] Undefined variable: has_nestable /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 1394 行.
+NOTIC: [8] Undefined variable: importDatetimePicker /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 1421 行.
+NOTIC: [8] Undefined variable: colorPicker /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 1451 行.
+NOTIC: [8] Undefined variable: myJs /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 1551 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.088823s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.088878s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000160s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000183s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000546s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000649s ]
+
+[ 2017-11-01T19:58:37+08:00 ] 127.0.0.1 /yoyo/index.php?s=/admin/user/expandinfo_details/uid/147.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000687s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000740s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.004153s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000752s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000785s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.017176s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.018175s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.002354s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000513s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000489s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000256s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000298s ]
+SQL: SHOW COLUMNS FROM `ocenter_version` [ RunTime:0.004811s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.002623s ]
+SQL: UPDATE `ocenter_member` SET `score1`=20,`score2`=1,`score3`=0,`score4`=0 WHERE `uid` = 147 [ RunTime:0.000255s ]
+SQL: select score1 from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=147 limit 1 [ RunTime:0.000387s ]
+SQL: select score2 from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=147 limit 1 [ RunTime:0.000534s ]
+SQL: select score3 from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=147 limit 1 [ RunTime:0.000724s ]
+SQL: select score4 from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=147 limit 1 [ RunTime:0.000519s ]
+SQL: SHOW COLUMNS FROM `ocenter_user_role` [ RunTime:0.003859s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.003038s ]
+SQL: SELECT * FROM `ocenter_user_role` WHERE `uid` = 147 AND `role_id` = 1 LIMIT 1   [ RunTime:0.000296s ]
+SQL: UPDATE `ocenter_user_role` SET `status`=1 WHERE `uid` = 147 AND `role_id` = 1 [ RunTime:0.000240s ]
+SQL: UPDATE `ocenter_user_role` SET `status`=-1 WHERE `uid` = 147 AND `role_id` NOT IN ('1') [ RunTime:0.000263s ]
+SQL: SELECT * FROM `ocenter_member` WHERE `uid` = 147 LIMIT 1   [ RunTime:0.000324s ]
+SQL: UPDATE `ocenter_member` SET `show_role`=1,`last_login_role`=1 WHERE `uid` = 147 [ RunTime:0.000275s ]
+SQL: SHOW COLUMNS FROM `ocenter_role_config` [ RunTime:0.005962s ]
+SQL: SELECT `value` FROM `ocenter_role_config` WHERE `role_id` = 1 AND `category` = 'expend_field' AND `name` = 'expend_field' LIMIT 1   [ RunTime:0.000594s ]
+SQL: SHOW COLUMNS FROM `ocenter_field_setting` [ RunTime:0.001473s ]
+SQL: SELECT * FROM `ocenter_field_setting` WHERE `id` IN ('1','2','3','4','5','6','7') AND `status` = 1 ORDER BY sort asc  [ RunTime:0.000429s ]
+NOTIC: [8] Undefined index: 生日 /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 262 行.
+NOTIC: [8] Undefined index: 擅长语言 /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 266 行.
+NOTIC: [8] Undefined index: 承接项目 /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 270 行.
+NOTIC: [8] Undefined index: 简介 /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 274 行.
+
+[ 2017-11-01T19:59:25+08:00 ] 127.0.0.1 /yoyo/index.php?s=/admin/user/expandinfo_details/uid/147.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000860s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000930s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.004093s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000574s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001063s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.015614s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.016929s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.002123s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000347s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000748s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000377s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000448s ]
+SQL: SHOW COLUMNS FROM `ocenter_version` [ RunTime:0.003370s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.004860s ]
+SQL: UPDATE `ocenter_member` SET `score1`=20,`score2`=1,`score3`=0,`score4`=0 WHERE `uid` = 147 [ RunTime:0.000275s ]
+SQL: SHOW COLUMNS FROM `ocenter_user_role` [ RunTime:0.003225s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.004551s ]
+SQL: SELECT * FROM `ocenter_user_role` WHERE `uid` = 147 AND `role_id` = 1 LIMIT 1   [ RunTime:0.000297s ]
+SQL: UPDATE `ocenter_user_role` SET `status`=-1 WHERE `uid` = 147 AND `role_id` NOT IN ('1') [ RunTime:0.000364s ]
+SQL: SELECT * FROM `ocenter_member` WHERE `uid` = 147 LIMIT 1   [ RunTime:0.000307s ]
+NOTIC: [8] Undefined variable: user_data /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 568 行.
+SQL: UPDATE `ocenter_member` SET `uid`=147,`nickname`='vbboy2015',`sex`=0,`trade_count`=0,`trade_score`=0,`login`=2,`reg_ip`='2130706433',`reg_time`=1508127984,`last_login_ip`='2130706433',`last_login_time`=1509535974,`status`=1,`last_login_role`=1,`show_role`=1,`signature`='',`pos_province`=0,`pos_city`=0,`pos_district`=0,`pos_community`=0,`score1`=20,`score2`=1,`score3`=0,`score4`=0,`btc_count`='0.0000',`eth_count`='0.0000',`btc`='0.00000000',`eth`='0.00000000',`con_check`=0,`total_check`=0,`fans`=0,`trust`=0,`session_id`='i9l8npd6gepnf9kn6cl3ab37r7',`lang`='' WHERE `uid` = 147 [ RunTime:0.000241s ]
+SQL: SHOW COLUMNS FROM `ocenter_field_setting` [ RunTime:0.002312s ]
+SQL: SELECT * FROM `ocenter_field_setting` WHERE `id` IN ('1','2','3','4','5','6','7') AND `status` = 1 ORDER BY sort asc  [ RunTime:0.000715s ]
+NOTIC: [8] Undefined index: 生日 /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 262 行.
+NOTIC: [8] Undefined index: 擅长语言 /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 266 行.
+NOTIC: [8] Undefined index: 承接项目 /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 270 行.
+NOTIC: [8] Undefined index: 简介 /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 274 行.
+
+[ 2017-11-01T20:00:13+08:00 ] 127.0.0.1 /yoyo/index.php?s=/admin/user/expandinfo_details/uid/147.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002536s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002657s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.002030s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000431s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000356s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.014478s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.014926s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.004899s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000676s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000316s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000156s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000183s ]
+SQL: SHOW COLUMNS FROM `ocenter_version` [ RunTime:0.001858s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.004039s ]
+SQL: UPDATE `ocenter_member` SET `score1`=20,`score2`=1,`score3`=0,`score4`=0 WHERE `uid` = 147 [ RunTime:0.000253s ]
+SQL: SHOW COLUMNS FROM `ocenter_user_role` [ RunTime:0.005120s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.003378s ]
+SQL: SELECT * FROM `ocenter_user_role` WHERE `uid` = 147 AND `role_id` = 1 LIMIT 1   [ RunTime:0.000437s ]
+SQL: UPDATE `ocenter_user_role` SET `status`=-1 WHERE `uid` = 147 AND `role_id` NOT IN ('1') [ RunTime:0.000337s ]
+SQL: SELECT * FROM `ocenter_member` WHERE `uid` = 147 LIMIT 1   [ RunTime:0.000278s ]
+NOTIC: [8] Undefined variable: user_data /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 568 行.
+SQL: UPDATE `ocenter_member` SET `uid`=147,`nickname`='vbboy2015',`sex`=0,`trade_count`=0,`trade_score`=0,`login`=2,`reg_ip`='2130706433',`reg_time`=1508127984,`last_login_ip`='2130706433',`last_login_time`=1509535974,`status`=1,`last_login_role`=1,`show_role`=1,`signature`='',`pos_province`=0,`pos_city`=0,`pos_district`=0,`pos_community`=0,`score1`=20,`score2`=1,`score3`=0,`score4`=0,`btc_count`='0.0000',`eth_count`='0.0000',`btc`='0.00000000',`eth`='0.00000000',`con_check`=0,`total_check`=0,`fans`=0,`trust`=0,`session_id`='i9l8npd6gepnf9kn6cl3ab37r7',`lang`='' WHERE `uid` = 147 [ RunTime:0.000347s ]
+SQL: SHOW COLUMNS FROM `ocenter_field_setting` [ RunTime:0.002157s ]
+SQL: SELECT * FROM `ocenter_field_setting` WHERE `id` IN ('1','2','3','4','5','6','7') AND `status` = 1 ORDER BY sort asc  [ RunTime:0.001018s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_USERCONFIG_NICKNAME_MAX_LENGTH' LIMIT 1   [ RunTime:0.000964s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_USERCONFIG_NICKNAME_MIN_LENGTH' LIMIT 1   [ RunTime:0.000972s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_member` WHERE `nickname` = 'vbboy2015' AND `uid` <> '147' LIMIT 1   [ RunTime:0.000348s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = 'USER_NAME_BAOLIU' LIMIT 1   [ RunTime:0.000309s ]
+NOTIC: [8] Undefined index: 生日 /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 314 行.
+NOTIC: [2] date() expects parameter 2 to be long, string given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 314 行.
+SQL: UPDATE `ocenter_member` SET `nickname`='vbboy2015' WHERE `uid` = 147 [ RunTime:0.000243s ]
+SQL: SHOW COLUMNS FROM `ocenter_ucenter_member` [ RunTime:0.002238s ]
+SQL: UPDATE `ocenter_ucenter_member` SET `username`='vbboy2015',`email`='vbboy2012@163.com',`mobile`='' WHERE `id` = 147 [ RunTime:0.000495s ]
+NOTIC: [2] Illegal string offset 'role_id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 342 行.
+NOTIC: [2] Illegal string offset 'field_id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 344 行.
+SQL: SHOW COLUMNS FROM `ocenter_field` [ RunTime:0.003645s ]
+SQL: SELECT * FROM `ocenter_field` WHERE `uid` = 147 AND `role_id` = 1 AND `field_id` = 1 LIMIT 1   [ RunTime:0.000431s ]
+NOTIC: [2] Illegal string offset 'field_data' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'field_data' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'changeTime' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 348 行.
+NOTIC: [2] Illegal string offset 'createTime' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 348 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Model.class.php 第 280 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Db.class.php 第 688 行.
+SQL: INSERT INTO `ocenter_field` () VALUES () [ RunTime:0.000217s ]
+NOTIC: [2] Illegal string offset 'id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Model.class.php 第 344 行.
+NOTIC: [2] Illegal string offset 'role_id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 342 行.
+NOTIC: [2] Illegal string offset 'field_id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 344 行.
+SQL: SELECT * FROM `ocenter_field` WHERE `uid` = 147 AND `role_id` = 1 AND `field_id` = 1 LIMIT 1   [ RunTime:0.000179s ]
+NOTIC: [2] Illegal string offset 'field_data' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'field_data' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'changeTime' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 348 行.
+NOTIC: [2] Illegal string offset 'createTime' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 348 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Model.class.php 第 280 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Db.class.php 第 688 行.
+SQL: INSERT INTO `ocenter_field` () VALUES () [ RunTime:0.000161s ]
+NOTIC: [2] Illegal string offset 'id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Model.class.php 第 344 行.
+NOTIC: [8] Undefined index: field_id /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 344 行.
+SQL: SELECT * FROM `ocenter_field` WHERE `uid` = 147 AND `role_id` = 1 AND `field_id` = null LIMIT 1   [ RunTime:0.000198s ]
+NOTIC: [8] Undefined index: field_data /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'role_id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 342 行.
+NOTIC: [2] Illegal string offset 'field_id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 344 行.
+SQL: SELECT * FROM `ocenter_field` WHERE `uid` = 147 AND `role_id` = 1 AND `field_id` = 1 LIMIT 1   [ RunTime:0.000228s ]
+NOTIC: [2] Illegal string offset 'field_data' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'field_data' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'changeTime' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 348 行.
+NOTIC: [2] Illegal string offset 'createTime' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 348 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Model.class.php 第 280 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Db.class.php 第 688 行.
+SQL: INSERT INTO `ocenter_field` () VALUES () [ RunTime:0.000167s ]
+NOTIC: [2] Illegal string offset 'id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Model.class.php 第 344 行.
+NOTIC: [2] Illegal string offset 'role_id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 342 行.
+NOTIC: [2] Illegal string offset 'field_id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 344 行.
+SQL: SELECT * FROM `ocenter_field` WHERE `uid` = 147 AND `role_id` = 1 AND `field_id` = 1 LIMIT 1   [ RunTime:0.001476s ]
+NOTIC: [2] Illegal string offset 'field_data' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'field_data' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'changeTime' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 348 行.
+NOTIC: [2] Illegal string offset 'createTime' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 348 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Model.class.php 第 280 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Db.class.php 第 688 行.
+SQL: INSERT INTO `ocenter_field` () VALUES () [ RunTime:0.000565s ]
+NOTIC: [2] Illegal string offset 'id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Model.class.php 第 344 行.
+NOTIC: [2] Illegal string offset 'role_id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 342 行.
+NOTIC: [2] Illegal string offset 'field_id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 344 行.
+SQL: SELECT * FROM `ocenter_field` WHERE `uid` = 147 AND `role_id` = 1 AND `field_id` = 1 LIMIT 1   [ RunTime:0.000594s ]
+NOTIC: [2] Illegal string offset 'field_data' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'field_data' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'changeTime' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 348 行.
+NOTIC: [2] Illegal string offset 'createTime' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 348 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Model.class.php 第 280 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Db.class.php 第 688 行.
+SQL: INSERT INTO `ocenter_field` () VALUES () [ RunTime:0.000587s ]
+NOTIC: [2] Illegal string offset 'id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Model.class.php 第 344 行.
+NOTIC: [2] Illegal string offset 'role_id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 342 行.
+NOTIC: [2] Illegal string offset 'field_id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 344 行.
+SQL: SELECT * FROM `ocenter_field` WHERE `uid` = 147 AND `role_id` = 1 AND `field_id` = 1 LIMIT 1   [ RunTime:0.000314s ]
+NOTIC: [2] Illegal string offset 'field_data' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'field_data' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'changeTime' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 348 行.
+NOTIC: [2] Illegal string offset 'createTime' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 348 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Model.class.php 第 280 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Db.class.php 第 688 行.
+SQL: INSERT INTO `ocenter_field` () VALUES () [ RunTime:0.000174s ]
+NOTIC: [2] Illegal string offset 'id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Model.class.php 第 344 行.
+NOTIC: [2] Illegal string offset 'role_id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 342 行.
+NOTIC: [2] Illegal string offset 'field_id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 344 行.
+SQL: SELECT * FROM `ocenter_field` WHERE `uid` = 147 AND `role_id` = 1 AND `field_id` = 1 LIMIT 1   [ RunTime:0.000242s ]
+NOTIC: [2] Illegal string offset 'field_data' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'field_data' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'changeTime' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 348 行.
+NOTIC: [2] Illegal string offset 'createTime' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 348 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Model.class.php 第 280 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Db.class.php 第 688 行.
+SQL: INSERT INTO `ocenter_field` () VALUES () [ RunTime:0.000208s ]
+NOTIC: [2] Illegal string offset 'id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Model.class.php 第 344 行.
+NOTIC: [2] Illegal string offset 'role_id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 342 行.
+NOTIC: [2] Illegal string offset 'field_id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 344 行.
+SQL: SELECT * FROM `ocenter_field` WHERE `uid` = 147 AND `role_id` = 1 AND `field_id` = 1 LIMIT 1   [ RunTime:0.000292s ]
+NOTIC: [2] Illegal string offset 'field_data' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'field_data' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'changeTime' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 348 行.
+NOTIC: [2] Illegal string offset 'createTime' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 348 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Model.class.php 第 280 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Db.class.php 第 688 行.
+SQL: INSERT INTO `ocenter_field` () VALUES () [ RunTime:0.000163s ]
+NOTIC: [2] Illegal string offset 'id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Model.class.php 第 344 行.
+NOTIC: [2] Illegal string offset 'role_id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 342 行.
+NOTIC: [2] Illegal string offset 'field_id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 344 行.
+SQL: SELECT * FROM `ocenter_field` WHERE `uid` = 147 AND `role_id` = 1 AND `field_id` = 1 LIMIT 1   [ RunTime:0.000228s ]
+NOTIC: [2] Illegal string offset 'field_data' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'field_data' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 347 行.
+NOTIC: [2] Illegal string offset 'changeTime' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 348 行.
+NOTIC: [2] Illegal string offset 'createTime' /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 348 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Model.class.php 第 280 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Db.class.php 第 688 行.
+SQL: INSERT INTO `ocenter_field` () VALUES () [ RunTime:0.000148s ]
+NOTIC: [2] Illegal string offset 'id' /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Model.class.php 第 344 行.
+NOTIC: [2] unlink(./Runtime/Temp/1db1a3e7cc5a7e2d9cc860abde43c1e7.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+NOTIC: [2] unlink(./Runtime/Temp/93664a521938e1946f25f84da1db019b.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+
+[ 2017-11-01T20:00:14+08:00 ] 127.0.0.1 /yoyo/index.php?s=/admin/user/expandinfo_details/uid/147.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000733s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000797s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.001837s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000414s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000303s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.011839s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.012217s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.002920s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000382s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000314s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000159s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000191s ]
+SQL: SHOW COLUMNS FROM `ocenter_version` [ RunTime:0.001847s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.001816s ]
+SQL: SELECT * FROM `ocenter_member` WHERE `uid` = 147 AND `status` >= 0 LIMIT 1   [ RunTime:0.000314s ]
+SQL: SHOW COLUMNS FROM `ocenter_ucenter_member` [ RunTime:0.001969s ]
+SQL: SELECT `username`,`email`,`mobile` FROM `ocenter_ucenter_member` WHERE `id` = 147 LIMIT 1   [ RunTime:0.000259s ]
+SQL: SHOW COLUMNS FROM `ocenter_field_group` [ RunTime:0.001867s ]
+SQL: SELECT * FROM `ocenter_field_group` WHERE `status` = 1  [ RunTime:0.000241s ]
+NOTIC: [2] array_column() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 381 行.
+SQL: SHOW COLUMNS FROM `ocenter_field_setting` [ RunTime:0.004366s ]
+NOTIC: [2] implode(): Invalid arguments passed /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Db.class.php 第 497 行.
+SQL: SELECT `id`,`field_name`,`form_type` FROM `ocenter_field_setting` WHERE `status` = 1 AND `profile_group_id` IN ()  [ RunTime:0.000392s ]
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1
+ [ SQL语句 ] : SELECT `id`,`field_name`,`form_type` FROM `ocenter_field_setting` WHERE `status` = 1 AND `profile_group_id` IN () 
+NOTIC: [2] array_column() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 384 行.
+NOTIC: [2] array_combine() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 384 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 386 行.
+NOTIC: [2048] Declaration of Admin\Builder\AdminConfigBuilder::display() should be compatible with Admin\Builder\AdminBuilder::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 12 行.
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.001060s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000365s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000012s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.025269s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 401 行.
+SQL: SHOW COLUMNS FROM `ocenter_ucenter_score_type` [ RunTime:0.003097s ]
+SQL: SHOW COLUMNS FROM `ocenter_score` [ RunTime:0.002920s ]
+ERR: 1146:Table 'yoyobit.ocenter_score' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `ocenter_score`
+SQL: SELECT * FROM `ocenter_ucenter_score_type` WHERE `status` = 1 ORDER BY id asc  [ RunTime:0.000295s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.002314s ]
+SQL: SELECT `score1`,`score2`,`score3`,`score4` FROM `ocenter_member` WHERE `uid` = 147 LIMIT 1   [ RunTime:0.000501s ]
+SQL: SHOW COLUMNS FROM `ocenter_user_role` [ RunTime:0.003763s ]
+SQL: SELECT `role_id` FROM `ocenter_user_role` WHERE `uid` = 147 AND `status` = 1  [ RunTime:0.000739s ]
+SQL: SHOW COLUMNS FROM `ocenter_role` [ RunTime:0.005012s ]
+SQL: SELECT * FROM `ocenter_role` WHERE `group_id` = 0 AND `status` = 1  [ RunTime:0.000260s ]
+NOTIC: [8] Undefined index: role /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 657 行.
+SQL: SHOW COLUMNS FROM `ocenter_role_group` [ RunTime:0.001810s ]
+SQL: SELECT * FROM `ocenter_role_group`  [ RunTime:0.000178s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 437 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001125s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001319s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_CONFIG_LOGO' LIMIT 1   [ RunTime:0.000257s ]
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 188 行.
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 188 行.
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 188 行.
+SQL: SHOW COLUMNS FROM `ocenter_menu` [ RunTime:0.004028s ]
+SQL: SELECT `id` FROM `ocenter_menu` WHERE ( url like '%User/expandinfo_details' AND pid > 0 ) LIMIT 1   [ RunTime:0.000595s ]
+NOTIC: [8] Array to string conversion /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 265 行.
+NOTIC: [8] Undefined variable: report /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 1198 行.
+NOTIC: [8] Undefined variable: chosen_select2 /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 1387 行.
+NOTIC: [8] Undefined variable: has_nestable /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 1394 行.
+NOTIC: [8] Undefined variable: importDatetimePicker /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 1421 行.
+NOTIC: [8] Undefined variable: colorPicker /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 1451 行.
+NOTIC: [8] Undefined variable: myJs /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 1551 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.091338s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.091367s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000146s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000169s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000578s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000641s ]
+
+[ 2017-11-01T20:00:24+08:00 ] 127.0.0.1 /yoyo/index.php?s=/admin/user/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000751s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000817s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.002325s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000417s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000329s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.012133s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.012543s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.002266s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000515s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000278s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000154s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000186s ]
+SQL: SHOW COLUMNS FROM `ocenter_version` [ RunTime:0.002092s ]
+NOTIC: [8] Undefined variable: map /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 64 行.
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.003498s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_member` WHERE `status` >= 0 LIMIT 1   [ RunTime:0.000286s ]
+SQL: SELECT `uid`,`nickname`,`sex`,`trade_count`,`trade_score`,`login`,`reg_ip`,`reg_time`,`last_login_ip`,`last_login_time`,`status`,`last_login_role`,`show_role`,`signature`,`pos_province`,`pos_city`,`pos_district`,`pos_community`,`score1`,`score2`,`score3`,`score4`,`btc_count`,`eth_count`,`btc`,`eth`,`con_check`,`total_check`,`fans`,`trust`,`session_id`,`lang` FROM `ocenter_member` WHERE `status` >= 0 ORDER BY uid desc LIMIT 0,10   [ RunTime:0.000573s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=148 limit 1 [ RunTime:0.000327s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=147 limit 1 [ RunTime:0.000251s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=146 limit 1 [ RunTime:0.000234s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=145 limit 1 [ RunTime:0.000226s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=1 limit 1 [ RunTime:0.000267s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=148 limit 1 [ RunTime:0.000235s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=147 limit 1 [ RunTime:0.000309s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=146 limit 1 [ RunTime:0.000288s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=145 limit 1 [ RunTime:0.000312s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=1 limit 1 [ RunTime:0.000794s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000318s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000365s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_CONFIG_LOGO' LIMIT 1   [ RunTime:0.000813s ]
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/26aaa567eb9acdbcb9e2554cd2626e00.php 第 188 行.
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/26aaa567eb9acdbcb9e2554cd2626e00.php 第 188 行.
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/26aaa567eb9acdbcb9e2554cd2626e00.php 第 188 行.
+SQL: SHOW COLUMNS FROM `ocenter_menu` [ RunTime:0.002862s ]
+SQL: SELECT `id` FROM `ocenter_menu` WHERE ( url like '%User/index' AND pid > 0 ) LIMIT 1   [ RunTime:0.000498s ]
+NOTIC: [8] Array to string conversion /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/26aaa567eb9acdbcb9e2554cd2626e00.php 第 265 行.
+NOTIC: [8] Undefined variable: report /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/26aaa567eb9acdbcb9e2554cd2626e00.php 第 613 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.047655s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.047715s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000130s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000151s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000623s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000679s ]
+
+[ 2017-11-01T20:00:27+08:00 ] 127.0.0.1 /yoyo/index.php?s=/admin/user/expandinfo_details/uid/147.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.001014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001115s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.002014s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000388s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000320s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.011632s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.012030s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.002096s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000414s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000776s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000570s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000716s ]
+SQL: SHOW COLUMNS FROM `ocenter_version` [ RunTime:0.002408s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.003968s ]
+SQL: SELECT * FROM `ocenter_member` WHERE `uid` = 147 AND `status` >= 0 LIMIT 1   [ RunTime:0.000371s ]
+SQL: SHOW COLUMNS FROM `ocenter_ucenter_member` [ RunTime:0.004107s ]
+SQL: SELECT `username`,`email`,`mobile` FROM `ocenter_ucenter_member` WHERE `id` = 147 LIMIT 1   [ RunTime:0.000417s ]
+SQL: SHOW COLUMNS FROM `ocenter_field_group` [ RunTime:0.001947s ]
+SQL: SELECT * FROM `ocenter_field_group` WHERE `status` = 1  [ RunTime:0.000270s ]
+NOTIC: [2] array_column() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 381 行.
+SQL: SHOW COLUMNS FROM `ocenter_field_setting` [ RunTime:0.001983s ]
+NOTIC: [2] implode(): Invalid arguments passed /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Db.class.php 第 497 行.
+SQL: SELECT `id`,`field_name`,`form_type` FROM `ocenter_field_setting` WHERE `status` = 1 AND `profile_group_id` IN ()  [ RunTime:0.000146s ]
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1
+ [ SQL语句 ] : SELECT `id`,`field_name`,`form_type` FROM `ocenter_field_setting` WHERE `status` = 1 AND `profile_group_id` IN () 
+NOTIC: [2] array_column() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 384 行.
+NOTIC: [2] array_combine() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 384 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 386 行.
+NOTIC: [2048] Declaration of Admin\Builder\AdminConfigBuilder::display() should be compatible with Admin\Builder\AdminBuilder::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 12 行.
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000771s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000912s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000025s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.028313s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 401 行.
+SQL: SHOW COLUMNS FROM `ocenter_ucenter_score_type` [ RunTime:0.004265s ]
+SQL: SHOW COLUMNS FROM `ocenter_score` [ RunTime:0.001718s ]
+ERR: 1146:Table 'yoyobit.ocenter_score' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `ocenter_score`
+SQL: SELECT * FROM `ocenter_ucenter_score_type` WHERE `status` = 1 ORDER BY id asc  [ RunTime:0.000256s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.004976s ]
+SQL: SELECT `score1`,`score2`,`score3`,`score4` FROM `ocenter_member` WHERE `uid` = 147 LIMIT 1   [ RunTime:0.000712s ]
+SQL: SHOW COLUMNS FROM `ocenter_user_role` [ RunTime:0.005829s ]
+SQL: SELECT `role_id` FROM `ocenter_user_role` WHERE `uid` = 147 AND `status` = 1  [ RunTime:0.000620s ]
+SQL: SHOW COLUMNS FROM `ocenter_role` [ RunTime:0.001897s ]
+SQL: SELECT * FROM `ocenter_role` WHERE `group_id` = 0 AND `status` = 1  [ RunTime:0.000233s ]
+NOTIC: [8] Undefined index: role /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 657 行.
+SQL: SHOW COLUMNS FROM `ocenter_role_group` [ RunTime:0.001961s ]
+SQL: SELECT * FROM `ocenter_role_group`  [ RunTime:0.000179s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 437 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+NOTIC: [8] Undefined index:  /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Builder/AdminConfigBuilder.class.php 第 399 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000797s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000845s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_CONFIG_LOGO' LIMIT 1   [ RunTime:0.000355s ]
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 188 行.
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 188 行.
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 188 行.
+SQL: SHOW COLUMNS FROM `ocenter_menu` [ RunTime:0.004877s ]
+SQL: SELECT `id` FROM `ocenter_menu` WHERE ( url like '%User/expandinfo_details' AND pid > 0 ) LIMIT 1   [ RunTime:0.000519s ]
+NOTIC: [8] Array to string conversion /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 265 行.
+NOTIC: [8] Undefined variable: report /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 1198 行.
+NOTIC: [8] Undefined variable: chosen_select2 /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 1387 行.
+NOTIC: [8] Undefined variable: has_nestable /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 1394 行.
+NOTIC: [8] Undefined variable: importDatetimePicker /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 1421 行.
+NOTIC: [8] Undefined variable: colorPicker /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 1451 行.
+NOTIC: [8] Undefined variable: myJs /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/17b9688505a7e20863bf243639141eb6.php 第 1551 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.095564s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.095596s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000143s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000165s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000419s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000463s ]
+
+[ 2017-11-01T20:00:46+08:00 ] 127.0.0.1 /yoyo/index.php?s=/admin/public/logout.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000982s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001105s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.002466s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000584s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000540s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.018349s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.019019s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.005338s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000591s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000393s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000491s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000562s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.001866s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_CONFIG_SUCCESS_WAIT_TIME' LIMIT 1   [ RunTime:0.000271s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000139s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000251s ]
+NOTIC: [8] Undefined variable: message /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/60d8e8b619e55e2f82bb9e778cb7affd.php 第 45 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009595s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009647s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000133s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000158s ]
+
+[ 2017-11-01T20:00:48+08:00 ] 127.0.0.1 /yoyo/index.php?s=/admin/public/logout.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.001949s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002101s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.006163s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.001545s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001315s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.028625s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.030248s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.004832s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000740s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000383s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.001194s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001426s ]
+
+[ 2017-11-01T20:00:48+08:00 ] 127.0.0.1 /yoyo/index.php?s=/admin/public/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000851s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000936s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.003426s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000731s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000421s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.021705s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.022357s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.003620s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000624s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000587s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000279s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000324s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000052s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000096s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009934s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009967s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000097s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000117s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000285s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000312s ]
+
+[ 2017-11-01T20:01:05+08:00 ] 127.0.0.1 /yoyo/index.php?s=/admin/public/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000965s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001050s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.001874s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000684s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000640s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.016039s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.016835s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.002473s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.001041s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000375s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000150s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000178s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_USERCONFIG_REG_SWITCH' LIMIT 1   [ RunTime:0.000272s ]
+NOTIC: [8] Undefined offset: 1 /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/user.php 第 79 行.
+SQL: SHOW COLUMNS FROM `ocenter_ucenter_member` [ RunTime:0.004842s ]
+SQL: SELECT * FROM `ocenter_ucenter_member` WHERE `username` = 'yoyoadmin' LIMIT 1   [ RunTime:0.000558s ]
+SQL: SHOW COLUMNS FROM `ocenter_action_limit` [ RunTime:0.004069s ]
+NOTIC: [8] Uninitialized string offset: 0 /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Db.class.php 第 516 行.
+SQL: SELECT * FROM `ocenter_action_limit` WHERE ( `action_list` LIKE '%[input_password]%' OR `action_list` = '' ) AND `status` = 1  [ RunTime:0.001616s ]
+SQL: SHOW COLUMNS FROM `ocenter_action` [ RunTime:0.004369s ]
+SQL: SELECT `id` FROM `ocenter_action` WHERE `name` = 'input_password' LIMIT 1   [ RunTime:0.000684s ]
+SQL: SHOW COLUMNS FROM `ocenter_action_log` [ RunTime:0.003205s ]
+SQL: SELECT * FROM `ocenter_action_log` WHERE `model` = 'ucenter_member' AND `record_id` = '1' AND `user_id` = 1 AND `action_id` = 2 AND `create_time` >= 1509537605 ORDER BY create_time desc  [ RunTime:0.001297s ]
+SQL: UPDATE `ocenter_ucenter_member` SET `last_login_time`=1509537665,`last_login_ip`='2130706433' WHERE `id` = 1 [ RunTime:0.000366s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.003431s ]
+SQL: SELECT `uid`,`nickname`,`sex`,`trade_count`,`trade_score`,`login`,`reg_ip`,`reg_time`,`last_login_ip`,`last_login_time`,`status`,`last_login_role`,`show_role`,`signature`,`pos_province`,`pos_city`,`pos_district`,`pos_community`,`score1`,`score2`,`score3`,`score4`,`btc_count`,`eth_count`,`btc`,`eth`,`con_check`,`total_check`,`fans`,`trust`,`session_id`,`lang` FROM `ocenter_member` WHERE `uid` = 1 LIMIT 1   [ RunTime:0.000836s ]
+SQL: SHOW COLUMNS FROM `ocenter_action` [ RunTime:0.003996s ]
+SQL: SELECT * FROM `ocenter_action` WHERE `name` = 'user_login' LIMIT 1   [ RunTime:0.000264s ]
+NOTIC: [2] array_intersect(): Argument #2 is not an array /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/UserModel.class.php 第 128 行.
+SQL: SHOW COLUMNS FROM `ocenter_action_log` [ RunTime:0.004548s ]
+SQL: INSERT INTO `ocenter_action_log` (`action_id`,`user_id`,`action_ip`,`model`,`record_id`,`create_time`,`remark`) VALUES (3,1,2130706433,'member','1',1509537665,'yoyocoinsdd在2017-11-01 20:01登录了账号') [ RunTime:0.000226s ]
+INFO: [ handleAction ] --START--
+SQL: SHOW COLUMNS FROM `ocenter_ucenter_score_type` [ RunTime:0.002365s ]
+SQL: SHOW COLUMNS FROM `ocenter_addons` [ RunTime:0.004097s ]
+SQL: SELECT `config` FROM `ocenter_addons` WHERE `name` = 'CheckIn' AND `status` = 1 LIMIT 1   [ RunTime:0.000437s ]
+NOTIC: [8] Undefined variable: newarr /Applications/XAMPP/xamppfiles/htdocs/yoyo/Addons/CheckIn/CheckInAddon.class.php 第 167 行.
+NOTIC: [2] array_filter() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Addons/CheckIn/CheckInAddon.class.php 第 167 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Addons/CheckIn/CheckInAddon.class.php 第 169 行.
+INFO: Run Addons\CheckIn\CheckInAddon [ RunTime:0.010884s ]
+SQL: SELECT * FROM `ocenter_action` WHERE `name` = 'user_login' LIMIT 1   [ RunTime:0.000342s ]
+SQL: SELECT * FROM `ocenter_action_log` WHERE `id` = 450 LIMIT 1   [ RunTime:0.000267s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_action_log` WHERE `action_id` = 3 AND `user_id` = 1 AND `create_time` > 1509451265 LIMIT 1   [ RunTime:0.005111s ]
+SQL: UPDATE `ocenter_member` SET `login`=`login`+1,`last_login_time`=1509537665,`last_login_ip`='2130706433',`last_login_role`=1,`session_id`='jhmgv71hn1fgss2n9eouba02b4' WHERE `uid` = 1 [ RunTime:0.000218s ]
+SQL: SHOW COLUMNS FROM `ocenter_user_role` [ RunTime:0.001774s ]
+SQL: SELECT `status` FROM `ocenter_user_role` WHERE `uid` = 1 AND `role_id` = 1 LIMIT 1   [ RunTime:0.000520s ]
+
+[ 2017-11-01T20:01:06+08:00 ] 127.0.0.1 /yoyo/index.php?s=/admin/index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000967s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001038s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.003155s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000458s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000323s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.010493s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010902s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.003269s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000368s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000244s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000143s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000171s ]
+SQL: SHOW COLUMNS FROM `ocenter_version` [ RunTime:0.002106s ]
+SQL: SHOW COLUMNS FROM `ocenter_tile` [ RunTime:0.002063s ]
+SQL: SELECT * FROM `ocenter_tile` WHERE `status` = 1 ORDER BY sort asc  [ RunTime:0.000248s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000494s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000539s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_CONFIG_LOGO' LIMIT 1   [ RunTime:0.000257s ]
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/085b574956cdc611cfedaace62cf4e64.php 第 188 行.
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/085b574956cdc611cfedaace62cf4e64.php 第 188 行.
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/085b574956cdc611cfedaace62cf4e64.php 第 188 行.
+SQL: select version() as v; [ RunTime:0.000188s ]
+NOTIC: [8] Undefined variable: addons_config /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/085b574956cdc611cfedaace62cf4e64.php 第 541 行.
+NOTIC: [8] Undefined variable: count /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/085b574956cdc611cfedaace62cf4e64.php 第 580 行.
+NOTIC: [8] Undefined variable: count /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/085b574956cdc611cfedaace62cf4e64.php 第 584 行.
+NOTIC: [8] Undefined variable: count /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/085b574956cdc611cfedaace62cf4e64.php 第 601 行.
+NOTIC: [8] Undefined variable: report /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/085b574956cdc611cfedaace62cf4e64.php 第 818 行.
+NOTIC: [8] Undefined variable: count /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/085b574956cdc611cfedaace62cf4e64.php 第 1029 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.038729s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.038757s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000138s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000163s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000540s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000595s ]
+
+[ 2017-11-01T20:01:08+08:00 ] 127.0.0.1 /yoyo/index.php?s=/admin/user/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000824s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000898s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.002286s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000518s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000295s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.010575s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010938s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.002768s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000383s ]
+SQL: SELECT * FROM `ocenter_module` WHERE `name` = 'Admin' LIMIT 1   [ RunTime:0.000229s ]
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000142s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000169s ]
+SQL: SHOW COLUMNS FROM `ocenter_version` [ RunTime:0.002044s ]
+NOTIC: [8] Undefined variable: map /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Controller/UserController.class.php 第 64 行.
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.004689s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_member` WHERE `status` >= 0 LIMIT 1   [ RunTime:0.000247s ]
+SQL: SELECT `uid`,`nickname`,`sex`,`trade_count`,`trade_score`,`login`,`reg_ip`,`reg_time`,`last_login_ip`,`last_login_time`,`status`,`last_login_role`,`show_role`,`signature`,`pos_province`,`pos_city`,`pos_district`,`pos_community`,`score1`,`score2`,`score3`,`score4`,`btc_count`,`eth_count`,`btc`,`eth`,`con_check`,`total_check`,`fans`,`trust`,`session_id`,`lang` FROM `ocenter_member` WHERE `status` >= 0 ORDER BY uid desc LIMIT 0,10   [ RunTime:0.000378s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=148 limit 1 [ RunTime:0.000275s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=147 limit 1 [ RunTime:0.000242s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=146 limit 1 [ RunTime:0.000230s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=145 limit 1 [ RunTime:0.000201s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=1 limit 1 [ RunTime:0.000233s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=148 limit 1 [ RunTime:0.000190s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=147 limit 1 [ RunTime:0.000175s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=146 limit 1 [ RunTime:0.000155s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=145 limit 1 [ RunTime:0.000154s ]
+SQL: select mobile from `ocenter_member`,`ocenter_ucenter_member` where uid=id and uid=1 limit 1 [ RunTime:0.000157s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000284s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000321s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_CONFIG_LOGO' LIMIT 1   [ RunTime:0.000262s ]
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/26aaa567eb9acdbcb9e2554cd2626e00.php 第 188 行.
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/26aaa567eb9acdbcb9e2554cd2626e00.php 第 188 行.
+NOTIC: [8] Undefined index: admin_entry /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/26aaa567eb9acdbcb9e2554cd2626e00.php 第 188 行.
+SQL: SHOW COLUMNS FROM `ocenter_menu` [ RunTime:0.002109s ]
+SQL: SELECT `id` FROM `ocenter_menu` WHERE ( url like '%User/index' AND pid > 0 ) LIMIT 1   [ RunTime:0.000327s ]
+NOTIC: [8] Array to string conversion /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/26aaa567eb9acdbcb9e2554cd2626e00.php 第 265 行.
+NOTIC: [8] Undefined variable: report /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Admin/26aaa567eb9acdbcb9e2554cd2626e00.php 第 613 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.029443s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.029469s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000135s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000157s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000565s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000609s ]
+

@@ -59,7 +59,11 @@
                                 </select>
                             </div>
                             <div class="col-xs-2">
-                                <select name="score_num" class="form-control">
+                                <input class="form-control" placeholder="输入悬赏积分" name="score_num" type="text" />
+                            </div>
+                            <div class="col-xs-2">
+                                <select class="form-control" onchange="showScore(this)">
+                                    <option value="">快速选择积分</option>
                                     <option value="0">悬赏0</option>
                                     <option value="5">悬赏5</option>
                                     <option value="10">悬赏10</option>
@@ -152,6 +156,13 @@
                 update_attach_value();
             }
         });
-
+        function showScore(obj){
+            var num = obj.value ;
+            if(num != ''){
+                $('input[name="score_num"]').val(num) ;
+            }else{
+                $('input[name="score_num"]').val('') ;
+            }
+        }
     </script>
 </block>

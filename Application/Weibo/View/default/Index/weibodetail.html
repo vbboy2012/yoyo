@@ -3,7 +3,6 @@
 <block name="header">
     <include file="Public/_nav"/>
     <link href="__CSS__/weibo.css" type="text/css" rel="stylesheet"/>
-    <link href="//at.alicdn.com/t/font_1473398847_793153.css" type="text/css" rel="stylesheet"/>
     <link rel="stylesheet" href="{:getRootUrl()}Addons/InsertXiami/_static/css/xiami.css">
     <style>
         #main-container {
@@ -13,9 +12,51 @@
 </block>
 
 <block name="body">
+    <div class="modal fade" id="setTopModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="set-top-box">
+                    <h1 class="box-title">置顶设置</h1>
+                    <div class="top-radio">
+                        <p>置顶类型:</p>
+                        <div style="display: flex">
+                            <div data-role="title-show"  class="to-right">
+                                <input type="radio" name="top-radio" checked="checked" id="title_top"/>
+                                <label for="title_top" style="margin: 0;">标题置顶</label>
+                            </div>
+                            <div data-role="title-hide">
+                                <input type="radio" name="top-radio" id="content_top"/>
+                                <label for="content_top">全文置顶</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-wrap">
+                        <p>置顶标题:</p>
+                        <input type="text" name="top_title" placeholder="输入置顶小标题"/>
+                    </div>
+                    <div class="day-wrap">
+                        <p>置顶天数:</p>
+                        <input type="text" name="top_dead" placeholder="请输入天数"/>
+                    </div>
+                    <if condition="$top_flag eq 'setCrowdTopModal'">
+                        <div class="crowd-wrap">
+                            <label><input type="radio" name="top_type" value="0" checked>全站置顶</label>
+                            <label><input type="radio" name="top_type" value="1" >圈内置顶</label>
+                        </div>
+                    </if>
+                    <input type="hidden" name="type_top" />
+                    <div class="buttons-wrap">
+                        <button type="button" class="btn btn-default" data-weibo-id="{$weibo.id}" data-crowd-id="{$weibo.crowd_id}" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" data-weibo-id="{$weibo.id}" data-crowd-id="{$weibo.crowd_id}" data-role="weibo_set_top">置顶</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <div class="detail-wrap">
         <!--详情页左侧stat-->
-        <div class="d-wrap d-left">
+        <div class="d-wrap d-left" style="position: relative">
             <div class="d-title"><p>
                 <if condition="$weibo['type'] eq 'long_weibo'">
                     <span style="font-size: 18px;">{$weibo.long_weibo.title|default='动态详情'}</span>
@@ -26,17 +67,22 @@
             </div>
             <div class="d-num">
                 <span class="num-time">{$weibo.create_time|friendlyDate}</span>
-                <if condition="$weibo['type'] eq 'long_weibo'&& check_auth('Weibo/Index/editWeibo',$weibo['uid'])">
-                    <a class="num-time" href="{:U('Weibo/Index/editLongWeibo',array('id'=>$weibo['id']))}">编辑</a>
-                </if>
                 <php>
                     $weiboCommentTotalCount = $weibo['comment_count'];
                 </php>
                 <span class="three-num">点赞 {$supported.count}</span>
                 <span class="three-num">评论 {$weiboCommentTotalCount}</span>
-                <span class="three-num">转发 {$weibo.repost_count}</span>
+                <span class="three-num">
+                    <php>$sourceId =$weibo['data']['sourceId']?$weibo['data']['sourceId']:$weibo['id']; </php>
+                    <a title="{:L('_REPOST_')}"  data-role="send_repost"  href="{:U('Weibo/Index/sendrepost',array('sourceId'=>$sourceId,'weiboId'=>$weibo['id']))}">转发 {$weibo.repost_count}</a>
+             </span>
             </div>
-            <div id="weibo_list">
+            <notempty name="weibo['stamp_id']">
+                <div class="stamp-detail">
+                    <img src="{$weibo['stamp_img']}"/>
+                </div>
+            </notempty>
+            <div id="weibo_list" class="weibo-detail">
                 <div class="d-content row" id="weibo_{$weibo.id}">
                     <div class="fetch-wrap">
                         <if condition="$weibo['type'] eq 'long_weibo'">
@@ -45,14 +91,113 @@
                             {$weibo.fetchContent}
                         </if>
                     </div>
-                    <div class=" pull-right">
+                    <div class="manager-list">
+                        <div class="pull-left">
+                            <if condition="check_auth('Weibo/Index/setTop')">
+                                <eq name="weibo.is_top" value="0">
+                                    <a data-weibo-id="{$weibo.id}" title="{:L('_SET_TOP_')}" data-toggle="modal" data-target="#setTopModal">
+                                        置顶
+                                    </a>
+                                    <else/>
+                                    <a data-weibo-id="{$weibo.id}" data-type="weibo" title="{:L('_CANCEL_TOP_')}" data-role="weibo_set_top">
+                                        取消置顶
+                                    </a>
+                                </eq>
+                            </if>
+                            <if condition="$show_hide_button eq 1">
+                                <a data-weibo-id="{$weibo.id}" data-type="dec" title="取消{:L('_HIDE_TOP_')}" data-role="hide_top_weibo">
+                                    取消隐藏
+                                </a>
+                                <elseif condition="$show_hide_button eq 2"/>
+                                <a data-weibo-id="{$weibo.id}" data-type="asc" title="{:L('_HIDE_TOP_')}" data-role="hide_top_weibo">
+                                    隐藏
+                                </a>
+                            </if>
+                            <if condition="$weibo['can_set_top_crowd_weibo']">
+                                <neq name="weibo.is_crowd_top" value="0">
+                                    <a data-weibo-id="{$weibo.id}" data-type="crowd" data-crowd-id="{$weibo.crowd_id}" title="取消圈内置顶" data-role="weibo_set_top">
+                                        取消圈内置顶
+                                    </a>
+                                </neq>
+                            </if>
+                        </div>
+                        <div class="pull-right">
+                            {:hook('report',array('type'=>$MODULE_ALIAS.'/'.$MODULE_ALIAS,'url'=>"Weibo/Index/weiboDetail?id=$weibo[id]",'data'=>array('weibo-id'=>$weibo['id'])))}
+                            <if condition="$weibo['type'] eq 'long_weibo'&& check_auth('Weibo/Index/editWeibo',$weibo['uid'])">
+                                <a class="num-time" href="{:U('Weibo/Index/editLongWeibo',array('id'=>$weibo['id']))}">编辑</a>
+                            </if>
+                            <if condition="check_auth('Weibo/Index/transferCrowd',$weibo['uid'])">
+                                <div data-role="transfer-circle" class="transfer-block">
+                                    <a class="num-time">转移</a>
+                                    <div class="circle">
+                                        <div class="top-triangle-border"></div>
+                                        <div class="top-triangle-content"></div>
+                                        <div class="selectt circle-block">
+                                            <div class="dropdown">
+                                                <if condition="$crowd_detail['logo']">
+                                                    <img data-role="title_image" class="crowd-img" src="{$crowd_detail['logo']|getThumbImageById=20,20}">
+                                                    <else/>
+                                                    <img data-role="title_image" class="crowd-img" src="__IMG__/all.png">
+                                                </if>
+                                                <div data-role="title_content" class="like-input dropdown-toggle" data-toggle="dropdown">
+                                                    {$crowd_detail.title|default='全站动态'}
+                                                    <span class="caret"></span>
+                                                </div>
+                                                <ul class="dropdown-menu cc-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                                    <li>
+                                                        <a href="javascript:" data-role="crowd_change" data-weibo-id="{$weibo['id']}" data-id="0" data-title="全站动态"  data-img="__IMG__/all.png" style="margin-right: 10px;"><img src="__IMG__/all.png" class="crowd-img-title"/>全站动态</a>
+                                                    </li>
+                                                    <volist name="follow_crowd_list" id="data">
+                                                        <li>
+                                                            <a href="javascript:" data-role="crowd_change" data-weibo-id="{$weibo['id']}" data-id="{$data.crowd.id}" data-title="{$data['crowd']['title']}" data-img="{$data['crowd']['logo']|getThumbImageById=20,20}" style="margin-right: 10px;"><img class="crowd-img-title" src="{$data['crowd']['logo']|getThumbImageById=20,20}"/>{$data['crowd']['title']}</a>
+                                                        </li>
+                                                    </volist>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </if>
+                            <if condition="check_auth('Weibo/Index/setStamp')">
+                                <div data-role="transfer-circle" class="transfer-block" id="droplist">
+                                    <a class="num-time" >图章</a>
+                                    <ul id='show-stamp' style="display: none" class="menu cc-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                        <li class="hover-menu">
+                                            <a href="javascript:" data-role="set_stamp" data-weibo-id="{$weibo['id']}" data-id="0" data-title="不设置图章"  data-img="__IMG__/all.png" style="margin-right: 10px;">不设置图章</a>
+                                        </li>
+                                        <volist name="stamp_list" id="data">
+                                            <li class="hover-menu">
+                                                <a href="javascript:" data-role="set_stamp" data-weibo-id="{$weibo['id']}" data-id="{$data.id}" data-title="{$data['title']}" data-img="{$data['stamp_img']}" style="margin-right: 10px;"><img class="crowd-img-title" src="{$data['stamp_img']}"/>{$data['title']}</a>
+                                            </li>
+                                        </volist>
+                                    </ul>
+
+                                    <script>
+                                        $('#droplist').hover(function(){
+                                            $('#show-stamp').show();
+                                        }, function(){
+                                            $('#show-stamp').hide();
+                                        });
+
+                                    </script>
+                                </div>
+                            </if>
+                            <if condition="$weibo['can_delete']">
+                                <a data-weibo-id="{$weibo.id}" title="{:L('_DELETE_')}" data-role="del_weibo">
+                                    删除
+                                </a>
+                            </if>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="pull-right">
                         {:W('Common/Share/detailShare')}
                     </div>
                     <div class="row weibo-comment-list" data-weibo-id="{$weibo.id}">
                         <div class="col-xs-12">
                             <div class=" weibo-comment-block">
                                 <div class="weibo-comment-container">
-                                    {:W('Comment/someComment',array('weibo_id'=>$weibo['id']))}
+                                    {:W('Comment/detailComment',array('weibo_id'=>$weibo['id']))}
                                 </div>
                             </div>
                         </div>
@@ -117,7 +262,71 @@
     <script>
         var SUPPORT_URL = "{:addons_url('Support://Support/doSupport')}";
         var auto_open_detail = 1;
+        var now_crowd="{$weibo['crowd_id']}";
+        var now_stamp = "{$weibo['stamp_id']}";
         weibo_bind();
+        $(function () {
+            $('[data-role="hide_top_weibo"]').unbind('click');
+            $('[data-role="hide_top_weibo"]').click(function () {
+                var weiboId = $(this).attr('data-weibo-id');
+                var type= $(this).attr('data-type');
+                if(type=='asc'){
+                    toast.success('隐藏成功！');
+                    $(this).html('取消隐藏');
+                    $(this).attr('data-type','dec');
+                    //写入cookie
+                    var unshow_top_weibo=$.cookie('Weibo_index_top_hide_ids');
+                    unshow_top_weibo=unshow_top_weibo_ids(unshow_top_weibo,weiboId,'asc');
+                    $.cookie('Weibo_index_top_hide_ids',unshow_top_weibo,{expires:365});
+                }else if(type='dec'){
+                    toast.success('取消隐藏成功！');
+                    $(this).html('隐藏');
+                    $(this).attr('data-type','asc');
+                    //写入cookie
+                    var unshow_top_weibo=$.cookie('Weibo_index_top_hide_ids');
+                    unshow_top_weibo=unshow_top_weibo_ids(unshow_top_weibo,weiboId,'desc');
+                    if(unshow_top_weibo.length==0){
+                        $.cookie('Weibo_index_top_hide_ids',1,{expires:-1});//删掉cookie
+                    }else{
+                        $.cookie('Weibo_index_top_hide_ids',unshow_top_weibo,{expires:365});
+                    }
+                }
+            });
+            $('[data-role="crowd_change"]').click(function () {
+                var weibo_id=$(this).attr('data-weibo-id');
+                var crowd_id=$(this).attr('data-id');
+                if(now_crowd==crowd_id){
+                    toast.error('该微博当前属于该圈子');
+                    return false;
+                }
+                var that=$(this);
+                $.post(U('Weibo/Index/transferCrowd'),{weibo_id:weibo_id,crowd_id:crowd_id},function (res) {
+                    handleAjax(res);
+                    if(res['status']){
+                        now_crowd=crowd_id;
+                        $('[data-role="title_image"]').attr('src',that.attr('data-img'));
+                        $('[data-role="title_content"]').html(that.attr('data-title')+'<span class="caret"></span>');
+                    }
+                })
+            });
+            $('[data-role="set_stamp"]').click(function () {
+                var weibo_id = $(this).attr('data-weibo-id');
+                var stamp_id=$(this).attr('data-id');
+                if(now_stamp==stamp_id){
+                    toast.error('该微博已设置该图章');
+                    return false;
+                }
+                var that=$(this);
+                $.post(U('Weibo/Index/setStamp'),{weibo_id:weibo_id,stamp_id:stamp_id},function (res) {
+                    handleAjax(res);
+                    if(res['status']){
+                        now_stamp = stamp_id;
+                        $('[data-role="stamp_img"]').attr('src',that.attr('data-img'));
+                        $('[data-role="stamp_title"]').html(that.attr('data-title')+'<span class="caret"></span>');
+                    }
+                })
+            })
+        })
     </script>
     <link rel="stylesheet" href="__CSS__/photoswipe.css">
     <link rel="stylesheet" href="__CSS__/default-skin/default-skin.css">

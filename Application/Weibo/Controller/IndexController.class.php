@@ -35,7 +35,7 @@ class IndexController extends BaseController
             $this->assign('need_login_tab', $need_login_tab);
         }
 
-        //推荐信任
+        //推荐关注
         $tag = 'suggested_rand_' . $uid;
         $rand = S($tag);
         if ($rand === false) {
@@ -77,7 +77,6 @@ class IndexController extends BaseController
         $this->assign('smallnav', $aSelect);
         $param = $this->filterWeibo($aType, $param);
         $param['where']['status'] = 1;
-        $param['where']['is_top'] = 0;
         //查询
         if (!empty($crowdId)) {
             $param['where']['crowd_id'] = $crowdId;
@@ -99,9 +98,28 @@ class IndexController extends BaseController
             $this->assign('crowd_type', $crowdId);
             $this->assign('loadMoreUrl', U('loadWeiboByCrowd', array('uid' => $aUid)));
             $this->assign('crowd_weibo_list', 1);
-            // 获取圈子置顶微博
-            $crowd_top_list = $weiboModel->getWeiboList(array('where' => array('status' => 1, 'is_crowd_top' => 1, 'crowd_id' => $crowdId)));
-            $this->assign('crowd_top_list', $crowd_top_list);
+            // 获取标题置顶微博
+            $topTitleList = D('WeiboTop')->getTop($crowdId, 'title');
+            foreach ($topTitleList as $key => &$val) {
+                $val['weibo'] = D('Weibo/Weibo')->getWeiboDetail($val['weibo_id']);
+                $val['title'] = get_short_sp($val['title'],35);
+            }
+            // 获取全文置顶微博
+            $topContentList = D('WeiboTop')->getTop($crowdId, 'content');
+            foreach ($topContentList as $key => &$val) {
+                $val['weibo'] = D('Weibo/Weibo')->getWeiboDetail($val['weibo_id']);
+            }
+            $topTitleIds = array_column($topTitleList,'weibo_id');
+            $topContentIds = array_column($topContentList,'weibo_id');
+            if(is_array($topTitleIds)&&is_array($topContentIds)){
+                $topIds = array_unique(array_merge($topTitleIds, $topContentIds)) ;
+            }else{
+                $topIds = $topTitleIds ? $topTitleIds : $topContentIds ? $topContentIds : '' ;
+            }
+
+            if (!empty($topIds)) {
+                $param['where']['id'] = array('not in',$topIds);
+            }
         } else {
             $invisibleList = D('Weibo/WeiboCrowd')->getInvisible();
             if (!empty($invisibleList)) {
@@ -109,10 +127,31 @@ class IndexController extends BaseController
                 $param['where']['crowd_id'] = array('not in',$invisible);
             }
             $this->assign('loadMoreUrl', U('loadweibo', array('uid' => $aUid)));
-            // 获取置顶微博
-            $top_list = $weiboModel->getWeiboList(array('where' => array('status' => 1, 'is_top' => 1)));
-            $this->assign('top_list', $top_list);
+            // 获取标题置顶微博
+            $topTitleList = D('WeiboTop')->getTop('', 'title');
+            foreach ($topTitleList as $key => &$val) {
+                $val['weibo'] = D('Weibo/Weibo')->getWeiboDetail($val['weibo_id']);
+                $val['title'] = get_short_sp($val['title'],35);
+            }
+            // 获取全文置顶微博
+            $topContentList = D('WeiboTop')->getTop('', 'content');
+            foreach ($topContentList as $key => &$val) {
+                $val['weibo'] = D('Weibo/Weibo')->getWeiboDetail($val['weibo_id']);
+            }
+            $topTitleIds = array_column($topTitleList,'weibo_id');
+            $topContentIds = array_column($topContentList,'weibo_id');
+            if(is_array($topTitleIds)&&is_array($topContentIds)){
+                $topIds = array_unique(array_merge($topTitleIds, $topContentIds)) ;
+            }else{
+                $topIds = $topTitleIds ? $topTitleIds : $topContentIds ? $topContentIds : '' ;
+            }
+
+            if (!empty($topIds)) {
+                $param['where']['id'] = array('not in',$topIds);
+            }
         }
+        $this->assign('top_list',$topTitleList);//标题
+        $this->assign('top_lists',$topContentIds);//全文
         $list = $weiboModel->getWeiboList($param);
         $this->assign('list', $list);
 
@@ -145,7 +184,7 @@ class IndexController extends BaseController
         if ($recommond_topic === false) {
             $config_recom_topic = modC('RECOMMEND_TOPIC', '', 'Weibo');
             if ($config_recom_topic != '') {
-                $recommond_topic = M('WeiboTopic')->where(array('name' => $config_recom_topic, 'status' => 1))->find();
+                $recommond_topic = M('WeiboTopic')->where(array( 'status' => 1))->find();
                 $recommond_topic['last_weibo_id'] = M('WeiboTopicLink')->where(array('topic_id' => $recommond_topic['id']))->field('weibo_id')->order('create_time desc')->find();
                 $recommond_topic['last_weibo'] = D('Weibo')->getWeiboDetail($recommond_topic['last_weibo_id']['weibo_id']);
             }
@@ -334,7 +373,6 @@ class IndexController extends BaseController
         $weiboModel = D('Weibo');
         $param['where'] = array(
             'status' => 1,
-            'is_top' => 0,
         );
         switch ($aSelect) {
             case 'image':
@@ -357,19 +395,25 @@ class IndexController extends BaseController
             $param['where']['crowd_id'] = $crowdId;
             $param['where']['is_crowd_top'] = 0;
             $this->assign('crowd_type', $crowdId);
+            $topList = D('WeiboTop')->getTop($crowdId);
         } else {
             $invisibleList = D('Weibo/WeiboCrowd')->getInvisible();
             if (!empty($invisibleList)) {
                 $invisible = array_column($invisibleList,'id');
                 $param['where']['crowd_id'] = array('not in',$invisible);
             }
+            $topList = D('WeiboTop')->getTop();
         }
-
+        $topIds = array_column($topList,'weibo_id');
+        $param['where']['id'] = array();
+        if (!empty($topIds)) {
+            array_push($param['where']['id'],array('not in',$topIds));
+        }
         $param['field'] = 'id';
         if ($aPage == 1) {
             if (!in_array($aType, $expect_type)) {
                 $param['limit'] = 10;
-                $param['where']['id'] = array('lt', $aLastId);
+                array_push($param['where']['id'],array('lt', $aLastId));
             } else {
                 $param['page'] = $aLoadCount;
                 $param['count'] = 10;
@@ -380,7 +424,7 @@ class IndexController extends BaseController
             $param['count'] = 10;
         }
 
-        //推荐信任
+        //推荐关注
         $uid = is_login();
         $tag = 'suggested_rand_' . $uid;
         $rand = S($tag);
@@ -409,8 +453,13 @@ class IndexController extends BaseController
         $weiboModel = D('Weibo');
         $param['where'] = array(
             'status' => 1,
-            'is_top' => 0,
         );
+
+        $topList = D('WeiboTop')->getTop($crowdId);
+        $topIds = array_column($topList,'weibo_id');
+        if (!empty($topIds)) {
+            $param['where']['id'] = array('not in',$topIds);
+        }
         switch ($aSelect) {
             case 'image':
                 $param['where']['type'] = 'image';
@@ -451,7 +500,7 @@ class IndexController extends BaseController
             $param['page'] = $aPage;
         }
 
-        //推荐信任
+        //推荐关注
         $uid = is_login();
         $tag = 'suggested_rand_' . $uid;
         $rand = S($tag);
@@ -465,13 +514,13 @@ class IndexController extends BaseController
     }
 
     /**
-     * _suggestedFollows   推荐信任渲染数据
+     * _suggestedFollows   推荐关注渲染数据
      * @author:路飞 lf@ourstu.com
      */
     public function _suggestedFollows($uid)
     {
-        $weibo_num = M('Weibo')->where(array('status' => 1, 'is_top' => 0))->max('id');
-        $this->assign('weibo_num', $weibo_num);
+        $weibo_num = M('Weibo')->where(array('status' => 1, 'is_top' => 0))->order('id desc')->find();
+        $this->assign('weibo_num', $weibo_num['id']);
 
         $value = modC('SUGGESTED_VALUE', 0, 'WEIBO');
         $limit = modC('SUGGESTED_NUM', 15, 'WEIBO');
@@ -484,7 +533,7 @@ class IndexController extends BaseController
     }
 
     /**
-     * clearSuggestedFollows   信任后清除对应缓存
+     * clearSuggestedFollows   关注后清除对应缓存
      * @author 路飞<lf@ourstu.com>
      */
     public function clearSuggestedFollows()
@@ -792,6 +841,7 @@ class IndexController extends BaseController
         $aWeiboId = I('post.weibo_id', 0, 'intval');
         $aContent = I('post.content', 0, 'op_t');
         $aCommentId = I('post.comment_id', 0, 'intval');
+        $aPosition=I('post.position','','text');
 
         $this->checkAuth(null, -1, L('_INFO_AUTHORITY_COMMENT_LACK_') . L('_PERIOD_'));
         $return = check_action_limit('add_weibo_comment', 'weibo_comment', 0, is_login(), true);
@@ -812,7 +862,7 @@ class IndexController extends BaseController
             $this->ajaxReturn($res);
         }
 
-        $result['html'] = R('Comment/comment_html', array('comment_id' => $result['data']), 'Widget');
+        $result['html'] = R('Comment/comment_html', array('comment_id' => $result['data'],'position'=>$aPosition), 'Widget');
 
         $result['status'] = 1;
         $result['info'] = L('_SUCCESS_COMMENT_') . L('_EXCLAMATION_');
@@ -840,14 +890,34 @@ class IndexController extends BaseController
         $aWeiboId = I('post.weibo_id', 0, 'intval');
         $aPage = I('post.page', 1, 'intval');
         $aShowMore = I('post.show_more', 0, 'intval');
+        $aPosition=I('post.position','','text');
+
         $list = D('WeiboComment')->getCommentList($aWeiboId, $aPage, $aShowMore);
-        $this->assign('list', $list);
         $this->assign('page', $aPage);
         $this->assign('weiboId', $aWeiboId);
         $weobo = D('Weibo')->getWeiboDetail($aWeiboId);
         $this->assign('weiboCommentTotalCount', $weobo['comment_count']);
         $this->assign('show_more', $aShowMore);
-        $html = $this->fetch('commentlist');
+        if($aPosition=='weibo-list'){
+            $map_support['appname'] = 'Weibo';
+            $map_support['table'] = 'weibo_comment';
+            $this->assign($map_support);
+            $map_supported = array_merge($map_support, array('uid' => is_login()));
+            $supportModel=D('Support');
+            foreach ($list as &$val){
+                $map_support['row'] = $val['id'];
+                $val['count'] = $supportModel->where($map_support)->count();
+                $map_supported['row'] = $val['id'];
+                $val['supported'] = $supportModel->where($map_supported)->count();
+            }
+            unset($val);
+            $this->assign('list', $list);
+            $html = $this->fetch('listcomment');
+            $html = replace_weibo_html($html);
+        }else{
+            $this->assign('list', $list);
+            $html = $this->fetch('commentlist');
+        }
         $this->ajaxReturn($html);
 
     }
@@ -863,7 +933,19 @@ class IndexController extends BaseController
         $this->checkIsLogin();
         $comment = D('Weibo/WeiboComment')->getComment($aCommentId);
         $this->checkAuth(null, $comment['uid'], L('_INFO_AUTHORITY_COMMENT_DELETE_LACK_') . L('_PERIOD_'));
-
+        if(!check_auth(null,-1)){//道具使用
+            if(D('Module')->checkInstalled('Tcenter')&&D('Tcenter/Prop')->getProp('weibo_delete_card')){
+                $propOwnModel=D('Tcenter/PropOwn');
+                $can_delete=$propOwnModel->useOneProp('weibo_delete_card');
+                if($can_delete==-10){
+                    $this->error('需要道具——悔悟卡');
+                }else if(!$can_delete){
+                    $this->error('扣除道具失败，删除操作中断');
+                }
+                //增加一条使用记录
+                D('Tcenter/PropLog')->addPropLog(is_login(), 'weibo_delete_card', 1, '删除ID为 '.$aCommentId.' 的微博评论' );
+            }
+        }
 
         //删除评论
         $result = D('Weibo/WeiboComment')->deleteComment($aCommentId);
@@ -897,6 +979,19 @@ class IndexController extends BaseController
             D('Weibo/WeiboCrowd')->changeCrowdNum($weibo['crowd_id'], 'post', 'dec');
         } else {
             $this->checkAuth(null, $weibo['uid'], L('_INFO_AUTHORITY_COMMENT_DELETE_LACK_') . L('_PERIOD_'));
+            if(!check_auth(null,-1)){
+                if(D('Module')->checkInstalled('Tcenter')&&D('Tcenter/Prop')->getProp('weibo_delete_card')){
+                    $propOwnModel=D('Tcenter/PropOwn');
+                    $can_delete=$propOwnModel->useOneProp('weibo_delete_card');
+                    if($can_delete==-10){
+                        $this->error('需要道具——悔悟卡');
+                    }else if(!$can_delete){
+                        $this->error('扣除道具失败，删除操作中断');
+                    }
+                    //增加一条使用记录
+                    D('Tcenter/PropLog')->addPropLog(is_login(), 'weibo_delete_card', 1, '删除ID为 '.$aWeiboId.' 的微博' );
+                }
+            }
         }
         //删除微博
         $result = $weiboModel->deleteWeibo($aWeiboId);
@@ -920,54 +1015,76 @@ class IndexController extends BaseController
     public function setTop()
     {
         $aWeiboId = I('post.weibo_id', 0, 'intval');
-        $aType = I('post.type', '', 'text');
+        $aIsCrowd = I('post.is_crwod', 0, 'intval');
+        $aType = I('post.type', 'title', 'string');
+        $aTopTitle = I('post.title', '', 'text');
+        $aTopDead = I('post.top_dead', 0, 'intval');
+        if ($aTopDead < 0) {
+            $this->error('请输入正确的天数');
+        }
+        if ($aTopDead == 0) {
+            $deadTime = '';
+        } else {
+            $deadTime = time() + $aTopDead * 86400;
+        }
         $weiboModel = D('Weibo');
+        $topModel = D('WeiboTop');
         $weibo = $weiboModel->find($aWeiboId);
+        if ($aIsCrowd) {
+            $isTop = $topModel->isTop($weibo['id'], $weibo['crowd_id'], $aType);
+        } else {
+            $isTop = $topModel->isTop($weibo['id']);
+        }
         if (!$weibo) {
             $this->error(L('_INFO_FAIL_STICK_WEIBO_CANNOT_EXIST_') . L('_PERIOD_'));
         }
-        if ($aType == 'crowd') {
+        if ($aIsCrowd == 1) {
             $crowdId = $weibo['crowd_id'];
             $this->_checkCrowdExists($crowdId);
             $this->checkAuth(null, get_crowd_admin($crowdId), '您没有管理圈子的权限');
 
-            if ($weibo['is_crowd_top'] == 0) {
-                if ($weiboModel->where(array('id' => $aWeiboId))->setField('is_crowd_top', 1)) {
+            if ($isTop == 0) {
+                if ($topModel->addTop($weibo, $deadTime, $aTopTitle, true, $aType)) {
                     action_log('set_crowd_weibo_top', 'weibo', $aWeiboId, is_login());
                     S('weibo_' . $aWeiboId, null);
-                    D('WeiboCache')->cleanCache($aWeiboId);
+                    $weiboCacheModel = D('Weibo/WeiboCache');
+                    $weiboCacheModel->cleanCache($aWeiboId);
                     $this->success(L('_SUCCESS_STICK_') . L('_PERIOD_'));
                 } else {
                     $this->error(L('_FAIL_STICK_') . L('_PERIOD_'));
                 };
             } else {
-                if ($weiboModel->where(array('id' => $aWeiboId))->setField('is_crowd_top', 0)) {
+                if ($topModel->delTop($aWeiboId, $crowdId)) {
                     action_log('set_crowd_weibo_down', 'weibo', $aWeiboId, is_login());
                     S('weibo_' . $aWeiboId, null);
-                    D('WeiboCache')->cleanCache($aWeiboId);
+                    $weiboCacheModel = D('Weibo/WeiboCache');
+                    $weiboCacheModel->cleanCache($aWeiboId);
                     $this->success(L('_SUCCESS_STICK_CANCEL_') . L('_PERIOD_'));
                 } else {
                     $this->error(L('_FAIL_STICK_CANCEL_') . L('_PERIOD_'));
                 };
             }
-
         } else {
             $this->checkAuth(null, -1, L('_INFO_FAIL_STICK_AUTHORITY_LACK_') . L('_PERIOD_'));
             $weiboTopicLink = D('Weibo/WeiboTopicLink');
-            if ($weibo['is_top'] == 0) {
-                if ($weiboModel->where(array('id' => $aWeiboId))->setField('is_top', 1)) {
+            if ($isTop == 0) {
+                if ($topModel->addTop($weibo, $deadTime, $aTopTitle, false, $aType)) {
                     $weiboTopicLink->setWeiboTop($aWeiboId, 1);
                     action_log('set_weibo_top', 'weibo', $aWeiboId, is_login());
                     S('weibo_' . $aWeiboId, null);
+                    $weiboCacheModel = D('Weibo/WeiboCache');
+                    $weiboCacheModel->cleanCache($aWeiboId);
                     $this->success(L('_SUCCESS_STICK_') . L('_PERIOD_'));
                 } else {
                     $this->error(L('_FAIL_STICK_') . L('_PERIOD_'));
                 };
             } else {
-                if ($weiboModel->where(array('id' => $aWeiboId))->setField('is_top', 0)) {
-                    $weiboTopicLink->setWeiboTop($aWeiboId, 0);
+                //todo 取消置顶
+                if ($topModel->delTop($aWeiboId)) {
                     action_log('set_weibo_down', 'weibo', $aWeiboId, is_login());
                     S('weibo_' . $aWeiboId, null);
+                    $weiboCacheModel = D('Weibo/WeiboCache');
+                    $weiboCacheModel->cleanCache($aWeiboId);
                     $this->success(L('_SUCCESS_STICK_CANCEL_') . L('_PERIOD_'));
                 } else {
                     $this->error(L('_FAIL_STICK_CANCEL_') . L('_PERIOD_'));
@@ -1001,17 +1118,21 @@ class IndexController extends BaseController
     public function weiboDetail($id)
     {
         //读取微博详情
-
         $weibo = D('Weibo')->getWeiboDetail($id);
         $crowd = D('Weibo/WeiboCrowd')->getCrowd($weibo['crowd_id']);
+        $stamp = D('Weibo/WeiboStampDetail')->getStampByWeibo($id);
         $isJoin = D('Weibo/WeiboCrowdMember')->getIsJoin(is_login(),$crowd['id']);
         if ($isJoin!=1 && $crowd['invisible']) {
             $this->error('必须加入该私密圈子才能查看此微博');
         }
+        $this->assign('crowd_detail',$crowd);
+        $this->assign('stamp_detail',$stamp);
         if ($weibo === null) {
             $this->error(L('_INEXISTENT_404_'));
         }
         $weibo['user'] = query_user(array('space_url', 'avatar128', 'nickname', 'title'), $weibo['uid']);
+        $weibo['is_top'] = D('WeiboTop')->isTop($id);
+        $weibo['is_crowd_top'] = D('WeiboTop')->isTop($id,$weibo['crowd_id']);
         //显示页面
 
         $this->assign('weibo', $weibo);
@@ -1027,6 +1148,43 @@ class IndexController extends BaseController
         }
 
         $this->assign('tab', 'index');
+
+        //隐藏显示检测
+        $show_hide_button=0;
+        if($weibo['is_top']==1){
+            $hide_ids=cookie('Weibo_index_top_hide_ids');
+
+            $hide_ids=explode(',',$hide_ids);
+
+            $top_hide=in_array($id,$hide_ids);
+            if($top_hide){
+                $show_hide_button=1;//显示取消隐藏置顶按钮
+            }else{
+                $show_hide_button=2;//显示隐藏置顶按钮
+            }
+        }
+        if (!empty($weibo['crowd_id'])) {
+            $this->assign('top_flag','setCrowdTopModal');
+        } else {
+            $this->assign('top_flag','setTopModal');
+        }
+        $this->assign('show_hide_button',$show_hide_button);
+        //圈子
+        $followCrowd = D('WeiboCrowdMember')->getUserJoin($weibo['uid']);
+        foreach ($followCrowd as $key => &$v) {
+            $res = D('WeiboCrowd')->getCrowd($v['crowd_id']);
+            $v['crowd'] = $res;
+            if (empty($res)) {
+                unset($followCrowd[$key]);
+            }
+        }
+        unset($v);
+
+        //图章
+        $stampList = D('Weibo/WeiboStamp')->getStampList();
+        $this->assign('stamp_list',$stampList);
+        $this->assign('follow_crowd_list', $followCrowd);
+
         $this->display();
     }
 
@@ -1118,7 +1276,7 @@ class IndexController extends BaseController
                 'maxSize' => 5 * 1024 * 1024,
                 'rootPath' => './Uploads/',
                 'savePath' => 'Expression/' . $mycollection . '/',
-                'saveName' => '',
+                'saveName' => array('uniqid',''),
                 'exts' => array('jpg', 'gif', 'png', 'jpeg'),
                 'autoSub' => true,
                 'subName' => '',
@@ -1131,15 +1289,14 @@ class IndexController extends BaseController
                 $flag = 0;
             }
             $k = 0;
-            foreach ($_FILES['myexp']['name'] as $name) {
-                $allname = $name;
-                // $iname=substr($allname,0,strrpos($allname,'.'));
+            foreach ($info as $oneFile) {
+                $name = $oneFile['savename'] ;
                 $rp = $this->ROOT_PATH = str_replace('/Application/Weibo/Controller/IndexController.class.php', '', str_replace('\\', '/', __FILE__));
                 $path = $rp . "/Uploads/Expression/";
                 if (!file_exists($path . $mycollection)) {
                     mkdir($path . $mycollection, 0777, true);
                 }
-                $path0 = $rp . '/Uploads/Expression/' . $mycollection . '/' . $allname;
+                $path0 = $rp . '/Uploads/Expression/' . $mycollection . '/' . $name;
                 $file = file_get_contents($path0);
                 $map['md5'] = md5($file);
                 $iexp_id = $iexpression->where($map)->getField('id');
@@ -1150,7 +1307,7 @@ class IndexController extends BaseController
                     if ($res) {
                         echo json_encode('0');
                         $iexp_path = $iexpression->where($map)->getField('path');
-                        if ($iexp_path != "/Uploads/Expression/" . $mycollection . '/' . $allname) {
+                        if ($iexp_path != "/Uploads/Expression/" . $mycollection . '/' . $name) {
                             unlink($path0);
                         }
 
@@ -1168,12 +1325,12 @@ class IndexController extends BaseController
                     }
                 } else {
                     if ($flag == 1) {
-                        $data['path'] = '/Uploads/Expression/' . $mycollection . '/' . $allname;
+                        $data['path'] = '/Uploads/Expression/' . $mycollection . '/' . $name;
                         $data['driver'] = 'local';
                         $data['md5'] = md5($file);
                         $data['create_time'] = time();
                         $iexpression->add($data);
-                        $map['path'] = '/Uploads/Expression/' . $mycollection . '/' . $allname;
+                        $map['path'] = '/Uploads/Expression/' . $mycollection . '/' . $name;
                         $iex_id = $iexpression->where($map)->getField('id');
 
                         $data1['iexpression_id'] = $iex_id;
@@ -1181,7 +1338,7 @@ class IndexController extends BaseController
                         $iexplog->add($data1);
 
                         $data3[$k]['name'] = $iex_id;
-                        $data3[$k]['path'] = __ROOT__ . '/Uploads/Expression/' . $mycollection . '/' . $allname;
+                        $data3[$k]['path'] = __ROOT__ . '/Uploads/Expression/' . $mycollection . '/' . $name;
                         $data3[$k]['from'] = $mycollection;
                         $k++;
                     }
@@ -1301,7 +1458,7 @@ class IndexController extends BaseController
         $table = I('POST.table');
         $row = I('POST.row');
         $aJump = I('POST.jump');
-        $weibo_id = I('POST.weibo_id');
+        $aWeiboId=I('post.weibo_id',0,'intval');
 
         $message_uid = intval(I('POST.uid'));
         $support['appname'] = $appname;
@@ -1309,22 +1466,63 @@ class IndexController extends BaseController
         $support['row'] = $row;
         $support['uid'] = is_login();
 
-        $support_comment['appname'] = $appname;
-        $support_comment['table'] = $table;
-        $support_comment['row'] = $weibo_id;
+        $support_cache['appname'] = $appname;
+        $support_cache['table'] = $table;
+
 
         if (D('Support')->where($support)->count()) {
+            $res = D('Support')->where($support)->delete();
+            if($aWeiboId){
+                $support_cache['row'] = $aWeiboId;
+                S('support_count_' . $appname . '_' . $table . '_' . $row, null);
+            }else{
+                $support_cache['row'] = $row;
+            }
+            $this->clearCache($support_cache);
+            $user = query_user(array('uid','nickname','space_url'),get_uid());
+            $supportModel=D('Support');
+            $supportedUserList=$supportModel->getSupported('Weibo','weibo',$row,array('uid','space_url'),5);
 
-            exit(json_encode(array('status' => 0, 'info' => '您已经赞过，不能再赞了。')));
+            $i = 0;
+            foreach ($supportedUserList as $val) {
+                if($i > 0) {
+                    $html .= '，<a ucard='.$val['uid'].' href='.$val['space_url'].' class="text-color" style="color: #808080">'.get_nickname($val['uid']).'</a>';
+                } else {
+                    $html .= '<a ucard='.$val['uid'].' href='.$val['space_url'].' class="text-color" style="color: #808080">'.get_nickname($val['uid']).'</a>';
+                }
+                $i++;
+            }
+
+            if($res) {
+                exit(json_encode(array('status' => 0, 'info' => '您取消了赞。', 'user' => $user, 'html' => $html)));
+            }
+//            exit(json_encode(array('status' => 0, 'info' => '您已经赞过，不能再赞了。')));
         } else {
             $support['create_time'] = time();
             if (D('Support')->where($support)->add($support)) {
-
-                $this->clearCache($support_comment);
-
-                $user = query_user(array('nickname'), get_uid());
-                send_message($message_uid, $title = $user['nickname'] . '赞了您', '快去看看吧^……^！', $aJump, array('id' => $row), -1, 'Ucenter');
-                exit(json_encode(array('status' => 1, 'info' => '感谢您的支持。')));
+                if($aWeiboId){
+                    $support_cache['row'] = $aWeiboId;
+                    S('support_count_' . $appname . '_' . $table . '_' . $row, null);
+                }else{
+                    $support_cache['row'] = $row;
+                }
+                $this->clearCache($support_cache);
+                $user = query_user(array('uid','nickname','space_url'),get_uid());
+                if(check_message_event('weibo_zan', 'zhannei')) {
+                    $content = get_message_template_filt('weibo_zan', 'zhannei');
+                    send_message($message_uid,$title = $user['nickname'] . '赞了您', $content,  $aJump , array('id' => $row),-1,'Ucenter');
+                }
+                if(check_message_event('weibo_zan', 'sms')) {
+                    $content = get_message_template_filt('weibo_zan', 'sms');
+                    $url = 'http://' . $_SERVER['HTTP_HOST'] . U($aJump. '?id=' . $row);
+                    send_mobile_message($message_uid, $user['nickname'] . '赞了您', $content . $url, $aJump, array('id' => $row));
+                }
+                if(check_message_event('weibo_zan', 'email')) {
+                    $content = get_message_template_filt('weibo_zan', 'email');
+                    $url = 'http://' . $_SERVER['HTTP_HOST'] . U($aJump. '?id=' . $row);
+                    send_email_message($message_uid, $user['nickname'] . '赞了您', $content . $url, $aJump, array('id' => $row));
+                }
+                exit(json_encode(array('status' => 1, 'info' => '感谢您的支持。','user'=>$user)));
             } else {
                 exit(json_encode(array('status' => 0, 'info' => '写入数据库失败。')));
             }
@@ -1445,14 +1643,14 @@ class IndexController extends BaseController
             }
             //权限判断
             $this->checkIsLogin();
-            $this->checkAuth('Weibo/Index/editWeibo', -1,'你无操作权限！');
-            $return = check_action_limit('edit_weibo', 'weibo', 0, is_login(), true);
-            if ($return && !$return['state']) {
-                $this->error($return['info']);
-            }
             $oldWeibo=D('Weibo')->getWeiboDetail($aId);
             if(!$oldWeibo||$oldWeibo['type']!='long_weibo'){
                 $this->error('该微博不存在！');
+            }
+            $this->checkAuth('Weibo/Index/editWeibo', $oldWeibo['uid'],'你无操作权限！');
+            $return = check_action_limit('edit_weibo', 'weibo', 0, is_login(), true);
+            if ($return && !$return['state']) {
+                $this->error($return['info']);
             }
             $res = D('Weibo')->editLongWeibo( $aPlainContent, $crowdId, $aContent,$aTitle,$aId);
             if (!$res) {
@@ -1561,6 +1759,73 @@ class IndexController extends BaseController
             $this->assign('friends', $friends);
             $this->assign('crowd_id',$aCrowdId);
             $this->display();
+        }
+    }
+
+    /**
+     * 转移微博
+     * @author:zzl(郑钟良) zzl@ourstu.com
+     */
+    public function transferCrowd()
+    {
+        $aWeiboId=I('post.weibo_id',0,'intval');
+        $aCrowdId=I('post.crowd_id',0,'intval');
+        $weiboModel=D('Weibo/Weibo');
+        $weibo=$weiboModel->getWeiboDetail($aWeiboId);
+        $res['status']=0;
+        if($weibo['crowd_id']==$aCrowdId){
+            $res['info']='该微博当前属于该圈子';
+        }
+        if($aCrowdId!=0){
+            $crowd=D('Weibo/WeiboCrowd')->getCrowd($aCrowdId);
+            if(!$crowd){
+                $res['info']='该圈子不存在';
+            }
+        }
+        if(!check_auth('Weibo/Index/transferCrowd',$weibo['uid'])){
+            $res['info']='没有操作权限';
+        }
+        if($res['info']){
+            $this->ajaxReturn($res);
+        }
+        $result=$weiboModel->changeWeiboCrowd($aWeiboId,$aCrowdId);
+        if($result){
+            $res['status']=1;
+            $res['info']='操作成功';
+        }else{
+            $res['info']='操作失败！'.$weiboModel->getError();
+        }
+        $this->ajaxReturn($res);
+    }
+
+    /**
+     * 设置图章
+     * @author:Andy(王杰) wj@ourstu.com
+     */
+    public function setStamp()
+    {
+        $aWeiboId = I('post.weibo_id',0,'intval');
+        $aStampId = I('post.stamp_id',0,'intval');
+        $weiboModel = D('Weibo/Weibo');
+        $stampDetailModel = D('Weibo/WeiboStampDetail');
+        $weibo = $weiboModel->getWeiboDetail($aWeiboId);
+
+        if($weibo['stamp_id'] == $aStampId){
+            $res['info']='该微博已设置该图章';
+        }
+        if(!check_auth('Weibo/Index/setStamp')){
+            $res['info'] = '没有操作权限';
+            $res['status'] = 0;
+        }
+        if($res['info']){
+            $this->ajaxReturn($res);
+        }
+
+        $result = $stampDetailModel->setStamp($aWeiboId,$aStampId);
+        if ($result) {
+            $this->ajaxReturn(array('status'=>1,'info'=>'设置成功','url'=>U('index/weibodetail',array('id'=>$aWeiboId))));
+        } else {
+            $this->ajaxReturn(array('status'=>0,'info'=>'设置失败'));
         }
     }
 }

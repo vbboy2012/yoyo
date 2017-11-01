@@ -94,7 +94,7 @@ class CrowdController extends BaseController
             if (utf8_strlen($aTitle) > 20) {
                 $this->error('圈子名称最多20个字');
             }
-            if ($aTypeId == -1) {
+            if ($aTypeId == 0) {
                 $this->error('请选择圈子分类');
             }
             if (empty($aIntro)) {
@@ -154,6 +154,7 @@ class CrowdController extends BaseController
             //显示成功消息
             S('crowd_create_by_' . is_login(), null);
             S('crowd_joined_' . is_login(), null);
+            S('private_crowd_by_invisible', null);
             $url = $isEdit ? U('Weibo/Crowd/crowd',array('id'=>$aId)).'#change' : U('Weibo/Crowd/index');
             $this->success($message, $url);
         }

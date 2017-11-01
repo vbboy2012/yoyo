@@ -117,6 +117,13 @@ class TypeController extends Controller
         return $this->fetch(T('Application://Weibo@Type/fetchlongweibo'));
     }
 
+    public function fetchQuestion($weibo)
+    {
+        $weibo['question'] = unserialize($weibo['data']);
+        $this->assign('weibo',$weibo);
+        return $this->fetch(T('Application://Weibo@Type/fetchquestion'));
+    }
+
  /*   public function fetchMLocalVideo($weibo){
         $root=__ROOT__;
         $content=$weibo['content'];

@@ -22,7 +22,7 @@ class TopicController extends BaseController
         }
         $topicModel->where('id = "' . $aTopic . '"')->setInc('read_count', 1); //浏览正确的话题就应该给该话题+1浏览量
 
-        //查询话题微博
+        //查询话题动态
         $map['status']=1;
         $map['topic_id']=$aTopic;
         $map['is_top']=0;
@@ -30,7 +30,7 @@ class TopicController extends BaseController
         $list=getSubByKey($list, 'weibo_id');
 
         if($aPage==1){
-            // 获取置顶话题微博
+            // 获取置顶话题动态
             $map['is_top']=1;
             $top_list = $weiboTopicLinkModel->getTopList($map);
             $top_list=getSubByKey($top_list, 'weibo_id');

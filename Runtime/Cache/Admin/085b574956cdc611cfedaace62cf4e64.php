@@ -1761,7 +1761,7 @@
         });
 
         $('[data-role=saveCountSetting]').click(function () {
-            $.post("/yoyo/admin/index/index.html", {count_day: $('[name=count_day]').val()}, function (msg) {
+            $.post("/yoyo/index.php?s=/admin/index/index.html", {count_day: $('[name=count_day]').val()}, function (msg) {
                 handleAjax(msg);
             });
         });

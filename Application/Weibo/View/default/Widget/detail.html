@@ -1,12 +1,20 @@
-<div style="max-width: 680px;<if condition="$can_hide">[top_hide]</if>" data-role="id_weibo" id="weibo_{$weibo.id}" <if condition="$can_hide">class="top_can_hide"<else/>class=""</if>>
+<div data-position="one-weibo" style="max-width: 680px;<if condition="$can_hide">[top_hide]</if>" data-role="id_weibo" id="weibo_{$weibo.id}" <if condition="$can_hide">class="top_can_hide"<else/>class=""</if>>
     <div class="all-wrap">
-        <if condition="$weibo['is_top'] eq 1 AND $crowd_weibo_list neq 1">
-            <div class="ribbion-green"></div>
-            <elseif condition="$weibo['is_hot'] eq 1 AND $crowd_weibo_list neq 1"/>
-            <div class="hot-comment-weibo"></div>
-            <elseif condition="$weibo['is_first'] eq 1 AND $crowd_weibo_list neq 1"/>
-            <div class="new-user-first-weibo"></div>
-        </if>
+        <notempty name="weibo['stamp_id']">
+            <div class="stamp">
+                <img src="{$weibo['stamp_img']}"/>
+            </div>
+            <else/>
+            <if condition="$weibo['is_top'] eq 1 AND $crowd_weibo_list neq 1">
+                <div class="ribbion-green"></div>
+                <elseif condition="$weibo['is_hot'] eq 1 AND $crowd_weibo_list neq 1"/>
+                <div class="hot-comment-weibo"></div>
+                <elseif condition="$weibo['is_first'] eq 1 AND $crowd_weibo_list neq 1"/>
+                <div class="new-user-first-weibo"></div>
+                <elseif condition="$weibo['is_top'] eq 1 AND $crowdId eq $weibo['crowd_id']"/>
+                <div class="crowd-green"></div>
+            </if>
+        </notempty>
         <eq name="crowd_weibo_list" value="1">
             <eq name="weibo.is_crowd_top" value="1">
                 <div class="ribbion-green"></div>
@@ -34,44 +42,11 @@
                         </if>
                         {:W('Common/UserRank/render',array($weibo['uid']))}
                         <!--隐藏操作列表-->
-                        <div class="pull-right show-operate-wrap">
-                            <a href="javascript:" class="show-operate pull-right icon-angle-down"></a>
-                            <div class="operate-box" >
-                                <if condition="check_auth('Weibo/Index/setTop')">
-                                    <eq name="weibo.is_top" value="0">
-                                        <li data-weibo-id="{$weibo.id}" title="{:L('_SET_TOP_')}" data-role="weibo_set_top">
-                                            置顶
-                                        </li>
-                                        <else/>
-                                        <li data-weibo-id="{$weibo.id}" title="{:L('_CANCEL_TOP_')}" data-role="weibo_set_top">
-                                            取消置顶
-                                        </li>
-                                    </eq>
-                                </if>
-                                <if condition="$weibo['can_set_top_crowd_weibo']">
-                                    <eq name="weibo.is_crowd_top" value="0">
-                                        <li data-weibo-id="{$weibo.id}" title="圈内置顶" data-role="set_top_crowd_weibo">
-                                            圈内置顶
-                                        </li>
-                                        <else/>
-                                        <li data-weibo-id="{$weibo.id}" title="取消圈内置顶" data-role="set_top_crowd_weibo">
-                                            取消置顶
-                                        </li>
-                                    </eq>
-                                </if>
-                                <if condition="$weibo['can_delete']">
-                                    <li data-weibo-id="{$weibo.id}" title="{:L('_DELETE_')}" data-role="del_weibo">
-                                        删除
-                                    </li>
-                                </if>
-                                <if condition="$can_hide">
-                                    <li data-weibo-id="{$weibo.id}" title="{:L('_HIDE_TOP_')}" data-role="hide_top_weibo">
-                                        隐藏
-                                    </li>
-                                </if>
-                                <li>{:hook('report',array('type'=>$MODULE_ALIAS.'/'.$MODULE_ALIAS,'url'=>"Weibo/Index/weiboDetail?id=$weibo[id]",'data'=>array('weibo-id'=>$weibo['id'])))}</li>
+                        <if condition="$can_hide eq 1">
+                            <div class="pull-right show-operate-wrap">
+                                <a class="pull-right iconfont icon-cuo" data-role="hide_top_weibo_list" data-weibo-id="{$weibo['id']}" title="隐藏" style="color: #AEAEAE;"></a>
                             </div>
-                        </div>
+                        </if>
                     </div>
                     <div class="op-tb op-bottom">
                         <a data-hover="查看详情" class="wb-time" href="{:U('Weibo/Index/weiboDetail',array('id'=>$weibo['id']))}">
@@ -83,12 +58,13 @@
             </div>
             <div class="content-info row">
                 {$weibo.fetchContent}
+
                 <div class="form-where">
                     <div class="where w-left">
                         <empty name="weibo.crowd">
-                            <!--<span>{:L('_FROM_')} <b> 全站动态</b></span>-->
+                            <span><if condition="$weibo['from'] neq ''">{:L('_FROM_')} <strong>{$weibo.from}</strong></if></span>
                             <else/>
-                            <span><img src="{$weibo['crowd_logo']|getThumbImageById=16,16}"/><a href="{:U('Weibo/Index/index',array('crowd'=>$weibo['crowd_id']))}"><b class="gcard" data-crowd-id="{$weibo.crowd_id}">  {$weibo.crowd}</b></a></span>
+                            <span><img src="{$weibo['crowd_logo']|getThumbImageById=16,16}" style="width: 16px;height: 16px"/><a href="{:U('Weibo/Index/index',array('crowd'=>$weibo['crowd_id']))}"><b class="gcard" data-crowd-id="{$weibo.crowd_id}">  {$weibo.crowd}</b></a></span>
                         </empty>
                         <span>{:hook('giveReward',array('type'=>$MODULE_ALIAS.'/'.$MODULE_ALIAS,'url'=>"Weibo/Index/weiboDetail?id=$weibo[id]",'data'=>array('user-id'=>$weibo['user']['uid'])))}</span>
                     </div>
@@ -103,15 +79,38 @@
         </div>
 
         </div>
-    <div class="weibo-comment-list row" <if condition="modC('SHOW_COMMENT',1)">style="display: block;margin:0;" <else/> style="display: none;" </if> data-weibo-id="{$weibo.id}">
-    <if condition="modC('SHOW_COMMENT',1)">
-        <div class=" weibo-comment-block">
-            <div class="weibo-comment-container">
-                {:W('Weibo/Comment/someComment',array('weibo_id'=>$weibo['id'],'un_prase_comment'=>$un_prase_comment))}
+        <div class="weibo-bottom weibo-comment-list row" <if condition="modC('SHOW_COMMENT',1)">style="display: block;margin:0;" <else/> style="display: none;" </if> data-weibo-id="{$weibo.id}">
+            <div class="top-triangle-border"></div>
+            <div class="top-triangle-content"></div>
+            <div class="bottom-top">
+                <div class="pull-left left-like-list text-more text-color">
+                    <a title="喜欢" data-role="support-weibo" class="text-color" table="weibo" row="{$weibo['id']}" uid="{$weibo['uid']}" jump="weibo/index/weibodetail">
+                        <i class="weibo_like icon-heart-empty"></i>
+                        <if condition="count($supportedUserList) eq 0">
+                            <span class="support-text">点赞</span>
+                        </if>
+                    </a>
+                    <span id="supporter_Weibo_weibo_{$weibo['id']}">
+                        <if condition="count($supportedUserList) gt 0">
+                            <volist name="supportedUserList" id="one_support">
+                                <if condition="$key egt 1">，</if>
+                                <a ucard="{$one_support['uid']}" href="{$one_support['space_url']}" class="text-color">[nickname:{$one_support['uid']}]</a>
+                            </volist>
+                        </if>
+                    </span>
+                </div>
+                <a class="pull-right right-say-button" data-role="show-comment-input" data-id="{$weibo['id']}"><i class="iconfont icon-you"></i>说一句</a>
+            </div>
+            <div class="comment-list-block">
+                <if condition="modC('SHOW_COMMENT',1)">
+                    <div class=" weibo-comment-block">
+                        <div class="weibo-comment-container">
+                            {:W('Weibo/Comment/someComment',array('weibo_id'=>$weibo['id'],'un_prase_comment'=>$un_prase_comment))}
+                        </div>
+                    </div>
+                </if>
             </div>
         </div>
-    </if>
-    </div>
     </div>
 </if>
 <style>

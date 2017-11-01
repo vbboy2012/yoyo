@@ -141,7 +141,9 @@ function parse_weibo_content($content)
         $content=str_replace('/br','',$content);
         $content=str_replace('/nb','',$content);
     }
-    $content = parse_emoji($content);
+    if(is_dir('/m')){
+        $content = function_exists('parse_emoji') ?parse_emoji($content):$content;
+    }
     $content = parse_url_link($content);
     $content = parse_expression($content);
     $content = parseWeiboContent($content);

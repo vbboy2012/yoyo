@@ -56,7 +56,7 @@
 }
 .topics .topic-head-info {
   padding: 10px 20px;
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 3px;
   border: 1px solid #f2f2f2;
   float: left;
@@ -90,7 +90,7 @@
 }
 .topics .topic-head-info .info-wrap .send-topic-wb {
   background-color: #19bca1;
-  color: #ffffff;
+  color: #fff;
 }
 .topics .topic-head-info .info-wrap .send-topic-wb i {
   margin-right: 5px;
@@ -101,7 +101,7 @@
 .topics .topic-holder {
   margin-left: 20px;
   padding: 10px 20px;
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 3px;
   border: 1px solid #f2f2f2;
   float: left;
@@ -166,7 +166,7 @@
 }
 .topics .t-content .left-wb {
   padding: 10px 20px;
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 3px;
   border: 1px solid #f2f2f2;
   float: left;
@@ -180,7 +180,7 @@
 .topics .t-content .right-card {
   margin-left: 20px;
   padding: 10px 20px;
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 3px;
   border: 1px solid #f2f2f2;
   float: left;
@@ -195,7 +195,7 @@
   border: 1px solid #f2f2f2;
   border-radius: 2px;
   margin-bottom: 15px;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 .topics .t-content .right-card .line2 {
   height: 60px;
@@ -232,8 +232,8 @@
 }
 #topic .top {
   width: 100%;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
+  background-color: #fff;
+  border: 1px solid #ddd;
   border-top: none;
   min-height: 151px;
 }
@@ -254,12 +254,12 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  background-color: #ffffff;
+  background-color: #fff;
   overflow: hidden;
 }
 #topic .top .data .fudg .huati {
   font-size: 22px;
-  color: #333333;
+  color: #333;
   height: 25px;
   line-height: 25px;
 }
@@ -278,7 +278,7 @@
   text-align: center;
   margin-top: 5px;
   font-size: 16px;
-  color: #333333;
+  color: #333;
 }
 #topic .top .data .fudg .gzfx .hjgfb1 {
   text-align: center;
@@ -323,7 +323,7 @@
   border: 1px solid #d6dadd;
   border-radius: 2px;
   margin-bottom: 15px;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 #topic .content .conhjg .border .recommended {
   padding: 15px;
@@ -350,7 +350,7 @@
   position: absolute;
 }
 #topic .content .conhjg .border .recommended .original .jshgv .named {
-  color: #333333;
+  color: #333;
   font-size: 14px;
   font-weight: 700;
 }
@@ -361,7 +361,7 @@
   margin-left: 2px;
 }
 #topic .content .conhjg .border .recommended .original .jshgv .shumin {
-  color: #333333;
+  color: #333;
   font-size: 12px;
   overflow: hidden;
   height: 25px;
@@ -425,6 +425,6 @@
 #topic .content .coghgf .batem {
   background-image: url(../images/background.png);
   padding: 20px 15px;
-  color: #ffffff;
+  color: #fff;
   font-size: 15px;
 }

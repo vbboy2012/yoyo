@@ -213,7 +213,7 @@ class QiNiuAddon extends Addon
         $encodedSign = $this->urlsafe_base64_encode($sign);
         $uploadToken = $access_key . ':' . $encodedSign . ':'. $b;
 
-        $url = 'http://up.qiniu.com/putb64/-1';
+        $url = 'http://up-z2.qiniu.com/putb64/-1';
         $header[] = 'Content-Type: application/octet-stream';
         $header[] = 'Authorization: UpToken '. $uploadToken;
 

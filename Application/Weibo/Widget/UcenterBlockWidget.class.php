@@ -27,6 +27,13 @@ class UcenterBlockWidget extends Action
         $param['where']['is_top'] = 0;
         $param['page']=$page;
         $param['count']=$count;
+
+        $invisibleList = D('Weibo/WeiboCrowd')->getInvisible();
+        if (!empty($invisibleList)) {
+            $invisible = array_column($invisibleList,'id');
+            $param['where']['crowd_id'] = array('not in',$invisible);
+        }
+
         //查询
         $list = $weiboModel->getWeiboList($param);
         $this->assign('list', $list);

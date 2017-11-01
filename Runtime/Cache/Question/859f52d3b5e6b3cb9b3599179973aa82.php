@@ -140,7 +140,7 @@
 <div class="container-fluid topp-box">
     <div class="col-xs-2 box">
         <div class="">
-            <a class="navbar-brand" href="<?php echo U('Home/Index/index');?>">YOYOCOINS</a>
+            <a class="navbar-brand" href="<?php echo U('Home/Index/index');?>">YOYOCOINS.com</a>
         </div>
     </div>
     <div class="col-xs-7 box ">
@@ -462,7 +462,7 @@
                 <p><span>问：</span><span class="qtTitle"><a target="_blank" href="<?php echo U('Question/Index/detail',array('id'=>$data['id']));?>"><?php echo (msubstr($data["title"],0,34,'utf-8',true)); ?></a></span><span class="state">
                     <?php if(($data["best_answer"]) != "0"): ?>已结题<?php else: ?>待回答<?php endif; ?>
                 </span></p>
-                <p class="btInfo"><span class="name"><?php echo ($data["user"]["nickname"]); ?></span><span>发起提问</span><span>共有<?php echo ($data["answer_num"]); ?>人回答</span></p>
+                <p class="btInfo"><span class="name"><?php echo ($data["user"]["nickname"]); ?></span><span>发起提问</span><span>共有<?php echo ($data["answer_num"]); ?>个回答</span></p>
             </div>
         </div>
         <div class="right">
@@ -494,7 +494,7 @@
                         <p>我的提问</p>
                     </div>
                     <div class="btBox answered">
-                        <a href="<?php echo U('Index/myQuestion',array('type'=>a));?>"><p style="color: #ffffff;"><?php echo ($my_help); ?></p></a>
+                        <a href="<?php echo U('Index/myQuestion',array('type'=>a));?>"><p style="color: #ffffff;"><?php echo ($my_answer); ?></p></a>
                         <p>我的回答</p>
                     </div>
                 </div>
@@ -531,33 +531,55 @@
 	<footer class="footer">
     <div class="container ftTop">
         <div class="ftBox">
-            <p class="ftTit">关于我们</p>
+            <h2>YOYOCOINS.com</h2>
             <div class="ftMain">
                 <?php echo modC('ABOUT_US',L('_NOT_SET_NOW_'),'Config');?>
             </div>
         </div>
         <div class="ftBox">
-            <p class="ftTit">友情链接</p>
-            <div class="ftLink">
-                <?php echo W('Common/SuperLinks/superLinks');?>
+            <div class="col-xs-6">
+                <p class="ftTit">关于</p>
+                <div class="ftLink">
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">关于我们</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">招聘</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">费用</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">服务条款</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">系统公告</a></li>
+            </div>
+            </div>
+            <div class="col-xs-6">
+                <p class="ftTit">支持</p>
+                <div class="ftLink">
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">联系客服</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">常见问题</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">忘记密码</a></li>
+                </div>
             </div>
         </div>
-        <div class="ftBox codeBox">
-            <?php $logo = get_cover(modC('QRCODE_BOTTOM',0,'Config'),'path'); $logo = $logo?$logo:'/yoyo/Public/images/code.png'; ?>
-            <div class="code">
-                <div class="ftCircle" style="background-color: #6cc775"><i class="iconfont icon-weixin1"></i></div>
-                <p>官方微信</p>
-                <div class="imgWrap"><img src="<?php echo ($logo); ?>" alt=""></div>
+        <div class="ftBox">
+            <div class="col-xs-6">
+                <p class="ftTit">服务</p>
+                <div class="ftLink">
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">问答</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">论坛</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">圈子</a></li>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <p class="ftTit">联系我们</p>
+                <div class="ftLink">
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">Facebook</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">Twitter</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">Instagram</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">博客</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">中文博客</a></li>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container ftOther">
-        <?php echo modC('COMPANY', L('_NOT_SET_NOW_'), 'Config');?>
     </div>
     <div class="container ftBottom text-center">
         <p>
             <span><?php echo modC('COPY_RIGHT',L('_NOT_SET_NOW_'),'Config');?></span>
-            <span><?php echo modC('ICP','浙ICP备12042711号-5', 'Config');?><br><a href="http://www.opensns.cn" target="_blank">Powered by OpenSNS</a></span>
         </p>
         <?php echo ($count_code); ?>
     </div>

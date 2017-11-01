@@ -15,11 +15,18 @@ class TopicModel extends Model
 {
 
     protected $tableName = 'weibo_topic';
+    protected function get_topic($content){
+        //正则表达式匹配
+        $topic_pattern = "/#([^\\#|.]+)#/";
+        preg_match_all($topic_pattern, $content, $users);
 
+        //返回话题列表
+        return array_unique($users[1]);
+    }
     public function addTopic(&$content)
     {
         //检测话题的存在性
-        $topic = get_topic($content);
+        $topic = $this->get_topic($content);
         $weiboTopicLink=array();
         if (isset($topic) && !is_null($topic)) {
             $link=array('create_time'=>time(),'status'=>1);
@@ -34,12 +41,12 @@ class TopicModel extends Model
                     $topic_id=$tik['id'];
                 }
                 $content=str_replace('#'.$e.'#','[topic:'.$topic_id.']',$content);
-                //增加话题微博链接
+                //增加话题动态链接
                 $link['topic_id']=$topic_id;
                 $weiboTopicLink[]=$link;
             }
         }
-        //话题微博链接后面会写入数据库
+        //话题动态链接后面会写入数据库
         return $weiboTopicLink;
     }
 
@@ -109,7 +116,7 @@ class TopicModel extends Model
     }
 
     /**
-     * 获取微博右侧热门话题排行榜
+     * 获取动态右侧热门话题排行榜
      * @return mixed
      */
     public function getHotTopicList()
@@ -123,7 +130,7 @@ class TopicModel extends Model
         return $list;
     }
 
-    /**删除微博后对话题进行相关操作
+    /**删除动态后对话题进行相关操作
      * @param $weibo_id
      * @return mixed
      */

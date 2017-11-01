@@ -390,4 +390,10 @@ class IndexController extends Controller{
         }
     }
 
+
+    public function img()
+    {
+        create_user_avatar("bonita");
+    }
+
 } 

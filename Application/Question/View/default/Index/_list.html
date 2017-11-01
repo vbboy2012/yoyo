@@ -10,7 +10,7 @@
                 <p><span>问：</span><span class="qtTitle"><a target="_blank" href="{:U('Question/Index/detail',array('id'=>$data['id']))}">{$data.title|msubstr=0,34,'utf-8',true}</a></span><span class="state">
                     <neq name="data.best_answer" value="0">已结题<else/>待回答</neq>
                 </span></p>
-                <p class="btInfo"><span class="name">{$data.user.nickname}</span><span>发起提问</span><span>共有{$data.answer_num}人回答</span></p>
+                <p class="btInfo"><span class="name">{$data.user.nickname}</span><span>发起提问</span><span>共有{$data.answer_num}个回答</span></p>
             </div>
         </div>
         <div class="right">

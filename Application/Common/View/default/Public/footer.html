@@ -1,36 +1,55 @@
 <footer class="footer">
     <div class="container ftTop">
         <div class="ftBox">
-            <p class="ftTit">关于我们</p>
+            <h2>YOYOCOINS.com</h2>
             <div class="ftMain">
                 {:modC('ABOUT_US',L('_NOT_SET_NOW_'),'Config')}
             </div>
         </div>
         <div class="ftBox">
-            <p class="ftTit">友情链接</p>
-            <div class="ftLink">
-                {:W('Common/SuperLinks/superLinks')}
+            <div class="col-xs-6">
+                <p class="ftTit">关于</p>
+                <div class="ftLink">
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">关于我们</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">招聘</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">费用</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">服务条款</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">系统公告</a></li>
+            </div>
+            </div>
+            <div class="col-xs-6">
+                <p class="ftTit">支持</p>
+                <div class="ftLink">
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">联系客服</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">常见问题</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">忘记密码</a></li>
+                </div>
             </div>
         </div>
-        <div class="ftBox codeBox">
-            <php>
-                $logo = get_cover(modC('QRCODE_BOTTOM',0,'Config'),'path');
-                $logo = $logo?$logo:'__PUBLIC__/images/code.png';
-            </php>
-            <div class="code">
-                <div class="ftCircle" style="background-color: #6cc775"><i class="iconfont icon-weixin1"></i></div>
-                <p>官方微信</p>
-                <div class="imgWrap"><img src="{$logo}" alt=""></div>
+        <div class="ftBox">
+            <div class="col-xs-6">
+                <p class="ftTit">服务</p>
+                <div class="ftLink">
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">问答</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">论坛</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">圈子</a></li>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <p class="ftTit">联系我们</p>
+                <div class="ftLink">
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">Facebook</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">Twitter</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">Instagram</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">博客</a></li>
+                    <li><a target="_blank" title="" href="https://localbitcoins.com/about">中文博客</a></li>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container ftOther">
-        {:modC('COMPANY', L('_NOT_SET_NOW_'), 'Config')}
     </div>
     <div class="container ftBottom text-center">
         <p>
             <span>{:modC('COPY_RIGHT',L('_NOT_SET_NOW_'),'Config')}</span>
-            <span>{:modC('ICP','浙ICP备12042711号-5', 'Config')}<br><a href="http://www.opensns.cn" target="_blank">Powered by OpenSNS</a></span>
         </p>
         {$count_code}
     </div>

@@ -45,6 +45,8 @@ class QuestionModel extends Model{
             $map['id']=$id;
             $data=$this->where($map)->find();
             if($data){
+                //回答数，除去追问
+                $data['answer_num'] = M('question_answer')->where(array('question_id'=>$data['id'],'reply_id'=>0,'status'=>1))->count() ;
                 $data['user']=query_user(array('uid','space_url','nickname','avatar128','space_link'),$data['uid']);
                 $data['category_info']=D('Question/QuestionCategory')->info($data['category']);
                 $contentHandler=new ContentHandlerModel();
@@ -62,6 +64,8 @@ class QuestionModel extends Model{
             $list=$this->where($map)->page($page,$r)->order($order)->field($field)->select();
             $contentHandler=new ContentHandlerModel();
             foreach($list as &$val){
+                //回答数，除去追问
+                $val['answer_num'] = M('question_answer')->where(array('question_id'=>$val['id'],'reply_id'=>0,'status'=>1))->count() ;
                 $val['description']=$contentHandler->displayHtmlContent($val['description']);
             }
         }

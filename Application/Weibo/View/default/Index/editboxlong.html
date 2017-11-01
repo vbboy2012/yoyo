@@ -1,0 +1,28 @@
+<input type="text" id="longtitle" placeholder="请在这里输入长文章标题">
+<!--百度编辑器-->
+<div id="bd-ditor"></div>
+<!--百度编辑器-->
+<div class="op-wrap">
+    <!--插件-->
+    <div class="pull-right right-wrong">
+        <a href="javascript:" class="send-right" data-role="send_long_weibo" data-crowd="" data-min-length="200" data-url="{:U('Weibo/Index/doSend')}" posting="0"><i class="iconfont icon-dui"></i></a>
+        <!--<a href="javascript:" class="send-wrong" data-role="change_back"><i class="iconfont icon-cuo"></i></a>-->
+    </div>
+    <!--话题-->
+    <div class="pull-right">{:use_topic()}</div>
+</div>
+
+<link href="__STATIC__/umeditor/themes/default/css/umeditor.min.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="__STATIC__/umeditor/umeditor.min.js"></script>
+<div id="um-plugin-js-block"></div>
+<script type="text/javascript" charset="utf-8" src="__STATIC__/umeditor/umeditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/umeditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    //渲染编辑器
+    var weibo_content_um;
+    $(function () {
+        weibo_content_um = UM.getEditor('bd-ditor', {
+            toolbar: ['emotion bold italic underline strikethrough forecolor drafts | insertorderedlist insertunorderedlist blockquote | link  image']
+        });
+    });
+</script>

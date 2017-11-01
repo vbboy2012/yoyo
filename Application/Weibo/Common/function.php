@@ -34,7 +34,7 @@ function send_weibo($content, $type, $feed_data = '', $from = '', $pos = '', $cr
         unset($val);
         D('Weibo/WeiboTopicLink')->addDatas($weiboTopicLink);
 
-        //信任话题的用户接收到话题更新通知
+        //关注话题的用户接收到话题更新通知
         $k = 0;
         foreach ($weiboTopicLink as $topk) {
             $topks[$k]['topk'] = $topicModel->getTopicInfo($topk['topic_id']);
@@ -52,7 +52,7 @@ function send_weibo($content, $type, $feed_data = '', $from = '', $pos = '', $cr
                 }
                 // 未读过该话题的用户不再提醒
                 $readUids = D('Message')->topicMessageRead($vo['topk']['name'], $vo['uid']);
-                D('Message')->sendALotOfMessageWithoutCheckSelf($readUids, '话题通知', '您信任的#' . $vo['topk']['name'] . '#话题已更新。', 'Weibo/Topic/index', array('topk' => $vo['topk']['id']), 1, 'Weibo');
+                D('Message')->sendALotOfMessageWithoutCheckSelf($readUids, '话题通知', '您关注的#' . $vo['topk']['name'] . '#话题已更新。', 'Weibo/Topic/index', array('topk' => $vo['topk']['id']), 1, 'Weibo');
             }
         }
 
@@ -62,12 +62,12 @@ function send_weibo($content, $type, $feed_data = '', $from = '', $pos = '', $cr
     if ($type == 'repost') {
         $message_at_content = array(
             'keyword1' => parse_content_for_message($content),
-            'keyword2' => '发布微博时@了你：',
-            'keyword3' => "转发微博"
+            'keyword2' => '发布动态时@了你：',
+            'keyword3' => "转发动态"
         );
     } else {
         $message_at_content = array(
-            'keyword1' => '发布微博时@了你：',
+            'keyword1' => '发布动态时@了你：',
             'keyword2' => '',
             'keyword3' => parse_content_for_message($content)
         );
@@ -102,8 +102,8 @@ function send_comment($weibo_id, $content, $comment_id = 0)
     $weibo = D('Weibo')->getWeiboDetail($weibo_id);
     $message_content = array(
         'keyword1' => parse_content_for_message($content),
-        'keyword2' => '评论我的微博：',
-        'keyword3' => $weibo['type'] == 'repost' ? "转发微博" : parse_content_for_message($weibo['content'])
+        'keyword2' => '评论我的动态：',
+        'keyword3' => $weibo['type'] == 'repost' ? "转发动态" : parse_content_for_message($weibo['content'])
     );
     send_comment_message($weibo['uid'], $weibo_id, $message_content);
     //通知回复的人
@@ -118,8 +118,8 @@ function send_comment($weibo_id, $content, $comment_id = 0)
     $uids = array_subtract($uids, array($weibo['uid'], $comment['uid']));
     $message_at_content = array(
         'keyword1' => parse_content_for_message($content),
-        'keyword2' => '评论微博时@了你：',
-        'keyword3' => $weibo['type'] == 'repost' ? "转发微博" : parse_content_for_message($weibo['content'])
+        'keyword2' => '评论动态时@了你：',
+        'keyword3' => $weibo['type'] == 'repost' ? "转发动态" : parse_content_for_message($weibo['content'])
     );
     send_at_message($uids, $weibo_id, $message_at_content);
 
@@ -142,7 +142,19 @@ function send_comment_message($uid, $weibo_id, $message)
 {
     $title = L('_COMMENT_MESSAGE_');
     $from_uid = is_login();
-    send_message($uid, $title, $message, 'Weibo/Index/weiboDetail', array('id' => $weibo_id), $from_uid, 'Weibo', 'Common_comment');
+    if(check_message_event('weibo_comment', 'zhannei')) {
+        send_message($uid, $title, $message, 'Weibo/Index/weiboDetail', array('id' => $weibo_id), $from_uid, 'Weibo', 'Common_comment');
+    }
+    if(check_message_event('weibo_comment', 'sms')) {
+        $content = get_message_template_filt('weibo_comment', 'sms');
+        $url = 'http://' . $_SERVER['HTTP_HOST'] . U('Weibo/Index/weiboDetail?id=' . $weibo_id);
+        send_mobile_message($uid, $title, $content . $url, 'Weibo/Index/weiboDetail', array('id' => $weibo_id));
+    }
+    if(check_message_event('weibo_comment', 'email')) {
+        $content = get_message_template_filt('weibo_comment', 'email');
+        $url = 'http://' . $_SERVER['HTTP_HOST'] . U('Weibo/Index/weiboDetail?id=' . $weibo_id);
+        send_email_message($uid, $title, $content . $url, 'Weibo/Index/weiboDetail', array('id' => $weibo_id));
+    }
 }
 
 
@@ -158,7 +170,19 @@ function send_at_message($uids, $weibo_id, $content)
     $my_username = get_nickname();
     $title = $my_username . '@了您';
     $fromUid = get_uid();
-    send_message($uids, $title, $content, 'Weibo/Index/weiboDetail', array('id' => $weibo_id), $fromUid, 'Weibo', 'Common_comment');
+    if(check_message_event('weibo_aite', 'zhannei')) {
+        send_message($uids, $title, $content, 'Weibo/Index/weiboDetail', array('id' => $weibo_id), $fromUid, 'Weibo', 'Common_comment');
+    }
+    if(check_message_event('weibo_aite', 'sms')) {
+        $content = get_message_template_filt('weibo_aite', 'sms');
+        $url = 'http://' . $_SERVER['HTTP_HOST'] . U('Weibo/Index/weiboDetail?id=' . $weibo_id);
+        send_mobile_message($uids, $title, $content . $url, 'Weibo/Index/weiboDetail', array('id' => $weibo_id));
+    }
+    if(check_message_event('weibo_aite', 'email')) {
+        $content = get_message_template_filt('weibo_aite', 'email');
+        $url = 'http://' . $_SERVER['HTTP_HOST'] . U('Weibo/Index/weiboDetail?id=' . $weibo_id);
+        send_email_message($uids, $title, $content . $url, 'Weibo/Index/weiboDetail', array('id' => $weibo_id));
+    }
 }
 
 function parse_topic($content, $no_link = 0)
@@ -276,7 +300,7 @@ function crowd_exists($crowd_id = '')
  */
 function replace_weibo_html($html, $weibo_id = 0)
 {
-    if ($weibo_id) {//微博详情部分才执行
+    if ($weibo_id) {//动态详情部分才执行
         //替换follow
         $list = get_replace_list($html, 'follow');
         foreach ($list as $val) {
@@ -307,7 +331,9 @@ function replace_weibo_html($html, $weibo_id = 0)
             $map_support['uid'] = is_login();
             $supported = M('Support')->where($map_support)->count();
             if ($supported) {
-                $html = str_replace('<i id="ico_like" class="icon-heart-empty">', '<i id="ico_like" class="icon-heart">', $html);
+                $html = str_replace('<i class="weibo_like icon-heart-empty">', '<i class="weibo_like icon-heart">', $html);
+            }else{
+                $html = str_replace('<i class="weibo_like icon-heart">', '<i class="weibo_like icon-heart-empty">', $html);
             }
         }
         //替换点赞按钮样式end
@@ -376,13 +402,4 @@ function get_crowd_admin($crowd_id)
         return -1;
     }
     return $data['uid'];
-}
-
-function get_user_crowd_post($status)
-{
-    if ($status!=-1) {
-        return '是';
-    } else {
-        return '否';
-    }
 }

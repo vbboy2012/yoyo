@@ -104,11 +104,12 @@ $(function () {
         }
     });
     send_weibo();
+    send_long_weio();
 })
 
 var send_weibo = function () {
     $('[data-role="send_weibo"]').unbind('click');
-    $('[data-role="send_weibo"]').click(function () {
+    $(document).on('click','[data-role="send_weibo"]',function () {
         var $this = $(this);
         var $hook_show = $this.parents('.weibo_post_box').find('#hook_show');
         var extra = $hook_show.find('.extra').serialize();
@@ -159,6 +160,48 @@ var send_weibo = function () {
         });
     });
 }
+var send_long_weio=function () {
+    $(document).on('click','[data-role="send_long_weibo"]',function () {
+        var $this=$(this);
+        if($this.attr('posting')!=='1'){
+            $this.attr('posting','1');
+            var crowd=$this.attr('data-crowd');
+            var title=$('#longtitle').val();
+            if(title.length==0){
+                toast.error('请输入长文标题！');
+                $this.attr('posting','0');
+                return;
+            }
+            if(title.length>100){
+                toast.error('标题过长！');
+                $this.attr('posting','0');
+                return;
+            }
+            var weibo_content=weibo_content_um.getContent();
+            var plain_txt=weibo_content_um.getPlainTxt();
+            var min_length=$this.attr('data-min-length');
+            if(plain_txt.length<min_length){
+                toast.error('内容长度不能低于'+min_length+'！');
+                $this.attr('posting','0');
+                return;
+            }
+            $.post(U('Weibo/Index/doSendLongWeibo'),{crowd:crowd,weibo_content:weibo_content,plain_txt:plain_txt,title:title},function (res) {
+                handleAjax(res);
+                if (res.status) {
+                    $('#weibo_list').prepend(res.html);
+                    weibo_bind();
+                    weibo_content_um.setContent('');
+                    $('#longtitle').val('');
+                    $('#go-top').click();
+                }
+                $this.attr('posting','0');
+            });
+        }else{
+            toast.error('提交中，请务重复提交！');
+        }
+    });
+}
+
 function initPos() {
     $('#show-pos [name=pos]').val('');
     $('#show-pos').hide();
@@ -210,7 +253,7 @@ insert_image = {
         if (insert_image.obj != 0)
             insert_image.close();
         insert_image.obj = obj;
-        this.find('#insert_image').attr('onclick', 'insert_image.showBox()');
+       // this.find('#insert_image').attr('onclick', 'insert_image.showBox()');
         var box_url = this.find('#box_url').val();
         $.post(U('weibo/type/imagebox'), {}, function (res) {
             var html = '<div class="XT_image XT_insert">' +
@@ -248,6 +291,7 @@ var weibo_comment = function () {
             hide_weibo_comment_list(weiboCommentList);
         } else {
             show_weibo_comment_list(weiboCommentList);
+            $('#weibo_'+weibo_id).find('[data-role="show-comment-input"]').click();
         }
         //取消默认动作
         e.preventDefault();
@@ -256,14 +300,14 @@ var weibo_comment = function () {
 }
 
 var show_weibo_comment_list = function (weiboCommentList) {
-
-    if (weiboCommentList.text().trim() == '') {
+    var trueList=weiboCommentList.find('.comment-list-block');
+    if(trueList.text().trim() == ''){
         var weibo_id = weiboCommentList.attr('data-weibo-id');
         $.post(U('Weibo/Index/loadComment'), {weibo_id: weibo_id}, function (res) {
             var html = '<div class="col-xs-12"><div class=" weibo-comment-block" style=""><div class="weibo-comment-container"></div></div></div>';
-            weiboCommentList.html(html);
-            weiboCommentList.find('.weibo-comment-container').html(res.html);
-            $('#text_' + weibo_id).focus();
+            trueList.html(html);
+            trueList.find('.weibo-comment-container').html(res.html);
+            $('#text_'+weibo_id).focus();
             weibo_bind();
             bind_atwho();
         }, 'json');
@@ -307,7 +351,8 @@ var weibo_reply = function () {
         weiboToCommentId.val(comment_id);
         textarea.focus();
         textarea.val('回复 @' + nickname + ' ：');
-
+        $('.bottom-top').show();
+        $(this).parents('.weibo-bottom').find('.bottom-top').hide();
     })
 }
 
@@ -317,6 +362,7 @@ var do_comment = function () {
     $('[data-role="do_comment"]').click(function () {
 
         var weiboId = $(this).attr('data-weibo-id');
+        var position=$(this).attr('data-type');
 
 
         var weibo = $('#weibo_' + weiboId);
@@ -327,7 +373,7 @@ var do_comment = function () {
 
         var weiboToCommentId = $('[name="reply_id"]', weibo);
         var comment_id = weiboToCommentId.val();
-        $.post(url, {weibo_id: weiboId, content: content, comment_id: comment_id}, function (a) {
+        $.post(url, {weibo_id: weiboId, content: content, comment_id: comment_id,position:position}, function (a) {
             handleAjax(a);
             if (a.status) {
 
@@ -352,8 +398,8 @@ var do_comment = function () {
     })
 }
 
-var weibo_page = function (weibo_id, page) {
-    $.post(U('Weibo/Index/commentlist'), {weibo_id: weibo_id, page: page}, function (res) {
+var weibo_page = function (weibo_id, position, page) {
+    $.post(U('Weibo/Index/commentlist'), {weibo_id: weibo_id, page: page,position:position}, function (res) {
         $('#show_comment_' + weibo_id).html(res);
         weibo_bind();
         if (page == 1) {
@@ -404,21 +450,34 @@ var del_weibo = function () {
             var weibo_id = $this.attr('data-weibo-id');
             $.post(U('Weibo/Index/doDelWeibo'), {weibo_id: weibo_id}, function (msg) {
                 if (msg.status) {
-                    weibo_bind();
-                    $this.closest('#weibo_' + weibo_id).fadeOut();
                     toast.success('删除动态成功。', '温馨提示');
+                    setTimeout(function () {
+                        location.href=U("weibo/index/index");
+                    },2000)
+                } else {
+                    toast.error(msg.info);
                 }
             }, 'json');
         }
     })
-
 }
 
 var weibo_set_top = function () {
     $('[data-role="weibo_set_top"]').unbind('click');
     $('[data-role="weibo_set_top"]').click(function () {
         var weiboId = $(this).attr('data-weibo-id');
-        $.post(U('weibo/index/setTop'), {weibo_id: weiboId}, function (msg) {
+        var type = $(this).attr('data-type');
+        var is_crowd = $(this).parents('.set-top-box').find("input[name='top_type']:checked").val();
+        var title = $(this).parents('.set-top-box').find("input[name='top_title']").val();
+        var top_dead = $(this).parents('.set-top-box').find("input[name='top_dead']").val();
+        var top_type = $('input[name="type_top"]').val() ;
+        if (type == 'weibo') {
+            is_crowd = 0;
+        }
+        if (type == 'crowd') {
+            is_crowd = 1;
+        }
+        $.post(U('weibo/index/setTop'), {weibo_id: weiboId,is_crwod:is_crowd,title:title,top_dead:top_dead,type:top_type}, function (msg) {
             if (msg.status) {
                 toast.success(msg.info);
                 setTimeout('location.reload()', 500);
@@ -428,21 +487,6 @@ var weibo_set_top = function () {
         });
     })
 };
-
-var set_top_crowd_weibo = function () {
-    $('[data-role="set_top_crowd_weibo"]').unbind('click');
-    $('[data-role="set_top_crowd_weibo"]').click(function () {
-        var weiboId = $(this).attr('data-weibo-id');
-        $.post(U('weibo/index/setTop'), {weibo_id: weiboId, type: "crowd"}, function (msg) {
-            if (msg.status) {
-                toast.success(msg.info);
-                setTimeout('location.reload()', 500);
-            } else {
-                toast.error(msg.info);
-            }
-        });
-    })
-}
 
 var bind_repost = function () {
     $('[data-role="send_repost"]').magnificPopup({
@@ -485,7 +529,7 @@ var bind_lazy_load = function () {
 }
 
 //zzl显示隐藏置顶微博
-var unshow_top_weibo_ids = function (unshow_ids, id) {
+var unshow_top_weibo_ids=function(unshow_ids, id,type) {
     var newArr = [];
     if (unshow_ids != undefined) {
         var attachArr = unshow_ids.split(',');
@@ -495,30 +539,18 @@ var unshow_top_weibo_ids = function (unshow_ids, id) {
             }
         }
     }
-    newArr.push(id);
-    unshow_ids = newArr.join(',');
+    switch (type){
+        case 'asc':
+            newArr.push(id);
+            break;
+        case 'desc':
+            break;
+    }
+    unshow_ids=newArr.join(',');
     return unshow_ids;
 }
 
-var hide_top_weibo = function () {
-    $('[data-role="hide_top_weibo"]').unbind('click');
-    $('[data-role="hide_top_weibo"]').click(function () {
-        var weiboId = $(this).attr('data-weibo-id');
-        $(this).parents('.top_can_hide').hide();
-        if (($('[data-role="show_all_top_weibo"]').length !== 0)) {
-            if (!$('[data-role="show_all_top_weibo"]').is(':visited')) {
-                $('[data-role="show_all_top_weibo"]').show();
-            }
-        }
-        toast.success('隐藏成功！');
-        //写入cookie
-        var unshow_top_weibo = $.cookie('Weibo_index_top_hide_ids');
-        unshow_top_weibo = unshow_top_weibo_ids(unshow_top_weibo, weiboId);
-        $.cookie('Weibo_index_top_hide_ids', unshow_top_weibo, {expires: 365});
-    });
-}
-
-var show_all_top_weibo = function () {
+var show_all_top_weibo=function(){
     $('[data-role="show_all_top_weibo"]').unbind('click');
     $('[data-role="show_all_top_weibo"]').click(function () {
         $('#top_list').children('.top_can_hide').show();
@@ -540,7 +572,7 @@ function follow() {
 
                 $this.attr('class', $this.attr('data-before'));
                 $this.attr('data-role', 'unfollow');
-                $this.html('已信任');
+                $this.html('已关注');
                 follower.bind_follow();
                 toast.success(msg.info, L('_KINDLY_REMINDER_'));
             } else {
@@ -557,7 +589,7 @@ function follow() {
             if (msg.status) {
                 $this.attr('class', $this.attr('data-after'));
                 $this.attr('data-role', 'follow');
-                $this.html('信任');
+                $this.html('关注');
                 follower.bind_follow();
                 toast.success(msg.info, L('_KINDLY_REMINDER_'));
             } else {
@@ -713,12 +745,21 @@ function bind_comment_support() {
                         num++;
                         num_tag.text(num);
                     }
-                    var ico = me.find('#ico_like1');
+                    var ico = $('#support_' + MODULE_NAME + '_' + table + '_' + row+'_icon');;
                     ico.removeClass();
-                    ico.addClass('icon-thumbs-up');
+                    ico.addClass('iconfont icon-dianzan-already');
+                    $('#comment_support_show_'+row).addClass('show-always');
                     toast.success(msg.info, L('_KINDLY_REMINDER_'));
 
                 } else {
+                    var num_tag = $('#support_' + MODULE_NAME + '_' + table + '_' + row);
+                    var num = num_tag.text();
+                    num--;
+                    num_tag.text(num);
+                    var ico = $('#support_' + MODULE_NAME + '_' + table + '_' + row+'_icon');;
+                    ico.removeClass();
+                    ico.addClass('iconfont icon-dianzan');
+
                     toast.error(msg.info, L('_KINDLY_REMINDER_'));
                 }
 
@@ -745,18 +786,136 @@ var weibo_bind = function () {
     comment_del();
     del_weibo();
     weibo_set_top();
-    set_top_crowd_weibo();
     bind_repost();
     bind_weibo_popup();
     do_send_repost();
     bind_lazy_load();
     bind_single_line();
-    hide_top_weibo();
     show_all_top_weibo();
     bind_show_video();
     ext_bind();
     bind_rotate();
     mouse_follow();
+    bind_show_comment_input();
+    bind_comment_hover();
+    bind_weibo_support();
+    hide_top_weibo();
+    bind_repost();
+}
+var hide_top_weibo = function(){
+    $('[data-role="hide_top_weibo_list"]').unbind('click');
+    $('[data-role="hide_top_weibo_list"]').click(function () {
+        var weiboId = $(this).attr('data-weibo-id');
+        $(this).parents('.top_can_hide').hide();
+        if(($('[data-role="show_all_top_weibo"]').length!==0)){
+            if(!$('[data-role="show_all_top_weibo"]').is(':visited')){
+                $('[data-role="show_all_top_weibo"]').show();
+            }
+        }
+        toast.success('隐藏成功！');
+        //写入cookie
+        var unshow_top_weibo=$.cookie('Weibo_index_top_hide_ids');
+        unshow_top_weibo=unshow_top_weibo_ids(unshow_top_weibo,weiboId,'asc');
+        $.cookie('Weibo_index_top_hide_ids',unshow_top_weibo,{expires:365});
+    });
+}
+
+var bind_weibo_support=function() {
+    $('[data-role="support-weibo"]').unbind('click');
+    $('[data-role="support-weibo"]').click(function () {
+        // event.stopPropagation();
+        var me = $(this);
+        if (MID == 0) {
+            toast.error('请在登陆后再点赞。', L('_KINDLY_REMINDER_'));
+            return;
+        } else {
+            var row = $(this).attr('row');
+            var table = $(this).attr('table');
+            var uid = $(this).attr('uid');
+            var jump = $(this).attr('jump');
+            if (typeof(THIS_MODEL_NAME) != 'undefined') {
+                MODULE_NAME = THIS_MODEL_NAME;
+            }
+            $.post(U('Weibo/Index/doSupport'), {appname: MODULE_NAME, row: row, table: table, uid: uid, jump: jump}, function (msg) {
+                if (msg.status) {
+                    var num_tag = $('#support_' + MODULE_NAME + '_' + table + '_' + row);
+                    var pos = $('#support_' + MODULE_NAME + '_' + table + '_' + row + '_pos');
+                    if (pos.text() == '') {
+                        var html = '<span id="' + '#support_' + MODULE_NAME + '_' + table + '_' + row + '">1</span>';
+                        pos.html('&nbsp;( ' + html + '&nbsp;)');
+
+                    } else {
+                        var num = num_tag.text();
+                        num++;
+                        num_tag.text(num);
+                    }
+                    var supporter_tag=$('#supporter_Weibo_weibo_'+row);
+                    var user_html='<a ucard="'+msg.user.uid+'" href="'+msg.user.space_url+'" class="text-color">'+msg.user.nickname+'</a>';
+                    var ico = me.parents('[data-position="one-weibo"]').find('[data-role="support-weibo"]');
+                    if(num==1){
+                        ico.find('.support-text').remove();
+                        supporter_tag.html(user_html);
+                    }else{
+                        supporter_tag.prepend(user_html+'，');
+                    }
+                    ucard();
+                    var ico_i=ico.find('i.weibo_like');
+                    ico_i.removeClass();
+                    ico_i.addClass('weibo_like icon-heart');
+                    toast.success(msg.info, L('_KINDLY_REMINDER_'));
+
+                } else {
+                    var num_tag = $('#support_' + MODULE_NAME + '_' + table + '_' + row);
+                    var num = num_tag.text();
+                    num--;
+                    num_tag.text(num);
+
+                    var supporter_tag=$('#supporter_Weibo_weibo_'+row);
+                    var ico = me.parents('[data-position="one-weibo"]').find('[data-role="support-weibo"]');
+                    if(num==0){
+                        ico.find('.support-text').remove();
+                        supporter_tag.html('点赞');
+                    }else{
+                        ico.find('.support-text').remove();
+                        supporter_tag.html(msg.html);
+                    }
+
+                    var ico_i=ico.find('i.weibo_like');
+                    ico_i.removeClass();
+                    ico_i.addClass('weibo_like icon-heart-empty');
+                    toast.error(msg.info, L('_KINDLY_REMINDER_'));
+                }
+
+            }, 'json');
+        }
+
+    });
+}
+
+var bind_comment_hover=function(){
+    $('[data-role="comment_content_hover"]').unbind();
+    $('[data-role="comment_content_hover"]').hover(function () {
+        var comment_id=$(this).attr('data-comment-id');
+        $('#comment_time_show_'+comment_id).show();
+        $('#comment_action_show_'+comment_id).show();
+        $('#comment_support_show_'+comment_id).show();
+    })
+    $('[data-role="comment_content_hover"]').on('mouseleave',function () {
+        var comment_id=$(this).attr('data-comment-id');
+        $('#comment_time_show_'+comment_id).hide();
+        $('#comment_action_show_'+comment_id).hide();
+        $('#comment_support_show_'+comment_id).hide();
+    })
+}
+var bind_show_comment_input=function(){
+    $('[data-role="show-comment-input"]').unbind('click');
+    $('[data-role="show-comment-input"]').click(function () {
+        $('.bottom-top').show();
+        var weibo_id=$(this).attr('data-id');
+        $(this).parents('.bottom-top').hide();
+        $('#text_'+weibo_id).focus();
+        return true;
+    });
 };
 
 
@@ -1139,6 +1298,23 @@ var to_be_number_one = function (tid) {
     })
 }
 
+var bind_repost =  function () {
+    $('[data-role="send_repost"]').magnificPopup({
+        type: 'ajax',
+        overflowY: 'scroll',
+        modal: true,
+        callbacks: {
+            ajaxContentAdded: function () {
+                // Ajax content is loaded and appended to DOM
+                $('#repost_content').focus();
+                console.log(this.content);
+            }, open: function () {
+                $('.mfp-bg').css('opacity', 0.1)
+            }
+        }
+    });
+
+}
 
 var show_comment = function (weiboId) {
     var obj = $('#show_comment_' + weiboId + ' > div');
@@ -1263,3 +1439,15 @@ if (MODULE_NAME == 'Weibo' && CONTROLLER_NAME == 'Index' && ACTION_NAME == 'inde
     });
 
 }
+
+$('[data-role="title-show"]').click(function(){
+    $('input[name="top_title"]').attr('disabled', false) ;
+    $('input[name="top_title"]').css('opacity', '1') ;
+    $('input[name="type_top"]').val('title') ;
+});
+
+$('[data-role="title-hide"]').click(function(){
+    $('input[name="top_title"]').attr('disabled', true) ;
+    $('input[name="top_title"]').css('opacity', '.5') ;
+    $('input[name="type_top"]').val('content') ;
+});

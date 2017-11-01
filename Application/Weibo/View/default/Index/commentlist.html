@@ -5,5 +5,5 @@
     $pageCount = ceil($weiboCommentTotalCount / 10);
 </php>
 <div class="pager">
-    {:getPageHtml('weibo_page',$pageCount,array('weibo_id'=>$weiboId),$page)}
+    {:getPageHtml('weibo_page',$pageCount,array('weibo_id'=>$weiboId,'position'=>''),$page)}
 </div>

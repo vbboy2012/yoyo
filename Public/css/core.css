@@ -1220,8 +1220,7 @@ a:focus {
   margin-bottom: 15px;
 }
 .footer .ftTop .ftBox .ftLink {
-  display: flex;
-  flex-wrap: wrap;
+
 }
 .footer .ftTop .ftBox .ftLink li {
   list-style: none;
@@ -1229,7 +1228,7 @@ a:focus {
 .footer .ftTop .ftBox .ftLink li a {
   padding-right: 15px;
   margin-bottom: 10px;
-  display: inline-block;
+
 }
 .footer .ftTop .codeBox {
   display: flex;
