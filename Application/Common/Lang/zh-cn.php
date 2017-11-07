@@ -414,11 +414,7 @@ $common_lang = array(
     '_GOOGLE_VER_CLOSE_'=>'验证关闭',
     '_PASSWORD_'=>'密码',
     '_PASSWORD_TWO_'=>'再次确认密码',
-    '_BUY_BTC_' => '购买BTC',
-    '_SELL_BTC_' => '出售BTC',
-    '_BUY_ETH_' => '购买ETH',
-    '_SELL_ETH_' => '出售ETH',
-    '_QUICK_AD_' => '快速买卖',
+    '_TRADE_' => '交易',
 
 );
 

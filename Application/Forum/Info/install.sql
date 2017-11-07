@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_forum_follow` (
   `uid` int(11) NOT NULL,
   `forum_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COMMENT='版块关注';
+) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COMMENT='版块信任';
 
 
 -- -----------------------------

@@ -121,7 +121,7 @@ class AttestController extends BaseController
             //检测认证资料 start
             $res=$this->_checkAttestConditions($attest);
             if(!$res){
-                $this->error('为满足认证申请条件！');
+                $this->error('未满足认证申请条件！');
             }
             $attest_type=$this->_checkTypeExist($attest['attest_type_id']);
             $attest_type['fields']['child_type_option']=explode(',',str_replace('，',',',$attest_type['fields']['child_type_option']));

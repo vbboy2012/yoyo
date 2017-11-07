@@ -7,12 +7,12 @@
             <a external href="{:U('Ucenter/Index/mine',array('uid'=>$vo['uid']))}">{$vo.nickname}</a>
         </div>
         <if condition="$vo['is_follow'] eq 1">
-            <a data-role="follow" data-value="unfollow" data-uid="{$vo.uid}" class="follow do-active">已关注</a>
+            <a data-role="follow" data-value="unfollow" data-uid="{$vo.uid}" class="follow do-active">已信任</a>
             <else/>
             <if condition="$vo['uid'] eq is_login()">
                 <a class="follow self">自己</a>
                 <else/>
-                <a data-role="follow" data-value="follow" data-uid="{$vo.uid}" class="follow do-active">关注</a>
+                <a data-role="follow" data-value="follow" data-uid="{$vo.uid}" class="follow do-active">信任</a>
             </if>
         </if>
     </li>

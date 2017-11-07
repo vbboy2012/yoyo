@@ -572,7 +572,7 @@ function follow() {
 
                 $this.attr('class', $this.attr('data-before'));
                 $this.attr('data-role', 'unfollow');
-                $this.html('已关注');
+                $this.html('已信任');
                 follower.bind_follow();
                 toast.success(msg.info, L('_KINDLY_REMINDER_'));
             } else {
@@ -589,7 +589,7 @@ function follow() {
             if (msg.status) {
                 $this.attr('class', $this.attr('data-after'));
                 $this.attr('data-role', 'follow');
-                $this.html('关注');
+                $this.html('信任');
                 follower.bind_follow();
                 toast.success(msg.info, L('_KINDLY_REMINDER_'));
             } else {

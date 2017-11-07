@@ -34,7 +34,7 @@ function send_weibo($content, $type, $feed_data = '', $from = '', $pos = '', $cr
         unset($val);
         D('Weibo/WeiboTopicLink')->addDatas($weiboTopicLink);
 
-        //关注话题的用户接收到话题更新通知
+        //信任话题的用户接收到话题更新通知
         $k = 0;
         foreach ($weiboTopicLink as $topk) {
             $topks[$k]['topk'] = $topicModel->getTopicInfo($topk['topic_id']);
@@ -52,7 +52,7 @@ function send_weibo($content, $type, $feed_data = '', $from = '', $pos = '', $cr
                 }
                 // 未读过该话题的用户不再提醒
                 $readUids = D('Message')->topicMessageRead($vo['topk']['name'], $vo['uid']);
-                D('Message')->sendALotOfMessageWithoutCheckSelf($readUids, '话题通知', '您关注的#' . $vo['topk']['name'] . '#话题已更新。', 'Weibo/Topic/index', array('topk' => $vo['topk']['id']), 1, 'Weibo');
+                D('Message')->sendALotOfMessageWithoutCheckSelf($readUids, '话题通知', '您信任的#' . $vo['topk']['name'] . '#话题已更新。', 'Weibo/Topic/index', array('topk' => $vo['topk']['id']), 1, 'Weibo');
             }
         }
 

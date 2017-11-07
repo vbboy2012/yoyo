@@ -26,19 +26,18 @@ class IndexController extends Controller{
             array(
                 'left' =>
                     array(
-                        array('tab' => 'quick', 'title' => L('_QUICK_AD_'), 'href' => U('/quick')),
-                        array('tab' => 'buybtc', 'title' => L('_BUY_BTC_'), 'href' => U('/buybtc')),
-                        array('tab' => 'sellbtc', 'title' => L('_SELL_BTC_'), 'href' => U('/sellbtc')),
-                        array('tab' => 'buyeth', 'title' => L('_BUY_ETH_'), 'href' => U('/buyeth')),
-                        array('tab' => 'selleth', 'title' => L('_SELL_ETH_'), 'href' => U('/selleth')),
+                        array('tab' => 'btc', 'title' => 'BTC'.L('_TRADE_'), 'href' => U('/btc')),
+                        array('tab' => 'eth', 'title' => 'ETH'.L('_TRADE_'), 'href' => U('/eth')),
                     ),
             );
         $this->assign('sub_menu', $sub_menu);
 
     }
 
-    public function index()
+
+    public function btc()
     {
+        $page = I('get.page','1','op_t');
         $type = I('get.type','0','op_t');
         $defaultCurrency = I('get.currency',$this->defaultCurrency,'op_t');
         $defaultCountry = I('get.country',$this->defaultCountry,'op_t');
@@ -47,25 +46,34 @@ class IndexController extends Controller{
         $hour = date('H:i');
         $hour = str_replace(':','.',$hour);
         $where = array();
-        $where['ocenter_tradead.status'] = 1;
-        $where['ocenter_country.id'] = $defaultCountry;
-        $where['ocenter_tradead.currency'] = $defaultCurrency;
-        $where['ocenter_tradead.start'.$week] = array('elt',$hour);
-        $where['ocenter_tradead.end'.$week] = array('egt',$hour);
+        $where['t.status'] = 1;
+        $where['t.coin_type'] = 1;
+        $where['t.country'] = $defaultCountry;
+        $where['t.currency'] = $defaultCurrency;
+        $where['t.start'.$week] = array('elt',$hour);
+        $where['t.end'.$week] = array('egt',$hour);
+        $rows = 10;      //一页显示几条数据
+        $offset = $page * $rows - $rows;
         if ($type != 0){
-            $where['ocenter_tradead.type'] = $type;
+            $where['t.type'] = $type;
         }
         if ($pay_type != 0){
-            $where['ocenter_tradead.pay_type'] = $pay_type;
+            $where['t.pay_type'] = $pay_type;
         }
         $tradead = M('tradead');
-        $adList = $tradead->join('ocenter_member on ocenter_tradead.uid = ocenter_member.uid')
-            ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
-            ->field('ocenter_tradead.pay_type,ocenter_tradead.type,ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_member.nickname,ocenter_member.trade_count,ocenter_member.trade_score,ocenter_country.en_name as countryEn')
-            ->where($where)->order('ocenter_tradead.id desc')->limit(10)->select();
+        $totalCount = $tradead->where($where)->count();
+        $adList = $tradead->alias('t')->join('ocenter_member m on t.uid = m.uid')
+            ->join('ocenter_avatar a on t.uid = a.uid')
+            ->join('ocenter_country c on t.country = c.id')
+            ->field('t.pay_type,t.type,t.id,t.uid,t.price,a.path,a.driver,t.currency,t.min_price,t.max_price,m.nickname,m.trade_count,m.trade_score,c.en_name as countryEn')
+            ->where($where)->order('t.id desc')->limit($offset.','.$rows)->select();
         $country = D('Country')->field('id,name,code')->select();
         $currency = D('Currency')->select();
         $payType = D('pay')->select();
+        $pages = $totalCount / $rows;
+        if ($pages > 1){
+            $pages = ceil($pages)+1;
+        }
         $this->assign('defaultCurrency', $defaultCurrency);
         $this->assign('defaultCountry', $defaultCountry);
         $this->assign('pay_type', $pay_type);
@@ -74,12 +82,16 @@ class IndexController extends Controller{
         $this->assign('currency', $currency);
         $this->assign('payType', $payType);
         $this->assign('adList', $adList);
-        $this->assign('current', 'quick');
+        $this->assign('rows', $rows);
+        $this->assign('pages', $pages);
+        $this->assign('page', $page);
+        $this->assign('current', 'btc');
         $this->display();
     }
 
-    public function buybtc()
+    public function eth()
     {
+        $page = I('get.page','1','op_t');
         $type = I('get.type','0','op_t');
         $defaultCurrency = I('get.currency',$this->defaultCurrency,'op_t');
         $defaultCountry = I('get.country',$this->defaultCountry,'op_t');
@@ -88,27 +100,34 @@ class IndexController extends Controller{
         $hour = date('H:i');
         $hour = str_replace(':','.',$hour);
         $where = array();
-        $where['ocenter_tradead.status'] = 1;
-        $where['ocenter_tradead.coin_type'] = 1;
-        $where['_string'] = '(ocenter_tradead.type=1 or ocenter_tradead.type=3)';
-        $where['ocenter_country.id'] = $defaultCountry;
-        $where['ocenter_tradead.currency'] = $defaultCurrency;
-        $where['ocenter_tradead.start'.$week] = array('elt',$hour);
-        $where['ocenter_tradead.end'.$week] = array('egt',$hour);
+        $where['t.status'] = 1;
+        $where['t.coin_type'] = 2;
+        $where['t.country'] = $defaultCountry;
+        $where['t.currency'] = $defaultCurrency;
+        $where['t.start'.$week] = array('elt',$hour);
+        $where['t.end'.$week] = array('egt',$hour);
+        $rows = 10;      //一页显示几条数据
+        $offset = $page * $rows - $rows;
         if ($type != 0){
-            $where['ocenter_tradead.type'] = $type;
+            $where['t.type'] = $type;
         }
         if ($pay_type != 0){
-            $where['ocenter_tradead.pay_type'] = $pay_type;
+            $where['t.pay_type'] = $pay_type;
         }
         $tradead = M('tradead');
-        $adList = $tradead->join('ocenter_member on ocenter_tradead.uid = ocenter_member.uid')
-            ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
-            ->field('ocenter_tradead.pay_type,ocenter_tradead.type,ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_member.nickname,ocenter_member.trade_count,ocenter_member.trade_score,ocenter_country.en_name as countryEn')
-            ->where($where)->order('ocenter_tradead.id desc')->limit(10)->select();
+        $totalCount = $tradead->where($where)->count();
+        $adList = $tradead->alias('t')->join('ocenter_member m on t.uid = m.uid')
+            ->join('ocenter_avatar a on t.uid = a.uid')
+            ->join('ocenter_country c on t.country = c.id')
+            ->field('t.pay_type,t.type,t.id,t.uid,t.price,a.path,a.driver,t.currency,t.min_price,t.max_price,m.nickname,m.trade_count,m.trade_score,c.en_name as countryEn')
+            ->where($where)->order('t.id desc')->limit($offset.','.$rows)->select();
         $country = D('Country')->field('id,name,code')->select();
         $currency = D('Currency')->select();
         $payType = D('pay')->select();
+        $pages = $totalCount / $rows;
+        if ($pages > 1){
+            $pages = ceil($pages)+1;
+        }
         $this->assign('defaultCurrency', $defaultCurrency);
         $this->assign('defaultCountry', $defaultCountry);
         $this->assign('pay_type', $pay_type);
@@ -117,137 +136,16 @@ class IndexController extends Controller{
         $this->assign('currency', $currency);
         $this->assign('payType', $payType);
         $this->assign('adList', $adList);
-        $this->assign('current', 'buybtc');
+        $this->assign('rows', $rows);
+        $this->assign('pages', $pages);
+        $this->assign('page', $page);
+        $this->assign('current', 'btc');
         $this->display();
     }
 
-    public function sellbtc()
+    public function ltc()
     {
-        $type = I('get.type','0','op_t');
-        $defaultCurrency = I('get.currency',$this->defaultCurrency,'op_t');
-        $defaultCountry = I('get.country',$this->defaultCountry,'op_t');
-        $pay_type = I('get.pay_type','0','op_t');
-        $week = date('w');
-        $hour = date('H:i');
-        $hour = str_replace(':','.',$hour);
-        $where = array();
-        $where['ocenter_tradead.status'] = 1;
-        $where['ocenter_tradead.coin_type'] = 1;
-        $where['_string'] = '(ocenter_tradead.type=2 or ocenter_tradead.type=4)';
-        $where['ocenter_country.id'] = $defaultCountry;
-        $where['ocenter_tradead.currency'] = $defaultCurrency;
-        $where['ocenter_tradead.start'.$week] = array('elt',$hour);
-        $where['ocenter_tradead.end'.$week] = array('egt',$hour);
-        if ($type != 0){
-            $where['ocenter_tradead.type'] = $type;
-        }
-        if ($pay_type != 0){
-            $where['ocenter_tradead.pay_type'] = $pay_type;
-        }
-        $tradead = M('tradead');
-        $adList = $tradead->join('ocenter_member on ocenter_tradead.uid = ocenter_member.uid')
-            ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
-            ->field('ocenter_tradead.pay_type,ocenter_tradead.type,ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_member.nickname,ocenter_member.trade_count,ocenter_member.trade_score,ocenter_country.en_name as countryEn')
-            ->where($where)->order('ocenter_tradead.id desc')->limit(10)->select();
-        $country = D('Country')->field('id,name,code')->select();
-        $currency = D('Currency')->select();
-        $payType = D('pay')->select();
-        $this->assign('defaultCurrency', $defaultCurrency);
-        $this->assign('defaultCountry', $defaultCountry);
-        $this->assign('pay_type', $pay_type);
-        $this->assign('type', $type);
-        $this->assign('country', $country);
-        $this->assign('currency', $currency);
-        $this->assign('payType', $payType);
-        $this->assign('adList', $adList);
-        $this->assign('current', 'sellbtc');
-        $this->display();
-    }
 
-    public function buyeth()
-    {
-        $type = I('get.type','0','op_t');
-        $defaultCurrency = I('get.currency',$this->defaultCurrency,'op_t');
-        $defaultCountry = I('get.country',$this->defaultCountry,'op_t');
-        $pay_type = I('get.pay_type','0','op_t');
-        $week = date('w');
-        $hour = date('H:i');
-        $hour = str_replace(':','.',$hour);
-        $where = array();
-        $where['ocenter_tradead.status'] = 1;
-        $where['ocenter_tradead.coin_type'] = 2;
-        $where['_string'] = '(ocenter_tradead.type=1 or ocenter_tradead.type=3)';
-        $where['ocenter_country.id'] = $defaultCountry;
-        $where['ocenter_tradead.currency'] = $defaultCurrency;
-        $where['ocenter_tradead.start'.$week] = array('elt',$hour);
-        $where['ocenter_tradead.end'.$week] = array('egt',$hour);
-        if ($type != 0){
-            $where['ocenter_tradead.type'] = $type;
-        }
-        if ($pay_type != 0){
-            $where['ocenter_tradead.pay_type'] = $pay_type;
-        }
-        $tradead = M('tradead');
-        $adList = $tradead->join('ocenter_member on ocenter_tradead.uid = ocenter_member.uid')
-            ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
-            ->field('ocenter_tradead.pay_type,ocenter_tradead.type,ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_member.nickname,ocenter_member.trade_count,ocenter_member.trade_score,ocenter_country.en_name as countryEn')
-            ->where($where)->order('ocenter_tradead.id desc')->limit(10)->select();
-        $country = D('Country')->field('id,name,code')->select();
-        $currency = D('Currency')->select();
-        $payType = D('pay')->select();
-        $this->assign('defaultCurrency', $defaultCurrency);
-        $this->assign('defaultCountry', $defaultCountry);
-        $this->assign('pay_type', $pay_type);
-        $this->assign('type', $type);
-        $this->assign('country', $country);
-        $this->assign('currency', $currency);
-        $this->assign('payType', $payType);
-        $this->assign('adList', $adList);
-        $this->assign('current', 'buyeth');
-        $this->display();
-    }
-
-    public function selleth()
-    {
-        $type = I('get.type','0','op_t');
-        $defaultCurrency = I('get.currency',$this->defaultCurrency,'op_t');
-        $defaultCountry = I('get.country',$this->defaultCountry,'op_t');
-        $pay_type = I('get.pay_type','0','op_t');
-        $week = date('w');
-        $hour = date('H:i');
-        $hour = str_replace(':','.',$hour);
-        $where = array();
-        $where['ocenter_tradead.status'] = 1;
-        $where['ocenter_tradead.coin_type'] = 2;
-        $where['_string'] = '(ocenter_tradead.type=3 or ocenter_tradead.type=4)';
-        $where['ocenter_country.id'] = $defaultCountry;
-        $where['ocenter_tradead.currency'] = $defaultCurrency;
-        $where['ocenter_tradead.start'.$week] = array('elt',$hour);
-        $where['ocenter_tradead.end'.$week] = array('egt',$hour);
-        if ($type != 0){
-            $where['ocenter_tradead.type'] = $type;
-        }
-        if ($pay_type != 0){
-            $where['ocenter_tradead.pay_type'] = $pay_type;
-        }
-        $tradead = M('tradead');
-        $adList = $tradead->join('ocenter_member on ocenter_tradead.uid = ocenter_member.uid')
-            ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
-            ->field('ocenter_tradead.pay_type,ocenter_tradead.type,ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_member.nickname,ocenter_member.trade_count,ocenter_member.trade_score,ocenter_country.en_name as countryEn')
-            ->where($where)->order('ocenter_tradead.id desc')->limit(10)->select();
-        $country = D('Country')->field('id,name,code')->select();
-        $currency = D('Currency')->select();
-        $payType = D('pay')->select();
-        $this->assign('defaultCurrency', $defaultCurrency);
-        $this->assign('defaultCountry', $defaultCountry);
-        $this->assign('pay_type', $pay_type);
-        $this->assign('type', $type);
-        $this->assign('country', $country);
-        $this->assign('currency', $currency);
-        $this->assign('payType', $payType);
-        $this->assign('adList', $adList);
-        $this->assign('current', 'selleth');
-        $this->display();
     }
 
     public function tradead()
@@ -286,18 +184,18 @@ class IndexController extends Controller{
             $this->success(L('_SUBMIT_SUCCESS_'), U('/order/'.$orderId));
         }else{
             $id = I('get.id');
-            $tradead = M('tradead')->join('ocenter_member on ocenter_tradead.uid = ocenter_member.uid')
-                ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
-                ->field('ocenter_tradead.country as countryId,ocenter_tradead.id,ocenter_tradead.uid,ocenter_tradead.pay_text,ocenter_tradead.type,ocenter_tradead.pay_type,ocenter_tradead.coin_type,ocenter_tradead.pay_time,ocenter_tradead.price,ocenter_tradead.currency,ocenter_tradead.min_price,ocenter_tradead.max_price,ocenter_country.name as country,ocenter_member.nickname,ocenter_member.trade_count,ocenter_member.trade_score,ocenter_member.fans')
-                ->where('ocenter_tradead.id='.$id)->find();
+            $tradeadModel = M('tradead');
+            $tradead = $tradeadModel->alias('t')->join('ocenter_member m on t.uid = m.uid')
+                ->join('ocenter_avatar a on t.uid = a.uid')
+                ->join('ocenter_country c on t.country = c.id')
+                ->field('t.country as countryId,t.id,t.uid,t.pay_text,t.type,a.path,a.driver,t.pay_type,t.coin_type,t.pay_time,t.price,t.currency,t.min_price,t.max_price,c.name as country,m.nickname,m.trade_count,m.trade_score,m.fans')
+                ->where('t.id='.$id)->find();
             $payType = query_pay($tradead['pay_type']);
             $payName = '';
             foreach ($payType as $item){
                 $payName .= $item['name'].',';
             }
             $payName = substr($payName,0,strlen($payName)-1);
-            $avatar = query_avatar($tradead['uid']);
-            $this->assign('avatar', $avatar);
             $this->assign('payName', $payName);
             $this->assign('tradead', $tradead);
             $this->display();
@@ -349,16 +247,17 @@ class IndexController extends Controller{
             $id = I('get.id',0,'intval');
             $where = array();
             if($id > 0){
-                $where['ocenter_trade_order.id'] = $id;
+                $where['o.id'] = $id;
             }else{
-                $where['ocenter_trade_order.order_id'] = $orderId;
+                $where['o.order_id'] = $orderId;
             }
-            $where['_string'] = "(ocenter_trade_order.ad_uid=".$uid." or ocenter_trade_order.get_uid=".$uid.")";
-            $order = M('trade_order')->join('ocenter_member on ocenter_trade_order.ad_uid = ocenter_member.uid')
-                ->join('ocenter_tradead on ocenter_trade_order.ad_id = ocenter_tradead.id')
-                ->join('ocenter_country on ocenter_tradead.country = ocenter_country.id')
-                ->join('ocenter_pay on ocenter_tradead.pay_type = ocenter_pay.id')
-                ->field('ocenter_tradead.pay_remark,ocenter_pay.en_name as payType,ocenter_country.en_name as countryEn,ocenter_trade_order.ad_id,ocenter_tradead.type,ocenter_trade_order.order_id,ocenter_trade_order.pay_code,ocenter_trade_order.ad_uid,ocenter_trade_order.get_uid,ocenter_tradead.price,ocenter_trade_order.trade_price,ocenter_tradead.currency,ocenter_tradead.coin_type,ocenter_trade_order.coin_num,ocenter_trade_order.status,ocenter_tradead.pay_time,ocenter_trade_order.create_time,ocenter_trade_order.update_time,ocenter_member.nickname,ocenter_member.trade_count,ocenter_member.trade_score')
+            $where['_string'] = "(o.ad_uid=".$uid." or o.get_uid=".$uid.")";
+            $orderModel = M('trade_order');
+            $order = $orderModel->alias('o')->join('ocenter_member m on o.ad_uid = m.uid')
+                ->join('ocenter_tradead t on o.ad_id = t.id')
+                ->join('ocenter_country c on t.country = c.id')
+                ->join('ocenter_pay p on t.pay_type = p.id')
+                ->field('t.pay_remark,p.en_name as payType,c.en_name as countryEn,o.ad_id,t.type,o.order_id,o.pay_code,o.ad_uid,o.get_uid,t.price,o.trade_price,t.currency,t.coin_type,o.coin_num,o.status,t.pay_time,o.create_time,o.update_time,m.nickname,m.trade_count,m.trade_score')
                 ->where($where)->find();
             if (!$order){
                 $this->error(L('_INEXISTENT_404_'));
@@ -390,10 +289,5 @@ class IndexController extends Controller{
         }
     }
 
-
-    public function img()
-    {
-        create_user_avatar("bonita");
-    }
 
 } 

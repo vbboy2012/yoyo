@@ -200,16 +200,44 @@ function check_and_add($args){
     return true;
 }
 
-function create_user_avatar($username)
+function create_user_avatar($username,$uid = 0)
 {
-    $str = strtoupper(substr($username,0,2));
-    $im = imagecreatetruecolor(64, 64);
-    $white = imagecolorallocate($im, 255, 255, 255);
-    $grey = imagecolorallocate($im, 128, 128, 128);
-    $black = imagecolorallocate($im, 0, 0, 0);
-    $blue = imagecolorallocate($im, 66, 181, 239);
-    imagefilledrectangle($im, 0, 0, 64, 64, $blue);
-    imagestring($im, 3, 28, 28, $str, $white);
-    imagepng($im,'1.png');
-    imagedestroy($im);
+    if ($uid > 0){
+        $str = strtoupper(substr($username,0,2));
+        $im = imagecreatetruecolor(128, 128);
+        $colorArray = array(array(21,99,174),array(137,251,232),array(160,219,48),
+            array(213,36,112),array(12,47,238),array(209,52,226),array(144,197,196), array(21,137,158),array(30,112,25),array(205,30,68),array(152,240,105),
+            array(63,209,209),array(5,19,17),array(223,79,49),array(42,221,235),
+            array(125,38,238),array(226,160,73));
+        $n = rand(0, 16);
+        $white = imagecolorallocate($im, 255, 255, 255);
+        $color = imagecolorallocate($im, $colorArray[$n][0], $colorArray[$n][1], $colorArray[$n][2]);
+        imagefilledrectangle($im, 0, 0, 128, 128, $color);
+        $font = '/Public/zui/fonts/msyhct.ttf';
+        imagettftext($im,40,0,128/2-35,128/2+20,$white,$font,$str);
+        $path = '/'.random(12).'.png';
+        imagepng($im,'./Uploads/Avatar'.$path);
+        imagedestroy($im);
+        $data = M('avatar')->create();
+        $data['uid'] = $uid;
+        $data['path'] = $path;
+        $data['driver'] = 'local';
+        $data['create_time'] = time();
+        $data['status'] = 1;
+        M('avatar')->add($data);
+    }
+}
+
+function random($length){
+    $captchaSource = "0123456789abcdefghijklmnopqrstuvwxyz";
+    for($i=0;$i<$length;$i++){
+        $n = rand(0, 35);
+        if($n >= 36){
+            $n = 36 + ceil(($n-36)/3) * 3;
+            $captchaResult .= substr($captchaSource, $n, 3);
+        }else{
+            $captchaResult .= substr($captchaSource, $n, 1);
+        }
+    }
+    return $captchaResult;
 }

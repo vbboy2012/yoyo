@@ -52,7 +52,7 @@ class WeiboController extends AdminController
 //            ->keyText('WEIBO_NUM', L('_WEIBO_WORDS_LIMIT_'))
             ->keyText('HOT_LEFT', L('_HOT_WEIBO_RULE_'))->keyDefault('HOT_LEFT', 3)
             ->keyRadio('COMMENT_ORDER', L('_WEIBO_COMMENTS_LIST_ORDER_'), '', array(0 => L('_TIME_COUNTER_'), 1 => L('_TIME_DIRECT_')))
-            //->keySelect('WEIBO_DEFAULT_TAB', '动态默认显示标签', '', array('all'=>'全站动态','concerned'=>'我的关注','hot'=>'热门动态'))
+            //->keySelect('WEIBO_DEFAULT_TAB', '动态默认显示标签', '', array('all'=>'全站动态','concerned'=>'我的信任','hot'=>'热门动态'))
             ->keyKanban('WEIBO_DEFAULT_TAB', L('_WEIBO_SIGN_DEFAULT_'))
             ->keySwitch('ACTIVE_USER', L('_ACTIVE_USER_SWITCH_'))
             ->keySelect('ACTIVE_USER_ORDER', L('_ACTIVE_USER_SORT_'), '', $types)
@@ -305,7 +305,7 @@ class WeiboController extends AdminController
         $builder->display();
     }
 
-    //执行默认关注脚本
+    //执行默认信任脚本
     public function followCrowd()
     {
         $step = I('get.step', '0', 'intval');
@@ -459,7 +459,7 @@ class WeiboController extends AdminController
             ->title('圈子')
             ->buttonNew(U('Weibo/editCrowd'))
             ->select('', 'status', 'select', '', '', '', array(array('id' => '3', 'value' => '全部'), array('id' => '2', 'value' => '待审核'),array('id' => '-1', 'value' => '已删除'),array('id' => '0', 'value' => '已禁用')))
-            ->setStatusUrl(U('setCrowdStatus'))->buttonEnable()->buttonDelete()->button('允许发动态', array_merge($attr, array('url' => U('doCrowdAllowPost',array('type'=>'allow')))))->button('不允许发动态', array_merge($attr, array('url' => U('doCrowdAllowPost',array('type'=>'no')))))->ajaxButton(U('repairCrowdFollow'),null,'修正关注数',array('hide-data' => 'true'))->ajaxButton(U('repaireCrowdFans'),null,'修正圈子成员数',array('hide-data' => 'true'))->ajaxButton(U('followCrowd',array('step'=>1)),null,'执行默认关注（耗时请等待）',array('hide-data' => 'true'))
+            ->setStatusUrl(U('setCrowdStatus'))->buttonEnable()->buttonDelete()->button('允许发动态', array_merge($attr, array('url' => U('doCrowdAllowPost',array('type'=>'allow')))))->button('不允许发动态', array_merge($attr, array('url' => U('doCrowdAllowPost',array('type'=>'no')))))->ajaxButton(U('repairCrowdFollow'),null,'修正信任数',array('hide-data' => 'true'))->ajaxButton(U('repaireCrowdFans'),null,'修正圈子成员数',array('hide-data' => 'true'))->ajaxButton(U('followCrowd',array('step'=>1)),null,'执行默认信任（耗时请等待）',array('hide-data' => 'true'))
             ->keyId()->keyLink('title', L('_TITLE_'), 'Weibo/Index/index/crowd/###')
             ->keyText('allow_post','允许发动态')
             ->keyCreateTime()->keyText('member_count', '成员数')->keyStatus()->keyDoActionEdit('editCrowd?id=###')
@@ -611,7 +611,7 @@ class WeiboController extends AdminController
     }
 
     /**
-     * 执行修复关注数脚本
+     * 执行修复信任数脚本
      */
     public function repairCrowdFollow()
     {

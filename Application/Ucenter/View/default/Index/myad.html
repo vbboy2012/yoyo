@@ -64,8 +64,8 @@
                                 <td style="vertical-align: middle;color: #0C7F12"><b>{$price} {$vo.currency}</b></td>
                                 <td style="vertical-align: middle">{$vo.pre_price}%</td>
                                 <td style="vertical-align: middle">{$time}</td>
-                                <td style="vertical-align: middle;color: #0C7F12">{$vo['status']==2?下架:激活}</td>
-                                <td style="vertical-align: middle;"><a href="__ROOT__/ad/advertise/{$vo.id}" target="_blank">编辑</a><a href="__ROOT__/ucenter/index/myad/active/{$vo.id}/status/{$vo.status}">{$vo['status']==1?激活:下架}</a><a class="delete" href="__ROOT__/ucenter/index/myad/delete/{$vo.id}">删除</a></td>
+                                <td style="vertical-align: middle;color: #0C7F12">{$vo['status']==1?激活:下架}</td>
+                                <td style="vertical-align: middle;"><a href="__ROOT__/ad/advertise/{$vo.id}" target="_blank">编辑</a><a href="__ROOT__/ucenter/index/myad/active/{$vo.id}/status/{$vo.status}">{$vo['status']==1?下架:激活}</a><a class="delete" href="__ROOT__/ucenter/index/myad/delete/{$vo.id}">删除</a></td>
                             </tr>
                         </volist>
                         </tbody>

@@ -524,12 +524,6 @@ class IndexController extends BaseController
                 }
             }
 
-            if (D('Common/Module')->isInstalled('Weibo')) {//安装了微博模块
-                //同步到微博
-                $question = D('Question')->getData($res);
-                $weiboModel = D('Weibo/Weibo');
-                $weiboModel->addWeibo(is_login(),'我提了一个问题','question',$question);
-            }
             $this->success($title . L('_SUCCESS_WITH_EXCLAMATION_') . cookie('score_tip'), U('Question/Index/detail', array('id' => $aId)));
         } else {
             $this->error($title . L('_PROBLEM_FAILED_WITH_EXCLAMATION_') . $this->questionModel->getError());

@@ -45,7 +45,7 @@ class MemberController extends Controller
             $ucenterMemberModel = UCenterMember();
             $uid = $ucenterMemberModel->register($aUsername, $aPassword, $email);
             if (0 < $uid) { //注册成功
-                create_user_avatar($aUsername);
+                create_user_avatar($aUsername,$uid);
                 $this->initInviteUser($uid, '', $aRole);
                 $ucenterMemberModel->initRoleUser($aRole, $uid); //初始化角色用户
                 set_user_status($uid, 3);

@@ -137,15 +137,9 @@
                     交易须知
                 </div>
                 <div class="panel-body">
-                    在您发起交易请求后，比特币被锁定在托管中，受到BitcoinWorld保护。 如果您是买家，发起交易请求后，您应在90分钟内付款并把交易标记为付款已完成。卖家在收到付款后将会放行处于托管中的比特币。
-
-                    交易前请阅读《BitcoinWorld网络服务条款》以及常见问题、交易指南等帮助文档。
-
-                    当心骗子！交易前请检查该用户收到的评价，并对新近创建的账户多加留意。
-
-                    请注意，四舍五入和价格的波动可能会影响最终成交的比特币数额。您输入的固定数额决定最后数额，比特币金额将在请求发布的同一时间由即时的汇率算出。
-
-                    托管服务保护网上交易的买卖双方。在发生争议的情况下，我们将评估所提供的所有信息，并将托管的比特币放行给其合法所有者。
+                    <p>1，{:L('_TRADE_KNOW1_')}</p>
+                    <p>2，{:L('_TRADE_KNOW2_')}</p>
+                    <p>3，{:L('_TRADE_KNOW3_')}</p>
                 </div>
             </div>
         </div>
@@ -195,7 +189,7 @@
                 $("#status").val('1');
             }
             price = price/ratePrice;
-            $("#coinNum").val(price);
+            $("#coinNum").val(price.toFixed(6));
 
         })
         $("#coinNum").bind('input propertychange',function(){
@@ -205,7 +199,7 @@
             $(this).val($(this).val().replace(/^(\-)*(\d+)\.(\d\d\d\d).*$/,'$1$2.$3'));
             var num = $(this).val();
             var price = num*ratePrice;
-            $("#trade_price").val(price);
+            $("#trade_price").val(price.toFixed(2));
             if(price < minPrice){
                 $("#show-max").css('display','none');
                 $("#show-min").css('display','block');

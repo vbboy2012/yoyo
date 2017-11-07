@@ -53,7 +53,7 @@ class IndexController extends Controller
             }
             unset($item);
             $this->assign('result', $result);
-            //关注版块
+            //信任版块
             if ($followData===false){
                 shuffle($userAllFollowId) ;
                 $userFollowId = array_slice( $userAllFollowId, 0, 3) ;
@@ -70,7 +70,7 @@ class IndexController extends Controller
                 unset($value);
                 S('forum_attention_plate'.is_login(), $followData, 3600);
             }
-            //判断用户是否有关注版块
+            //判断用户是否有信任版块
             if(count($followData)>0){
                 $this->assign('followData', $followData);
             }
@@ -109,7 +109,7 @@ class IndexController extends Controller
             $postCount = D('ForumPost')->where(array('forum_id' => $sectionId))->count();
             S('forum_post_count'.$sectionId,$postCount,3600);
         }
-        //获取当前是否关注
+        //获取当前是否信任
         $isFollowed=D('forum_follow')->where(array('forum_id'=>$sectionId,'uid'=>is_login()))->field('id')->find();
         if ($isFollowed){
             $isFollowed=1;
@@ -118,7 +118,7 @@ class IndexController extends Controller
         }
         //当前用户信息
         $userInfo=query_user(array('avatar64','uid', 'avatar128', 'avatar32', 'avatar256', 'avatar512','title','nickname'),is_login());
-        //获取关注数
+        //获取信任数
         $followCount=S('forum_attention_count'.$sectionId);
         if ($followCount===false){
             $followCount=D('forum_follow')->where(array('forum_id'=>$sectionId))->count();
@@ -252,7 +252,7 @@ class IndexController extends Controller
 
 
     /**
-     * 关注操作
+     * 信任操作
      * @auth nkx nkx@ourstu.com
      */
     public function follow(){
@@ -267,7 +267,7 @@ class IndexController extends Controller
             if ($res){
                 S('forum_attention_count'.$sectionID,false);
                 S('forum_attention_plate'.is_login(), false);
-                $this->success('取消关注成功');
+                $this->success('取消信任成功');
             }else{
                 $this->error('未知错误');
             }
@@ -279,7 +279,7 @@ class IndexController extends Controller
                 S('forum_attention_count'.$sectionID,false);
                 S('forum_attention_plate'.is_login(), false);
                 action_log('forum_follow','forum',$res,get_uid());
-                $this->success('关注成功');
+                $this->success('信任成功');
             }else{
                 $this->error('未知错误');
             }

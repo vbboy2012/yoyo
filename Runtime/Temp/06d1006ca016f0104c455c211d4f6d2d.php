@@ -1,3 +1,0 @@
-<?php
-//000000000000a:5:{s:8:"avatar32";s:118:"http://oyo2tnead.bkt.clouddn.com/Uploads_Avatar_146_59f9625b67025.jpeg?imageMogr2/crop/!1161x1159a0a0/thumbnail/32x32!";s:8:"avatar64";s:118:"http://oyo2tnead.bkt.clouddn.com/Uploads_Avatar_146_59f9625b67025.jpeg?imageMogr2/crop/!1161x1159a0a0/thumbnail/64x64!";s:9:"avatar128";s:120:"http://oyo2tnead.bkt.clouddn.com/Uploads_Avatar_146_59f9625b67025.jpeg?imageMogr2/crop/!1161x1159a0a0/thumbnail/128x128!";s:9:"avatar256";s:120:"http://oyo2tnead.bkt.clouddn.com/Uploads_Avatar_146_59f9625b67025.jpeg?imageMogr2/crop/!1161x1159a0a0/thumbnail/256x256!";s:9:"avatar512";s:120:"http://oyo2tnead.bkt.clouddn.com/Uploads_Avatar_146_59f9625b67025.jpeg?imageMogr2/crop/!1161x1159a0a0/thumbnail/512x512!";}
-?>

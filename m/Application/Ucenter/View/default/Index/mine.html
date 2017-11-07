@@ -25,7 +25,7 @@
                                 <img src="{$user_info.user.avatar512}" alt="">
                             </div>
                             <a href="{:U('Ucenter/Index/fans',array('uid'=>$uid,'type'=>'fans'))}"><div class="circle fr">{$user_info.fans|default=0}<span>粉丝</span></div></a>
-                            <a href="{:U('Ucenter/Index/fans',array('uid'=>$uid,'type'=>'follow'))}"><div class="circle fl">{$user_info.user.following|default=0}<span>关注</span></div></a>
+                            <a href="{:U('Ucenter/Index/fans',array('uid'=>$uid,'type'=>'follow'))}"><div class="circle fl">{$user_info.user.following|default=0}<span>信任</span></div></a>
                         </div>
                         <div class="mName">{$user_info.nickname}</div>
                         <div class="intro textMore">{$user_info.signature|default="这个人很懒，神马都没写~"}</div>
@@ -98,7 +98,7 @@
                                             </ul>
                                         </div>
                                         <!--我创建的圈子列表-->
-                                        <!--我关注的圈子列表-->
+                                        <!--我信任的圈子列表-->
                                         <div class="baseBox baseList mg20 circleList">
                                             <p class="fTitle"><if condition="$uid eq is_login()">我<else/>他</if>加入的</p>
                                             <ul class="list">
@@ -110,7 +110,7 @@
                                                 </empty>
                                             </ul>
                                         </div>
-                                        <!--我关注的圈子列表-->
+                                        <!--我信任的圈子列表-->
                                     </div>
                                 </div>
                             </div>

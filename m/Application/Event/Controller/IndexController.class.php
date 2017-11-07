@@ -282,7 +282,7 @@ class IndexController extends Controller {
         $this->assign('comments', $comments) ;
         $allComments = $this->fetch('_commentlist') ;
         $this->assign('allComments', $allComments) ;
-        //关注
+        //信任
         if ($event['uid'] != $uid) {
             $follow['follow_who']=$event['uid'];
             $follow['who_follow']=$uid;

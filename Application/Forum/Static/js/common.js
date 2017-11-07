@@ -6,11 +6,11 @@ var forum = {
             handleAjax(msg);
             if (msg.status == 1) {
                 if(msg.follow==0){
-                    $obj.find('span').text('关注');
+                    $obj.find('span').text('信任');
                     $obj.find('i').attr('class','icon-heart-empty');
                     $obj.attr('class','sendBtn');
                 }else{
-                    $obj.find('span').text('已关注');
+                    $obj.find('span').text('已信任');
                     $obj.find('i').attr('class','icon-heart');
                     $obj.attr('class','sendBtn');
                 }
@@ -30,11 +30,11 @@ var forum = {
             if (msg.status == 1) {
                 if(msg.follow==0){
                     $obj.each(function(){
-                        $(this).find('span').text('+ 关注');
+                        $(this).find('span').text('+ 信任');
                     })
                 }else{
                     $obj.each(function(){
-                        $(this).find('span').text('- 已关注');
+                        $(this).find('span').text('- 已信任');
                     })
                 }
 

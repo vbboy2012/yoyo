@@ -114,7 +114,7 @@ class LetterController extends Controller{
         return $info ;
     }
 
-    /**私信需要互相关注
+    /**私信需要互相信任
      * @param $uid
      * @param $puid
      * @return bool
@@ -124,7 +124,7 @@ class LetterController extends Controller{
         if($friend) {
             return true ;
         }
-        $this->error('私信需要互相关注~') ;
+        $this->error('私信需要互相信任~') ;
     }
 
     /**查看了私信，清除缓存里的数据

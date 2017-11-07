@@ -18,7 +18,7 @@ class FollowModel extends Model
     protected $_auto = array(
         array('create_time', NOW_TIME, self::MODEL_INSERT));
 
-    /**关注
+    /**信任
      * @param $uid
      * @return int|mixed
      */
@@ -28,7 +28,7 @@ class FollowModel extends Model
         $follow['follow_who'] = $uid;
 
         if ($follow['who_follow'] == $follow['follow_who']) {
-            //禁止关注和被关注都为同一个人的情况。
+            //禁止信任和被信任都为同一个人的情况。
             return 0;
         }
         if ($this->where($follow)->count() > 0) {
@@ -61,7 +61,7 @@ class FollowModel extends Model
         return $this->add($follow);
     }
 
-    /**取消关注
+    /**取消信任
      * @param $uid
      * @return mixed
      */
@@ -181,7 +181,7 @@ class FollowModel extends Model
 
     public function getFollowList()
     {
-        //获取我关注的人
+        //获取我信任的人
         $result = $this->where(array('who_follow' => get_uid()))->select();
         foreach ($result as &$e) {
             $e = $e['follow_who'];
@@ -193,7 +193,7 @@ class FollowModel extends Model
     }
 
 
-    /**关注
+    /**信任
      * @param $who_follow
      * @param $follow_who
      * @return int|mixed
@@ -203,7 +203,7 @@ class FollowModel extends Model
         $follow['who_follow'] = $who_follow;
         $follow['follow_who'] = $follow_who;
         if ($follow['who_follow'] == $follow['follow_who']) {
-            //禁止关注和被关注都为同一个人的情况。
+            //禁止信任和被信任都为同一个人的情况。
             return 0;
         }
         if ($this->where($follow)->count() > 0) {
@@ -260,7 +260,7 @@ class FollowModel extends Model
         return $this->add($follow);
     }
 
-    /**两个用户是否互相关注
+    /**两个用户是否互相信任
      * @param $uid
      * @param $puid
      * @return bool

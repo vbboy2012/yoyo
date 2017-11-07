@@ -150,7 +150,7 @@ $(function(){
         //容器发生改变,如果是js滚动，需要刷新滚动
         $.refreshScroller();
     });
-    // 点关注打开二维码
+    // 点信任打开二维码
     $('[data-role="open-code"]').click(function(){
         var $site = $('[data-role="site_info"]');
         var name = $site.attr('data-name');

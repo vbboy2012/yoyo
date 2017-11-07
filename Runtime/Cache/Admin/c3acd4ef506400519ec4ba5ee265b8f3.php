@@ -3,31 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title><?php echo L("_LOGIN_BACKGROUND_");?></title>
-    <link rel="stylesheet" type="text/css" href="/yoyo/Application/Admin/Static/css/login.css" media="all">
-    <link rel="stylesheet" type="text/css" href="/yoyo/Public/zui/css/zui.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/yoyo/m/Application/Admin/Static/css/login.css" media="all">
+    <link rel="stylesheet" href="/yoyo/m/Application/Admin/Static/bootstrap/plugins/bootstrap-toastr/toastr.min.css">
+    <!--zui-->
+    <script src="/yoyo/m/Public/js/jquery-2.0.3.min.js"></script>
+    <script src="/yoyo/m/Public/js/canvas.js"></script>
+    <!--zui end-->
 </head>
 <body>
-<!---->
-<div class="flex">
-    <div class="login-wrap">
-        <div id="particles-js"></div>
-        <!-- 主体 -->
-        <div class="lgMain">
+<canvas></canvas>
+<div class="login-wrap">
+    <!-- 主体 -->
+    <div class="">
+        <div class="login-main pr">
             <form action="<?php echo U('login');?>" method="post" class="login-form">
                 <h1 class="welcome"><?php echo L("_LANDING_BACKGROUND_");?></h1>
                 <div id="itemBox" class="item-box">
-                    <input type="text" name="username" class="input" placeholder='用户名/邮箱/手机'>
-                    <input type="password" name="password"  class="input" placeholder=<?php echo L("_PASSWORD_WITH_DOUBLE_");?>>
+                    <div class="input-group user-name" >
+                        <input type="text" name="username" class="form-control" placeholder=<?php echo L("_USER_NAME_WITH_DOUBLE_");?>>
+                    </div>
+                    <div class="input-group password">
+                        <input type="password" name="password"  class="form-control" placeholder=<?php echo L("_PASSWORD_WITH_DOUBLE_");?>>
+                    </div>
 
-                    <?php if(APP_DEBUG == false): ?><input type="text" name="verify"  class="input" placeholder=<?php echo L("_VERIFICATION_CODE_WITH_DOUBLE_");?>  autocomplete="off">
-                        <div class="imgWrap">
-                            <div class="vfWrap">
-                                <img class="verifyimg reloadverify" alt=<?php echo L("_CLICK_SWITCH_WITH_DOUBLE_");?> src="<?php echo U('Public/verify');?>">
-                            </div>
-                            <div class="btnWrap">
-                                <button  class="btn btn-default reloadverify" type="button"><i class="icon-refresh"></i></button>
-                            </div>
+                    <?php if(APP_DEBUG == false): ?><div class="input-group password">
+                            <span class="input-group-addon"><i class="icon-ok"></i></span>
+                            <input type="text" name="verify"  class="form-control" placeholder=<?php echo L("_VERIFICATION_CODE_WITH_DOUBLE_");?>  autocomplete="off">
+                                    <span class="input-group-btn">
+                                    <button  class="btn btn-default reloadverify" type="button"><i class="icon-refresh"></i></button>
+                                    </span>
+                        </div>
+
+
+                        <div>
+                            <img class="verifyimg reloadverify" alt=<?php echo L("_CLICK_SWITCH_WITH_DOUBLE_");?> src="<?php echo U('Public/verify');?>">
                         </div><?php endif; ?>
+
                 </div>
                 <div class="login_btn_panel">
                     <button class="login-btn" type="submit">
@@ -42,36 +53,20 @@
 </div>
 
 <!--[if lt IE 9]>
-<script type="text/javascript" src="/yoyo/Public/static/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/yoyo/m/Public/static/jquery-1.10.2.min.js"></script>
 <![endif]-->
 <!--[if gte IE 9]><!-->
-<script type="text/javascript" src="/yoyo/Public/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="/yoyo/m/Public/js/jquery-2.0.3.min.js"></script>
 <!--<![endif]-->
-<script src="/yoyo/Public/js/particles.min.js"></script>
-<script src="/yoyo/Public/js/canvas.js"></script>
+<script src="/yoyo/m/Application/Admin/Static/bootstrap/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+<script src="/yoyo/m/Application/Admin/Static/js/com/com.toast.class.js"></script>
 <script type="text/javascript">
-    css = " 'position: fixed; " +
-        "bottom: " +
-        "100px; " +
-        "left: 50%; " +
-        "width: 300px; " +
-        "height: 40px; " +
-        "margin-left: -150px; " +
-        "border-radius: 20px; " +
-        "background-color: #FF3030; " +
-        "color: #fff; " +
-        "font-size: 20px; " +
-        "line-height: 40px; " +
-        "text-align: center' ";
-
-
-    function show($message) {
-        html = "<div class='toast' style= " + css + ">" + $message + "</div>";
-        $("body").append(html);
-        setTimeout(function () {
-            $("div.toast").remove();
-        },3000);
-    }
+    /* 登陆表单获取焦点变色 */
+    $(".login-form").on("focus", "input", function(){
+        $(this).closest('.item').addClass('focus');
+    }).on("blur","input",function(){
+        $(this).closest('.item').removeClass('focus');
+    });
 
     //表单提交
     $(document)
@@ -91,8 +86,7 @@
             if(data.status){
                 window.location.href = data.url;
             } else {
-                $(document).ajaxError();
-                show(data.info);
+                toast.error(data['info']);
                 //刷新验证码
                 $('[name=verify]').val('');
                 $(".reloadverify").click();
@@ -101,6 +95,8 @@
     });
 
     $(function(){
+        //初始化选中用户名输入框
+        $("#itemBox").find("input[name=username]").focus();
         //刷新验证码
         var verifyimg = $(".verifyimg").attr("src");
         $(".reloadverify").click(function(){
@@ -136,26 +132,6 @@
             })
         }
     });
-
-
-    var count_particles, stats, update;
-    stats = new Stats;
-    stats.setMode(0);
-    stats.domElement.style.position = 'absolute';
-    stats.domElement.style.left = '0px';
-    stats.domElement.style.top = '0px';
-    document.body.appendChild(stats.domElement);
-    count_particles = document.querySelector('.js-count-particles');
-    update = function() {
-        stats.begin();
-        stats.end();
-        if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
-            count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
-        }
-        requestAnimationFrame(update);
-    };
-    requestAnimationFrame(update);
-
 </script>
 </body>
 </html>

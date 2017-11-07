@@ -15,7 +15,7 @@
         </a>
     </div>
 </div>
-<!--关注与发帖-->
+<!--信任与发帖-->
 <div class="fmBox fmSend">
     <eq name="hasFollowed" value="0">
         <a class="sendBtn" onclick="forum.following(this)" data-id="{$forum.id}"><i class="icon-heart-empty"></i> <span>{:L('_FOLLOWERS_')}</span></a>
@@ -26,10 +26,10 @@
         <a class="sendBtn antBtn" href="{:U('Index/edit',array('forum_id'=>$forum_id))}">发布新帖</a>
     </if>
 </div>
-<!--我关注的板块-->
+<!--我信任的板块-->
 <div class="fmBox fmFocus fmPlate">
     <php>$myForums=D('Forum')->getFollowForums(is_login());</php>
-    <p class="fmTit">我的关注</p>
+    <p class="fmTit">我的信任</p>
     <div class="plate">
         <volist name="myForums" id="each_forum">
             <a href="{:U('Index/forum',array('id'=>$each_forum['id']))}">{$each_forum.title|op_t}</a>

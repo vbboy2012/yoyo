@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_weixin_areply` (
   `linkurl` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `content` text,
-  `is_attention` tinyint(1) NOT NULL DEFAULT '2' COMMENT '是否为关注回复 1是 2否',
+  `is_attention` tinyint(1) NOT NULL DEFAULT '2' COMMENT '是否为信任回复 1是 2否',
   `cid` int(11) DEFAULT NULL,
   `is_news` tinyint(1) DEFAULT '0',
   `ctime` int(11) DEFAULT NULL,
