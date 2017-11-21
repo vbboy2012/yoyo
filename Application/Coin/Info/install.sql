@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `ocenter_trade_order` (
   `fee` decimal(10,6) NOT NULL COMMENT '手续费',
   `pay_code` CHAR (7) NOT NULL COMMENT '付款参考编码',
   `pay_text` varchar(200) NULL COMMENT '交易条款',
-  `status` tinyint(2) NOT NULL COMMENT '状态：1等待付款，2付款完毕，3确认完成，4，申诉，5取消',
+  `status` tinyint(2) NOT NULL COMMENT '状态：1等待付款，2付款完毕，3确认完成，4申诉，5买家取消，6系统取消',
   `create_time` int(11) NOT NULL,
   `update_time` int(11) NULL,
   PRIMARY KEY (`id`)
@@ -142,3 +142,16 @@ CREATE TABLE IF NOT EXISTS `ocenter_currency` (
   PRIMARY KEY (`id`),
   KEY `code` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for `ocenter_evaluate`
+-- ----------------------------
+CREATE TABLE IF NOT EXISTS `ocenter_evaluate` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` varchar(20) NOT NULL,
+  `eva_who` int(11) NOT NULL,
+  `who_eva` int(11) NOT NULL,
+  `eva_level` smallint(1) NOT NULL,
+  `eva_info` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

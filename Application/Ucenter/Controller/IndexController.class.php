@@ -761,7 +761,7 @@ class IndexController extends BaseController
     {
         $uid = is_login();
         if (!$uid) {
-            $this->error(L('_ERROR_NEED_LOGIN_'));
+            $this->error(L('_ERROR_NEED_LOGIN_'),U('/ucenter/member/login'));
         }
         if (isset($_GET['active'])){
             $status =  I('get.status');
@@ -786,27 +786,70 @@ class IndexController extends BaseController
     {
         $uid = is_login();
         if (!$uid) {
-            $this->error(L('_ERROR_NEED_LOGIN_'));
+            $this->error(L('_ERROR_NEED_LOGIN_'),U('/ucenter/member/login'));
         }
-//        $status = I('get.status');
-//        $status = $status == null ? 1: $status;
+        $page1 = I('get.page1','1','op_t');
+        $page2 = I('get.page2','1','op_t');
+        $page3 = I('get.page3','1','op_t');
+        $page4 = I('get.page4','1','op_t');
+        $active = 1;
+        if(isset($_GET['page2'])){
+            $active = 2;
+        }else if(isset($_GET['page3'])){
+            $active = 3;
+        }else if(isset($_GET['page4'])){
+            $active = 4;
+        }
+        $rows = 10;      //一页显示几条数据
+        $offset1 = $page1 * $rows - $rows;
+        $offset2 = $page2 * $rows - $rows;
+        $offset3 = $page3 * $rows - $rows;
+        $offset4 = $page4 * $rows - $rows;
         $tradeOrder = M('trade_order');
+        $count1 = $tradeOrder->where('(get_uid='.$uid.' or ad_uid='.$uid.') and (status=1 or status=2)')->count();
         $orderList1 = $tradeOrder->alias('o')->join('ocenter_tradead t on o.ad_id = t.id')
             ->field('t.currency,t.type,t.coin_type,o.order_id,o.create_time,o.ad_uid,o.get_uid,o.coin_num,o.trade_price,o.fee,o.status')
-            ->where('(o.get_uid='.$uid.' or o.ad_uid='.$uid.') and (o.status=1 or o.status=2)')->select();
-//        $orderList3 = $tradeOrder->join('ocenter_tradead on ocenter_trade_order.ad_id = ocenter_tradead.id')
-//            ->field('ocenter_tradead.currency,ocenter_tradead.type,ocenter_tradead.coin_type,ocenter_trade_order.order_id,ocenter_trade_order.create_time,ocenter_trade_order.ad_uid,ocenter_trade_order.get_uid,ocenter_trade_order.coin_num,ocenter_trade_order.trade_price,ocenter_trade_order.fee,ocenter_trade_order.status')
-//            ->where('(ocenter_trade_order.get_uid='.$uid.' or ocenter_trade_order.ad_uid='.$uid.') and ocenter_trade_order.status=3')->select();
-//        $orderList0 = $tradeOrder->join('ocenter_tradead on ocenter_trade_order.ad_id = ocenter_tradead.id')
-//            ->field('ocenter_tradead.currency,ocenter_tradead.type,ocenter_tradead.coin_type,ocenter_trade_order.order_id,ocenter_trade_order.create_time,ocenter_trade_order.ad_uid,ocenter_trade_order.get_uid,ocenter_trade_order.coin_num,ocenter_trade_order.trade_price,ocenter_trade_order.fee,ocenter_trade_order.status')
-//            ->where('(ocenter_trade_order.get_uid='.$uid.' or ocenter_trade_order.ad_uid='.$uid.') and ocenter_trade_order.status=0')->select();
-//        $orderList4 = $tradeOrder->join('ocenter_tradead on ocenter_trade_order.ad_id = ocenter_tradead.id')
-//            ->field('ocenter_tradead.currency,ocenter_tradead.type,ocenter_tradead.coin_type,ocenter_trade_order.order_id,ocenter_trade_order.create_time,ocenter_trade_order.ad_uid,ocenter_trade_order.get_uid,ocenter_trade_order.coin_num,ocenter_trade_order.trade_price,ocenter_trade_order.fee,ocenter_trade_order.status')
-//            ->where('(ocenter_trade_order.get_uid='.$uid.' or ocenter_trade_order.ad_uid='.$uid.') and ocenter_trade_order.status=4')->select();
-  //      $this->assign('tab', $status);
+            ->where('(o.get_uid='.$uid.' or o.ad_uid='.$uid.') and (o.status=1 or o.status=2)')->order('o.id desc')->limit($offset1.','.$rows)->select();
+        $count2 = $tradeOrder->where('(get_uid='.$uid.' or ad_uid='.$uid.') and status=3')->count();
+        $orderList2 = $tradeOrder->alias('o')->join('ocenter_tradead t on o.ad_id = t.id')
+            ->field('t.currency,t.type,t.coin_type,o.order_id,o.create_time,o.ad_uid,o.get_uid,o.coin_num,o.trade_price,o.fee,o.status')
+            ->where('(o.get_uid='.$uid.' or o.ad_uid='.$uid.') and o.status=3')->order('o.id desc')->limit($offset2.','.$rows)->select();
+        $count3 = $tradeOrder->where('(get_uid='.$uid.' or ad_uid='.$uid.') and (status=5 or status=6)')->count();
+        $orderList3 = $tradeOrder->alias('o')->join('ocenter_tradead t on o.ad_id = t.id')
+            ->field('t.currency,t.type,t.coin_type,o.order_id,o.create_time,o.ad_uid,o.get_uid,o.coin_num,o.trade_price,o.fee,o.status')
+            ->where('(o.get_uid='.$uid.' or o.ad_uid='.$uid.') and (o.status=5 or o.status=6)')->order('o.id desc')->limit($offset3.','.$rows)->select();
+        $count4 = $tradeOrder->where('(get_uid='.$uid.' or ad_uid='.$uid.') and status=4')->count();
+        $orderList4 = $tradeOrder->alias('o')->join('ocenter_tradead t on o.ad_id = t.id')
+            ->field('t.currency,t.type,t.coin_type,o.order_id,o.create_time,o.ad_uid,o.get_uid,o.coin_num,o.trade_price,o.fee,o.status')
+            ->where('(o.get_uid='.$uid.' or o.ad_uid='.$uid.') and o.status=4')->order('o.id desc')->limit($offset4.','.$rows)->select();
+        $pages1 = $count1 / $rows;
+        if ($pages1 > 1){
+            $pages1 = ceil($pages1)+1;
+        }
+        $pages2 = $count2 / $rows;
+        if ($pages2 > 1){
+            $pages2 = ceil($pages2)+1;
+        }
+        $pages3 = $count3 / $rows;
+        if ($pages3 > 1){
+            $pages3 = ceil($pages3)+1;
+        }
+        $pages4 = $count4 / $rows;
+        if ($pages4 > 1){
+            $pages4 = ceil($pages4)+1;
+        }
+        $this->assign('pages1', $pages1);
+        $this->assign('pages2', $pages2);
+        $this->assign('pages3', $pages3);
+        $this->assign('pages4', $pages4);
+        $this->assign('page1', $page1);
+        $this->assign('page2', $page2);
+        $this->assign('page3', $page3);
+        $this->assign('page4', $page4);
+        $this->assign('active', $active);
         $this->assign('orderList1', $orderList1);
+        $this->assign('orderList2', $orderList2);
         $this->assign('orderList3', $orderList3);
-        $this->assign('orderList0', $orderList0);
         $this->assign('orderList4', $orderList4);
         $this->display();
     }

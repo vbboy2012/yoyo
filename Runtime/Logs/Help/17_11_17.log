@@ -1,0 +1,36 @@
+[ 2017-11-17T10:30:38+08:00 ] 127.0.0.1 /yoyo/help/index/dopost.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000714s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000773s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.002764s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000472s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000449s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.015190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015747s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.002537s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000388s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000276s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000331s ]
+NOTIC: [8] Undefined variable: module /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Common/functions.php 第 1052 行.
+NOTIC: [8] Undefined variable: var /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Common/functions.php 第 1052 行.
+NOTIC: [8] Undefined variable: varController /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Common/functions.php 第 1052 行.
+NOTIC: [8] Undefined variable: var /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Common/functions.php 第 1052 行.
+NOTIC: [8] Undefined variable: varAction /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Common/functions.php 第 1052 行.
+NOTIC: [8] Undefined variable: module /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Common/functions.php 第 1052 行.
+NOTIC: [8] Undefined variable: var /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Common/functions.php 第 1052 行.
+NOTIC: [8] Undefined variable: varController /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Common/functions.php 第 1052 行.
+NOTIC: [8] Undefined variable: var /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Common/functions.php 第 1052 行.
+NOTIC: [8] Undefined variable: varAction /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Common/functions.php 第 1052 行.
+

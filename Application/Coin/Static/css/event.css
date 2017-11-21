@@ -573,6 +573,9 @@ hr {
 .ardor {
   background-color: #ffffff;
 }
+.ardora{
+  color: cornflowerblue;text-decoration:underline;
+}
 .qtHead {
   height: 40px;
   display: flex;
@@ -588,5 +591,27 @@ hr {
 
 .alert h4{
   text-align: center;
+}
+
+.haoping{
+  color: #68bc46;
+}
+.haoping label{
+  cursor:pointer
+}
+.haoping p{
+  color: #a8a8a8;
+  font-size: 12px;
+}
+
+.chaping{
+  color: #e64a49;
+}
+.chaping label{
+  cursor:pointer
+}
+.chaping p{
+  color: #a8a8a8;
+  font-size: 12px;
 }
 

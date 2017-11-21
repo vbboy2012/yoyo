@@ -115,7 +115,7 @@ class AttestController extends BaseController
     {
         $attest_old=$this->_checkAttestStatus(1);
 
-        $this->checkAuth('Ucenter/Attest/apply',-1,'你没有申请权限');
+     //   $this->checkAuth('Ucenter/Attest/apply',-1,'你没有申请权限');
         if(IS_POST){
             $attest=$this->attestModel->create();
             //检测认证资料 start

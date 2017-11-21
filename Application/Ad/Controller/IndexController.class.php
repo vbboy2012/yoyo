@@ -64,7 +64,7 @@ class IndexController extends Controller{
     public function doPost($id=0,$coin_type = 0,$type = 0,$country=0,$currency='',$pre_price=0,$price=0,$pay_time=0,$pay_addr='',$low_price=0,$min_price=0,$max_price=0,$pay_type=0,$pay_text='',$pay_remark='',$auto_message='',$is_safe=0,$is_trust=0,$start0=0,$end0=0,$start1=0,$end1=0,$start2=0,$end2=0,$start3=0,$end3=0,$start4=0,$end4=0,$start5=0,$end5=0,$start6=0,$end6=0)
     {
         if (!is_login()) {
-            $this->error(L('_ERROR_LOGIN_'));
+            $this->error(L('_ERROR_LOGIN_'),U('/ucenter/member/login'));
         }
         if ($coin_type == 0){
             $this->error(L('_ERROR_COIN_TYPE_'));

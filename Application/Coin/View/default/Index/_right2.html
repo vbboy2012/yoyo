@@ -1,57 +1,297 @@
 <div class="common_block_border event_right">
     <div class="ardor">
+        <p class="qtHead"><label>{:L('_TRADE_OPER_')}</label><label><span id="timer"></span></label></p>
         <if condition="($order['type'] eq 1 or $order['type'] eq 3) and $order['get_uid'] eq get_uid()">
-            <p class="qtHead"><label>{:L('_TRADE_OPER_')}</label><label><span id="timer"></span></label></p>
-            <div class="alert alert-primary" style="margin-top: 0px">
+            <div class="alert alert-primary" style="margin-top: 0px;background: none">
                 <if condition="$order['status'] == 1">
                     <h4>{:L('_TRADE_STEP1_')}</h4>
                     <hr>
                     <p>{:L('_TRADE_STEP1_INFO_',array('seller'=>$seller))}</p>
-                    <else/>
+                    <elseif condition="$order['status'] == 2 or $order['status'] == 4"/>
                     <h4>{:L('_TRADE_STEP3_')}</h4>
                     <hr>
                     <p>{:L('_TRADE_STEP3_INFO_',array('updateTime'=>$updateTime,'seller'=>$seller))}</p>
-                </if>
-                <hr>
-                <p><label>{$order.pay_remark}</label></p>
-                <p>金额：<label>{$order.trade_price} {$order.currency}</label></p>
-                <p>付款参考码：<label>{$order.pay_code}</label></p>
-                <if condition="$order['status'] == 1">
+                    <elseif condition="$order['status'] == 3"/>
+                    <h4>{:L('_TRADE_INFO_')}</h4>
                     <hr>
+                    <p>这笔交易在2017-11-12 12:03:17已经关闭。您仍然可以给交易方发送留言。</p>
+                    <elseif condition="$order['status'] == 5 or $order['status'] == 6"/>
+                    <h4>{:L('_TRADE_INFO_')}</h4>
+                    <hr>
+                    <p>{$buyInfo}</p>
+                </if>
+                <p>交易状态：<span style="color: #FF0000">{$statusText}</span></p>
+                <div style="margin-top: 5px;margin-bottom: 10px;border:1px solid #D4D4D4;border-radius:5px;padding: 5px 5px">
+                    <label>购买人：</label><a class="ardora" href="{:U('/ucenter/index/information/uid/'.$order['get_uid'])}">{$buyer}</a>
+                    <br>
+                    <label>出售人：</label><a class="ardora" href="{:U('/ucenter/index/information/uid/'.$order['ad_uid'])}">{$seller}</a>
+                    <br><label>托管金额：</label>{$coinNum} {$type}<br>
+                    <label>付款备注：</label>{$order.pay_remark}
+                    <br><label>付款金额：</label>{$order.trade_price} {$order.currency}
+                    <br><label>付款参考码：</label>{$order.pay_code}
+                </div>
+                <if condition="$order['status'] == 1">
                     <h4>{:L('_TRADE_STEP2_')}</h4>
                     <hr>
                     <p>{:L('_TRADE_STEP2_INFO_',array('time'=>$order['pay_time'],''))}</p>
                 </if>
-                <hr>
                 <php>if($order['status'] == 1){</php>
+                <hr>
                 <a href="javascript:void(0)" class="btn btn-info" name="pay-ok">我已付款</a>
                 <a href="javascript:void(0)" class="btn btn-default" id="cancel-trade" style="float: right">取消交易</a>
-                <php>}else if($order['status'] == 2){</php>
+                <php>}else if($order['status'] == 2 or $order['status'] == 4){</php>
                 <p style="margin-top: 20px">1，{:L('_TRADE_BUY_INFO1_')}<br>2，{:L('_TRADE_BUY_INFO3_')}</p>
                 <hr>
-                <a href="{:U('/support/request/3/'.$order['order_id'])}" target="_blank" class="btn btn-danger">申&nbsp;诉</a>
-                <a href="javascript:void(0)" class="btn btn-default" id="cancel-trade" style="float: right">取消交易</a>
+                <php>if($order['status']!=4){ $right="float: right";</php>
+                <a href="#appeal" data-toggle="collapse" id="appeal-trade" class="btn btn-danger">申&nbsp;诉</a>
+                <php>}else{ $right=""; }</php>
+                <a href="javascript:void(0)" class="btn btn-default" id="cancel-trade" style="{$right}">取消交易</a>
+                <div class="collapse" id="appeal">
+                    <h4><label>提交申诉</label></h4>
+                    <hr>
+                    <form class="form-horizontal ajax-form" id="appeal-form" method="post">
+                        <input type="hidden" name="question_id" value="{$order['order_id']}">
+                        <div class="form-group">
+                            <label class="col-sm-3">{:L('_TRADE_INFO1_')}</label>
+                            <div class="col-sm-9">
+                                <select name="type" style="width: 100%">
+                                    <option value="8">
+                                    {:L('_TICKET_QUESTION8_')}
+                                    </option>
+                                    <option value="9">
+                                    {:L('_TICKET_QUESTION9_')}
+                                    </option>
+                                    <option value="7">
+                                    {:L('_TICKET_QUESTION7_')}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3">{:L('_TRADE_INFO2_')}</label>
+                            <div class="col-xs-9">
+                                <span id="web_uploader_wrapper_gallary_other_image"><i class="icon icon-picture icon-2x"></i></span>
+                                <input id="web_uploader_input_gallary_other_image" type="hidden" value=""  event-node="uploadinput">
+
+                                <div id="web_uploader_picture_list_gallary_other_image" class="web_uploader_picture_list">
+                                    <volist name="attest.image" id="o">
+                                        <img class="gallary_thumb" onclick="remove_file(this,'other_image')" src="{$o|get_cover='path'}">
+                                        <input type="hidden" name="image[]" value="{$o}"/>
+                                    </volist>
+                                </div>
+                                <span class="help-block">{$attest_type.fields.other_image_tip}</span>
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <label>请上传支持您的证据，可以是以下几类</label>
+                            <ul style="margin-left: 20px">
+                                <li>付款的收据</li>
+                                <li>银行对账单</li>
+                                <li>个人身份证</li>
+                                <li>或者是YOYOCOINS客服所要求的任何文档</li>
+                            </ul>
+                        </div>
+                        文件描述
+                        <div>
+                            <textarea style="width: 100%;height: 100px" name="content"></textarea>
+                        </div>
+                        <a href="javascript:void(0);" data-role="send-appeal" class="btn btn-info" style="margin-top: 10px">发起申诉</a>
+                        <a href="#appeal" id="cancel-appeal" href="#appeal" data-toggle="collapse" class="btn btn-default" style="margin-top: 10px;float: right">取消申诉</a>
+                    </form>
+                </div>
+                <php>}else if($order['status'] == 3){</php>
+                <hr style="margin-top: 15px">
+                <php>
+                    if($evaModel){
+                        $block = 'display: block';
+                        $collapse = 'collapse';
+                    }else{
+                        $collapse = '';
+                        $block = 'display: none';
+                    }
+                </php>
+                <h4 style="{$block}">
+                    <a href="#updateEva" id="update-eva" data-toggle="collapse" class="ardora">更新您对用户{$seller}的评价</a>
+                </h4>
+                <div class="{$collapse}" id="updateEva">
+                    <h4 style="margin-bottom: 0px">{:L('_TRADE_INFO3_')}<a class="ardora" href="{:U('/ucenter/index/information/uid/'.$order['ad_uid'])}">{$seller}</a>{:L('_TRADE_INFO4_')}</h4>
+                    <hr>
+                    交易者评级：
+                    <br>
+                    <form class="ajax-form" id="eva-form">
+                        <input type="hidden" name="evaUid" value="{$order['ad_uid']}">
+                        <input type="hidden" name="orderId" value="{$order['order_id']}">
+                        <div style="margin-top: 5px;margin-bottom: 10px;border:1px solid #D4D4D4;border-radius:5px;padding: 5px 5px">
+                            <div class="haoping">
+                                <label> <input name="evaLevel" value="1" type="radio" <if condition="$evaModel['eva_level'] eq 1">checked</if>/> {:L('_TRADE_INFO5_')}</label>
+                                <p>{:L('_TRADE_INF10_')}</p>
+                            </div>
+                            <div class="haoping">
+                                <label> <input name="evaLevel" value="2" type="radio" <if condition="$evaModel['eva_level'] eq 2">checked</if>/> {:L('_TRADE_INFO6_')}</label>
+                                <p>{:L('_TRADE_INF11_')}</p>
+                            </div>
+                            <div class="haoping">
+                                <label> <input name="evaLevel" value="3" type="radio" <if condition="$evaModel['eva_level'] eq 3">checked</if>/> {:L('_TRADE_INFO7_')}</label>
+                                <p>{:L('_TRADE_INF12_')}</p>
+                            </div>
+                            <div class="chaping">
+                                <label> <input name="evaLevel" value="4" type="radio" <if condition="$evaModel['eva_level'] eq 4">checked</if>/> {:L('_TRADE_INFO8_')}</label>
+                                <p>{:L('_TRADE_INF13_')}</p>
+                            </div>
+                            <div class="chaping">
+                                <label> <input name="evaLevel" value="5" type="radio" <if condition="$evaModel['eva_level'] eq 5">checked</if>/> {:L('_TRADE_INFO9_')}</label>
+                                <p>{:L('_TRADE_INF14_')}</p>
+                            </div>
+                        </div>
+                        评价信息（可选）：
+                        <div>
+                            <textarea style="width: 100%" name="evaInfo">{$evaModel['eva_info']}</textarea>
+                        </div>
+                        <a href="javascript:void(0);" data-role="submit" class="btn btn-primary" style="margin-top: 10px;outline: none">评价</a>
+                    </form>
+                </div>
                 <php>}</php>
             </div>
-            <if condition="$order['status'] ==1 or $order['status'] ==2">
+            <if condition="$order['status'] ==1 or $order['status'] ==2 or $order['status'] == 4">
                 <div class="alert alert-info" style="margin-top: 0px">
                     <p>{:L('_TRADE_TIPS1_')}</p>
                     <p>{:L('_TRADE_TIPS2_')}</p>
                 </div>
             </if>
+            
             <elseif condition="($order['type'] eq 1 or $order['type'] eq 3) and $order['ad_uid'] eq get_uid()"/>
-            <p class="qtHead"><label>{:L('_TRADE_OPER_')}</label></p>
-            <div class="alert alert-primary" style="margin-top: 0px">
-                <h4>交易信息</h4>
+            <div class="alert alert-primary" style="margin-top: 0px;background: none">
+                <h4>{:L('_TRADE_INFO_')}</h4>
                 <hr>
-                <p>{$sellInfo}</p>
-                <if condition="$order['status'] == 2">
-                    <hr>
-                    <p>1，{:L('_TRADE_STEP4_')}<br>2，{:L('_TRADE_BUY_INFO3_')}</p>
-                    <hr>
-                    <a href="{:U('/support/request/3/'.$order['order_id'])}" target="_blank" class="btn btn-danger">申&nbsp;诉</a>
-                    <a href="javascript:void(0)" class="btn btn-info" name="send-coin" style="float: right">放行比特币</a>
+                <if condition="$order['status'] == 3">
+                    <p>这笔交易在2017-11-12 12:03:17已经关闭。您仍然可以给交易对方发送留言。</p>
+                <elseif condition="$order['status'] == 5 or $order['status'] == 6"/>
+                    <p>{$buyInfo}</p>
                 </if>
+                <p>交易状态：<span style="color: #FF0000">{$statusText}</span></p>
+                <div style="margin-top: 5px;margin-bottom: 10px;border:1px solid #D4D4D4;border-radius:5px;padding: 5px 5px">
+                    <label>购买人：</label><a class="ardora" href="{:U('/ucenter/index/information/uid/'.$order['get_uid'])}">{$buyer}</a>
+                    <br>
+                    <label>出售人：</label><a class="ardora" href="{:U('/ucenter/index/information/uid/'.$order['ad_uid'])}">{$seller}</a>
+                    <br>
+                    <label>托管金额：</label>{$coinNum} {$type}<br>
+                    <label>付款备注：</label>{$order.pay_remark}
+                    <br><label>付款金额：</label>{$order.trade_price} {$order.currency}
+                    <br><label>付款参考码：</label>{$order.pay_code}
+                </div>
+                <php>if($order['status'] == 3){</php>
+                <hr style="margin-top: 15px">
+                <php>
+                    if($evaModel){
+                    $block = 'display: block';
+                    $collapse = 'collapse';
+                    }else{
+                    $collapse = '';
+                    $block = 'display: none';
+                    }
+                </php>
+                <h4 style="{$block}">
+                    <a href="#collapseExample" id="update-eva" data-toggle="collapse" class="ardora">更新您对用户{$buyer}的评价</a>
+                </h4>
+                <div class="{$collapse}" id="collapseExample">
+                    <h4 style="margin-bottom: 0px">{:L('_TRADE_INFO3_')}<a class="ardora" href="{:U('/ucenter/index/information/uid/'.$order['get_uid'])}">{$buyer}</a>{:L('_TRADE_INFO4_')}</h4>
+                    <hr>
+                    交易者评级：
+                    <br>
+                    <form class="ajax-form" id="eva-form">
+                        <input type="hidden" name="evaUid" value="{$order['get_uid']}">
+                        <input type="hidden" name="orderId" value="{$order['order_id']}">
+                        <div style="margin-top: 5px;margin-bottom: 10px;border:1px solid #D4D4D4;border-radius:5px;padding: 5px 5px">
+                            <div class="haoping">
+                                <label> <input name="evaLevel" value="1" type="radio" <if condition="$evaModel['eva_level'] eq 1">checked</if>/> {:L('_TRADE_INFO5_')}</label>
+                                <p>{:L('_TRADE_INF10_')}</p>
+                            </div>
+                            <div class="haoping">
+                                <label> <input name="evaLevel" value="2" type="radio" <if condition="$evaModel['eva_level'] eq 2">checked</if>/> {:L('_TRADE_INFO6_')}</label>
+                                <p>{:L('_TRADE_INF11_')}</p>
+                            </div>
+                            <div class="haoping">
+                                <label> <input name="evaLevel" value="3" type="radio" <if condition="$evaModel['eva_level'] eq 3">checked</if>/> {:L('_TRADE_INFO7_')}</label>
+                                <p>{:L('_TRADE_INF12_')}</p>
+                            </div>
+                            <div class="chaping">
+                                <label> <input name="evaLevel" value="4" type="radio" <if condition="$evaModel['eva_level'] eq 4">checked</if>/> {:L('_TRADE_INFO8_')}</label>
+                                <p>{:L('_TRADE_INF13_')}</p>
+                            </div>
+                            <div class="chaping">
+                                <label> <input name="evaLevel" value="5" type="radio" <if condition="$evaModel['eva_level'] eq 5">checked</if>/> {:L('_TRADE_INFO9_')}</label>
+                                <p>{:L('_TRADE_INF14_')}</p>
+                            </div>
+                        </div>
+                        评价信息（可选）：
+                        <div>
+                            <textarea style="width: 100%" name="evaInfo">{$evaModel['eva_info']}</textarea>
+                        </div>
+                        <a data-role="submit" class="btn btn-primary" style="margin-top: 10px;outline: none">评价</a>
+                    </form>
+                <php>}</php>
+                <if condition="$order['status'] == 1 or $order['status'] ==2 or $order['status'] ==4">
+                    <p>1，{:L('_TRADE_STEP4_',array('payTime'=>$order['pay_time']))}</p>
+                    <p>2，{:L('_TRADE_BUY_INFO3_')}</p>
+                    <hr>
+                    <a href="#appeal" data-toggle="collapse" id="appeal-trade" class="btn btn-danger">申&nbsp;诉</a>
+                    <a href="javascript:void(0)" class="btn btn-info" id="send-coin" name="send-coin" style="float: right">放行比特币</a>
+                </if>
+                    <div class="collapse" id="appeal">
+                        <h4><label>提交申诉</label></h4>
+                        <hr>
+                        <form class="form-horizontal ajax-form" id="appeal-form" method="post">
+                            <input type="hidden" name="question_id" value="{$order['order_id']}">
+                            <div class="form-group">
+                                <label class="col-sm-3">{:L('_TRADE_INFO1_')}</label>
+                                <div class="col-sm-9">
+                                    <select name="type" style="width: 100%">
+                                        <option value="8">
+                                        {:L('_TICKET_QUESTION8_')}
+                                        </option>
+                                        <option value="10">
+                                        {:L('_TICKET_QUESTION10_')}
+                                        </option>
+                                        <option value="7">
+                                        {:L('_TICKET_QUESTION7_')}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">{:L('_TRADE_INFO2_')}</label>
+                                <div class="col-xs-9">
+                                    <span id="web_uploader_wrapper_gallary_other_image"><i class="icon icon-picture icon-2x"></i></span>
+                                    <input id="web_uploader_input_gallary_other_image" type="hidden" value=""  event-node="uploadinput">
+
+                                    <div id="web_uploader_picture_list_gallary_other_image" class="web_uploader_picture_list">
+                                        <volist name="attest.image" id="o">
+                                            <img class="gallary_thumb" onclick="remove_file(this,'other_image')" src="{$o|get_cover='path'}">
+                                            <input type="hidden" name="image[]" value="{$o}"/>
+                                        </volist>
+                                    </div>
+                                    <span class="help-block">{$attest_type.fields.other_image_tip}</span>
+                                </div>
+                            </div>
+
+                            <div class="">
+                                <label>请上传支持您的证据，可以是以下几类</label>
+                                <ul style="margin-left: 20px">
+                                    <li>付款的收据</li>
+                                    <li>银行对账单</li>
+                                    <li>个人身份证</li>
+                                    <li>或者是YOYOCOINS客服所要求的任何文档</li>
+                                </ul>
+                            </div>
+                            文件描述
+                            <div>
+                                <textarea style="width: 100%;height: 100px" name="content"></textarea>
+                            </div>
+                            <a href="javascript:void(0);" data-role="send-appeal" class="btn btn-info" style="margin-top: 10px">发起申诉</a>
+                            <a href="#appeal" id="cancel-appeal" href="#appeal" data-toggle="collapse" class="btn btn-default" style="margin-top: 10px;float: right">取消申诉</a>
+                        </form>
+                    </div>
             </div>
             <if condition="$order['status'] ==1 or $order['status'] ==2">
                 <div class="alert alert-info" style="margin-top: 0px">
@@ -60,7 +300,6 @@
                 </div>
             </if>
             <elseif condition="($order['type'] eq 2 or $order['type'] eq 4) and $order['get_uid'] eq get_uid()"/>
-            <p class="qtHead"><label>{:L('_TRADE_OPER_')}</label></p>
             <div class="alert alert-info" style="margin-top: 0px">
                 <h4 style="text-align: center">交易信息</h4>
                 <hr>
@@ -79,7 +318,6 @@
                 </if>
             </div>
             <elseif condition="($order['type'] eq 2 or $order['type'] eq 4) and $order['ad_uid'] eq get_uid()"/>
-            <p class="qtHead"><label>{:L('_TRADE_OPER_')}</label><label><span id="timer"></span></label></p>
             <div class="alert alert-primary" style="margin-top: 0px">
                 <h4>交易信息</h4>
                 <hr>

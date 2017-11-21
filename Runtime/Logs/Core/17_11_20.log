@@ -1,0 +1,412 @@
+[ 2017-11-20T10:00:45+08:00 ] 127.0.0.1 /yoyo/core/public/atwhojson.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.004500s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004892s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.003417s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000703s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000589s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.028906s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.029655s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.004177s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.001159s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000140s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000170s ]
+SQL: SHOW COLUMNS FROM `ocenter_follow` [ RunTime:0.002476s ]
+SQL: SELECT * FROM `ocenter_follow` WHERE `who_follow` = 0 OR `follow_who` = 0  [ RunTime:0.000213s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Core/Controller/PublicController.class.php 第 103 行.
+
+[ 2017-11-20T10:09:36+08:00 ] 127.0.0.1 /yoyo/core/public/firstuserrun/time/1511143776/token/06ade9585ef0f817d32a33213aa1166d.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002054s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002291s ]
+NOTIC: [8] Undefined index: HTTP_USER_AGENT /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1780 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1780 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1780 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1780 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1780 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1780 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1780 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1780 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1780 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1780 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1780 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1780 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1780 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1780 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1780 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.005016s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000674s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000322s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.018911s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.019312s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.004601s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000912s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000137s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000168s ]
+SQL: REPLACE INTO `ocenter_config` (`name`,`type`,`title`,`group`,`extra`,`remark`,`create_time`,`update_time`,`status`,`value`,`sort`) VALUES ('_CONFIG_FIRST_USER_RUN',0,'',0,'','',1511143776,1511143776,1,'2017-11-20',0) [ RunTime:0.000263s ]
+NOTIC: [2] unlink(./Runtime/Temp/02e1f2a7f69b0087bd2c92f0e04f9583.php): No such file or directory /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Cache/Driver/File.class.php 第 157 行.
+SQL: SHOW COLUMNS FROM `ocenter_schedule` [ RunTime:0.006176s ]
+SQL: SHOW COLUMNS FROM `ocenter_count_lost` [ RunTime:0.004466s ]
+SQL: SHOW COLUMNS FROM `ocenter_count_remain` [ RunTime:0.004482s ]
+SQL: SHOW COLUMNS FROM `ocenter_count_consumption` [ RunTime:0.003180s ]
+ERR: 1146:Table 'yoyobit.ocenter_count_consumption' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `ocenter_count_consumption`
+SQL: SHOW COLUMNS FROM `ocenter_count_active` [ RunTime:0.005393s ]
+SQL: SHOW COLUMNS FROM `ocenter_count` [ RunTime:0.001700s ]
+ERR: 1146:Table 'yoyobit.ocenter_count' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `ocenter_count`
+SQL: SELECT * FROM `ocenter_count_lost` WHERE `date` = 1511020800 LIMIT 1   [ RunTime:0.000297s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.004584s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_member` WHERE `status` = 1 LIMIT 1   [ RunTime:0.002565s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_member` WHERE `status` = 1 AND `last_login_time` < 1508515200 LIMIT 1   [ RunTime:0.000835s ]
+SQL: SELECT * FROM `ocenter_count_lost` WHERE `date` = 1510934400 LIMIT 1   [ RunTime:0.001733s ]
+SQL: INSERT INTO `ocenter_count_lost` (`new_lost`,`date`,`user_num`,`lost_num`,`rate`,`create_time`) VALUES (0,1511020800,2,0,0,1511143776) [ RunTime:0.000198s ]
+SQL: SELECT * FROM `ocenter_count_remain` WHERE `date` = 1510934400 LIMIT 1   [ RunTime:0.000244s ]
+SQL: SELECT `uid` FROM `ocenter_member` WHERE `reg_time` BETWEEN 1510934400 AND 1511020799 AND `status` = 1  [ RunTime:0.000210s ]
+NOTIC: [2] array_column() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/CountModel.class.php 第 116 行.
+SQL: INSERT INTO `ocenter_count_remain` (`reg_num`,`date`,`day1_num`) VALUES (0,1510934400,0) [ RunTime:0.000950s ]
+SQL: SELECT * FROM `ocenter_count_remain` WHERE `date` = 1510848000 LIMIT 1   [ RunTime:0.000224s ]
+SQL: SELECT `uid` FROM `ocenter_member` WHERE `reg_time` BETWEEN 1510848000 AND 1510934399 AND `status` = 1  [ RunTime:0.000214s ]
+NOTIC: [2] array_column() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/CountModel.class.php 第 116 行.
+SQL: UPDATE `ocenter_count_remain` SET `date`=1510848000,`day1_num`=0,`day2_num`=0,`day3_num`=0,`day4_num`=0,`day5_num`=0,`day6_num`=0,`day7_num`=0,`day8_num`=0,`reg_num`=0 WHERE `id` = 22 [ RunTime:0.000191s ]
+SQL: SELECT * FROM `ocenter_count_remain` WHERE `date` = 1510761600 LIMIT 1   [ RunTime:0.000269s ]
+SQL: SELECT `uid` FROM `ocenter_member` WHERE `reg_time` BETWEEN 1510761600 AND 1510847999 AND `status` = 1  [ RunTime:0.000792s ]
+NOTIC: [2] array_column() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/CountModel.class.php 第 116 行.
+SQL: UPDATE `ocenter_count_remain` SET `date`=1510761600,`day1_num`=0,`day2_num`=0,`day3_num`=0,`day4_num`=0,`day5_num`=0,`day6_num`=0,`day7_num`=0,`day8_num`=0,`reg_num`=0 WHERE `id` = 21 [ RunTime:0.000548s ]
+SQL: SELECT * FROM `ocenter_count_remain` WHERE `date` = 1510675200 LIMIT 1   [ RunTime:0.000883s ]
+SQL: SELECT `uid` FROM `ocenter_member` WHERE `reg_time` BETWEEN 1510675200 AND 1510761599 AND `status` = 1  [ RunTime:0.000631s ]
+NOTIC: [2] array_column() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/CountModel.class.php 第 116 行.
+SQL: UPDATE `ocenter_count_remain` SET `date`=1510675200,`day1_num`=0,`day2_num`=0,`day3_num`=0,`day4_num`=0,`day5_num`=0,`day6_num`=0,`day7_num`=0,`day8_num`=0,`reg_num`=0 WHERE `id` = 19 [ RunTime:0.000655s ]
+SQL: SELECT * FROM `ocenter_count_remain` WHERE `date` = 1510588800 LIMIT 1   [ RunTime:0.001452s ]
+SQL: SELECT `uid` FROM `ocenter_member` WHERE `reg_time` BETWEEN 1510588800 AND 1510675199 AND `status` = 1  [ RunTime:0.000908s ]
+NOTIC: [2] array_column() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/CountModel.class.php 第 116 行.
+SQL: UPDATE `ocenter_count_remain` SET `date`=1510588800,`day1_num`=0,`day2_num`=0,`day3_num`=0,`day4_num`=0,`day5_num`=0,`day6_num`=0,`day7_num`=0,`day8_num`=0,`reg_num`=0 WHERE `id` = 20 [ RunTime:0.000645s ]
+SQL: SELECT * FROM `ocenter_count_remain` WHERE `date` = 1510502400 LIMIT 1   [ RunTime:0.000674s ]
+SQL: SELECT `uid` FROM `ocenter_member` WHERE `reg_time` BETWEEN 1510502400 AND 1510588799 AND `status` = 1  [ RunTime:0.000300s ]
+NOTIC: [2] array_column() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/CountModel.class.php 第 116 行.
+SQL: UPDATE `ocenter_count_remain` SET `date`=1510502400,`day1_num`=0,`day2_num`=0,`day3_num`=0,`day4_num`=0,`day5_num`=0,`day6_num`=0,`day7_num`=0,`day8_num`=0,`reg_num`=0 WHERE `id` = 18 [ RunTime:0.000186s ]
+SQL: SELECT * FROM `ocenter_count_remain` WHERE `date` = 1510416000 LIMIT 1   [ RunTime:0.000183s ]
+SQL: SELECT `uid` FROM `ocenter_member` WHERE `reg_time` BETWEEN 1510416000 AND 1510502399 AND `status` = 1  [ RunTime:0.000241s ]
+NOTIC: [2] array_column() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/CountModel.class.php 第 116 行.
+SQL: UPDATE `ocenter_count_remain` SET `date`=1510416000,`day1_num`=0,`day2_num`=0,`day3_num`=0,`day4_num`=0,`day5_num`=0,`day6_num`=0,`day7_num`=0,`day8_num`=0,`reg_num`=0 WHERE `id` = 17 [ RunTime:0.000208s ]
+SQL: SELECT * FROM `ocenter_count_remain` WHERE `date` = 1510329600 LIMIT 1   [ RunTime:0.000182s ]
+SQL: SELECT `uid` FROM `ocenter_member` WHERE `reg_time` BETWEEN 1510329600 AND 1510415999 AND `status` = 1  [ RunTime:0.000219s ]
+NOTIC: [2] array_column() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/CountModel.class.php 第 116 行.
+SQL: UPDATE `ocenter_count_remain` SET `date`=1510329600,`day1_num`=0,`day2_num`=0,`day3_num`=0,`day4_num`=0,`day5_num`=0,`day6_num`=0,`day7_num`=0,`day8_num`=0,`reg_num`=0 WHERE `id` = 16 [ RunTime:0.000214s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ocenter_member` WHERE `status` = 1 LIMIT 1   [ RunTime:0.000671s ]
+SQL: SHOW COLUMNS FROM `ocenter_action_log` [ RunTime:0.009248s ]
+SQL: SELECT `user_id` FROM `ocenter_action_log` WHERE `action_id` = 3 AND `create_time` BETWEEN 1511020800 AND 1511107199  [ RunTime:0.000378s ]
+NOTIC: [2] array_column() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/CountModel.class.php 第 200 行.
+NOTIC: [2] array_unique() expects parameter 1 to be array, null given /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/CountModel.class.php 第 201 行.
+SQL: INSERT INTO `ocenter_count_active` (`num`,`type`,`date`) VALUES (0,'day',1511020800) [ RunTime:0.001152s ]
+SQL: SELECT * FROM `ocenter_count_consumption` WHERE `date` = 1511020800 LIMIT 1   [ RunTime:0.000162s ]
+ERR: 1146:Table 'yoyobit.ocenter_count_consumption' doesn't exist
+ [ SQL语句 ] : SELECT * FROM `ocenter_count_consumption` WHERE `date` = 1511020800 LIMIT 1  
+SQL: SHOW COLUMNS FROM `ocenter_pingxx_charge` [ RunTime:0.001576s ]
+ERR: 1146:Table 'yoyobit.ocenter_pingxx_charge' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `ocenter_pingxx_charge`
+SQL: SHOW COLUMNS FROM `ocenter_recharge_record_alipay` [ RunTime:0.002009s ]
+ERR: 1146:Table 'yoyobit.ocenter_recharge_record_alipay' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `ocenter_recharge_record_alipay`
+SQL: SHOW COLUMNS FROM `ocenter_order_link` [ RunTime:0.003023s ]
+ERR: 1146:Table 'yoyobit.ocenter_order_link' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `ocenter_order_link`
+SQL: SELECT * FROM `ocenter_pingxx_charge` WHERE `time_paid` BETWEEN 1511020800 AND 1511107199 AND `paid` = 1  [ RunTime:0.000405s ]
+ERR: 1146:Table 'yoyobit.ocenter_pingxx_charge' doesn't exist
+ [ SQL语句 ] : SELECT * FROM `ocenter_pingxx_charge` WHERE `time_paid` BETWEEN 1511020800 AND 1511107199 AND `paid` = 1 
+SQL: SELECT * FROM `ocenter_recharge_record_alipay` WHERE `notify_time` BETWEEN 1511020800 AND 1511107199 AND `trade_status` IN ('TRADE_SUCCESS','TRADE_FINISHED')  [ RunTime:0.000397s ]
+ERR: 1146:Table 'yoyobit.ocenter_recharge_record_alipay' doesn't exist
+ [ SQL语句 ] : SELECT * FROM `ocenter_recharge_record_alipay` WHERE `notify_time` BETWEEN 1511020800 AND 1511107199 AND `trade_status` IN ('TRADE_SUCCESS','TRADE_FINISHED') 
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/CountModel.class.php 第 292 行.
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/CountModel.class.php 第 297 行.
+SQL: INSERT INTO `ocenter_count_consumption` (`date`,`total_fee`,`user_num`) VALUES (1511020800,'0.00',0) [ RunTime:0.000288s ]
+ERR: 1146:Table 'yoyobit.ocenter_count_consumption' doesn't exist
+ [ SQL语句 ] : INSERT INTO `ocenter_count_consumption` (`date`,`total_fee`,`user_num`) VALUES (1511020800,'0.00',0)
+SQL: SHOW COLUMNS FROM `ocenter_checkin` [ RunTime:0.005812s ]
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.004028s ]
+SQL: SELECT `uid` FROM `ocenter_member` WHERE `con_check` > 0  [ RunTime:0.000483s ]
+NOTIC: [2] Invalid argument supplied for foreach() /Applications/XAMPP/xamppfiles/htdocs/yoyo/Addons/CheckIn/Model/CheckInModel.class.php 第 37 行.
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000936s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000015s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.114829s ]
+SQL: SELECT COUNT(id) AS tp_count FROM `ocenter_action_log` LIMIT 1   [ RunTime:0.000594s ]
+SQL: SHOW COLUMNS FROM `ocenter_score_log` [ RunTime:0.003049s ]
+SQL: SELECT COUNT(id) AS tp_count FROM `ocenter_score_log` LIMIT 1   [ RunTime:0.000201s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.001292s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000013s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.131745s ]
+NOTIC: [8] Undefined index: uid /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Ucenter/Controller/BaseController.class.php 第 17 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000222s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000315s ]
+INFO: [ syncMeta ] --START--
+INFO: Run Addons\SyncLogin\SyncLoginAddon [ RunTime:0.001422s ]
+INFO: [ syncMeta ] --END-- [ RunTime:0.001566s ]
+NOTIC: [8] Undefined variable: seo /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Core/4ec9e90e742e78571a1db70e3c92ab19.php 第 9 行.
+SQL: SHOW COLUMNS FROM `ocenter_seo_rule` [ RunTime:0.002277s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000380s ]
+SQL: SHOW COLUMNS FROM `ocenter_pushing` [ RunTime:0.002439s ]
+ERR: 1146:Table 'yoyobit.ocenter_pushing' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `ocenter_pushing`
+SQL: SHOW COLUMNS FROM `ocenter_member` [ RunTime:0.004463s ]
+NOTIC: [8] Undefined offset: 1 /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/MemberModel.class.php 第 267 行.
+SQL: SHOW COLUMNS FROM `ocenter_user_token` [ RunTime:0.004469s ]
+SQL: SELECT * FROM `ocenter_user_token` WHERE `uid` = null LIMIT 1   [ RunTime:0.000229s ]
+NOTIC: [8] Undefined variable: nav /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Core/4ec9e90e742e78571a1db70e3c92ab19.php 第 151 行.
+NOTIC: [8] Undefined variable: nav /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Core/4ec9e90e742e78571a1db70e3c92ab19.php 第 181 行.
+NOTIC: [8] Undefined variable: nav /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Core/4ec9e90e742e78571a1db70e3c92ab19.php 第 182 行.
+NOTIC: [8] Undefined variable: nav /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Core/4ec9e90e742e78571a1db70e3c92ab19.php 第 182 行.
+NOTIC: [8] Undefined variable: nav /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Core/4ec9e90e742e78571a1db70e3c92ab19.php 第 182 行.
+NOTIC: [8] Undefined variable: nav /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Core/4ec9e90e742e78571a1db70e3c92ab19.php 第 183 行.
+NOTIC: [8] Undefined variable: nav /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Core/4ec9e90e742e78571a1db70e3c92ab19.php 第 184 行.
+NOTIC: [8] Undefined variable: nav /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Core/4ec9e90e742e78571a1db70e3c92ab19.php 第 185 行.
+NOTIC: [8] Undefined variable: nav /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Core/4ec9e90e742e78571a1db70e3c92ab19.php 第 185 行.
+NOTIC: [8] Undefined variable: nav /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Core/4ec9e90e742e78571a1db70e3c92ab19.php 第 185 行.
+SQL: SHOW COLUMNS FROM `ocenter_auth_rule` [ RunTime:0.002021s ]
+SQL: SELECT * FROM `ocenter_auth_rule` WHERE `name` = 'Core/Admin/View' AND `status` = 1 LIMIT 1   [ RunTime:0.000797s ]
+SQL: SELECT `value` FROM `ocenter_config` WHERE `name` = '_CONFIG_JUMP_BACKGROUND' LIMIT 1   [ RunTime:0.000671s ]
+NOTIC: [8] Undefined variable: site /Applications/XAMPP/xamppfiles/htdocs/yoyo/Runtime/Cache/Core/4ec9e90e742e78571a1db70e3c92ab19.php 第 540 行.
+INFO: [ pageFooter ] --START--
+INFO: Run Addons\SuperLinks\SuperLinksAddon [ RunTime:0.000714s ]
+INFO: [ pageFooter ] --END-- [ RunTime:0.000784s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000915s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000015s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.193067s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.001542s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000018s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.198612s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.065817s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.065913s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000273s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000324s ]
+
+[ 2017-11-20T10:31:10+08:00 ] 127.0.0.1 /yoyo/core/file/uploadpicture/session_id/8thnqu5k5q8g1oqpuma941ire7.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.001169s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001255s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.002106s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000438s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000300s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.010626s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010991s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.002028s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000335s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000128s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000210s ]
+SQL: SHOW COLUMNS FROM `ocenter_picture` [ RunTime:0.002951s ]
+NOTIC: [8] Undefined index: ext /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/PictureModel.class.php 第 45 行.
+SQL: SELECT `id`,`type`,`path`,`url`,`md5`,`sha1`,`status`,`create_time`,`width`,`height` FROM `ocenter_picture` WHERE `md5` = '74de92affc9e459a2ef4243939ce9a57' AND `sha1` = '4c2c1ddf0cf1b0974e5279bebcc6146b3d7254ca' AND `type` = 'QiNiu' LIMIT 1   [ RunTime:0.001332s ]
+NOTIC: [2] file_exists(): Unable to find the wrapper &quot;.http&quot; - did you forget to enable it when you configured PHP? /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Upload.class.php 第 188 行.
+NOTIC: [8] Undefined index: Filedata /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Core/Controller/FileController.class.php 第 125 行.
+NOTIC: [8] Undefined index: download /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Core/Controller/FileController.class.php 第 128 行.
+
+[ 2017-11-20T10:31:13+08:00 ] 127.0.0.1 /yoyo/core/file/uploadpicture/session_id/8thnqu5k5q8g1oqpuma941ire7.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000673s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000724s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.003196s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000486s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000284s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.010003s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010356s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.003924s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000380s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000124s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000153s ]
+SQL: SHOW COLUMNS FROM `ocenter_picture` [ RunTime:0.003168s ]
+NOTIC: [8] Undefined index: ext /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/PictureModel.class.php 第 45 行.
+SQL: SELECT `id`,`type`,`path`,`url`,`md5`,`sha1`,`status`,`create_time`,`width`,`height` FROM `ocenter_picture` WHERE `md5` = '2f6582904063564da97895b34d7565c2' AND `sha1` = 'd776158ad3b4ede47ded0be9fa95c35e909a3ff3' AND `type` = 'QiNiu' LIMIT 1   [ RunTime:0.000324s ]
+NOTIC: [2] file_exists(): Unable to find the wrapper &quot;.http&quot; - did you forget to enable it when you configured PHP? /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Upload.class.php 第 188 行.
+NOTIC: [8] Undefined index: Filedata /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Core/Controller/FileController.class.php 第 125 行.
+NOTIC: [8] Undefined index: download /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Core/Controller/FileController.class.php 第 128 行.
+
+[ 2017-11-20T10:45:57+08:00 ] 127.0.0.1 /yoyo/core/file/uploadpicture/session_id/8thnqu5k5q8g1oqpuma941ire7.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.001334s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001435s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.002343s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000424s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000855s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.010545s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.011485s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.001728s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000430s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000233s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000305s ]
+SQL: SHOW COLUMNS FROM `ocenter_picture` [ RunTime:0.002475s ]
+NOTIC: [8] Undefined index: ext /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/PictureModel.class.php 第 45 行.
+SQL: SELECT `id`,`type`,`path`,`url`,`md5`,`sha1`,`status`,`create_time`,`width`,`height` FROM `ocenter_picture` WHERE `md5` = '2f6582904063564da97895b34d7565c2' AND `sha1` = 'd776158ad3b4ede47ded0be9fa95c35e909a3ff3' AND `type` = 'QiNiu' LIMIT 1   [ RunTime:0.000353s ]
+NOTIC: [2] file_exists(): Unable to find the wrapper &quot;.http&quot; - did you forget to enable it when you configured PHP? /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Upload.class.php 第 188 行.
+NOTIC: [8] Undefined index: Filedata /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Core/Controller/FileController.class.php 第 125 行.
+NOTIC: [8] Undefined index: download /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Core/Controller/FileController.class.php 第 128 行.
+
+[ 2017-11-20T10:45:59+08:00 ] 127.0.0.1 /yoyo/core/file/uploadpicture/session_id/8thnqu5k5q8g1oqpuma941ire7.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000681s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000736s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.002170s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000431s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000315s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.010130s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010534s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.003324s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000555s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000116s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000145s ]
+SQL: SHOW COLUMNS FROM `ocenter_picture` [ RunTime:0.001997s ]
+NOTIC: [8] Undefined index: ext /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/PictureModel.class.php 第 45 行.
+SQL: SELECT `id`,`type`,`path`,`url`,`md5`,`sha1`,`status`,`create_time`,`width`,`height` FROM `ocenter_picture` WHERE `md5` = '74de92affc9e459a2ef4243939ce9a57' AND `sha1` = '4c2c1ddf0cf1b0974e5279bebcc6146b3d7254ca' AND `type` = 'QiNiu' LIMIT 1   [ RunTime:0.000386s ]
+NOTIC: [2] file_exists(): Unable to find the wrapper &quot;.http&quot; - did you forget to enable it when you configured PHP? /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Upload.class.php 第 188 行.
+NOTIC: [8] Undefined index: Filedata /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Core/Controller/FileController.class.php 第 125 行.
+NOTIC: [8] Undefined index: download /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Core/Controller/FileController.class.php 第 128 行.
+
+[ 2017-11-20T11:02:59+08:00 ] 127.0.0.1 /yoyo/core/file/uploadpicture/session_id/8thnqu5k5q8g1oqpuma941ire7.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000723s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000784s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.002067s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000407s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000304s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.009843s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010226s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.002465s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000507s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000139s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000176s ]
+SQL: SHOW COLUMNS FROM `ocenter_picture` [ RunTime:0.002175s ]
+NOTIC: [8] Undefined index: ext /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/PictureModel.class.php 第 45 行.
+SQL: SELECT `id`,`type`,`path`,`url`,`md5`,`sha1`,`status`,`create_time`,`width`,`height` FROM `ocenter_picture` WHERE `md5` = '2f6582904063564da97895b34d7565c2' AND `sha1` = 'd776158ad3b4ede47ded0be9fa95c35e909a3ff3' AND `type` = 'QiNiu' LIMIT 1   [ RunTime:0.000297s ]
+NOTIC: [2] file_exists(): Unable to find the wrapper &quot;.http&quot; - did you forget to enable it when you configured PHP? /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Upload.class.php 第 188 行.
+NOTIC: [8] Undefined index: Filedata /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Core/Controller/FileController.class.php 第 125 行.
+NOTIC: [8] Undefined index: download /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Core/Controller/FileController.class.php 第 128 行.
+
+[ 2017-11-20T14:51:31+08:00 ] 127.0.0.1 /yoyo/core/file/uploadpicture/session_id/8thnqu5k5q8g1oqpuma941ire7.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000720s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000779s ]
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+NOTIC: [8] Undefined index: router /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/function.php 第 1936 行.
+SQL: SHOW COLUMNS FROM `ocenter_config` [ RunTime:0.003482s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000366s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000282s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.009880s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010225s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Session/Driver/Db.class.php 第 95 行.
+SQL: SHOW COLUMNS FROM `ocenter_module` [ RunTime:0.002201s ]
+SQL: SELECT `type`,`name`,`value` FROM `ocenter_config` WHERE `status` = 1  [ RunTime:0.000315s ]
+NOTIC: [8] Undefined variable: token /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Model/ModuleModel.class.php 第 242 行.
+NOTIC: [8] Undefined variable: res /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Common/Common/role.php 第 147 行.
+INFO: [ action_begin ] --START--
+INFO: Run Common\Behavior\InitModuleInfoBehavior [ RunTime:0.000138s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.000175s ]
+SQL: SHOW COLUMNS FROM `ocenter_picture` [ RunTime:0.002413s ]
+NOTIC: [8] Undefined index: ext /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Admin/Model/PictureModel.class.php 第 45 行.
+SQL: SELECT `id`,`type`,`path`,`url`,`md5`,`sha1`,`status`,`create_time`,`width`,`height` FROM `ocenter_picture` WHERE `md5` = 'bfbed3f3d6ce37e489fdf8282db94e2c' AND `sha1` = '28404c7f575df83d80773b4d49abf29f468d53d5' AND `type` = 'QiNiu' LIMIT 1   [ RunTime:0.001621s ]
+NOTIC: [2] file_exists(): Unable to find the wrapper &quot;.http&quot; - did you forget to enable it when you configured PHP? /Applications/XAMPP/xamppfiles/htdocs/yoyo/ThinkPHP/Library/Think/Upload.class.php 第 188 行.
+NOTIC: [8] Undefined index: Filedata /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Core/Controller/FileController.class.php 第 125 行.
+NOTIC: [8] Undefined index: download /Applications/XAMPP/xamppfiles/htdocs/yoyo/Application/Core/Controller/FileController.class.php 第 128 行.
+

@@ -2496,11 +2496,22 @@ General list for item with image
 }
 /*消息中心*/
 .talk_bubble {
+  border-color: #48b87a;
+  background: #48b87a;
+  color: white;
   border-radius: 4px;
-  border: 1px solid white;
-  background: white;
   padding: 10px 15px;
   display: inline-block;
+  text-align: center;
+}
+.talk_bubble_img {
+  border-color: #48b87a;
+  background: #48b87a;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 1px;
+  display: inline-block;
+  text-align: center;
 }
 .talk-body {
   background: #f5f5f5;
@@ -2532,7 +2543,7 @@ General list for item with image
   position: relative;
 }
 .bubble_sharp {
-  background: url(../images/bubble_left.png);
+  background: url(../images/bubble_left_chat.png);
   width: 17px;
   height: 22px;
   position: absolute;

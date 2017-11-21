@@ -139,7 +139,7 @@ class IndexController extends Controller{
         $this->assign('rows', $rows);
         $this->assign('pages', $pages);
         $this->assign('page', $page);
-        $this->assign('current', 'btc');
+        $this->assign('current', 'eth');
         $this->display();
     }
 
@@ -206,7 +206,7 @@ class IndexController extends Controller{
     {
         $uid = is_login();
         if(!$uid){
-            $this->error(L('_ERROR_LOGIN_'));
+            $this->error(L('_ERROR_LOGIN_'),U('/ucenter/member/login'));
         }
         if (IS_POST){
             $data['status'] = 1;
@@ -257,10 +257,17 @@ class IndexController extends Controller{
                 ->join('ocenter_tradead t on o.ad_id = t.id')
                 ->join('ocenter_country c on t.country = c.id')
                 ->join('ocenter_pay p on t.pay_type = p.id')
-                ->field('t.pay_remark,p.en_name as payType,c.en_name as countryEn,o.ad_id,t.type,o.order_id,o.pay_code,o.ad_uid,o.get_uid,t.price,o.trade_price,t.currency,t.coin_type,o.coin_num,o.status,t.pay_time,o.create_time,o.update_time,m.nickname,m.trade_count,m.trade_score')
+                ->field('t.pay_remark,p.en_name as payType,t.currency,c.en_name as countryEn,o.ad_id,t.type,o.order_id,o.pay_code,o.ad_uid,o.get_uid,o.pay_text,t.price,o.trade_price,t.currency,t.coin_type,o.coin_num,o.status,t.pay_time,o.create_time,o.update_time,m.nickname,m.trade_count,m.trade_score')
                 ->where($where)->find();
             if (!$order){
                 $this->error(L('_INEXISTENT_404_'));
+            }
+            if ($order['status'] == 3){
+                $where = array();
+                $where['who_eva'] = $uid;
+                $where['order_id'] = $orderId;
+                $evaModel = M('evaluate')->where($where)->field('eva_level,eva_info')->find();
+                $this->assign('evaModel', $evaModel);
             }
             $getUser = M('member')->field('nickname as getName,trade_count as tradeCount,trade_score as tradeScore')->where('uid='.$order['get_uid'])->find();
             $this->assign('order', $order);
@@ -274,7 +281,7 @@ class IndexController extends Controller{
         if (IS_POST){
             $uid = is_login();
             if(!$uid){
-                $this->error(L('_ERROR_LOGIN_'));
+                return false;
             }
             $data['status'] = 1;
             $orderId = I('post.orderId');
@@ -282,10 +289,87 @@ class IndexController extends Controller{
             if (!$order){
                 return false;
             }
-            if ($order['status'] == 1){// 买家没有响应才关闭交易
-                M('trade_order')->where('id='.$order['id'])->save(array('status'=>5,'update_time'=>time()));
+            if ($order['status'] == 1){ // 买家没有响应才关闭交易
+                M('trade_order')->where('id='.$order['id'])->save(array('status'=>6,'update_time'=>time()));
             }
             echo json_encode($data);
+        }
+    }
+
+    /**
+     * 对用户评价
+     */
+    public function evaLevel()
+    {
+        if (IS_POST){
+            $uid = is_login();
+            if (!$uid){
+                $this->error(L('_ERROR_LOGIN_'));
+            }
+            $evaLevel = I('post.evaLevel',0,'intval');
+            $evaInfo = I('post.evaInfo');
+            $evaUid = I('post.evaUid',0,'intval');
+            $orderId = I('post.orderId');
+            if ($evaLevel == 0){
+                $this->error(L('_TRADE_INF15_'));
+            }
+            $where = array();
+            $where['eva_who'] = $evaUid;
+            $where['who_eva'] = $uid;
+            $where['order_id'] = $orderId;
+            $evaModel = M('evaluate')->where($where)->field('id')->find();
+            if ($evaModel){ //更新
+                $data['eva_who'] = $evaUid;
+                $data['who_eva'] = $uid;
+                $data['eva_level'] = $evaLevel;
+                $data['eva_info'] = $evaInfo;
+                M('evaluate')->where('id='.$evaModel['id'])->save($data);
+                $this->success('更新成功!');
+            }else{      //第一次评价
+                $data['order_id'] = $orderId;
+                $data['eva_who'] = $evaUid;
+                $data['who_eva'] = $uid;
+                $data['eva_level'] = $evaLevel;
+                $data['eva_info'] = $evaInfo;
+                M('evaluate')->add($data);
+                $this->success('评价成功!');
+            }
+        }
+    }
+
+    public function appeal()
+    {
+        if (IS_POST){
+            $uid = is_login();
+            if (!$uid){
+                $this->error(L('_ERROR_LOGIN_'));
+            }
+            $user = M('ucenter_member')->where('id='.$uid)->field('email')->find();
+            $data = D('ticket')->create();
+            $data['question_id'] = I('post.question_id');
+            $data['type'] = I('post.type',0,'intval');
+            $data['email'] = $user['email'];
+            $image = I('post.image');
+            if ($image == null){
+                $this->error(L('_TRADE_INF17_'));
+            }
+            $images = '';
+            foreach ($image as $item){
+                $images .= $item.',';
+            }
+            $data['content'] = I('post.content');
+            if ($data['content'] == null){
+                $this->error(L('_TRADE_INF18_'));
+            }
+            $order = M('trade_order')->where("order_id='".$data['question_id']."'")->save(array('status'=>4));
+            if (!$order){
+                $this->error(L('_TRADE_INF16_'));
+            }
+            $data['images'] = $images;
+            $data['uid'] = $uid;
+            $data['create_time'] = time();
+            D('ticket')->add($data);
+            $this->success(L('_SUCCESS_TICKET_'));
         }
     }
 

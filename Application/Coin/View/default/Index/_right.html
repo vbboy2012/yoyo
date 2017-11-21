@@ -18,10 +18,12 @@
             <p>交易次数：{$tradead.trade_count}</p>
             <p>平均放行：10分钟</p>
         </div>
-        <div class="bt-group">
-            {:W('Common/Follow/follow',array('follow_who'=>$user_info['uid']))}
-            {:W('Common/Follow/trust',array('follow_who'=>$user_info['uid']))}
-        </div>
+        <if condition="is_login()">
+            <div class="bt-group">
+                {:W('Common/Follow/follow',array('follow_who'=>$tradead['uid']))}
+                {:W('Common/Follow/trust',array('follow_who'=>$tradead['uid']))}
+            </div>
+        </if>
     </div>
 </div>
 

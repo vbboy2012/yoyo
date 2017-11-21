@@ -1,0 +1,3 @@
+<?php
+//000000003600a:12:{s:2:"id";s:1:"1";s:7:"from_id";s:1:"0";s:5:"title";s:15:"答案被支持";s:7:"content";s:74:"用户yoyocoinsdd支持了你关于问题如何购买比特币的回答。";s:3:"url";s:21:"Question/index/detail";s:4:"args";a:1:{s:2:"id";s:1:"1";}s:4:"type";s:13:"Common_system";s:11:"create_time";s:10:"1509848544";s:6:"status";s:1:"1";s:9:"args_json";s:10:"{"id":"1"}";s:7:"web_url";s:37:"/yoyo/question/index/detail/id/1.html";s:3:"tip";s:74:"用户yoyocoinsdd支持了你关于问题如何购买比特币的回答。";}
+?>

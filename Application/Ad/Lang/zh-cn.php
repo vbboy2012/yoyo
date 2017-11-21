@@ -29,7 +29,7 @@ return array(
     '_AD_PAY_TIME_LABEL_' => '付款期限',
     '_AD_PAY_TYPE_LABEL_' => '付款方式',
     '_AD_PAY_TEXT_LABEL_' => '交易条款',
-    '_AD_PAY_REMARK_LABEL_' => '付款详细信息',
+    '_AD_PAY_REMARK_LABEL_' => '付款方式备注',
     '_AD_PAY_TEXT_TIPS_LABEL_' => '有关您的交易的其它信息。示例 1: 此广告仅限现金交易。 2: 请先确认您能够在12小时内完成现金付款再发出交易请求',
     '_AD_PAY_REMARK_TIPS_LABEL_' => '如果有必要，请提供转帐的详细信息，例如电汇转帐的银行帐号或第三方支付网站的用户帐户。',
     '_AD_MESSAGE_LABEL_' => '自动消息回复',

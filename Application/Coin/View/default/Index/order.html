@@ -5,70 +5,74 @@
 </block>
 <block name="body">
     <!--导航-->
-    <div class="col-xs-12">
-        <div style="background: none">
-            <div>
-                <php>
-                    $type = $order['coin_type'] == 1?'BTC':'ETH';
-                    $coinNum = floatval($order['coin_num']);
-                    $price = number_format($order['price'],2);
-                    $updateTime = date('Y-m-d H:i:s', $order['update_time']);
-                    $params = '';
-                    $buyer = '';
-                    $seller = '';
-                    $uid = is_login();
-                    if($order['type'] == 1){
-                    $params = 'sellonline-';
-                    $seller = $order['nickname'];
-                    $buyer = $getUser['getName'];
-                    }else if($order['type'] == 2){
-                    $params = 'buyonline-';
-                    $buyer = $order['nickname'];
-                    $seller = $getUser['getName'];
-                    }else if($order['type'] == 3){
-                    $params = 'selllocal-';
-                    $seller = $order['nickname'];
-                    $buyer = $getUser['getName'];
-                    }else if($order['type'] == 4){
-                    $params = 'buylocal-';
-                    $buyer = $order['nickname'];
-                    $seller = $getUser['getName'];
-                    }
-                    $params.=$order['payType']."-".$order['countryEn'];
-                    $pay_time = $order['pay_time'] * 60;
-                    $timer = (time()-$order['create_time']);
-                    $remainTime = ceil(($pay_time-$timer)/60);
-                    if($order['status'] ==1){
-                    $statusText = L('_TRADE_STATUS1_');
-                    if($order['type'] == 1 || $order['type'] == 3){
-                    $sellInfo = L('_TRADE_SELL_INFO1_',array('buyer'=>$getUser['getName'],'tradeCount'=>$getUser['tradeCount'],'tradeScore'=>$getUser['tradeScore'],'coinNum'=>$coinNum,'type'=>$type,'trade_price'=>$order['trade_price'],'currency'=>$order['currency'],'pay_code'=>$order['pay_code']));
-                    }else if($order['type'] == 2 || $order['type'] ==4){
-                    $sellInfo = L('_TRADE_SELL_INFO1_',array('buyer'=>$order['nickname'],'tradeCount'=>$order['trade_count'],'tradeScore'=>$order['trade_score'],'coinNum'=>$coinNum,'type'=>$type,'trade_price'=>$order['trade_price'],'currency'=>$order['currency'],'pay_code'=>$order['pay_code']));
-                    }
-                    $buyInfo = L('_TRADE_BUY_INFO1_',array('time'=>$order['pay_time']));
-                    }else if($order['status'] == 2){
-                    $statusText = L('_TRADE_STATUS2_');
-                    $buyInfo = L('_TRADE_BUY_INFO2_',array('updateTime'=>$updateTime,'seller'=>$seller));
-                    if($order['type'] == 1 || $order['type'] == 3){
-                    $sellInfo = L('_TRADE_SELL_INFO1_',array('buyer'=>$getUser['getName'],'tradeCount'=>$getUser['tradeCount'],'tradeScore'=>$getUser['tradeScore'],'coinNum'=>$coinNum,'type'=>$type,'trade_price'=>$order['trade_price'],'currency'=>$order['currency'],'pay_code'=>$order['pay_code']));
-                    }else if($order['type'] == 2 || $order['type'] ==4){
-                    $sellInfo = L('_TRADE_SELL_INFO1_',array('buyer'=>$order['nickname'],'tradeCount'=>$order['trade_count'],'tradeScore'=>$order['trade_score'],'coinNum'=>$coinNum,'type'=>$type,'trade_price'=>$order['trade_price'],'currency'=>$order['currency'],'pay_code'=>$order['pay_code']));
-                    }
-                    }else if($order['status'] == 3){
-                    $statusText = L('_TRADE_STATUS3_');
-                    }else if($order['status'] == 4){
-                    $statusText = L('_TRADE_STATUS4_');
-                    }else if($order['status'] == 5){
-                    $statusText = L('_TRADE_STATUS0_');
-                    $buyInfo = $sellInfo = L('_TRADE_BUY_INFO0_',array('buyer'=>$buyer,'updateTime'=>$updateTime));
-                    }
+    <php>
+        $type = $order['coin_type'] == 1?'BTC':'ETH';
+        $coinNum = floatval($order['coin_num']);
+        $price = number_format($order['price'],2);
+        $updateTime = date('Y-m-d H:i:s', $order['update_time']);
+        $params = '';
+        $buyer = '';
+        $seller = '';
+        $uid = is_login();
+        if($order['type'] == 1){
+        $params = 'sellonline-';
+        $seller = $order['nickname'];
+        $buyer = $getUser['getName'];
+        }else if($order['type'] == 2){
+        $params = 'buyonline-';
+        $buyer = $order['nickname'];
+        $seller = $getUser['getName'];
+        }else if($order['type'] == 3){
+        $params = 'selllocal-';
+        $seller = $order['nickname'];
+        $buyer = $getUser['getName'];
+        }else if($order['type'] == 4){
+        $params = 'buylocal-';
+        $buyer = $order['nickname'];
+        $seller = $getUser['getName'];
+        }
+        $params.=$order['payType']."-".$order['countryEn'];
+        $pay_time = $order['pay_time'] * 60;
+        $timer = (time()-$order['create_time']);
+        $remainTime = ceil(($pay_time-$timer)/60);
 
-                </php>
-                <div class="no-event">订单#{$order['order_id']}：以 {$order.trade_price} CNY 购买 {$coinNum} {$type}</div>
-                <div><a href="{:U('Ucenter/index/information',array('uid'=>$order['ad_uid']))}">{$order['nickname']}</a> 的交易广告# <a href="tradead/{$order['ad_id']}/{$params}">{$order['ad_id']}</a>，汇率 {$order.price} {$order.currency}/{$type} </div>
-            </div>
-            <div class="alert alert-success" style="margin-top: 10px;margin-bottom: 10px">交易状态：<label>{$statusText}</label></div>
+        if($order['status'] ==1){
+        $statusText = L('_TRADE_STATUS1_');
+        if($order['type'] == 1 || $order['type'] == 3){
+        $sellInfo = L('_TRADE_SELL_INFO1_',array('buyer'=>$getUser['getName'],'tradeCount'=>$getUser['tradeCount'],'tradeScore'=>$getUser['tradeScore'],'coinNum'=>$coinNum,'type'=>$type,'payText'=>$order['pay_text'],'trade_price'=>$order['trade_price'],'currency'=>$order['currency'],'pay_code'=>$order['pay_code']));
+        }else if($order['type'] == 2 || $order['type'] ==4){
+        $sellInfo = L('_TRADE_SELL_INFO1_',array('buyer'=>$order['nickname'],'tradeCount'=>$order['trade_count'],'tradeScore'=>$order['trade_score'],'coinNum'=>$coinNum,'type'=>$type,'payText'=>$order['pay_text'],'trade_price'=>$order['trade_price'],'currency'=>$order['currency'],'pay_code'=>$order['pay_code']));
+        }
+        $buyInfo = L('_TRADE_BUY_INFO1_',array('time'=>$order['pay_time']));
+        }else if($order['status'] == 2){
+        $statusText = L('_TRADE_STATUS2_');
+        $buyInfo = L('_TRADE_BUY_INFO2_',array('updateTime'=>$updateTime,'seller'=>$seller));
+        if($order['type'] == 1 || $order['type'] == 3){
+        $sellInfo = L('_TRADE_SELL_INFO1_',array('buyer'=>$getUser['getName'],'tradeCount'=>$getUser['tradeCount'],'tradeScore'=>$getUser['tradeScore'],'coinNum'=>$coinNum,'type'=>$type,'payText'=>$order['pay_text'],'trade_price'=>$order['trade_price'],'currency'=>$order['currency'],'pay_code'=>$order['pay_code']));
+        }else if($order['type'] == 2 || $order['type'] ==4){
+        $sellInfo = L('_TRADE_SELL_INFO1_',array('buyer'=>$order['nickname'],'tradeCount'=>$order['trade_count'],'tradeScore'=>$order['trade_score'],'coinNum'=>$coinNum,'type'=>$type,'payText'=>$order['pay_text'],'trade_price'=>$order['trade_price'],'currency'=>$order['currency'],'pay_code'=>$order['pay_code']));
+        }
+        }else if($order['status'] == 3){
+        $statusText = L('_TRADE_STATUS3_');
+        }else if($order['status'] == 4){
+        $statusText = L('_TRADE_STATUS4_');
+        }else if($order['status'] == 5 || $order['status'] == 6){
+        $statusText = L('_TRADE_STATUS0_');
+        if($order['status'] == 5){
+        $who = $buyer;
+        }else if($order['status'] == 6){
+        $who = 'YOYOCOINS工作人员';
+        }
+        $buyInfo = $sellInfo = L('_TRADE_BUY_INFO0_',array('who'=>$who,'updateTime'=>$updateTime));
+        }
+
+    </php>
+    <div class="col-xs-12">
+        <div class="alert alert-primary" style="background: #fff;margin-top: 0px;margin-bottom: 10px">
+            <h1>订单#{$order['order_id']}：以 {$order.trade_price} CNY 购买 {$coinNum} {$type}</h1>
+            <p><a href="{:U('Ucenter/index/information',array('uid'=>$order['ad_uid']))}">{$order['nickname']}</a> 的交易广告# <a href="tradead/{$order['ad_id']}/{$params}">{$order['ad_id']}</a>，汇率 {$order.price} {$order.currency}/{$type}</p>
         </div>
+        <div class="alert alert-success" style="margin-top: 0px;margin-bottom: 10px">交易状态：<label>{$statusText}</label></div>
     </div>
     <div class="col-xs-8">
         <div class="panel panel-info" style="min-height: 800px">
@@ -81,8 +85,8 @@
                             var myhead = "{$talk_self.avatar128}";
                         </script>
                         <input type="text" class="form-control input-lg" id="chat_content"/>
-                        <span id="web_uploader_wrapper_gallary_image"><i class="icon icon-paper-clip icon-2x"></i></span>
-                        <button id="searchHelpBtn" type="button" class="btn btn-link" onclick="talker.post_message()"><img src="__IMG__/send.png" /></button>
+                        <span id="web_uploader_wrapper_gallary_image"><i class="icon icon-picture icon-2x"></i></span>
+                        <button id="searchHelpBtn" type="button" class="btn btn-link" onclick="talker.post_message()">{:L('_SEND_')}</button>
                     </div>
                 </div>
             </div>
@@ -98,7 +102,7 @@
                 </script>
             </if>
             <div class="panel-body" id="chat_box">
-                <div class="row talk-body">
+                <div class="row talk-body" style="background: none">
                     <div id="" class="row">
                         <div id="scrollContainer_chat">
                             <div class="text-muted" style="line-height: 258px;text-align: center;font-size: 32px">{:L('_TALK_NONE_')}</div>
@@ -109,7 +113,7 @@
             </div>
         </div>
     </div>
-
+    <h1 id="myHeader">这是标题</h1>
     <div class="col-xs-4" style="z-index: 99">
         <include file="_right2"/>
     </div>
@@ -118,6 +122,7 @@
     <script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
     <script>
         var gallary_num_image="<php>echo count($info['image'])</php>";
+        var gallary_num_other_image = "<php>echo count($info['other_image'])</php>";
         $(function () {
 
             //image start
@@ -152,14 +157,12 @@
                         $("#web_uploader_file_name_gallary_image").text(ret.info);
                     } else {
                         talker.post_message(2,ret.data.file.path);
-                        $('#web_uploader_input_gallary_image').focus();
-                        $('#web_uploader_input_gallary_image').val(ret.data.file.id);
-                        $('#web_uploader_input_gallary_image').blur();
-                        $("#web_uploader_picture_list_gallary_image").append('<img class="gallary_thumb" onclick="remove_file(this,' + "'image'" + ')" src="' + ret.data.file.path + '"/><input type="hidden" name="image[]" value="' + ret.data.file.id + '"/>');
                     }
                 });
             }
             //image end
+
+
 
         })
 
@@ -169,7 +172,6 @@
                 return false;
                 function success(data) {
                     if (data.status) {
-                        toast.success(data.status);
                         window.location.reload();
                     }
                 }
@@ -183,7 +185,6 @@
                 return false;
                 function success(data) {
                     if (data.status) {
-                        toast.success(data.status);
                         window.location.reload();
                     }
                 }
@@ -197,13 +198,122 @@
                 return false;
                 function success(data) {
                     if (data.status) {
-                        toast.success(data.status);
                         window.location.reload();
                     }
                 }
             }else{
                 return false;
             }
+        });
+
+        $("#appeal-trade").click(function () {
+            $(this).hide();
+            $("#cancel-trade").hide();
+            $("#send-coin").hide();
+            loadJS();
+        });
+
+        $("#cancel-appeal").click(function () {
+            $("#appeal-trade").show();
+            $("#cancel-trade").show();
+            $("#send-coin").show();
+        });
+        
+        function loadJS() {
+            // other_image  start
+            var id_other_image = "#web_uploader_wrapper_gallary_other_image";
+            if($(id_other_image).length > 0) {
+                var uploader_gallary_other_image = WebUploader.create({
+                    // swf文件路径
+                    swf: 'Uploader.swf',
+                    // 文件接收服务端。
+                    server: "{:U('Core/File/uploadPicture',array('session_id'=>session_id()))}",
+                    fileNumLimit: 9,
+                    // 选择文件的按钮。可选。
+                    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                    pick: {'id': id_other_image, 'multi': true}
+                });
+                uploader_gallary_other_image.on('beforeFileQueued', function (file) {
+                    if (gallary_num_other_image >= 9) {
+                        toast.error('图片不能超过9张');
+                        return false;
+                    }
+                });
+                uploader_gallary_other_image.on('fileQueued', function (file) {
+                    gallary_num_other_image = parseInt(gallary_num_other_image) + 1;
+
+                    uploader_gallary_other_image.upload();
+                    $("#web_uploader_file_name_gallary_other_image").text('正在上传...');
+                });
+
+                /*上传成功*/
+                uploader_gallary_other_image.on('uploadSuccess', function (file, ret) {
+                    if (ret.status == 0) {
+                        $("#web_uploader_file_name_gallary_other_image").text(ret.info);
+                    } else {
+                        $('#web_uploader_input_gallary_other_image').focus();
+                        $('#web_uploader_input_gallary_other_image').val(ret.data.file.id);
+                        $('#web_uploader_input_gallary_other_image').blur();
+                        $("#web_uploader_picture_list_gallary_other_image").append('<img class="gallary_thumb" onclick="remove_file(this,' + "'other_image'" + ')" src="' + ret.data.file.path + '"/><input type="hidden" name="image[]" value="' + ret.data.file.id + '"/>');
+                    }
+                });
+            }
+            //other_image end
+        }
+
+        function remove_file(obj,str) {
+            $(obj).next().remove();
+            $(obj).remove();
+            switch (str){
+                case 'other_image':
+                    gallary_num_other_image = gallary_num_other_image - 1;
+                    break;
+                default:;
+            }
+        }
+
+        $(function () {
+            $('[data-role="submit"]').click(function () {
+                var $tag=$(this);
+                if($tag.attr('disabled')=='disabled'){
+                    return false;
+                }
+                $tag.attr('disabled','disabled');
+                var param=$('#eva-form').serialize();
+                var url=U('coin/index/evaLevel');
+                $.post(url,param,function (msg) {
+                    handleAjax(msg);
+                    if(msg.status==0){
+                        $tag.removeAttr('disabled');
+                    }else if(msg.status == 1){
+                        window.location.reload();
+                    }
+                })
+            })
+        })
+
+        $(function () {
+            $('[data-role="send-appeal"]').click(function () {
+                var $tag=$(this);
+                if($tag.attr('disabled')=='disabled'){
+                    return false;
+                }
+                $tag.attr('disabled','disabled');
+                var param=$('#appeal-form').serialize();
+                var url=U('coin/index/appeal');
+                $.post(url,param,function (msg) {
+                    handleAjax(msg);
+                    if(msg.status==0){
+                        $tag.removeAttr('disabled');
+                    }else if(msg.status == 1){
+                        window.location.reload();
+                    }
+                })
+            })
+        })
+
+        $("#update-eva").click(function () {
+            $(this).parent().css('display','none');
         });
         $(function () {
             var status = {$order.status};
@@ -213,7 +323,8 @@
                 if(remainTime > 0){
                     $("#timer").text("<php>echo L('_TRADE_TIME_');</php>"+remainTime+"<php>echo L('_TIME_MINUTE_');</php>");
                     code = setInterval(GetRTime,60*1000);
-                }else{
+                }
+                else{
                     $.post("{:U('/timeOver')}", {orderId:"<php>echo $order['order_id'];</php>"}, success, "json");
                     return false;
                     function success(data) {
